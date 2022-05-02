@@ -1,26 +1,23 @@
 import { defineConfig } from 'astro/config';
 
-import vue from '@astrojs/vue';
-
-import svg from 'vite-svg-loader';
-
 import unocss from 'unocss/vite';
 import preset from '@unocss/preset-uno';
 
 // https://astro.build/config
 export default defineConfig({
-  integrations: [vue()],
   vite: {
+    ssr: {
+      external: ['svgo'],
+    },
     plugins: [
-      svg(),
       unocss({
         presets: [
           preset(),
         ],
         theme: {
           fontFamily: {
-            mono: ['JetBrains Mono', 'Courier New'],
-            sans: ['Open Sauce One', 'Inter', 'Segoe UI', 'Helvetica', 'Arial', 'sans-serif'],
+            mono: ['JetBrains Mono', 'ui-monospace', 'SFMono-Regular', 'Menlo', 'Monaco', 'Consolas', 'Liberation Mono', 'Courier New', 'monospace'],
+            sans: ['Open Sauce One', 'Inter', 'Segoe UI', 'Roboto', 'Noto Sans', 'Helvetica', 'Arial', 'sans-serif'],
           },
           fontSize: {
             sm: '13.5px',

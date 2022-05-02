@@ -1,7 +1,6 @@
 ---
-
-import Layout from '../components/Layout.astro';
-import Logo from './../assets/images/logo.svg?component';
+import { Icon } from 'astro-icon';
+import Layout from '@/components/Layout.astro';
 
 ---
 
@@ -49,8 +48,8 @@ import Logo from './../assets/images/logo.svg?component';
 			</li>
 		</ul>
 
-		<Logo class="pt-18" />
-		<p class="text-sm">Foo bar</p>
+		<Icon name="logo" class="pt-18 w-16 h-auto" />
+		<p class="text-sm font-mono">Foo bar</p>
 	</main>
 </Layout>
 

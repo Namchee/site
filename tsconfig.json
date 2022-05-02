@@ -16,6 +16,6 @@
       "@/*": ["src/*"],
     }
   },
-  "include": ["src/**/*"],
+  "include": ["src/**/*.astro"],
   "exclude": ["node_modules"]
 }
