@@ -1,15 +1,19 @@
 import { defineConfig } from 'astro/config';
 
+import vue from '@astrojs/vue';
+
 import unocss from 'unocss/vite';
 import preset from '@unocss/preset-uno';
 
 // https://astro.build/config
 export default defineConfig({
+  integrations: [vue()],
   vite: {
     ssr: {
       external: ['svgo'],
     },
     plugins: [
+      svgVue(),
       unocss({
         presets: [
           preset(),
