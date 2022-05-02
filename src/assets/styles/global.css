@@ -1,0 +1,44 @@
+@font-face {
+  font-family: "Open Sauce";
+  src: local("Open Sauce One"),
+    url("./../open-sauce-regular.woff2") format("woff2"),
+    url("./../open-sauce-regular.woff") format("woff");
+  font-style: normal;
+  font-weight: 400;
+}
+
+@font-face {
+  font-family: "Open Sauce";
+  src: local("Open Sauce One"),
+    url("./../open-sauce-italic.woff2") format("woff2"),
+    url("./../open-sauce-italic.woff") format("woff");
+  font-style: italic;
+  font-weight: 400;
+}
+
+@font-face {
+  font-family: "Open Sauce";
+  src: local("Open Sauce One"),
+    url("./../open-sauce-bold.woff2") format("woff2"),
+    url("./../open-sauce-bold.woff") format("woff");
+  font-style: normal;
+  font-weight: 700;
+}
+
+@font-face {
+  font-family: "Open Sauce";
+  src: local("Open Sauce One"),
+    url("./../open-sauce-semibold.woff2") format("woff2"),
+    url("./../open-sauce-semibold.woff") format("woff");
+  font-style: normal;
+  font-weight: 600;
+}
+
+@font-face {
+  font-family: "JetBrains Mono";
+  src: local("JetBrains Mono"),
+    url("./../jetbrains-mono.woff2") format("woff2"),
+    url("./../jetbrains-mono.woff") format("woff");
+  font-style: normal;
+  font-weight: 400;
+}
