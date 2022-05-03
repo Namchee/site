@@ -1,0 +1,17 @@
+---
+export interface LinkProps {
+  href: string;
+  class?: string;
+  popup?: boolean;
+}
+
+const { href, popup } = Astro.props;
+---
+
+<a
+  href={href}
+  rel="noreferrer noopener"
+  class={Astro.props.class ? Astro.props.class : ''}
+  target={popup ? '_blank' : '_self'}>
+  <slot />
+</a>
