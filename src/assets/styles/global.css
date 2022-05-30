@@ -33,12 +33,3 @@
   font-style: normal;
   font-weight: 700;
 }
-
-@font-face {
-  font-family: "JetBrains Mono";
-  src: local("JetBrains Mono"),
-    url("/fonts/jetbrains-mono.woff2") format("woff2"),
-    url("/fonts/jetbrains-mono.woff") format("woff");
-  font-style: normal;
-  font-weight: 400;
-}
