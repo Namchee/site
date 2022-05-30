@@ -23,7 +23,7 @@ import AppLink from '@/components/vue/AppLink.vue';
           <AppLink
             href="https://www.github.com/Namchee/site"
             popup
-            class="text-peach-200"
+            class="text-primary"
           >
             Go check it out
           </AppLink>
@@ -88,7 +88,7 @@ import AppLink from '@/components/vue/AppLink.vue';
     <!-- start: copyright and author -->
     <div class="flex items-center justify-between
       text-sm
-      border-t border-t-[#c5c5c5]
+      border-t border-t-light-600
       pt-8">
       <p>
         2022 &copy; Namchee. All rights reserved

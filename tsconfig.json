@@ -17,6 +17,5 @@
       "@/*": ["src/*"],
     }
   },
-  "include": ["src/**/*.astro", "src/**/*.vue"],
   "exclude": ["node_modules"]
 }
