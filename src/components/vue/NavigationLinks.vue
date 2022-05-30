@@ -15,8 +15,8 @@ const { currentPath } = defineProps<NavigationListProps>();
     <li v-for="link in LINKS" :key="link.path">
       <AppLink
         :href="link.path"
-        class="tracking-tight text-lg hover:text-dark transition-all"
-        :class="{ 'font-semibold text-dark': link.path === currentPath, 'text-gray': link.path !== currentPath }"
+        class="tracking-tight text-lg hover:text-gray-800 transition-colors"
+        :class="{ 'font-semibold text-gray-800': link.path === currentPath, 'text-gray': link.path !== currentPath }"
       >
         {{ link.name }}
       </AppLink>

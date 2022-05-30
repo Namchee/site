@@ -23,7 +23,8 @@ import AppLink from '@/components/vue/AppLink.vue';
           <AppLink
             href="https://www.github.com/Namchee/site"
             popup
-            class="text-primary"
+            class="text-primary transition-colors
+              hover:text-primary-600"
           >
             Go check it out
           </AppLink>
@@ -40,17 +41,62 @@ import AppLink from '@/components/vue/AppLink.vue';
           </p>
           <ul class="flex mt-2 space-x-8">
             <li>
-              <AppLink href="mailto:hello@namchee.dev" class="font-semibold" popup>
+              <AppLink href="mailto:hello@namchee.dev" class="font-semibold
+                relative
+                after:absolute
+                after:(content-*)
+                after:w-full
+                after:h-[1px]
+                after:bg-gray-800
+                after:left-0
+                after:scale-x-0
+                after:ease-out
+                after:duration-200
+                after:origin-left
+                after:transition-transform
+                after:bottom-[-3px]
+                focus:after:scale-x-100
+                hover:after:scale-x-100" popup>
                 Email
               </AppLink>
             </li>
             <li>
-              <AppLink href="https://www.github.com/Namchee" class="font-semibold" popup>
+              <AppLink href="https://www.github.com/Namchee" class="font-semibold
+                relative
+                after:absolute
+                after:(content-*)
+                after:w-full
+                after:h-[1px]
+                after:bg-gray-800
+                after:left-0
+                after:scale-x-0
+                after:ease-out
+                after:duration-200
+                after:origin-left
+                after:transition-transform
+                after:bottom-[-3px]
+                focus:after:scale-x-100
+                hover:after:scale-x-100" popup>
                 GitHub
               </AppLink>
             </li>
             <li>
-              <AppLink href="https://twitter.com/lakban_hitam" class="font-semibold" popup>
+              <AppLink href="https://twitter.com/lakban_hitam" class="font-semibold
+                relative
+                after:absolute
+                after:(content-*)
+                after:w-full
+                after:h-[1px]
+                after:bg-gray-800
+                after:left-0
+                after:scale-x-0
+                after:ease-out
+                after:duration-200
+                after:origin-left
+                after:transition-transform
+                after:bottom-[-3px]
+                focus:after:scale-x-100
+                hover:after:scale-x-100" popup>
                 Twitter
               </AppLink>
             </li>
@@ -67,13 +113,43 @@ import AppLink from '@/components/vue/AppLink.vue';
             <li v-for="link in LINKS" :key="link.path">
               <AppLink
                 :href="link.path"
-                class="font-semibold text-dark transition-all"
-              >
+                class="font-semibold
+                  relative
+                  after:absolute
+                  after:(content-*)
+                  after:w-full
+                  after:h-[1px]
+                after:bg-gray-800
+                  after:left-0
+                  after:scale-x-0
+                  after:ease-out
+                  after:duration-200
+                  after:origin-left
+                  after:transition-transform
+                  after:bottom-[-3px]
+                  focus:after:scale-x-100
+                  hover:after:scale-x-100"
+                >
                 {{ link.name }}
               </AppLink>
             </li>
             <li>
-              <AppLink href="https://twitter.com/lakban_hitam" class="font-semibold">
+              <AppLink href="https://twitter.com/lakban_hitam" class="font-semibold
+                relative
+                after:absolute
+                after:(content-*)
+                after:w-full
+                after:h-[1px]
+                after:bg-gray-800
+                after:left-0
+                after:scale-x-0
+                after:ease-out
+                after:duration-200
+                after:origin-left
+                after:transition-transform
+                after:bottom-[-3px]
+                focus:after:scale-x-100
+                hover:after:scale-x-100">
                 Sitemap.xml
               </AppLink>
             </li>
