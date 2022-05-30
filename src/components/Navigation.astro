@@ -1,18 +1,8 @@
 ---
-import Link from '@/components/Link.astro';
+import Link from '@/components/vue/AppLink.vue';
+import NavigationLinks from '@/components/vue/NavigationLinks.vue';
 
 const { pathname } = new URL(Astro.request.url);
-
-const links = [
-  {
-    path: '/',
-    name: 'Home',
-  },
-  {
-    path: '/about',
-    name: 'About',
-  },
-];
 ---
 
 <nav class="w-full h-24 grid place-items-center">
@@ -43,28 +33,6 @@ const links = [
           fill="currentColor" />
       </svg>
     </Link>
-    <ul class="flex items-center space-x-12">
-      {
-        links.forEach(({ name, path }) => {
-
-        })
-      }
-      <li>
-        <Link
-          href="/"
-          class="font-semibold tracking-tighter text-lg hover:text-dark"
-        >
-          Home
-        </Link>
-      </li>
-      <li>
-        <Link
-          href="/about"
-          class="tracking-tighter text-gray text-lg transition-color hover:text-dark"
-        >
-          About
-        </Link>
-      </li>
-    </ul>
+    <NavigationLinks currentPath={pathname} />
   </div>
 </nav>
