@@ -1,5 +1,7 @@
 import { defineConfig } from 'astro/config';
 
+import icon from 'unplugin-icons/vite';
+
 import vue from '@astrojs/vue';
 import tailwind from '@astrojs/tailwind';
 
@@ -7,8 +9,8 @@ import tailwind from '@astrojs/tailwind';
 export default defineConfig({
   integrations: [tailwind(), vue()],
   vite: {
-    ssr: {
-      external: ['svgo'],
-    },
+    plugins: [
+      icon(),
+    ],
   },
 });

@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import ArrowTopRight from '~icons/radix-icons/arrow-top-right';
+
 import { LINKS } from '@/constant/link';
 
 import AppLink from '@/components/vue/AppLink.vue';
@@ -56,7 +58,8 @@ import AppLink from '@/components/vue/AppLink.vue';
                 after:transition-transform
                 after:bottom-[-3px]
                 focus:after:scale-x-100
-                hover:after:scale-x-100" popup>
+                hover:after:scale-x-100
+                flex items-center" popup>
                 Email
               </AppLink>
             </li>

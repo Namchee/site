@@ -4,5 +4,27 @@ import Layout from '@/components/Layout.astro';
 ---
 
 <Layout title="Welcome to Astro.">
-	This is About page
+	<div class="mt-20 grid grid-cols-12 gap-x-6">
+		<h1 class="text-6xl col-start-2 col-span-full tracking-tight leading-snug">
+			<p>
+				Hello there, just call
+			</p>
+			<p>
+				me <span class="bg-clip-text bg-theme-gradient font-semibold text-transparent">Namchee</span>
+			</p>
+		</h1>
+
+		<!-- start: about sections -->
+		<div class="mt-24 mb-32">
+			<section>
+				<p class="font-bold">
+					01/
+				</p>
+				<p>
+					Foo
+				</p>
+			</section>
+		</div>
+		<!-- end: about sections -->
+	</div>
 </Layout>
