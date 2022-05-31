@@ -1,6 +1,7 @@
 ---
 import Layout from '@/components/Layout.astro';
 
+import ArrowRight from '~icons/radix-icons/arrow-right';
 import AboutContacts from '@/components/vue/AboutContacts.vue';
 
 ---
@@ -60,12 +61,18 @@ import AboutContacts from '@/components/vue/AboutContacts.vue';
 								Tokopedia is where I began my software engineering gig. Some of
 								my personal achievements in Tokopedia are:
 
-								<ul class="list-disc">
-									<li>
-										Improved the reliability of incident detection in digital tribe by maintaining 911 monitoring and alerting project.
+								<ul>
+									<li class="flex">
+										<ArrowRight class="w-5 h-auto first:self-start mt-2" />
+										<p class="ml-3 flex-1">
+											Improved the reliability of incident detection in digital tribe by maintaining 911 monitoring and alerting project.
+										</p>
 									</li>
-									<li>
-										Decreased critical API latency by 400% by optimizing database queries and function calls.
+									<li class="flex">
+										<ArrowRight class="w-5 h-auto self-start mt-2" />
+										<p class="ml-3 flex-1">
+											Decreased critical API latency by 400% by optimizing database queries and function calls.
+										</p>
 									</li>
 								</ul>
 							</p>
