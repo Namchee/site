@@ -19,17 +19,17 @@
 @font-face {
   font-family: "Open Sauce";
   src: local("Open Sauce One"),
-    url("/fonts/open-sauce-semibold.woff2") format("woff2"),
-    url("/fonts/open-sauce-semibold.woff") format("woff");
+    url("/fonts/open-sauce-medium.woff2") format("woff2"),
+    url("/fonts/open-sauce-medium.woff") format("woff");
   font-style: normal;
-  font-weight: 600;
+  font-weight: 500;
 }
 
 @font-face {
   font-family: "Open Sauce";
   src: local("Open Sauce One"),
-    url("/fonts/open-sauce-bold.woff2") format("woff2"),
-    url("/fonts/open-sauce-bold.woff") format("woff");
+    url("/fonts/open-sauce-semibold.woff2") format("woff2"),
+    url("/fonts/open-sauce-semibold.woff") format("woff");
   font-style: normal;
-  font-weight: 700;
+  font-weight: 600;
 }

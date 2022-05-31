@@ -1,28 +1,93 @@
 ---
 import Layout from '@/components/Layout.astro';
 
+import AboutContacts from '@/components/vue/AboutContacts.vue';
+
 ---
 
-<Layout title="Welcome to Astro.">
+<Layout title="About Me">
 	<div class="mt-20 grid grid-cols-12 gap-x-6">
-		<h1 class="text-6xl col-start-2 col-span-full tracking-tight leading-snug">
+		<h1 class="text-6xl col-start-2 col-span-full tracking-tight mb-32">
 			<p>
 				Hello there, just call
 			</p>
 			<p>
-				me <span class="bg-clip-text bg-theme-gradient font-semibold text-transparent">Namchee</span>
+				me <span class="bg-clip-text bg-theme-gradient font-medium text-transparent tracking-tighter">Namchee</span>
 			</p>
 		</h1>
 
 		<!-- start: about sections -->
-		<div class="mt-24 mb-32">
-			<section>
-				<p class="font-bold">
+		<div class="mb-32 space-y-24 col-span-full">
+			<section class="grid grid-cols-12 gap-x-6">
+				<div class="font-bold">
 					01/
-				</p>
-				<p>
-					Foo
-				</p>
+				</div>
+				<div class="text-3xl -mt-3 tracking-tight">
+					Introducing...
+				</div>
+				<div class="col-start-7 col-span-full leading-loose">
+					<p>
+						Cristopher, or more commonly known as Namchee, is a software engineer based in Bandung, Indonesia. I
+						love writing quality softwares that aim to solve real-life problems.
+
+						My dream is to make the world a better place for everyone, anywhere and anytime.
+					</p>
+					<p class="mt-8">
+						To make my dream come true, I oftenly explore and learn new things in
+						various domains every day. For me, such opportunities are the ones that make
+						life more lively and interesting.
+					</p>
+				</div>
+			</section>
+
+			<section class="grid grid-cols-12 gap-x-6">
+				<div class="font-bold">
+					02/
+				</div>
+				<div class="text-3xl -mt-3 tracking-tight">
+					Professional Experiences
+				</div>
+				<div class="col-start-7 col-span-full leading-loose">
+					<ul>
+						<li>
+							<p class="text-gray text-sm uppercase font-semibold">
+								2022 &mdash; Present
+							</p>
+							<p class="font-medium text-2xl tracking-tight leading-relaxed">
+								Tokopedia
+							</p>
+							<p class="mt-2">
+								Tokopedia is where I began my software engineering gig. Some of
+								my personal achievements in Tokopedia are:
+
+								<ul class="list-disc">
+									<li>
+										Improved the reliability of incident detection in digital tribe by maintaining 911 monitoring and alerting project.
+									</li>
+									<li>
+										Decreased critical API latency by 400% by optimizing database queries and function calls.
+									</li>
+								</ul>
+							</p>
+						</li>
+					</ul>
+				</div>
+			</section>
+
+			<section class="grid grid-cols-12 gap-x-6">
+				<div class="font-bold">
+					03/
+				</div>
+				<div class="text-3xl -mt-3 tracking-tight">
+					Contacts
+				</div>
+				<div class="col-start-7 col-span-full leading-loose">
+					<p>
+						You can contact me through these channels. Don't worry, I don't bite!
+					</p>
+
+					<AboutContacts class="mt-4" />
+				</div>
 			</section>
 		</div>
 		<!-- end: about sections -->

@@ -1,7 +1,5 @@
 <script setup lang="ts">
-import ArrowTopRight from '~icons/radix-icons/arrow-top-right';
-
-import { LINKS } from '@/constant/link';
+import { WEB_LINKS, CONTACT_LINKS } from '@/constant/link';
 
 import AppLink from '@/components/vue/AppLink.vue';
 </script>
@@ -14,7 +12,7 @@ import AppLink from '@/components/vue/AppLink.vue';
     py-8 px-20
     xl:px-0">
     <!-- start: sitemap, contacts, open source -->
-    <div class="grid grid-cols-2
+    <div class="grid grid-cols-2 gap-6
       pb-8">
       <!-- start: open source -->
       <div class="leading-relaxed text-xl">
@@ -38,12 +36,12 @@ import AppLink from '@/components/vue/AppLink.vue';
       <div class="space-y-8">
         <!-- start: contacts -->
         <div class="text-lg">
-          <p class="uppercase font-bold text-gray text-sm tracking-tight">
+          <p class="uppercase font-semibold text-gray text-sm">
             Get in touch
           </p>
           <ul class="flex mt-2 space-x-8">
-            <li>
-              <AppLink href="mailto:hello@namchee.dev" class="font-semibold
+            <li v-for="link in CONTACT_LINKS" :key="link.href">
+              <AppLink :href="link.href" class="font-medium
                 relative
                 after:absolute
                 after:(content-*)
@@ -54,53 +52,13 @@ import AppLink from '@/components/vue/AppLink.vue';
                 after:scale-x-0
                 after:ease-out
                 after:duration-200
-                after:origin-left
+                after:origin-right
                 after:transition-transform
                 after:bottom-[-3px]
                 focus:after:scale-x-100
                 hover:after:scale-x-100
-                flex items-center" popup>
-                Email
-              </AppLink>
-            </li>
-            <li>
-              <AppLink href="https://www.github.com/Namchee" class="font-semibold
-                relative
-                after:absolute
-                after:(content-*)
-                after:w-full
-                after:h-[1px]
-                after:bg-gray-800
-                after:left-0
-                after:scale-x-0
-                after:ease-out
-                after:duration-200
-                after:origin-left
-                after:transition-transform
-                after:bottom-[-3px]
-                focus:after:scale-x-100
-                hover:after:scale-x-100" popup>
-                GitHub
-              </AppLink>
-            </li>
-            <li>
-              <AppLink href="https://twitter.com/lakban_hitam" class="font-semibold
-                relative
-                after:absolute
-                after:(content-*)
-                after:w-full
-                after:h-[1px]
-                after:bg-gray-800
-                after:left-0
-                after:scale-x-0
-                after:ease-out
-                after:duration-200
-                after:origin-left
-                after:transition-transform
-                after:bottom-[-3px]
-                focus:after:scale-x-100
-                hover:after:scale-x-100" popup>
-                Twitter
+                hover:after:origin-left" popup>
+                {{ link.name }}
               </AppLink>
             </li>
           </ul>
@@ -109,14 +67,14 @@ import AppLink from '@/components/vue/AppLink.vue';
 
         <!-- start: sitemap -->
         <div class="text-lg">
-          <p class="uppercase font-bold text-gray text-sm tracking-tight">
+          <p class="uppercase font-semibold text-gray text-sm">
             Sitemap
           </p>
           <ul class="flex mt-2 space-x-8">
-            <li v-for="link in LINKS" :key="link.path">
+            <li v-for="link in WEB_LINKS" :key="link.path">
               <AppLink
                 :href="link.path"
-                class="font-semibold
+                class="font-medium
                   relative
                   after:absolute
                   after:(content-*)
@@ -127,17 +85,18 @@ import AppLink from '@/components/vue/AppLink.vue';
                   after:scale-x-0
                   after:ease-out
                   after:duration-200
-                  after:origin-left
+                  after:origin-right
                   after:transition-transform
                   after:bottom-[-3px]
                   focus:after:scale-x-100
-                  hover:after:scale-x-100"
+                  hover:after:scale-x-100
+                  hover:after:origin-left"
                 >
                 {{ link.name }}
               </AppLink>
             </li>
             <li>
-              <AppLink href="https://twitter.com/lakban_hitam" class="font-semibold
+              <AppLink href="https://twitter.com/lakban_hitam" class="font-medium
                 relative
                 after:absolute
                 after:(content-*)
@@ -148,11 +107,13 @@ import AppLink from '@/components/vue/AppLink.vue';
                 after:scale-x-0
                 after:ease-out
                 after:duration-200
-                after:origin-left
+                after:origin-right
                 after:transition-transform
                 after:bottom-[-3px]
                 focus:after:scale-x-100
-                hover:after:scale-x-100">
+                hover:after:scale-x-100
+                hover:after:origin-left"
+              >
                 Sitemap.xml
               </AppLink>
             </li>

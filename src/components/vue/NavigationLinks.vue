@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { LINKS } from '@/constant/link';
+import { WEB_LINKS } from '@/constant/link';
 
 import AppLink from '@/components/vue/AppLink.vue';
 
@@ -12,7 +12,7 @@ const { currentPath } = defineProps<NavigationListProps>();
 
 <template>
   <ul class="flex items-center space-x-12">
-    <li v-for="link in LINKS" :key="link.path">
+    <li v-for="link in WEB_LINKS" :key="link.path">
       <AppLink
         :href="link.path"
         class="tracking-tight text-lg hover:text-gray-800 transition-colors"
