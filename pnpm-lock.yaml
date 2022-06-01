@@ -6,6 +6,7 @@ specifiers:
   '@iconify-json/radix-icons': ^1.1.3
   '@typescript-eslint/eslint-plugin': ^5.21.0
   '@typescript-eslint/parser': ^5.21.0
+  '@vueuse/components': ^8.6.0
   '@vueuse/core': ^8.6.0
   astro: ^1.0.0-beta.20
   astro-imagetools: ^0.6.3
@@ -21,6 +22,7 @@ specifiers:
   vue: ^3.2.33
 
 dependencies:
+  '@vueuse/components': 8.6.0_vue@3.2.33
   '@vueuse/core': 8.6.0_vue@3.2.33
   astro-imagetools: 0.6.3_astro@1.0.0-beta.20
   motion: 10.10.0
@@ -1192,6 +1194,17 @@ packages:
 
   /@vue/shared/3.2.33:
     resolution: {integrity: sha512-UBc1Pg1T3yZ97vsA2ueER0F6GbJebLHYlEi4ou1H5YL4KWvMOOWwpYo9/QpWq93wxKG6Wo13IY74Hcn/f7c7Bg==}
+
+  /@vueuse/components/8.6.0_vue@3.2.33:
+    resolution: {integrity: sha512-TkRCknGsBk/Zuap4YC9MLf+xpopdAkHugSVcSVFbciyBwqr3LlWVeJ4HHlHKGIBNOWyMQqDW0WFy47xfAPd3WA==}
+    dependencies:
+      '@vueuse/core': 8.6.0_vue@3.2.33
+      '@vueuse/shared': 8.6.0_vue@3.2.33
+      vue-demi: 0.13.0_vue@3.2.33
+    transitivePeerDependencies:
+      - '@vue/composition-api'
+      - vue
+    dev: false
 
   /@vueuse/core/8.6.0_vue@3.2.33:
     resolution: {integrity: sha512-VirzExCm/N+QdrEWT7J4uSrvJ5hquKIAU9alQ37kUvIJk9XxCLxmfRnmekYc1kz2+6BnoyuKYXVmrMV351CB4w==}

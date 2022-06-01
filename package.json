@@ -26,6 +26,7 @@
     "vue": "^3.2.33"
   },
   "dependencies": {
+    "@vueuse/components": "^8.6.0",
     "@vueuse/core": "^8.6.0",
     "astro-imagetools": "^0.6.3",
     "motion": "^10.10.0"
