@@ -15,7 +15,7 @@ import AppLink from '@/components/vue/AppLink.vue';
     <div class="grid grid-cols-2 gap-6
       pb-8">
       <!-- start: open source -->
-      <div class="leading-relaxed text-xl">
+      <div class="leading-loose text-xl">
         <p>
           Hey, this site is open-source!
         </p>
