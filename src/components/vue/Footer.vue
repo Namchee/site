@@ -2,6 +2,7 @@
 import { WEB_LINKS, CONTACT_LINKS } from '@/constant/link';
 
 import AppLink from '@/components/vue/AppLink.vue';
+import FooterLink from '@/components/vue/FooterLink.vue';
 </script>
 
 <template>
@@ -10,21 +11,23 @@ import AppLink from '@/components/vue/AppLink.vue';
     max-w-7xl
     mx-auto
     py-8 px-20
-    xl:px-0">
+    xl:px-0"
+  >
     <!-- start: sitemap, contacts, open source -->
     <div class="grid grid-cols-2 gap-6
       pb-8">
       <!-- start: open source -->
-      <div class="leading-loose text-xl">
+      <div class="leading-relaxed text-xl">
         <p>
           Hey, this site is open-source!
         </p>
         <p>
           <AppLink
             href="https://www.github.com/Namchee/site"
-            popup
-            class="text-primary transition-colors
-              hover:text-primary-600"
+            external
+            class="text-primary
+              transition-colors
+              hover:text-primary-dark"
           >
             Go check it out
           </AppLink>
@@ -36,30 +39,14 @@ import AppLink from '@/components/vue/AppLink.vue';
       <div class="space-y-8">
         <!-- start: contacts -->
         <div class="text-lg">
-          <p class="uppercase font-semibold text-gray text-sm">
+          <p class="uppercase font-semibold text-grey text-sm">
             Get in touch
           </p>
           <ul class="flex mt-2 space-x-8">
             <li v-for="link in CONTACT_LINKS" :key="link.href">
-              <AppLink :href="link.href" class="font-medium
-                relative
-                after:absolute
-                after:(content-*)
-                after:w-full
-                after:h-[1px]
-                after:bg-gray-800
-                after:left-0
-                after:scale-x-0
-                after:ease-out
-                after:duration-200
-                after:origin-right
-                after:transition-transform
-                after:bottom-[-3px]
-                focus:after:scale-x-100
-                hover:after:scale-x-100
-                hover:after:origin-left" popup>
+              <FooterLink :href="link.href" external>
                 {{ link.name }}
-              </AppLink>
+              </FooterLink>
             </li>
           </ul>
         </div>
@@ -67,55 +54,19 @@ import AppLink from '@/components/vue/AppLink.vue';
 
         <!-- start: sitemap -->
         <div class="text-lg">
-          <p class="uppercase font-semibold text-gray text-sm">
+          <p class="uppercase font-semibold text-grey text-sm">
             Sitemap
           </p>
           <ul class="flex mt-2 space-x-8">
-            <li v-for="link in WEB_LINKS" :key="link.path">
-              <AppLink
-                :href="link.path"
-                class="font-medium
-                  relative
-                  after:absolute
-                  after:(content-*)
-                  after:w-full
-                  after:h-[1px]
-                after:bg-gray-800
-                  after:left-0
-                  after:scale-x-0
-                  after:ease-out
-                  after:duration-200
-                  after:origin-right
-                  after:transition-transform
-                  after:bottom-[-3px]
-                  focus:after:scale-x-100
-                  hover:after:scale-x-100
-                  hover:after:origin-left"
-                >
+            <li v-for="link in WEB_LINKS" :key="link.href">
+              <FooterLink :href="link.href">
                 {{ link.name }}
-              </AppLink>
+              </FooterLink>
             </li>
             <li>
-              <AppLink href="https://twitter.com/lakban_hitam" class="font-medium
-                relative
-                after:absolute
-                after:(content-*)
-                after:w-full
-                after:h-[1px]
-                after:bg-gray-800
-                after:left-0
-                after:scale-x-0
-                after:ease-out
-                after:duration-200
-                after:origin-right
-                after:transition-transform
-                after:bottom-[-3px]
-                focus:after:scale-x-100
-                hover:after:scale-x-100
-                hover:after:origin-left"
-              >
+              <FooterLink href="sitemap_lol" external>
                 Sitemap.xml
-              </AppLink>
+              </FooterLink>
             </li>
           </ul>
         </div>
@@ -128,7 +79,7 @@ import AppLink from '@/components/vue/AppLink.vue';
     <!-- start: copyright and author -->
     <div class="flex items-center justify-between
       text-sm
-      border-t border-t-light-600
+      border-t border-t-grey border-opacity-30
       pt-8">
       <p>
         2022 &copy; Namchee. All rights reserved

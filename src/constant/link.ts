@@ -1,10 +1,10 @@
 export const WEB_LINKS = [
   {
-    path: '/',
+    href: '/',
     name: 'Home',
   },
   {
-    path: '/about',
+    href: '/about',
     name: 'About',
   },
 ];
