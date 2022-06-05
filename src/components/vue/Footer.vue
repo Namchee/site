@@ -22,9 +22,12 @@ import FooterLink from '@/components/vue/FooterLink.vue';
             Hey, this site is open-source!
           </p>
           <p>
-            <AppLink href="https://www.github.com/Namchee/site" external class="text-primary
-              transition-colors
-              hover:text-primary-dark">
+            <AppLink
+              href="https://www.github.com/Namchee/site"
+              external
+              class="text-accent
+                transition-colors
+              hover:text-accent-dark">
               Go check it out
             </AppLink>
           </p>

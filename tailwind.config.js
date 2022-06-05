@@ -23,15 +23,10 @@ module.exports = {
         light: '#F6F6F6',
         grey: '#6F6F6F',
         dark: '#2C3333',
-        primary: {
+        accent: {
           light: '#FF7373',
           DEFAULT: '#FF5D5D',
           dark: '#FF2A2A',
-        },
-        accent: {
-          light: '#77A2FF',
-          DEFAULT: '#5F91FF',
-          dark: '#2F71FF',
         },
       },
     },

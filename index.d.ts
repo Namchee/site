@@ -1,1 +1,1 @@
-declare module '~icons/radix-icons/*';
+declare module '~icons/*';

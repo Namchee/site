@@ -6,20 +6,39 @@ onMounted(() => {
   animate(
     '.word',
     { transform: 'translateY(0)' },
-    { delay: stagger(0.075), duration: 0.4, easing: [0.25, 1, 0.5, 1] },
+    { delay: stagger(0.1), duration: 0.5, easing: [0.25, 1, 0.5, 1] }
   );
 });
+
+function speak() {
+  const synth = window.speechSynthesis;
+  const speaker = new SpeechSynthesisUtterance('Namchee');
+
+  if (synth && speaker) {
+    synth.speak(speaker);
+  }
+}
 </script>
 
 <template>
   <h1 class="text-6xl col-start-2 col-span-full tracking-tight leading-snug">
-    <p class="overflow-y-hidden">
+    <p class=" overflow-y-hidden">
       <span class="inline-block translate-y-32 word">Hello&nbsp;</span>
       <span class="inline-block translate-y-32 word">there,&nbsp;</span>
     </p>
-    <p class="overflow-y-hidden">
-      <span class="inline-block translate-y-32 word">just&nbsp;</span><span class="inline-block translate-y-32 word">call&nbsp;</span><span class="inline-block translate-y-32 word">me&nbsp;</span>
-      <span class="inline-block translate-y-32 word tracking-tighter font-medium text-primary">
+    <p class=" overflow-y-hidden">
+      <span class="inline-block translate-y-32 word">just&nbsp;</span><span
+        class="inline-block translate-y-32 word">call&nbsp;</span><span
+        class="inline-block translate-y-32 word">me&nbsp;</span>
+      <span
+        @click="speak"
+        class="inline-block
+          translate-y-32
+          word
+          tracking-tighter font-medium
+          text-accent
+          cursor-pointer"
+      >
         Namchee
       </span>
     </p>

@@ -3,6 +3,7 @@ lockfileVersion: 5.4
 specifiers:
   '@astrojs/tailwind': ^0.2.1
   '@astrojs/vue': ^0.1.3
+  '@iconify-json/eva': ^1.1.1
   '@iconify-json/radix-icons': ^1.1.3
   '@typescript-eslint/eslint-plugin': ^5.21.0
   '@typescript-eslint/parser': ^5.21.0
@@ -30,6 +31,7 @@ dependencies:
 devDependencies:
   '@astrojs/tailwind': 0.2.1
   '@astrojs/vue': 0.1.3_vite@2.9.7+vue@3.2.33
+  '@iconify-json/eva': 1.1.1
   '@iconify-json/radix-icons': 1.1.3
   '@typescript-eslint/eslint-plugin': 5.21.0_vxtfsxfxxyksjzzdyas4bgfolu
   '@typescript-eslint/parser': 5.21.0_t725usgvqspm5woeqpaxbfp2qu
@@ -403,6 +405,12 @@ packages:
 
   /@humanwhocodes/object-schema/1.2.1:
     resolution: {integrity: sha512-ZnQMnLV4e7hDlUvw8H+U8ASL02SS2Gn6+9Ac3wGGLIe7+je2AeAOxPY+izIPJDfFDb7eDjev0Us8MO1iFRN8hA==}
+    dev: true
+
+  /@iconify-json/eva/1.1.1:
+    resolution: {integrity: sha512-tP5MOYLxKy8MkmHOlvd6nWCdVsTKreAd0X5sEUHw+361u50PdNVLiTTDuQ9Xs2DHh9k/dBtULBWBbyQiyExmaw==}
+    dependencies:
+      '@iconify/types': 1.1.0
     dev: true
 
   /@iconify-json/radix-icons/1.1.3:
