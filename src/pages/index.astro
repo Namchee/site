@@ -2,11 +2,28 @@
 import Layout from '@/components/astro/Layout.astro';
 
 import HomeHero from '@/components/vue/HomeHero.vue';
+import CircledLink from '@/components/vue/CircledLink.vue';
 
 ---
 
 <Layout title="Lorem Ipsum">
 	<div class="my-24">
-		<HomeHero client:visible />
+		<!-- start: top section -->
+		<div>
+			<HomeHero client:visible />
+
+			<p class="text-center text-grey text-xl mt-8">
+				Namchee writes code that solve problems to make the world a better place
+			</p>
+
+			<CircledLink
+				href="/about"
+				class="mt-16 text-2xl tracking-tight"
+			>
+				Learn more about me
+			</CircledLink>
+		</div>
+		<!-- end: top section -->
+
 	</div>
 </Layout>
