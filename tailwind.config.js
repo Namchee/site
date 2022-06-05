@@ -19,6 +19,9 @@ module.exports = {
       '6xl': '100.98px',
     },
     extend: {
+      backgroundImage: {
+        theme: 'linear-gradient(90deg, #FF2A2A 50%, #FF7373 100%);',
+      },
       colors: {
         light: '#F6F6F6',
         grey: '#6F6F6F',

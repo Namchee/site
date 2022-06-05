@@ -36,7 +36,7 @@ function speak() {
           translate-y-32
           word
           tracking-tighter font-medium
-          text-accent
+          bg-clip-text text-transparent bg-theme
           cursor-pointer"
       >
         Namchee

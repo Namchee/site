@@ -1,8 +1,12 @@
 ---
 import Layout from '@/components/astro/Layout.astro';
 
+import HomeHero from '@/components/vue/HomeHero.vue';
+
 ---
 
 <Layout title="Lorem Ipsum">
-	This is Homepage
+	<div class="my-24">
+		<HomeHero client:visible />
+	</div>
 </Layout>

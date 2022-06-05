@@ -3,12 +3,12 @@ import Layout from '@/components/astro/Layout.astro';
 
 import ArrowRight from '~icons/eva/arrow-forward-outline';
 import AboutContacts from '@/components/vue/AboutContacts.vue';
-import AboutHeader from '@/components/vue/AboutHeader.vue';
+import AboutHero from '@/components/vue/AboutHero.vue';
 ---
 
 <Layout title="About Me">
-	<div class="mt-20 grid grid-cols-12 gap-x-6">
-		<AboutHeader client:visible />
+	<div class="mt-24 grid grid-cols-12 gap-x-6">
+		<AboutHero client:visible />
 
 		<!-- start: about sections -->
 		<div class="my-36 space-y-24 col-span-full">
@@ -44,13 +44,13 @@ import AboutHeader from '@/components/vue/AboutHeader.vue';
 				<div class="col-start-7 col-span-full leading-loose">
 					<ul>
 						<li>
-							<p class="text-grey text-sm uppercase font-semibold">
+							<p class="text-grey text-xs uppercase font-semibold">
 								2022 &mdash; Present
 							</p>
 							<p class="font-medium text-2xl tracking-tight leading-relaxed">
 								Tokopedia
 							</p>
-							<p class="mt-[9px]">
+							<p class="mt-2">
 								Tokopedia is where I began my software engineering gig. Some of
 								my personal achievements in Tokopedia are:
 
