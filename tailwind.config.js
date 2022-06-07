@@ -7,23 +7,22 @@ module.exports = {
       sans: ['Open Sauce One', 'Inter', ...defaultTheme.fontFamily.sans],
     },
     fontSize: {
-      'xs': '13.5px',
-      'sm': '16px',
+      'sm': '14.4px',
       'base': '18px',
-      'lg': '20px',
-      'xl': '23.99px',
-      '2xl': '31.98px',
-      '3xl': '42.63px',
-      '4xl': '56.83px',
-      '5xl': '75.76px',
-      '6xl': '100.98px',
+      'lg': '22.5px',
+      'xl': '28.13px',
+      '2xl': '35.16px',
+      '3xl': '43.95px',
+      '4xl': '54.93px',
+      '5xl': '68.66px',
+      '6xl': '85.83px',
     },
     extend: {
       backgroundImage: {
         theme: 'linear-gradient(90deg, #FF2A2A 50%, #FF7373 100%);',
       },
       colors: {
-        light: '#F6F6F6',
+        light: '#F3F2F2',
         grey: '#6F6F6F',
         dark: '#2C3333',
         accent: {
