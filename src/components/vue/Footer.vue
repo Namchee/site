@@ -17,7 +17,7 @@ import FooterLink from '@/components/vue/FooterLink.vue';
       <div class="grid grid-cols-2 gap-6
       pb-8">
         <!-- start: open source -->
-        <div class="leading-relaxed text-xl">
+        <div class="leading-relaxed text-lg">
           <p>
             Hey, this site is open-source!
           </p>
@@ -37,11 +37,11 @@ import FooterLink from '@/components/vue/FooterLink.vue';
         <!-- start: sitemap and contacts -->
         <div class="space-y-8">
           <!-- start: contacts -->
-          <div class="text-lg">
-            <p class="uppercase font-semibold text-grey text-xs">
+          <div class="">
+            <p class="uppercase font-semibold text-grey text-sm">
               Get in touch
             </p>
-            <ul class="flex mt-[9px] space-x-8">
+            <ul class="flex mt-2 space-x-8">
               <li v-for="link in CONTACT_LINKS" :key="link.href">
                 <FooterLink :href="link.href" external>
                   {{ link.name }}
@@ -52,11 +52,11 @@ import FooterLink from '@/components/vue/FooterLink.vue';
           <!-- end: contacts -->
 
           <!-- start: sitemap -->
-          <div class="text-lg">
-            <p class="uppercase font-semibold text-grey text-xs">
+          <div>
+            <p class="uppercase font-semibold text-grey text-sm">
               Sitemap
             </p>
-            <ul class="flex mt-[9px] space-x-8">
+            <ul class="flex mt-2 space-x-8">
               <li v-for="link in WEB_LINKS" :key="link.href">
                 <FooterLink :href="link.href">
                   {{ link.name }}
@@ -77,7 +77,7 @@ import FooterLink from '@/components/vue/FooterLink.vue';
 
       <!-- start: copyright and author -->
       <div class="flex items-center justify-between
-        text-xs
+        text-sm
         border-t border-t-grey border-opacity-30
         pt-8"
       >

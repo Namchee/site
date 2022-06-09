@@ -22,7 +22,7 @@ module.exports = {
         theme: 'linear-gradient(90deg, #FF2A2A 50%, #FF7373 100%);',
       },
       colors: {
-        light: '#F3F2F2',
+        light: '#F5F2EF',
         grey: '#6F6F6F',
         dark: '#2C3333',
         accent: {
