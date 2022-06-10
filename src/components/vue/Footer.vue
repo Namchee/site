@@ -1,8 +1,19 @@
 <script setup lang="ts">
 import { WEB_LINKS, CONTACT_LINKS } from '@/constant/link';
 
+import ArrowUp from '~icons/radix-icons/arrow-up';
+
 import AppLink from '@/components/vue/AppLink.vue';
 import FooterLink from '@/components/vue/FooterLink.vue';
+
+import Button from '@/components/vue/Button.vue';
+
+const scrollToTop = () => {
+  console.log('clicked');
+  if (window) {
+    window.scrollTo(0, 0);
+  }
+}
 </script>
 
 <template>
@@ -13,8 +24,8 @@ import FooterLink from '@/components/vue/FooterLink.vue';
       py-8 px-20
       xl:px-0"
     >
-      <!-- start: sitemap, contacts, open source -->
-      <div class="grid grid-cols-2 gap-6
+      <!-- start: top section -->
+      <div class="grid grid-cols-3 gap-6
       pb-8">
         <!-- start: open source -->
         <div class="leading-relaxed text-lg">
@@ -35,13 +46,13 @@ import FooterLink from '@/components/vue/FooterLink.vue';
         <!-- end: open source -->
 
         <!-- start: sitemap and contacts -->
-        <div class="space-y-8">
+        <div class="flex space-x-12 mx-auto">
           <!-- start: contacts -->
-          <div class="">
-            <p class="uppercase font-semibold text-grey text-sm">
+          <div>
+            <p class="uppercase font-semibold text-sm text-grey">
               Get in touch
             </p>
-            <ul class="flex mt-2 space-x-8">
+            <ul class="mt-4 space-y-2">
               <li v-for="link in CONTACT_LINKS" :key="link.href">
                 <FooterLink :href="link.href" external>
                   {{ link.name }}
@@ -53,10 +64,10 @@ import FooterLink from '@/components/vue/FooterLink.vue';
 
           <!-- start: sitemap -->
           <div>
-            <p class="uppercase font-semibold text-grey text-sm">
+            <p class="uppercase font-semibold text-sm text-grey">
               Sitemap
             </p>
-            <ul class="flex mt-2 space-x-8">
+            <ul class="mt-4 space-y-2">
               <li v-for="link in WEB_LINKS" :key="link.href">
                 <FooterLink :href="link.href">
                   {{ link.name }}
@@ -72,8 +83,19 @@ import FooterLink from '@/components/vue/FooterLink.vue';
           <!-- end: sitemap -->
         </div>
         <!-- end: sitemap and contacts -->
+
+        <!-- start: back to top button -->
+        <div>
+          <Button
+            @click="scrollToTop"
+            class="tracking-tight ml-auto">
+            <ArrowUp />
+            <p class="ml-2">Back to Top</p>
+          </Button>
+        </div>
+        <!-- end: back to top button -->
       </div>
-      <!-- end: sitemap, contacts, open source -->
+      <!-- end: top section -->
 
       <!-- start: copyright and author -->
       <div class="flex items-center justify-between

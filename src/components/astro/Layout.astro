@@ -27,6 +27,6 @@ const { pathname } = new URL(Astro.request.url);
 	<main class="w-full flex-1 max-w-7xl mx-auto">
 		<slot />
 	</main>
-  <Footer />
+  <Footer client:visible />
 </body>
 </html>

@@ -5,30 +5,32 @@ module.exports = {
   theme: {
     fontFamily: {
       sans: ['Open Sauce One', 'Inter', ...defaultTheme.fontFamily.sans],
+      mono: ['JetBrains Mono', ...defaultTheme.fontFamily.mono],
     },
     fontSize: {
-      'sm': '14.4px',
-      'base': '18px',
-      'lg': '22.5px',
-      'xl': '28.13px',
-      '2xl': '35.16px',
-      '3xl': '43.95px',
-      '4xl': '54.93px',
-      '5xl': '68.66px',
-      '6xl': '85.83px',
+      'sm': '0.8rem',
+      'lg': '1.25rem',
+      'xl': '1.563rem',
+      '2xl': '1.953rem',
+      '3xl': '2.441rem',
+      '4xl': '3.052rem',
+      '5xl': '3.815rem',
+      '6xl': '4.768rem',
+      '7xl': '5.96rem',
     },
     extend: {
       backgroundImage: {
         theme: 'linear-gradient(90deg, #FF2A2A 50%, #FF7373 100%);',
       },
       colors: {
-        light: '#F5F2EF',
+        light: '#F3F0F0',
         grey: '#6F6F6F',
         dark: '#2C3333',
+        blackout: '#131616',
         accent: {
           light: '#FF7373',
           DEFAULT: '#FF5D5D',
-          dark: '#FF2A2A',
+          dark: '#FF4343',
         },
       },
     },

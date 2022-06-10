@@ -3,6 +3,14 @@ html {
 }
 
 @font-face {
+  font-family: "JetBrains Mono";
+  src: local("JetBrains Mono"),
+    url("/fonts/jetbrains-mono.woff2") format("woff2");
+  font-style: normal;
+  font-weight: 400;
+}
+
+@font-face {
   font-family: "Open Sauce";
   src: local("Open Sauce One"),
     url("/fonts/open-sauce-regular.woff2") format("woff2"),
