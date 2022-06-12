@@ -2,38 +2,89 @@
 import Layout from '@/components/astro/Layout.astro';
 
 import HomeHero from '@/components/vue/HomeHero.vue';
-import CircledLink from '@/components/vue/CircledLink.vue';
+import AppLink from '@/components/vue/AppLink.vue';
 
 ---
 
 <Layout title="Lorem Ipsum">
 	<div class="mt-20 mb-48 space-y-24">
 		<!-- start: top section -->
-		<section class="flex flex-col justify-center">
+		<section class="flex flex-col justify-center mb-48">
 			<HomeHero client:visible />
 
 			<p class="text-center text-grey text-lg mt-8">
 				Namchee writes code that solve problems to make the world a better place
 			</p>
 
-			<CircledLink href="/about" class="mt-16 text-xl tracking-tight mx-auto">
-				Learn more about me
-			</CircledLink>
+			<AppLink href="/about"
+				class="mt-24 mx-auto group px-8 py-3 bg-dark transition-colors shadow-lg hover:bg-blackout rounded-full text-light flex items-center">
+				<span>Learn more about me</span>
+				<svg xmlns="http://www.w3.org/2000/svg" class="transition-all group-hover:translate-x-1 ml-3 w-8 h-8"
+					viewBox="0 0 256 256">
+					<line x1="40" y1="128" x2="216" y2="128" fill="none" stroke="currentColor" stroke-linecap="round"
+						stroke-linejoin="round" stroke-width="16"></line>
+					<polyline points="144 56 216 128 144 200" fill="none" stroke="currentColor" stroke-linecap="round"
+						stroke-linejoin="round" stroke-width="16"></polyline>
+				</svg>
+			</AppLink>
 		</section>
 		<!-- end: top section -->
 
+		<!-- start: projects section -->
+		<section class="mb-64">
+			<h2 class="font-semibold tracking-tight text-4xl leading-relaxed">
+				Recent Posts
+			</h2>
+			<p class="text-2xl text-grey mt-2 leading-relaxed">
+				Find my latest thoughts here
+			</p>
+
+			<div class="mt-16 grid grid-cols-12 gap-x-6">
+				<div class="col-span-9">
+					Bar
+				</div>
+
+				<div class="col-span-3">
+					Foo
+				</div>
+			</div>
+		</section>
+		<!-- end: project section -->
+
+		<!-- start: projects section -->
+		<section class="mb-64">
+			<h2 class="font-semibold tracking-tight text-4xl leading-relaxed">
+				Featured Projects
+			</h2>
+			<p class="text-2xl text-grey mt-2 leading-relaxed">
+				Find out what I've been building in my free time
+			</p>
+
+			<div class="mt-16 grid grid-cols-12 gap-x-6">
+				<div class="col-span-9">
+					Bar
+				</div>
+
+				<div class="col-span-3">
+					Foo
+				</div>
+			</div>
+		</section>
+		<!-- end: project section -->
+
 		<!-- start: contact section -->
 		<section class="leading-relaxed">
-			<h3 class="text-center text-5xl tracking-tight font-semibold">
+			<h3 class="text-center text-4xl tracking-tight font-semibold">
 				Let's Connect
 			</h3>
 
-			<p class="mx-auto text-center max-w-2xl mt-4">
+			<p class="mx-auto text-center max-w-2xl mt-4 text-grey">
 				I'm always open for a chat, whether it's a serious business or a simple hangout. Don't be shy, I don't bite!
 			</p>
 
 			<div class="grid place-items-center justify-center items-center mt-16 circle">
-				<svg width="224" height="224" class="arc pointer-events-none" viewBox="0 0 258 256" fill="none" xmlns="http://www.w3.org/2000/svg">
+				<svg width="224" height="224" class="arc pointer-events-none" viewBox="0 0 258 256" fill="none"
+					xmlns="http://www.w3.org/2000/svg">
 					<path
 						d="M106.735 217.368C108.6 217.824 110.31 218.563 111.863 219.586C113.417 220.608 114.622 221.941 115.48 223.584C116.309 225.245 116.564 227.185 116.243 229.404L111.033 228.129C111.064 226.284 110.577 224.843 109.57 223.806C108.564 222.769 107.257 222.054 105.648 221.66C104.179 221.301 102.928 221.316 101.894 221.705C100.854 222.118 100.186 222.93 99.8889 224.142C99.6779 225.005 99.7893 225.761 100.223 226.411C100.652 227.084 101.266 227.654 102.065 228.122C102.836 228.607 103.916 229.192 105.305 229.878C107.201 230.812 108.71 231.663 109.832 232.431C110.93 233.194 111.799 234.185 112.44 235.404C113.08 236.624 113.187 238.107 112.759 239.856C112.348 241.534 111.592 242.856 110.491 243.822C109.384 244.812 108.048 245.424 106.484 245.659C104.913 245.917 103.219 245.823 101.401 245.378C99.629 244.945 98.0625 244.228 96.7012 243.228C95.3343 242.251 94.2948 240.996 93.5828 239.463C92.8651 237.953 92.5917 236.243 92.7626 234.333L97.903 235.59C97.8928 237.046 98.3178 238.237 99.1781 239.164C100.009 240.109 101.136 240.755 102.558 241.103C103.864 241.422 104.981 241.399 105.911 241.034C106.834 240.692 107.416 240.031 107.656 239.052C107.844 238.282 107.727 237.599 107.305 237.002C106.883 236.404 106.307 235.88 105.577 235.43C104.847 234.98 103.811 234.417 102.469 233.743C100.549 232.804 99.0081 231.932 97.8457 231.129C96.6601 230.32 95.735 229.254 95.0706 227.93C94.4063 226.606 94.3023 225.011 94.7586 223.146C95.3804 220.605 96.7569 218.817 98.888 217.782C100.996 216.741 103.612 216.603 106.735 217.368Z"
 						fill="#6F6F6F" />
@@ -102,41 +153,45 @@ import CircledLink from '@/components/vue/CircledLink.vue';
 </Layout>
 
 <style>
-.circle > * {
-  grid-column: 1 / -1;
-  grid-row: 1 / -1;
-}
-
-.arc {
-	animation: rotate-arc 20s linear infinite;
-}
-
-.hand:hover, .hand:focus {
-	animation: hand-wave 1.25s linear infinite;
-	transform-origin: bottom right;
-}
-
-@keyframes hand-wave {
-	0%, 80% {
-		transform: translate(0px, 0px);
+	.circle>* {
+		grid-column: 1 / -1;
+		grid-row: 1 / -1;
 	}
 
-	20%, 60% {
-		transform: translate(-3px, -3px) rotate(5deg);
+	.arc {
+		animation: rotate-arc 20s linear infinite;
 	}
 
-	40% {
-		transform: translate(-3px, -3px) rotate(-5deg);
-	}
-}
-
-@keyframes rotate-arc {
-	0% {
-		transform: rotate(0deg);
+	.hand:hover,
+	.hand:focus {
+		animation: hand-wave 1.25s linear infinite;
+		transform-origin: bottom right;
 	}
 
-	100% {
-		transform: rotate(360deg);
+	@keyframes hand-wave {
+
+		0%,
+		80% {
+			transform: translate(0px, 0px);
+		}
+
+		20%,
+		60% {
+			transform: translate(-3px, -3px) rotate(5deg);
+		}
+
+		40% {
+			transform: translate(-3px, -3px) rotate(-5deg);
+		}
 	}
-}
+
+	@keyframes rotate-arc {
+		0% {
+			transform: rotate(0deg);
+		}
+
+		100% {
+			transform: rotate(360deg);
+		}
+	}
 </style>

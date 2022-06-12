@@ -21,7 +21,7 @@ onMounted(() => {
 </script>
 
 <template>
-  <header class="w-full grid grid-cols-12">
+  <header class="w-full grid grid-cols-12 gap-6">
     <h1 class="text-7xl col-start-2 col-span-full">
       <p class="overflow-y-hidden">
         Driven By <span class="font-medium text-accent-light translate-y-32 inline-block word">Purpose</span>

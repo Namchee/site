@@ -88,7 +88,7 @@ const scrollToTop = () => {
         <div>
           <Button
             @click="scrollToTop"
-            class="tracking-tight ml-auto text-base">
+            class="tracking-tight ml-auto text-base py-2 px-4">
             <ArrowUp />
             <p class="ml-2">Back to Top</p>
           </Button>
