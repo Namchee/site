@@ -52,7 +52,7 @@ const scrollToTop = () => {
             <p class="uppercase font-semibold text-sm text-grey">
               Contacts
             </p>
-            <ul class="mt-4 space-y-2">
+            <ul class="mt-4 space-y-2 text-base">
               <li v-for="link in CONTACT_LINKS" :key="link.href">
                 <FooterLink :href="link.href" external>
                   {{ link.name }}
@@ -67,7 +67,7 @@ const scrollToTop = () => {
             <p class="uppercase font-semibold text-sm text-grey">
               Sitemap
             </p>
-            <ul class="mt-4 space-y-2">
+            <ul class="mt-4 space-y-2 text-base">
               <li v-for="link in WEB_LINKS" :key="link.href">
                 <FooterLink :href="link.href">
                   {{ link.name }}
@@ -88,7 +88,7 @@ const scrollToTop = () => {
         <div>
           <Button
             @click="scrollToTop"
-            class="tracking-tight ml-auto">
+            class="tracking-tight ml-auto text-base">
             <ArrowUp />
             <p class="ml-2">Back to Top</p>
           </Button>
