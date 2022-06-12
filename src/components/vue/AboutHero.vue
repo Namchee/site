@@ -1,46 +1,48 @@
 <script setup lang="ts">
-import { animate, stagger } from 'motion';
+import { timeline, stagger } from 'motion';
 import { onMounted } from 'vue';
 
+import SpeechButton from '@/components/vue/SpeechButton.vue';
+
 onMounted(() => {
-  animate(
-    '.word',
-    { transform: 'translateY(0)' },
-    { delay: stagger(0.1), duration: 0.5, easing: [0.25, 1, 0.5, 1] }
-  );
+  timeline([
+    [
+      '.word',
+      { transform: 'translateY(0)' },
+      { delay: stagger(0.8), duration: 0.25, easing: [0.25, 1, 0.5, 1] }
+    ],
+    [
+      '.subtitle',
+      { opacity: 1 },
+      { delay: stagger(0.2), duration: 0.25, easing: [0.33, 1, 0.68, 1] }
+    ],
+  ]);
 });
-
-function speak() {
-  const synth = window.speechSynthesis;
-  const speaker = new SpeechSynthesisUtterance('Namchee');
-
-  if (synth && speaker) {
-    synth.speak(speaker);
-  }
-}
 </script>
 
 <template>
-  <h1 class="text-6xl col-start-2 col-span-full tracking-tight leading-snug">
-    <p class=" overflow-y-hidden">
-      <span class="inline-block translate-y-32 word">Hello&nbsp;</span>
-      <span class="inline-block translate-y-32 word">there,&nbsp;</span>
-    </p>
-    <p class=" overflow-y-hidden">
-      <span class="inline-block translate-y-32 word">just&nbsp;</span><span
-        class="inline-block translate-y-32 word">call&nbsp;</span><span
-        class="inline-block translate-y-32 word">me&nbsp;</span>
-      <span
-        @click="speak"
-        class="inline-block
-          translate-y-32
-          word
-          tracking-tighter font-medium
-          bg-clip-text text-transparent bg-theme
-          cursor-pointer"
-      >
-        Namchee
-      </span>
-    </p>
-  </h1>
+  <div class="w-full grid grid-cols-12">
+    <h1 class="text-7xl col-start-2 col-span-full">
+      <p class="overflow-y-hidden">
+        Driven By <span class="font-medium text-accent-light translate-y-32 inline-block word">Purpose</span>
+      </p>
+      <p class="overflow-y-hidden">
+        Deliver By <span class="font-medium text-accent-dark translate-y-32 inline-block word">Quality</span>
+      </p>
+    </h1>
+
+    <div class="col-start-2 col-span-full mt-16 flex space-x-48">
+      <section class="subtitle opacity-0">
+        <h2 class="font-medium tracking-tight text-grey">
+          Current Location
+        </h2>
+        <p class="text-xl leading-relaxed">
+          Bandung, Indonesia
+        </p>
+      </section>
+      <section class="subtitle opacity-0 flex items-center">
+        <SpeechButton client:visible />
+      </section>
+    </div>
+  </div>
 </template>

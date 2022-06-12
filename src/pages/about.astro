@@ -4,11 +4,12 @@ import Layout from '@/components/astro/Layout.astro';
 import ArrowRight from '~icons/eva/arrow-forward-outline';
 import AboutContacts from '@/components/vue/AboutContacts.vue';
 import AboutHero from '@/components/vue/AboutHero.vue';
+import AppLink from '@/components/vue/AppLink.vue';
 ---
 
 <Layout title="About Me">
-	<div class="mt-20 mb-24 grid grid-cols-12 gap-x-6">
-		<AboutHero client:visible />
+	<div class="mt-20 mb-24">
+    <AboutHero client:visible />
 
 		<!-- start: about sections -->
 		<div class="mt-32 space-y-24 col-span-full">
@@ -16,14 +17,18 @@ import AboutHero from '@/components/vue/AboutHero.vue';
 				<div class="font-semibold">
 					01/
 				</div>
-				<div class="text-3xl font-medium -mt-3 tracking-tighter">
+				<div class="text-4xl font-medium -mt-3 tracking-tighter sticky top-4 self-start">
 					Introducing...
 				</div>
-				<div class="col-start-7 col-span-full leading-loose space-y-8">
+				<div class="col-start-7 col-span-full leading-loose text-lg space-y-10">
 					<p>
-						Cristopher (more commonly known as Namchee) is a software engineer based in Bandung, Indonesia.
+            Hello there stranger! I'm Namchee, a software engineer based in Indonesia.
 
-						Currently, I work at <a href="https://www.tokopedia.com">Tokopedia</a> as an impact-driven software engineer.
+						Currently, I work at <AppLink
+              href="https://www.tokopedia.com"
+              underline
+              external
+            >Tokopedia</AppLink> as an impact-driven software engineer.
 					</p>
 					<p>
 						My first software engineering journey began in 2016 when I discovered HTML and JavaScript.
@@ -44,7 +49,7 @@ import AboutHero from '@/components/vue/AboutHero.vue';
 				<div class="font-semibold">
 					02/
 				</div>
-				<div class="text-3xl font-medium -mt-3 tracking-tighter">
+				<div class="text-4xl font-medium -mt-3 tracking-tighter sticky top-4 self-start">
 					Professional Experiences
 				</div>
 				<div class="col-start-7 col-span-full leading-loose">
