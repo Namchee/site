@@ -22,7 +22,7 @@ const { pathname } = new URL(Astro.request.url);
   <link rel="icon" href="/favicon.ico" sizes="any">
   <link rel="icon" href="/favicon.svg" type="image/svg+xml">
 	<title>{title} &mdash; Namchee</title></head>
-<body class="bg-light text-dark min-h-screen text-base flex flex-col">
+<body class="bg-light text-dark min-h-screen lg:text-lg flex flex-col">
   <Navigation currentPath={pathname} client:visible />
 	<main class="w-full flex-1 max-w-7xl mx-auto">
 		<slot />

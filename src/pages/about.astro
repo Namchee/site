@@ -2,105 +2,178 @@
 import Layout from '@/components/astro/Layout.astro';
 
 import ArrowRight from '~icons/eva/arrow-forward-outline';
-import AboutContacts from '@/components/vue/AboutContacts.vue';
 import AboutHero from '@/components/vue/AboutHero.vue';
 import AppLink from '@/components/vue/AppLink.vue';
 ---
 
 <Layout title="About Me">
-	<div class="mt-20 mb-24">
+  <div class="mt-20 mb-32">
     <AboutHero client:visible />
 
-		<!-- start: about sections -->
-		<div class="mt-32 space-y-24 col-span-full">
-			<section class="grid grid-cols-12 gap-x-6">
-				<div class="font-semibold">
-					01/
-				</div>
-				<div class="text-4xl font-medium -mt-3 tracking-tighter sticky top-4 self-start">
-					Introducing...
-				</div>
-				<div class="col-start-7 col-span-full leading-loose text-lg space-y-10">
-					<p>
+    <!-- start: about sections -->
+    <div class="mt-64 space-y-32 col-span-full">
+      <section class="grid grid-cols-12 gap-x-6">
+        <div class="font-semibold">
+          01/
+        </div>
+        <div class="text-4xl font-medium -mt-3 tracking-tighter sticky top-12 self-start">
+          Introduction
+        </div>
+        <div class="col-start-7 col-span-full leading-loose text-lg space-y-10">
+          <p>
             Hello there stranger! I'm Namchee, a software engineer based in Indonesia.
 
-						Currently, I work at <AppLink
-              href="https://www.tokopedia.com"
-              underline
-              external
-            >Tokopedia</AppLink> as an impact-driven software engineer.
-					</p>
-					<p>
-						My first software engineering journey began in 2016 when I discovered HTML and JavaScript.
+            Currently, I work at <AppLink href="https://www.tokopedia.com" class="text-accent-dark underline" external>
+              Tokopedia</AppLink> as an impact-driven software engineer.
+          </p>
+          <p>
+            My first software engineering journey began in 2016 when I discovered HTML and JavaScript.
 
-						The accidental discovery of programming ignites my long-life dream to make the world a better place for everyone through software engineering.
-					</p>
-					<p>
-						Exploring the vast world of software engineering made me a curious person.
+            The accidental discovery of programming ignites my long-life dream to make the world a better place for
+            everyone through software engineering.
+          </p>
+          <p>
+            Exploring the vast world of software engineering made me a curious person.
 
-						My curiosity drives me to explore and learn new things in various domains every day.
+            My curiosity drives me to explore and learn new things in various domains every day.
 
-						For me, such opportunities are the ones that make life more lively and worth celebrating.
-					</p>
-				</div>
-			</section>
+            For me, such opportunities are the ones that make life more lively and worth celebrating.
+          </p>
+        </div>
+      </section>
 
-			<section class="grid grid-cols-12 gap-x-6">
-				<div class="font-semibold">
-					02/
-				</div>
-				<div class="text-4xl font-medium -mt-3 tracking-tighter sticky top-4 self-start">
-					Professional Experiences
-				</div>
-				<div class="col-start-7 col-span-full leading-loose">
-					<ul>
-						<li>
-							<p class="text-grey text-xs uppercase font-semibold">
-								2022 &mdash; Present
-							</p>
-							<p class="font-medium text-2xl tracking-tight leading-relaxed">
-								Tokopedia
-							</p>
-							<p class="mt-2">
-								Tokopedia is where I began my software engineering gig. Some of
-								my personal achievements in Tokopedia are:
+      <section class="grid grid-cols-12 gap-x-6">
+        <div class="font-semibold">
+          02/
+        </div>
+        <div class="text-4xl font-medium -mt-3 tracking-tighter sticky top-12 self-start col-span-3">
+          Tech Stack
+        </div>
+        <div class="col-start-7 col-span-full leading-loose">
+          <p>
+            Every engineer has their own set of preferred tools to do magic. Here's my tools of trade.
+          </p>
 
-								<ul>
-									<li class="flex">
-										<ArrowRight class="w-6 h-auto first:self-start mt-[6px]" />
-										<p class="ml-3 flex-1">
-											Improved the reliability of incident detection in digital tribe by maintaining 911 monitoring and alerting project.
-										</p>
-									</li>
-									<li class="flex">
-										<ArrowRight class="w-6 h-auto self-start mt-[6px]" />
-										<p class="ml-3 flex-1">
-											Decreased critical API latency by 400% by optimizing database queries and function calls.
-										</p>
-									</li>
-								</ul>
-							</p>
-						</li>
-					</ul>
-				</div>
-			</section>
+          <div class="mt-10 grid grid-cols-2 gap-y-16 gap-x-8">
+            <div>
+              <p class="text-[16px] text-grey">
+                Front End Development
+              </p>
 
-			<section class="grid grid-cols-12 gap-x-6">
-				<div class="font-semibold">
-					03/
-				</div>
-				<div class="text-3xl font-medium -mt-3 tracking-tighter">
-					Contacts
-				</div>
-				<div class="col-start-7 col-span-full leading-loose">
-					<p>
-						You can contact me through these channels. Don't worry, I don't bite!
-					</p>
+              <ul class="space-y-1 mt-4">
+                <li>
+                  HTML
+                </li>
+                <li>
+                  CSS
+                </li>
+                <li>
+                  JavaScript
+                </li>
+                <li>
+                  TypeScript
+                </li>
+                <li>
+                  React
+                </li>
+                <li>
+                  Vue
+                </li>
+                <li>
+                  Next.js
+                </li>
+                <li>
+                  NuxtJS
+                </li>
+              </ul>
+            </div>
 
-					<AboutContacts class="mt-4" />
-				</div>
-			</section>
-		</div>
-		<!-- end: about sections -->
-	</div>
+            <div>
+              <p class="text-[16px] text-grey">
+                Back End Development
+              </p>
+
+              <ul class="space-y-1 mt-4">
+                <li>
+                  NodeJS
+                </li>
+                <li>
+                  Golang
+                </li>
+                <li>
+                  MySQL
+                </li>
+                <li>
+                  PostgreSQL
+                </li>
+              </ul>
+            </div>
+
+            <div>
+              <p class="text-[16px] text-grey">
+                Other Tools
+              </p>
+
+              <ul class="space-y-1 mt-4">
+                <li>
+                  VSCode
+                </li>
+                <li>
+                  Git
+                </li>
+                <li>
+                  Google
+                </li>
+                <li>
+                  Vercel
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="grid grid-cols-12 gap-x-6">
+        <div class="font-semibold">
+          03/
+        </div>
+        <div class="text-4xl font-medium -mt-3 tracking-tighter sticky top-4 self-start">
+          Professional Experiences
+        </div>
+        <div class="col-start-7 col-span-full leading-loose">
+          <ul>
+            <li>
+              <p class="text-grey text-xs uppercase font-semibold">
+                2022 &mdash; Present
+              </p>
+              <p class="font-medium text-2xl tracking-tight leading-relaxed">
+                Tokopedia
+              </p>
+              <p class="mt-2">
+                Tokopedia is where I began my software engineering gig. Some of
+                my personal achievements in Tokopedia are:
+
+              <ul>
+                <li class="flex">
+                  <ArrowRight class="w-6 h-auto first:self-start mt-[6px]" />
+                  <p class="ml-3 flex-1">
+                    Improved the reliability of incident detection in digital tribe by maintaining 911 monitoring and
+                    alerting project.
+                  </p>
+                </li>
+                <li class="flex">
+                  <ArrowRight class="w-6 h-auto self-start mt-[6px]" />
+                  <p class="ml-3 flex-1">
+                    Decreased critical API latency by 400% by optimizing database queries and function calls.
+                  </p>
+                </li>
+              </ul>
+              </p>
+            </li>
+          </ul>
+        </div>
+      </section>
+    </div>
+    <!-- end: about sections -->
+  </div>
 </Layout>

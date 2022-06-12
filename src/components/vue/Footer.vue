@@ -50,7 +50,7 @@ const scrollToTop = () => {
           <!-- start: contacts -->
           <div>
             <p class="uppercase font-semibold text-sm text-grey">
-              Get in touch
+              Contacts
             </p>
             <ul class="mt-4 space-y-2">
               <li v-for="link in CONTACT_LINKS" :key="link.href">

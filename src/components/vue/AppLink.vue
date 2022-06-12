@@ -2,7 +2,7 @@
 interface AppLinkProps {
   href: string;
   external?: boolean;
-  underline?: boolean;
+  class?: string;
 }
 
 const props = defineProps<AppLinkProps>();
@@ -13,7 +13,7 @@ const props = defineProps<AppLinkProps>();
     rel="noreferrer noopener"
     :href="props.href"
     :target="props.external ? '_blank' : '_self'"
-    :class="{ 'underline': props.underline }"
+    :class="props.class"
   >
     <slot />
   </a>

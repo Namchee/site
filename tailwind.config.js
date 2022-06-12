@@ -30,7 +30,7 @@ module.exports = {
         accent: {
           light: '#FF7373',
           DEFAULT: '#FF5D5D',
-          dark: '#FF4343',
+          dark: '#FF2A2A',
         },
       },
     },
