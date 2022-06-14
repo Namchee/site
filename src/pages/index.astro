@@ -2,11 +2,11 @@
 import Layout from '@/components/astro/Layout.astro';
 
 import HomeHero from '@/components/vue/HomeHero.vue';
-import AppLink from '@/components/vue/AppLink.vue';
+import ButtonLink from '@/components/vue/ButtonLink.vue';
 
 ---
 
-<Layout title="Lorem Ipsum">
+<Layout title="Hello World!">
 	<div class="mt-20 mb-48 space-y-24">
 		<!-- start: top section -->
 		<section class="flex flex-col justify-center mb-48">
@@ -16,8 +16,7 @@ import AppLink from '@/components/vue/AppLink.vue';
 				Namchee writes code that solve problems to make the world a better place
 			</p>
 
-			<AppLink href="/about"
-				class="mt-24 mx-auto group px-8 py-3 bg-dark transition-colors shadow-lg hover:bg-blackout rounded-full text-light flex items-center">
+			<ButtonLink client:visible href="/about" style="rounded" theme="neutral" class="mt-24 mx-auto group px-8 py-3">
 				<span>Learn more about me</span>
 				<svg xmlns="http://www.w3.org/2000/svg" class="transition-all group-hover:translate-x-1 ml-3 w-8 h-8"
 					viewBox="0 0 256 256">
@@ -26,7 +25,7 @@ import AppLink from '@/components/vue/AppLink.vue';
 					<polyline points="144 56 216 128 144 200" fill="none" stroke="currentColor" stroke-linecap="round"
 						stroke-linejoin="round" stroke-width="16"></polyline>
 				</svg>
-			</AppLink>
+			</ButtonLink>
 		</section>
 		<!-- end: top section -->
 
@@ -153,7 +152,7 @@ import AppLink from '@/components/vue/AppLink.vue';
 </Layout>
 
 <style>
-	.circle>* {
+	.circle > * {
 		grid-column: 1 / -1;
 		grid-row: 1 / -1;
 	}

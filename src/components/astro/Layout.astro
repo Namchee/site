@@ -14,19 +14,19 @@ const { pathname } = new URL(Astro.request.url);
 
 <!DOCTYPE html>
 <html lang="en">
-<head>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width">
-  <link rel="manifest" href="/manifest.webmanifest">
-  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
-  <link rel="icon" href="/favicon.ico" sizes="any">
-  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
-	<title>{title} &mdash; Namchee</title></head>
-<body class="bg-light text-dark min-h-screen lg:text-lg flex flex-col">
-  <Navigation currentPath={pathname} client:visible />
-	<main class="w-full flex-1 max-w-7xl mx-auto">
-		<slot />
-	</main>
-  <Footer client:visible />
-</body>
+  <head>
+	  <meta charset="UTF-8">
+	  <meta name="viewport" content="width=device-width">
+    <link rel="manifest" href="/manifest.webmanifest">
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+    <link rel="icon" href="/favicon.ico" sizes="any">
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+	  <title>{title} &mdash; Namchee</title></head>
+  <body class="bg-light text-dark min-h-screen lg:text-lg flex flex-col">
+    <Navigation currentPath={pathname} client:visible />
+	  <main class="w-full flex-1 max-w-7xl mx-auto">
+		  <slot />
+	  </main>
+    <Footer client:visible />
+  </body>
 </html>
