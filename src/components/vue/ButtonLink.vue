@@ -19,7 +19,10 @@ const styleClass: Record<string, string> = {
   'rounded': 'rounded-full'
 }
 
-const props = defineProps<ButtonLinkProps>();
+const props = withDefaults(defineProps<ButtonLinkProps>(), {
+  style: 'normal',
+  theme: 'neutral',
+});
 
 const className = computed(() => {
   return `flex items-center focus:ring-2 hover:ring-2 ${styleClass[props.style]} ${themeClass[props.theme]} ${props.class} `

@@ -3,6 +3,7 @@ import Layout from '@/components/astro/Layout.astro';
 
 import HomeHero from '@/components/vue/HomeHero.vue';
 import ButtonLink from '@/components/vue/ButtonLink.vue';
+import ProjectInfo from '@/components/vue/ProjectInfo.vue';
 
 ---
 
@@ -16,9 +17,9 @@ import ButtonLink from '@/components/vue/ButtonLink.vue';
 				Namchee writes code that solve problems to make the world a better place
 			</p>
 
-			<ButtonLink client:visible href="/about" style="rounded" theme="neutral" class="mt-24 mx-auto group px-8 py-3">
+			<ButtonLink href="/about" style="rounded" theme="neutral" class="mt-24 mx-auto group px-8 py-3">
 				<span>Learn more about me</span>
-				<svg xmlns="http://www.w3.org/2000/svg" class="transition-all group-hover:translate-x-1 ml-3 w-8 h-8"
+				<svg xmlns="http://www.w3.org/2000/svg" class="transition-all group-hover:translate-x-1 ml-2 w-6 h-6"
 					viewBox="0 0 256 256">
 					<line x1="40" y1="128" x2="216" y2="128" fill="none" stroke="currentColor" stroke-linecap="round"
 						stroke-linejoin="round" stroke-width="16"></line>
@@ -52,19 +53,58 @@ import ButtonLink from '@/components/vue/ButtonLink.vue';
 
 		<!-- start: projects section -->
 		<section class="mb-64">
-			<h2 class="font-semibold tracking-tight text-4xl leading-relaxed">
-				Featured Projects
-			</h2>
-			<p class="text-2xl text-grey mt-2 leading-relaxed">
-				Find out what I've been building in my free time
-			</p>
-
-			<div class="mt-16 grid grid-cols-12 gap-x-6">
-				<div class="col-span-9">
-					Bar
+			<div class="flex justify-between items-center">
+				<div>
+					<h2 class="font-semibold tracking-tight text-4xl leading-relaxed">
+						Featured Projects
+					</h2>
+					<p class="text-2xl text-grey mt-2 leading-relaxed">
+						Find out what I've been building in my free time
+					</p>
 				</div>
 
-				<div class="col-span-3">
+				<ButtonLink href="https://github.com/Namchee?tab=repositories" external style="rounded" theme="neutral" class="group px-6 py-3">
+					<span>See more projects</span>
+					<svg xmlns="http://www.w3.org/2000/svg" class="transition-all group-hover:translate-x-1 ml-2 w-6 h-6"
+						viewBox="0 0 256 256">
+						<line x1="40" y1="128" x2="216" y2="128" fill="none" stroke="currentColor" stroke-linecap="round"
+							stroke-linejoin="round" stroke-width="16"></line>
+						<polyline points="144 56 216 128 144 200" fill="none" stroke="currentColor" stroke-linecap="round"
+							stroke-linejoin="round" stroke-width="16"></polyline>
+					</svg>
+				</ButtonLink>
+			</div>
+
+
+			<div class="mt-16 grid grid-cols-12 gap-x-6">
+				<div class="col-span-8">
+					<ProjectInfo
+						client:visible
+						link="https://www.google.com"
+						year="2022"
+						title="Conventional PR"
+						description="Enforce conventional pull request rules in GitHub Actions" />
+						<ProjectInfo
+						client:visible
+						link="https://www.google.com"
+						year="2022"
+						title="Windgraph"
+						description="Tailwind-powered Open Graph image generator" />
+						<ProjectInfo
+						client:visible
+						link="https://www.google.com"
+						year="2022"
+						title="Fav"
+						description="Compact and hassle-free Favicon generator" />
+						<ProjectInfo
+						client:visible
+						link="https://www.google.com"
+						year="2022"
+						title="Pleasantcord"
+						description="Discord bot that moderates NSFW contents" />
+				</div>
+
+				<div class="col-span-4 sticky top-4 self-start">
 					Foo
 				</div>
 			</div>
@@ -78,7 +118,9 @@ import ButtonLink from '@/components/vue/ButtonLink.vue';
 			</h3>
 
 			<p class="mx-auto text-center max-w-2xl mt-4 text-grey">
-				I'm always open for a chat, whether it's a serious business or a simple hangout. Don't be shy, I don't bite!
+				I'm always open for a chat, whether it's a serious business or a simple hangout.
+
+				Don't be shy, I don't bite!
 			</p>
 
 			<div class="grid place-items-center justify-center items-center mt-16 circle">
