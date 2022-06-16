@@ -8,11 +8,12 @@ interface ButtonLinkProps {
   external?: boolean;
   class?: string;
   style?: 'normal' | 'rounded';
-  theme?: 'neutral';
+  theme?: 'neutral' | 'inverted';
 }
 
 const themeClass: Record<string, string> = {
   'neutral': 'bg-dark text-light transition-all hover:bg-blackout hover:ring-blackout hover:ring-opacity-25',
+  'inverted': 'bg-transparent text-dark border border-dark transition-colors hover:text-light hover:bg-dark hover:ring-dark hover:ring-opacity-25'
 };
 const styleClass: Record<string, string> = {
   'normal': 'rounded-md',
