@@ -1,8 +1,8 @@
 ---
 import Layout from '@/components/astro/Layout.astro';
+import ButtonLink from '@/components/astro/ButtonLink.astro';
 
 import HomeHero from '@/components/vue/HomeHero.vue';
-import ButtonLink from '@/components/vue/ButtonLink.vue';
 import ProjectInfo from '@/components/vue/ProjectInfo.vue';
 
 ---
@@ -22,7 +22,7 @@ import ProjectInfo from '@/components/vue/ProjectInfo.vue';
 				style="rounded"
 				theme="neutral"
 				theme="inverted"
-				class="mt-24 mx-auto group px-8 py-3"
+				className="mt-24 mx-auto group px-8 py-3"
 				client:visible
 			>
 				<span>Learn more about me</span>
@@ -75,7 +75,7 @@ import ProjectInfo from '@/components/vue/ProjectInfo.vue';
 					external
 					style="rounded"
 					theme="inverted"
-					class="group px-6 py-3">
+					className="group px-6 py-3">
 					<span class="text-base">See more projects</span>
 					<svg xmlns="http://www.w3.org/2000/svg" class="transition-transform group-hover:translate-x-1 ml-2 w-6 h-6"
 						viewBox="0 0 256 256">
@@ -91,32 +91,26 @@ import ProjectInfo from '@/components/vue/ProjectInfo.vue';
 			<div class="mt-16 grid grid-cols-12 gap-x-6">
 				<div class="col-span-8">
 					<ProjectInfo
-						client:visible
-						link="https://github.com/Namchee/conventional-pr"
-						year="2020"
-						title="Conventional PR"
-						description="Enforce conventional pull request rules in GitHub Actions" />
+							client:visible
+							link="https://github.com/Namchee/conventional-pr"
+							year="2020"
+							title="Conventional PR"
+							description="Enforce conventional pull request rules in GitHub Actions" />
 						<ProjectInfo
-						client:visible
-						link="https://github.com/Namchee/windgraph"
-						year="2022"
-						title="Windgraph"
-						description="Tailwind-powered Open Graph image generator" />
+							client:visible
+							link="https://github.com/Namchee/windgraph"
+							year="2022"
+							title="Windgraph"
+							description="Tailwind-powered Open Graph image generator" />
 						<ProjectInfo
-						client:visible
-						link="https://fav.namchee.dev/"
-						year="2020"
-						title="Fav"
-						description="Compact and hassle-free Favicon generator" />
-						<ProjectInfo
-						client:visible
-						link="https://www.google.com"
-						year="2022"
-						title="Pleasantcord"
-						description="Discord bot that moderates NSFW contents" />
+							client:visible
+							link="https://fav.namchee.dev/"
+							year="2020"
+							title="Fav"
+							description="Compact and hassle-free Favicon generator" />
 				</div>
 
-				<div class="col-span-4 sticky top-4 self-start">
+				<div class="col-span-4 grid place-items-center">
 					Foo
 				</div>
 			</div>
