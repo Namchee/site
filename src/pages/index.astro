@@ -17,7 +17,14 @@ import ProjectInfo from '@/components/vue/ProjectInfo.vue';
 				Namchee writes code that solve problems to make the world a better place
 			</p>
 
-			<ButtonLink href="/about" style="rounded" theme="neutral" class="mt-24 mx-auto group px-8 py-3" theme="inverted">
+			<ButtonLink
+				href="/about"
+				style="rounded"
+				theme="neutral"
+				theme="inverted"
+				class="mt-24 mx-auto group px-8 py-3"
+				client:visible
+			>
 				<span>Learn more about me</span>
 				<svg xmlns="http://www.w3.org/2000/svg" class="transition-transform group-hover:translate-x-1 ml-2 w-6 h-6"
 					viewBox="0 0 256 256">
@@ -58,14 +65,19 @@ import ProjectInfo from '@/components/vue/ProjectInfo.vue';
 					<h2 class="font-semibold tracking-tight text-3xl leading-relaxed">
 						Featured Projects
 					</h2>
-					<p class="text-2xl text-grey mt-2 leading-relaxed">
+					<p class="text-xl text-grey mt-2 leading-relaxed">
 						Find out what I've been building in my free time
 					</p>
 				</div>
 
-				<ButtonLink href="https://github.com/Namchee?tab=repositories" external style="rounded" theme="neutral" class="group px-6 py-3">
-					<span>See more projects</span>
-					<svg xmlns="http://www.w3.org/2000/svg" class="transition-all group-hover:translate-x-1 ml-2 w-6 h-6"
+				<ButtonLink
+					href="https://github.com/Namchee?tab=repositories"
+					external
+					style="rounded"
+					theme="inverted"
+					class="group px-6 py-3">
+					<span class="text-base">See more projects</span>
+					<svg xmlns="http://www.w3.org/2000/svg" class="transition-transform group-hover:translate-x-1 ml-2 w-6 h-6"
 						viewBox="0 0 256 256">
 						<line x1="40" y1="128" x2="216" y2="128" fill="none" stroke="currentColor" stroke-linecap="round"
 							stroke-linejoin="round" stroke-width="16"></line>
