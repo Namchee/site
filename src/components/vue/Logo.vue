@@ -43,7 +43,7 @@ function onVisible([{ isIntersecting, target }]) {
 
 <style>
 .logo {
-  transform: rotateZ(720deg);
+  transform: rotateZ(660deg);
   transition: transform 2000ms cubic-bezier(0.25, 1, 0.5, 1);
 }
 

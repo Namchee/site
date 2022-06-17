@@ -6,13 +6,19 @@ interface ProjectInfoProps {
   title: string;
   description: string;
   link: string;
+  image: string;
 }
 
 const props = defineProps<ProjectInfoProps>();
+const emit = defineEmits(['hover']);
 </script>
 
 <template>
-  <AppLink :href="props.link" external class="group
+  <AppLink
+    @mouseover="emit('hover', props.image)"
+    :href="props.link"
+    external
+    class="group
       flex
       border-t-2 border-t-grey border-opacity-20
       transition-colors hover:bg-grey hover:bg-opacity-5
