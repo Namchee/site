@@ -1,5 +1,13 @@
 <script setup lang="ts">
+import { ref, Ref } from 'vue';
+
 import ProjectInfo from '@/components/vue/ProjectInfo.vue';
+
+const currentProject: Ref<string> = ref('');
+
+const handleProjectHover = (project: string) => {
+  currentProject.value = project;
+}
 
 const projects = [
   {
@@ -19,7 +27,7 @@ const projects = [
   {
     year: '2020',
     title: 'Fav',
-    description: 'Compact and hassle-free Favicon generator for next-gen websites',
+    description: 'Compact and hassle-free Favicon generator for next generation websites',
     link: 'https://fav.namchee.dev',
     image: 'https://res.cloudinary.com/namchee/image/upload/v1655466982/personal-site/Fav.webp',
   },
@@ -27,12 +35,16 @@ const projects = [
 </script>
 
 <template>
-  <template v-for="project in projects" :key="project.title">
-    <ProjectInfo
-      :year="project.year"
-      :title="project.title"
-      :description="project.description"
-      :link="project.link"
-      :image="project.image" />
-  </template>
+  <div class="grid grid-cols-12 gap-x-6">
+    <div class="col-span-8">
+      <template v-for="project in projects" :key="project.title">
+        <ProjectInfo @hover="handleProjectHover" :year="project.year" :title="project.title"
+          :description="project.description" :link="project.link" :image="project.image" />
+      </template>
+    </div>
+
+    <div class="col-span-4 grid place-items-center">
+      <img :src="currentProject"  />
+    </div>
+  </div>
 </template>

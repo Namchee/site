@@ -32,7 +32,7 @@ const emit = defineEmits(['hover']);
         {{ props.title }}
       </p>
 
-      <p class="mt-4 text-grey leading-relaxed">
+      <p class="mt-4 text-grey leading-relaxed max-w-xl">
         {{ props.description }}
       </p>
     </div>
