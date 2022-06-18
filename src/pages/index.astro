@@ -38,7 +38,7 @@ import Projects from '@/components/vue/Projects.vue';
 		<!-- end: top section -->
 
 		<!-- start: projects section -->
-		<section class="mb-64">
+		<section class="mb-64 hidden">
 			<h2 class="font-semibold tracking-tight text-4xl leading-relaxed">
 				Recent Posts
 			</h2>
@@ -62,10 +62,10 @@ import Projects from '@/components/vue/Projects.vue';
 		<section class="mb-64">
 			<div class="flex justify-between items-center">
 				<div>
-					<h2 class="font-semibold tracking-tight text-3xl leading-relaxed">
+					<h2 class="font-semibold tracking-tight text-4xl leading-relaxed">
 						Featured Projects
 					</h2>
-					<p class="text-xl text-grey mt-2 leading-relaxed">
+					<p class="text-2xl text-grey mt-2 leading-relaxed">
 						Find out what I've been building in my free time
 					</p>
 				</div>
@@ -87,7 +87,9 @@ import Projects from '@/components/vue/Projects.vue';
 				</ButtonLink>
 			</div>
 
-			<Projects class="mt-16" client:visible />
+			<div class="mt-16">
+				<Projects client:visible />
+			</div>
 		</section>
 		<!-- end: project section -->
 
