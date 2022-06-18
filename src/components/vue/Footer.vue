@@ -21,14 +21,16 @@ const scrollToTop = () => {
     <div class="w-full
       max-w-7xl
       mx-auto
-      py-8 px-20
+      py-8
+      px-6
+      md:px-16
       xl:px-0"
     >
       <!-- start: top section -->
-      <div class="grid grid-cols-3 gap-6
+      <div class="md:grid md:grid-cols-3 md:gap-6
       pb-8">
         <!-- start: open source -->
-        <div class="leading-relaxed text-lg">
+        <div class="leading-relaxed text-[18px] md:text-lg">
           <p>
             Hey, this site is open-source!
           </p>
@@ -46,7 +48,7 @@ const scrollToTop = () => {
         <!-- end: open source -->
 
         <!-- start: sitemap and contacts -->
-        <div class="flex space-x-12 mx-auto">
+        <div class="mt-8 md:mt-0 flex space-x-12 mx-auto">
           <!-- start: contacts -->
           <div>
             <p class="uppercase font-semibold text-sm text-grey">
@@ -88,7 +90,7 @@ const scrollToTop = () => {
         <div>
           <Button
             @click="scrollToTop"
-            class="tracking-tight ml-auto text-base py-2 px-4">
+            class="hidden md:flex tracking-tight ml-auto text-base py-2 px-4">
             <ArrowUp />
             <p class="ml-2">Back to Top</p>
           </Button>
@@ -98,9 +100,10 @@ const scrollToTop = () => {
       <!-- end: top section -->
 
       <!-- start: copyright and author -->
-      <div class="flex items-center justify-between
+      <div class="flex flex-col md:flex-row items-center justify-between
         text-sm
         border-t border-t-grey border-opacity-30
+        space-y-4
         pt-8"
       >
         <p>
