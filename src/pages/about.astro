@@ -3,7 +3,6 @@ import Layout from '@/components/astro/Layout.astro';
 
 import ArrowRight from '~icons/eva/arrow-forward-outline';
 import AboutHero from '@/components/vue/AboutHero.vue';
-import AppLink from '@/components/vue/AppLink.vue';
 ---
 
 <Layout title="About Me">
@@ -11,22 +10,22 @@ import AppLink from '@/components/vue/AppLink.vue';
     <AboutHero client:visible />
 
     <!-- start: about sections -->
-    <div class="mt-64 space-y-32 col-span-full">
+    <div class="mt-24 lg:mt-64 space-y-24 lg:space-y-32 col-span-full">
 
       <!-- start: intro section -->
-      <section class="grid grid-cols-12 gap-x-6">
+      <section class="lg:grid lg:grid-cols-12 gap-x-6">
         <div class="font-semibold">
           01/
         </div>
-        <div class="text-4xl font-medium -mt-3 tracking-tighter sticky top-12 self-start">
+        <div class="text-3xl md:text-4xl font-medium lg:-mt-3 tracking-tighter lg:sticky lg:top-12 lg:self-start">
           Introduction
         </div>
-        <div class="col-start-7 col-span-full leading-loose text-lg space-y-10">
+        <div class="mt-4 lg:mt-0 col-start-7 col-span-full leading-loose space-y-10">
           <p>
             Hello there stranger! I'm Namchee, a software engineer based in Indonesia.
 
-            Currently, I work at <AppLink href="https://www.tokopedia.com" class="text-accent-dark underline" external>
-              Tokopedia</AppLink> as an impact-driven software engineer.
+            Currently, I work at <a target="_blank" href="https://www.tokopedia.com" class="text-accent-dark underline">
+              Tokopedia</a> as an impact-driven software engineer.
           </p>
           <p>
             My first software engineering journey began in 2016 when I discovered HTML and JavaScript.
@@ -46,21 +45,21 @@ import AppLink from '@/components/vue/AppLink.vue';
       <!-- end: intro section -->
 
       <!-- start: tech stack section -->
-      <section class="grid grid-cols-12 gap-x-6">
+      <section class="lg:grid lg:grid-cols-12 gap-x-6">
         <div class="font-semibold">
           02/
         </div>
-        <div class="text-4xl font-medium -mt-3 tracking-tighter sticky top-12 self-start col-span-3">
+        <div class="text-3xl md:text-4xl font-medium lg:-mt-3 tracking-tighter lg:col-span-3 lg:sticky lg:top-12 lg:self-start">
           Tech Stack
         </div>
-        <div class="col-start-7 col-span-full leading-loose">
+        <div class="mt-4 lg:mt-0 col-start-7 col-span-full leading-loose">
           <p>
             Every engineer has their own set of preferred tools to do magic. Here's my tools of trade.
           </p>
 
-          <div class="mt-10 grid grid-cols-2 gap-y-16 gap-x-8">
+          <div class="mt-10 grid grid-cols-2 gap-8 lg:gap-y-16 gap-x-8">
             <div>
-              <p class="text-[16px] text-grey">
+              <p class="text-sm md:text-base text-grey">
                 Front End Development
               </p>
 
@@ -93,7 +92,7 @@ import AppLink from '@/components/vue/AppLink.vue';
             </div>
 
             <div>
-              <p class="text-[16px] text-grey">
+              <p class="text-sm md:text-base text-grey">
                 Back End Development
               </p>
 
@@ -114,7 +113,7 @@ import AppLink from '@/components/vue/AppLink.vue';
             </div>
 
             <div>
-              <p class="text-[16px] text-grey">
+              <p class="text-sm md:text-base text-grey">
                 Infrastructure
               </p>
 
@@ -132,8 +131,8 @@ import AppLink from '@/components/vue/AppLink.vue';
             </div>
 
             <div>
-              <p class="text-[16px] text-grey">
-                Others
+              <p class="text-sm md:text-base text-grey">
+                Other Tools
               </p>
 
               <ul class="space-y-1 mt-4">
@@ -157,41 +156,41 @@ import AppLink from '@/components/vue/AppLink.vue';
       <!-- end: tech stack section -->
 
       <!-- start: experience section -->
-      <section class="grid grid-cols-12 gap-x-6">
+      <section class="lg:grid lg:grid-cols-12 gap-x-6">
         <div class="font-semibold">
           03/
         </div>
-        <div class="text-4xl font-medium -mt-3 tracking-tighter sticky top-4 self-start">
+        <div class="text-3xl md:text-4xl font-medium lg:-mt-3 tracking-tighter lg:sticky lg:top-12 lg:self-start">
           Professional Experiences
         </div>
-        <div class="col-start-7 col-span-full leading-loose">
+        <div class="mt-8 lg:mt-0 col-start-7 col-span-full leading-loose">
           <ul>
             <li>
               <p class="text-grey text-sm uppercase font-semibold">
                 2022 &ndash; Present
               </p>
-              <p class="font-medium text-3xl tracking-tight leading-relaxed">
+              <p class="font-medium text-2xl md:text-3xl tracking-tight leading-relaxed">
                 Tokopedia
               </p>
               <p class="mt-4">
                 Tokopedia is where I began my software engineering gig. Some of
                 my personal achievements in Tokopedia are:
 
-                <ul>
-                  <li class="flex">
-                    <ArrowRight class="w-6 h-auto first:self-start mt-[6px]" />
-                    <p class="ml-3 flex-1">
-                      Improved the reliability of incident detection in digital tribe by maintaining 911 monitoring and
-                      alerting project.
-                    </p>
-                  </li>
-                  <li class="flex">
-                    <ArrowRight class="w-6 h-auto self-start mt-[6px]" />
-                    <p class="ml-3 flex-1">
-                      Decreased critical API latency by 400% by optimizing database queries and function calls.
-                    </p>
-                  </li>
-                </ul>
+              <ul>
+                <li class="flex">
+                  <ArrowRight class="w-6 h-auto first:self-start mt-[6px]" />
+                  <p class="ml-3 flex-1">
+                    Improved the reliability of incident detection in digital tribe by maintaining 911 monitoring and
+                    alerting project.
+                  </p>
+                </li>
+                <li class="flex">
+                  <ArrowRight class="w-6 h-auto self-start mt-[6px]" />
+                  <p class="ml-3 flex-1">
+                    Decreased critical API latency by 400% by optimizing database queries and function calls.
+                  </p>
+                </li>
+              </ul>
               </p>
             </li>
           </ul>

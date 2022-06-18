@@ -2,7 +2,6 @@
 interface AppLinkProps {
   href: string;
   external?: boolean;
-  class?: string;
 }
 
 const props = defineProps<AppLinkProps>();
@@ -13,7 +12,6 @@ const props = defineProps<AppLinkProps>();
     rel="noreferrer noopener"
     :href="props.href"
     :target="props.external ? '_blank' : '_self'"
-    :class="props.class"
   >
     <slot />
   </a>

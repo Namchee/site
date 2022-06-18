@@ -16,7 +16,7 @@ function onVisible([{ isIntersecting, target }]) {
   <svg
     v-intersection-observer="onVisible"
     viewBox="0 0 58 57"
-    class="w-14 h-auto fill-current logo"
+    class="w-12 lg:w-14 h-auto fill-current logo"
     xmlns="http://www.w3.org/2000/svg"
     role="banner"
   >

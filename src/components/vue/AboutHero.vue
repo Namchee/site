@@ -22,7 +22,7 @@ onMounted(() => {
 
 <template>
   <header class="w-full grid grid-cols-12 gap-6">
-    <h1 class="text-7xl col-start-2 col-span-full">
+    <h1 class="text-2xl md:text-5xl lg:text-7xl xl:col-start-2 col-span-full tracking-tight">
       <p class="overflow-y-hidden">
         Driven By <span class="font-medium text-accent-light translate-y-32 inline-block word">Purpose</span>
       </p>
@@ -31,12 +31,19 @@ onMounted(() => {
       </p>
     </h1>
 
-    <div class="col-start-2 col-span-full mt-16 flex space-x-48">
+    <div
+      class="flex flex-col md:flex-row
+        xl:col-start-2 col-span-full
+        mt-8 xl:mt-16
+        space-y-6
+        md:space-y-0
+        md:space-x-24
+        xl:space-x-48">
       <section class="subtitle opacity-0">
-        <h2 class="font-medium tracking-tight text-grey">
+        <h2 class="font-medium tracking-tight text-grey text-base">
           Current Location
         </h2>
-        <p class="text-xl leading-relaxed">
+        <p class="text-lg lg:text-xl leading-relaxed">
           Bandung, Indonesia
         </p>
       </section>

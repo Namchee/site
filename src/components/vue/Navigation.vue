@@ -13,11 +13,12 @@ const props = defineProps<NavigationProps>();
 </script>
 
 <template>
-  <nav class="w-full h-28 grid place-items-center">
+  <nav class="w-full h-24 lg:h-28 grid place-items-center">
     <div class="w-full
       max-w-7xl
       flex justify-between
-      px-20
+      px-6
+      md:px-16
       xl:px-0">
       <AppLink href="/">
         <Logo />
