@@ -31,10 +31,10 @@ onMounted(() => {
 </script>
 
 <template>
-  <header class="text-3xl md:text-5xl lg:text-6xl xl:text-7xl
+  <header class="text-4xl md:text-5xl lg:text-6xl xl:text-7xl
       font-semibold tracking-tighter text-center leading-tight
       inline-flex mx-auto">
-    <h1 class="ml-8 lg:ml-20 xl:ml-24">
+    <h1 class="md:ml-8 lg:ml-20 xl:ml-24">
       <p class="overflow-y-hidden">
         Building <span class="block md:inline-block translate-y-32 text-accent-light reveal">softwares</span>
       </p>

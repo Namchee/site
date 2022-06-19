@@ -22,7 +22,7 @@ onMounted(() => {
 
 <template>
   <header class="w-full grid grid-cols-12 gap-6">
-    <h1 class="text-2xl md:text-5xl lg:text-7xl xl:col-start-2 col-span-full tracking-tight">
+    <h1 class="text-3xl md:text-5xl lg:text-7xl xl:col-start-2 col-span-full tracking-tight">
       <p class="overflow-y-hidden">
         Driven By <span class="font-medium text-accent-light translate-y-32 inline-block word">Purpose</span>
       </p>
