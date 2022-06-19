@@ -13,7 +13,7 @@ onMounted(() => {
     ],
     [
       '.subtitle',
-      { opacity: 1 },
+      { opacity: 1, transform: 'scale(1)' },
       { delay: stagger(0.2), duration: 0.25, easing: [0.33, 1, 0.68, 1] }
     ],
   ]);
@@ -39,7 +39,7 @@ onMounted(() => {
         md:space-y-0
         md:space-x-24
         xl:space-x-48">
-      <section class="subtitle opacity-0">
+      <section class="subtitle opacity-0 scale-95">
         <h2 class="font-medium tracking-tight text-grey text-sm md:text-base">
           Current Location
         </h2>
@@ -47,7 +47,7 @@ onMounted(() => {
           Bandung, Indonesia
         </p>
       </section>
-      <section class="subtitle opacity-0 flex items-center">
+      <section class="subtitle opacity-0 scale-95 flex items-center">
         <SpeechButton client:visible />
       </section>
     </div>
