@@ -40,10 +40,10 @@ onMounted(() => {
         md:space-x-24
         xl:space-x-48">
       <section class="subtitle opacity-0">
-        <h2 class="font-medium tracking-tight text-grey text-base">
+        <h2 class="font-medium tracking-tight text-grey text-sm md:text-base">
           Current Location
         </h2>
-        <p class="text-lg lg:text-xl leading-relaxed">
+        <p class="text-base md:text-xl leading-relaxed">
           Bandung, Indonesia
         </p>
       </section>

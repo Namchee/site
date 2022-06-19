@@ -12,7 +12,7 @@ function speak() {
 <template>
   <button
     @click="speak"
-    class="group text-lg lg:text-xl font-medium tracking-tight flex items-center">
+    class="group text-base md:text-xl font-medium tracking-tight flex items-center">
     <span class="p-2 rounded-full bg-dark bg-opacity-80 transition-colors group-hover:bg-opacity-100 text-light">
       <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-auto lg:w-6" fill="#000000" viewBox="0 0 256 256">
         <path d="M218.9,77.1a71.9,71.9,0,0,1,0,101.8" fill="none" stroke="currentColor" stroke-linecap="round"
