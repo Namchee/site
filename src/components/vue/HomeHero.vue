@@ -10,8 +10,8 @@ onMounted(() => {
         transform: 'translateY(0)',
       },
       {
-        delay: stagger(0.8),
-        duration: 0.3,
+        delay: stagger(0.75),
+        duration: 0.4,
         easing: [0.16, 1, 0.3, 1],
       },
     ],

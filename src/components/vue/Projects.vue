@@ -32,20 +32,21 @@ const projects = [
 
 <template>
   <div class="grid grid-cols-12 gap-x-6">
-    <div class="col-span-8">
+    <div class="col-span-12 lg:col-span-8">
       <template v-for="(project, idx) in projects" :key="`project-${idx}`">
-        <AppLink @mouseover="() => currentProject = idx" @focus="() => currentProject = idx" :href="project.link"
+        <AppLink @pointerover="() => currentProject = idx" @focus="() => currentProject = idx" :href="project.link"
           external class="group
-            flex
+            flex flex-col
             border-t-2 border-t-grey border-opacity-25
             transition-colors hover:bg-grey hover:bg-opacity-5
-            p-6">
-          <p class="font-medium leading-none text-base tracking-tight mr-12">
+            py-6 px-2
+            lg:p-6">
+          <p class="font-medium lg:leading-none text-sm lg:text-base tracking-tight mr-12">
             {{ project.year }}/
           </p>
 
-          <div class="flex-1">
-            <p class="leading-none text-xl font-medium">
+          <div class="mt-1 lg:mt-0 flex-1">
+            <p class="lg:leading-none text-xl font-medium">
               {{ project.title }}
             </p>
 
@@ -55,7 +56,7 @@ const projects = [
           </div>
 
           <svg xmlns="http://www.w3.org/2000/svg"
-            class="w-8 h-8 mr-2 text-grey self-center opacity-0 translate-x-2 transition-all group-hover:opacity-100 group-hover:translate-x-0"
+            class="hidden lg:block w-8 h-8 mr-2 text-grey self-center opacity-0 translate-x-2 transition-all group-hover:opacity-100 group-hover:translate-x-0"
             viewBox="0 0 256 256">
             <line x1="40" y1="128" x2="216" y2="128" fill="none" stroke="currentColor" stroke-linecap="round"
               stroke-linejoin="round" stroke-width="16"></line>
@@ -66,7 +67,7 @@ const projects = [
       </template>
     </div>
 
-    <div class="col-span-4 relative grid place-items-center">
+    <div class="hidden col-span-4 relative md:grid place-items-center">
       <Transition v-for="(project, idx) in projects"
         :key="`image-${idx}`"
         name="project"
@@ -75,7 +76,7 @@ const projects = [
         <img
           v-if="currentProject === idx"
           rel="preload"
-          class="w-40 h-auto absolute"
+          class="w-32 lg:w-40 h-auto absolute"
           :src="project.image"
           :title="project.title"
           :alt="project.title" />
