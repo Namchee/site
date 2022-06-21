@@ -2,7 +2,7 @@
 import '@/assets/styles/global.css';
 
 import Navigation from '@/components/vue/Navigation.vue';
-import Footer from '@/components/vue/Footer.vue';
+import Footer from '@/components/astro/Footer.astro';
 
 export interface Props {
 	title: string;
@@ -28,6 +28,6 @@ const { pathname } = new URL(Astro.request.url);
     md:px-16 xl:px-0 max-w-7xl mx-auto">
 		  <slot />
 	  </main>
-    <Footer client:visible />
+    <Footer />
   </body>
 </html>

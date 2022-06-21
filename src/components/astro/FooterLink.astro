@@ -1,19 +1,16 @@
-<script setup lang="ts">
-import AppLink from '@/components/vue/AppLink.vue';
-
-interface FooterLinkProps {
+---
+export interface FooterLinkProps {
   href: string;
-  external?: boolean;
 }
 
-const props = defineProps<FooterLinkProps>();
-</script>
+const { href } = Astro.props;
+---
 
-<template>
-  <AppLink
-    :href="props.href"
-    :external="props.external"
-    class="font-medium
+<a
+  href={href}
+  target="_blank"
+  rel="noopener noreferrer"
+  class="font-medium
       relative
       after:absolute
       after:(content-*)
@@ -29,9 +26,6 @@ const props = defineProps<FooterLinkProps>();
       after:bottom-[-3px]
       focus:after:scale-x-100
       hover:after:scale-x-100
-      hover:after:origin-left"
-  >
-    <slot />
-  </AppLink>
-</template>
-
+      hover:after:origin-left">
+  <slot />
+</a>

@@ -75,7 +75,7 @@ const projects = [
       >
         <img
           v-if="currentProject === idx"
-          rel="preload"
+          loading="lazy"
           class="w-32 lg:w-40 h-auto absolute"
           :src="project.image"
           :title="project.title"

@@ -1,0 +1,101 @@
+---
+import { WEB_LINKS, CONTACT_LINKS } from '@/constant/link';
+
+import BackToTopButton from '@/components/vue/BackToTopButton.vue';
+import FooterLink from '@/components/astro/FooterLink.astro';
+---
+
+<footer class="w-full">
+  <div class="w-full
+    max-w-7xl
+    mx-auto
+    py-8 px-6
+    md:px-16
+    xl:px-0">
+    <!-- start: top section -->
+    <div class="pb-8
+      md:grid md:grid-cols-3 md:gap-6"
+    >
+      <!-- start: open source -->
+      <div class="leading-relaxed text-[18px] md:text-lg">
+        <p>
+          Hey, this site is open-source!
+        </p>
+        <p>
+          <a
+            href="https://www.github.com/Namchee/site"
+            rel="noopener noreferrer"
+            target="_blank"
+            class="text-accent
+              transition-colors
+            hover:text-accent-dark"
+          >
+            Go check it out
+          </a>
+        </p>
+      </div>
+      <!-- end: open source -->
+
+      <!-- start: sitemap and contacts -->
+      <div class="mt-8 md:mt-0 flex space-x-12 mx-auto">
+        <!-- start: contacts -->
+        <div>
+          <p class="uppercase font-semibold text-sm text-grey">
+            Contacts
+          </p>
+          <ul class="mt-4 space-y-2 text-base">
+            {CONTACT_LINKS.map(({ href, name }) => (
+            <li>
+              <FooterLink href={href}>
+                {name}
+              </FooterLink>
+            </li>
+            ))}
+          </ul>
+        </div>
+        <!-- end: contacts -->
+
+        <!-- start: sitemap -->
+        <div>
+          <p class="uppercase font-semibold text-sm text-grey">
+            Sitemap
+          </p>
+          <ul class="mt-4 space-y-2 text-base">
+            {WEB_LINKS.map(({ href, name }) => (
+            <li>
+              <FooterLink href={href}>
+                {name}
+              </FooterLink>
+            </li>
+            ))}
+          </ul>
+        </div>
+        <!-- end: sitemap -->
+      </div>
+      <!-- end: sitemap and contacts -->
+
+      <!-- start: back to top button -->
+      <div>
+        <BackToTopButton client:visible />
+      </div>
+      <!-- end: back to top button -->
+    </div>
+    <!-- end: top section -->
+
+    <!-- start: copyright and author -->
+    <div class="flex flex-col md:flex-row items-center justify-between
+      text-sm
+      border-t border-t-grey border-opacity-30
+      space-y-4
+      pt-8"
+    >
+      <p>
+        2022 &copy; Namchee. All rights reserved
+      </p>
+      <p>
+        Design and code by Namchee
+      </p>
+    </div>
+    <!-- end: copyright and author -->
+  </div>
+</footer>
