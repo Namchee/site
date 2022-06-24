@@ -22,4 +22,8 @@ export const CONTACT_LINKS = [
     href: 'https://www.twitter.com/lakban_hitam',
     name: 'Twitter',
   },
+  {
+    href: 'https://www.linkedin.com/in/namchee/',
+    name: 'LinkedIn',
+  }
 ];
