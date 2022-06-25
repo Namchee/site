@@ -17,7 +17,7 @@ import FooterLink from '@/components/astro/FooterLink.astro';
       md:grid md:grid-cols-3 md:gap-6"
     >
       <!-- start: open source -->
-      <div class="leading-relaxed text-[18px] md:text-lg">
+      <div class="leading-relaxed text-lg">
         <p>
           Hey, this site is open-source!
         </p>
@@ -40,10 +40,10 @@ import FooterLink from '@/components/astro/FooterLink.astro';
       <div class="mt-8 md:mt-0 flex space-x-12 mx-auto">
         <!-- start: contacts -->
         <div>
-          <p class="uppercase font-semibold text-sm text-grey">
+          <p class="uppercase font-semibold text-xs text-grey">
             Contacts
           </p>
-          <ul class="mt-4 space-y-2 text-base">
+          <ul class="mt-4 space-y-2 text-sm">
             {CONTACT_LINKS.map(({ href, name }) => (
             <li>
               <FooterLink href={href}>
@@ -57,10 +57,10 @@ import FooterLink from '@/components/astro/FooterLink.astro';
 
         <!-- start: sitemap -->
         <div>
-          <p class="uppercase font-semibold text-sm text-grey">
+          <p class="uppercase font-semibold text-xs text-grey">
             Sitemap
           </p>
-          <ul class="mt-4 space-y-2 text-base">
+          <ul class="mt-4 space-y-2 text-sm">
             {WEB_LINKS.map(({ href, name }) => (
             <li>
               <FooterLink href={href}>
@@ -84,7 +84,7 @@ import FooterLink from '@/components/astro/FooterLink.astro';
 
     <!-- start: copyright and author -->
     <div class="flex flex-col md:flex-row items-center justify-between
-      text-sm
+      text-xs
       border-t border-t-grey border-opacity-30
       space-y-4
       pt-8"

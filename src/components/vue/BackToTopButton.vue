@@ -11,7 +11,7 @@ const scrollToTop = () => {
       font-medium
       shadow-md
       rounded-md
-      hidden tracking-tight ml-auto text-base py-2 px-4
+      hidden tracking-tight ml-auto text-sm py-2 px-4
       transition-all hover:ring-2 focus:ring-2
       text-light bg-dark
       focus:bg-blackout focus:ring-blackout focus:ring-opacity-25
