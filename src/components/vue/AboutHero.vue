@@ -15,10 +15,10 @@ onMounted(() => {
 
 <template>
   <header class="w-full lg:grid lg:grid-cols-12 gap-6">
-    <h1 class="col-start-7 col-span-full text-xl md:text-3xl">
+    <h1 class="col-start-7 col-span-full text-xl md:text-3xl tracking-tight">
       <p class="overflow-y-hidden">
         <span class="inline-block translate-y-64 word">
-          Namchee is a purpose
+          Namchee is a <span class="font-medium">purpose</span>
         </span>
       </p>
       <p class="overflow-y-hidden">
@@ -28,7 +28,7 @@ onMounted(() => {
       </p>
       <p class="overflow-y-hidden">
         <span class="inline-block translate-y-64 word">
-          delivers impact
+          delivers <span class="font-medium">impact</span>
         </span>
       </p>
     </h1>
