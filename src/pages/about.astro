@@ -7,13 +7,7 @@ import AboutHero from '@/components/vue/AboutHero.vue';
 
 <Layout title="About Me">
   <div class="mt-24 mb-32 md:mb-48">
-    <AboutHero class="hidden" client:visible />
-
-    <div class="lg:grid lg:grid-cols-12">
-      <h1 class="col-start-7 col-span-full text-xl md:text-3xl">
-        Namchee is a purpose driven engineer that delivers impact
-      </h1>
-    </div>
+    <AboutHero client:visible />
 
     <!-- start: about sections -->
     <div class="mt-32 lg:mt-64 space-y-24 lg:space-y-32 col-span-full">
@@ -23,7 +17,7 @@ import AboutHero from '@/components/vue/AboutHero.vue';
         <div class="font-semibold">
           01/
         </div>
-        <div class="text-xl md:text-2xl font-medium lg:-mt-2 tracking-tighter lg:sticky lg:top-12 lg:self-start">
+        <div class="text-xl md:text-2xl font-medium lg:-mt-2 tracking-tight lg:sticky lg:top-12 lg:self-start">
           Biography
         </div>
         <div class="mt-4 lg:mt-0 col-start-7 col-span-full leading-loose space-y-8">
@@ -65,11 +59,11 @@ import AboutHero from '@/components/vue/AboutHero.vue';
 
           <div class="mt-10 grid grid-cols-2 gap-8 lg:gap-y-16 gap-x-8">
             <div>
-              <p class="text-sm md:text-base text-grey">
+              <p class="text-xs text-grey font-mono tracking-tight">
                 Front End Development
               </p>
 
-              <ul class="space-y-1 mt-4">
+              <ul class="space-y-1 mt-2">
                 <li>
                   HTML
                 </li>
@@ -98,11 +92,11 @@ import AboutHero from '@/components/vue/AboutHero.vue';
             </div>
 
             <div>
-              <p class="text-sm md:text-base text-grey">
+              <p class="text-xs font-mono text-grey">
                 Back End Development
               </p>
 
-              <ul class="space-y-1 mt-4">
+              <ul class="space-y-1 mt-2">
                 <li>
                   NodeJS
                 </li>
@@ -119,11 +113,11 @@ import AboutHero from '@/components/vue/AboutHero.vue';
             </div>
 
             <div>
-              <p class="text-sm md:text-base text-grey">
+              <p class="text-xs font-mono text-grey">
                 Infrastructure
               </p>
 
-              <ul class="space-y-1 mt-4">
+              <ul class="space-y-1 mt-2">
                 <li>
                   Vercel
                 </li>
@@ -137,11 +131,11 @@ import AboutHero from '@/components/vue/AboutHero.vue';
             </div>
 
             <div>
-              <p class="text-sm md:text-base text-grey">
+              <p class="text-xs font-mono text-grey">
                 Other Tools
               </p>
 
-              <ul class="space-y-1 mt-4">
+              <ul class="space-y-1 mt-2">
                 <li>
                   VSCode
                 </li>
@@ -172,7 +166,7 @@ import AboutHero from '@/components/vue/AboutHero.vue';
         <div class="mt-8 lg:mt-0 col-start-7 col-span-full leading-loose">
           <ul>
             <li>
-              <p class="text-grey text-sm uppercase font-semibold">
+              <p class="text-grey text-sm font-mono uppercase">
                 2022 &ndash; Present
               </p>
               <p class="font-medium text-xl tracking-tight leading-relaxed">

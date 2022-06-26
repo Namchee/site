@@ -46,6 +46,22 @@ html {
   font-weight: 600;
 }
 
+@font-face {
+  font-family: "Roboto Mono";
+  src: local("Roboto Mono"),
+    url("/fonts/roboto-mono.ttf") format("truetype");
+  font-style: normal;
+  font-weight: 400;
+}
+
+@font-face {
+  font-family: "JetBrains Mono";
+  src: local("JetBrains Mono"),
+    url("/fonts/jetbrains-mono.woff2") format("woff2");
+  font-style: normal;
+  font-weight: 400;
+}
+
 ::-webkit-scrollbar {
   width: 8px;
   height: 4px;
