@@ -2,7 +2,6 @@
 import Layout from '@/components/astro/Layout.astro';
 import ButtonLink from '@/components/astro/ButtonLink.astro';
 
-import HomeHero from '@/components/vue/HomeHero.vue';
 import Projects from '@/components/vue/Projects.vue';
 
 ---
@@ -10,36 +9,9 @@ import Projects from '@/components/vue/Projects.vue';
 <Layout title="Hello World!">
 	<div class="mt-20 md:mt-24 mb-48 space-y-48 md:space-y-64">
 		<!-- start: top section -->
-		<section class="flex flex-col justify-center mb-32 md:mb-48 hidden">
-			<HomeHero client:visible />
-
-			<p class="text-center text-grey mt-8">
-				Namchee writes code that solve problems to make the world a better place
-			</p>
-
-			<ButtonLink
-				href="/about"
-				style="rounded"
-				theme="neutral"
-				theme="inverted"
-				className="mt-16 lg:mt-24 mx-auto group px-6 py-2 md:px-8 md:py-3"
-				client:visible
-			>
-				<span class="text-xs md:text-base">Know me more</span>
-				<svg xmlns="http://www.w3.org/2000/svg" class="transition-transform group-hover:translate-x-1 ml-2 w-4 h-auto md:w-6"
-					viewBox="0 0 256 256">
-					<line x1="40" y1="128" x2="216" y2="128" fill="none" stroke="currentColor" stroke-linecap="round"
-						stroke-linejoin="round" stroke-width="16"></line>
-					<polyline points="144 56 216 128 144 200" fill="none" stroke="currentColor" stroke-linecap="round"
-						stroke-linejoin="round" stroke-width="16"></polyline>
-				</svg>
-			</ButtonLink>
-		</section>
-		<!-- end: top section -->
-
-		<header class="flex justify-between">
+		<header class="flex justify-between pt-48">
 			<div>
-				<h1 class="text-4xl tracking-tight">
+				<h1 class="text-4xl tracking-tighter leading-base font-medium">
 					<p>
 						Hey there!
 					</p>
@@ -47,21 +19,19 @@ import Projects from '@/components/vue/Projects.vue';
 						My name is Namchee
 					</p>
 				</h1>
+
+				<p class="text-grey mt-4">
+					Namchee writes code to make the world a better place
+				</p>
 			</div>
 
 			<div class="self-end">
-				<p class="self-end max-w-sm leading-relaxed">
-					Namchee writes code that solve problems to make the world a better place
-				</p>
-
-				<a href="" class="block mt-4">
-					Know Namchee more
-				</a>
+				<a href="/about" rel="noreferrer noopener" class="text-lg">Know me more</a>
 			</div>
-
-
-
 		</header>
+		<!-- end: top section -->
+
+
 
 		<!-- start: projects section -->
 		<section class="hidden">
@@ -96,15 +66,11 @@ import Projects from '@/components/vue/Projects.vue';
 					</p>
 				</div>
 
-				<ButtonLink
-					href="https://github.com/Namchee?tab=repositories"
-					external
-					style="rounded"
-					theme="inverted"
+				<ButtonLink href="https://github.com/Namchee?tab=repositories" external style="rounded" theme="inverted"
 					className="group px-4 py-2 lg:px-6 lg:py-3 mt-8 md:mt-0 self-start md:self-center">
 					<span class="text-sm inline-block md:text-base">See more projects</span>
-					<svg xmlns="http://www.w3.org/2000/svg" class="transition-transform group-hover:translate-x-1 ml-2 w-4 h-4 lg:w-6 lg:h-6"
-						viewBox="0 0 256 256">
+					<svg xmlns="http://www.w3.org/2000/svg"
+						class="transition-transform group-hover:translate-x-1 ml-2 w-4 h-4 lg:w-6 lg:h-6" viewBox="0 0 256 256">
 						<line x1="40" y1="128" x2="216" y2="128" fill="none" stroke="currentColor" stroke-linecap="round"
 							stroke-linejoin="round" stroke-width="16"></line>
 						<polyline points="144 56 216 128 144 200" fill="none" stroke="currentColor" stroke-linecap="round"
@@ -200,7 +166,7 @@ import Projects from '@/components/vue/Projects.vue';
 </Layout>
 
 <style>
-	.circle > * {
+	.circle>* {
 		grid-column: 1 / -1;
 		grid-row: 1 / -1;
 	}
