@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { stagger, timeline } from 'motion';
 import { onMounted } from 'vue';
+
 onMounted(() => {
   timeline([
     [
