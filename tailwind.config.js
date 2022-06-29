@@ -16,6 +16,7 @@ module.exports = {
       '2xl': '42.63px',
       '3xl': '56.83px',
       '4xl': '75.76px',
+      '5xl': '100.98px',
     },
     extend: {
       colors: {
