@@ -11,8 +11,8 @@ onMounted(() => {
       },
       {
         delay: stagger(0.1),
-        duration: 0.75,
-        easing: [0.16, 1, 0.3, 1],
+        duration: 0.6,
+        easing: [0.25, 1, 0.5, 1],
       },
     ],
   ])
