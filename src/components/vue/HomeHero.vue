@@ -20,7 +20,7 @@ onMounted(() => {
 </script>
 
 <template>
-  <h1 class="text-2xl lg:text-5xl tracking-tighter leading-snug font-medium">
+  <h1 class="text-2xl md:text-3xl lg:text-5xl tracking-tighter leading-snug font-medium">
 		<p class="overflow-y-hidden">
       <span class="inline-block translate-y-64 reveal">
         Hey there!

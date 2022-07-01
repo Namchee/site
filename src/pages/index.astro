@@ -11,21 +11,22 @@ import Projects from '@/components/vue/Projects.vue';
 <Layout title="Hello World!">
 	<div class="mt-20 md:mt-24 mb-48 space-y-48 md:space-y-64">
 		<!-- start: top section -->
-		<header class="pt-16 md:pt-32">
+		<header class="pt-16 md:pt-24 lg:pt-32">
 			<HomeHero client:visible />
 
-			<div class="flex flex-col md:flex-row items-center justify-between mt-4">
+			<div class="flex flex-col lg:flex-row items-center justify-between mt-4">
 				<p class="text-grey">
 					Namchee writes code that solves problems to make the world a better place
 				</p>
 
-				<div class="mt-8 self-start">
+				<div class="mt-8 lg:mt-0 self-start">
 					<a href="/about" rel="noreferrer noopener" class="about__button grid place-items-center">
-						<div class="flex items-center md:text-lg tracking-tight col-span-full row-span-full">
+						<div class="flex items-center lg:text-lg tracking-tight col-span-full row-span-full">
 							<span class="mr-2">Know me more</span>
 							<ArrowRight />
 						</div>
-						<svg class="about__accent w-auto md:h-[107.5%] col-span-full row-span-full" viewBox="0 0 323 76" fill="none" xmlns="http://www.w3.org/2000/svg">
+						<svg class="about__accent w-auto md:h-[107.5%] col-span-full row-span-full" viewBox="0 0 323 76" fill="none"
+							xmlns="http://www.w3.org/2000/svg">
 							<path
 								d="M105.448 71.2275C167.155 71.2275 234.339 72.1474 290.526 54.3889C305.355 49.7021 328.579 41.2899 317.517 29.5741C310.533 22.1779 295.151 18.0484 282.651 14.9511C260.554 9.47623 236.674 6.49714 213 4.85772C164.523 1.5007 108.608 2.04362 62.1316 11.9477C44.814 15.638 -4.80355 25.6012 4.04842 42.1292C11.4762 55.998 37.9825 62.6807 59.5063 65.9101C100.564 72.0703 144.61 72.2989 186.666 73"
 								stroke="currentColor" stroke-width="2" stroke-linecap="round" />
@@ -35,8 +36,6 @@ import Projects from '@/components/vue/Projects.vue';
 			</div>
 		</header>
 		<!-- end: top section -->
-
-
 
 		<!-- start: projects section -->
 		<section class="hidden">
@@ -59,29 +58,28 @@ import Projects from '@/components/vue/Projects.vue';
 		</section>
 		<!-- end: project section -->
 
+		<ButtonLink href="https://github.com/Namchee?tab=repositories" external style="rounded" theme="inverted"
+			className="group px-4 py-2 lg:px-6 lg:py-3 mt-8 md:mt-0 self-start md:self-center">
+			<span class="text-sm inline-block md:text-base">See more projects</span>
+			<svg xmlns="http://www.w3.org/2000/svg"
+				class="transition-transform group-hover:translate-x-1 ml-2 w-4 h-4 lg:w-6 lg:h-6" viewBox="0 0 256 256">
+				<line x1="40" y1="128" x2="216" y2="128" fill="none" stroke="currentColor" stroke-linecap="round"
+					stroke-linejoin="round" stroke-width="16"></line>
+				<polyline points="144 56 216 128 144 200" fill="none" stroke="currentColor" stroke-linecap="round"
+					stroke-linejoin="round" stroke-width="16"></polyline>
+			</svg>
+		</ButtonLink>
+
 		<!-- start: projects section -->
 		<section>
 			<div class="flex flex-col md:flex-row justify-between md:space-x-12">
-				<div class="flex-1">
-					<h2 class="font-semibold tracking-tight text-2xl lg:text-4xl leading-relaxed">
-						Featured Projects
-					</h2>
-					<p class="text-lg lg:text-2xl text-grey mt-2 leading-relaxed">
-						Find out what I've been building in my free time
-					</p>
-				</div>
+				<p class="text-grey">
+					Featured Projects
+				</p>
 
-				<ButtonLink href="https://github.com/Namchee?tab=repositories" external style="rounded" theme="inverted"
-					className="group px-4 py-2 lg:px-6 lg:py-3 mt-8 md:mt-0 self-start md:self-center">
-					<span class="text-sm inline-block md:text-base">See more projects</span>
-					<svg xmlns="http://www.w3.org/2000/svg"
-						class="transition-transform group-hover:translate-x-1 ml-2 w-4 h-4 lg:w-6 lg:h-6" viewBox="0 0 256 256">
-						<line x1="40" y1="128" x2="216" y2="128" fill="none" stroke="currentColor" stroke-linecap="round"
-							stroke-linejoin="round" stroke-width="16"></line>
-						<polyline points="144 56 216 128 144 200" fill="none" stroke="currentColor" stroke-linecap="round"
-							stroke-linejoin="round" stroke-width="16"></polyline>
-					</svg>
-				</ButtonLink>
+				<h2 class="text-3xl font-medium tracking-tight">
+					What I've been building to solve real-life problems
+				</h2>
 			</div>
 
 			<div class="mt-16">
@@ -92,7 +90,7 @@ import Projects from '@/components/vue/Projects.vue';
 
 		<!-- start: contact section -->
 		<section class="leading-relaxed">
-			<h3 class="text-center text-xl md:text-2xl tracking-tight font-semibold">
+			<h3 class="text-center text-xl md:text-3xl tracking-tight font-semibold">
 				Let's Connect
 			</h3>
 
@@ -103,8 +101,9 @@ import Projects from '@/components/vue/Projects.vue';
 			</p>
 
 			<div class="grid place-items-center justify-center items-center mt-16 circle">
-				<svg class="w-[196px] md:w-[196px] h-auto arc pointer-events-none fill-current text-grey col-span-full row-span-full" viewBox="0 0 258 256"
-					xmlns="http://www.w3.org/2000/svg">
+				<svg
+					class="w-[196px] md:w-[196px] h-auto arc pointer-events-none fill-current text-grey col-span-full row-span-full"
+					viewBox="0 0 258 256" xmlns="http://www.w3.org/2000/svg">
 					<path
 						d="M106.735 217.368C108.6 217.824 110.31 218.563 111.863 219.586C113.417 220.608 114.622 221.941 115.48 223.584C116.309 225.245 116.564 227.185 116.243 229.404L111.033 228.129C111.064 226.284 110.577 224.843 109.57 223.806C108.564 222.769 107.257 222.054 105.648 221.66C104.179 221.301 102.928 221.316 101.894 221.705C100.854 222.118 100.186 222.93 99.8889 224.142C99.6779 225.005 99.7893 225.761 100.223 226.411C100.652 227.084 101.266 227.654 102.065 228.122C102.836 228.607 103.916 229.192 105.305 229.878C107.201 230.812 108.71 231.663 109.832 232.431C110.93 233.194 111.799 234.185 112.44 235.404C113.08 236.624 113.187 238.107 112.759 239.856C112.348 241.534 111.592 242.856 110.491 243.822C109.384 244.812 108.048 245.424 106.484 245.659C104.913 245.917 103.219 245.823 101.401 245.378C99.629 244.945 98.0625 244.228 96.7012 243.228C95.3343 242.251 94.2948 240.996 93.5828 239.463C92.8651 237.953 92.5917 236.243 92.7626 234.333L97.903 235.59C97.8928 237.046 98.3178 238.237 99.1781 239.164C100.009 240.109 101.136 240.755 102.558 241.103C103.864 241.422 104.981 241.399 105.911 241.034C106.834 240.692 107.416 240.031 107.656 239.052C107.844 238.282 107.727 237.599 107.305 237.002C106.883 236.404 106.307 235.88 105.577 235.43C104.847 234.98 103.811 234.417 102.469 233.743C100.549 232.804 99.0081 231.932 97.8457 231.129C96.6601 230.32 95.735 229.254 95.0706 227.93C94.4063 226.606 94.3023 225.011 94.7586 223.146C95.3804 220.605 96.7569 218.817 98.888 217.782C100.996 216.741 103.612 216.603 106.735 217.368Z"
 						fill="currentColor" />
