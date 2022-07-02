@@ -1,6 +1,6 @@
 ---
 import Layout from '@/components/astro/Layout.astro';
-import ButtonLink from '@/components/astro/ButtonLink.astro';
+import AppLink from '@/components/astro/AppLink.astro';
 import Project from '@/components/astro/Project.astro';
 
 import HomeHero from '@/components/vue/HomeHero.vue';
@@ -42,18 +42,18 @@ const projects = [
 				</p>
 
 				<div class="mt-8 lg:mt-0 self-start">
-					<a href="/about" rel="noreferrer noopener" class="about__button grid place-items-center">
+					<AppLink href="/about" class="circled__button grid place-items-center">
 						<div class="flex items-center lg:text-lg tracking-tight col-span-full row-span-full">
 							<span class="mr-2">Know me more</span>
 							<ArrowRight />
 						</div>
-						<svg class="about__accent w-auto md:h-[107.5%] col-span-full row-span-full" viewBox="0 0 323 76" fill="none"
+						<svg class="circled__accent w-auto md:h-[107.5%] col-span-full row-span-full" viewBox="0 0 323 76" fill="none"
 							xmlns="http://www.w3.org/2000/svg">
 							<path
 								d="M105.448 71.2275C167.155 71.2275 234.339 72.1474 290.526 54.3889C305.355 49.7021 328.579 41.2899 317.517 29.5741C310.533 22.1779 295.151 18.0484 282.651 14.9511C260.554 9.47623 236.674 6.49714 213 4.85772C164.523 1.5007 108.608 2.04362 62.1316 11.9477C44.814 15.638 -4.80355 25.6012 4.04842 42.1292C11.4762 55.998 37.9825 62.6807 59.5063 65.9101C100.564 72.0703 144.61 72.2989 186.666 73"
 								stroke="currentColor" stroke-width="2" stroke-linecap="round" />
 						</svg>
-					</a>
+					</AppLink>
 				</div>
 			</div>
 		</header>
@@ -80,18 +80,6 @@ const projects = [
 		</section>
 		<!-- end: project section -->
 
-		<ButtonLink href="https://github.com/Namchee?tab=repositories" external style="rounded" theme="inverted"
-			className="group px-4 py-2 lg:px-6 lg:py-3 mt-8 md:mt-0 self-start md:self-center">
-			<span class="text-sm inline-block md:text-base">See more projects</span>
-			<svg xmlns="http://www.w3.org/2000/svg"
-				class="transition-transform group-hover:translate-x-1 ml-2 w-4 h-4 lg:w-6 lg:h-6" viewBox="0 0 256 256">
-				<line x1="40" y1="128" x2="216" y2="128" fill="none" stroke="currentColor" stroke-linecap="round"
-					stroke-linejoin="round" stroke-width="16"></line>
-				<polyline points="144 56 216 128 144 200" fill="none" stroke="currentColor" stroke-linecap="round"
-					stroke-linejoin="round" stroke-width="16"></polyline>
-			</svg>
-		</ButtonLink>
-
 		<!-- start: projects section -->
 		<section>
 			<div class="flex flex-col md:flex-row justify-between md:space-x-12">
@@ -115,6 +103,20 @@ const projects = [
 					/>
 					))
 				}
+			</div>
+
+			<div class="mt-32 flex justify-center">
+				<AppLink href="https://github.com/Namchee?tab=repositories" external class="circled__button mx-auto inline-grid place-items-center">
+					<div class="flex items-center lg:text-xl tracking-tight col-span-full row-span-full">
+						More projects please?
+					</div>
+					<svg class="circled__accent w-auto md:h-[107.5%] col-span-full row-span-full" viewBox="0 0 323 76" fill="none"
+						xmlns="http://www.w3.org/2000/svg">
+						<path
+							d="M105.448 71.2275C167.155 71.2275 234.339 72.1474 290.526 54.3889C305.355 49.7021 328.579 41.2899 317.517 29.5741C310.533 22.1779 295.151 18.0484 282.651 14.9511C260.554 9.47623 236.674 6.49714 213 4.85772C164.523 1.5007 108.608 2.04362 62.1316 11.9477C44.814 15.638 -4.80355 25.6012 4.04842 42.1292C11.4762 55.998 37.9825 62.6807 59.5063 65.9101C100.564 72.0703 144.61 72.2989 186.666 73"
+							stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+					</svg>
+				</AppLink>
 			</div>
 		</section>
 		<!-- end: project section -->
@@ -201,15 +203,15 @@ const projects = [
 </Layout>
 
 <style>
-	.about__accent path {
+	.circled__accent path {
 		stroke-dasharray: 1000;
 		stroke-dashoffset: 1000;
 
 		transition: stroke-dashoffset 600ms linear;
 	}
 
-	.about__button:hover .about__accent path,
-	.about__button:focus .about__accent path {
+	.circled__button:hover .circled__accent path,
+	.circled__button:focus .circled__accent path {
 		stroke-dashoffset: 0;
 	}
 
