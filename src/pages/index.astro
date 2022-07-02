@@ -77,13 +77,55 @@ import Projects from '@/components/vue/Projects.vue';
 					Featured Projects
 				</p>
 
-				<h2 class="text-3xl font-medium tracking-tight">
-					What I've been building to solve real-life problems
+				<h2 class="text-3xl max-w-3xl -mt-4 font-medium tracking-tight">
+					A selection of stuffs I've built to solve problems
 				</h2>
 			</div>
 
-			<div class="mt-16">
-				<Projects client:visible />
+			<div class="mt-24 flex justify-center space-x-12">
+        <div>
+          <img
+            class="w-20 h-auto"
+						width="80"
+						height="80"
+            src="https://res.cloudinary.com/namchee/image/upload/v1655467239/personal-site/Windgraph.webp" />
+          <p class="text-xl tracking-tight mt-6 font-medium">
+            Windgraph
+          </p>
+          <p class="text-grey leading-relaxed mt-2">
+            Open Graph image generator as a service empowered with Tailwind CSS.
+          </p>
+        </div>
+        <div>
+          <img
+            class="w-20 h-auto"
+						width="80"
+						height="80"
+            src="https://res.cloudinary.com/namchee/image/upload/v1655467239/personal-site/cpr.webp" />
+          <p class="text-xl tracking-tight mt-6 font-medium">
+            Conventional PR
+          </p>
+          <p class="text-grey leading-relaxed mt-2">
+            Enforce sensible standards in pull requests through GitHub Actions.
+          </p>
+        </div>
+        <div>
+          <img
+            class="w-20 h-auto"
+						width="80"
+						height="80"
+            src="https://res.cloudinary.com/namchee/image/upload/v1655467239/personal-site/Fav.webp" />
+          <p class="text-xl tracking-tight mt-6 font-medium">
+            Fav
+          </p>
+          <p class="text-grey leading-relaxed mt-2">
+            Generate complete set of compact favicons through few clicks.
+          </p>
+
+					<div class="mt-4">
+						<a href="text-xs font-mono">Repository</a>
+					</div>
+        </div>
 			</div>
 		</section>
 		<!-- end: project section -->
