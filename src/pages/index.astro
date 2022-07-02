@@ -41,13 +41,13 @@ const projects = [
 					Namchee writes code that solves problems to make the world a better place
 				</p>
 
-				<div class="mt-8 lg:mt-0 self-start">
+				<div class="mt-12 lg:mt-0 self-start">
 					<AppLink href="/about" class="circled__button grid place-items-center">
-						<div class="flex items-center lg:text-lg tracking-tight col-span-full row-span-full">
+						<div class="flex items-center text-lg tracking-tight col-span-full row-span-full">
 							<span class="mr-2">Know me more</span>
 							<ArrowRight />
 						</div>
-						<svg class="circled__accent w-auto md:h-[107.5%] col-span-full row-span-full" viewBox="0 0 323 76" fill="none"
+						<svg class="circled__accent w-auto h-[107.5%] col-span-full row-span-full" viewBox="0 0 323 76" fill="none"
 							xmlns="http://www.w3.org/2000/svg">
 							<path
 								d="M105.448 71.2275C167.155 71.2275 234.339 72.1474 290.526 54.3889C305.355 49.7021 328.579 41.2899 317.517 29.5741C310.533 22.1779 295.151 18.0484 282.651 14.9511C260.554 9.47623 236.674 6.49714 213 4.85772C164.523 1.5007 108.608 2.04362 62.1316 11.9477C44.814 15.638 -4.80355 25.6012 4.04842 42.1292C11.4762 55.998 37.9825 62.6807 59.5063 65.9101C100.564 72.0703 144.61 72.2989 186.666 73"
@@ -82,17 +82,17 @@ const projects = [
 
 		<!-- start: projects section -->
 		<section>
-			<div class="flex flex-col md:flex-row justify-between md:space-x-12">
-				<p class="text-grey">
+			<div class="flex flex-col lg:flex-row justify-between lg:space-x-12">
+				<p class="text-grey uppercase font-semibold text-xs md:text-base">
 					Featured Projects
 				</p>
 
-				<h2 class="text-3xl max-w-3xl -mt-4 font-medium tracking-tight">
+				<h2 class="text-xl md:text-2xl lg:text-3xl max-w-3xl mt-6 md:mt-4 lg:-mt-4 font-medium tracking-tight">
 					A selection of stuffs I've built to solve problems
 				</h2>
 			</div>
 
-			<div class="mt-32 flex justify-evenly space-x-16">
+			<div class="mt-24 lg:mt-32 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-16">
 				{projects.map((project) => (
 					<Project
 						name={project.name}
@@ -107,10 +107,10 @@ const projects = [
 
 			<div class="mt-32 flex justify-center">
 				<AppLink href="https://github.com/Namchee?tab=repositories" external class="circled__button mx-auto inline-grid place-items-center">
-					<div class="flex items-center lg:text-xl tracking-tight col-span-full row-span-full">
+					<div class="flex items-center text-lg lg:text-xl tracking-tight col-span-full row-span-full">
 						More projects please?
 					</div>
-					<svg class="circled__accent w-auto md:h-[107.5%] col-span-full row-span-full" viewBox="0 0 323 76" fill="none"
+					<svg class="circled__accent w-auto h-[107.5%] col-span-full row-span-full" viewBox="0 0 323 76" fill="none"
 						xmlns="http://www.w3.org/2000/svg">
 						<path
 							d="M105.448 71.2275C167.155 71.2275 234.339 72.1474 290.526 54.3889C305.355 49.7021 328.579 41.2899 317.517 29.5741C310.533 22.1779 295.151 18.0484 282.651 14.9511C260.554 9.47623 236.674 6.49714 213 4.85772C164.523 1.5007 108.608 2.04362 62.1316 11.9477C44.814 15.638 -4.80355 25.6012 4.04842 42.1292C11.4762 55.998 37.9825 62.6807 59.5063 65.9101C100.564 72.0703 144.61 72.2989 186.666 73"
