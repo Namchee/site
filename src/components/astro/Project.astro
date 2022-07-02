@@ -1,0 +1,49 @@
+---
+import AppLink from '@/components/astro/AppLink.astro';
+
+export interface ProjectProps {
+  name: string;
+  image: string;
+  description: string;
+  repository: string;
+  link?: string;
+}
+
+const { name, image, description, repository, link } = Astro.props;
+---
+
+<div>
+  <img
+    class="w-20 h-auto"
+    width="80"
+    height="80"
+    title={name}
+    alt={name}
+    src={image} />
+  <p class="text-xl tracking-tight leading-relaxed mt-6 font-medium">
+    {name}
+  </p>
+  <p class="text-grey leading-relaxed mt-2">
+    {description}
+  </p>
+
+
+  <div class="mt-8 space-x-8">
+    {
+      link &&
+      <AppLink
+        external
+        href={link}
+        class="text-xs uppercase text-dark text-opacity-75 font-mono transition-colors hover:text-opacity-100 focus:text-opacity-100"
+      >
+        Visit Project
+      </AppLink>
+    }
+    <AppLink
+      external
+      href={repository}
+      class="text-xs uppercase text-dark text-opacity-75 font-mono transition-colors hover:text-opacity-100 focus:text-opacity-100">
+      Repository
+    </AppLink>
+  </div>
+</div>
