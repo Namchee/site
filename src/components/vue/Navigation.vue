@@ -24,7 +24,17 @@ const props = defineProps<NavigationProps>();
         <Logo />
       </AppLink>
 
-      <ul class="flex items-center space-x-12">
+      <button>
+        Foo bar
+      </button>
+
+      <ul class="w-screen h-screen
+        fixed
+        bg-blackout
+        flex items-center space-x-12
+        md:w-auto md:h-auto
+        md:bg-transparent
+        md:static">
         <li v-for="link in WEB_LINKS" :key="link.href">
           <NavigationLink :href="link.href" :is-active="link.href === props.currentPath">
             {{ link.name }}
