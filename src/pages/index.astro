@@ -1,6 +1,6 @@
 ---
 import Layout from '@/components/astro/Layout.astro';
-import AppLink from '@/components/astro/AppLink.astro';
+import CircledLink from '@/components/astro/CircledLink.astro';
 import Project from '@/components/astro/Project.astro';
 
 import HomeHero from '@/components/vue/HomeHero.vue';
@@ -42,18 +42,12 @@ const projects = [
 				</p>
 
 				<div class="mt-12 lg:mt-0 self-start">
-					<AppLink href="/about" class="circled__button grid place-items-center">
+					<CircledLink href="/about" class="circled__button grid place-items-center">
 						<div class="flex items-center text-lg tracking-tight col-span-full row-span-full">
 							<span class="mr-2">Know me more</span>
 							<ArrowRight />
 						</div>
-						<svg class="circled__accent w-auto h-[107.5%] col-span-full row-span-full" viewBox="0 0 323 76" fill="none"
-							xmlns="http://www.w3.org/2000/svg">
-							<path
-								d="M105.448 71.2275C167.155 71.2275 234.339 72.1474 290.526 54.3889C305.355 49.7021 328.579 41.2899 317.517 29.5741C310.533 22.1779 295.151 18.0484 282.651 14.9511C260.554 9.47623 236.674 6.49714 213 4.85772C164.523 1.5007 108.608 2.04362 62.1316 11.9477C44.814 15.638 -4.80355 25.6012 4.04842 42.1292C11.4762 55.998 37.9825 62.6807 59.5063 65.9101C100.564 72.0703 144.61 72.2989 186.666 73"
-								stroke="currentColor" stroke-width="2" stroke-linecap="round" />
-						</svg>
-					</AppLink>
+					</CircledLink>
 				</div>
 			</div>
 		</header>
@@ -106,17 +100,11 @@ const projects = [
 			</div>
 
 			<div class="mt-32 flex justify-center">
-				<AppLink href="https://github.com/Namchee?tab=repositories" external class="circled__button mx-auto inline-grid place-items-center">
+				<CircledLink href="https://github.com/Namchee?tab=repositories" external>
 					<div class="flex items-center text-lg lg:text-xl tracking-tight col-span-full row-span-full">
 						More projects please?
 					</div>
-					<svg class="circled__accent w-auto h-[107.5%] col-span-full row-span-full" viewBox="0 0 323 76" fill="none"
-						xmlns="http://www.w3.org/2000/svg">
-						<path
-							d="M105.448 71.2275C167.155 71.2275 234.339 72.1474 290.526 54.3889C305.355 49.7021 328.579 41.2899 317.517 29.5741C310.533 22.1779 295.151 18.0484 282.651 14.9511C260.554 9.47623 236.674 6.49714 213 4.85772C164.523 1.5007 108.608 2.04362 62.1316 11.9477C44.814 15.638 -4.80355 25.6012 4.04842 42.1292C11.4762 55.998 37.9825 62.6807 59.5063 65.9101C100.564 72.0703 144.61 72.2989 186.666 73"
-							stroke="currentColor" stroke-width="2" stroke-linecap="round" />
-					</svg>
-				</AppLink>
+				</CircledLink>
 			</div>
 		</section>
 		<!-- end: project section -->
@@ -203,18 +191,6 @@ const projects = [
 </Layout>
 
 <style>
-	.circled__accent path {
-		stroke-dasharray: 1000;
-		stroke-dashoffset: 1000;
-
-		transition: stroke-dashoffset 600ms linear;
-	}
-
-	.circled__button:hover .circled__accent path,
-	.circled__button:focus .circled__accent path {
-		stroke-dashoffset: 0;
-	}
-
 	.arc {
 		animation: rotate-arc 20s linear infinite;
 	}

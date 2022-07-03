@@ -6,8 +6,14 @@ onMounted(() => {
   timeline([
     [
       '.word',
-      { transform: 'translateY(0)' },
-      { delay: stagger(0.085), duration: 0.5, easing: [0.33, 1, 0.68, 1] }
+      {
+        transform: 'translateY(0)',
+      },
+      {
+        delay: stagger(0.085),
+        duration: 0.5,
+        easing: [0.33, 1, 0.68, 1],
+      },
     ],
   ]);
 });
