@@ -7,7 +7,8 @@ onMounted(() => {
     [
       '.word',
       {
-        transform: 'translateY(0)',
+        transform: 'translateX(0)',
+        opacity: 1,
       },
       {
         delay: stagger(0.085),
@@ -21,7 +22,10 @@ onMounted(() => {
 
 <template>
   <header class="w-full lg:grid lg:grid-cols-12 gap-6">
-    <h1 class="col-start-7 col-span-full text-xl md:text-3xl tracking-tight">
+    <h1 class="col-start-7 col-span-full text-xl md:text-3xl tracking-tight word">
+      Namchee is a purpose driven developer that delivers impact.
+      <!--
+
       <p class="overflow-y-hidden">
         <span class="inline-block translate-y-64 word">
           Namchee is a <span class="font-medium">purpose</span>
@@ -37,6 +41,14 @@ onMounted(() => {
           delivers <span class="font-medium">impact</span>
         </span>
       </p>
+
+      -->
     </h1>
   </header>
 </template>
+
+<style scoped>
+.word {
+  transform: perspective(500px) rotate3d(1,0,1, 90deg);
+}
+</style>

@@ -44,7 +44,8 @@ const props = defineProps<NavigationProps>();
           flex items-center space-x-12
           md:w-auto md:h-auto
           md:bg-transparent
-          md:static"
+          md:static
+          md:translate-x-0"
         :class="{ 'translate-x-[100vw]': !open }"
       >
         <li v-for="link in WEB_LINKS" :key="link.href">
