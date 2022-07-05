@@ -17,6 +17,7 @@ specifiers:
   eslint-plugin-prettier: ^4.0.0
   motion: ^10.10.0
   prettier: ^2.6.2
+  splitting: ^1.0.6
   typescript: ^4.6.4
   unplugin-icons: ^0.14.3
   vite: ^2.9.7
@@ -27,6 +28,7 @@ dependencies:
   '@vueuse/core': 8.6.0_vue@3.2.33
   astro-imagetools: 0.6.3_astro@1.0.0-beta.40
   motion: 10.10.0
+  splitting: 1.0.6
 
 devDependencies:
   '@astrojs/tailwind': 0.2.1
@@ -4896,6 +4898,10 @@ packages:
 
   /space-separated-tokens/2.0.1:
     resolution: {integrity: sha512-ekwEbFp5aqSPKaqeY1PGrlGQxPNaq+Cnx4+bE2D8sciBQrHpbwoBbawqTN2+6jPs9IdWxxiUcN0K2pkczD3zmw==}
+
+  /splitting/1.0.6:
+    resolution: {integrity: sha512-2hYicS/hTy1MgjTi4ST6B298uoLSx854VfTf0FeMmCeE6OiZjEixTOGPLqnNzSaM/y3jwoEYj5pmDzYFwRInPw==}
+    dev: false
 
   /sprintf-js/1.0.3:
     resolution: {integrity: sha1-BOaSb2YolTVPPdAVIDYzuFcpfiw=}
