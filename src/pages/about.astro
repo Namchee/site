@@ -1,13 +1,39 @@
 ---
 import Layout from '@/components/astro/Layout.astro';
 
+import RevealingText from '@/components/vue/RevealingText.vue';
 import ArrowRight from '~icons/radix-icons/arrow-right';
-import AboutHero from '@/components/vue/AboutHero.vue';
 ---
 
 <Layout title="About Me">
   <div class="my-32 md:mb-64">
-    <AboutHero client:visible />
+    <RevealingText
+      reveal="word"
+      stagger={0.085}
+      duration={0.5}
+      easing="ease-out-cubic"
+      client:load
+    >
+      <header class="w-full xl:grid xl:grid-cols-12 gap-6 header">
+        <h1 class="col-start-7 col-span-full header tracking-tight">
+          <p class="overflow-y-hidden">
+            <span class="inline-block translate-y-64 word">
+              Namchee is a <span class="font-medium">purpose</span>
+            </span>
+          </p>
+          <p class="overflow-y-hidden">
+            <span class="inline-block translate-y-64 word">
+              driven developer that
+            </span>
+          </p>
+          <p class="overflow-y-hidden">
+            <span class="inline-block translate-y-64 word">
+              delivers <span class="font-medium">impact</span>
+            </span>
+          </p>
+        </h1>
+      </header>
+    </RevealingText>
 
     <!-- start: about sections -->
     <div class="mt-32 lg:mt-64 space-y-24 lg:space-y-32 col-span-full">
@@ -49,7 +75,8 @@ import AboutHero from '@/components/vue/AboutHero.vue';
         <div class="font-semibold text-xs md:text-base mb-1 lg:mb-0">
           02/
         </div>
-        <div class="text-xl md:text-2xl font-medium lg:-mt-2 tracking-tighter lg:col-span-3 lg:sticky lg:top-12 lg:self-start">
+        <div
+          class="text-xl md:text-2xl font-medium lg:-mt-2 tracking-tighter lg:col-span-3 lg:sticky lg:top-12 lg:self-start">
           Tech Stack
         </div>
         <div class="mt-4 lg:mt-0 col-start-7 col-span-full leading-loose">
@@ -201,3 +228,9 @@ import AboutHero from '@/components/vue/AboutHero.vue';
     <!-- end: about sections -->
   </div>
 </Layout>
+
+<style>
+.header {
+  font-size: clamp(24px, 56.83px, 6vw);
+}
+</style>
