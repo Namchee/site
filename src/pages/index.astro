@@ -3,8 +3,8 @@ import Layout from '@/components/astro/Layout.astro';
 import CircledLink from '@/components/astro/CircledLink.astro';
 import Project from '@/components/astro/Project.astro';
 
-import HomeHero from '@/components/vue/HomeHero.vue';
 import ArrowRight from '~icons/radix-icons/arrow-right';
+import RevealingText from '@/components/vue/RevealingText.vue';
 
 const projects = [
 	{
@@ -34,16 +34,35 @@ const projects = [
 	<div class="mt-20 md:mt-24 mb-48 space-y-48 md:space-y-64">
 		<!-- start: top section -->
 		<header class="pt-16 md:pt-24 lg:pt-32">
-			<HomeHero client:visible />
+			<RevealingText
+				reveal="word"
+				stagger={0.1}
+				duration={0.6}
+				easing="ease-out-cubic"
+				client:load
+			>
+				<h1 class="header tracking-tighter leading-snug font-medium">
+					<p class="overflow-y-hidden">
+						<span class="inline-block translate-y-64 word">
+							Hey there!
+						</span>
+					</p>
+					<p class="overflow-y-hidden">
+						<span class="inline-block translate-y-64 word">
+							Just call me Namchee
+						</span>
+					</p>
+				</h1>
+			</RevealingText>
 
-			<div class="flex flex-col lg:flex-row items-center justify-between mt-4">
+			<div class="flex flex-col lg:flex-row lg:items-center justify-between mt-4">
 				<p class="text-grey">
 					Namchee writes code that solves problems to make the world a better place
 				</p>
 
 				<div class="mt-12 lg:mt-0 self-start">
 					<CircledLink href="/about" class="circled__button grid place-items-center">
-						<div class="flex items-center text-lg tracking-tight col-span-full row-span-full">
+						<div class="flex items-center md:text-lg tracking-tight col-span-full row-span-full">
 							<span class="mr-2">Know me more</span>
 							<ArrowRight />
 						</div>
@@ -191,6 +210,9 @@ const projects = [
 </Layout>
 
 <style>
+	.header {
+		font-size: clamp(32px, 101px, 7vw);
+	}
 	.arc {
 		animation: rotate-arc 20s linear infinite;
 	}
