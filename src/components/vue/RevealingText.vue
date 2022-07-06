@@ -1,5 +1,6 @@
 <script setup lang="ts">
-import { onMounted } from 'vue';
+import { vIntersectionObserver } from '@vueuse/components';
+
 import { animate, Easing, stagger as staggerVal } from 'motion';
 
 import { EASING_FUNC } from '@/constant/easing';
@@ -24,22 +25,29 @@ if (!easingFunc) {
   easingFunc = EASING_FUNC['ease-out-quad'];
 }
 
-onMounted(() => {
-  animate(
-    `.${reveal}`,
-    {
-      transform: 'translateY(0)',
-    },
-    {
-      delay: staggerVal(stagger),
-      duration: duration,
-      easing: easingFunc,
-    },
-  );
-})
+function onIntersectionObserver([{ isIntersecting }]) {
+  console.log(isIntersecting);
+  console.log(stagger);
+  if (isIntersecting) {
+    animate(
+      `.${reveal}`,
+      {
+        transform: 'translateY(0)',
+      },
+      {
+        delay: staggerVal(stagger),
+        duration: duration,
+        easing: easingFunc,
+      },
+    );
+  }
+}
 </script>
 
 <template>
-  <slot />
+  <div v-intersection-observer="onIntersectionObserver">
+    <slot />
+
+  </div>
 </template>
 
