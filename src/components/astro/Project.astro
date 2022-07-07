@@ -15,14 +15,14 @@ const { name, image, description, repository, link, class: className } = Astro.p
 
 <div class={className}>
   <img
-    class="w-20 h-auto"
+    class="w-16 md:w-20 h-auto"
     width="80"
     height="80"
     loading="lazy"
     title={name}
     alt={name}
     src={image} />
-  <p class="text-xl tracking-tight leading-relaxed mt-6 font-medium">
+  <p class="text-lg md:text-xl tracking-tight leading-relaxed mt-6 font-medium">
     {name}
   </p>
   <p class="text-grey leading-relaxed mt-2">

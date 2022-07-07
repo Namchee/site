@@ -30,11 +30,17 @@ const props = defineProps<NavigationProps>();
       <button
         @click="open = !open"
         class="block md:hidden
-          fixed top-6 right-6
+          fixed top-6 right-6 p-4
           rounded-full border border-dark
-          z-20"
+          z-20
+          space-y-6"
       >
-        Foo bar
+        <div class="w-full h-2 bg-dark content-(*)">
+
+        </div>
+        <div class="w-full h-2 bg-dark">
+
+        </div>
       </button>
 
       <ul
