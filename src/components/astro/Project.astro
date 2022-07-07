@@ -7,12 +7,13 @@ export interface ProjectProps {
   description: string;
   repository: string;
   link?: string;
+  class?: string;
 }
 
-const { name, image, description, repository, link } = Astro.props;
+const { name, image, description, repository, link, class: className } = Astro.props;
 ---
 
-<div>
+<div class={className}>
   <img
     class="w-20 h-auto"
     width="80"
