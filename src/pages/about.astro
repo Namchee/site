@@ -12,9 +12,9 @@ import ArrowRight from '~icons/radix-icons/arrow-right';
       stagger={0.085}
       duration={0.5}
       easing="ease-out-cubic"
-      client:load
+      client:visible
     >
-      <header class="w-full xl:grid xl:grid-cols-12 gap-6 header">
+      <header class="w-full xl:grid xl:grid-cols-12 gap-6 text-sub-header">
         <h1 class="col-start-7 col-span-full header tracking-tight">
           <p class="overflow-y-hidden">
             <span class="inline-block translate-y-64 word">
@@ -228,9 +228,3 @@ import ArrowRight from '~icons/radix-icons/arrow-right';
     <!-- end: about sections -->
   </div>
 </Layout>
-
-<style>
-.header {
-  font-size: clamp(24px, 56.83px, 6vw);
-}
-</style>

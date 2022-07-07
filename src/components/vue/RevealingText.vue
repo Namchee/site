@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import { vIntersectionObserver } from '@vueuse/components';
-
 import { animate, Easing, stagger as staggerVal } from 'motion';
 
 import { EASING_FUNC } from '@/constant/easing';
@@ -26,8 +25,6 @@ if (!easingFunc) {
 }
 
 function onIntersectionObserver([{ isIntersecting }]) {
-  console.log(isIntersecting);
-  console.log(stagger);
   if (isIntersecting) {
     animate(
       `.${reveal}`,

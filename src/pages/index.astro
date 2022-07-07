@@ -35,20 +35,20 @@ const projects = [
 		<!-- start: top section -->
 		<header class="pt-16 md:pt-24 lg:pt-32">
 			<RevealingText
-				reveal="word"
+				reveal="header"
 				stagger={0.1}
 				duration={0.6}
 				easing="ease-out-cubic"
 				client:visible
 			>
-				<h1 class="header tracking-tighter leading-snug font-medium">
+				<h1 class="text-header tracking-tighter leading-snug font-medium">
 					<p class="overflow-y-hidden">
-						<span class="inline-block translate-y-64 word">
+						<span class="inline-block translate-y-64 header">
 							Hey there!
 						</span>
 					</p>
 					<p class="overflow-y-hidden">
-						<span class="inline-block translate-y-64 word">
+						<span class="inline-block translate-y-64 header">
 							Just call me Namchee
 						</span>
 					</p>
@@ -101,7 +101,7 @@ const projects = [
 				</p>
 
 				<RevealingText client:visible reveal="sub-header">
-					<h2 class="text-xl md:text-2xl lg:text-3xl max-w-3xl mt-6 md:mt-4 lg:-mt-4 font-medium tracking-tight">
+					<h2 class="text-sub-header mt-6 md:mt-4 lg:-mt-4 font-medium tracking-tight">
 						<p class="overflow-y-hidden">
 							<span class="inline-block translate-y-64 sub-header">
 								A selection of stuffs I've built
@@ -221,9 +221,6 @@ const projects = [
 </Layout>
 
 <style>
-	.header {
-		font-size: clamp(32px, 101px, 7vw);
-	}
 	.arc {
 		animation: rotate-arc 20s linear infinite;
 	}

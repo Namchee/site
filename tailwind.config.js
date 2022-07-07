@@ -17,6 +17,9 @@ module.exports = {
       '3xl': '56.83px',
       '4xl': '75.76px',
       '5xl': '100.98px',
+
+      'header': 'clamp(31.98px, 100.98px, 7vw)',
+      'sub-header': 'clamp(23.99px, 56.83px, 6vw)',
     },
     extend: {
       colors: {
