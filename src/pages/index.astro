@@ -36,8 +36,8 @@ const projects = [
 		<header class="pt-16 md:pt-24 lg:pt-32">
 			<RevealingText
 				reveal="header"
-				stagger={0.1}
-				duration={0.6}
+				stagger={0.125}
+				duration={0.75}
 				easing="ease-out-cubic"
 				client:visible
 			>
@@ -100,7 +100,7 @@ const projects = [
 					Featured Projects
 				</p>
 
-				<RevealingText client:visible reveal="sub-header">
+				<RevealingText stagger={0.125} duration={0.75} client:visible reveal="sub-header">
 					<h2 class="text-sub-header mt-6 md:mt-4 xl:-mt-4 font-medium tracking-tight">
 						<p class="overflow-y-hidden">
 							<span class="inline-block translate-y-64 sub-header">
