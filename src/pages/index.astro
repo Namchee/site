@@ -4,6 +4,8 @@ import CircledLink from '@/components/astro/CircledLink.astro';
 import Project from '@/components/astro/Project.astro';
 
 import ArrowRight from '~icons/radix-icons/arrow-right';
+
+import SlideInBox from '@/components/vue/SlideInBox.vue';
 import RevealingText from '@/components/vue/RevealingText.vue';
 
 const projects = [
@@ -100,20 +102,41 @@ const projects = [
 					Featured Projects
 				</p>
 
-				<h2 class="text-xl md:text-2xl lg:text-3xl max-w-3xl mt-4 xl:-mt-4 font-medium tracking-tight">
-					A selection of stuffs I've built to solve problems
-				</h2>
+				<RevealingText
+				  reveal="project-header"
+				  stagger={0.1}
+				  duration={0.6}
+				  easing="ease-out-quad"
+				  client:visible
+			  >
+				<h1 class="text-sub-header tracking-tighter mt-4 lg:-mt-4 font-medium">
+					<p class="overflow-y-hidden">
+						<span class="inline-block translate-y-64 project-header">
+							A selection of stuffs I've built
+						</span>
+					</p>
+					<p class="overflow-y-hidden">
+						<span class="inline-block translate-y-64 project-header">
+							to solve problems
+						</span>
+					</p>
+				</h1>
+			</RevealingText>
+
 			</div>
 
 			<div class="mt-16 lg:mt-32 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-16">
-				{projects.map((project) => (
-					<Project
-						name={project.name}
-						image={project.image}
-						description={project.description}
-						repository={project.repository}
-						link={project.link}
-					/>
+				{projects.map((project, idx) => (
+          <SlideInBox delay={0.2} duration={0.6} reveal={`project-${idx}`} client:visible>
+            <Project
+              class={`project-${idx} opacity-0 translate-y-12`}
+						  name={project.name}
+						  image={project.image}
+						  description={project.description}
+						  repository={project.repository}
+						  link={project.link}
+					  />
+          </SlideInBox>
 					))
 				}
 			</div>
