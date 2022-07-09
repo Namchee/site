@@ -1,11 +1,13 @@
 <script setup lang="ts">
+import { spring, timeline } from 'motion';
 import { WEB_LINKS } from '@/constant/link';
 
 import AppLink from '@/components/vue/AppLink.vue';
 import NavigationLink from '@/components/vue/NavigationLink.vue';
 import Logo from '@/components/vue/Logo.vue';
 
-import { ref } from 'vue';
+import { ref, watchEffect } from 'vue';
+import { EASING_FUNC } from '@/constant/easing';
 
 interface NavigationProps {
   currentPath: string;
@@ -13,6 +15,27 @@ interface NavigationProps {
 
 const open = ref(false);
 const props = defineProps<NavigationProps>();
+
+watchEffect(() => {
+  if (open.value) {
+    openMenu();
+  }
+})
+
+const openMenu = () => {
+  timeline([
+    [
+      '.navigation__container',
+      {
+        transform: 'translateX(0)',
+      },
+      {
+        duration: 0.7,
+        easing: EASING_FUNC['ease-out-quart'],
+      },
+    ]
+  ]);
+}
 </script>
 
 <template>
@@ -40,20 +63,25 @@ const props = defineProps<NavigationProps>();
           z-20"
       >
         <Transition name="slide-up" mode="out-in">
-          <p v-if="!open" class="relative">
+          <p v-if="!open">
             Menu
           </p>
-          <p v-else class="relative">
+          <p v-else>
             Close
           </p>
         </Transition>
       </button>
 
       <ul
-        class="w-screen h-screen
+        class="navigation__container
+          w-screen h-screen
           fixed top-0 left-0 z-10
           bg-blackout
-          flex items-center space-x-12
+          flex flex-col
+          justify-center md:flex-row
+          p-8
+          items-end md:items-center
+          md:space-x-12
           md:w-auto md:h-auto
           md:bg-transparent
           md:static
@@ -61,7 +89,10 @@ const props = defineProps<NavigationProps>();
         :class="{ 'translate-x-[100vw]': !open }"
       >
         <li v-for="link in WEB_LINKS" :key="link.href">
-          <NavigationLink :href="link.href" :is-active="link.href === props.currentPath">
+          <NavigationLink
+            :href="link.href"
+            :is-active="link.href === props.currentPath"
+          >
             {{ link.name }}
           </NavigationLink>
         </li>

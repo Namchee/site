@@ -11,8 +11,11 @@ const props = defineProps<NavigationLinkProps>();
 
 <template>
   <AppLink :href="props.href"
-    class="tracking-tight hover:text-dark transition-colors"
-    :class="{ 'font-semibold text-dark': props.isActive, 'text-grey': !props.isActive }">
+    class="text-2xl md:text-base tracking-tight hover:text-dark transition-colors"
+    :class="{
+        'font-semibold text-light md:text-dark': props.isActive,
+        'text-grey': !props.isActive
+      }">
     <slot />
   </AppLink>
 </template>
