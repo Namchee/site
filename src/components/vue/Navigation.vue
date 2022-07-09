@@ -19,28 +19,34 @@ const props = defineProps<NavigationProps>();
   <nav class="w-full h-24 lg:h-28 grid place-items-center">
     <div class="w-full
       max-w-7xl
-      flex justify-between
+      flex justify-between items-center
       px-6
       md:px-16
       xl:px-0">
-      <AppLink href="/">
+      <AppLink class="relative mix-blend-difference text-light
+          text-opacity-80 z-20" href="/">
         <Logo />
       </AppLink>
 
       <button
         @click="open = !open"
-        class="block md:hidden
-          fixed top-6 right-6 p-4
-          rounded-full border border-dark
-          z-20
-          space-y-6"
+        class="text-base
+          overflow-y-hidden
+          mix-blend-difference
+          tracking-tight
+          text-light
+          text-opacity-80
+          md:hidden
+          z-20"
       >
-        <div class="w-full h-2 bg-dark content-(*)">
-
-        </div>
-        <div class="w-full h-2 bg-dark">
-
-        </div>
+        <Transition name="slide-up" mode="out-in">
+          <p v-if="!open" class="relative">
+            Menu
+          </p>
+          <p v-else class="relative">
+            Close
+          </p>
+        </Transition>
       </button>
 
       <ul
@@ -64,4 +70,20 @@ const props = defineProps<NavigationProps>();
   </nav>
 </template>
 
+<style scoped>
 
+.slide-up-enter-active,
+.slide-up-leave-active {
+  transition: all 0.1s ease-out;
+}
+
+.slide-up-enter-from {
+  opacity: 0;
+  transform: translateY(0.75rem);
+}
+
+.slide-up-leave-to {
+  opacity: 1;
+  transform: translateY(-0.75rem);
+}
+</style>
