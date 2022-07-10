@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { spring, timeline } from 'motion';
+import { stagger, timeline } from 'motion';
 import { WEB_LINKS } from '@/constant/link';
 
 import AppLink from '@/components/vue/AppLink.vue';
@@ -33,7 +33,18 @@ const openMenu = () => {
         duration: 0.7,
         easing: EASING_FUNC['ease-out-quart'],
       },
-    ]
+    ],
+    [
+      '.navigation__link',
+      {
+        transform: 'translateY(0)',
+      },
+      {
+        delay: stagger(0.1),
+        duration: 100,
+        easing: EASING_FUNC['ease-out-quart'],
+      },
+    ],
   ]);
 }
 </script>
@@ -79,7 +90,7 @@ const openMenu = () => {
           bg-blackout
           flex flex-col
           justify-center md:flex-row
-          p-8
+          px-6 md:px-0
           items-end md:items-center
           md:space-x-12
           md:w-auto md:h-auto
@@ -102,7 +113,6 @@ const openMenu = () => {
 </template>
 
 <style scoped>
-
 .slide-up-enter-active,
 .slide-up-leave-active {
   transition: all 100ms cubic-bezier(0.5, 1, 0.89, 1);
