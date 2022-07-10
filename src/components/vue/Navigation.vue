@@ -6,7 +6,7 @@ import AppLink from '@/components/vue/AppLink.vue';
 import NavigationLink from '@/components/vue/NavigationLink.vue';
 import Logo from '@/components/vue/Logo.vue';
 
-import { ref, watchEffect } from 'vue';
+import { onMounted, ref, watch } from 'vue';
 import { EASING_FUNC } from '@/constant/easing';
 
 interface NavigationProps {
@@ -16,37 +16,61 @@ interface NavigationProps {
 const open = ref(false);
 const props = defineProps<NavigationProps>();
 
-watchEffect(() => {
-  if (open.value) {
-    openMenu();
-  }
-})
-
-const openMenu = () => {
-  timeline([
-    [
-      '.navigation__container',
-      {
-        transform: 'translateX(0)',
-      },
-      {
-        duration: 0.7,
-        easing: EASING_FUNC['ease-out-quart'],
-      },
-    ],
-    [
-      '.navigation__link',
-      {
-        transform: 'translateY(0)',
-      },
-      {
-        delay: stagger(0.1),
-        duration: 100,
-        easing: EASING_FUNC['ease-out-quart'],
-      },
-    ],
-  ]);
-}
+onMounted(() => {
+  watch(open, (val) => {
+    if (val) {
+      timeline([
+        [
+          '.navigation__container',
+          {
+            transform: 'translateX(0)',
+          },
+          {
+            duration: 0.5,
+            easing: EASING_FUNC['ease-out-cubic'],
+          },
+        ],
+        [
+          '.navigation__link',
+          {
+            transform: 'translateY(0)',
+          },
+          {
+            delay: stagger(0.125),
+            duration: 0.5,
+            easing: EASING_FUNC['ease-out-cubic'],
+            at: 0.2,
+          },
+        ],
+      ]);
+    } else {
+      timeline([
+        [
+          '.navigation__link',
+          {
+            transform: 'translateY(56px)',
+          },
+          {
+            delay: stagger(0.08),
+            duration: 0.4,
+            easing: EASING_FUNC['ease-out-cubic'],
+          },
+        ],
+        [
+          '.navigation__container',
+          {
+            transform: 'translateX(100vw)',
+          },
+          {
+            duration: 0.5,
+            easing: EASING_FUNC['ease-out-cubic'],
+            at: 0.1,
+          },
+        ],
+      ]);
+    }
+  })
+});
 </script>
 
 <template>
@@ -62,17 +86,14 @@ const openMenu = () => {
         <Logo />
       </AppLink>
 
-      <button
-        @click="open = !open"
-        class="text-base
+      <button @click="open = !open" class="text-base
           overflow-y-hidden
           mix-blend-difference
           tracking-tight
           text-light
           text-opacity-80
           md:hidden
-          z-20"
-      >
+          z-20">
         <Transition name="slide-up" mode="out-in">
           <p v-if="!open">
             Menu
@@ -83,8 +104,7 @@ const openMenu = () => {
         </Transition>
       </button>
 
-      <ul
-        class="navigation__container
+      <ul class="navigation__container
           w-screen h-screen
           fixed top-0 left-0 z-10
           bg-blackout
@@ -96,14 +116,9 @@ const openMenu = () => {
           md:w-auto md:h-auto
           md:bg-transparent
           md:static
-          md:translate-x-0"
-        :class="{ 'translate-x-[100vw]': !open }"
-      >
+          md:translate-x-0" :class="{ 'translate-x-[100vw]': !open }">
         <li v-for="link in WEB_LINKS" :key="link.href">
-          <NavigationLink
-            :href="link.href"
-            :is-active="link.href === props.currentPath"
-          >
+          <NavigationLink :href="link.href" :is-active="link.href === props.currentPath">
             {{ link.name }}
           </NavigationLink>
         </li>

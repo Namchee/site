@@ -18,7 +18,7 @@ const props = defineProps<NavigationLinkProps>();
         'text-grey': !props.isActive
       }">
     <p class="overflow-y-hidden">
-      <span class="inline-block translate-y-32 md:translate-y-0 navigation__link">
+      <span class="inline-block translate-y-14 md:translate-y-0 navigation__link">
         <slot />
       </span>
     </p>
