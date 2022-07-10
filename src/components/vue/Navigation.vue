@@ -118,7 +118,10 @@ onMounted(() => {
           md:static
           md:translate-x-0" :class="{ 'translate-x-[100vw]': !open }">
         <li v-for="link in WEB_LINKS" :key="link.href">
-          <NavigationLink :href="link.href" :is-active="link.href === props.currentPath">
+          <NavigationLink
+            @click="open = false"
+            :href="link.href"
+            :is-active="link.href === props.currentPath">
             {{ link.name }}
           </NavigationLink>
         </li>
