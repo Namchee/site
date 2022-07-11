@@ -17,6 +17,8 @@ const open = ref(false);
 const props = defineProps<NavigationProps>();
 
 onMounted(() => {
+  const body = document.querySelector('body');
+
   watch(open, (val) => {
     if (val) {
       timeline([
@@ -43,6 +45,9 @@ onMounted(() => {
           },
         ],
       ]);
+
+      body.style.height = '100%';
+      body.style.overflow = 'hidden';
     } else {
       timeline([
         [
@@ -68,6 +73,9 @@ onMounted(() => {
           },
         ],
       ]);
+
+      body.style.height = 'unset';
+      body.style.overflow = 'auto';
     }
   })
 });
