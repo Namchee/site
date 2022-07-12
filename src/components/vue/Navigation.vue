@@ -89,8 +89,11 @@ onMounted(() => {
       px-6
       md:px-16
       xl:px-0">
-      <AppLink class="relative mix-blend-difference text-light
-          text-opacity-80 z-20" href="/">
+      <AppLink
+        aria-label="Home"
+        class="relative mix-blend-difference text-light
+          text-opacity-80 z-20"
+        href="/">
         <Logo />
       </AppLink>
 
