@@ -3,20 +3,14 @@ html {
 }
 
 @font-face {
-  font-family: "JetBrains Mono";
-  src: local("JetBrains Mono"),
-    url("/fonts/jetbrains-mono.woff2") format("woff2");
-  font-style: normal;
-  font-weight: 400;
-}
-
-@font-face {
   font-family: "Open Sauce";
   src: local("Open Sauce One"),
     url("/fonts/open-sauce-regular.woff2") format("woff2"),
     url("/fonts/open-sauce-regular.woff") format("woff");
   font-style: normal;
   font-weight: 400;
+  font-display: swap;
+
 }
 
 @font-face {
@@ -26,6 +20,8 @@ html {
     url("/fonts/open-sauce-italic.woff") format("woff");
   font-style: italic;
   font-weight: 400;
+  font-display: swap;
+
 }
 
 @font-face {
@@ -35,6 +31,8 @@ html {
     url("/fonts/open-sauce-medium.woff") format("woff");
   font-style: normal;
   font-weight: 500;
+  font-display: swap;
+
 }
 
 @font-face {
@@ -44,14 +42,8 @@ html {
     url("/fonts/open-sauce-semibold.woff") format("woff");
   font-style: normal;
   font-weight: 600;
-}
+  font-display: swap;
 
-@font-face {
-  font-family: "Roboto Mono";
-  src: local("Roboto Mono"),
-    url("/fonts/roboto-mono.ttf") format("truetype");
-  font-style: normal;
-  font-weight: 400;
 }
 
 @font-face {
@@ -60,6 +52,7 @@ html {
     url("/fonts/jetbrains-mono.woff2") format("woff2");
   font-style: normal;
   font-weight: 400;
+  font-display: swap;
 }
 
 ::-webkit-scrollbar {
