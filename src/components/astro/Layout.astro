@@ -6,9 +6,10 @@ import Footer from '@/components/astro/Footer.astro';
 
 export interface Props {
 	title: string;
+  description: string;
 }
 
-const { title } = Astro.props;
+const { title, description } = Astro.props;
 const { pathname } = new URL(Astro.request.url);
 ---
 
@@ -21,6 +22,7 @@ const { pathname } = new URL(Astro.request.url);
     <link rel="apple-touch-icon" href="/apple-touch-icon.png">
     <link rel="icon" href="/favicon.ico" sizes="any">
     <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+    <meta name="description" content="" />
 	  <title>{title}</title>
   </head>
   <body class="bg-light text-dark min-h-screen text-sm md:text-base flex flex-col">
