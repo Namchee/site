@@ -21,7 +21,8 @@ const { pathname } = new URL(Astro.request.url);
     <link rel="apple-touch-icon" href="/apple-touch-icon.png">
     <link rel="icon" href="/favicon.ico" sizes="any">
     <link rel="icon" href="/favicon.svg" type="image/svg+xml">
-	  <title>{title} &mdash; Namchee</title></head>
+	  <title>{title}</title>
+  </head>
   <body class="bg-light text-dark min-h-screen text-sm md:text-base flex flex-col">
     <Navigation currentPath={pathname} client:visible />
 	  <main class="w-full flex-1 px-6
