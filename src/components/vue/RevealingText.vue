@@ -44,7 +44,6 @@ function onIntersectionObserver([{ isIntersecting }]) {
 <template>
   <div v-intersection-observer="onIntersectionObserver">
     <slot />
-
   </div>
 </template>
 
