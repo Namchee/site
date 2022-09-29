@@ -31,15 +31,19 @@ export default defineConfig({
           '5xl': ['100.98px', 1.5],
         },
         colors: {
-          light: '#F6F6F6',
-          grey: '#908E96',
-          dark: '#2C3333',
-          blackout: '#131616',
-          accent: {
-            light: '#FF7373',
-            DEFAULT: '#FF5D5D',
-            dark: '#FF2A2A',
+          surface: {
+            DEFAULT: '#F9F8F9',
+            dark: '#EEEDEF',
           },
+          content: {
+            DEFAULT: '#504F57',
+            dark: '#34343A',
+            light: '#7E7D86',
+          },
+          primary: {
+            DEFAULT: '#4164E5',
+            dark: '#1E48DF',
+          }
         },
       },
     }
