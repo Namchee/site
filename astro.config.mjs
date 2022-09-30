@@ -17,7 +17,7 @@ export default defineConfig({
       ],
       theme: {
         fontFamily: {
-          sans: ['Open Sauce One', 'Inter'],
+          sans: ['"Nacelle"', '"Roboto"', '"Arial"', 'sans-serif'],
           mono: ['JetBrains Mono'],
         },
         fontSize: {
