@@ -33,7 +33,8 @@ export default defineConfig({
         colors: {
           surface: {
             DEFAULT: '#F9F8F9',
-            dark: '#EEEDEF',
+            dark: '#F4F2F4',
+            darker: '#EEEDEF',
           },
           content: {
             DEFAULT: '#504F57',
