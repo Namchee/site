@@ -32,7 +32,7 @@ export default defineConfig({
         },
         colors: {
           surface: {
-            DEFAULT: '#F9F8F9',
+            DEFAULT: '#FDFCFD',
             dark: '#F4F2F4',
             darker: '#EEEDEF',
           },
@@ -41,7 +41,7 @@ export default defineConfig({
             dark: '#34343A',
             light: '#7E7D86',
           },
-          primary: {
+          accent: {
             DEFAULT: '#4164E5',
             dark: '#1E48DF',
           }

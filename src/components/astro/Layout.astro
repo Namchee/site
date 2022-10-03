@@ -27,7 +27,7 @@ const { pathname } = new URL(Astro.request.url);
     <meta name="description" content={description} />
 	  <title>{title}</title>
   </head>
-  <body class="bg-light text-dark min-h-screen text-sm md:text-base flex flex-col font-sans">
+  <body class="bg-surface text-content min-h-screen text-sm md:text-base flex flex-col font-sans">
     <Navigation currentPath={pathname} client:visible />
 	  <main class="w-full flex-1 px-6
       md:px-16

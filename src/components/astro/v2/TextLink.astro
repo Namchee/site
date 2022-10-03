@@ -1,0 +1,29 @@
+---
+import AppLink from '@/components/astro/v2/AppLink.astro';
+
+export interface TextLinkProps {
+  href: string;
+  external?: boolean;
+  theme?: string;
+  class?: string;
+}
+
+const { href, external, class: classProps, theme } = Astro.props;
+
+const themeMap = {
+  accent: `text-accent hover:text-accent-dark active:text-accent-dark`,
+  content: `text-content-light hover:text-content-dark active:text-content-dark`,
+};
+
+const className = `${themeMap[theme || 'content']}
+  transition-colors
+  ${classProps || ''}`
+---
+
+<AppLink
+  href={href}
+  external={external}
+  class={className}
+>
+  <slot />
+</AppLink>

@@ -1,0 +1,18 @@
+---
+export interface AppLinkProps {
+  href: string;
+  external?: boolean;
+  class?: string;
+}
+
+const { href, external, class: className } = Astro.props;
+---
+
+<a
+  rel="noopener noreferrer"
+  href={href}
+  target={external && '_blank'}
+  class={className}
+>
+  <slot />
+</a>
