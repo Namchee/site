@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import AppLink from '@/components/vue/AppLink.vue';
+import AppLink from '@/components/vue/v1/AppLink.vue';
 
 interface NavigationLinkProps {
   href: string;

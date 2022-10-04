@@ -2,9 +2,9 @@
 import { stagger, timeline } from 'motion';
 import { WEB_LINKS } from '@/constant/link';
 
-import AppLink from '@/components/vue/AppLink.vue';
-import NavigationLink from '@/components/vue/NavigationLink.vue';
-import Logo from '@/components/vue/Logo.vue';
+import AppLink from '@/components/vue/v1/AppLink.vue';
+import NavigationLink from '@/components/vue/v1/NavigationLink.vue';
+import Logo from '@/components/vue/v1/Logo.vue';
 
 import { onMounted, ref, watch } from 'vue';
 import { EASING_FUNC } from '@/constant/easing';
