@@ -5,24 +5,22 @@ import TextLink from '@/components/astro/v2/TextLink.astro';
 <footer class="w-full">
   <div class="w-full
     mx-auto
-    max-w-7xl
-    border-t border-t-surface-darker
+    max-w-6xl
+    border-t-2 border-t-surface-darker
     flex items-center justify-between
     py-8
-    text-sm"
+    text-sm
+    text-content-light"
   >
     <!-- start: left side -->
     <div>
-      <p>
-        Hey, this site is open-sourced!
-      </p>
-      <TextLink
-        theme="accent"
-        href="https://www.github.com/Namchee/site"
-        external
-      >
-        Go check it out
-      </TextLink>
+      MIT License &copy; 2022 &mdash; Powered by
+        <TextLink
+          href="https://astro.build/"
+          external
+          theme="accent">
+          Astro
+        </TextLink>
     </div>
     <!-- end: left side -->
 
