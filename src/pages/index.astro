@@ -1,25 +1,66 @@
 ---
 import Layout from '@/components/astro/Layout.astro';
-import Footer from '@/components/astro/Footer.astro';
+
+import ArrowRight from '~icons/radix-icons/arrow-right';
 ---
 
 <Layout
   title="foo"
-  description="bar">
-  <div class="my-32">
-    lorem ipsum
-  </div>
+  description="bar"
+>
   <div class="my-32
     flex flex-col
     text-xl
     max-w-4xl
-    mx-auto">
+    mx-auto"
+  >
     <p>
-      Namchee — a <span class="text-accent">software engineer</span> based in Bandung, Indonesia. Likes to solve real-life problems through code. Passionate about open source and community movements.
+      Namchee — a <span class="text-accent">software engineer</span>
+      based in Bandung, Indonesia. Likes to solve real-life problems
+      through code. Passionate about open source and community
+      movements.
     </p>
 
-    <a class="mt-12" href="">
-      About Namchee
+    <p>
+      <a
+      class="mt-12 inline-flex items-center about__link"
+      href="/about"
+    >
+      <ArrowRight class="w-8 -mt-1 arrow__before" />
+      <span class="about__text inline-block">
+        About Namchee
+      </span>
+      <ArrowRight
+        class="w-8 -mt-1 -translate-x-8 opacity-0 arrow__after"
+      />
     </a>
+    </p>
+
   </div>
 </Layout>
+
+<style scoped>
+.arrow__before, .arrow__after, .about__text {
+  transition: all 200ms cubic-bezier(0.33, 1, 0.68, 1);
+}
+
+.about__text {
+  transform: translateX(8px);
+}
+
+.about__link:hover .arrow__before,
+.about__link:focus .arrow__before {
+  opacity: 0;
+}
+
+.about__link:hover .about__text,
+.about__link:focus .about__text {
+  transform: translateX(-32px);
+}
+
+.about__link:hover .arrow__after,
+.about__link:focus .arrow__after {
+  opacity: 1;
+  transform: translateX(-24px);
+}
+</style>
