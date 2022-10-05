@@ -28,6 +28,7 @@
     "vue": "^3.2.33"
   },
   "dependencies": {
+    "@headlessui/vue": "^1.7.3",
     "@unocss/astro": "^0.45.23",
     "@vueuse/components": "^8.6.0",
     "@vueuse/core": "^8.6.0",

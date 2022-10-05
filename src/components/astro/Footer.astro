@@ -2,18 +2,18 @@
 import TextLink from '@/components/astro/TextLink.astro';
 ---
 
-<footer class="w-full">
+<footer class="w-full px-4 md:px-0">
   <div class="w-full
     mx-auto
-    max-w-6xl
-    border-t-2 border-t-surface-darker
-    flex items-center justify-between
+    max-w-7xl
+    border-t-2 border-t-surface-dark
+    flex flex-col md:flex-row items-center justify-between
     py-8
     text-sm
     text-content-light"
   >
     <!-- start: left side -->
-    <div>
+    <div class="mb-4 md:mb-0">
       MIT License &copy; 2022 &mdash; Powered by
         <TextLink
           href="https://astro.build/"
@@ -27,7 +27,7 @@ import TextLink from '@/components/astro/TextLink.astro';
     <!-- start: right side -->
     <div
       class="flex items-center
-        space-x-8"
+        space-x-4 md:space-x-8"
     >
       <TextLink
         theme="content"
