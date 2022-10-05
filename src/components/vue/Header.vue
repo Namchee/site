@@ -1,21 +1,65 @@
 <script setup lang="ts">
 import { ref } from 'vue';
+import { animate, spring, stagger } from 'motion';
 import { Switch } from '@headlessui/vue';
+import { vIntersectionObserver } from '@vueuse/components';
 
 const useDark = ref(true);
+
+function playLogoAnimation([{ isIntersecting }]) {
+  if (isIntersecting) {
+    animate('.letter',
+      {
+        transform: 'translateY(0)',
+      },
+      {
+        duration: 0.8,
+        delay: stagger(0.06),
+        easing: [0.25, 1, 0.5, 1],
+      },
+    );
+  }
+}
 </script>
 
 <template>
   <div class="w-full
-    px-6
-    h-20
-    max-w-7xl
-    mx-auto
-    flex justify-between items-center">
+      px-6
+      h-20
+      max-w-7xl
+      mx-auto
+      flex justify-between items-center" v-intersection-observer="playLogoAnimation">
     <!-- start: logo -->
-    <p class="text-lg tracking-tighter font-bold">
-      NAM•CHÉÉ
-    </p>
+    <a
+      role="banner"
+      href="/"
+      class="text-lg -space-x-[1.5px] font-bold overflow-y-hidden"
+    >
+      <span class="letter inline-block translate-y-10">
+        N
+      </span>
+      <span class="letter inline-block translate-y-10">
+        A
+      </span>
+      <span class="letter inline-block translate-y-10">
+        M
+      </span>
+      <span class="letter inline-block translate-y-10">
+        •
+      </span>
+      <span class="letter inline-block translate-y-10">
+        C
+      </span>
+      <span class="letter inline-block translate-y-10">
+        H
+      </span>
+      <span class="letter inline-block translate-y-10">
+        É
+      </span>
+      <span class="letter inline-block translate-y-10">
+        É
+      </span>
+    </a>
     <!-- end: logo -->
 
     <!-- start: theme switcher -->
@@ -47,7 +91,7 @@ const useDark = ref(true);
 /* we will explain what these classes do next! */
 .reveal-enter-active,
 .reveal-leave-active {
-  transition: all 150ms cubic-bezier(0.33, 1, 0.68, 1);
+  transition: all 100ms cubic-bezier(0.33, 1, 0.68, 1);
 }
 
 .reveal-enter-from {
@@ -59,5 +103,4 @@ const useDark = ref(true);
   opacity: 0;
   transform: translateY(-8px);
 }
-
 </style>
