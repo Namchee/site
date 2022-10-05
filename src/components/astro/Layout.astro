@@ -4,6 +4,7 @@ import '@unocss/reset/tailwind.css'
 import '@/assets/styles/global.css';
 
 import Footer from '@/components/astro/Footer.astro';
+import Navigation from '@/components/vue/Navigation.vue';
 import Header from '@/components/vue/Header.vue';
 
 export interface Props {
@@ -29,6 +30,7 @@ const { pathname } = new URL(Astro.request.url);
   </head>
   <body class="bg-surface text-content min-h-screen text-sm md:text-base flex flex-col font-sans">
 	  <Header client:visible />
+    <Navigation currentPath={pathname} client:only />
     <main class="w-full flex-1 px-6
       md:px-10vw
       xl:px-0 max-w-7xl mx-auto">
