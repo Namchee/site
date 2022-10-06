@@ -11,7 +11,8 @@ const useDark = ref(true);
       h-20
       max-w-7xl
       mx-auto
-      flex justify-between items-center">
+      flex justify-between items-center"
+  >
     <!-- start: logo -->
     <a href="/" class="text-lg font-bold tracking-tighter">
       NAM•CHÉÉ
