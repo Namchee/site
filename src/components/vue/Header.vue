@@ -1,25 +1,8 @@
 <script setup lang="ts">
 import { ref } from 'vue';
-import { animate, spring, stagger } from 'motion';
 import { Switch } from '@headlessui/vue';
-import { vIntersectionObserver } from '@vueuse/components';
 
 const useDark = ref(true);
-
-function playLogoAnimation([{ isIntersecting }]) {
-  if (isIntersecting) {
-    animate('.letter',
-      {
-        transform: 'translateY(0)',
-      },
-      {
-        duration: 0.8,
-        delay: stagger(0.06),
-        easing: [0.25, 1, 0.5, 1],
-      },
-    );
-  }
-}
 </script>
 
 <template>
@@ -28,42 +11,15 @@ function playLogoAnimation([{ isIntersecting }]) {
       h-20
       max-w-7xl
       mx-auto
-      flex justify-between items-center" v-intersection-observer="playLogoAnimation">
+      flex justify-between items-center">
     <!-- start: logo -->
-    <a
-      role="banner"
-      href="/"
-      class="text-lg -space-x-[1.5px] font-bold overflow-y-hidden"
-    >
-      <span class="letter inline-block translate-y-10">
-        N
-      </span>
-      <span class="letter inline-block translate-y-10">
-        A
-      </span>
-      <span class="letter inline-block translate-y-10">
-        M
-      </span>
-      <span class="letter inline-block translate-y-10">
-        •
-      </span>
-      <span class="letter inline-block translate-y-10">
-        C
-      </span>
-      <span class="letter inline-block translate-y-10">
-        H
-      </span>
-      <span class="letter inline-block translate-y-10">
-        É
-      </span>
-      <span class="letter inline-block translate-y-10">
-        É
-      </span>
+    <a href="/" class="text-lg font-bold tracking-tighter">
+      NAM•CHÉÉ
     </a>
     <!-- end: logo -->
 
     <!-- start: theme switcher -->
-    <div class="flex items-center text-content-light text-sm">
+    <div class="flex items-center text-content-300 text-sm">
       <p class="mr-2 overflow-y-hidden">
         <Transition name="reveal" mode="out-in">
           <span class="inline-block" v-if="useDark">

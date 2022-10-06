@@ -58,14 +58,15 @@ export default defineConfig({
           surface: {
             DEFAULT: '#FDFCFD',
             dark: '#EEEDEF',
-            darker: '#E4E2E4',
+            darker: '#E9E8EA',
           },
           content: {
+            light: '#7E7D86',
             DEFAULT: '#504F57',
             dark: '#34343A',
-            light: '#7E7D86',
           },
           accent: {
+            light: '#5D7CE9',
             DEFAULT: '#4164E5',
             dark: '#1E48DF',
           }
