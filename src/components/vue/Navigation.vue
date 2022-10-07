@@ -11,6 +11,7 @@ const props = defineProps<NavigationProps>();
 <template>
   <nav
     class="fixed bottom-[96px] md:bottom-[60px] left-[50%] -translate-x-[50%]
+      z-10
       text-content-light
       p-1
       shadow

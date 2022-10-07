@@ -33,7 +33,12 @@ const useDark = ref(true);
         Theme
       </p>
       <Switch v-model="useDark" as="template" v-slot="{ checked }">
-        <button class="relative inline-flex h-6 w-11 items-center rounded-full bg-surface-darker">
+        <button
+          class="relative
+            inline-flex items-center
+            h-6 w-11
+            rounded-full bg-surface-darker"
+          >
           <span class="sr-only">Switch Theme</span>
           <span :class="checked ? 'translate-x-6' : 'translate-x-1'"
             class="inline-block h-4 w-4 transform rounded-full bg-surface transition" />
