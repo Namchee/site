@@ -1,5 +1,6 @@
 ---
 import Layout from '@/components/astro/Layout.astro';
+import Project from '@/components/astro/Project.astro';
 
 import ArrowRight from '~icons/radix-icons/arrow-right';
 ---
@@ -30,51 +31,30 @@ import ArrowRight from '~icons/radix-icons/arrow-right';
       Made with love, to solve problems
     </p>
 
-    <div class="mt-12 grid grid-cols-3 grid-rows-2 gap-8">
-      <div class="row-span-2 col-span-2
-        bg-surface-dark rounded-md
-        p-8"
+    <div class="mt-12 grid md:grid-cols-3 md:grid-rows-2 gap-8">
+      <Project
+        name="Fav"
+        description="Generate favicon set for modern websites, effortlessly"
+        containerClass="md:row-span-2 md:col-span-2"
+      />
+
+      <Project
+        name="Windgraph"
+        description="Tailwind-powered Open-graph image generator"
       >
-        <p class="text-lg font-medium">
-          Fav
-        </p>
-
-        <p class="text-content-light mt-2">
-          Generate favicon set for modern websites, effortlessly.
-        </p>
-      </div>
-
-      <div class="bg-surface-dark rounded-md
-        p-8"
-      >
-        <p class="text-lg font-medium">
-          Windgraph
-        </p>
-
-        <p class="text-content-light mt-2">
-          Tailwind-powered Open-graph image generator
-        </p>
-
         <p class="text-content-light font-mono mt-8 text-sm">
           NodeJS, Vercel
         </p>
-      </div>
+      </Project>
 
-      <div class="bg-surface-dark rounded-md
-        p-8"
+      <Project
+        name="cPR"
+        description="Enforce conventions to pull requests on GitHub"
       >
-        <p class="text-lg font-medium">
-          cPR
-        </p>
-
-        <p class="text-content-light mt-2">
-          Enforce conventions to pull requests on GitHub
-        </p>
-
         <p class="text-content-light font-mono mt-8 text-sm">
           GoLang
         </p>
-      </div>
+      </Project>
     </div>
   </div>
 </Layout>

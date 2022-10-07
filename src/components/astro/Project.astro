@@ -1,0 +1,22 @@
+---
+export interface ProjectProps {
+  name: string;
+  description: string;
+  link: string;
+  repository: string;
+
+  containerClass: string;
+}
+
+const { name, description, link, repository, containerClass } = Astro.props;
+---
+
+<div class={`bg-surface-dark rounded-md p-8 ${containerClass}`}>
+  <p class="text-lg font-medium">{name}</p>
+
+  <p class="text-content-light mt-2">
+    {description}
+  </p>
+
+  <slot />
+</div>
