@@ -23,7 +23,7 @@ const { name, description, link, repository, containerClass } = Astro.props;
     {description}
   </p>
 
-  <div class="absolute top-6 right-6 flex space-x-3">
+  <div class="absolute top-6 right-6 md:top-8 md:right-8 flex space-x-3">
     {
       repository && <AppLink
       class="bg-surface shadow-sm w-8 h-8 flex items-center justify-center border-2 border-content-light border-opacity-20 rounded-full"
