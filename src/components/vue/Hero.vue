@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import { Box, Camera, LambertMaterial, PointLight, Renderer, Scene } from 'troisjs';
-
 </script>
 
 <template>

@@ -9,8 +9,9 @@ import ArrowRight from '~icons/radix-icons/arrow-right';
 
 <Layout title="foo" description="bar">
   <div class="my-32">
-    <Hero />
+    <Hero client:only />
   </div>
+
   <div class="my-32 flex flex-col text-xl max-w-4xl mx-auto">
     <p>
       Namchee — a <span class="text-accent">software engineer</span>
@@ -25,6 +26,12 @@ import ArrowRight from '~icons/radix-icons/arrow-right';
         <ArrowRight class="w-8 -mt-1 -translate-x-8 opacity-0 arrow__after" />
       </a>
     </p>
+  </div>
+
+  <div class="my-32 max-w-5xl mx-auto">
+    <h2>
+      Recent Posts
+    </h2>
   </div>
 
   <div class="my-32 max-w-5xl mx-auto">
