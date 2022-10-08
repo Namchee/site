@@ -16,7 +16,7 @@ const props = defineProps<NavigationProps>();
       p-1
       shadow
       border border-surface-darker
-      bg-surface bg-opacity-80
+      bg-surface bg-opacity-70
       backdrop-blur
       grid grid-cols-3
       rounded-full"

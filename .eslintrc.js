@@ -8,6 +8,7 @@ module.exports = {
   extends: [
     "eslint:recommended",
     "plugin:vue/vue3-strongly-recommended",
+    "plugin:astro/recommended",
     "xo",
     "prettier",
   ],
@@ -17,6 +18,16 @@ module.exports = {
     sourceType: "module",
   },
   plugins: ["vue", "@typescript-eslint"],
+  overrides: [
+    {
+      files: ["*.astro"],
+      parser: "astro-eslint-parser",
+      parserOptions: {
+        parser: "@typescript-eslint/parser",
+        extraFileExtensions: [".astro"],
+      },
+    },
+  ],
   rules: {
     "vue/multi-word-component-names": "off",
   },
