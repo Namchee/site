@@ -18,6 +18,8 @@ specifiers:
   eslint-plugin-prettier: ^4.0.0
   motion: ^10.10.0
   prettier: ^2.6.2
+  three: ^0.145.0
+  troisjs: ^0.3.4
   typescript: ^4.8.3
   unocss: ^0.45.23
   unplugin-icons: ^0.14.10
@@ -30,6 +32,8 @@ dependencies:
   '@vueuse/components': 8.6.0_vue@3.2.33
   '@vueuse/core': 8.6.0_vue@3.2.33
   motion: 10.10.0
+  three: 0.145.0
+  troisjs: 0.3.4
 
 devDependencies:
   '@astrojs/vue': 1.1.0_7qmf4ancawkygppgnlttuz637i
@@ -4788,6 +4792,10 @@ packages:
     resolution: {integrity: sha1-f17oI66AUgfACvLfSoTsP8+lcLQ=}
     dev: true
 
+  /three/0.145.0:
+    resolution: {integrity: sha512-EKoHQEtEJ4CB6b2BGMBgLZrfwLjXcSUfoI/MiIXUuRpeYsfK5aPWbYhdtIVWOH+x6X0TouldHKHBuc/LAiFzAw==}
+    dev: false
+
   /tiny-glob/0.2.9:
     resolution: {integrity: sha512-g/55ssRPUjShh+xkfx9UPDXqhckHEsHr4Vd9zX55oSdGZc/MD0m3sferOkwWtp98bv+kcVfEHtRJgBVJzelrzg==}
     dependencies:
@@ -4809,6 +4817,10 @@ packages:
   /totalist/3.0.0:
     resolution: {integrity: sha512-eM+pCBxXO/njtF7vdFsHuqb+ElbxqtI4r5EAvk6grfAFyJ6IvWlSkfZ5T9ozC6xWw3Fj1fGoSmrl0gUs46JVIw==}
     engines: {node: '>=6'}
+
+  /troisjs/0.3.4:
+    resolution: {integrity: sha512-aonG2lw+QyTjytJpvYIaGv2AiIKzm+eSYT4ByG64uVh+jCLAWxnblS6bCewIckvCMqs2j3z351Q/IFIPWYViCQ==}
+    dev: false
 
   /trough/2.1.0:
     resolution: {integrity: sha512-AqTiAOLcj85xS7vQ8QkAV41hPDIJ71XJB4RCUrzo/1GM2CQwhkJGaf9Hgr7BOugMRpgGUrqRg/DrBDl4H40+8g==}

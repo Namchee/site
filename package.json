@@ -32,6 +32,8 @@
     "@unocss/astro": "^0.45.23",
     "@vueuse/components": "^8.6.0",
     "@vueuse/core": "^8.6.0",
-    "motion": "^10.10.0"
+    "motion": "^10.10.0",
+    "three": "^0.145.0",
+    "troisjs": "^0.3.4"
   }
 }
