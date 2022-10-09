@@ -12,7 +12,7 @@ import ArrowRight from '~icons/radix-icons/arrow-right';
     <Hero client:only />
   </div>
 
-  <div class="my-32 flex flex-col text-xl max-w-4xl mx-auto">
+  <div class="my-32 flex flex-col text-lg md:text-xl max-w-4xl mx-auto">
     <p>
       Namchee — a <span class="text-accent">software engineer</span>
       based in Bandung, Indonesia. Likes to solve real-life problems through code.
@@ -35,11 +35,11 @@ import ArrowRight from '~icons/radix-icons/arrow-right';
   </div>
 
   <div class="my-32 max-w-5xl mx-auto">
-    <h2 class="text-center text-2xl font-medium tracking-tight">
+    <h2 class="text-center text-xl md:text-2xl font-medium tracking-tight">
       Featured Projects
     </h2>
 
-    <p class="text-content-light text-lg mt-2 text-center">
+    <p class="text-content-light md:text-lg mt-2 text-center">
       Made with love, to solve problems
     </p>
 
@@ -52,17 +52,20 @@ import ArrowRight from '~icons/radix-icons/arrow-right';
         containerClass="md:row-span-2 md:col-span-2"
       >
         <img
-          src="https://res.cloudinary.com/namchee/image/upload/v1665149245/personal-site/fav-showcase.png"
-          class="w-9/10
+          src="https://res.cloudinary.com/namchee/image/upload/v1665316986/personal-site/fav-showcase.webp"
+          class="w-full
+            lg:absolute
+            lg:left-[50%]
+            lg:-translate-x-[50%]
+            mx-auto
             md:w-4/5
             rounded-lg
-            mx-auto
-            translate-y-[40px]
+            translate-y-[36px]
             md:translate-y-[48px]
             shadow-sm
             transition
-            group-hover:translate-y-[32px]
-            md:group-hover:translate-y-[36px]
+            group-hover:translate-y-[28px]
+            md:group-hover:translate-y-[40px]
             group-hover:shadow-md"
           title="Fav"
           alt="Fav"
