@@ -6,11 +6,13 @@ import unocss from '@unocss/astro';
 import presetUno from '@unocss/preset-uno';
 
 import vue from '@astrojs/vue';
+import react from '@astrojs/react';
 
 // https://astro.build/config
 export default defineConfig({
   integrations: [
     vue(),
+    react(),
     unocss({
       presets: [
         presetUno(),
