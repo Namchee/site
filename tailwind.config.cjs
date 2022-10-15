@@ -7,38 +7,14 @@ module.exports = {
       mono: ['JetBrains Mono'],
     },
 		fontSize: {
-      'sm': ['13.5px', {
-        lineHeight: '18.9px',
-        letterSpacing: '-0.0025em',
-      }],
-      'base': ['18px', {
-        lineHeight: '25.2px',
-        letterSpacing: '-0.014em',
-      }],
-      'lg': ['23.99px', {
-        lineHeight: '33.6px',
-        letterSpacing: '-0.019em',
-      }],
-      'xl': ['31.98px', {
-        lineHeight: '44.8px',
-        letterSpacing: '-0.0216em',
-      }],
-      '2xl': ['42.63px', {
-        lineHeight: '59.682px',
-        letterSpacing: '-0.0221em',
-      }],
-      '3xl': ['56.83px', {
-        lineHeight: '79.562px',
-        letterSpacing: '-0.222em',
-      }],
-      '4xl': ['75.76px', {
-        lineHeight: '106.064px',
-        letterSpacing: '-0.222em',
-      }],
-      '5xl': ['100.98px', {
-        lineHeight: '141.372px',
-        letterSpacing: '-0.222em',
-      }],
+      'sm': '13.5px',
+      'base': '18px',
+      'lg': '23.99px',
+      'xl': '31.98px',
+      '2xl': '42.63px',
+      '3xl': '56.83px',
+      '4xl': '75.76px',
+      '5xl': '100.98px',
     },
     colors: {
       surface: {
