@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-import { useSpring, animated } from '@react-spring/web';
+import { useTransition, animated, config } from '@react-spring/web';
 
 import { Switch } from '@headlessui/react';
 
@@ -9,9 +9,20 @@ import { darkTheme } from '@/stores/theme';
 
 function Header(): JSX.Element {
   const useDarkTheme = useStore(darkTheme);
-  const animation = useSpring({
-    opacity: useDarkTheme ? 1 : 0,
-    transform: useDarkTheme ? 'translateY(0)' : 'translateY(8px)',
+  const transitions = useTransition(useDarkTheme, {
+    from: {
+      opacity: 0,
+      transform: 'translateY(8px)',
+    },
+    enter: {
+      opacity: 1,
+      transform: 'translateY(0)',
+    },
+    leave: {
+      opacity: 0,
+      transform: 'translateY(-8px)',
+    },
+    exitBeforeEnter: true,
   });
 
   return (
@@ -29,14 +40,16 @@ function Header(): JSX.Element {
     <div className="flex items-center text-content-300 text-sm">
       <p className="mr-2 overflow-y-hidden">
         {
-          useDarkTheme
-            ? <animated.span className="inline-block">
-              Dark
-            </animated.span>
-            : <animated.span className="inline-block">
+          transitions((style, value) => {
+            return value
+              ? <animated.span style={style} className="inline-block">
+                Dark
+              </animated.span>
+              : <animated.span style={style} className="inline-block">
               Light
             </animated.span>
-        }
+          })
+        }{' '}
         Theme
       </p>
       <Switch

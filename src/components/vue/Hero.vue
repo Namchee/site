@@ -1,27 +1,25 @@
 <script setup lang="ts">
-import { Sphere, Camera, StandardMaterial, AmbientLight, Renderer, Scene, Texture, } from 'troisjs';
+import { Sphere, Camera, PhysicalMaterial, AmbientLight, Renderer, Scene } from 'troisjs';
 import { RGBELoader } from 'three/examples/jsm/loaders/RGBELoader';
+import { onMounted, ref } from 'vue';
 import { PMREMGenerator } from 'three';
-import { onMounted, reactive, ref } from 'vue';
 
 const renderer = ref(null);
 const scene = ref(null);
 const material = ref(null);
 
 onMounted(() => {
-  const loader = new RGBELoader();
-  loader.load('envmap.hdr', (envmap) => {
-    const generator = new PMREMGenerator(renderer.value.renderer);
-    const { texture } = generator.fromEquirectangular(envmap);
+  const rgbe = new RGBELoader();
+  rgbe.load('envmap.hdr', (map) => {
+    const loader = new PMREMGenerator(renderer.value.renderer);
+    const {texture} = loader.fromEquirectangular(map);
 
-    material.value.material.envMap = texture;
     material.value.material.metalness = 0.1;
     material.value.material.envMapIntensity = 0.4;
-
-    console.log(material.value.material);
-
-    texture.dispose();
-  });
+    material.value.material.envMap = texture;
+    scene.value.scene.background = texture;
+    scene.value.scene.environment = texture;
+  })
 });
 </script>
 
@@ -32,12 +30,13 @@ onMounted(() => {
     </p>
 
     <div class="min-h-[360px] order-1 self-center">
-      <Renderer antialias :alpha="true" resize="true" ref="renderer">
+      <Renderer antialias :alpha="true" resize="true" orbit-ctrl ref="renderer">
         <Camera :position="{ z: 200 }" :fov="75" :near="10" :far="1000" />
         <Scene ref="scene">
-          <AmbientLight color="#FDFCFD" :intensity="0.9" />
+          <AmbientLight color="#FDFCFD" :intensity="0.5" />
           <Sphere :radius="90" :height-segments="64" :width-segments="64">
-            <StandardMaterial :props="{ metalness: 0.1, envMapIntensity: 0.4 }" ref="material" />
+            <PhysicalMaterial :props="{ metalness: 0.1, envMapIntensity: 0.4 }" ref="material">
+            </PhysicalMaterial>
           </Sphere>
         </Scene>
       </Renderer>
