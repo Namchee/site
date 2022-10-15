@@ -1,8 +1,7 @@
 ---
 import AppLink from '@/components/astro/AppLink.astro';
 
-// import ArrowTopRight from '~icons/radix-icons/arrow-top-right';
-// import GitHub from '~icons/radix-icons/github-logo';
+import { Icon } from 'astro-icon';
 
 export interface ProjectProps {
   name: string;
@@ -15,12 +14,14 @@ export interface ProjectProps {
 
 const { name, description, link, repository, containerClass } = Astro.props;
 
-const gh = '<GitHub class="fill-current text-content-light w-4 h-4" />';
+const gh = '';
 const arrow = '<ArrowTopRight class="w-4 h-4 text-content-light fill-current" />';
 ---
 
 <div class={`group relative bg-surface-dark rounded-md p-6 md:p-8 overflow-y-hidden ${containerClass}`}>
-  <p class="text-lg font-medium">{name}</p>
+  <p class="text-lg font-medium">
+    {name}
+  </p>
 
   <p class="text-content-light mt-2">
     {description}
@@ -39,6 +40,7 @@ const arrow = '<ArrowTopRight class="w-4 h-4 text-content-light fill-current" />
         href={repository}
         external
       >
+        <Icon name="radix-icons:github-logo" class="fill-current text-content-light w-4 h-4" />
       </AppLink>
     }
     {
@@ -47,7 +49,7 @@ const arrow = '<ArrowTopRight class="w-4 h-4 text-content-light fill-current" />
         href={link}
         external
       >
-
+        <Icon name="radix-icons:arrow-top-right" class="fill-current text-content-light w-4 h-4" />
       </AppLink>
     }
   </div>
