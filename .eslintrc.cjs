@@ -18,7 +18,7 @@ module.exports = {
     parser: "@typescript-eslint/parser",
     sourceType: "module",
   },
-  plugins: ["vue", "@typescript-eslint"],
+  plugins: ["vue", "react", "@typescript-eslint"],
   overrides: [
     {
       files: ["*.astro"],

@@ -2,7 +2,7 @@
 import '@/assets/styles/global.css';
 
 import Footer from '@/components/astro/Footer.astro';
-import Navigation from '@/components/vue/Navigation.vue';
+import Navigation from '@/components/react/Navigation';
 import Header from '@/components/react/Header';
 
 export interface Props {
@@ -28,7 +28,7 @@ const { pathname } = new URL(Astro.request.url);
   </head>
   <body class="bg-surface text-content min-h-screen flex flex-col font-sans">
 	  <Header client:visible />
-    <Navigation currentPath={pathname} client:only="vue" />
+    <Navigation currentPath={pathname} client:visible />
     <main class="w-full flex-1 px-6
       md:px-10vw
       xl:px-0 max-w-7xl mx-auto">

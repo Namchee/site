@@ -31,7 +31,7 @@ onMounted(() => {
       Build Softwares
     </p>
 
-    <div class="w-full lg:w-initial min-h-[360px] order-1 self-center">
+    <div class="min-h-[360px] order-1 self-center">
       <Renderer antialias :alpha="true" resize="true" ref="renderer">
         <Camera :position="{ z: 200 }" :fov="75" :near="10" :far="1000" />
         <Scene ref="scene">
