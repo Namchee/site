@@ -1,3 +1,5 @@
-import { atom } from 'nanostores';
+import { reactive } from 'vue';
 
-export const darkTheme = atom(false);
+export const themeStore = reactive({
+  dark: false,
+});

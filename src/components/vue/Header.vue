@@ -1,8 +1,7 @@
 <script setup lang="ts">
-import { ref } from 'vue';
 import { Switch } from '@headlessui/vue';
 
-const useDark = ref(true);
+import { themeStore } from '@/stores/theme';
 </script>
 
 <template>
@@ -23,7 +22,7 @@ const useDark = ref(true);
     <div class="flex items-center text-content-300 text-sm">
       <p class="mr-2 overflow-y-hidden">
         <Transition name="reveal" mode="out-in">
-          <span class="inline-block" v-if="useDark">
+          <span class="inline-block" v-if="themeStore.dark">
             Dark
           </span>
           <span class="inline-block" v-else>
@@ -32,7 +31,7 @@ const useDark = ref(true);
         </Transition>
         Theme
       </p>
-      <Switch v-model="useDark" as="template" v-slot="{ checked }">
+      <Switch v-model="themeStore.dark" as="template" v-slot="{ checked }">
         <button
           class="relative
             inline-flex items-center

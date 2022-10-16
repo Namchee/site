@@ -8,7 +8,6 @@ module.exports = {
   },
   extends: [
     "eslint:recommended",
-    "plugin:react/recommended",
     "plugin:vue/vue3-strongly-recommended",
     "plugin:astro/recommended",
     "xo",
@@ -19,7 +18,7 @@ module.exports = {
     parser: "@typescript-eslint/parser",
     sourceType: "module",
   },
-  plugins: ["vue", "react", "@typescript-eslint"],
+  plugins: ["vue", "@typescript-eslint"],
   overrides: [
     {
       files: ["*.astro"],
