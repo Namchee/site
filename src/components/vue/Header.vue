@@ -13,7 +13,11 @@ import { themeStore } from '@/stores/theme';
       flex justify-between items-center"
   >
     <!-- start: logo -->
-    <a href="/" class="text-lg font-bold tracking-tighter">
+    <a
+      rel="noopener noreferrer"
+      href="/"
+      class="text-lg font-bold tracking-tighter"
+    >
       NAM•CHÉÉ
     </a>
     <!-- end: logo -->
@@ -39,8 +43,10 @@ import { themeStore } from '@/stores/theme';
             rounded-full bg-surface-darker"
           >
           <span class="sr-only">Switch Theme</span>
-          <span :class="checked ? 'translate-x-6' : 'translate-x-1'"
-            class="inline-block h-4 w-4 transform rounded-full bg-surface transition" />
+          <span
+            :class="checked ? 'translate-x-6' : 'translate-x-1'"
+            class="inline-block h-4 w-4 transform rounded-full bg-surface transition"
+          />
         </button>
       </Switch>
     </div>

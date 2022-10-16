@@ -20,7 +20,6 @@
     "eslint-config-prettier": "^8.5.0",
     "eslint-config-xo": "^0.40.0",
     "eslint-plugin-astro": "^0.20.0",
-    "eslint-plugin-jsx-a11y": "^6.6.1",
     "eslint-plugin-prettier": "^4.0.0",
     "eslint-plugin-vue": "^9.6.0",
     "prettier": "^2.6.2",
@@ -31,17 +30,11 @@
     "vue": "^3.2.40"
   },
   "dependencies": {
-    "@headlessui/react": "^1.7.3",
     "@headlessui/vue": "^1.7.3",
-    "@nanostores/react": "^0.4.0",
-    "@react-spring/web": "^9.5.5",
-    "@react-three/drei": "^9.34.4",
-    "@react-three/fiber": "^8.8.10",
     "@vueuse/components": "^8.6.0",
     "@vueuse/core": "^8.6.0",
     "astro-icon": "^0.7.3",
     "motion": "^10.14.2",
-    "nanostores": "^0.7.0",
     "three": "~0.145.0",
     "troisjs": "^0.3.4"
   }
