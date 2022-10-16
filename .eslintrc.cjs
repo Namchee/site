@@ -3,6 +3,7 @@ module.exports = {
     browser: true,
     es2021: true,
     node: true,
+    jsx: true,
     "vue/setup-compiler-macros": true,
   },
   extends: [

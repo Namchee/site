@@ -7,12 +7,14 @@ module.exports = {
       mono: ['JetBrains Mono'],
     },
 		fontSize: {
-      'sm': '12px',
-      'lg': '21.33px',
-      'xl': '28.43px',
-      '2xl': '37.9px',
-      '3xl': '50.52px',
-      '4xl': '67.34px',
+      'sm': '0.8rem',
+      'lg': '1.25rem',
+      'xl': '1.563rem',
+      '2xl': '1.953rem',
+      '3xl': '2.441rem',
+      '4xl': '3.052rem',
+      '5xl': '3.851rem',
+      '6xl': '4.768rem'
     },
     colors: {
       surface: {

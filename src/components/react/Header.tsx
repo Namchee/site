@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-import { useTransition, animated, config } from '@react-spring/web';
+import { useTransition, animated } from '@react-spring/web';
 
 import { Switch } from '@headlessui/react';
 
@@ -40,22 +40,20 @@ function Header(): JSX.Element {
       mx-auto
       flex justify-between items-center"
   >
-    <a href="/" className="text-lg font-bold tracking-tighter">
+    <a href="/" className="text-xl font-bold tracking-tighter">
       NAM•CHÉÉ
     </a>
 
     <div className="flex items-center text-content-300 text-sm">
       <p className="mr-2 overflow-y-hidden">
         {
-          transitions((style, value) => {
-            return value
+          transitions((style, value) => value
               ? <animated.span style={style} className="inline-block">
                 Dark
               </animated.span>
               : <animated.span style={style} className="inline-block">
               Light
-            </animated.span>
-          })
+            </animated.span>)
         }{' '}
         Theme
       </p>
