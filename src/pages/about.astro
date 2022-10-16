@@ -1,11 +1,32 @@
 ---
 import Layout from '@/components/astro/Layout.astro';
-
-import ArrowRight from '~icons/radix-icons/arrow-right';
 ---
 
 <Layout title="foo" description="bar">
-  This is about
+  <div class="my-32 w-full mx-auto max-w-5xl">
+    <h1 class="text-4xl max-w-2xl leading-snug ">
+      Namchee is a <span class="text-accent-light">purpose-driven</span>
+      developer that delivers
+      meaningful <span class="text-accent-dark">impact</span>
+    </h1>
+  </div>
+
+  <div class="my-32 max-w-5xl mx-auto">
+    <!-- start: paragraphs -->
+    <section class="grid grid-cols-2 my-32">
+      <p class="text-content-light text-lg">
+        A little about me
+      </p>
+
+      <p class="text-lg">
+        Cristopher &mdash; more commonly known as Namchee &mdash; is a software engineer
+      </p>
+    </section>
+    <!-- end: paragraphs -->
+
+    <!-- start: contacts -->
+    <!-- end: contacts -->
+  </div>
 </Layout>
 
 
