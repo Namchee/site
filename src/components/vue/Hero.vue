@@ -23,7 +23,7 @@ onMounted(() => {
 
 <template>
   <div class="w-full max-w-5xl mx-auto flex flex-col lg:flex-row justify-center lg:space-x-8">
-    <p class="text-3xl text-content-light tracking-tight self-center lg:text-right order-2 lg:order-1">
+    <p class="text-4xl text-content-light tracking-tight self-center lg:text-right order-2 lg:order-1">
       Build Softwares
     </p>
 
@@ -43,7 +43,7 @@ onMounted(() => {
       </Renderer>
     </div>
 
-    <p class="text-3xl text-content-dark tracking-tight self-center order-3">
+    <p class="text-4xl text-content-dark tracking-tight self-center order-3">
       Solve Problems
     </p>
   </div>
