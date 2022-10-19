@@ -1,47 +1,50 @@
 ---
 import Layout from '@/components/astro/Layout.astro';
+import TextLink from '@/components/astro/TextLink.astro';
 ---
 
 <Layout title="foo" description="bar">
-  <div class="my-32 w-full mx-auto max-w-5xl">
-    <h1 class="text-5xl max-w-4xl leading-snug">
-      Namchee is a <span class="text-accent-light">purpose-driven</span>
-      developer that delivers
-      meaningful <span class="text-accent-dark">impact</span>
+  <header class="my-32 w-full mx-auto max-w-5xl">
+    <h1 class="w-full text-right text-5xl tracking-tight">
+      A little about me
     </h1>
-  </div>
+  </header>
 
-  <div class="my-32 max-w-5xl mx-auto">
-    <!-- start: paragraphs -->
-    <section class="my-32 max-w-2xl">
-      <p class="text-content-dark text-xl">
-        A little about me
+  <div class="my-32 max-w-5xl w-full mx-auto grid grid-cols-2 space-x-32">
+    <section>
+      <p class="text-2xl leading-relaxed">
+        Hello, I'm...
       </p>
 
-      <p class="mt-4 text-content-light leading-normal">
-        Hello there stranger! My name is Cristopher but you can call me Namchee instead.
-        I'm a software engineer based in Bandung, Indonesia.
-      </p>
+      <div class="text-content-light mt-2 leading-normal space-y-4">
+        <p>
+          Cristopher, but you can call me Namchee instead. I'm a software developer based in Bandung, Indonesia.
+        </p>
 
-      <p class="mt-4 text-content-light leading-normal">
-        My first software engineering journey began in 2016 when I discovered HTML and JavaScript.
-
-        The accidental discovery of programming ignites my long-life dream to make the world a better place for
-        everyone through software engineering.
-      </p>
-
-      <p class="mt-4 text-content-light leading-normal">
-        Exploring the vast world of software engineering made me a curious person.
-
-        My curiosity drives me to explore and learn new things in various domains every day.
-
-        For me, such opportunities are the ones that make life more lively and worth celebrating.
-      </p>
+        <p>
+          Currently, I'm makin' magic at <TextLink external href="https://www.tokopedia.com" theme="accent">
+            Tokopedia
+          </TextLink> as a purpose-drive software engineer.
+        </p>
+      </div>
     </section>
-    <!-- end: paragraphs -->
 
-    <!-- start: contacts -->
-    <!-- end: contacts -->
+    <section>
+      <p class="text-2xl leading-relaxed">
+        I started...
+      </p>
+
+      <div class="text-content-light mt-2 leading-normal space-y-4">
+        <p>
+          my first software engineering journey in 2016 when I discovered HTML and JavaScript.
+        </p>
+
+        <p>
+          The accidental discovery of programming ignites my long-life dream to make the world a better place for
+          everyone through software engineering.
+        </p>
+      </div>
+    </section>
   </div>
 </Layout>
 
