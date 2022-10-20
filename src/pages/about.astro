@@ -4,48 +4,16 @@ import TextLink from '@/components/astro/TextLink.astro';
 ---
 
 <Layout title="foo" description="bar">
-  <header class="my-32 w-full mx-auto max-w-5xl">
-    <h1 class="w-full text-right text-5xl tracking-tight">
-      A little about me
+  <header class="my-48 w-full mx-auto max-w-6xl gap-x-16">
+    <h1 class="text-5xl text-center leading-snug">
+      <p>
+        Driven by <span class="text-accent-light">purpose</span>
+      </p>
+      <p>
+        Bringing meaningful <span class="text-accent-dark">impact</span>
+      </p>
     </h1>
   </header>
-
-  <div class="my-32 max-w-5xl w-full mx-auto grid grid-cols-2 space-x-32">
-    <section>
-      <p class="text-2xl leading-relaxed">
-        Hello, I'm...
-      </p>
-
-      <div class="text-content-light mt-2 leading-normal space-y-4">
-        <p>
-          Cristopher, but you can call me Namchee instead. I'm a software developer based in Bandung, Indonesia.
-        </p>
-
-        <p>
-          Currently, I'm makin' magic at <TextLink external href="https://www.tokopedia.com" theme="accent">
-            Tokopedia
-          </TextLink> as a purpose-drive software engineer.
-        </p>
-      </div>
-    </section>
-
-    <section>
-      <p class="text-2xl leading-relaxed">
-        I started...
-      </p>
-
-      <div class="text-content-light mt-2 leading-normal space-y-4">
-        <p>
-          my first software engineering journey in 2016 when I discovered HTML and JavaScript.
-        </p>
-
-        <p>
-          The accidental discovery of programming ignites my long-life dream to make the world a better place for
-          everyone through software engineering.
-        </p>
-      </div>
-    </section>
-  </div>
 </Layout>
 
 
