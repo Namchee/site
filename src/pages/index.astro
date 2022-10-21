@@ -9,7 +9,7 @@ import { Icon } from 'astro-icon';
 
 <Layout title="foo" description="bar">
   <div class="py-32">
-    <Hero client:only="vue" />
+    <Hero client:only />
   </div>
 
   <div class="py-32 flex flex-col text-lg md:text-2xl max-w-4xl mx-auto">
@@ -35,7 +35,7 @@ import { Icon } from 'astro-icon';
   </div>
 
   <div class="py-32 max-w-5xl mx-auto">
-    <h2 class="text-center text-xl md:text-3xl font-medium tracking-tight">
+    <h2 class="text-center text-xl md:text-3xl font-medium">
       Featured Projects
     </h2>
 

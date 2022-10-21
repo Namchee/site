@@ -4,30 +4,149 @@ import TextLink from '@/components/astro/TextLink.astro';
 ---
 
 <Layout title="foo" description="bar">
-  <header class="py-48 w-full mx-auto max-w-7xl gap-x-16">
+  <header class="py-48 w-full mx-auto gap-x-16">
     <h1 class="text-6xl leading-snug">
       <p>
-        Makin' magic
+        Spreadin' wonders
       </p>
       <p>
-        through softwares
+        through software magic
       </p>
     </h1>
   </header>
 
-  <section class="max-w-5xl w-full mx-auto grid grid-cols-2">
-    <div class="col-start-2">
-      <p class="text-xl">
-        A little about me
+  <section class="py-32 max-w-5xl w-full mx-auto grid grid-cols-2">
+    <p class="text-content-light">
+      A little about me
+    </p>
+
+    <div class="col-start-2 text-lg space-y-8 leading-relaxed">
+        <p>
+          Hi. My name is Cristopher, but I'm commonly known as Namchee in the online space.
+          I'm a software engineer based in Bandung, Indonesia. Currently I'm working my magic at
+          <TextLink href="https://www.tokopedia.com" external theme="accent">Tokopedia</TextLink>
+        </p>
+
+        <p>
+          The accidental press of F12 in 2016 sparks my interest to make the world a better place for
+          everyone through software engineering.
+        </p>
+
+        <p>
+          Since then, I always hone my craft by exploring and learning new things in the vast world of software engineering.
+
+          For me, such journey are the ones that make life more lively and worth celebrating.
+        </p>
+    </div>
+  </section>
+
+  <section class="py-32 w-full max-w-5xl mx-auto grid grid-cols-2">
+    <h2 class="text-content-light">
+      Tools of Trade
+    </h2>
+
+    <div class="col-start-2 text-lg leading-relaxed">
+      <p>
+        Every magicians have their own set of tools to spread wonders and I am no different.
+        Here's what I use.
       </p>
 
-      <p class="mt-6 text-content-light">
-        Lorem ipsum dolor, sit amet consectetur adipisicing elit. Natus eveniet magni adipisci quo voluptate voluptatem laboriosam distinctio voluptatum asperiores reiciendis! Quos repellat ipsa a. Enim cum non vel eius in!
-        Doloribus animi incidunt quos ea a maxime ex, quisquam dolorum ad repellat maiores nemo voluptatibus facilis cumque exercitationem temporibus aut debitis cupiditate odio! Fugit obcaecati ducimus omnis, laudantium molestiae fugiat!
-        Facilis quod optio expedita rerum tenetur, dolore voluptatem incidunt, tempore magni eos odio, repellat voluptate ex molestias. Necessitatibus vel natus id. Quae accusamus modi velit enim facere illo, fuga earum.
-        Voluptatum numquam perferendis maiores tempore nostrum inventore, commodi aperiam vero distinctio vel quaerat nesciunt veritatis, animi impedit. Porro impedit placeat, sapiente explicabo modi unde ut sit magnam culpa eligendi qui!
-        Nobis quasi omnis assumenda, laudantium dolorum mollitia laboriosam, minus non corporis quae distinctio inventore voluptatum, consectetur cum! Porro obcaecati adipisci aliquam, est, harum alias voluptates odio quam quas nulla molestias!
-      </p>
+      <div class="space-y-8 text-lg leading-relaxed">
+        <div class="mt-10 grid grid-cols-2 gap-8 lg:gap-y-16 gap-x-8">
+          <div>
+            <p class="text-sm text-content-light tracking-tight">
+              Front End Development
+            </p>
+
+            <ul class="space-y-1 mt-2">
+              <li>
+                HTML
+              </li>
+              <li>
+                CSS
+              </li>
+              <li>
+                JavaScript
+              </li>
+              <li>
+                TypeScript
+              </li>
+              <li>
+                React
+              </li>
+              <li>
+                Vue
+              </li>
+              <li>
+                Next.js
+              </li>
+              <li>
+                NuxtJS
+              </li>
+            </ul>
+          </div>
+
+          <div>
+            <p class="text-xs font-mono text-grey">
+              Back End Development
+            </p>
+
+            <ul class="space-y-1 mt-2">
+              <li>
+                NodeJS
+              </li>
+              <li>
+                Golang
+              </li>
+              <li>
+                MySQL
+              </li>
+              <li>
+                PostgreSQL
+              </li>
+            </ul>
+          </div>
+
+          <div>
+            <p class="text-xs font-mono text-grey">
+              Infrastructure
+            </p>
+
+            <ul class="space-y-1 mt-2">
+              <li>
+                Vercel
+              </li>
+              <li>
+                Supabase
+              </li>
+              <li>
+                Cloudflare
+              </li>
+            </ul>
+          </div>
+
+          <div>
+            <p class="text-xs font-mono text-grey">
+              Other Tools
+            </p>
+
+            <ul class="space-y-1 mt-2">
+              <li>
+                VSCode
+              </li>
+              <li>
+                Git
+              </li>
+              <li>
+                Figma
+              </li>
+              <li>
+                Google
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
     </div>
   </section>
 </Layout>
