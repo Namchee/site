@@ -6,7 +6,7 @@ import { themeStore } from '@/stores/theme';
 
 <template>
   <div class="w-full
-      px-6
+      px-6 lg:px-0
       h-20
       max-w-7xl
       mx-auto
