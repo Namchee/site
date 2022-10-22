@@ -4,7 +4,7 @@ import TextLink from '@/components/astro/TextLink.astro';
 ---
 
 <Layout title="foo" description="bar">
-  <header class="py-48 w-full mx-auto gap-x-16">
+  <header class="py-32 w-full mx-auto gap-x-16">
     <h1 class="text-6xl leading-snug">
       <p>
         Spreadin' wonders
@@ -15,28 +15,24 @@ import TextLink from '@/components/astro/TextLink.astro';
     </h1>
   </header>
 
-  <section class="py-32 max-w-5xl w-full mx-auto grid grid-cols-2">
-    <p class="text-content-light">
-      A little about me
-    </p>
+  <section class="max-w-5xl w-full mx-auto grid grid-cols-2">
+    <div class="col-start-2 text-lg space-y-8 leading-relaxed text-content-light">
+      <p>
+        Hi. My name is Cristopher, but I'm commonly known as Namchee in the online space.
+        I'm a software engineer based in Bandung, Indonesia. Currently I'm working my magic at
+        <TextLink href="https://www.tokopedia.com" external theme="accent">Tokopedia</TextLink>
+      </p>
 
-    <div class="col-start-2 text-lg space-y-8 leading-relaxed">
-        <p>
-          Hi. My name is Cristopher, but I'm commonly known as Namchee in the online space.
-          I'm a software engineer based in Bandung, Indonesia. Currently I'm working my magic at
-          <TextLink href="https://www.tokopedia.com" external theme="accent">Tokopedia</TextLink>
-        </p>
+      <p>
+        The accidental press of F12 in 2016 sparks my interest to make the world a better place for
+        everyone through software engineering.
+      </p>
 
-        <p>
-          The accidental press of F12 in 2016 sparks my interest to make the world a better place for
-          everyone through software engineering.
-        </p>
+      <p>
+        Since then, I always hone my craft by exploring and learning new things in the vast world of software engineering.
 
-        <p>
-          Since then, I always hone my craft by exploring and learning new things in the vast world of software engineering.
-
-          For me, such journey are the ones that make life more lively and worth celebrating.
-        </p>
+        For me, such journey are the ones that make life more lively and worth celebrating.
+      </p>
     </div>
   </section>
 

@@ -16,7 +16,7 @@ import { themeStore } from '@/stores/theme';
     <a
       rel="noopener noreferrer"
       href="/"
-      class="text-lg font-bold tracking-tighter"
+      class="text-xl font-bold tracking-tighter"
     >
       NAM•CHÉÉ
     </a>
@@ -39,12 +39,12 @@ import { themeStore } from '@/stores/theme';
         <button
           class="relative
             inline-flex items-center
-            h-6 w-11
+            h-6 w-12
             rounded-full bg-surface-darker"
           >
           <span class="sr-only">Switch Theme</span>
           <span
-            :class="checked ? 'translate-x-6' : 'translate-x-1'"
+            :class="checked ? 'translate-x-7' : 'translate-x-1'"
             class="inline-block h-4 w-4 transform rounded-full bg-surface transition"
           />
         </button>
