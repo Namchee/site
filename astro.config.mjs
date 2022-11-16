@@ -24,7 +24,8 @@ export default defineConfig({
           '3xl': '2.441rem',
           '4xl': '3.052rem',
           '5xl': '3.851rem',
-          '6xl': '4.768rem'
+          '6xl': '4.768rem',
+          '7xl': '5.96rem',
         },
         colors: {
           surface: {

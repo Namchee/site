@@ -6,10 +6,8 @@ import { themeStore } from '@/stores/theme';
 
 <template>
   <div class="w-full
-      px-6 lg:px-0
+      px-6 lg:px-5vw
       h-20
-      max-w-7xl
-      mx-auto
       flex justify-between items-center"
   >
     <!-- start: logo -->

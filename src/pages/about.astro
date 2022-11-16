@@ -1,11 +1,13 @@
 ---
 import Layout from '@/components/astro/Layout.astro';
 import TextLink from '@/components/astro/TextLink.astro';
+
+import { Icon } from 'astro-icon';
 ---
 
-<Layout title="A little about me" description="bar">
-  <header class="py-32">
-    <h1 class="text-6xl leading-snug">
+<Layout title="About" description="bar">
+  <header class="py-48 border-b relative">
+    <h1 class="text-7xl leading-snug tracking-tight px-16">
       <p>
         Spreadin' wonders
       </p>
@@ -13,9 +15,15 @@ import TextLink from '@/components/astro/TextLink.astro';
         through software magic
       </p>
     </h1>
+
+    <div class="absolute -bottom-12 right-12">
+      <button class="w-24 h-24 rounded-full grid place-items-center bg-accent text-white transition-colors hover:bg-accent-dark">
+        <Icon name="radix-icons:file-text" class="w-10 h-10" />
+      </button>
+    </div>
   </header>
 
-  <section class="py-32 grid grid-cols-2">
+  <section class="py-16 grid grid-cols-2">
     <p class="text-xl">
       A little about me
     </p>
@@ -40,112 +48,36 @@ import TextLink from '@/components/astro/TextLink.astro';
     </div>
   </section>
 
-  <section class="py-32 w-full mx-auto grid grid-cols-2">
-    <h2 class="text-5xl">
-      Tools of Trade
+  <section class="py-16 grid grid-cols-2">
+    <p class="text-xl">
+      What I do
+    </p>
+
+    <div class="text-lg space-y-8 leading-relaxed text-content-light">
+      <p>
+        Whenever I'm free
+      </p>
+    </div>
+  </section>
+
+  <section class="py-16 w-full mx-auto grid grid-cols-2">
+    <h2 class="text-xl">
+      Experiences
     </h2>
 
-    <div class="col-start-2 text-lg leading-relaxed">
-      <p>
-        Every magicians have their own set of tools to spread wonders and I am no different.
-        Here's what I use.
-      </p>
+    <div class="space-y-8 text-lg w-full leading-relaxed text-content-light">
+      <div class="grid grid-cols-[auto_1fr_auto] gap-8 border-b-2 pb-4">
+        <p>
+          2020
+        </p>
 
-      <div class="space-y-8 text-lg leading-relaxed">
-        <div class="mt-10 grid grid-cols-2 gap-8 lg:gap-y-16 gap-x-8">
-          <div>
-            <p class="text-sm text-content-light tracking-tight">
-              Front End Development
-            </p>
+        <p>
+          Tokopedia
+        </p>
 
-            <ul class="space-y-1 mt-2">
-              <li>
-                HTML
-              </li>
-              <li>
-                CSS
-              </li>
-              <li>
-                JavaScript
-              </li>
-              <li>
-                TypeScript
-              </li>
-              <li>
-                React
-              </li>
-              <li>
-                Vue
-              </li>
-              <li>
-                Next.js
-              </li>
-              <li>
-                NuxtJS
-              </li>
-            </ul>
-          </div>
-
-          <div>
-            <p class="text-xs font-mono text-grey">
-              Back End Development
-            </p>
-
-            <ul class="space-y-1 mt-2">
-              <li>
-                NodeJS
-              </li>
-              <li>
-                Golang
-              </li>
-              <li>
-                MySQL
-              </li>
-              <li>
-                PostgreSQL
-              </li>
-            </ul>
-          </div>
-
-          <div>
-            <p class="text-xs font-mono text-grey">
-              Infrastructure
-            </p>
-
-            <ul class="space-y-1 mt-2">
-              <li>
-                Vercel
-              </li>
-              <li>
-                Supabase
-              </li>
-              <li>
-                Cloudflare
-              </li>
-            </ul>
-          </div>
-
-          <div>
-            <p class="text-xs font-mono text-grey">
-              Other Tools
-            </p>
-
-            <ul class="space-y-1 mt-2">
-              <li>
-                VSCode
-              </li>
-              <li>
-                Git
-              </li>
-              <li>
-                Figma
-              </li>
-              <li>
-                Google
-              </li>
-            </ul>
-          </div>
-        </div>
+        <p class="self-end">
+          Software Engineer
+        </p>
       </div>
     </div>
   </section>

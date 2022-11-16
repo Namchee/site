@@ -59,12 +59,6 @@ html {
   font-display: swap;
 }
 
-@media screen and (min-width: 1024px) {
-  html {
-    font-size: 18px;
-  }
-}
-
 ::-webkit-scrollbar {
   width: 8px;
   height: 4px;
