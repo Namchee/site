@@ -17,15 +17,15 @@ export default defineConfig({
           mono: ['JetBrains Mono'],
         },
         fontSize: {
-          'sm': '0.8rem',
+          'sm': '0.812rem',
           'lg': '1.25rem',
-          'xl': '1.563rem',
-          '2xl': '1.953rem',
-          '3xl': '2.441rem',
-          '4xl': '3.052rem',
-          '5xl': '3.851rem',
-          '6xl': '4.768rem',
-          '7xl': '5.96rem',
+          'xl': '1.562rem',
+          '2xl': '1.938rem',
+          '3xl': '2.438rem',
+          '4xl': '3.062rem',
+          '5xl': '3.812rem',
+          '6xl': '4.750rem',
+          '7xl': '5.938rem',
         },
         colors: {
           surface: {
