@@ -6,18 +6,24 @@ import { Icon } from 'astro-icon';
 ---
 
 <Layout title="About" description="bar">
-  <header class="py-32 border-b border-content-light border-opacity-25 relative">
+  <header
+    class="py-32
+      border-b border-content-light border-opacity-25
+      relative"
+  >
     <h1 class="text-7xl leading-snug tracking-tight px-12">
       <p>
         Bringing smiles
       </p>
       <p>
-        with software magic
+        through software magic
       </p>
     </h1>
 
     <div class="absolute -bottom-12 right-8">
-      <button
+      <a
+        href="/"
+        download
         class="w-24 h-24
           rounded-full
           grid place-items-center 
@@ -26,7 +32,7 @@ import { Icon } from 'astro-icon';
           hover:bg-accent-dark"
       >
         <Icon name="radix-icons:file-text" class="w-10 h-10" />
-      </button>
+      </a>
     </div>
   </header>
 
@@ -44,14 +50,20 @@ import { Icon } from 'astro-icon';
         </p>
 
         <p>
-          The accidental press of <kbd class="font-mono p-1 bg-content-light bg-opacity-10 rounded-md text-red">
-            F12</kbd> in 2016 sparks my interest in
+          The accidental press of <kbd class="
+            font-mono
+            p-1 
+            bg-surface-dark
+            rounded-md
+            text-red"
+          >
+            F12</kbd> in 2016 sparks my curiosity in
           softwares. Nobody ever suspected that those sparks will grow into a life-long
-          dream of making the world a better place through software engienering.
+          dream of making the world a better place through the magic of software engineering.
         </p>
 
         <p>
-          Since then, I always try to hone my craft by exploring and learning new things in the vast world
+          To achieve my dream, I always try to hone my craft by exploring and learning new things in the vast world
           of software engineering.
 
           For me, such journey are the ones that make life more lively and worth celebrating.
@@ -61,46 +73,18 @@ import { Icon } from 'astro-icon';
 
     <section class="grid grid-cols-2">
       <p class="text-xl">
-        What I do
-      </p>
-
-      <ul class="space-y-8 leading-relaxed text-content-light">
-        <li class="space-y-4">
-          <p class="text-content text-xl">
-            Tokopedia
-          </p>
-
-          <div>
-            <p>
-              August 2022 &mdash; Present
-            </p>
-
-            <p>
-              Software Engineer
-            </p>
-          </div>
-
-          <p>
-            Jakarta, Indonesia
-          </p>
-        </li>
-      </ul>
-    </section>
-
-    <section class="grid grid-cols-2">
-      <p class="text-xl">
         Experiences
       </p>
 
-      <ul class="space-y-8 leading-relaxed text-content-light">
+      <ul class="space-y-12 leading-relaxed text-content-light">
         <li class="space-y-4">
-          <p class="text-content text-xl">
+          <p class="text-content text-xl leading-relaxed">
             Tokopedia
           </p>
 
           <div>
             <p>
-              August 2022 &mdash; Present
+              August 2021 &mdash; Present
             </p>
 
             <p>

@@ -1,7 +1,5 @@
 import { defineConfig } from 'astro/config';
 
-import tailwind from '@astrojs/tailwind';
-
 import unocss from 'unocss/astro';
 
 import vue from '@astrojs/vue';
@@ -30,7 +28,7 @@ export default defineConfig({
         colors: {
           surface: {
             DEFAULT: '#F9F8F9',
-            dark: '#EEEFEF',
+            dark: '#E9E8EA',
           },
           content: {
             light: '#504f57',
@@ -41,7 +39,8 @@ export default defineConfig({
             light: '#5D7CE9',
             DEFAULT: '#4164E5',
             dark: '#1E48DF',
-          }
+          },
+          red: '#E5484D',
         },
       }
     })
