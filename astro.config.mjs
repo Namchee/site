@@ -31,8 +31,9 @@ export default defineConfig({
             dark: '#E9E8EA',
           },
           content: {
-            light: '#707070',
-            DEFAULT: '#282828',
+            light: '#6F6F6F',
+            DEFAULT: '#343434',
+            dark: '#232323',
           },
           accent: {
             light: '#5D7CE9',
