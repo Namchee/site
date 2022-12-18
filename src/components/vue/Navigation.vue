@@ -19,7 +19,8 @@ const props = defineProps<NavigationProps>();
       bg-surface bg-opacity-80
       backdrop-blur
       grid grid-cols-3
-      rounded-full"
+      rounded-full
+      hidden"
   >
     <a href="/"
       class="w-24 h-12 grid place-items-center rounded-full"

@@ -1,71 +1,80 @@
 <script setup lang="ts">
-import { Switch } from '@headlessui/vue';
+interface NavigationProps {
+  currentPath: string;
+}
 
-import { themeStore } from '@/stores/theme';
+const props = defineProps<NavigationProps>();
+
+const links = [
+  {
+    href: '/',
+    text: '/home',
+  },
+  {
+    href: '/about',
+    text: '/about',
+  },
+  {
+    href: '/blog',
+    text: '/blog',
+  },
+]
 </script>
 
 <template>
   <div class="w-full
-      px-6 lg:px-5vw
-      h-20
-      flex justify-between items-center"
-  >
+      max-w-7xl mx-auto
+      h-16
+      flex justify-between items-center">
     <!-- start: logo -->
-    <a
-      rel="noopener noreferrer"
-      href="/"
-      class="text-xl font-bold tracking-tighter"
-    >
+    <a rel="noopener noreferrer" href="/" class="text-lg font-semibold tracking-tighter">
       NAM•CHÉÉ
     </a>
     <!-- end: logo -->
 
-    <!-- start: theme switcher -->
-    <div class="flex items-center text-content-300 text-sm">
-      <p class="mr-2 overflow-y-hidden">
-        <Transition name="reveal" mode="out-in">
-          <span class="inline-block" v-if="themeStore.dark">
-            Dark
-          </span>
-          <span class="inline-block" v-else>
-            Light
-          </span>
-        </Transition>
-        Theme
-      </p>
-      <Switch v-model="themeStore.dark" as="template" v-slot="{ checked }">
-        <button
-          class="relative
-            inline-flex items-center
-            h-6 w-12
-            rounded-full bg-surface-darker"
-          >
-          <span class="sr-only">Switch Theme</span>
-          <span
-            :class="checked ? 'translate-x-7' : 'translate-x-1'"
-            class="inline-block h-4 w-4 transform rounded-full bg-surface transition"
-          />
-        </button>
-      </Switch>
-    </div>
-    <!-- end: theme switcher -->
+    <nav class="flex space-x-12">
+      <a
+        v-for="link in links"
+        :key="link.href"
+        :href="link.href"
+        :data-hover="link.text"
+        class="link"
+        :class="{ 'text-content-dark font-medium tracking-tight': props.currentPath === link.href }"
+      >
+        <span>
+          {{ link.text }}
+        </span>
+      </a>
+    </nav>
   </div>
 </template>
 
 <style scoped>
-/* we will explain what these classes do next! */
-.reveal-enter-active,
-.reveal-leave-active {
-  transition: all 100ms cubic-bezier(0.33, 1, 0.68, 1);
+.link {
+  position: relative;
+  overflow-y: hidden;
 }
 
-.reveal-enter-from {
-  opacity: 0;
-  transform: translateY(8px);
+.link span {
+  display: inline-block;
+  transition: transform 200ms ease-out;
 }
 
-.reveal-leave-to {
-  opacity: 0;
-  transform: translateY(-8px);
+.link::before {
+  content: attr(data-hover);
+  position: absolute;
+  display: inline-block;
+  left: 0;
+  bottom: 0;
+  transform: translateY(100%);
+  transition: transform 200ms ease-out;
+}
+
+.link:hover span, .link:focus span, .link:active span {
+  transform: translateY(-100%);
+}
+
+.link:hover::before, .link:focus::before, .link:active::before {
+  transform: translateY(0);
 }
 </style>

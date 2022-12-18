@@ -27,9 +27,8 @@ const { pathname } = new URL(Astro.request.url);
 	  <title>{title}</title>
   </head>
   <body class="bg-surface text-content min-h-screen flex flex-col font-sans">
-	  <Header client:visible />
-    <Navigation currentPath={pathname} client:visible />
-    <main class="w-full flex-1 max-w-7xl mx-auto">
+	  <Header currentPath={pathname} client:visible />
+    <main class="w-full flex-1 px-6 max-w-7xl mx-auto">
 		  <slot />
 	  </main>
     <Footer />
