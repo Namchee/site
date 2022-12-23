@@ -27,11 +27,11 @@ export default defineConfig({
         },
         colors: {
           surface: {
-            DEFAULT: '#F8F8F8',
+            DEFAULT: '#F3F3F3',
             dark: '#E8E8E8',
           },
           content: {
-            light: '#6F6F6F',
+            light: '#505050',
             DEFAULT: '#343434',
             dark: '#232323',
           },

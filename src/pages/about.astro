@@ -45,28 +45,31 @@ import { Icon } from 'astro-icon';
   <div class="py-32 space-y-24">
     <article class="grid grid-cols-12 gap-4">
       <p
-        class="text-xl col-start-2 col-span-4"
+        class="text-xl col-start-2 col-span-3"
       >
         A little about me
       </p>
 
       <div class="text-lg 
         leading-relaxed space-y-12
-        col-start-7 col-end-12"
+        col-start-5 col-end-12"
       >
-        <div class="space-y-4">
-          <p class="font-medium text-2xl leading-relaxed">
-            Eat. Sleep. Code.
-          </p>
-          
-          <p class="text-content-light">
+        <div class="space-y-12">          
+          <p class="text-content-light text-opacity-75 text-2xl leading-normal">
             Hi. My name is Cristopher, but I'm commonly known as Namchee in the online space.
             I'm a software engineer based in Bandung, Indonesia. Currently, I create practical solutions
             at <TextLink href="https://www.tokopedia.com" external theme="accent">Tokopedia</TextLink>.
           </p>
+
+          <p class="text-content-light text-opacity-75 text-2xl leading-normal">
+            I became acquainted with the world of code when I accidentaly
+            pressed <kbd class="bg-surface-dark text-red font-mono p-1 rounded">F12</kbd>
+            during my high school days. Since then, I always try to hone my craft
+            by exploring and learning new things everyday. 
+          </p>
         </div>
 
-        <div class="space-y-4">
+        <div class="space-y-4 hidden">
           <p class="text-xl">
             First step
           </p>
@@ -79,7 +82,7 @@ import { Icon } from 'astro-icon';
           </p>
         </div>
 
-        <div class="space-y-4">
+        <div class="space-y-4 hidden">
           <p class="text-xl">
             Dream
           </p>
@@ -90,7 +93,7 @@ import { Icon } from 'astro-icon';
           </p>
         </div>
 
-        <div class="space-y-4">
+        <div class="space-y-4 hidden">
           <p class="text-xl">
             Other things I do
           </p>
