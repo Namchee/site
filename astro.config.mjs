@@ -26,19 +26,22 @@ export default defineConfig({
           '7xl': '5.938rem',
         },
         colors: {
+          background: {
+            DEFAULT: '#FDFCFD',
+          },
           surface: {
-            DEFAULT: '#F3F3F3',
-            dark: '#E9E8EA',
+            DEFAULT: '#F4F2F4',
+          },
+          outline: {
+            DEFAULT: '#CECDD0',
           },
           content: {
-            light: '#6F6F6F',
             DEFAULT: '#343434',
-            dark: '#232323',
+            variant: '#706F78',
           },
-          accent: {
-            light: '#5D7CE9',
+          primary: {
             DEFAULT: '#4164E5',
-            dark: '#1E48DF',
+            variant: '#1C42CD',
           },
           red: '#E5484D',
         },
