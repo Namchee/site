@@ -24,7 +24,7 @@ const links = [
 <template>
   <div class="w-full
       max-w-7xl mx-auto
-      h-16
+      h-20
       flex justify-between items-center">
     <!-- start: logo -->
     <a rel="noopener noreferrer" href="/" class="text-lg font-semibold tracking-tighter">
@@ -38,8 +38,8 @@ const links = [
         :key="link.href"
         :href="link.href"
         :data-hover="link.text"
-        class="link text-content-variant"
-        :class="{ 'text-content font-medium tracking-tight': props.currentPath === link.href }"
+        class="link transition-colors hover:text-content-variant"
+        :class="{ 'font-medium tracking-tight': props.currentPath === link.href }"
       >
         <span>
           {{ link.text }}
@@ -57,7 +57,7 @@ const links = [
 
 .link span {
   display: inline-block;
-  transition: transform 200ms ease-out;
+  transition: transform 300ms ease-out;
 }
 
 .link::before {
@@ -67,7 +67,7 @@ const links = [
   left: 0;
   bottom: 0;
   transform: translateY(100%);
-  transition: transform 200ms ease-out;
+  transition: transform 300ms ease-out;
 }
 
 .link:hover span, .link:focus span, .link:active span {

@@ -33,7 +33,7 @@ export default defineConfig({
             DEFAULT: '#F4F2F4',
           },
           outline: {
-            DEFAULT: '#CECDD0',
+            DEFAULT: '#DCDBDD',
           },
           content: {
             DEFAULT: '#343434',
