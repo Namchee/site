@@ -1,59 +1,136 @@
 ---
-import TextLink from '@/components/astro/TextLink.astro';
+import BackToTop from '@/components/vue/BackToTop.vue';
+
+import { Icon } from 'astro-icon';
 ---
 
-<footer class="w-full px-4 md:px-0">
-  <div class="w-full
-    mx-auto
-    max-w-7xl
-    border-t-2 border-t-surface-darker
-    flex flex-col md:flex-row items-center justify-between
-    py-8
-    text-sm
-    text-content-light"
-  >
-    <!-- start: left side -->
-    <div class="mb-4 md:mb-0">
-      MIT License &copy; 2022 &mdash; Powered by
-        <TextLink
-          href="https://astro.build/"
-          external
-          theme="accent">
-          Astro
-        </TextLink>
-    </div>
-    <!-- end: left side -->
+<footer
+  class="w-[calc(100% - 32px)]
+    bg-content
+    mx-4 mb-4
+    rounded-xl
+    py-16
+    space-y-32"
+>
+  <!-- start: top section -->
+  <div class="max-w-7xl mx-auto
+    text-background
+    grid grid-cols-12 gap-4">
+    <!-- start: email -->
+    <div class="col-span-3">
+      <p class="text-surface text-opacity-50">
+        Say hello,
+      </p>
 
-    <!-- start: right side -->
-    <div
-      class="flex items-center
-        space-x-4 md:space-x-8"
-    >
-      <TextLink
-        theme="content"
-        href="mailto:im-cristopher@proton.me"
-        external>
-        Mail
-      </TextLink>
-      <TextLink
-        theme="content"
-        href="https://www.github.com/Namchee"
-        external>
-        GitHub
-      </TextLink>
-      <TextLink
-        theme="content"
-        href="https://www.linkedin.com/in/namchee/"
-        external>
-        LinkedIn
-      </TextLink>
-      <TextLink
-        theme="content"
-        href="https://twitter.com/lakban_hitam"
-        external>
-        Twitter
-      </TextLink>
+      <a
+        href="mailto:hello@namchee.dev"
+        rel="noopener noreferrer"
+        class="inline-block mt-2 text-xl"
+      >
+        hello@namchee.dev
+      </a>
     </div>
-    <!-- end: right side -->
+    <!-- end: email -->
+
+    <!-- start: sitemap -->
+    <div class="col-start-7 col-span-3">
+      <p class="text-surface text-opacity-50">
+        Sitemap
+      </p>
+
+      <ul class="mt-4 space-y-2">
+        <li>
+          <a
+            href="/"
+            rel="noopener noreferrer"
+          >
+            Home
+          </a>
+        </li>
+
+        <li>
+          <a
+            href="/about"
+            rel="noopener noreferrer"
+          >
+            About
+          </a>
+        </li>
+
+        <li>
+          <a
+            href="/blog"
+            rel="noopener noreferrer"
+          >
+            Blog
+          </a>
+        </li>
+      </ul>
+    </div>
+    <!-- end: sitemap -->
+
+    <!-- start: social -->
+    <div class="col-start-10 col-span-3">
+      <p class="text-surface text-opacity-50">
+        Get in touch
+      </p>
+
+      <ul class="mt-4 space-y-2">
+        <li>
+          <a
+            href="https://www.github.com/Namchee"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            GitHub
+          </a>
+        </li>
+
+        <li>
+          <a
+            href="https://www.twitter.com/lakban_hitam"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Twitter
+          </a>
+        </li>
+
+        <li>
+          <a
+            href="https://www.linkedin.com/in/namchee"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            LinkedIn
+          </a>
+        </li>
+      </ul>
+    </div>
+    <!-- end: social -->
   </div>
+  <!-- end: top section -->
+
+  <!-- start: bottom section -->
+  <div
+    class="max-w-7xl mx-auto
+      flex justify-between
+      text-surface">
+    <p>
+      Design and code by Namchee
+    </p>
+
+    <BackToTop
+      as="button"
+      class="flex items-center"
+      client:visible
+    >
+      <Icon name="radix-icons:arrow-up" class="w-5 mr-2" />
+      <span>
+        Back to top
+      </span>
+    </BackToTop>
+  </div>
+  <!-- end: bottom section -->
+
 </footer>
