@@ -7,176 +7,135 @@ import { Icon } from 'astro-icon';
 
 <Layout title="About" description="bar">
   <header
-    class="py-32
-      border-b border-content-light border-opacity-25
-      relative
-      grid grid-cols-12 gap-4"
+    class="w-full max-w-7xl mx-auto
+      py-32
+      grid grid-cols-12 gap-x-4
+      space-y-16"
   >
     <h1
       class="text-7xl leading-normal tracking-tight
         col-start-2 col-span-full
-        text-content-dark"
+        space-x-8
+        flex items-center"
     >
-      <p>
-        Driven by purpose
-      </p>
-      <p>
-        Delivering impact
-      </p>
+      <span>Code</span>
+      <Icon name="radix-icons:arrow-right" class="w-24 h-24 resume__button__file" />
+      <span>Namchee</span>
     </h1>
 
-    <div class="absolute -bottom-12 right-8">
-      <a
-        href="https://drive.google.com/uc?export=download&id=1O0DhjPpljvfygrP-Sk9pA7TxRSd8wrbX"
-        download
-        class="w-24 h-24
-          rounded-full
-          grid place-items-center
-          bg-primary text-surface
-          transition-all
-          hover:bg-primary-variant
-          hover:ring-primary
-          hover:ring-4
-          hover:ring-opacity-50
-          resume__button"
-        aria-label="Download resume"
-      >
-        <Icon name="radix-icons:file-text" class="w-10 h-10 resume__button__file" />
-        <Icon name="radix-icons:download" class="w-10 h-10 resume__button__download" />
+    <div
+      class="col-start-5 col-end-12
+      text-content-variant
+      space-y-12
+      text-2xl leading-normal"
+    >
+      <p>
+        Hi. My name is Cristopher, but I'm commonly known as Namchee in the online space.
+        I'm a software engineer based in Bandung, Indonesia. Currently, I create practical solutions
+        at <TextLink href="https://www.tokopedia.com" external theme="accent">Tokopedia</TextLink>.
+      </p>
+  
+      <a class="inline-flex items-center about__link" href="">
+        <Icon name="radix-icons:arrow-right" class="w-8 arrow__before" />
+        <span class="about__text inline-block">Read my resume</span>
+        <Icon name="radix-icons:arrow-top-right" class="w-8 -translate-x-8 opacity-0 arrow__after" />
       </a>
     </div>
   </header>
 
-  <div class="py-32 space-y-24">
-    <article class="grid grid-cols-12 gap-4">
-      <p
-        class="text-xl col-start-2 col-span-3"
+  <div
+    class="w-[calc(100% - 32px)]
+      bg-surface
+      mx-4 mb-4
+      rounded-xl
+      py-32"
+  >
+    <article
+      class="grid grid-cols-12 gap-x-4
+        max-w-7xl w-full mx-auto"
+    >
+      <h2
+        class="text-xl col-start-2 col-span-4"
       >
-        A little about me
-      </p>
+        A little more about me...
+      </h2>
 
-      <div class="text-lg
-        leading-relaxed space-y-12
-        col-start-5 col-end-12"
+      <section
+        class="col-start-5 col-end-12
+          text-content-variant"
       >
-        <div class="space-y-12">
-          <p class="text-content-light text-2xl leading-normal">
-            Hi. My name is Cristopher, but I'm commonly known as Namchee in the online space.
-            I'm a software engineer based in Bandung, Indonesia. Currently, I create practical solutions
-            at <TextLink href="https://www.tokopedia.com" external theme="accent">Tokopedia</TextLink>.
-          </p>
-
-          <p class="text-content-light text-2xl leading-normal">
-            I became acquainted with the world of code when I accidentaly
-            pressed <kbd class="bg-surface-dark text-red font-mono p-1 rounded">F12</kbd>
-            during my high school days. Since then, I always try to hone my craft
-            by exploring and learning new things everyday.
-          </p>
-
-          <div class="grid grid-cols-2 gap-8">
-            <div class="space-y-4">
-              <p class="text-xl leading-normal">
-                Dream
-              </p>
-
-              <p class="text-content-light">
-                My dream is to make the world a better place through software engineering by
-                creating practical solutions for anyone, anywhere, and anytime.
-              </p>
-            </div>
-
-            <div class="space-y-4">
-              <p class="text-xl leading-normal">
-                Other things I do
-              </p>
-
-              <p class="text-content-light">
-                Outside professional work, I love contributing to open source projects and
-                participating on community movements.
-              </p>
-
-              <p class="text-content-light">
-                Whenever I feel the burn out is approaching,
-                I play video games with my trusty little war machine or
-                read light novels.
-              </p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </article>
-
-    <article class="grid grid-cols-12 gap-4">
-      <p
-        class="text-xl
-          col-start-2 col-span-3"
-      >
-        Experiences
-      </p>
-
-      <ul
-        class="space-y-12
-          leading-relaxed
-          col-start-5 col-end-12"
-        >
-        <li class="space-y-4">
-          <p class="text-xl leading-relaxed">
-            Tokopedia
-          </p>
-
-          <div class="text-content-light">
-            <p>
-              August 2021 &mdash; Present
-            </p>
-
-            <p>
-              Software Engineer
-            </p>
-          </div>
-
-          <p class="text-content-light">
-            Jakarta, Indonesia
-          </p>
-        </li>
-      </ul>
+        <p class="text-2xl leading-normal">
+          I became acquainted to the world of code in 2015 when my teacher introduces me to the World Wide Web.
+          Although I only start being active in 2020
+          that fateful introduction serves as my first step to the software engineering world.
+        </p>
+      </section>
     </article>
   </div>
+
+  <article
+    class="grid grid-cols-12 gap-x-4
+      py-32"
+  >
+    <p
+      class="text-xl
+        col-start-2 col-span-3"
+    >
+      Experiences
+    </p>
+
+    <ul
+      class="space-y-12
+        leading-relaxed
+        col-start-5 col-end-12"
+      >
+      <li class="space-y-4">
+        <p class="text-xl leading-relaxed">
+          Tokopedia
+        </p>
+
+        <div class="text-content-light">
+          <p>
+            August 2021 &mdash; Present
+          </p>
+
+          <p>
+            Software Engineer
+          </p>
+        </div>
+
+        <p class="text-content-light">
+          Jakarta, Indonesia
+        </p>
+      </li>
+    </ul>
+  </article>
 </Layout>
 
-<style>
-.resume__button {
-  display: grid;
-  place-items: center;
-  overflow-y: hidden;
+<style scoped>
+.arrow__before,
+.arrow__after,
+.about__text {
+  transition: all 200ms cubic-bezier(0.33, 1, 0.68, 1);
 }
 
-.resume__button > * {
-  display: inline-block;
-  grid-area: 1 / 1;
-  transition: all 150ms ease-out;
+.about__text {
+  transform: translateX(8px);
 }
 
-.resume__button__file {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-.resume__button__download {
+.about__link:hover .arrow__before,
+.about__link:focus .arrow__before {
   opacity: 0;
-  transform: translateY(175%);
 }
 
-.resume__button:hover .resume__button__file,
-.resume__button:focus .resume__button__file,
-.resume__button:active .resume__button__file {
-  opacity: 0;
-  transform: translateY(-175%);
+.about__link:hover .about__text,
+.about__link:focus .about__text {
+  transform: translateX(-32px);
 }
 
-.resume__button:hover .resume__button__download,
-.resume__button:focus .resume__button__download,
-.resume__button:active .resume__button__download {
+.about__link:hover .arrow__after,
+.about__link:focus .arrow__after {
   opacity: 1;
-  transform: translateY(0);
+  transform: translateX(-24px);
 }
 </style>
