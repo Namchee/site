@@ -18,16 +18,16 @@ import { Icon } from 'astro-icon';
         space-x-8
         flex items-center"
     >
-      <span>Code</span>
+      <span>Purpose</span>
       <Icon name="radix-icons:arrow-right" class="w-24 h-24 resume__button__file" />
-      <span>Namchee</span>
+      <span>Impact</span>
     </h1>
 
     <div
       class="col-start-5 col-end-12
       text-content-variant
       space-y-12
-      text-2xl leading-normal"
+      text-xl leading-normal"
     >
       <p>
         Hi. My name is Cristopher, but I'm commonly known as Namchee in the online space.
@@ -44,72 +44,39 @@ import { Icon } from 'astro-icon';
   </header>
 
   <div
-    class="w-[calc(100% - 32px)]
-      bg-surface
-      mx-4 mb-4
-      rounded-xl
+    class="w-full max-w-7xl mx-auto bg-surface
+      grid grid-cols-12 gap-x-12
       py-32"
   >
-    <article
-      class="grid grid-cols-12 gap-x-4
-        max-w-7xl w-full mx-auto"
-    >
-      <h2
-        class="text-xl col-start-2 col-span-4"
-      >
-        A little more about me...
-      </h2>
+    <h2 class="text-5xl tracking-tight col-start-2 col-span-5 mb-32">
+      A little about me...
+    </h2>
 
-      <section
-        class="col-start-5 col-end-12
-          text-content-variant"
-      >
-        <p class="text-2xl leading-normal">
-          I became acquainted to the world of code in 2015 when my teacher introduces me to the World Wide Web.
-          Although I only start being active in 2020
-          that fateful introduction serves as my first step to the software engineering world.
+    <div class="col-start-5 col-end-12 grid grid-cols-2 gap-x-12">
+      <div class="space-y-4">
+        <p class="text-xl font-medium">
+          First Step
         </p>
-      </section>
-    </article>
+  
+        <p class="text-content-variant text-lg leading-normal">
+          My dream is to make the world a better place through software engineering by creating practical solutions for anyone, anywhere, and anytime.
+        </p>
+      </div>
+  
+      <div class="space-y-4">
+        <p class="text-xl font-medium">
+          First Step
+        </p>
+  
+        <p class="text-content-variant text-lg leading-normal">
+          Outside professional work, I love solving programming problems from online judges and contributing to open source projects.
+  
+          Whenever I feel the burn out is approaching, I usually play video games with my trusty little war machine or read light novels.      </p>
+      </div>
+    </div>
+
+    
   </div>
-
-  <article
-    class="grid grid-cols-12 gap-x-4
-      py-32"
-  >
-    <p
-      class="text-xl
-        col-start-2 col-span-3"
-    >
-      Experiences
-    </p>
-
-    <ul
-      class="space-y-12
-        leading-relaxed
-        col-start-5 col-end-12"
-      >
-      <li class="space-y-4">
-        <p class="text-xl leading-relaxed">
-          Tokopedia
-        </p>
-
-        <div class="text-content-light">
-          <p>
-            August 2021 &mdash; Present
-          </p>
-
-          <p>
-            Software Engineer
-          </p>
-        </div>
-
-        <p class="text-content-light">
-          Jakarta, Indonesia
-        </p>
-      </li>
-    </ul>
-  </article>
 </Layout>
 
 <style scoped>

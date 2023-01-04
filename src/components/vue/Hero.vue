@@ -48,5 +48,3 @@ onMounted(() => {
     </p>
   </div>
 </template>
-
-

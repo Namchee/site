@@ -27,23 +27,24 @@ export default defineConfig({
         },
         colors: {
           background: {
-            DEFAULT: '#FDFCFD',
+            DEFAULT: '#FCFCFC',
           },
           surface: {
-            DEFAULT: '#F4F2F4',
+            DEFAULT: '#F3F3F3',
           },
           outline: {
-            DEFAULT: '#DCDBDD',
+            DEFAULT: '#DBDBDB',
           },
           content: {
-            DEFAULT: '#28282C',
-            variant: '#6F6E77',
+            DEFAULT: '#232323',
+            variant: '#6F6F6F',
           },
           primary: {
             DEFAULT: '#4164E5',
             variant: '#1C42CD',
           },
           red: '#E5484D',
+          green: '#299764',
         },
       }
     })
