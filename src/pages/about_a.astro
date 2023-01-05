@@ -6,37 +6,47 @@ import { Icon } from 'astro-icon';
 ---
 
 <Layout title="About" description="bar">
-  <div class="w-full max-w-7xl mx-auto py-32">
+  <div class="w-full max-w-4xl mx-auto py-32">
     <h1 class="text-2xl">
       Driven by purpose, delivers meaningful impact
     </h1>
 
     <div class="mt-24 grid grid-cols-12 gap-4">
       <p class="text-lg leading-none col-span-3">
-        A little about me
+        A little about me...
       </p>
 
       <p class="col-start-5 col-span-full text-content-variant leading-relaxed">
-        Hi. My name is Cristopher, but I'm commonly known as Namchee in the online space. I'm a software engineer based in Bandung, Indonesia. Currently, I create practical solutions at Tokopedia.
+        Hi. My name is Cristopher, but I'm commonly known as Namchee in the online space.
+        I'm a software engineer based in Bandung, Indonesia.
+        Currently, I create practical solutions at
+        <TextLink href="https://www.tokopedia.com" external theme="accent">
+          Tokopedia
+        </TextLink>
       </p>
 
       <p class="col-start-5 col-span-full text-content-variant leading-relaxed">
-        I became acquainted to the world of code in 2015 when my teacher introduces me to the World Wide Web. Although I only start being active in 2020, that fateful introduction serves as my first step to the software engineering world.
+        I became acquainted with the world of code when I accidentaly
+        pressed <kbd class="bg-surface text-red font-mono p-0.5 rounded">F12</kbd>
+        during my high school days. Since then, I always try to hone my craft
+        by exploring and learning new things everyday.
       </p>
     </div>
 
     <div class="mt-8 grid grid-cols-12 gap-4">
       <p class="text-lg leading-none col-span-3">
-        The Dream
+        Dream
       </p>
 
       <p class="col-start-5 col-span-full text-content-variant leading-relaxed">
-        My dream is to make the world a better place through software engineering by creating practical solutions for anyone, anywhere, and anytime.
+        My dream is to make the world a better place through software engineering by
+        creating practical solutions for anyone, anywhere, and anytime.
       </p>
 
       <p class="col-start-5 col-span-full text-content-variant leading-relaxed">
-        With that in mind, I always try to expand my craft by exploring and learning new things in various domains everyday. For me, such opportunities are the one
-        that makes life more lively and interesting.
+        With that in mind, I always try to expand my craft by exploring and
+        learning new things in various domains everyday. For me, such opportunities
+        are the one that makes life more lively and interesting.
       </p>
     </div>
 
@@ -46,11 +56,13 @@ import { Icon } from 'astro-icon';
       </p>
 
       <p class="col-start-5 col-span-full text-content-variant leading-relaxed">
-        Outside professional work, I love contributing to open source projects and joining impactful community movements.
+        Outside professional work, I love contributing to open source projects and joining
+        impactful community movements.
       </p>
 
       <p class="col-start-5 col-span-full text-content-variant leading-relaxed">
-        Whenever I feel the burn out is approaching, I usually play video games with my trusty little war machine or read light novels.
+        Whenever I feel the burn out is approaching, I usually play video games with my
+        trusty little war machine or read light novels.
       </p>
     </div>
 
@@ -64,20 +76,25 @@ import { Icon } from 'astro-icon';
           Tokopedia
         </p>
 
-        <li class="flex space-x-4">
+        <li class="flex items-center space-x-4">
           <span>
             Software Engineer
           </span>
 
-          <div class="h-0.25 bg-outline flex-1" />
+          <div class="h-[1px] border-t border-t-outline flex-1" />
 
-          <span>
-            August 2021 &mdash; Present
+          <span class="flex items-center space-x-2">
+            <span class="w-2 h-2 rounded-full bg-green inline-block"></span>
+            <span>August 2021 &mdash; Present</span>
           </span>
         </li>
       </ul>
 
-      <a href="" class="mt-12 col-start-5 col-span-2">Read my resume</a>
+      <a href="" class="mt-12 col-start-5 col-span-3 about__link flex items-center">
+        <Icon name="radix-icons:arrow-right" class="w-4 -mt-1 arrow__before" />
+        <span class="about__text inline-block">Read my resume</span>
+        <Icon name="radix-icons:arrow-top-right" class="w-4 -mt-1 -translate-x-8 opacity-0 arrow__after" />
+      </a>
     </div>
   </div>
 </Layout>
@@ -100,12 +117,12 @@ import { Icon } from 'astro-icon';
 
 .about__link:hover .about__text,
 .about__link:focus .about__text {
-  transform: translateX(-32px);
+  transform: translateX(-16px);
 }
 
 .about__link:hover .arrow__after,
 .about__link:focus .arrow__after {
   opacity: 1;
-  transform: translateX(-24px);
+  transform: translateX(-8px);
 }
 </style>

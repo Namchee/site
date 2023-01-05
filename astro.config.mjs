@@ -30,7 +30,7 @@ export default defineConfig({
             DEFAULT: '#FCFCFC',
           },
           surface: {
-            DEFAULT: '#F3F3F3',
+            DEFAULT: '#EDEDED',
           },
           outline: {
             DEFAULT: '#DBDBDB',
@@ -40,11 +40,11 @@ export default defineConfig({
             variant: '#6F6F6F',
           },
           primary: {
-            DEFAULT: '#4164E5',
-            variant: '#1C42CD',
+            DEFAULT: '#3253C0',
+            variant: '#2A46A3',
           },
           red: '#E5484D',
-          green: '#299764',
+          green: '#46A758',
         },
       }
     })
