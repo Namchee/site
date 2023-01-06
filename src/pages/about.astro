@@ -12,28 +12,27 @@ import { Icon } from 'astro-icon';
       grid grid-cols-12 gap-x-4"
   >
     <h1
-      class="col-start-6 col-span-full
-        flex space-x-6
+      class="col-start-6 col-end-auto
+        grid header__grid grid-rows-2
+        gap-x-4
         mb-24"
     >
-     <div>
-        <p class="text-content-variant mb-2">Driven by</p>
-        <p class="text-2xl leading-none tracking-tight">
-          Purpose
-        </p>
-     </div>
+      <p class="text-content-variant">Driven by</p>
 
-     <Icon
+      <p class="text-content-variant col-start-3">Delivering</p>
+
+      <p class="text-3xl leading-none tracking-tight">
+        Purpose
+      </p>
+
+      <Icon
         name="radix-icons:arrow-right"
         class="w-8 self-end"
       />
 
-      <div>
-        <p class="text-content-variant mb-2">Delivering</p>
-        <p class="text-2xl leading-none tracking-tight">
-          Impact
-        </p>
-      </div>
+      <p class="text-3xl leading-none tracking-tight">
+        Impact
+      </p>
     </h1>
 
     <span
@@ -148,6 +147,10 @@ import { Icon } from 'astro-icon';
 </Layout>
 
 <style scoped>
+.header__grid {
+  grid-template-columns: auto 1fr auto;
+}
+
 .arrow__before,
 .arrow__after,
 .about__text {
