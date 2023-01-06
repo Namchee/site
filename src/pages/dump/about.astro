@@ -1,0 +1,108 @@
+---
+import Layout from '@/components/astro/Layout.astro';
+import TextLink from '@/components/astro/TextLink.astro';
+
+import { Icon } from 'astro-icon';
+---
+
+<Layout title="About" description="bar">
+  <header
+    class="w-full max-w-7xl mx-auto
+      py-32
+      grid grid-cols-12 gap-x-4
+      space-y-16"
+  >
+    <h1
+      class="text-7xl leading-normal tracking-tight
+        col-start-2 col-span-full
+        space-x-8
+        flex items-center"
+    >
+      <span>Purpose</span>
+      <Icon name="radix-icons:arrow-right" class="w-24 h-24 resume__button__file" />
+      <span>Impact</span>
+    </h1>
+
+    <div
+      class="col-start-5 col-end-12
+      text-content-variant
+      space-y-12
+      text-xl leading-normal"
+    >
+      <p>
+        Hi. My name is Cristopher, but I'm commonly known as Namchee in the online space.
+        I'm a software engineer based in Bandung, Indonesia. Currently, I create practical solutions
+        at <TextLink href="https://www.tokopedia.com" external theme="accent">Tokopedia</TextLink>.
+      </p>
+  
+      <a class="inline-flex items-center about__link" href="">
+        <Icon name="radix-icons:arrow-right" class="w-8 arrow__before" />
+        <span class="about__text inline-block">Read my resume</span>
+        <Icon name="radix-icons:arrow-top-right" class="w-8 -translate-x-8 opacity-0 arrow__after" />
+      </a>
+    </div>
+  </header>
+
+  <div
+    class="w-full max-w-7xl mx-auto bg-surface
+      grid grid-cols-12 gap-x-12
+      py-32"
+  >
+    <h2 class="text-5xl tracking-tight col-start-2 col-span-5 mb-32">
+      A little about me...
+    </h2>
+
+    <div class="col-start-5 col-end-12 grid grid-cols-2 gap-x-12">
+      <div class="space-y-4">
+        <p class="text-xl font-medium">
+          First Step
+        </p>
+  
+        <p class="text-content-variant text-lg leading-normal">
+          My dream is to make the world a better place through software engineering by creating practical solutions for anyone, anywhere, and anytime.
+        </p>
+      </div>
+  
+      <div class="space-y-4">
+        <p class="text-xl font-medium">
+          First Step
+        </p>
+  
+        <p class="text-content-variant text-lg leading-normal">
+          Outside professional work, I love solving programming problems from online judges and contributing to open source projects.
+  
+          Whenever I feel the burn out is approaching, I usually play video games with my trusty little war machine or read light novels.      </p>
+      </div>
+    </div>
+
+    
+  </div>
+</Layout>
+
+<style scoped>
+.arrow__before,
+.arrow__after,
+.about__text {
+  transition: all 200ms cubic-bezier(0.33, 1, 0.68, 1);
+}
+
+.about__text {
+  transform: translateX(8px);
+}
+
+.about__link:hover .arrow__before,
+.about__link:focus .arrow__before {
+  opacity: 0;
+}
+
+.about__link:hover .about__text,
+.about__link:focus .about__text {
+  transform: translateX(-32px);
+}
+
+.about__link:hover .arrow__after,
+.about__link:focus .arrow__after {
+  opacity: 1;
+  transform: translateX(-24px);
+}
+</style>
