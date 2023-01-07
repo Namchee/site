@@ -7,18 +7,21 @@ import { EASING_FUNC } from '@/constant/easing';
 interface RevealingTextProps {
   reveal?: string;
   duration?: number;
+  delay?: number;
   stagger?: number;
   easing?: string;
+  offset?: number;
 }
 
-const {
-  reveal = 'word',
-  stagger = 0.075,
-  duration = 0.5,
-  easing = 'ease-out-quad',
-} = defineProps<RevealingTextProps>();
+const props = withDefaults(defineProps<RevealingTextProps>(), {
+  reveal: 'word',
+  stagger: 0.1,
+  delay: 0,
+  duration: 0.5,
+  easing: 'ease-out-quad',
+});
 
-let easingFunc: Easing = EASING_FUNC[easing];
+let easingFunc: Easing = EASING_FUNC[props.easing];
 
 if (!easingFunc) {
   easingFunc = EASING_FUNC['ease-out-quad'];
@@ -27,13 +30,13 @@ if (!easingFunc) {
 function onIntersectionObserver([{ isIntersecting }]) {
   if (isIntersecting) {
     animate(
-      `.${reveal}`,
+      `.${props.reveal}`,
       {
         transform: 'translateY(0)',
       },
       {
-        delay: staggerVal(stagger),
-        duration: duration,
+        delay: props.delay ? props.delay : staggerVal(props.stagger),
+        duration: props.duration,
         easing: easingFunc,
       },
     );
@@ -43,7 +46,7 @@ function onIntersectionObserver([{ isIntersecting }]) {
 
 <template>
   <div v-intersection-observer="onIntersectionObserver">
-    <slot />
+    <slot></slot>
   </div>
 </template>
 

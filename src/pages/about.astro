@@ -2,6 +2,8 @@
 import Layout from '@/components/astro/Layout.astro';
 import TextLink from '@/components/astro/TextLink.astro';
 
+import RevealingText from '@/components/vue/RevealingText.vue';
+
 import { Icon } from 'astro-icon';
 ---
 
@@ -21,25 +23,50 @@ import { Icon } from 'astro-icon';
 
       <p class="text-content-variant col-start-3">Delivering</p>
 
-      <p class="text-3xl leading-none tracking-tight">
-        Purpose
-      </p>
+      <RevealingText
+        reveal="header__first"
+        duration={0.2}
+        delay={0.5}
+        client:visible
+      >
+        <p
+          class="text-3xl leading-none tracking-tight
+            overflow-y-hidden"
+        >
+          <span class="inline-block translate-y-100% header__first">
+            Purpose
+          </span>
+        </p>
+      </RevealingText>
 
       <Icon
         name="radix-icons:arrow-right"
         class="w-8 self-end"
       />
 
-      <p class="text-3xl leading-none tracking-tight">
-        Impact
-      </p>
+      <RevealingText
+        reveal="header__second"
+        duration={0.2}
+        delay={1.75}
+        client:visible
+      >
+        <p
+          class="text-3xl leading-none tracking-tight
+            overflow-y-hidden"
+        >
+        <span class="inline-block translate-y-100% header__second">
+          Impact
+        </span>
+        </p>
+      </RevealingText>
     </h1>
 
     <span
       class="col-start-3 col-span-3
-        text-lg leading-none"
+        text-lg leading-none
+        loading"
     >
-      A little about me...
+      A little about me
     </span>
 
     <p class="col-start-6 col-span-5 text-content-variant leading-relaxed">
@@ -59,8 +86,8 @@ import { Icon } from 'astro-icon';
     >
       I became acquainted with the world of code when I accidentaly
       pressed <kbd class="bg-surface text-red font-mono p-0.5 rounded">F12</kbd>
-      during my high school days. Since then, I always try to hone my craft
-      by exploring and learning new things everyday.
+      during my high school days. Although I only started being active in 2020, that
+      fateful 'accident' ignites my curiosity in software engineering.
     </p>
 
     <p class="col-start-3 col-span-3
@@ -71,7 +98,8 @@ import { Icon } from 'astro-icon';
 
     <p class="col-start-6 col-span-5 text-content-variant leading-relaxed">
       My dream is to make the world a better place through software engineering by
-      creating practical solutions for anyone, anywhere, and anytime.
+      creating practical solutions to real-world problems
+      for anyone, anywhere, and anytime.
     </p>
 
     <p
@@ -79,7 +107,7 @@ import { Icon } from 'astro-icon';
         mt-4
         mb-12"
     >
-      With that in mind, I always try to expand my craft by exploring and
+      With the dream in mind, I always try to hone my craft by exploring and
       learning new things in various domains everyday. For me, such opportunities
       are the one that makes life more lively and interesting.
     </p>
@@ -119,7 +147,10 @@ import { Icon } from 'astro-icon';
         <div class="h-[1px] border-t border-t-outline flex-1" />
 
         <span class="flex items-center space-x-2">
-          <span class="w-2 h-2 rounded-full bg-green inline-block" aria-hidden="true" />
+          <span
+            class="w-2 h-2 rounded-full bg-green inline-block pulse"
+            aria-hidden="true"
+          />
           <span>August 2021 &mdash; Present</span>
         </span>
       </li>
@@ -129,7 +160,7 @@ import { Icon } from 'astro-icon';
       href="https://read.cv/namchee"
       target="_blank"
       rel="noopener noreferrer"
-      class="mt-12 col-start-6 col-span-3 about__link flex items-center"
+      class="mt-12 col-start-6 col-span-2 about__link flex items-center"
     >
       <Icon
         name="radix-icons:arrow-right"
@@ -175,5 +206,27 @@ import { Icon } from 'astro-icon';
 .about__link:focus .arrow__after {
   opacity: 1;
   transform: translateX(-12px);
+}
+
+.pulse {
+  opacity: 1;
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+	0%, 100% {
+		transform: scale(0.95);
+		box-shadow: 0 0 0 0 rgba(101, 186, 117, 0.5);
+	}
+
+	60% {
+		transform: scale(1);
+		box-shadow: 0 0 0 8px rgba(101, 186, 117, 0);
+	}
+
+	80% {
+		transform: scale(0.95);
+		box-shadow: 0 0 0 0 rgba(101, 186, 117, 0);
+	}
 }
 </style>
