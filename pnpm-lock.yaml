@@ -10,7 +10,7 @@ specifiers:
   '@vueuse/components': ^8.6.0
   '@vueuse/core': ^9.9.0
   astro: 1.8.0
-  astro-icon: ^0.7.3
+  astro-icon: ^0.8.0
   eslint: ^8.14.0
   eslint-config-prettier: ^8.5.0
   eslint-config-xo: ^0.40.0
@@ -31,7 +31,7 @@ dependencies:
   '@headlessui/vue': 1.7.3_vue@3.2.45
   '@vueuse/components': 8.6.0_vue@3.2.45
   '@vueuse/core': 9.9.0_vue@3.2.45
-  astro-icon: 0.7.3
+  astro-icon: 0.8.0
   motion: 10.14.2
   three: 0.145.0
   troisjs: 0.3.4
@@ -1699,8 +1699,8 @@ packages:
       - supports-color
     dev: true
 
-  /astro-icon/0.7.3:
-    resolution: {integrity: sha512-choatz5A5pKFMzmGJucvtliOxYJLUQ94bjgoGJHYLQnX7FRG+YhnONoyyapno6iVFavCIytSREOy4Vcg2wMYUA==}
+  /astro-icon/0.8.0:
+    resolution: {integrity: sha512-sCzhZcl46BIyLJVg89hq5J4uQABn2psmGvK4cUaxib+M/kBI3TrPy1w3g2O5h/WcrTHLVN9LyxjgkD4lEJJFpw==}
     dependencies:
       node-fetch: 3.2.5
       resolve-pkg: 2.0.0

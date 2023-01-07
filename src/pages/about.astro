@@ -23,42 +23,22 @@ import { Icon } from 'astro-icon';
 
       <p class="text-content-variant col-start-3">Delivering</p>
 
-      <RevealingText
-        reveal="header__first"
-        duration={0.2}
-        delay={0.5}
-        client:visible
+      <p
+        class="text-3xl leading-none tracking-tight"
       >
-        <p
-          class="text-3xl leading-none tracking-tight
-            overflow-y-hidden"
-        >
-          <span class="inline-block translate-y-100% header__first">
-            Purpose
-          </span>
-        </p>
-      </RevealingText>
+        Purpose
+      </p>
 
       <Icon
         name="radix-icons:arrow-right"
         class="w-8 self-end"
       />
 
-      <RevealingText
-        reveal="header__second"
-        duration={0.2}
-        delay={1.75}
-        client:visible
+      <p
+        class="text-3xl leading-none tracking-tight"
       >
-        <p
-          class="text-3xl leading-none tracking-tight
-            overflow-y-hidden"
-        >
-        <span class="inline-block translate-y-100% header__second">
-          Impact
-        </span>
-        </p>
-      </RevealingText>
+        Impact
+      </p>
     </h1>
 
     <span
