@@ -70,7 +70,7 @@ const links = [
 
 .link span {
   display: inline-block;
-  transition: transform 300ms ease-out;
+  transition: transform 600ms easeOutQuart;
 }
 
 .link::before {
@@ -80,14 +80,14 @@ const links = [
   left: 0;
   bottom: 0;
   transform: translateY(100%);
-  transition: transform 300ms ease-out;
+  transition: transform 600ms easeOutQuart;
 }
 
-.link:hover span, .link:focus span, .link:active span {
+.link:hover span, .link:focus span {
   transform: translateY(-100%);
 }
 
-.link:hover::before, .link:focus::before, .link:active::before {
+.link:hover::before, .link:focus::before {
   transform: translateY(0);
 }
 
@@ -109,27 +109,14 @@ const links = [
   transform: translateY(100%);
 }
 
-.logo span:nth-child(1) {
-  transition: transform 300ms ease-out;
-}
+@for $i from 1 to 8 {
+  .logo span:nth-child($i) {
+    transition: transform 600ms calc(50ms * ($(i) - 1)) easeOutQuart;
+  }
 
-.logo:hover span:nth-child(1) {
-  transform: translateY(-100%);
-}
-
-.logo span:nth-child(2) {
-  transition: transform 300ms 100ms ease-out;
-}
-
-.logo:hover span:nth-child(2) {
-  transform: translateY(-100%);
-}
-
-.logo span:nth-child(3) {
-  transition: transform 300ms 200ms ease-out;
-}
-
-.logo:hover span:nth-child(3) {
-  transform: translateY(-100%);
+  .logo:hover span:nth-child($i),
+  .logo:focus span:nth-child($i) {
+    transform: translateY(-100%);
+  }
 }
 </style>
