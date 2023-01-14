@@ -1,0 +1,221 @@
+---
+import Layout from '@/components/astro/Layout.astro';
+import TextLink from '@/components/astro/TextLink.astro';
+
+import { Icon } from 'astro-icon';
+---
+
+<Layout title="About" description="bar">
+  <div
+    class="w-full max-w-7xl mx-auto
+      py-32
+      grid grid-cols-12 gap-x-4"
+  >
+    <h1
+      class="col-start-6 col-end-auto
+        grid header__grid grid-rows-2
+        gap-x-4
+        mb-24"
+    >
+      <p class="text-content-variant">
+        Driven by
+      </p>
+
+      <p class="text-content-variant col-start-3">
+        Delivering
+      </p>
+
+      <p
+        class="text-3xl leading-none tracking-tight"
+      >
+        Purpose
+      </p>
+
+      <Icon
+        name="radix-icons:arrow-right"
+        class="w-8 self-end"
+      />
+
+      <p
+        class="text-3xl leading-none tracking-tight"
+      >
+        Impact
+      </p>
+    </h1>
+
+    <span
+      class="col-start-3 col-span-3
+        text-lg leading-none
+        loading"
+    >
+      A little about me
+    </span>
+
+    <p class="col-start-6 col-span-5 text-content-variant leading-relaxed">
+      Hi. My name is Cristopher, but I'm commonly known as Namchee in the online space.
+      I'm a software engineer based in Bandung, Indonesia.
+      Currently, I create practical solutions at
+      <TextLink href="https://www.tokopedia.com" external theme="accent">
+        Tokopedia
+      </TextLink>
+    </p>
+
+    <p
+      class="col-start-6 col-span-5
+        text-content-variant leading-relaxed
+        mt-4
+        mb-12"
+    >
+      I became acquainted with the world of code when I accidentaly
+      pressed <kbd class="bg-surface text-red font-mono p-0.5 rounded">F12</kbd>
+      during my high school days. Although I only started being active in 2020, that
+      fateful 'accident' ignites my curiosity in software engineering.
+    </p>
+
+    <p class="col-start-3 col-span-3
+      text-lg leading-none"
+    >
+      Dream
+    </p>
+
+    <p class="col-start-6 col-span-5 text-content-variant leading-relaxed">
+      My dream is to make the world a better place through software engineering by
+      creating practical solutions to real-world problems
+      for anyone, anywhere, and anytime.
+    </p>
+
+    <p
+      class="col-start-6 col-span-5 text-content-variant leading-relaxed
+        mt-4
+        mb-12"
+    >
+      With the dream in mind, I always try to hone my craft by exploring and
+      learning new things in various domains everyday. For me, such opportunities
+      are the one that makes life more lively and interesting.
+    </p>
+
+    <p class="text-lg leading-none col-start-3 col-span-3">
+      Other things I do
+    </p>
+
+    <p
+      class="col-start-6 col-span-5
+      text-content-variant leading-relaxed"
+    >
+      Outside professional work, I love contributing to open source projects and
+      joining impactful community movements.
+    </p>
+
+    <p
+      class="col-start-6 col-span-5
+      text-content-variant leading-relaxed
+        mt-4
+        mb-12"
+    >
+      Whenever I feel the burn out is approaching, I usually play video games with my
+      trusty little war machine or read light novels.
+    </p>
+
+    <p class="text-lg leading-none col-start-3 col-span-3">
+      Experiences
+    </p>
+
+    <ul
+      class="col-start-6 col-span-5
+        text-content-variant leading-relaxed"
+    >
+      <p class="font-medium mb-4 text-content">
+        Tokopedia
+      </p>
+
+      <li class="flex items-center space-x-4">
+        <span>
+          Software Engineer
+        </span>
+
+        <div class="h-[1px] border-t border-t-outline flex-1" />
+
+        <span class="flex items-center space-x-2">
+          <span
+            class="w-2 h-2 rounded-full bg-green inline-block pulse"
+            aria-hidden="true"
+          />
+          <span>August 2021 &mdash; Present</span>
+        </span>
+      </li>
+    </ul>
+
+    <a
+      href="https://read.cv/namchee"
+      target="_blank"
+      rel="noopener noreferrer"
+      class="mt-12 col-start-6 col-span-2 about__link flex items-center"
+    >
+      <Icon
+        name="radix-icons:arrow-right"
+        class="w-4 h-4 arrow__before"
+      />
+      <span class="about__text inline-block">
+        Read my resume
+      </span>
+      <Icon
+        name="radix-icons:arrow-top-right"
+        class="w-4 h-4 -translate-x-4 opacity-0 arrow__after"
+      />
+    </a>
+  </div>
+</Layout>
+
+<style scoped>
+.header__grid {
+  grid-template-columns: auto 1fr auto;
+}
+
+.arrow__before,
+.arrow__after,
+.about__text {
+  transition: all 200ms cubic-bezier(0.33, 1, 0.68, 1);
+}
+
+.about__text {
+  transform: translateX(8px);
+}
+
+.about__link:hover .arrow__before,
+.about__link:focus .arrow__before {
+  opacity: 0;
+}
+
+.about__link:hover .about__text,
+.about__link:focus .about__text {
+  transform: translateX(-16px);
+}
+
+.about__link:hover .arrow__after,
+.about__link:focus .arrow__after {
+  opacity: 1;
+  transform: translateX(-12px);
+}
+
+.pulse {
+  opacity: 1;
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+	0%, 100% {
+		transform: scale(0.95);
+		box-shadow: 0 0 0 0 rgba(101, 186, 117, 0.5);
+	}
+
+	60% {
+		transform: scale(1);
+		box-shadow: 0 0 0 8px rgba(101, 186, 117, 0);
+	}
+
+	80% {
+		transform: scale(0.95);
+		box-shadow: 0 0 0 0 rgba(101, 186, 117, 0);
+	}
+}
+</style>

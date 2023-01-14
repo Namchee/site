@@ -15,9 +15,9 @@ interface RevealingTextProps {
 
 const props = withDefaults(defineProps<RevealingTextProps>(), {
   reveal: 'word',
-  stagger: 0.1,
+  stagger: 0.125,
   delay: 0,
-  duration: 0.5,
+  duration: 0.6,
   easing: 'ease-out-quad',
 });
 

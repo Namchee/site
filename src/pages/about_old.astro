@@ -6,28 +6,26 @@ import { Icon } from 'astro-icon';
 ---
 
 <Layout title="About" description="bar">
-  <header class="grid grid-cols-12 gap-x-4 py-32">
+  <header
+    class="grid grid-cols-12 gap-x-4
+      py-32
+      border-b border-b-outline"
+  >
     <h1
-      class="text-7xl leading-none col-start-2 col-span-full space-x-8 flex items-center"
+      class="text-7xl leading-tight col-start-2 col-span-full"
     >
-      <div>
-        <p class="text-content-variant text-2xl">Driven by</p>
-        <p class="tracking-tight mt-8">Purpose</p>
-      </div>
-      <Icon name="radix-icons:arrow-right" class="w-24 h-24 self-end" />
-      <div>
-        <p class="text-content-variant text-2xl">Delivering</p>
-        <p class="tracking-tight mt-8">Impact</p>
-      </div>
+      Eat. <span class="text-content-variant">Sleep.</span> Code.
     </h1>
   </header>
 
-  <div class="mb-32 space-y-32">
+  <div class="my-32 space-y-32">
     <section class="w-full max-w-7xl mx-auto grid grid-cols-12 gap-x-4">
-      <p class="col-start-2 col-span-2">ABOUT ME</p>
+      <p class="col-start-2 col-span-4 text-3xl leading-none">
+        About me
+      </p>
 
       <div
-        class="col-start-6 col-end-12
+        class="col-start-7 col-end-12
           text-content-variant
           space-y-6 text-[18px] leading-relaxed"
       >
@@ -55,32 +53,6 @@ import { Icon } from 'astro-icon';
           the burn out is approaching, I usually play video games with my trusty
           little war machine or read light novels.
         </p>
-
-        <div class="grid grid-cols-2 gap-x-12">
-          <div class="space-y-6">
-            <p class="text-xl leading-normal text-content">Mission</p>
-
-            <p>
-              My mission is to make the world a better place through software
-              engineering by creating practical solutions to real-world problems
-              for anyone, anywhere, and anytime.
-            </p>
-          </div>
-
-          <div class="space-y-6">
-            <p class="text-lg leading-normal text-content">Other things I do</p>
-
-            <p>
-              Outside professional work, I love contributing to open source
-              projects and joining impactful community movements.
-            </p>
-
-            <p>
-              Whenever I feel the burn out is approaching, I usually play video
-              games with my trusty little war machine or read light novels.
-            </p>
-          </div>
-        </div>
       </div>
     </section>
 

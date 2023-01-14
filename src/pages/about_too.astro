@@ -1,0 +1,45 @@
+---
+import Layout from '@/components/astro/Layout.astro';
+import TextLink from '@/components/astro/TextLink.astro';
+
+import { Icon } from 'astro-icon';
+---
+
+<Layout title="About" description="bar">
+  <header
+    class="py-36
+      grid grid-cols-12 gap-x-6"
+  >
+    <h1 class="text-[69px] mt-4 leading-normal col-start-2 col-span-full tracking-tight">
+      <p>
+        Driven by purpose.
+      </p>
+      <p>
+        Delivering meaningful impact.
+      </p>
+    </h1>
+  </header>
+
+  <section class="grid grid-cols-12 gap-x-6 pb-32">
+    <p class="col-start-7 col-end-12 text-[20px]">
+      Hi. My name is Cristopher, but I'm commonly known as Namchee in the online space.
+      I'm a software engineer based in Bandung, Indonesia.
+      Currently, I create practical solutions at Tokopedia.
+    </p>
+
+    <p class="col-start-6 col-end-12 mt-[46px] text-[23px] text-content-variant">
+      I became acquainted with the world of code when I accidentaly pressed <kbd
+            class="bg-surface text-red font-mono p-0.5 rounded">F12</kbd
+          >
+          during my high school days. Although I only started being active around
+          2020, that fateful incident ignites my curiosity in software engineering.
+    </p>
+
+    <p class="col-start-6 col-end-12 mt-[46px] text-[23px] text-content-variant">
+      Outside professional work, I love contributing to open source
+          projects and joining impactful community movements. Whenever I feel
+          the burn out is approaching, I usually play video games with my trusty
+          little war machine or read light novels.
+    </p>
+  </section>
+</Layout>
