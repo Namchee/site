@@ -1,6 +1,6 @@
 ---
 import Layout from '@/components/astro/Layout.astro';
-import RevealingText from '@/components/vue/RevealingText.vue';
+import ScrollTrigger from '@/components/vue/ScrollTrigger.vue';
 
 import { Icon } from 'astro-icon';
 ---
@@ -11,34 +11,47 @@ import { Icon } from 'astro-icon';
       py-32"
   >
     <header class="col-start-1 col-span-6">
-      <RevealingText
-        reveal="header"
+      <ScrollTrigger
+        target="header__word"
+        apply={{ transform: 'translateY(0)' }}
+        as="h1"
+        class="text-5xl leading-snug"
         client:visible
       >
-        <h1 class="text-5xl leading-tight">
-          <p class="overflow-y-hidden">
-            <span class="inline-block translate-y-100% header">
-              Driven by purpose.
-            </span>
-          </p>
+        <p class="overflow-y-hidden">
+          <span
+            class="inline-block translate-y-100%
+              header__word"
+          >
+            Driven by purpose.
+          </span>
+        </p>
 
-          <p class="overflow-y-hidden">
-            <span class="inline-block translate-y-100% header">
-              Delivering impact.
-            </span>
-          </p>
-        </h1>
-      </RevealingText>
-
+        <p class="overflow-y-hidden">
+          <span
+            class="inline-block translate-y-100%
+            header__word"
+          >
+            Delivering impact.
+          </span>
+        </p>
+      </ScrollTrigger>
     </header>
 
-    <article class="col-start-8 col-span-full space-y-12">
-      <section class="space-y-6">
-        <p class="font-mono text-content-variant uppercase">
+    <article class="col-start-8 col-span-full">
+      <ScrollTrigger
+        as="section"
+        target="about__me"
+        apply={{ transform: 'translateY(0)', opacity: 1 }}
+        duration={0.25}
+        class="opacity-0 translate-y-4 about__me mb-12"
+        client:visible
+      >
+        <p class="font-mono text-content-variant uppercase mb-6">
           About me
         </p>
 
-        <p class="text-lg leading-normal">
+        <p class="text-lg leading-normal mb-6">
           Hi. My name is Cristopher, but I'm commonly known as Namchee in
           the online space. I'm a software engineer based in Bandung, Indonesia.
           Currently, I create practical solutions at Tokopedia.
@@ -49,14 +62,21 @@ import { Icon } from 'astro-icon';
           a Facebook game during my junior high school days. Although I failed to do so,
           the journey serves as my first step to software engineering.
         </p>
-      </section>
+      </ScrollTrigger>
 
-      <section class="space-y-6">
-        <p class="font-mono text-content-variant uppercase">
+      <ScrollTrigger
+        as="section"
+        target="mission"
+        apply={{ transform: 'translateY(0)', opacity: 1 }}
+        duration={0.25}
+        class="opacity-0 translate-y-4 mission mb-12"
+        client:visible
+      >
+        <p class="font-mono text-content-variant uppercase mb-6">
           Mission
         </p>
 
-        <p class="text-lg leading-normal">
+        <p class="text-lg leading-normal mb-6">
           My mission is to make the world a better place through software engineering by
           creating practical solutions to real-world problems for anyone, anywhere,
           and anytime.
@@ -67,9 +87,16 @@ import { Icon } from 'astro-icon';
           new things in various domains everyday. For me, such opportunities are the one
           that makes life more lively and interesting.
         </p>
-      </section>
+      </ScrollTrigger>
 
-      <section class="space-y-6">
+      <ScrollTrigger
+        as="section"
+        target="section__c"
+        apply={{ transform: 'translateY(0)', opacity: 1 }}
+        duration={0.25}
+        class="opacity-0 translate-y-4 section__c mb-12"
+        client:visible
+      >
         <p class="font-mono text-content-variant uppercase">
           Other things I do
         </p>
@@ -79,7 +106,7 @@ import { Icon } from 'astro-icon';
           impactful community movements. Whenever I feel the burn out is approaching, I usually
           play video games with my trusty little war machine or read light novels.
         </p>
-      </section>
+      </ScrollTrigger>
 
       <section class="space-y-6">
         <p class="font-mono text-content-variant uppercase">
