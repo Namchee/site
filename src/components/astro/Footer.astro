@@ -5,22 +5,13 @@ import { Icon } from 'astro-icon';
 ---
 
 <footer
-  class="w-[calc(100% - 32px)]
-    bg-content
-    mx-4 mb-4
-    rounded-xl
-    py-16
-    space-y-32"
+  class="w-[calc(100% - 32px)] bg-content mx-4 mb-4 rounded-xl py-16 space-y-32"
 >
   <!-- start: top section -->
-  <div class="max-w-7xl mx-auto
-    text-background
-    grid grid-cols-12 gap-4">
+  <div class="max-w-7xl mx-auto text-background grid grid-cols-12 gap-4">
     <!-- start: email -->
     <div class="col-span-3">
-      <p class="text-background text-opacity-50">
-        Say hello,
-      </p>
+      <p class="text-background text-opacity-50">Say hello,</p>
 
       <a
         href="mailto:hello@namchee.dev"
@@ -34,36 +25,19 @@ import { Icon } from 'astro-icon';
 
     <!-- start: sitemap -->
     <div class="col-start-7 col-span-3">
-      <p class="text-background text-opacity-50">
-        Sitemap
-      </p>
+      <p class="text-background text-opacity-50">Sitemap</p>
 
       <ul class="mt-4 space-y-2">
         <li>
-          <a
-            href="/"
-            rel="noopener noreferrer"
-          >
-            Home
-          </a>
+          <a href="/" rel="noopener noreferrer"> Home</a>
         </li>
 
         <li>
-          <a
-            href="/about"
-            rel="noopener noreferrer"
-          >
-            About
-          </a>
+          <a href="/about" rel="noopener noreferrer"> About</a>
         </li>
 
         <li>
-          <a
-            href="/blog"
-            rel="noopener noreferrer"
-          >
-            Blog
-          </a>
+          <a href="/blog" rel="noopener noreferrer"> Blog</a>
         </li>
       </ul>
     </div>
@@ -71,9 +45,7 @@ import { Icon } from 'astro-icon';
 
     <!-- start: social -->
     <div class="col-start-10 col-span-3">
-      <p class="text-background text-opacity-50">
-        Get in touch
-      </p>
+      <p class="text-background text-opacity-50">Get in touch</p>
 
       <ul class="mt-4 space-y-2">
         <li>
@@ -112,25 +84,13 @@ import { Icon } from 'astro-icon';
   <!-- end: top section -->
 
   <!-- start: bottom section -->
-  <div
-    class="max-w-7xl mx-auto
-      flex justify-between
-      text-surface">
-    <p>
-      Design and code by Namchee
-    </p>
+  <div class="max-w-7xl mx-auto flex justify-between text-surface">
+    <p>Design and code by Namchee</p>
 
-    <BackToTop
-      as="button"
-      class="flex items-center"
-      client:visible
-    >
-      <Icon name="radix-icons:arrow-up" class="w-5 mr-2" />
-      <span>
-        Back to top
-      </span>
+    <BackToTop as="button" class="flex items-center" client:visible>
+      <Icon name="radix-icons:arrow-up" class="w-4 mr-2" />
+      <span> Back to top</span>
     </BackToTop>
   </div>
   <!-- end: bottom section -->
-
 </footer>

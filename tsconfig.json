@@ -19,5 +19,6 @@
       "@/*": ["src/*"],
     }
   },
+  "extends": "astro/tsconfigs/base",
   "exclude": ["node_modules"]
 }

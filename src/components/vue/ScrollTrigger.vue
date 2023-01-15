@@ -1,16 +1,17 @@
 <script setup lang="ts">
-import { vIntersectionObserver } from '@vueuse/components';
 import {
   animate,
+  inView,
   stagger,
   StyleKeyframesDefinition,
 } from 'motion';
+import { onMounted, ref, Ref } from 'vue';
 
 import { EASING_FUNC } from '@/constant/easing';
 
 interface RevealingTextProps {
-  target: string;
   apply: StyleKeyframesDefinition;
+  target?: string;
   as?: string;
   duration?: number;
   delay?: number;
@@ -22,43 +23,43 @@ interface RevealingTextProps {
 const props = withDefaults(defineProps<RevealingTextProps>(), {
   as: 'div',
   reveal: 'word',
-  stagger: 0.125,
+  stagger: 0.1,
   duration: 0.6,
   easing: 'ease-out-quad',
-  offset: 1.0,
-  class: '',
+  offset: 0.5,
 });
 
 let easingFunc = EASING_FUNC[props.easing];
-
 if (!easingFunc) {
-  easingFunc = EASING_FUNC['ease-out-quad'];
+  easingFunc = EASING_FUNC['easeOutQuad'];
 }
 
-function onIntersectionObserver([{ isIntersecting, intersectionRatio }]) {
-  if (props.target == 'mission') {
-    console.log(isIntersecting);
-  }
-  if (isIntersecting && intersectionRatio >= props.offset) {
-    animate(
-      `.${props.target}`,
-      props.apply,
-      {
-        delay: stagger(props.delay),
-        duration: props.duration,
-        easing: easingFunc,
-      },
-    );
-  }
-}
+const root: Ref<HTMLElement> = ref(null);
+
+onMounted(() => {
+  inView(
+    root.value,
+    (entry) => {
+      const el = props.target ? `.${props.target}` : entry.target;
+      animate(
+        el,
+        props.apply,
+        {
+          duration: props.duration,
+          delay: stagger(props.delay),
+          easing: easingFunc,
+        },
+      );
+    },
+    {
+      amount: props.offset,
+    }
+  );
+});
 </script>
 
 <template>
-  <component
-    :is="props.as"
-    :class="props.class"
-    v-intersection-observer="onIntersectionObserver"
-  >
+  <component :is="props.as" :class="props.class" ref="root">
     <slot></slot>
   </component>
 </template>
