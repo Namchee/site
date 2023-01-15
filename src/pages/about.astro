@@ -111,7 +111,22 @@ import { Icon } from 'astro-icon';
 
         <ul>
           <li>
-            <p class="text-xl leading-normal font-medium mb-3">Tokopedia</p>
+            <p
+              class="text-xl leading-normal font-medium flex items-center justify-between mb-3"
+            >
+              <span>Tokopedia</span>
+
+              <a
+                href="https://www.tokopedia.com"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <Icon
+                  name="radix-icons:external-link"
+                  class="w-5 h-5 text-content-variant"
+                />
+              </a>
+            </p>
 
             <ul>
               <li class="flex items-center space-x-4 text-lg leading-normal">
