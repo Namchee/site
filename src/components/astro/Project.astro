@@ -13,12 +13,11 @@ export interface ProjectProps {
 }
 
 const { name, description, link, repository, containerClass } = Astro.props;
-
-const gh = '';
-const arrow = '<ArrowTopRight class="w-4 h-4 text-content-light fill-current" />';
 ---
 
-<div class={`group relative bg-surface-dark rounded-md p-6 md:p-8 overflow-y-hidden ${containerClass}`}>
+<div
+  class={`group relative bg-surface rounded-md p-6 md:p-8 overflow-y-hidden ${containerClass}`}
+>
   <p class="text-xl font-medium">
     {name}
   </p>
@@ -27,30 +26,36 @@ const arrow = '<ArrowTopRight class="w-4 h-4 text-content-light fill-current" />
     {description}
   </p>
 
-  <div class="absolute
-    top-4 right-4
-    -translate-y-12
-    transition
-    group-hover:translate-y-0 focus-within:translate-y-0
-    flex space-x-2"
+  <div
+    class="absolute top-4 right-4 -translate-y-12 transition group-hover:translate-y-0 focus-within:translate-y-0 flex space-x-2"
   >
     {
-      repository && <AppLink
-      class="bg-surface shadow-sm w-8 h-8 flex items-center justify-center border-2 border-content-light border-opacity-20 rounded-full"
-        href={repository}
-        external
-      >
-        <Icon name="radix-icons:github-logo" class="fill-current text-content-light w-4 h-4" />
-      </AppLink>
+      repository && (
+        <AppLink
+          class="bg-background shadow-sm w-8 h-8 flex items-center justify-center border-2 border-content-light border-opacity-20 rounded-full"
+          href={repository}
+          external
+        >
+          <Icon
+            name="radix-icons:github-logo"
+            class="fill-current text-content-light w-4 h-4"
+          />
+        </AppLink>
+      )
     }
     {
-      link && <AppLink
-        class="bg-surface shadow-sm w-8 h-8 flex items-center justify-center border-2 border-content-light border-opacity-20 rounded-full"
-        href={link}
-        external
-      >
-        <Icon name="radix-icons:arrow-top-right" class="fill-current text-content-light w-4 h-4" />
-      </AppLink>
+      link && (
+        <AppLink
+          class="bg-background shadow-sm w-8 h-8 flex items-center justify-center border-2 border-content-light border-opacity-20 rounded-full"
+          href={link}
+          external
+        >
+          <Icon
+            name="radix-icons:arrow-top-right"
+            class="fill-current text-content-light w-4 h-4"
+          />
+        </AppLink>
+      )
     }
   </div>
 
