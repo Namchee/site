@@ -35,7 +35,7 @@ import { Icon } from 'astro-icon';
     <h2>Recent Posts</h2>
   </div>
 
-  <div class="py-32 max-w-5xl mx-auto">
+  <section class="py-32 max-w-5xl mx-auto">
     <h2 class="text-center text-xl md:text-3xl font-medium leading-normal">
       Featured Projects
     </h2>
@@ -54,7 +54,7 @@ import { Icon } from 'astro-icon';
       >
         <img
           src="https://res.cloudinary.com/namchee/image/upload/v1665316986/personal-site/fav-showcase.webp"
-          class="w-full lg:absolute lg:left-[50%] lg:-translate-x-[50%] mx-auto md:w-4/5 rounded-lg translate-y-[36px] md:translate-y-[48px] shadow-sm transition group-hover:translate-y-[28px] md:group-hover:translate-y-[40px] group-hover:shadow-md"
+          class="w-full lg:absolute lg:left-[50%] lg:-translate-x-[50%] mx-auto md:w-4/5 rounded-lg translate-y-[36px] md:translate-y-[48px] shadow-sm transition group-hover:translate-y-[28px] md:group-hover:translate-y-[42px] group-hover:shadow-md"
           title="Fav"
           alt="Fav"
         />
@@ -66,7 +66,9 @@ import { Icon } from 'astro-icon';
         link="https://windgraph.vercel.app/api/og/**Hello**%20World!?template=hero"
         repository="https://github.com/Namchee/windgraph"
       >
-        <p class="text-content-light font-mono mt-8 text-sm">NodeJS, Vercel</p>
+        <p class="text-content-variant font-mono mt-8 text-sm">
+          NodeJS, Vercel
+        </p>
       </Project>
 
       <Project
@@ -74,10 +76,26 @@ import { Icon } from 'astro-icon';
         description="Enforce conventions to pull requests on GitHub"
         repository="https://github.com/Namchee/conventional-pr"
       >
-        <p class="text-content-light font-mono mt-8 text-sm">GoLang</p>
+        <p class="text-content-variant font-mono mt-8 text-sm">GoLang</p>
       </Project>
     </div>
-  </div>
+
+    <p class="mt-24 text-center md:text-xl">
+      <a
+        class="inline-flex items-center about__link"
+        href="https://github.com/Namchee?tab=repositories"
+        rel="noopener noreferrer"
+        target="_blank"
+      >
+        <Icon name="radix-icons:arrow-right" class="w-8 arrow__before" />
+        <span class="about__text inline-block">Find out more</span>
+        <Icon
+          name="radix-icons:arrow-top-right"
+          class="w-8 -translate-x-8 opacity-0 arrow__after"
+        />
+      </a>
+    </p>
+  </section>
 </Layout>
 
 <style scoped>

@@ -18,11 +18,11 @@ const { name, description, link, repository, containerClass } = Astro.props;
 <div
   class={`group relative bg-surface rounded-md p-6 md:p-8 overflow-y-hidden ${containerClass}`}
 >
-  <p class="text-xl font-medium">
+  <p class="text-xl leading-normal font-medium">
     {name}
   </p>
 
-  <p class="text-content-light mt-2">
+  <p class="text-content-variant mt-2">
     {description}
   </p>
 
@@ -32,7 +32,7 @@ const { name, description, link, repository, containerClass } = Astro.props;
     {
       repository && (
         <AppLink
-          class="bg-background shadow-sm w-8 h-8 flex items-center justify-center border-2 border-content-light border-opacity-20 rounded-full"
+          class="bg-background shadow-sm w-8 h-8 flex items-center justify-center border-2 border-content-variant border-opacity-25 rounded-full"
           href={repository}
           external
         >
@@ -46,7 +46,7 @@ const { name, description, link, repository, containerClass } = Astro.props;
     {
       link && (
         <AppLink
-          class="bg-background shadow-sm w-8 h-8 flex items-center justify-center border-2 border-content-light border-opacity-20 rounded-full"
+          class="bg-background shadow-sm w-8 h-8 flex items-center justify-center border-2 border-content-variant border-opacity-25 rounded-full"
           href={link}
           external
         >
