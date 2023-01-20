@@ -1,11 +1,15 @@
 ---
+import AppLink from '@/components/astro/AppLink.astro';
 import Layout from '@/components/astro/Layout.astro';
 import ScrollTrigger from '@/components/vue/ScrollTrigger.vue';
 
 import { Icon } from 'astro-icon';
+
+const metaDescription =
+  'Cristopher, or more commonly known as Namchee, is a software engineer based in Bandung, Indonesia. Namchee is focused solving real-life problems to make the world a better place.';
 ---
 
-<Layout title="About" description="bar">
+<Layout title="About Me" description={metaDescription}>
   <div class="grid grid-cols-12 gap-x-4 py-32">
     <header class="col-start-1 col-span-6">
       <ScrollTrigger
@@ -116,17 +120,12 @@ import { Icon } from 'astro-icon';
             >
               <span>Tokopedia</span>
 
-              <a
-                href="https://www.tokopedia.com"
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label="Tokopedia"
-              >
+              <AppLink href="https://www.tokopedia.com" aria-label="Tokopedia">
                 <Icon
                   name="radix-icons:external-link"
                   class="w-5 h-5 text-content-variant transition-colors hover:text-content focus:text-content"
                 />
-              </a>
+              </AppLink>
             </p>
 
             <ul>
@@ -147,10 +146,8 @@ import { Icon } from 'astro-icon';
         </ul>
       </ScrollTrigger>
 
-      <a
+      <AppLink
         href="https://read.cv/namchee"
-        target="_blank"
-        rel="noopener noreferrer"
         class="inline-flex items-center text-lg leading-none about__link"
       >
         <Icon name="radix-icons:arrow-right" class="w-5 h-5 arrow__before" />
@@ -159,7 +156,7 @@ import { Icon } from 'astro-icon';
           name="radix-icons:arrow-top-right"
           class="w-5 h-5 -translate-x-4 opacity-0 arrow__after"
         />
-      </a>
+      </AppLink>
     </article>
   </div>
 </Layout>

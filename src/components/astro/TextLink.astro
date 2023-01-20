@@ -1,13 +1,12 @@
 ---
+import type { HTMLAttributes } from 'astro/types';
 import AppLink from '@/components/astro/AppLink.astro';
 
-export interface TextLinkProps {
-  href: string;
+export interface TextLinkProps extends HTMLAttributes<'a'> {
   external?: boolean;
-  class?: string;
 }
 
-const { href, external, class: classProps } = Astro.props;
+const { external, class: classProps, ...props } = Astro.props;
 
 const className = `font-medium relative
   text__link
@@ -19,23 +18,19 @@ const className = `font-medium relative
   focus:text-primary
   focus:after:bg-primary
   focus:outline-none
-  ${classProps || ''}`
+  ${classProps || ''}`;
 ---
 
-<AppLink
-  href={href}
-  external={external}
-  class={className}
-><slot /></AppLink>
+<AppLink external={external} class={className} {...props}><slot /></AppLink>
 
 <style scoped>
-.text__link::after {
-  position: absolute;
-  content: "";
-  width: 100%;
-  height: 1px;
-  left: 0;
-  bottom: -1px;
-  transition: background 150ms ease-out;
-}
+  .text__link::after {
+    position: absolute;
+    content: '';
+    width: 100%;
+    height: 1px;
+    left: 0;
+    bottom: -1px;
+    transition: background 150ms ease-out;
+  }
 </style>

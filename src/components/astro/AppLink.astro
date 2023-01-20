@@ -1,16 +1,15 @@
 ---
-export interface AppLinkProps {
-  href: string;
+import type { HTMLAttributes } from 'astro/types';
+
+// AppLink is a quick-wrap component for `a` tag.
+
+export interface AppLinkProps extends HTMLAttributes<'a'> {
   external?: boolean;
-  class?: string;
 }
 
-const { href, external, class: className } = Astro.props;
+const { external, ...props } = Astro.props;
 ---
 
-<a
-  rel="noopener noreferrer"
-  href={href}
-  target={external && '_blank'}
-  class={className}
-><slot /></a>
+<a rel="noopener noreferrer" target={external && '_blank'} {...props}
+  ><slot /></a
+>

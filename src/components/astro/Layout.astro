@@ -5,7 +5,7 @@ import Footer from '@/components/astro/Footer.astro';
 import Header from '@/components/vue/Header.vue';
 
 export interface Props {
-	title: string;
+  title: string;
   description: string;
 }
 
@@ -16,20 +16,20 @@ const { pathname } = new URL(Astro.request.url);
 <!DOCTYPE html>
 <html lang="en">
   <head>
-	  <meta charset="UTF-8">
-	  <meta name="viewport" content="width=device-width">
-    <link rel="manifest" href="/manifest.webmanifest">
-    <link rel="apple-touch-icon" href="/apple-touch-icon.png">
-    <link rel="icon" href="/favicon.ico" sizes="any">
-    <link rel="icon" href="/icon.svg" type="image/svg+xml">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <link rel="manifest" href="/manifest.webmanifest" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <link rel="icon" href="/favicon.ico" sizes="any" />
+    <link rel="icon" href="/icon.svg" type="image/svg+xml" />
     <meta name="description" content={description} />
-	  <title>{title}</title>
+    <title>{title} | Namchee, Software Engineer</title>
   </head>
   <body class="bg-background text-content min-h-screen flex flex-col font-sans">
-	  <Header currentPath={pathname} client:visible />
+    <Header currentPath={pathname} client:visible />
     <main class="w-full max-w-7xl mx-auto flex-1">
-		  <slot />
-	  </main>
+      <slot />
+    </main>
     <Footer />
   </body>
 </html>

@@ -1,5 +1,6 @@
 ---
 import BackToTop from '@/components/vue/BackToTop.vue';
+import AppLink from '@/components/astro/AppLink.astro';
 
 import { Icon } from 'astro-icon';
 ---
@@ -11,33 +12,33 @@ import { Icon } from 'astro-icon';
   <div class="max-w-7xl mx-auto text-background grid grid-cols-12 gap-4">
     <!-- start: email -->
     <div class="col-span-3">
-      <p class="text-background text-opacity-50">Say hello,</p>
+      <p class="text-background font-mono text-opacity-50">Say hello,</p>
 
-      <a
+      <AppLink
         href="mailto:hello@namchee.dev"
         rel="noopener noreferrer"
-        class="inline-block mt-2 text-xl"
+        class="inline-block mt-2 text-xl leading-normal"
       >
         hello@namchee.dev
-      </a>
+      </AppLink>
     </div>
     <!-- end: email -->
 
     <!-- start: sitemap -->
     <div class="col-start-7 col-span-3">
-      <p class="text-background text-opacity-50">Sitemap</p>
+      <p class="text-background font-mono text-opacity-50">Sitemap</p>
 
       <ul class="mt-4 space-y-2">
         <li>
-          <a href="/" rel="noopener noreferrer"> Home</a>
+          <AppLink href="/">Home</AppLink>
         </li>
 
         <li>
-          <a href="/about" rel="noopener noreferrer"> About</a>
+          <AppLink href="/about">About</AppLink>
         </li>
 
         <li>
-          <a href="/blog" rel="noopener noreferrer"> Blog</a>
+          <AppLink href="/blog" rel="noopener noreferrer">Blog</AppLink>
         </li>
       </ul>
     </div>
@@ -45,37 +46,25 @@ import { Icon } from 'astro-icon';
 
     <!-- start: social -->
     <div class="col-start-10 col-span-3">
-      <p class="text-background text-opacity-50">Get in touch</p>
+      <p class="text-background font-mono text-opacity-50">Get in touch</p>
 
       <ul class="mt-4 space-y-2">
         <li>
-          <a
-            href="https://www.github.com/Namchee"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
+          <AppLink href="https://www.github.com/Namchee" external>
             GitHub
-          </a>
+          </AppLink>
         </li>
 
         <li>
-          <a
-            href="https://www.twitter.com/lakban_hitam"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
+          <AppLink href="https://www.twitter.com/lakban_hitam" external>
             Twitter
-          </a>
+          </AppLink>
         </li>
 
         <li>
-          <a
-            href="https://www.linkedin.com/in/namchee"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
+          <AppLink href="https://www.linkedin.com/in/namchee" external>
             LinkedIn
-          </a>
+          </AppLink>
         </li>
       </ul>
     </div>
