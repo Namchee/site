@@ -16,45 +16,23 @@ const { name, description, link, repository, containerClass } = Astro.props;
 ---
 
 <div
-  class={`group
-    relative
-    bg-surface
-    rounded-md
-    p-6 md:p-8
-    overflow-y-hidden
-    ${containerClass}`
-  }
+  class={`group relative bg-surface rounded-md p-6 md:p-8 overflow-y-hidden ${containerClass}`}
 >
-  <p
-    class="text-xl leading-normal
-      font-medium"
-  >
+  <p class="text-xl leading-normal font-medium">
     {name}
   </p>
 
-  <p
-    class="text-content-variant
-      mt-2"
-  >
+  <p class="text-content-variant mt-2">
     {description}
   </p>
 
   <div
-    class="absolute
-      top-4 right-4
-      -translate-y-12
-      transition group-hover:translate-y-0 focus-within:translate-y-0
-      flex space-x-2"
+    class="absolute top-4 right-4 -translate-y-12 transition group-hover:translate-y-0 focus-within:translate-y-0 flex space-x-2"
   >
     {
       repository && (
         <AppLink
-          class="bg-background
-            shadow-sm
-            w-8 h-8
-            flex items-center justify-center
-            border-2 border-content-variant border-opacity-25
-            rounded-full"
+          class="bg-background shadow-sm w-8 h-8 flex items-center justify-center border-2 border-content-variant border-opacity-25 rounded-full"
           href={repository}
           external
         >
@@ -68,12 +46,7 @@ const { name, description, link, repository, containerClass } = Astro.props;
     {
       link && (
         <AppLink
-          class="bg-background
-          shadow-sm
-            w-8 h-8
-            flex items-center justify-center
-            border-2 border-content-variant border-opacity-25
-            rounded-full"
+          class="bg-background shadow-sm w-8 h-8 flex items-center justify-center border-2 border-content-variant border-opacity-25 rounded-full"
           href={link}
           external
         >
