@@ -1,20 +1,48 @@
 ---
 ---
 
-<div
-  class="w-full max-w-5xl mx-auto flex flex-col lg:flex-row justify-center lg:space-x-8"
->
+<div class="w-full max-w-5xl mx-auto foo_bar gap-x-8">
   <p
-    class="text-4xl text-content-variant tracking-tight self-center lg:text-right"
+    class="text-4xl text-content-variant tracking-tight lg:text-right whitespace-nowrap"
   >
     Build Softwares
   </p>
 
-  <canvas>foo bar</canvas>
+  <div id="blob" class="h-[50vh]"></div>
 
-  <p class="text-4xl text-content tracking-tight self-center">Solve Problems</p>
+  <p class="text-4xl text-content tracking-tight whitespace-nowrap">
+    Solve Problems
+  </p>
 </div>
 
 <script>
   import * as THREE from 'three';
+
+  const blob = document.querySelector('#blob');
+
+  const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+  renderer.setPixelRatio(window.devicePixelRatio);
+
+  const camera = new THREE.PerspectiveCamera(
+    75,
+    window.innerWidth / window.innerHeight,
+    0.1,
+    1000
+  );
+  camera.position.set(0, 0, 4);
+
+  const scene = new THREE.Scene();
+  const canvas = renderer.domElement;
+
+  canvas.width = blob.clientWidth;
+
+  blob.appendChild(canvas);
 </script>
+
+<style>
+  .foo_bar {
+    display: grid;
+    align-items: center;
+    grid-template-columns: auto 1fr auto;
+  }
+</style>
