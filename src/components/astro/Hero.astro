@@ -21,22 +21,41 @@
   const blob = document.querySelector('#blob');
 
   const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
-  renderer.setPixelRatio(window.devicePixelRatio);
+  renderer.setSize(blob.clientWidth, blob.clientHeight);
+  renderer.setPixelRatio(blob.clientWidth / blob.clientHeight);
 
   const camera = new THREE.PerspectiveCamera(
     75,
-    window.innerWidth / window.innerHeight,
-    0.1,
+    window.devicePixelRatio,
+    10,
     1000
   );
-  camera.position.set(0, 0, 4);
+  camera.position.set(0, 0, 200);
 
   const scene = new THREE.Scene();
+
+  const geometry = new THREE.SphereGeometry(100, 64, 64);
+  const material = new THREE.MeshNormalMaterial();
+  const mesh = new THREE.Mesh(geometry, material);
+
+  scene.add(mesh);
+
+  function onWindowResize() {
+    camera.aspect = blob.clientWidth / blob.clientHeight;
+    camera.updateProjectionMatrix();
+  }
+
+  function animate() {
+    renderer.render(scene, camera);
+  }
+
   const canvas = renderer.domElement;
 
-  canvas.width = blob.clientWidth;
-
   blob.appendChild(canvas);
+
+  onWindowResize();
+  window.addEventListener('resize', onWindowResize);
+  requestAnimationFrame(animate);
 </script>
 
 <style>

@@ -12,7 +12,7 @@ onMounted(() => {
   const rgbe = new RGBELoader();
   rgbe.load('envmap.hdr', (map) => {
     const loader = new PMREMGenerator(renderer.value.renderer);
-    const {texture} = loader.fromEquirectangular(map);
+    const { texture } = loader.fromEquirectangular(map);
 
     material.value.material.envMap = texture;
 
@@ -22,29 +22,16 @@ onMounted(() => {
 </script>
 
 <template>
-  <div class="w-full max-w-5xl mx-auto flex flex-col lg:flex-row justify-center lg:space-x-8">
-    <p class="text-4xl text-content-light tracking-tight self-center lg:text-right order-2 lg:order-1">
-      Build Softwares
-    </p>
-
-    <div class="min-h-[360px] order-1 self-center">
-      <Renderer antialias :alpha="true" resize="true" ref="renderer" shadow>
-        <Camera :position="{ z: 200 }" :fov="75" :near="10" :far="1000" />
-        <Scene ref="scene">
-          <AmbientLight :intensity="0.85" />
-          <Sphere :radius="100" :height-segments="64" :width-segments="64">
-            <StandardMaterial
-              :props="{ metalness: 0.1, envMapIntensity: 0.4, roughness: 0 }"
-              ref="material"
-            >
-            </StandardMaterial>
-          </Sphere>
-        </Scene>
-      </Renderer>
-    </div>
-
-    <p class="text-4xl text-content-dark tracking-tight self-center order-3">
-      Solve Problems
-    </p>
+  <div class="min-h-[360px] order-1 self-center">
+    <Renderer antialias :alpha="true" resize="true" ref="renderer" shadow>
+      <Camera :position="{ z: 200 }" :fov="75" :near="10" :far="1000" />
+      <Scene ref="scene">
+        <AmbientLight :intensity="0.85" />
+        <Sphere :radius="100" :height-segments="64" :width-segments="64">
+          <StandardMaterial :props="{ metalness: 0.1, envMapIntensity: 0.4, roughness: 0 }" ref="material">
+          </StandardMaterial>
+        </Sphere>
+      </Scene>
+    </Renderer>
   </div>
 </template>
