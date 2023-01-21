@@ -40,13 +40,13 @@ export default defineConfig({
             variant: '#6F6F6F',
           },
           primary: {
-            DEFAULT: '#3253C0',
-            variant: '#2A46A3',
+            DEFAULT: '#1046E6',
+            variant: '#0E3BC3',
           },
           red: '#E5484D',
           green: '#46A758',
         },
-      }
-    })
+      },
+    }),
   ],
 });
