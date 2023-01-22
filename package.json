@@ -11,10 +11,10 @@
   },
   "devDependencies": {
     "@astrojs/vue": "^1.2.2",
-    "@types/three": "^0.144.0",
+    "@types/three": "^0.148.0",
     "@typescript-eslint/eslint-plugin": "^5.38.0",
     "@typescript-eslint/parser": "^5.38.0",
-    "astro": "1.8.0",
+    "astro": "1.9.2",
     "autoprefixer": "^10.4.13",
     "cssnano": "^5.1.14",
     "eslint": "^8.14.0",
@@ -37,7 +37,7 @@
     "@headlessui/vue": "^1.7.3",
     "astro-icon": "^0.8.0",
     "motion": "^10.14.2",
-    "three": "~0.145.0",
+    "three": "~0.148.0",
     "troisjs": "^0.3.4"
   }
 }
