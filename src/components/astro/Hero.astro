@@ -8,7 +8,7 @@
     Build Softwares
   </p>
 
-  <div id="blob" class="h-[50vh]"></div>
+  <div id="blob" class="min-h-[400px]"></div>
 
   <p class="text-4xl text-content tracking-tight whitespace-nowrap">
     Solve Problems
@@ -18,16 +18,13 @@
 <script>
   import * as THREE from 'three';
   import { RGBELoader } from 'three/examples/jsm/loaders/RGBELoader';
-  import { RoundedBoxGeometry } from 'three/examples/jsm/geometries/RoundedBoxGeometry';
 
   const blob = document.querySelector('#blob');
-  const hdrEquirect = new RGBELoader().load('envmap.hdr', () => {
-    hdrEquirect.mapping = THREE.EquirectangularReflectionMapping;
+  const envmap = new RGBELoader().load('envmap.hdr', () => {
+    envmap.mapping = THREE.EquirectangularReflectionMapping;
   });
 
   const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
-  renderer.setSize(blob.clientWidth, blob.clientHeight);
-  renderer.setPixelRatio(blob.clientWidth / blob.clientHeight);
 
   const camera = new THREE.PerspectiveCamera(
     45,
@@ -36,30 +33,25 @@
     100
   );
   camera.position.set(0, 0, 4);
-  camera.aspect = blob.clientWidth / blob.clientHeight;
-  camera.updateProjectionMatrix();
 
   const scene = new THREE.Scene();
 
-  const light = new THREE.AmbientLight(0xfafafa, 0.5);
-
-  const geometry = new RoundedBoxGeometry(1, 1, 1, 16, 0.2);
+  const geometry = new THREE.SphereGeometry(1.1, 64, 64);
   const material = new THREE.MeshPhysicalMaterial({
-    metalness: 0.1,
-    transmission: 0.9,
-    roughness: 0.25,
-    envMap: hdrEquirect,
+    metalness: 0.2,
+    transmission: 1.0,
+    clearcoat: 0.5,
+    clearcoatRoughness: 0,
+    envMap: envmap,
+    envMapIntensity: 0.65,
   });
   const mesh = new THREE.Mesh(geometry, material);
 
-  const clock = new THREE.Clock();
-
-  scene.add(light);
   scene.add(mesh);
 
-  function onWindowResize() {
+  function resize() {
     renderer.setSize(blob.clientWidth, blob.clientHeight);
-    renderer.setPixelRatio(blob.clientWidth / blob.clientHeight);
+    renderer.setPixelRatio(window.devicePixelRatio);
 
     camera.aspect = blob.clientWidth / blob.clientHeight;
     camera.updateProjectionMatrix();
@@ -72,10 +64,11 @@
   }
 
   const canvas = renderer.domElement;
-
   blob.appendChild(canvas);
 
-  window.addEventListener('resize', onWindowResize);
+  window.addEventListener('resize', resize);
+
+  resize();
   animate();
 </script>
 
