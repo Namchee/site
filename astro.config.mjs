@@ -30,7 +30,7 @@ export default defineConfig({
             DEFAULT: '#FCFCFC',
           },
           surface: {
-            DEFAULT: '#EDEDED',
+            DEFAULT: '#F0F0F0',
           },
           outline: {
             DEFAULT: '#DBDBDB',
