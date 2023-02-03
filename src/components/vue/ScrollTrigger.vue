@@ -25,7 +25,7 @@ const props = withDefaults(defineProps<RevealingTextProps>(), {
   reveal: 'word',
   stagger: 0.1,
   duration: 0.6,
-  easing: 'ease-out-quad',
+  easing: 'easeOutQuad',
   offset: 0.5,
 });
 

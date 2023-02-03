@@ -1,93 +1,73 @@
 ---
+import { Icon } from 'astro-icon';
 ---
 
-<div class="w-full max-w-5xl mx-auto gap-x-8 hero__container">
-  <p
-    class="text-4xl text-content-variant tracking-tight lg:text-right whitespace-nowrap"
-  >
-    Build Softwares
-  </p>
-
-  <div id="blob" class="min-h-[400px]"></div>
-
-  <p class="text-4xl text-content tracking-tight whitespace-nowrap">
-    Solve Problems
-  </p>
+<div
+  class="pt-32 flex justify-center items-center space-x-6 opacity-0 translate-y-4 hero"
+>
+  <p class="text-4xl leading-normal">Problems</p>
+  <Icon
+    name="radix-icons:arrow-right"
+    class="w-12 opacity-0 -translate-x-4 arrow__right"
+  />
+  <p class="text-4xl blurred__text">Namchee</p>
+  <Icon
+    name="radix-icons:arrow-right"
+    class="w-12 opacity-0 -translate-x-4 arrow__right"
+  />
+  <p class="text-4xl blurred__text">Solutions</p>
 </div>
 
 <script>
-  import * as THREE from 'three';
-  import { RGBELoader } from 'three/examples/jsm/loaders/RGBELoader';
-  import { RoundedBoxGeometry } from 'three/examples/jsm/geometries/RoundedBoxGeometry';
+  import { inView, stagger, timeline } from 'motion';
 
-  import GUI from 'lil-gui';
-
-  const blob = document.querySelector('#blob');
-  const envmap = new RGBELoader().load('envmap.hdr', () => {
-    envmap.mapping = THREE.EquirectangularReflectionMapping;
-  });
-
-  const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
-
-  const camera = new THREE.PerspectiveCamera(
-    45,
-    window.devicePixelRatio,
-    0.01,
-    100
+  inView(
+    '.hero',
+    () => {
+      timeline([
+        [
+          '.hero',
+          {
+            opacity: 1,
+            transform: 'translateY(0)',
+          },
+          {
+            duration: 0.5,
+          },
+        ],
+        [
+          '.arrow__right',
+          {
+            opacity: 1,
+            transform: 'translateX(0)',
+          },
+          {
+            duration: 0.4,
+            delay: stagger(0.5),
+          },
+        ],
+      ]);
+    },
+    { amount: 0.75 }
   );
-  camera.position.set(0, 0, 4);
-
-  const scene = new THREE.Scene();
-
-  const geometry = new THREE.SphereGeometry(1, 64, 64);
-  const material = new THREE.MeshPhysicalMaterial({
-    metalness: 0.2,
-    transmission: 0.975,
-    clearcoat: 0.5,
-    clearcoatRoughness: 0,
-    envMap: envmap,
-    envMapIntensity: 0.65,
-  });
-  const mesh = new THREE.Mesh(geometry, material);
-
-  scene.add(mesh);
-
-  const rotation = {
-    x: 0.0,
-    y: 0.0,
-    z: 0.0,
-  };
-
-  function resize() {
-    renderer.setSize(blob.clientWidth, blob.clientHeight);
-    renderer.setPixelRatio(window.devicePixelRatio);
-
-    camera.aspect = blob.clientWidth / blob.clientHeight;
-    camera.updateProjectionMatrix();
-  }
-
-  function animate() {
-    requestAnimationFrame(animate);
-    mesh.rotation.x = rotation.x;
-    mesh.rotation.y = rotation.y;
-    mesh.rotation.z = rotation.z;
-
-    renderer.render(scene, camera);
-  }
-
-  const canvas = renderer.domElement;
-  blob.appendChild(canvas);
-
-  window.addEventListener('resize', resize);
-
-  resize();
-  animate();
 </script>
 
 <style>
-  .hero__container {
-    display: grid;
-    align-items: center;
-    grid-template-columns: auto 1fr auto;
+  .blurred__text {
+    filter: blur(24px);
+  }
+
+  .blurred__text:hover {
+    animation: clear 600ms both 1;
+  }
+
+  @keyframes clear {
+    from {
+      filter: blur(24px);
+    }
+
+    to {
+      filter: blur(0);
+    }
   }
 </style>

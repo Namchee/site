@@ -1,0 +1,93 @@
+---
+---
+
+<div class="w-full max-w-5xl mx-auto gap-x-8 hero__container">
+  <p
+    class="text-4xl text-content-variant tracking-tight lg:text-right whitespace-nowrap"
+  >
+    Build Softwares
+  </p>
+
+  <div id="blob" class="min-h-[400px]"></div>
+
+  <p class="text-4xl text-content tracking-tight whitespace-nowrap">
+    Solve Problems
+  </p>
+</div>
+
+<script>
+  import * as THREE from 'three';
+  import { RGBELoader } from 'three/examples/jsm/loaders/RGBELoader';
+  import { RoundedBoxGeometry } from 'three/examples/jsm/geometries/RoundedBoxGeometry';
+
+  import GUI from 'lil-gui';
+
+  const blob = document.querySelector('#blob');
+  const envmap = new RGBELoader().load('envmap.hdr', () => {
+    envmap.mapping = THREE.EquirectangularReflectionMapping;
+  });
+
+  const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+
+  const camera = new THREE.PerspectiveCamera(
+    45,
+    window.devicePixelRatio,
+    0.01,
+    100
+  );
+  camera.position.set(0, 0, 4);
+
+  const scene = new THREE.Scene();
+
+  const geometry = new THREE.SphereGeometry(1, 64, 64);
+  const material = new THREE.MeshPhysicalMaterial({
+    metalness: 0.2,
+    transmission: 0.975,
+    clearcoat: 0.5,
+    clearcoatRoughness: 0,
+    envMap: envmap,
+    envMapIntensity: 0.65,
+  });
+  const mesh = new THREE.Mesh(geometry, material);
+
+  scene.add(mesh);
+
+  const rotation = {
+    x: 0.0,
+    y: 0.0,
+    z: 0.0,
+  };
+
+  function resize() {
+    renderer.setSize(blob.clientWidth, blob.clientHeight);
+    renderer.setPixelRatio(window.devicePixelRatio);
+
+    camera.aspect = blob.clientWidth / blob.clientHeight;
+    camera.updateProjectionMatrix();
+  }
+
+  function animate() {
+    requestAnimationFrame(animate);
+    mesh.rotation.x = rotation.x;
+    mesh.rotation.y = rotation.y;
+    mesh.rotation.z = rotation.z;
+
+    renderer.render(scene, camera);
+  }
+
+  const canvas = renderer.domElement;
+  blob.appendChild(canvas);
+
+  window.addEventListener('resize', resize);
+
+  resize();
+  animate();
+</script>
+
+<style>
+  .hero__container {
+    display: grid;
+    align-items: center;
+    grid-template-columns: auto 1fr auto;
+  }
+</style>
