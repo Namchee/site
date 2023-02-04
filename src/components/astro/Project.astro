@@ -16,7 +16,7 @@ const { name, description, link, repository, containerClass } = Astro.props;
 ---
 
 <div
-  class={`group relative bg-surface rounded-md p-6 md:p-8 overflow-y-hidden ${containerClass}`}
+  class={`group relative bg-surface bg-opacity-70 hover:bg-opacity-100 transition-colors rounded-md p-6 md:p-8 overflow-y-hidden ${containerClass}`}
 >
   <p class="text-xl leading-normal font-medium">
     {name}
