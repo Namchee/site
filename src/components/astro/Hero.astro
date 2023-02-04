@@ -3,7 +3,7 @@ import { Icon } from 'astro-icon';
 ---
 
 <div
-  class="pt-32 flex justify-center items-center space-x-6 opacity-0 translate-y-4 hero"
+  class="flex justify-center items-center space-x-6 translate-y-6 opacity-0 hero tracking-tight"
 >
   <p class="text-4xl leading-normal">Problems</p>
   <Icon
@@ -15,11 +15,11 @@ import { Icon } from 'astro-icon';
     name="radix-icons:arrow-right"
     class="w-12 opacity-0 -translate-x-4 arrow__right"
   />
-  <p class="text-4xl blurred__text">Solutions</p>
+  <p class="text-4xl blurred__text font-medium">Solutions</p>
 </div>
 
 <script>
-  import { inView, stagger, timeline } from 'motion';
+  import { animate, inView, stagger, timeline } from 'motion';
 
   inView(
     '.hero',
@@ -32,7 +32,7 @@ import { Icon } from 'astro-icon';
             transform: 'translateY(0)',
           },
           {
-            duration: 0.5,
+            duration: 0.7,
           },
         ],
         [
@@ -42,32 +42,38 @@ import { Icon } from 'astro-icon';
             transform: 'translateX(0)',
           },
           {
-            duration: 0.4,
-            delay: stagger(0.5),
+            duration: 0.25,
+            delay: stagger(0.75),
+            at: '+0.3',
           },
         ],
       ]);
     },
     { amount: 0.75 }
   );
+
+  const blurred = document.querySelectorAll('.blurred__text');
+  for (const el of blurred) {
+    el.addEventListener(
+      'mouseover',
+      () => {
+        animate(
+          el,
+          {
+            filter: ['blur(24px)', 'blur(0)'],
+          },
+          {
+            duration: 0.4,
+          }
+        );
+      },
+      { once: true }
+    );
+  }
 </script>
 
 <style>
   .blurred__text {
     filter: blur(24px);
-  }
-
-  .blurred__text:hover {
-    animation: clear 600ms both 1;
-  }
-
-  @keyframes clear {
-    from {
-      filter: blur(24px);
-    }
-
-    to {
-      filter: blur(0);
-    }
   }
 </style>
