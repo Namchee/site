@@ -76,8 +76,3 @@ html {
 ::-webkit-scrollbar-thumb:hover {
   background-color: rgba(111,111,111, 0.6);
 }
-
-::selection {
-  background: rgba(16, 70, 230, 0.15);
-  color: rgba(16, 70, 230, 1);
-}
