@@ -1,13 +1,13 @@
 ---
 import Layout from '@/components/astro/Layout.astro';
 import Project from '@/components/astro/Project.astro';
-import Hero from '@/components/astro/HeroAlt.astro';
+import Hero from '@/components/astro/Hero.astro';
 
 import { Icon } from 'astro-icon';
 ---
 
 <Layout title="Build softwares → Solve problems" description="bar">
-  <div class="py-56 max-w-5xl w-full mx-auto space-x-6">
+  <div class="py-64 max-w-5xl w-full mx-auto space-x-6">
     <Hero />
   </div>
 
@@ -31,7 +31,13 @@ import { Icon } from 'astro-icon';
   </div>
 
   <div class="py-32 max-w-5xl mx-auto">
-    <h2>Recent Posts</h2>
+    <h2 class="text-center text-xl md:text-3xl font-medium leading-normal">
+      Recent Posts
+    </h2>
+
+    <p class="text-content-variant text-lg mt-4 text-center leading-normal">
+      Food for thoughts, or just a passing whim
+    </p>
   </div>
 
   <section class="py-32 max-w-5xl mx-auto">
