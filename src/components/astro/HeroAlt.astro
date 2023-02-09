@@ -9,12 +9,18 @@ import ScrollTrigger from '@/components/vue/ScrollTrigger.vue';
   client:visible
   class="text-center text-5xl leading-relaxed translate-y-4 opacity-0"
 >
-  <p class="text-content-variant text__header">Build Softwares</p>
+  <p class="text-content-variant">
+    Build <span class="blur-8 blurred__text">Softwares</span>
+  </p>
 
-  <p class="text__header">Solve Real Problems</p>
+  <p class="">
+    Solve <span class="blur-8 blurred__text">Real Problems</span>
+  </p>
 </ScrollTrigger>
 
 <script>
+  import { animate } from 'motion';
+  /*
   const els = document.querySelectorAll('.text__header');
   for (const el of els) {
     el.addEventListener('mouseover', () => {
@@ -24,6 +30,27 @@ import ScrollTrigger from '@/components/vue/ScrollTrigger.vue';
   }
 
   els[0].classList.add('text__header_active');
+  */
+
+  const blurred = document.querySelectorAll('.blurred__text');
+  for (const el of blurred) {
+    el.addEventListener(
+      'mouseover',
+      () => {
+        animate(
+          el,
+          {
+            filter: 'blur(0)',
+            opacity: 1,
+          },
+          {
+            duration: 0.4,
+          }
+        );
+      },
+      { once: true }
+    );
+  }
 </script>
 
 <style>
