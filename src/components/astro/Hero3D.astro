@@ -18,7 +18,6 @@
 <script>
   import * as THREE from 'three';
   import { RGBELoader } from 'three/examples/jsm/loaders/RGBELoader';
-  import { RoundedBoxGeometry } from 'three/examples/jsm/geometries/RoundedBoxGeometry';
 
   import GUI from 'lil-gui';
 
@@ -39,7 +38,7 @@
 
   const scene = new THREE.Scene();
 
-  const geometry = new THREE.SphereGeometry(1, 64, 64);
+  const geometry = new THREE.SphereGeometry(1, 64);
   const material = new THREE.MeshPhysicalMaterial({
     metalness: 0.2,
     transmission: 0.975,
@@ -68,9 +67,8 @@
 
   function animate() {
     requestAnimationFrame(animate);
-    mesh.rotation.x = rotation.x;
-    mesh.rotation.y = rotation.y;
-    mesh.rotation.z = rotation.z;
+    mesh.rotation.x += 0.005;
+    mesh.rotation.y += 0.005;
 
     renderer.render(scene, camera);
   }
