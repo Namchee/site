@@ -41,9 +41,9 @@
   const geometry = new THREE.SphereGeometry(1, 64);
   const material = new THREE.MeshPhysicalMaterial({
     metalness: 0.2,
-    transmission: 0.975,
+    transmission: 0.985,
     clearcoat: 0.5,
-    clearcoatRoughness: 0,
+    clearcoatRoughness: 0.1,
     envMap: envmap,
     envMapIntensity: 0.65,
   });
