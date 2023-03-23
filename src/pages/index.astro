@@ -7,23 +7,22 @@ import { Icon } from 'astro-icon';
 ---
 
 <Layout title="Build softwares → Solve problems" description="bar">
-  <div class="py-32">
+  <div class="py-32 hidden">
     <Hero />
   </div>
-  <div class="py-32 flex flex-col text-lg md:text-2xl max-w-4xl mx-auto">
-    <h1 class="leading-relaxed">
-      <span class="font-medium inline-flex items-center"
-        ><span> Namchee</span>
+
+  <div class="py-48 flex flex-col text-lg md:text-2xl max-w-4xl mx-auto">
+    <h1 class="leading-relaxed text-content-variant">
+      <span class="font-medium inline-flex items-center text-content"
+        ><span>Namchee</span>
         <button class="intro__synth">
-          <Icon
-            name="radix-icons:speaker-loud"
-            class="w-8 ml-3 mr-1"
-            stroke-width="4"
-          />
+          <Icon name="radix-icons:speaker-loud" class="w-8 ml-3 mr-1" />
         </button>
-      </span> &mdash; a <span class="text-primary">software engineer</span> based
-      in Indonesia. Likes to solve real-life problems with clean and efficient code.
-      Passionate about open-source projects and community movements.
+      </span> &mdash; an Indonesian-based software engineer. Likes to solve real-life
+      problems through code in <span class="text-content"
+        >clean and efficient</span
+      >
+      manner. Passionate about open-source projects and community movements.
     </h1>
 
     <p>
