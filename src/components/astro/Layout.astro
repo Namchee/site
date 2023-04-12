@@ -2,7 +2,7 @@
 import '@/assets/styles/global.css';
 
 import Footer from '@/components/astro/Footer.astro';
-import Header from '@/components/vue/Header.vue';
+import Header from '@/components/astro/Header.astro';
 
 export interface Props {
   title: string;
@@ -23,10 +23,14 @@ const { pathname } = new URL(Astro.request.url);
     <link rel="icon" href="/favicon.ico" sizes="any" />
     <link rel="icon" href="/icon.svg" type="image/svg+xml" />
     <meta name="description" content={description} />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/theme-toggles@4.10.1/css/dark-side.min.css"
+    />
     <title>{title} | Namchee, Software Engineer</title>
   </head>
   <body class="bg-background text-content min-h-screen flex flex-col font-sans">
-    <Header currentPath={pathname} client:visible />
+    <Header />
     <main class="w-full max-w-7xl mx-auto flex-1">
       <slot />
     </main>

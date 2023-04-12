@@ -22,10 +22,9 @@ const links = [
 </script>
 
 <template>
-  <div class="w-full max-w-7xl mx-auto h-24 grid grid-cols-12 gap-4">
+  <div class="w-full max-w-7xl mx-auto h-24 grid grid-cols-12 items-center gap-4">
     <!-- start: logo -->
-    <a rel="noopener noreferrer" href="/"
-      class="text-lg leading-normal font-medium tracking-tighter col-start-1 col-span-2 logo">
+    <a rel="noopener noreferrer" href="/" class="inline-flex text-lg leading-normal font-medium tracking-tighter logo">
       <span data-letter="N">N</span>
       <span data-letter="a">a</span>
       <span data-letter="m">m</span>
@@ -35,6 +34,12 @@ const links = [
       <span data-letter="e">e</span>
     </a>
     <!-- end: logo -->
+
+    <!-- start: clock -->
+    <p class="font-mono col-start-3 col-span-2 text-content-variant">
+      11:59:59 &mdash; BDG, ID
+    </p>
+    <!-- end: clock -->
 
     <nav class="flex space-x-12">
       <a v-for="link in links" :key="link.href" :href="link.href" :data-hover="link.text"

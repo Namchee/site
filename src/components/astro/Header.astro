@@ -1,0 +1,106 @@
+---
+---
+
+<div class="w-full max-w-7xl mx-auto h-24 grid grid-cols-12 items-center gap-4">
+  <!-- start: logo -->
+  <a
+    rel="noopener noreferrer"
+    href="/"
+    class="inline-flex text-lg leading-normal font-medium tracking-tighter logo"
+  >
+    <span data-letter="N">N</span>
+    <span data-letter="a">a</span>
+    <span data-letter="m">m</span>
+    <span data-letter="c">c</span>
+    <span data-letter="h">h</span>
+    <span data-letter="e">e</span>
+    <span data-letter="e">e</span>
+  </a>
+  <!-- end: logo -->
+
+  <!-- start: clock -->
+  <p class="font-mono col-start-3 col-span-2 text-content-variant">
+    <span class="time">00:00:00</span> &mdash; BDG, ID
+  </p>
+  <!-- end: clock -->
+
+  <!-- start: toggle -->
+  <button
+    class="theme-toggle col-start-11 col-span-2 ml-auto flex items-center space-x-2"
+    type="button"
+    title="Toggle theme"
+    aria-label="Toggle theme"
+  >
+    <p>Light mode</p>
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      aria-hidden="true"
+      width="1rem"
+      height="1rem"
+      class="theme-toggle__dark-side"
+      fill="currentColor"
+      viewBox="0 0 32 32"
+    >
+      <path
+        d="M16 .5C7.4.5.5 7.4.5 16S7.4 31.5 16 31.5 31.5 24.6 31.5 16 24.6.5 16 .5zm0 28.1V3.4C23 3.4 28.6 9 28.6 16S23 28.6 16 28.6z"
+      ></path>
+    </svg>
+  </button>
+  <!-- end: toggle -->
+</div>
+
+<script>
+  const clock = document.querySelector('.time');
+  const theme = document.querySelector('.theme-toggle');
+
+  function toggleTheme() {
+    theme.classList.toggle('theme-toggle--toggled');
+  }
+
+  function formatDigit(num) {
+    return ('0' + num).slice(-2);
+  }
+
+  function tick() {
+    requestAnimationFrame(tick);
+
+    const now = new Date();
+    clock.textContent = `${formatDigit(now.getHours())}:${formatDigit(
+      now.getMinutes()
+    )}:${formatDigit(now.getSeconds())}`;
+  }
+
+  tick();
+  theme.addEventListener('click', toggleTheme);
+</script>
+
+<style scoped>
+  .logo {
+    overflow-y: hidden;
+  }
+
+  .logo span {
+    position: relative;
+    display: inline-block;
+  }
+
+  .logo span::before {
+    position: absolute;
+    content: attr(data-letter);
+    display: inline-block;
+    left: 0;
+    bottom: 0;
+    transform: translateY(100%);
+  }
+
+  @for $i from 1 to 8 {
+    .logo span:nth-child($i) {
+      transition: transform 500ms calc(50ms * ($(i) - 1)) easeOutQuart;
+    }
+
+    .logo:hover span:nth-child($i),
+    .logo:focus span:nth-child($i) {
+      transform: translateY(-100%);
+    }
+  }
+</style>
