@@ -2,33 +2,31 @@
 import Layout from '@/components/astro/Layout.astro';
 import Project from '@/components/astro/Project.astro';
 
-import { Icon } from 'astro-icon';
+import { Icon } from 'astro-iconify';
 ---
 
 <Layout title="Build softwares → Solve problems" description="bar">
-  <div class="py-48 grid grid-cols-12 gap-4 text-lg md:text-2xl">
-    <h1 class="leading-relaxed col-start-3 col-end-11 text-content-variant">
-      <span class="inline-flex items-center text-content"
-        ><span>/nam&centerdot;cɛ/</span>
+  <div class="pt-64 pb-32 grid grid-cols-12 gap-4 text-lg md:text-3xl">
+    <h1 class="leading-relaxed col-start-1 col-end-11 text-content-variant">
+      <span class="inline-flex font-medium items-center text-content space-x-2">
+        <span>/nam&centerdot;ce/</span>
         <button class="intro__synth">
-          <Icon name="radix-icons:speaker-loud" class="w-8 ml-3 mr-1" />
+          <Icon name="heroicons:speaker-wave" class="w-10" />
         </button>
-      </span> &mdash; a software engineer based in
-      <span class="text-content">Bandung, Indonesia</span>. Likes to solve
-      real-life problems through code in <span class="text-content"
-        >clean and efficient</span
-      > manner. Passionate about open-source projects and community movements.
+      </span> &mdash; a software engineer based in Bandung, Indonesia. Solves real-life
+      problems through clean and sustainable softwares. Passionate about open-source
+      projects and community movements.
     </h1>
 
     <a
-      class="col-start-3 col-end-6 mt-12 inline-flex items-center about__link"
+      class="col-start-1 col-span-4 mt-12 inline-flex items-center about__link text-content-variant hover:text-content transition-colors"
       href="/about"
     >
-      <Icon name="radix-icons:arrow-right" class="w-8 arrow__before" />
+      <Icon name="radix-icons:arrow-right" class="w-10 arrow__before" />
       <span class="about__text inline-block">About Namchee</span>
       <Icon
         name="radix-icons:arrow-right"
-        class="w-8 -translate-x-8 opacity-0 arrow__after"
+        class="w-10 -translate-x-8 opacity-0 arrow__after"
       />
     </a>
   </div>
