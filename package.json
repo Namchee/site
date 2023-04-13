@@ -35,7 +35,6 @@
   },
   "dependencies": {
     "@headlessui/vue": "^1.7.3",
-    "astro-icon": "^0.8.0",
     "astro-iconify": "^1.2.0",
     "lil-gui": "^0.17.0",
     "motion": "^10.14.2",
