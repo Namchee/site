@@ -6,20 +6,21 @@ import { Icon } from 'astro-iconify';
 ---
 
 <Layout title="Build softwares → Solve problems" description="bar">
-  <div class="pt-64 pb-32 grid grid-cols-12 gap-4 text-lg md:text-3xl">
+  <div class="py-64 grid grid-cols-12 gap-4 text-lg md:text-3xl">
     <h1 class="leading-relaxed col-start-1 col-end-11 text-content-variant">
-      <span class="inline-flex font-medium items-center text-content space-x-2">
+      <span class="inline-flex font-medium items-center text-content space-x-3">
         <span>/nam&centerdot;ce/</span>
         <button class="intro__synth">
           <Icon name="heroicons:speaker-wave" class="w-10" />
         </button>
       </span> &mdash; a software engineer based in Bandung, Indonesia. Solves real-life
-      problems through clean and sustainable softwares. Passionate about open-source
-      projects and community movements.
+      problems with <span class="text-content"
+        >performant and sustainable code.</span
+      > Passionate about open-source projects and community movements.
     </h1>
 
     <a
-      class="col-start-1 col-span-4 mt-12 inline-flex items-center about__link text-content-variant hover:text-content transition-colors"
+      class="col-span-4 mt-12 inline-flex items-center about__link text-content-variant hover:text-content transition-colors"
       href="/about"
     >
       <Icon name="radix-icons:arrow-right" class="w-10 arrow__before" />
@@ -31,12 +32,12 @@ import { Icon } from 'astro-iconify';
     </a>
   </div>
 
-  <div class="py-32 max-w-5xl mx-auto">
-    <h2 class="text-center text-xl md:text-3xl font-medium leading-normal">
-      Recent Posts
-    </h2>
+  <div class="py-32 grid grid-cols-12 gap-4 mx-auto">
+    <h2 class="col-start-2 col-span-3 text-xl md:text-3xl">Recent Posts</h2>
 
-    <p class="text-content-variant text-lg mt-4 text-center leading-normal">
+    <p
+      class="col-start-2 text-content-variant text-lg mt-4 text-center leading-normal"
+    >
       Food for thoughts, or just a passing whim
     </p>
   </div>
