@@ -1,13 +1,21 @@
 ---
 import Layout from '@/components/astro/Layout.astro';
 import Project from '@/components/astro/Project.astro';
-import Hero from '@/components/astro/Hero3D.astro';
+
+import ScrollTrigger from '@/components/vue/ScrollTrigger.vue';
 
 import { Icon } from 'astro-iconify';
 ---
 
 <Layout title="Build softwares → Solve problems" description="bar">
-  <div class="pt-48 pb-32 grid grid-cols-12 gap-4 text-lg md:text-2xl">
+  <ScrollTrigger
+    as="header"
+    apply={{ transform: 'translateY(0)', opacity: 1 }}
+    duration={0.4}
+    class="opacity-0 translate-y-4 pt-42 pb-32 grid grid-cols-12 gap-4 text-lg md:text-2xl"
+    offset={0.75}
+    client:visible
+  >
     <h1 class="leading-relaxed col-start-3 col-end-11 text-content-variant">
       <span class="inline-flex font-medium items-center text-content space-x-3">
         <span>/nam&centerdot;ce/</span>
@@ -31,7 +39,7 @@ import { Icon } from 'astro-iconify';
         class="w-8 -translate-x-8 opacity-0 arrow__after"
       />
     </a>
-  </div>
+  </ScrollTrigger>
 
   <div class="py-32 grid grid-cols-12 gap-4 mx-auto">
     <h2 class="col-start-2 col-span-3 text-xl md:text-3xl">Recent Posts</h2>
