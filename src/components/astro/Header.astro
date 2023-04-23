@@ -1,4 +1,24 @@
 ---
+interface NavigationProps {
+  currentPath: string;
+}
+
+const { currentPath } = Astro.props;
+
+const links = [
+  {
+    href: '/',
+    text: '/home',
+  },
+  {
+    href: '/about',
+    text: '/about',
+  },
+  {
+    href: '/blog',
+    text: '/blog',
+  },
+];
 ---
 
 <div class="w-full max-w-7xl mx-auto h-24 grid grid-cols-12 items-center gap-4">
@@ -18,47 +38,57 @@
   </a>
   <!-- end: logo -->
 
-  <!-- start: clock -->
-  <p class="font-mono col-start-3 col-span-2 text-content-variant hidden">
-    <span class="time">00:00:00</span> &mdash; BDG, ID
-  </p>
-  <!-- end: clock -->
-
-  <!-- start: toggle -->
-  <nav class="flex items-center space-x-8 col-end-12">
-    <p>/home</p>
-    <p>/about</p>
-    <p>/blog</p>
+  <!-- start: nav -->
+  <nav class="flex space-x-12 ml-auto col-end-12">
+    {
+      links.map(link => (
+        <a
+          href={link.href}
+          data-hover={link.text}
+          class="link transition-colors hover:text-content-variant"
+          class:list={{
+            'font-medium tracking-tight': currentPath === link.href,
+          }}
+        >
+          <span>{link.text}</span>
+        </a>
+      ))
+    }
   </nav>
-  <!-- end: toggle -->
+  <!-- end: nav -->
 </div>
 
-<script>
-  const clock = document.querySelector('.time');
-  const theme = document.querySelector('.theme-toggle');
-
-  function toggleTheme() {
-    theme.classList.toggle('theme-toggle--toggled');
+<style>
+  .link {
+    position: relative;
+    overflow-y: hidden;
   }
 
-  function formatDigit(num) {
-    return ('0' + num).slice(-2);
+  .link span {
+    display: inline-block;
+    transition: transform 600ms easeOutQuart;
   }
 
-  function tick() {
-    requestAnimationFrame(tick);
-
-    const now = new Date();
-    clock.textContent = `${formatDigit(now.getHours())}:${formatDigit(
-      now.getMinutes()
-    )}:${formatDigit(now.getSeconds())}`;
+  .link::before {
+    content: attr(data-hover);
+    position: absolute;
+    display: inline-block;
+    left: 0;
+    bottom: 0;
+    transform: translateY(100%);
+    transition: transform 600ms easeOutQuart;
   }
 
-  tick();
-  theme.addEventListener('click', toggleTheme);
-</script>
+  .link:hover span,
+  .link:focus span {
+    transform: translateY(-100%);
+  }
 
-<style scoped>
+  .link:hover::before,
+  .link:focus::before {
+    transform: translateY(0);
+  }
+
   .logo {
     overflow-y: hidden;
   }

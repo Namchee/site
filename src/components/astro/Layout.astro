@@ -30,7 +30,7 @@ const { pathname } = new URL(Astro.request.url);
     <title>{title} | Namchee, Software Engineer</title>
   </head>
   <body class="bg-background text-content min-h-screen flex flex-col font-sans">
-    <Header />
+    <Header currentPath={pathname} />
     <main class="w-full max-w-7xl mx-auto flex-1">
       <slot />
     </main>
