@@ -21,12 +21,12 @@ const links = [
 ];
 ---
 
-<div class="w-full max-w-7xl mx-auto h-24 grid grid-cols-12 items-center gap-4">
+<div class="w-full max-w-7xl mx-auto grid grid-cols-12 items-start gap-4 py-8">
   <!-- start: logo -->
   <a
     rel="noopener noreferrer"
     href="/"
-    class="inline-flex text-lg leading-normal font-medium tracking-tighter logo"
+    class="text-lg leading-none font-medium tracking-tighter logo"
   >
     <span data-letter="N">N</span>
     <span data-letter="a">a</span>
@@ -39,15 +39,15 @@ const links = [
   <!-- end: logo -->
 
   <!-- start: job banner -->
-  <p class="col-start-4 col-span-2 text-content-variant">Software Engineer</p>
-  <!-- end: job banner -->
+  <div class="col-start-4 col-span-2">
+    <p>
+      <span class="clock">00:00:00</span>
+      &mdash; BDG, ID
+    </p>
 
-  <!-- start: clock -->
-  <p class="col-start-7 col-span-2">
-    <span class="clock">00:00:00</span>
-    &mdash; BDG, ID
-  </p>
-  <!-- end: clock -->
+    <p>Software Engineer</p>
+  </div>
+  <!-- end: job banner -->
 
   <!-- start: nav -->
   <nav class="flex space-x-12 ml-auto col-start-10 col-span-full">
@@ -119,6 +119,7 @@ const links = [
 
   .logo {
     overflow-y: hidden;
+    display: inline-flex;
   }
 
   .logo span {

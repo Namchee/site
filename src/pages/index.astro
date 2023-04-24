@@ -8,18 +8,21 @@ import { Icon } from 'astro-iconify';
 ---
 
 <Layout title="Build softwares → Solve problems" description="bar">
-  <div class="py-48 grid grid-cols-12 gap-4">
-    <p class="text-content-variant text-lg col-start-4 col-span-3">
-      Hello World! I'm Namchee
+  <div class="py-42 grid grid-cols-12 gap-4">
+    <p class="text-content-variant text-lg col-start-4 col-span-3 hidden">
+      Hello, I'm Namchee
     </p>
 
-    <p class="col-start-7 col-span-6 text-3xl leading-normal -mt-2">
-      Solving real-life problems with performant and sustainable software
-      solutions.
+    <p
+      class="col-start-4 col-span-6 text-3xl leading-normal text-content-variant"
+    >
+      Solving real-life problems with <span class="text-content"
+        >performant and sustainable</span
+      > software solutions.
     </p>
 
     <a
-      class="col-start-7 col-span-3 mt-12 inline-flex items-center text-2xl about__link"
+      class="col-start-4 col-span-3 mt-12 inline-flex items-center text-2xl about__link"
       href="/about"
     >
       <Icon name="radix-icons:arrow-right" class="w-8 arrow__before" />
