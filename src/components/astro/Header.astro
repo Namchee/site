@@ -38,8 +38,19 @@ const links = [
   </a>
   <!-- end: logo -->
 
+  <!-- start: job banner -->
+  <p class="col-start-4 col-span-2 text-content-variant">Software Engineer</p>
+  <!-- end: job banner -->
+
+  <!-- start: clock -->
+  <p class="col-start-7 col-span-2">
+    <span class="clock">00:00:00</span>
+    &mdash; BDG, ID
+  </p>
+  <!-- end: clock -->
+
   <!-- start: nav -->
-  <nav class="flex space-x-12 ml-auto col-end-12">
+  <nav class="flex space-x-12 ml-auto col-start-10 col-span-full">
     {
       links.map(link => (
         <a
@@ -57,6 +68,27 @@ const links = [
   </nav>
   <!-- end: nav -->
 </div>
+
+<script>
+  const clock = document.querySelector('.clock');
+
+  function padDigit(digit) {
+    return digit / 10 ? `${digit}` : `0${digit}`;
+  }
+
+  function tick() {
+    requestAnimationFrame(tick);
+
+    const now = new Date();
+    clock.textContent = [
+      `${padDigit(now.getHours())}`,
+      `${padDigit(now.getMinutes())}`,
+      `${padDigit(now.getSeconds())}`,
+    ].join(':');
+  }
+
+  tick();
+</script>
 
 <style>
   .link {
