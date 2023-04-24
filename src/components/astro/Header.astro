@@ -72,18 +72,14 @@ const links = [
 <script>
   const clock = document.querySelector('.clock');
 
-  function padDigit(digit) {
-    return digit / 10 ? `${digit}` : `0${digit}`;
-  }
-
   function tick() {
     requestAnimationFrame(tick);
 
     const now = new Date();
     clock.textContent = [
-      `${padDigit(now.getHours())}`,
-      `${padDigit(now.getMinutes())}`,
-      `${padDigit(now.getSeconds())}`,
+      `${now.getHours()}`.padStart(2, '0'),
+      `${now.getMinutes()}`.padStart(2, '0'),
+      `${now.getSeconds()}`.padStart(2, '0'),
     ].join(':');
   }
 
