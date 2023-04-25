@@ -15,6 +15,7 @@ interface RevealingTextProps {
   as?: string;
   duration?: number;
   delay?: number;
+  stagger?: number;
   easing?: string;
   offset?: number;
   class?: string;
@@ -23,7 +24,6 @@ interface RevealingTextProps {
 const props = withDefaults(defineProps<RevealingTextProps>(), {
   as: 'div',
   reveal: 'word',
-  stagger: 0.1,
   duration: 0.6,
   easing: 'easeOutQuad',
   offset: 0.5,
@@ -46,7 +46,7 @@ onMounted(() => {
         props.apply,
         {
           duration: props.duration,
-          delay: stagger(props.delay),
+          delay: props.stagger ? stagger(props.stagger) : props.delay,
           easing: easingFunc,
         },
       );

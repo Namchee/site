@@ -1,77 +1,92 @@
 ---
 import { Icon } from 'astro-iconify';
+
+import ScrollTrigger from '@/components/vue/ScrollTrigger.vue';
 ---
 
-<div
-  class="flex justify-center items-center space-x-6 translate-y-6 opacity-0 hero tracking-tight"
->
-  <p class="text-4xl leading-normal">Problems</p>
-  <Icon name="radix-icons:plus" class="w-12" />
-  <p class="text-4xl leading-normal">Namchee</p>
-  <Icon
-    name="radix-icons:arrow-right"
-    class="w-12 opacity-0 -translate-x-4 arrow__right"
-  />
-  <p class="text-4xl leading-normal blurred__text font-medium">Solutions</p>
-</div>
+<header class="grid grid-cols-12 gap-4">
+  <ScrollTrigger
+    as="h1"
+    target="header__word"
+    apply={{ transform: 'translateY(0)' }}
+    class="col-start-3 col-span-6 text-3xl leading-normal text-content-variant"
+    duration={0.6}
+    stagger={0.15}
+    offset={0.75}
+    client:visible
+  >
+    <p class="overflow-y-hidden">
+      <span class="inline-block translate-y-100% header__word">
+        Solving real-life problems with
+      </span>
+    </p>
 
-<script>
-  import { animate, inView, stagger, timeline } from 'motion';
+    <p class="overflow-y-hidden">
+      <span class="inline-block translate-y-100% text-content header__word">
+        performant and sustainable
+      </span>
+    </p>
 
-  inView(
-    '.hero',
-    () => {
-      timeline([
-        [
-          '.hero',
-          {
-            opacity: 1,
-            transform: 'translateY(0)',
-          },
-          {
-            duration: 0.7,
-          },
-        ],
-        [
-          '.arrow__right',
-          {
-            opacity: 1,
-            transform: 'translateX(0)',
-          },
-          {
-            duration: 0.25,
-            delay: stagger(0.75),
-            at: '+0.3',
-          },
-        ],
-      ]);
-    },
-    { amount: 0.75 }
-  );
+    <p class="overflow-y-hidden">
+      <span class="inline-block translate-y-100% header__word">
+        software solutions.
+      </span>
+    </p>
+  </ScrollTrigger>
 
-  const blurred = document.querySelectorAll('.blurred__text');
-  for (const el of blurred) {
-    el.addEventListener(
-      'mouseover',
-      () => {
-        animate(
-          el,
-          {
-            filter: 'blur(0)',
-            opacity: 1,
-          },
-          {
-            duration: 0.4,
-          }
-        );
-      },
-      { once: true }
-    );
-  }
-</script>
+  <ScrollTrigger
+    as="div"
+    apply={{ transform: 'translateX(0)', opacity: 1 }}
+    duration={0.4}
+    class="col-start-3 col-span-3 mt-12 opacity-0 -translate-x-4 mb-12"
+    offset={0.75}
+    delay={0.75}
+    client:visible
+  >
+    <a
+      class="inline-flex text-content-variant hover:text-content transition-colors items-center text-2xl about__link"
+      href="/about"
+    >
+      <Icon name="radix-icons:arrow-right" class="w-8 arrow__before" />
+      <span class="about__text inline-block">About Namchee</span>
+      <Icon
+        name="radix-icons:arrow-right"
+        class="w-8 -translate-x-8 opacity-0 arrow__after"
+      />
+    </a>
+  </ScrollTrigger>
+</header>
 
 <style>
-  .blurred__text {
-    filter: blur(16px);
+  .arrow__before,
+  .arrow__after,
+  .about__text {
+    transition: all 200ms easeOutQuad;
+  }
+
+  .about__text {
+    transform: translateX(8px);
+  }
+
+  .arrow__before {
+    transform: translateX(0);
+    opacity: 1;
+  }
+
+  .about__link:hover .arrow__before,
+  .about__link:focus .arrow__before {
+    opacity: 0;
+    transform: translateX(16px);
+  }
+
+  .about__link:hover .about__text,
+  .about__link:focus .about__text {
+    transform: translateX(-32px);
+  }
+
+  .about__link:hover .arrow__after,
+  .about__link:focus .arrow__after {
+    opacity: 1;
+    transform: translateX(-24px);
   }
 </style>

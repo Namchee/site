@@ -1,4 +1,6 @@
 ---
+import { Icon } from 'astro-iconify';
+
 interface Props {
   currentPath: string;
 }
@@ -23,28 +25,29 @@ const links = [
 
 <div class="w-full max-w-7xl mx-auto grid grid-cols-12 items-start gap-4 py-8">
   <!-- start: logo -->
-  <a
-    rel="noopener noreferrer"
-    href="/"
-    class="text-lg leading-none font-medium tracking-tighter logo"
-  >
-    <span data-letter="N">N</span>
-    <span data-letter="a">a</span>
-    <span data-letter="m">m</span>
-    <span data-letter="c">c</span>
-    <span data-letter="h">h</span>
-    <span data-letter="e">e</span>
-    <span data-letter="e">e</span>
-  </a>
+  <div class="flex items-center col-span-2 space-x-2">
+    <a
+      rel="noopener noreferrer"
+      href="/"
+      class="text-lg leading-none font-medium tracking-tighter logo"
+    >
+      <span data-letter="N">N</span>
+      <span data-letter="a">a</span>
+      <span data-letter="m">m</span>
+      <span data-letter="c">c</span>
+      <span data-letter="h">h</span>
+      <span data-letter="e">e</span>
+      <span data-letter="e">e</span>
+    </a>
+
+    <button class="speech-button">
+      <Icon name="heroicons:speaker-wave" class="w-5 external__before" />
+    </button>
+  </div>
   <!-- end: logo -->
 
   <!-- start: job banner -->
-  <div class="col-start-4 col-span-2 text-content-variant">
-    <p>
-      <span class="clock">00:00:00</span>
-      &mdash; BDG, ID
-    </p>
-
+  <div class="col-start-3 col-span-3 text-content-variant">
     <p>Software Engineer</p>
   </div>
   <!-- end: job banner -->
@@ -70,20 +73,16 @@ const links = [
 </div>
 
 <script>
-  const clock = document.querySelector('.clock');
+  const speechButton = document.querySelector('.speech-button');
 
-  function tick() {
-    requestAnimationFrame(tick);
+  const utterance = new SpeechSynthesisUtterance('Namce');
+  utterance.lang = 'id-ID'; // this is the correct pronounciation
 
-    const now = new Date();
-    clock.textContent = [
-      `${now.getHours()}`.padStart(2, '0'),
-      `${now.getMinutes()}`.padStart(2, '0'),
-      `${now.getSeconds()}`.padStart(2, '0'),
-    ].join(':');
-  }
-
-  tick();
+  speechButton.addEventListener('click', () => {
+    if (window.speechSynthesis) {
+      window.speechSynthesis.speak(utterance);
+    }
+  });
 </script>
 
 <style>
