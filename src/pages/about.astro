@@ -1,6 +1,8 @@
 ---
 import AppLink from '@/components/astro/AppLink.astro';
 import Layout from '@/components/astro/Layout.astro';
+import TextLink from '@/components/astro/TextLink.astro';
+
 import ScrollTrigger from '@/components/vue/ScrollTrigger.vue';
 
 import { Icon } from 'astro-iconify';
@@ -44,15 +46,19 @@ const metaDescription =
         offset={0.8}
         client:visible
       >
-        <p class="font-mono text-content-variant uppercase mb-6">About me</p>
+        <p class="text-lg mb-6">About me</p>
 
-        <p class="text-lg leading-normal mb-6">
+        <p class="text-lg text-content-variant leading-normal mb-6">
           Hi. My name is Cristopher, but I'm commonly known as Namchee in the
           online space. I'm a software engineer based in Bandung, Indonesia.
-          Currently, I create practical solutions at Tokopedia.
+          Currently, I create practical solutions at <TextLink
+            href="https://www.tokopedia.com"
+          >
+            Tokopedia
+          </TextLink>
         </p>
 
-        <p class="text-lg leading-normal">
+        <p class="text-lg text-content-variant leading-normal">
           I stumbled upon the world of code when I'm searching for a way to
           cheat at a Facebook game during my junior high school days. Although I
           failed to do so, the journey serves as my first step to software
@@ -113,71 +119,37 @@ const metaDescription =
       >
         <p class="font-mono text-content-variant uppercase mb-6">Experiences</p>
 
-        <div class="space-y-8">
-          <ul>
-            <li>
-              <p
-                class="text-xl leading-normal font-medium flex items-center justify-between mb-3"
-              >
-                <span>GLAIR</span>
+        <ul class="space-y-2">
+          <li
+            class="flex items-center justify-between space-x-4 leading-normal"
+          >
+            <span>Software Engineer@<span class="font-medium">GLAIR</span></span
+            >
 
-                <AppLink href="https://glair.ai/" aria-label="GLAIR">
-                  <Icon
-                    name="radix-icons:external-link"
-                    class="w-5 text-content-variant transition-colors hover:text-content focus:text-content"
-                  />
-                </AppLink>
-              </p>
+            <div class="h-[1px] border-t-1 border-t-outline flex-1 hidden">
+            </div>
 
-              <ul>
-                <li class="flex items-center space-x-4 text-lg leading-normal">
-                  <span>Software Engineer@GLAIR</span>
+            <span class="flex items-center space-x-2">
+              <span
+                class="w-2 h-2 rounded-full bg-green inline-block pulse"
+                aria-hidden="true"></span>
+              <span>Present</span>
+            </span>
+          </li>
 
-                  <div class="h-[1px] border-t-1 border-t-outline flex-1"></div>
+          <li
+            class="flex items-center justify-between space-x-4 text-lg leading-normal"
+          >
+            <span>Software Engineer@Tokopedia</span>
 
-                  <span class="flex items-center space-x-2">
-                    <span
-                      class="w-2 h-2 rounded-full bg-green inline-block pulse"
-                      aria-hidden="true"></span>
-                    <span>Present</span>
-                  </span>
-                </li>
-              </ul>
-            </li>
-          </ul>
+            <div class="h-[1px] border-t-1 border-t-outline flex-1 hidden">
+            </div>
 
-          <ul>
-            <li>
-              <p
-                class="text-xl leading-normal font-medium flex items-center justify-between mb-3"
-              >
-                <span>Tokopedia</span>
-
-                <AppLink
-                  href="https://www.tokopedia.com"
-                  aria-label="Tokopedia"
-                >
-                  <Icon
-                    name="radix-icons:external-link"
-                    class="w-5 text-content-variant transition-colors hover:text-content focus:text-content"
-                  />
-                </AppLink>
-              </p>
-
-              <ul>
-                <li class="flex items-center space-x-4 text-lg leading-normal">
-                  <span>Software Engineer@Tokopedia</span>
-
-                  <div class="h-[1px] border-t-1 border-t-outline flex-1"></div>
-
-                  <span class="flex items-center space-x-2">
-                    <span>2021 &mdash; 2023</span>
-                  </span>
-                </li>
-              </ul>
-            </li>
-          </ul>
-        </div>
+            <span class="flex items-center space-x-2">
+              <span>2021 &mdash; 2023</span>
+            </span>
+          </li>
+        </ul>
       </ScrollTrigger>
 
       <AppLink

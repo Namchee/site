@@ -1,5 +1,5 @@
 ---
-import { Icon } from 'astro-iconify';
+import ThemeToggle from '@/components/astro/ThemeToggle.astro';
 
 interface Props {
   currentPath: string;
@@ -13,7 +13,7 @@ const links = [
     text: '/home',
   },
   {
-    href: '/about',
+    href: '/about_two',
     text: '/about',
   },
   {
@@ -23,7 +23,7 @@ const links = [
 ];
 ---
 
-<div class="w-full max-w-7xl mx-auto grid grid-cols-12 items-start gap-4 py-8">
+<div class="w-full max-w-7xl h-24 mx-auto grid grid-cols-12 items-center gap-4">
   <!-- start: logo -->
   <div class="flex items-center col-span-2 space-x-2">
     <a
@@ -39,21 +39,17 @@ const links = [
       <span data-letter="e">e</span>
       <span data-letter="e">e</span>
     </a>
-
-    <button class="speech-button">
-      <Icon name="heroicons:speaker-wave" class="w-5 external__before" />
-    </button>
   </div>
   <!-- end: logo -->
 
-  <!-- start: job banner -->
-  <div class="col-start-3 col-span-3 text-content-variant">
-    <p>Software Engineer</p>
+  <!-- start: toggle -->
+  <div class="col-end-12">
+    <ThemeToggle />
   </div>
-  <!-- end: job banner -->
+  <!-- end: toggle -->
 
   <!-- start: nav -->
-  <nav class="flex space-x-12 ml-auto col-start-10 col-span-full">
+  <nav class="space-x-12 ml-auto col-start-10 col-span-full hidden">
     {
       links.map(link => (
         <a
@@ -71,19 +67,6 @@ const links = [
   </nav>
   <!-- end: nav -->
 </div>
-
-<script>
-  const speechButton = document.querySelector('.speech-button');
-
-  const utterance = new SpeechSynthesisUtterance('Namce');
-  utterance.lang = 'id-ID'; // this is the correct pronounciation
-
-  speechButton.addEventListener('click', () => {
-    if (window.speechSynthesis) {
-      window.speechSynthesis.speak(utterance);
-    }
-  });
-</script>
 
 <style>
   .link {

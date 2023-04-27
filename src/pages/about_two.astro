@@ -1,0 +1,124 @@
+---
+import { Icon } from 'astro-iconify';
+
+import Layout from '@/components/astro/Layout.astro';
+
+import AppLink from '@/components/astro/AppLink.astro';
+import TextLink from '@/components/astro/TextLink.astro';
+---
+
+<Layout title="About" description="==">
+  <!-- start: header -->
+  <header class="mx-auto py-32">
+    <h1 class="text-3xl leading-snug text-center">
+      <p class="text-content-variant">Driven by purpose</p>
+      <p>Delivering impact</p>
+    </h1>
+  </header>
+  <!-- end: header -->
+
+  <div class="space-y-16 mb-32">
+    <section class="grid grid-cols-12 gap-4">
+      <p class="col-start-4 leading-none">About</p>
+
+      <p class="col-start-6 col-end-11 text-content-variant leading-relaxed">
+        Hi. My name is Cristopher, but I'm commonly known as Namchee in the
+        online space. I'm a software engineer based in Bandung, Indonesia.
+        Currently, I create practical solutions at <TextLink
+          href="https://www.tokopedia.com"
+          external
+          target="_blank"
+        >
+          Tokopedia</TextLink>.
+      </p>
+
+      <p class="col-start-6 col-end-11 text-content-variant leading-relaxed">
+        I dream to make the world a better place through solving real-life
+        problems through software-based solutions for anyone, anywhere, and
+        anytime. With that in mind, I always try to expand my craft by exploring
+        and learning new things in various domains everyday.
+      </p>
+
+      <p class="col-start-6 col-end-11 text-content-variant leading-relaxed">
+        Outside professional work, I love developing or contributing to <TextLink
+          href="https://github.com/Namchee?tab=repositories"
+          external
+          target="_blank"
+        >
+          open source projects</TextLink> and joining impactful community movements.
+          Whenever I feel the burn out is approaching, I usually play video games with
+          my trusty little war machine or read light novels.
+      </p>
+    </section>
+
+    <section class="grid grid-cols-12 gap-4">
+      <p class="col-start-4 leading-none">
+        Experiences
+      </p>
+
+      <div class="col-start-6 col-end-11 space-y-6">
+        <div>
+          <AppLink href="https://glair.ai/" external class="font-medium inline-flex space-x-1 items-center mb-4">
+            <span>GLAIR</span>
+            <Icon name="heroicons:arrow-up-right" class="w-3"></Icon>
+          </AppLink>
+
+          <ul class="space-y-1 text-content-variant">
+            <li class="flex justify-between">
+              <span>Software Engineer</span>
+
+              <span class="flex items-center space-x-2">
+                <span
+                class="w-2 h-2 rounded-full bg-green inline-block pulse"
+                aria-hidden="true"></span>
+                <span>Present</span>
+              </span>
+            </li>
+          </ul>
+        </div>
+
+        <div>
+          <AppLink href="https://www.tokopedia.com" external class="font-medium inline-flex space-x-1 items-center mb-4">
+            <span>Tokopedia</span>
+            <Icon name="heroicons:arrow-up-right" class="w-3"></Icon>
+          </AppLink>
+
+          <ul class="space-y-1 text-content-variant">
+            <li class="flex justify-between">
+              <span>Software Engineer</span>
+
+              <span>August 2021 &mdash; June 2023</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+
+    </section>
+  </div>
+</Layout>
+
+<style>
+  .pulse {
+    opacity: 1;
+    animation: pulse 2s infinite;
+  }
+
+  @keyframes pulse {
+    0%,
+    100% {
+      transform: scale(0.95);
+      box-shadow: 0 0 0 0 rgba(101, 186, 117, 0.5);
+    }
+
+    60% {
+      transform: scale(1);
+      box-shadow: 0 0 0 8px rgba(101, 186, 117, 0);
+    }
+
+    80% {
+      transform: scale(0.95);
+      box-shadow: 0 0 0 0 rgba(101, 186, 117, 0);
+    }
+  }
+</style>
