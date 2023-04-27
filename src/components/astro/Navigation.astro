@@ -1,0 +1,59 @@
+---
+interface Props {
+  currentPath: string;
+}
+
+const { currentPath } = Astro.props;
+
+const links = [
+  {
+    href: '/',
+    text: 'Home',
+  },
+  {
+    href: '/about',
+    text: 'About',
+  },
+  {
+    href: '/blog',
+    text: 'Blog',
+  },
+];
+---
+
+<nav class="fixed bottom-2
+  bg-background
+  text-content
+  bg-opacity-80
+  backdrop-blur-4
+  border
+  border-outline
+  rounded-full
+  p-1
+  space-x-1
+  flex
+  shadow-sm
+  navigation">
+  {
+    links.map(link => (
+      <a
+        href={link.href}
+        data-hover={link.text}
+        class="block w-24 h-10 flex items-center justify-center rounded-full transition-colors hover:bg-surface hover:text-content focus:bg-surface focus:text-content focus:outline-none"
+        class:list={{
+          'bg-surface text-content': currentPath === link.href,
+        }}
+      >
+        <span>{link.text}</span>
+      </a>
+    ))
+  }
+</nav>
+
+<style>
+  .navigation {
+    left: 50%;
+    /* bring your own prefixes */
+    transform: translate(-50%, -50%);
+  }
+</style>
