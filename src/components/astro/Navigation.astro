@@ -8,38 +8,39 @@ const { currentPath } = Astro.props;
 const links = [
   {
     href: '/',
-    text: 'Home',
+    text: '/home',
   },
   {
     href: '/about',
-    text: 'About',
+    text: '/about',
   },
   {
     href: '/blog',
-    text: 'Blog',
+    text: '/blog',
   },
 ];
 ---
 
-<nav class="fixed bottom-2
+<nav class="fixed bottom-0
   bg-background
   text-content
-  bg-opacity-80
+  bg-opacity-90
   backdrop-blur-4
   border
   border-outline
+  border-opacity-50
   rounded-full
   p-1
   space-x-1
   flex
-  shadow-sm
+  shadow
   navigation">
   {
     links.map(link => (
       <a
         href={link.href}
         data-hover={link.text}
-        class="block w-24 h-10 flex items-center justify-center rounded-full transition-colors hover:bg-surface hover:text-content focus:bg-surface focus:text-content focus:outline-none"
+        class="block w-24 h-10 flex items-center justify-center rounded-full text-content-variant transition-colors hover:bg-surface focus:bg-surface focus:outline-none"
         class:list={{
           'bg-surface text-content': currentPath === link.href,
         }}

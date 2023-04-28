@@ -1,26 +1,5 @@
 ---
 import ThemeToggle from '@/components/astro/ThemeToggle.astro';
-
-interface Props {
-  currentPath: string;
-}
-
-const { currentPath } = Astro.props;
-
-const links = [
-  {
-    href: '/',
-    text: '/home',
-  },
-  {
-    href: '/about_two',
-    text: '/about',
-  },
-  {
-    href: '/blog',
-    text: '/blog',
-  },
-];
 ---
 
 <div class="w-full max-w-7xl h-24 mx-auto flex items-center justify-between">
@@ -47,25 +26,6 @@ const links = [
     <ThemeToggle />
   </div>
   <!-- end: toggle -->
-
-  <!-- start: nav -->
-  <nav class="space-x-12 ml-auto col-start-10 col-span-full hidden">
-    {
-      links.map(link => (
-        <a
-          href={link.href}
-          data-hover={link.text}
-          class="transition-colors hover:text-content-variant focus:text-content-variant link"
-          class:list={{
-            'font-medium tracking-tight': currentPath === link.href,
-          }}
-        >
-          <span>{link.text}</span>
-        </a>
-      ))
-    }
-  </nav>
-  <!-- end: nav -->
 </div>
 
 <style>
