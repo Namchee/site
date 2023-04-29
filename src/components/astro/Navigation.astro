@@ -8,15 +8,15 @@ const { currentPath } = Astro.props;
 const links = [
   {
     href: '/',
-    text: '/home',
+    text: 'Home',
   },
   {
     href: '/about',
-    text: '/about',
+    text: 'About',
   },
   {
     href: '/blog',
-    text: '/blog',
+    text: 'Blog',
   },
 ];
 ---
@@ -28,7 +28,7 @@ const links = [
   backdrop-blur-4
   border
   border-outline
-  border-opacity-50
+  border-opacity-75
   rounded-full
   p-1
   space-x-1
@@ -40,9 +40,10 @@ const links = [
       <a
         href={link.href}
         data-hover={link.text}
-        class="block w-24 h-10 flex items-center justify-center rounded-full text-content-variant transition-colors hover:bg-surface focus:bg-surface focus:outline-none"
+        class="block w-24 h-10 flex items-center justify-center rounded-full transition-colors hover:bg-surface focus:bg-surface focus:outline-none"
         class:list={{
           'bg-surface text-content': currentPath === link.href,
+          'text-content-variant': currentPath !== link.href,
         }}
       >
         <span>{link.text}</span>
