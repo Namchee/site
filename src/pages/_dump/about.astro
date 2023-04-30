@@ -1,229 +1,242 @@
 ---
-import AppLink from '@/components/astro/AppLink.astro';
-import Layout from '@/components/astro/Layout.astro';
-import TextLink from '@/components/astro/TextLink.astro';
+import Layout from '@/components/astro/v1/Layout.astro';
 
-import ScrollTrigger from '@/components/vue/ScrollTrigger.vue';
+import RevealingText from '@/components/vue/v1/RevealingText.vue';
+import ArrowRight from '~icons/radix-icons/arrow-right';
 
-import { Icon } from 'astro-iconify';
-
-const metaDescription =
-  'Cristopher, or more commonly known as Namchee, is a software engineer based in Bandung, Indonesia. Namchee is focused solving real-life problems to make the world a better place.';
+const description = 'Namchee is a purpose-driven software engineer that delivers meaningful impacts based in Indonesia.';
 ---
 
-<Layout title="About Me" description={metaDescription}>
-  <div class="grid grid-cols-12 gap-x-4 py-32">
-    <header class="col-start-1 col-span-6">
-      <ScrollTrigger
-        as="h1"
-        target="header__word"
-        apply={{ transform: 'translateY(0)' }}
-        class="text-5xl leading-snug -mt-4"
-        duration={0.8}
-        stagger={0.175}
-        client:visible
-      >
-        <p class="overflow-y-hidden">
-          <span class="inline-block translate-y-100% header__word">
-            Driven by purpose.
-          </span>
-        </p>
+<Layout
+  title="Driven By Purpose, Delivering Impact | Namchee"
+  description={description}
+>
+  <div class="my-32 md:mb-64">
+    <RevealingText
+      reveal="word"
+      stagger={0.1}
+      duration={0.75}
+      easing="ease-out-cubic"
+      client:visible
+    >
+      <header class="w-full lg:grid lg:grid-cols-12 gap-6 about__header">
+        <h1 class="col-start-2 xl:col-start-7 col-span-full tracking-tight">
+          <p class="overflow-y-hidden">
+            <span class="inline-block translate-y-64 word">
+              Namchee is a <span class="font-medium">purpose</span>
+            </span>
+          </p>
+          <p class="overflow-y-hidden">
+            <span class="inline-block translate-y-64 word">
+              driven developer that
+            </span>
+          </p>
+          <p class="overflow-y-hidden">
+            <span class="inline-block translate-y-64 word">
+              delivers <span class="font-medium">impact</span>
+            </span>
+          </p>
+        </h1>
+      </header>
+    </RevealingText>
 
-        <p class="overflow-y-hidden">
-          <span class="inline-block translate-y-100% header__word">
-            Delivering impact.
-          </span>
-        </p>
-      </ScrollTrigger>
-    </header>
+    <!-- start: about sections -->
+    <div class="mt-32 lg:mt-64 space-y-24 lg:space-y-32 col-span-full">
 
-    <article class="col-start-8 col-span-full">
-      <ScrollTrigger
-        as="section"
-        apply={{ transform: 'translateY(0)', opacity: 1 }}
-        duration={0.4}
-        class="opacity-0 translate-y-4 mb-12"
-        offset={0.8}
-        client:visible
-      >
-        <p class="text-lg mb-6">About me</p>
+      <!-- start: intro section -->
+      <section class="lg:grid lg:grid-cols-12 gap-x-6">
+        <div class="font-semibold text-xs md:text-base mb-1 lg:mb-0">
+          01/
+        </div>
+        <div class="text-lg md:text-2xl font-medium lg:-mt-2 tracking-tight lg:sticky lg:top-12 lg:self-start">
+          Biography
+        </div>
+        <div class="mt-4 lg:mt-0 col-start-7 col-span-full leading-loose space-y-8">
+          <p>
+            Hello there stranger! I'm Namchee, an Indonesian-based software engineer.
 
-        <p class="text-lg text-content-variant leading-normal mb-6">
-          Hi. My name is Cristopher, but I'm commonly known as Namchee in the
-          online space. I'm a software engineer based in Bandung, Indonesia.
-          Currently, I create practical solutions at <TextLink
-            href="https://www.tokopedia.com"
-          >
-            Tokopedia
-          </TextLink>
-        </p>
+            Currently, I work at <a target="_blank" href="https://www.tokopedia.com" class="text-accent-dark underline">
+              Tokopedia</a> as an purpose-driven software engineer that delivers meaningful impact.
+          </p>
+          <p>
+            My first software engineering journey began in 2016 when I discovered HTML and JavaScript.
 
-        <p class="text-lg text-content-variant leading-normal">
-          I stumbled upon the world of code when I'm searching for a way to
-          cheat at a Facebook game during my junior high school days. Although I
-          failed to do so, the journey serves as my first step to software
-          engineering.
-        </p>
-      </ScrollTrigger>
+            The accidental discovery of programming ignites my long-life dream to make the world a better place for
+            everyone through software engineering.
+          </p>
+          <p>
+            Exploring the vast world of software engineering made me a curious person.
 
-      <ScrollTrigger
-        as="section"
-        apply={{ transform: 'translateY(0)', opacity: 1 }}
-        duration={0.4}
-        class="opacity-0 translate-y-4 mb-12"
-        offset={0.8}
-        client:visible
-      >
-        <p class="font-mono text-content-variant uppercase mb-6">Mission</p>
+            My curiosity drives me to explore and learn new things in various domains every day.
 
-        <p class="text-lg leading-normal mb-6">
-          My mission is to make the world a better place through software
-          engineering by creating practical solutions to real-world problems for
-          anyone, anywhere, and anytime.
-        </p>
+            For me, such opportunities are the ones that make life more lively and worth celebrating.
+          </p>
+        </div>
+      </section>
+      <!-- end: intro section -->
 
-        <p class="text-lg leading-normal">
-          With that in mind, I always try to expand my craft by exploring and
-          learning new things in various domains everyday. For me, such
-          opportunities are the one that makes life more lively and interesting.
-        </p>
-      </ScrollTrigger>
+      <!-- start: tech stack section -->
+      <section class="lg:grid lg:grid-cols-12 gap-x-6">
+        <div class="font-semibold text-xs md:text-base mb-1 lg:mb-0">
+          02/
+        </div>
+        <div
+          class="text-xl md:text-2xl font-medium lg:-mt-2 tracking-tighter lg:col-span-3 lg:sticky lg:top-12 lg:self-start">
+          Tech Stack
+        </div>
+        <div class="mt-4 lg:mt-0 col-start-7 col-span-full leading-loose">
+          <p>
+            Every engineer has their own set of preferred tools to do magic. Here's my tools of trade.
+          </p>
 
-      <ScrollTrigger
-        as="section"
-        apply={{ transform: 'translateY(0)', opacity: 1 }}
-        duration={0.4}
-        class="opacity-0 translate-y-4 mb-12"
-        offset={0.75}
-        client:visible
-      >
-        <p class="font-mono text-content-variant uppercase mb-6">
-          Other things I do
-        </p>
+          <div class="mt-10 grid grid-cols-2 gap-8 lg:gap-y-16 gap-x-8">
+            <div>
+              <p class="text-xs text-grey font-mono tracking-tight">
+                Front End Development
+              </p>
 
-        <p class="text-lg leading-normal">
-          Outside professional work, I love contributing to open source projects
-          and joining impactful community movements. Whenever I feel the burn
-          out is approaching, I usually play video games with my trusty little
-          war machine or read light novels.
-        </p>
-      </ScrollTrigger>
-
-      <ScrollTrigger
-        as="section"
-        apply={{ transform: 'translateY(0)', opacity: 1 }}
-        duration={0.4}
-        class="opacity-0 translate-y-4 mb-12"
-        offset={0.75}
-        client:visible
-      >
-        <p class="font-mono text-content-variant uppercase mb-6">Experiences</p>
-
-        <ul class="space-y-2">
-          <li
-            class="flex items-center justify-between space-x-4 leading-normal"
-          >
-            <span>Software Engineer@<span class="font-medium">GLAIR</span></span
-            >
-
-            <div class="h-[1px] border-t-1 border-t-outline flex-1 hidden">
+              <ul class="space-y-1 mt-2">
+                <li>
+                  HTML
+                </li>
+                <li>
+                  CSS
+                </li>
+                <li>
+                  JavaScript
+                </li>
+                <li>
+                  TypeScript
+                </li>
+                <li>
+                  React
+                </li>
+                <li>
+                  Vue
+                </li>
+                <li>
+                  Next.js
+                </li>
+                <li>
+                  NuxtJS
+                </li>
+              </ul>
             </div>
 
-            <span class="flex items-center space-x-2">
-              <span
-                class="w-2 h-2 rounded-full bg-green inline-block pulse"
-                aria-hidden="true"></span>
-              <span>Present</span>
-            </span>
-          </li>
+            <div>
+              <p class="text-xs font-mono text-grey">
+                Back End Development
+              </p>
 
-          <li
-            class="flex items-center justify-between space-x-4 text-lg leading-normal"
-          >
-            <span>Software Engineer@Tokopedia</span>
-
-            <div class="h-[1px] border-t-1 border-t-outline flex-1 hidden">
+              <ul class="space-y-1 mt-2">
+                <li>
+                  NodeJS
+                </li>
+                <li>
+                  Golang
+                </li>
+                <li>
+                  MySQL
+                </li>
+                <li>
+                  PostgreSQL
+                </li>
+              </ul>
             </div>
 
-            <span class="flex items-center space-x-2">
-              <span>2021 &mdash; 2023</span>
-            </span>
-          </li>
-        </ul>
-      </ScrollTrigger>
+            <div>
+              <p class="text-xs font-mono text-grey">
+                Infrastructure
+              </p>
 
-      <AppLink
-        href="https://read.cv/namchee"
-        class="inline-flex items-center text-lg leading-none about__link"
-      >
-        <Icon name="radix-icons:arrow-right" class="w-6 h-6 arrow__before" />
-        <span class="about__text inline-block">Read my resume</span>
-        <Icon
-          name="radix-icons:arrow-top-right"
-          class="w-6 h-6 -translate-x-4 opacity-0 arrow__after"
-        />
-      </AppLink>
-    </article>
+              <ul class="space-y-1 mt-2">
+                <li>
+                  Vercel
+                </li>
+                <li>
+                  Supabase
+                </li>
+                <li>
+                  Cloudflare
+                </li>
+              </ul>
+            </div>
+
+            <div>
+              <p class="text-xs font-mono text-grey">
+                Other Tools
+              </p>
+
+              <ul class="space-y-1 mt-2">
+                <li>
+                  VSCode
+                </li>
+                <li>
+                  Git
+                </li>
+                <li>
+                  Figma
+                </li>
+                <li>
+                  Google
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+      <!-- end: tech stack section -->
+
+      <!-- start: experience section -->
+      <section class="lg:grid lg:grid-cols-12 gap-x-6">
+        <div class="font-semibold text-xs md:text-base mb-1 lg:mb-0">
+          03/
+        </div>
+        <div class="text-xl md:text-2xl font-medium lg:-mt-2 tracking-tighter lg:sticky lg:top-12 lg:self-start">
+          Professional Experiences
+        </div>
+        <div class="mt-8 lg:mt-0 col-start-7 col-span-full leading-loose">
+          <ul>
+            <li>
+              <p class="text-grey text-xs md:text-sm font-mono uppercase">
+                2022 &ndash; Present
+              </p>
+              <p class="font-medium text-lg md:text-xl tracking-tight leading-relaxed">
+                Tokopedia
+              </p>
+              <p class="mt-2">
+                Tokopedia is where I began my software engineering gig. Some of
+                my personal achievements in Tokopedia are:
+              <ul>
+                <li class="flex">
+                  <ArrowRight class="w-5 h-auto first:self-start mt-2" />
+                  <p class="ml-3 flex-1">
+                    Improved the reliability of incident detection in digital tribe by maintaining 911 monitoring and
+                    alerting project.
+                  </p>
+                </li>
+                <li class="flex">
+                  <ArrowRight class="w-5 h-auto self-start mt-2" />
+                  <p class="ml-3 flex-1">
+                    Decreased critical API latency by 400% by optimizing database queries and function calls.
+                  </p>
+                </li>
+              </ul>
+              </p>
+            </li>
+          </ul>
+        </div>
+      </section>
+      <!-- start: experience section -->
+
+    </div>
+    <!-- end: about sections -->
   </div>
 </Layout>
 
 <style>
-  .arrow__before,
-  .arrow__after,
-  .about__text {
-    transition: all 200ms easeOutQuad;
-  }
-
-  .about__text {
-    transform: translateX(8px);
-  }
-
-  .arrow__before {
-    transform: translateX(0px);
-  }
-
-  .arrow__after {
-    opacity: 0;
-    transform: translateX(-24px);
-  }
-
-  .about__link:hover .arrow__before,
-  .about__link:focus .arrow__before {
-    transform: translateX(16px);
-    opacity: 0;
-  }
-
-  .about__link:hover .about__text,
-  .about__link:focus .about__text {
-    transform: translateX(-20px);
-  }
-
-  .about__link:hover .arrow__after,
-  .about__link:focus .arrow__after {
-    opacity: 1;
-    transform: translateX(-16px);
-  }
-
-  .pulse {
-    opacity: 1;
-    animation: pulse 2s infinite;
-  }
-
-  @keyframes pulse {
-    0%,
-    100% {
-      transform: scale(0.95);
-      box-shadow: 0 0 0 0 rgba(101, 186, 117, 0.5);
-    }
-
-    60% {
-      transform: scale(1);
-      box-shadow: 0 0 0 8px rgba(101, 186, 117, 0);
-    }
-
-    80% {
-      transform: scale(0.95);
-      box-shadow: 0 0 0 0 rgba(101, 186, 117, 0);
-    }
-  }
+.about__header {
+  font-size: clamp(23.99px, 56.83px, 8vw);
+  line-height: 1.375;
+}
 </style>

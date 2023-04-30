@@ -9,12 +9,12 @@ import { Icon } from 'astro-iconify';
 
 <footer class="flex flex-col items-center
   w-full max-w-7xl mx-auto
-  py-10
+  py-8
   space-y-12"
 >
   <!-- start: page speed -->
   <div class="text-center
-    text-sm leading-relaxed
+    leading-relaxed
     hidden"
   >
     <!-- TODO: change this using real data -->
@@ -32,18 +32,18 @@ import { Icon } from 'astro-iconify';
   <div class="flex flex-col items-center space-y-8">
     <!-- start: email -->
     <div class="text-center">
-      <p class="text-sm mb-2 text-content-variant">
+      <p class="mb-2 text-content-variant">
         Say hello
       </p>
 
-      <AppLink href="mailto:hello@namchee.dev">
+      <AppLink class="text-lg" href="mailto:hello@namchee.dev">
         hello@namchee.dev
       </AppLink>
     </div>
     <!-- end: email -->
 
     <!-- start: socials -->
-    <div class="flex mt-8 space-x-4">
+    <div class="flex mt-8 space-x-6">
       <AppLink
         external
         href="https://www.github.com/Namchee"
@@ -51,7 +51,7 @@ import { Icon } from 'astro-iconify';
       >
         <Icon
           name="radix-icons:github-logo"
-          class="fill-current w-4"
+          class="fill-current w-5"
         />
       </AppLink>
 
@@ -62,7 +62,7 @@ import { Icon } from 'astro-iconify';
       >
         <Icon
           name="radix-icons:twitter-logo"
-          class="fill-current w-4"
+          class="fill-current w-5"
         />
       </AppLink>
 
@@ -73,7 +73,7 @@ import { Icon } from 'astro-iconify';
       >
         <Icon
           name="radix-icons:linkedin-logo"
-          class="fill-current w-4"
+          class="fill-current w-5"
         />
       </AppLink>
     </div>
@@ -82,13 +82,17 @@ import { Icon } from 'astro-iconify';
   </div>
   <!-- end: contacts -->
 
-  <div class="w-full mt-8 flex justify-between text-sm">
+  <div class="w-full mt-8 grid grid-cols-3 gap-4">
     <p>
       &copy; 2023 Namchee
     </p>
 
-    <BackToTop as="button" class="flex items-center" client:visible>
-      <Icon name="radix-icons:arrow-up" class="w-4 mr-1" />
+    <BackToTop
+      as="button"
+      class="col-start-3 justify-end flex items-center"
+      client:visible
+    >
+      <Icon name="radix-icons:arrow-up" class="w-4 mr-2" />
       <span> Back to top</span>
     </BackToTop>
   </div>

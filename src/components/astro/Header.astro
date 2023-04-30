@@ -1,5 +1,24 @@
 ---
-import ThemeToggle from '@/components/astro/ThemeToggle.astro';
+interface Props {
+  currentPath: string;
+}
+
+const { currentPath } = Astro.props;
+
+const links = [
+  {
+    href: '/',
+    text: 'Home',
+  },
+  {
+    href: '/about',
+    text: 'About',
+  },
+  {
+    href: '/blog',
+    text: 'Blog',
+  },
+];
 ---
 
 <div class="w-full max-w-7xl h-24 mx-auto flex justify-between items-center">
@@ -8,7 +27,7 @@ import ThemeToggle from '@/components/astro/ThemeToggle.astro';
     <a
       rel="noopener noreferrer"
       href="/"
-      class="text-lg leading-none font-medium tracking-tighter logo"
+      class="text-lg leading-none font-medium tracking-tighter logo hover:text-content-variant transition-colors"
     >
       <span data-letter="N">N</span>
       <span data-letter="a">a</span>
@@ -21,11 +40,25 @@ import ThemeToggle from '@/components/astro/ThemeToggle.astro';
   </div>
   <!-- end: logo -->
 
-  <!-- start: toggle -->
-  <div >
-    <ThemeToggle />
-  </div>
-  <!-- end: toggle -->
+  <!-- start: navigation -->
+  <nav class="flex space-x-12">
+  {
+    links.map(link => (
+      <a
+        href={link.href}
+        data-hover={link.text}
+        class="transition-colors hover:text-content focus:text-content link"
+        class:list={{
+          'text-content': currentPath === link.href,
+          'text-content-variant': currentPath !== link.href,
+        }}
+      >
+        <span>{link.text}</span>
+      </a>
+    ))
+  }
+</nav>
+  <!-- end: navigation -->
 </div>
 
 <style>

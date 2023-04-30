@@ -3,7 +3,6 @@ import '@/assets/styles/global.css';
 
 import Footer from '@/components/astro/Footer.astro';
 import Header from '@/components/astro/Header.astro';
-import Navigation from '@/components/astro/Navigation.astro';
 
 export interface Props {
   title: string;
@@ -36,6 +35,5 @@ const { pathname } = new URL(Astro.request.url);
       <slot />
     </main>
     <Footer />
-    <Navigation currentPath={pathname} />
   </body>
 </html>
