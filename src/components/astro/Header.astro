@@ -49,7 +49,7 @@ const links = [
         data-hover={link.text}
         class="transition-colors hover:text-content focus:text-content link"
         class:list={{
-          'text-content': currentPath === link.href,
+          'text-content font-medium tracking-tight': currentPath === link.href,
           'text-content-variant': currentPath !== link.href,
         }}
       >

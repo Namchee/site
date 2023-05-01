@@ -13,12 +13,12 @@ const metaDescription =
 
 <Layout title="About Me" description={metaDescription}>
   <div class="grid grid-cols-12 gap-x-4 py-32">
-    <header class="col-start-1 col-span-6 sticky top-4">
+    <header class="col-start-1 col-span-6">
       <ScrollTrigger
         as="h1"
         target="header__word"
         apply={{ transform: 'translateY(0)' }}
-        class="text-5xl leading-snug -mt-4"
+        class="text-5xl leading-snug -mt-4 sticky top-12"
         duration={0.8}
         stagger={0.175}
         client:visible
@@ -48,7 +48,7 @@ const metaDescription =
       >
         <p class="font-mono uppercase mb-6">About me</p>
 
-        <p class="text-lg text-content-variant leading-normal mb-6">
+        <p class="text-lg leading-normal mb-6">
           Hi. My name is Cristopher, but I'm commonly known as Namchee in the
           online space. I'm a software engineer based in Bandung, Indonesia.
           Currently, I create practical solutions at <TextLink
@@ -57,7 +57,7 @@ const metaDescription =
             Tokopedia</TextLink>.
         </p>
 
-        <p class="text-lg text-content-variant leading-normal">
+        <p class="text-lg leading-normal">
           I stumbled upon the world of code when I'm searching for a way to
           cheat at a Facebook game during my junior high school days. Although I
           failed to do so, the journey serves as my first step to software
