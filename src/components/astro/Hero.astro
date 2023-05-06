@@ -1,6 +1,7 @@
 ---
 import { Icon } from 'astro-iconify';
 
+import AppLink from '@/components/astro/AppLink.astro';
 import ScrollTrigger from '@/components/vue/ScrollTrigger.vue';
 ---
 
@@ -43,8 +44,8 @@ import ScrollTrigger from '@/components/vue/ScrollTrigger.vue';
     delay={0.75}
     client:visible
   >
-    <a
-      class="inline-flex text-content-variant hover:text-content transition-colors items-center text-xl about__link"
+    <AppLink
+      class="inline-flex items-center text-content-variant transition-colors hover:text-content focus:text-content text-xl about__link"
       href="/about"
     >
       <Icon name="radix-icons:arrow-right" class="w-6 arrow__before" />
@@ -53,7 +54,7 @@ import ScrollTrigger from '@/components/vue/ScrollTrigger.vue';
         name="radix-icons:arrow-right"
         class="w-6 -translate-x-8 opacity-0 arrow__after"
       />
-    </a>
+  </AppLink>
   </ScrollTrigger>
 </header>
 

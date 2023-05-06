@@ -1,4 +1,6 @@
 ---
+import ThemeToggle from '@/components/astro/ThemeToggle.astro';
+
 interface Props {
   currentPath: string;
 }
@@ -40,25 +42,9 @@ const links = [
   </div>
   <!-- end: logo -->
 
-  <!-- start: navigation -->
-  <nav class="flex space-x-12">
-  {
-    links.map(link => (
-      <a
-        href={link.href}
-        data-hover={link.text}
-        class="transition-colors hover:text-content focus:text-content link"
-        class:list={{
-          'text-content font-medium tracking-tight': currentPath === link.href,
-          'text-content-variant': currentPath !== link.href,
-        }}
-      >
-        <span>{link.text}</span>
-      </a>
-    ))
-  }
-</nav>
-  <!-- end: navigation -->
+  <!-- start: theme toggle -->
+  <ThemeToggle />
+  <!-- end: theme toggle -->
 </div>
 
 <style>

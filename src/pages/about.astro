@@ -1,152 +1,167 @@
 ---
-import { Icon } from 'astro-iconify';
-
-import Layout from '@/components/astro/Layout.astro';
-
 import AppLink from '@/components/astro/AppLink.astro';
+import Layout from '@/components/astro/Layout.astro';
 import TextLink from '@/components/astro/TextLink.astro';
 
 import ScrollTrigger from '@/components/vue/ScrollTrigger.vue';
+
+import { Icon } from 'astro-iconify';
+
+const metaDescription =
+  'Cristopher, or more commonly known as Namchee, is a software engineer based in Bandung, Indonesia. Namchee is focused solving real-life problems to make the world a better place.';
 ---
 
-<Layout title="About" description="==">
-  <!-- start: header -->
-  <header class="py-32">
-    <ScrollTrigger
-      as="h1"
-      target="header__word"
-      apply={{ transform: 'translateY(0)' }}
-      class="text-center text-3xl leading-normal"
-      duration={0.6}
-      stagger={0.15}
-      offset={0.75}
-      client:visible
-    >
-      <p class="overflow-y-hidden">
-        <span class="inline-block translate-y-100% text-content-variant header__word">
-          Driven by purpose
-        </span>
-      </p>
+<Layout title="About Me" description={metaDescription}>
+  <div class="grid grid-cols-12 gap-x-4 py-32">
+    <header class="col-start-1 col-span-6">
+      <ScrollTrigger
+        as="h1"
+        target="header__word"
+        apply={{ transform: 'translateY(0)' }}
+        class="text-5xl leading-snug -mt-4"
+        duration={0.8}
+        stagger={0.175}
+        client:visible
+      >
+        <p class="overflow-y-hidden">
+          <span class="inline-block translate-y-100% header__word text-content-variant">
+            Driven by purpose.
+          </span>
+        </p>
 
-      <p class="overflow-y-hidden">
-        <span class="inline-block translate-y-100% header__word">
-          Delivering meaningful impact
-        </span>
-      </p>
-    </ScrollTrigger>
-  </header>
-  <!-- end: header -->
+        <p class="overflow-y-hidden">
+          <span class="inline-block translate-y-100% header__word">
+            Delivering impact.
+          </span>
+        </p>
+      </ScrollTrigger>
+    </header>
 
-  <!-- start: text section -->
-  <article class="mb-32">
-    <!-- start: about section -->
-    <ScrollTrigger
-      apply={{ transform: 'translateY(0)', opacity: 1 }}
-      duration={0.4}
-      offset={0.9}
-      client:visible
-      class="grid grid-cols-12 gap-4 opacity-0 translate-y-4 mb-16"
-    >
-      <p class="col-start-4 leading-none">About</p>
+    <article class="col-start-8 col-span-full">
+      <ScrollTrigger
+        as="section"
+        apply={{ transform: 'translateY(0)', opacity: 1 }}
+        duration={0.4}
+        class="opacity-0 translate-y-4 mb-12"
+        offset={0.8}
+        client:visible
+      >
+        <p class="font-mono text-content-variant uppercase mb-6">About me</p>
 
-      <p class="col-start-6 col-end-11 text-content-variant leading-relaxed">
-        Hi. My name is Cristopher, but I'm commonly known as Namchee in the
-        online space. I'm a software engineer based in Bandung, Indonesia.
-        Currently, I create practical solutions at <TextLink
-          href="https://www.tokopedia.com"
+        <p class="text-lg leading-normal mb-6">
+          Hi. My name is Cristopher, but I'm commonly known as Namchee in the
+          online space. I'm a software engineer based in Bandung, Indonesia.
+          Currently, I create practical solutions at <TextLink
+            external
+            href="https://www.tokopedia.com"
+          >
+            Tokopedia</TextLink>.
+        </p>
+
+        <p class="text-lg leading-normal">
+          I stumbled upon the world of code when I'm searching for a way to
+          cheat at a Facebook game during my junior high school days. Although I
+          failed to do so, the journey serves as my first step to software
+          engineering.
+        </p>
+      </ScrollTrigger>
+
+      <ScrollTrigger
+        as="section"
+        apply={{ transform: 'translateY(0)', opacity: 1 }}
+        duration={0.4}
+        class="opacity-0 translate-y-4 mb-12"
+        offset={0.8}
+        client:visible
+      >
+        <p class="font-mono text-content-variant uppercase mb-6">Mission</p>
+
+        <p class="text-lg leading-normal mb-6">
+          My mission is to make the world a better place through software
+          engineering by creating practical solutions to real-world problems for
+          anyone, anywhere, and anytime.
+        </p>
+
+        <p class="text-lg leading-normal">
+          With that in mind, I always try to expand my craft by exploring and
+          learning new things in various domains everyday. For me, such
+          opportunities are the one that makes life more lively and interesting.
+        </p>
+      </ScrollTrigger>
+
+      <ScrollTrigger
+        as="section"
+        apply={{ transform: 'translateY(0)', opacity: 1 }}
+        duration={0.4}
+        class="opacity-0 translate-y-4 mb-12"
+        offset={0.75}
+        client:visible
+      >
+        <p class="font-mono text-content-variant uppercase mb-6">
+          Other things I do
+        </p>
+
+        <p class="text-lg leading-normal">
+          Outside professional work, I love contributing to <TextLink
           external
-          target="_blank"
+          href="https://www.github.com/Namchee?tab=repositories"
         >
-          Tokopedia</TextLink>.
-      </p>
+          open source projects</TextLink> and joining impactful community
+           movements. Whenever I feel the burn
+          out is approaching, I usually play video games with my trusty little
+          war machine or read light novels.
+        </p>
+      </ScrollTrigger>
 
-      <p class="col-start-6 col-end-11 text-content-variant leading-relaxed">
-        I dream to make the world a better place by solving real-life
-        problems through software-based solutions for anyone, anywhere, and
-        anytime. With that in mind, I always try to expand my craft by exploring
-        and learning new things in various domains everyday.
-      </p>
+      <ScrollTrigger
+        as="section"
+        apply={{ transform: 'translateY(0)', opacity: 1 }}
+        duration={0.4}
+        class="opacity-0 translate-y-4 mb-12"
+        offset={0.75}
+        client:visible
+      >
+        <p class="font-mono text-content-variant uppercase mb-6">Experiences</p>
 
-      <p class="col-start-6 col-end-11 text-content-variant leading-relaxed">
-        Outside professional work, I love developing or contributing to <TextLink
-          href="https://github.com/Namchee?tab=repositories"
-          external
-          target="_blank"
-        >
-          open source projects</TextLink> and joining impactful community movements.
-          Whenever I feel the burn out is approaching, I usually play video games with
-          my trusty little war machine or read light novels.
-      </p>
-    </ScrollTrigger>
-    <!-- end: about section -->
+        <ul class="space-y-2">
+          <li
+            class="flex items-center justify-between space-x-4 text-lg leading-normal"
+          >
+            <span>Software Engineer@GLAIR</span>
 
-    <!-- start: experiences -->
-    <ScrollTrigger
-      apply={{ transform: 'translateY(0)', opacity: 1 }}
-      duration={0.4}
-      offset={0.9}
-      client:visible
-      class="grid grid-cols-12 gap-4 opacity-0 translate-y-4"
-    >
-      <p class="col-start-4 leading-none">
-        Experiences
-      </p>
-
-      <div class="col-start-6 col-end-11 space-y-6">
-        <div>
-          <AppLink href="https://glair.ai/" external class="font-medium inline-flex space-x-1 items-center mb-4">
-            <span>GLAIR</span>
-            <Icon name="heroicons:arrow-up-right" class="w-3"></Icon>
-          </AppLink>
-
-          <ul class="space-y-1 text-content-variant">
-            <li class="flex justify-between">
-              <span>Software Engineer</span>
-
-              <span class="flex items-center space-x-2">
-                <span
+            <span class="flex items-center space-x-2">
+              <span
                 class="w-2 h-2 rounded-full bg-green inline-block pulse"
                 aria-hidden="true"></span>
-                <span>Present</span>
-              </span>
-            </li>
-          </ul>
-        </div>
+              <span>Present</span>
+            </span>
+          </li>
 
-        <div>
-          <AppLink href="https://www.tokopedia.com" external class="font-medium inline-flex space-x-1 items-center mb-4">
-            <span>Tokopedia</span>
-            <Icon name="heroicons:arrow-up-right" class="w-3"></Icon>
-          </AppLink>
+          <li
+            class="flex items-center justify-between space-x-4 text-lg leading-normal"
+          >
+            <span>Software Engineer@Tokopedia</span>
 
-          <ul class="space-y-1 text-content-variant">
-            <li class="flex justify-between">
-              <span>Software Engineer</span>
+            <span class="flex items-center space-x-2">
+              <span>2021 &mdash; 2023</span>
+            </span>
+          </li>
+        </ul>
+      </ScrollTrigger>
 
-              <span>August 2021 &mdash; June 2023</span>
-            </li>
-          </ul>
-        </div>
-      </div>
-
-      <!-- start: resume link -->
       <AppLink
         href="https://read.cv/namchee"
-        class="col-start-6 col-span-2 mt-4 inline-flex items-center leading-none text-content-variant hover:text-content focus:text-content about__link"
+        class="inline-flex items-center text-lg leading-none about__link"
       >
-        <Icon name="heroicons:arrow-right" class="w-4 arrow__before" />
+        <Icon name="radix-icons:arrow-right" class="w-6 h-6 arrow__before" />
         <span class="about__text inline-block">Read my resume</span>
         <Icon
-          name="heroicons:arrow-up-right"
-          class="w-4 -translate-x-4 opacity-0 arrow__after"
+          name="radix-icons:arrow-top-right"
+          class="w-6 h-6 -translate-x-4 opacity-0 arrow__after"
         />
       </AppLink>
-      <!-- end: resume link -->
-
-    </ScrollTrigger>
-    <!-- end: experiences -->
-  </article>
-  <!-- end: text section -->
+    </article>
+  </div>
 </Layout>
 
 <style>

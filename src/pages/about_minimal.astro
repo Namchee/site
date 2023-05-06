@@ -1,0 +1,211 @@
+---
+import { Icon } from 'astro-iconify';
+
+import Layout from '@/components/astro/Layout.astro';
+
+import AppLink from '@/components/astro/AppLink.astro';
+import TextLink from '@/components/astro/TextLink.astro';
+
+import ScrollTrigger from '@/components/vue/ScrollTrigger.vue';
+---
+
+<Layout title="About" description="==">
+  <!-- start: header -->
+  <header class="py-32">
+    <ScrollTrigger
+      as="h1"
+      target="header__word"
+      apply={{ transform: 'translateY(0)' }}
+      class="text-center text-3xl leading-normal"
+      duration={0.6}
+      stagger={0.15}
+      offset={0.75}
+      client:visible
+    >
+      <p class="overflow-y-hidden">
+        <span class="inline-block translate-y-100% text-content-variant header__word">
+          Driven by purpose
+        </span>
+      </p>
+
+      <p class="overflow-y-hidden">
+        <span class="inline-block translate-y-100% header__word">
+          Delivering meaningful impact
+        </span>
+      </p>
+    </ScrollTrigger>
+  </header>
+  <!-- end: header -->
+
+  <!-- start: text section -->
+  <article class="mb-32">
+    <!-- start: about section -->
+    <ScrollTrigger
+      apply={{ transform: 'translateY(0)', opacity: 1 }}
+      duration={0.4}
+      offset={0.9}
+      client:visible
+      class="grid grid-cols-12 gap-4 opacity-0 translate-y-4 mb-16"
+    >
+      <p class="col-start-4 leading-none">About</p>
+
+      <p class="col-start-6 col-end-11 text-content-variant leading-relaxed">
+        Hi. My name is Cristopher, but I'm commonly known as Namchee in the
+        online space. I'm a software engineer based in Bandung, Indonesia.
+        Currently, I create practical solutions at <TextLink
+          href="https://www.tokopedia.com"
+          external
+          target="_blank"
+        >
+          Tokopedia</TextLink>.
+      </p>
+
+      <p class="col-start-6 col-end-11 text-content-variant leading-relaxed">
+        I dream to make the world a better place by solving real-life
+        problems through software-based solutions for anyone, anywhere, and
+        anytime. With that in mind, I always try to expand my craft by exploring
+        and learning new things in various domains everyday.
+      </p>
+
+      <p class="col-start-6 col-end-11 text-content-variant leading-relaxed">
+        Outside professional work, I love developing or contributing to <TextLink
+          href="https://github.com/Namchee?tab=repositories"
+          external
+          target="_blank"
+        >
+          open source projects</TextLink> and joining impactful community movements.
+          Whenever I feel the burn out is approaching, I usually play video games with
+          my trusty little war machine or read light novels.
+      </p>
+    </ScrollTrigger>
+    <!-- end: about section -->
+
+    <!-- start: experiences -->
+    <ScrollTrigger
+      apply={{ transform: 'translateY(0)', opacity: 1 }}
+      duration={0.4}
+      offset={0.9}
+      client:visible
+      class="grid grid-cols-12 gap-4 opacity-0 translate-y-4"
+    >
+      <p class="col-start-4 leading-none">
+        Experiences
+      </p>
+
+      <div class="col-start-6 col-end-11 space-y-6">
+        <div>
+          <AppLink href="https://glair.ai/" external class="font-medium inline-flex space-x-1 items-center mb-4">
+            <span>GLAIR</span>
+            <Icon name="heroicons:arrow-up-right" class="w-3"></Icon>
+          </AppLink>
+
+          <ul class="space-y-1 text-content-variant">
+            <li class="flex justify-between">
+              <span>Software Engineer</span>
+
+              <span class="flex items-center space-x-2">
+                <span
+                class="w-2 h-2 rounded-full bg-green inline-block pulse"
+                aria-hidden="true"></span>
+                <span>Present</span>
+              </span>
+            </li>
+          </ul>
+        </div>
+
+        <div>
+          <AppLink href="https://www.tokopedia.com" external class="font-medium inline-flex space-x-1 items-center mb-4">
+            <span>Tokopedia</span>
+            <Icon name="heroicons:arrow-up-right" class="w-3"></Icon>
+          </AppLink>
+
+          <ul class="space-y-1 text-content-variant">
+            <li class="flex justify-between">
+              <span>Software Engineer</span>
+
+              <span>August 2021 &mdash; June 2023</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- start: resume link -->
+      <AppLink
+        href="https://read.cv/namchee"
+        class="col-start-6 col-span-2 mt-4 inline-flex items-center leading-none text-content-variant hover:text-content focus:text-content about__link"
+      >
+        <Icon name="heroicons:arrow-right" class="w-4 arrow__before" />
+        <span class="about__text inline-block">Read my resume</span>
+        <Icon
+          name="heroicons:arrow-up-right"
+          class="w-4 -translate-x-4 opacity-0 arrow__after"
+        />
+      </AppLink>
+      <!-- end: resume link -->
+
+    </ScrollTrigger>
+    <!-- end: experiences -->
+  </article>
+  <!-- end: text section -->
+</Layout>
+
+<style>
+  .arrow__before,
+  .arrow__after,
+  .about__text {
+    transition: all 200ms easeOutQuad;
+  }
+
+  .about__text {
+    transform: translateX(8px);
+  }
+
+  .arrow__before {
+    transform: translateX(0px);
+  }
+
+  .arrow__after {
+    opacity: 0;
+    transform: translateX(-24px);
+  }
+
+  .about__link:hover .arrow__before,
+  .about__link:focus .arrow__before {
+    transform: translateX(16px);
+    opacity: 0;
+  }
+
+  .about__link:hover .about__text,
+  .about__link:focus .about__text {
+    transform: translateX(-20px);
+  }
+
+  .about__link:hover .arrow__after,
+  .about__link:focus .arrow__after {
+    opacity: 1;
+    transform: translateX(-16px);
+  }
+
+  .pulse {
+    opacity: 1;
+    animation: pulse 2s infinite;
+  }
+
+  @keyframes pulse {
+    0%,
+    100% {
+      transform: scale(0.95);
+      box-shadow: 0 0 0 0 rgba(101, 186, 117, 0.5);
+    }
+
+    60% {
+      transform: scale(1);
+      box-shadow: 0 0 0 8px rgba(101, 186, 117, 0);
+    }
+
+    80% {
+      transform: scale(0.95);
+      box-shadow: 0 0 0 0 rgba(101, 186, 117, 0);
+    }
+  }
+</style>
