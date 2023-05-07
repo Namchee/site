@@ -36,10 +36,10 @@ const links = [
       <a
         href={link.href}
         data-hover={link.text}
-        class="block w-24 h-10 flex items-center justify-center rounded-full text-surface transition-colors  focus:outline-none"
+        class="block w-24 h-10 flex items-center justify-center rounded-full text-surface transition-colors focus:outline-none"
         class:list={{
-          'bg-surface bg-opacity-10': currentPath === link.href,
-          'text-opacity-80 hover:bg-surface hover:bg-opacity-5 focus:bg-surface focus:bg-opacity-5': currentPath !== link.href,
+          'bg-surface bg-opacity-15': currentPath === link.href,
+          'text-opacity-80 hover:bg-surface hover:bg-opacity-10 focus:bg-surface focus:bg-opacity-10': currentPath !== link.href,
         }}
       >
         <span>{link.text}</span>

@@ -36,11 +36,11 @@ export default defineConfig({
             DEFAULT: '#DBDBDB',
           },
           content: {
-            DEFAULT: '#232323',
-            variant: '#6F6F6F',
+            DEFAULT: '#1C1C1C',
+            variant: '#707070',
           },
           primary: {
-            DEFAULT: '#3A5CCC',
+            DEFAULT: '#3E63DD',
             variant: '#193CBA',
           },
           red: '#E5484D',
