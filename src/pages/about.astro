@@ -19,8 +19,8 @@ const metaDescription =
         target="header__word"
         apply={{ transform: 'translateY(0)' }}
         class="text-5xl leading-snug -mt-4"
-        duration={0.8}
-        stagger={0.175}
+        duration={0.75}
+        stagger={0.2}
         client:visible
       >
         <p class="overflow-y-hidden">
@@ -42,13 +42,13 @@ const metaDescription =
         as="section"
         apply={{ transform: 'translateY(0)', opacity: 1 }}
         duration={0.4}
-        class="opacity-0 translate-y-4 mb-12"
+        class="opacity-0 translate-y-4 mb-16"
         offset={0.8}
         client:visible
       >
-        <p class="font-mono text-content-variant uppercase mb-6">About me</p>
+        <p class="font-mono text-content-variant uppercase mb-8">About me</p>
 
-        <p class="text-lg leading-normal mb-6">
+        <p class="text-lg leading-normal mb-4">
           Hi. My name is Cristopher, but I'm commonly known as Namchee in the
           online space. I'm a software engineer based in Bandung, Indonesia.
           Currently, I create practical solutions at <TextLink
@@ -70,13 +70,13 @@ const metaDescription =
         as="section"
         apply={{ transform: 'translateY(0)', opacity: 1 }}
         duration={0.4}
-        class="opacity-0 translate-y-4 mb-12"
+        class="opacity-0 translate-y-4 mb-16"
         offset={0.8}
         client:visible
       >
-        <p class="font-mono text-content-variant uppercase mb-6">Mission</p>
+        <p class="font-mono text-content-variant uppercase mb-8">Mission</p>
 
-        <p class="text-lg leading-normal mb-6">
+        <p class="text-lg leading-normal mb-4">
           My mission is to make the world a better place through software
           engineering by creating practical solutions to real-world problems for
           anyone, anywhere, and anytime.
@@ -93,11 +93,11 @@ const metaDescription =
         as="section"
         apply={{ transform: 'translateY(0)', opacity: 1 }}
         duration={0.4}
-        class="opacity-0 translate-y-4 mb-12"
+        class="opacity-0 translate-y-4 mb-16"
         offset={0.75}
         client:visible
       >
-        <p class="font-mono text-content-variant uppercase mb-6">
+        <p class="font-mono text-content-variant uppercase mb-8">
           Other things I do
         </p>
 
@@ -121,7 +121,7 @@ const metaDescription =
         offset={0.75}
         client:visible
       >
-        <p class="font-mono text-content-variant uppercase mb-6">Experiences</p>
+        <p class="font-mono text-content-variant uppercase mb-8">Experiences</p>
 
         <ul class="space-y-2">
           <li
@@ -149,17 +149,26 @@ const metaDescription =
         </ul>
       </ScrollTrigger>
 
-      <AppLink
-        href="https://read.cv/namchee"
-        class="inline-flex items-center text-lg leading-none about__link"
-      >
-        <Icon name="radix-icons:arrow-right" class="w-6 h-6 arrow__before" />
-        <span class="about__text inline-block">Read my resume</span>
-        <Icon
-          name="radix-icons:arrow-top-right"
-          class="w-6 h-6 -translate-x-4 opacity-0 arrow__after"
-        />
-      </AppLink>
+      <ScrollTrigger
+        apply={{ transform: 'translateX(0)', opacity: 1 }}
+        duration={0.4}
+        class="opacity-0 -translate-x-4"
+        offset={0.75}
+        client:visible>
+        <AppLink
+          href="https://read.cv/namchee"
+          class="inline-flex items-center text-lg leading-none about__link"
+        >
+          <Icon name="radix-icons:arrow-right" class="w-6 h-6 arrow__before" />
+          <span class="about__text inline-block">Read my resume</span>
+          <Icon
+            name="radix-icons:arrow-top-right"
+            class="w-6 h-6 -translate-x-4 opacity-0 arrow__after"
+          />
+        </AppLink>
+      </ScrollTrigger>
+
+
     </article>
   </div>
 </Layout>
