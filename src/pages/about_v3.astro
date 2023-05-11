@@ -1,0 +1,49 @@
+---
+import AppLink from '@/components/astro/AppLink.astro';
+import Layout from '@/components/astro/Layout.astro';
+import TextLink from '@/components/astro/TextLink.astro';
+
+import ScrollTrigger from '@/components/vue/ScrollTrigger.vue';
+
+const metaDescription =
+  'Cristopher, or more commonly known as Namchee, is a software engineer based in Bandung, Indonesia. Namchee is focused solving real-life problems to make the world a better place.';
+---
+
+<Layout title="About Me" description={metaDescription}>
+    <!-- sttart: header -->
+    <header class="grid grid-cols-12 gap-4 py-32">
+      <h1 class="text-6xl leading-snug tracking-tight col-start-2 col-end-12">
+        <p>
+          Driven by <span class="text-content-variant">purpose</span>
+        </p>
+        <p>
+          Delivering real <span class="text-content-variant">impact</span>
+        </p>
+      </h1>
+    </header>
+    <!-- end: header -->
+
+    <!-- start: section -->
+    <article class="mb-32">
+      <section class="grid grid-cols-12 gap-4">
+        <p class="col-start-2 col-span-2 text-content-variant">
+          A little about me
+        </p>
+
+        <div class="col-start-7 col-end-12 text-lg leading-normal space-y-8 text-[#343434]">
+          <p>
+            Hi. My name is Cristopher, but I'm commonly known as Namchee in the online space. I'm a software engineer based in Bandung, Indonesia. Currently, I create practical solutions at Tokopedia.
+          </p>
+
+          <p>
+            I dream to make the world a better place through software engineering by creating practical solutions to real-life problems for anyone, anywhere, and anytime.
+          </p>
+
+          <p>
+            With a lofty dream in mind, I always try to expand my craft by exploring and learning new things in various domains everyday. For me, such opportunities are the one that makes life more lively and interesting.
+          </p>
+        </div>
+      </section>
+    </article>
+    <!-- end: section -->
+</Layout>
