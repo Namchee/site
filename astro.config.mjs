@@ -30,14 +30,15 @@ export default defineConfig({
             DEFAULT: '#FCFCFC',
           },
           surface: {
-            DEFAULT: '#F0F0F0',
+            DEFAULT: '#F1F1F1',
+            variant: '#EBEBEB'
           },
           outline: {
             DEFAULT: '#DBDBDB',
           },
           content: {
-            DEFAULT: '#1C1C1C',
-            variant: '#707070',
+            DEFAULT: '#343434',
+            variant: '#858585',
           },
           primary: {
             DEFAULT: '#3E63DD',
