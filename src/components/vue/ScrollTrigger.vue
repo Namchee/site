@@ -46,7 +46,7 @@ onMounted(() => {
         props.apply,
         {
           duration: props.duration,
-          delay: props.stagger ? stagger(props.stagger) : props.delay,
+          delay: props.stagger ? stagger(props.stagger, { start: props.delay }) : props.delay,
           easing: easingFunc,
         },
       );

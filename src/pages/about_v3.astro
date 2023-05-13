@@ -20,6 +20,7 @@ const metaDescription =
         apply={{ transform: 'translateY(0)' }}
         class="text-lg text-content-variant mb-4 overflow-y-hidden"
         duration={0.6}
+        delay={0.1}
         easing="easeOutCubic"
         client:visible
       >
@@ -28,15 +29,47 @@ const metaDescription =
         </span>
       </ScrollTrigger>
 
-      <h1 class="text-6xl tracking-tight mb-12">
-        /nam&middot;ce/
-      </h1>
+      <ScrollTrigger
+        as="h1"
+        target="header__letter"
+        apply={{ transform: 'translateY(0)' }}
+        class="text-6xl tracking-tight mb-12 overflow-y-hidden"
+        duration={0.6}
+        delay={0.75}
+        stagger={0.05}
+        easing="easeOutQuart"
+        client:visible
+      >
+        <span class="inline-block translate-y-100% header__letter">
+          /
+        </span><span class="inline-block translate-y-100% header__letter">
+          n
+        </span><span class="inline-block translate-y-100% header__letter">
+          a
+        </span><span class="inline-block translate-y-100% header__letter">
+          &middot;
+        </span><span class="inline-block translate-y-100% header__letter">
+          m
+        </span><span class="inline-block translate-y-100% header__letter">
+          c
+        </span><span class="inline-block translate-y-100% header__letter">
+          e
+        </span><span class="inline-block translate-y-100% header__letter">
+          /
+        </span>
+      </ScrollTrigger>
 
-      <button
-        class="rounded-full bg-surface transition-colors hover:bg-surface-variant focus:bg-surface-variant focus:outline-none p-4 speech__synthesis"
+      <ScrollTrigger
+        as="button"
+        apply={{ opacity: 1 }}
+        class="rounded-full bg-surface transition-colors hover:bg-surface-variant focus:bg-surface-variant focus:outline-none p-4 opacity-0 speech__synthesis"
+        duration={0.4}
+        delay={1.5}
+        easing="easeOutQuart"
+        client:visible
       >
         <Icon name="heroicons:microphone" class="w-6 text-content-variant" />
-      </button>
+      </ScrollTrigger>
     </header>
     <!-- end: header -->
 
