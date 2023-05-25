@@ -11,7 +11,7 @@ import ScrollTrigger from '@/components/vue/ScrollTrigger.vue';
 
 <Layout title="About" description="==">
   <!-- start: header -->
-  <header class="py-32">
+  <header class="py-32 hidden">
     <ScrollTrigger
       as="h1"
       target="header__word"
@@ -34,6 +34,20 @@ import ScrollTrigger from '@/components/vue/ScrollTrigger.vue';
         </span>
       </p>
     </ScrollTrigger>
+  </header>
+
+  <header class="py-[180px] text-center">
+    <p class="text-lg leading-normal mb-2 text-content-variant">
+      About me
+    </p>
+
+    <h1 class="text-6xl tracking-tight leading-snug">
+      /næm·chi&#720;/
+    </h1>
+
+    <button class="bg-surface transition-colors hover:bg-surface-variant focus:bg-surface-variant focus:outline-none rounded-full mt-12 p-4 speech__synthesis">
+      <Icon name="heroicons:microphone" class="w-6 text-content-variant" />
+    </button>
   </header>
   <!-- end: header -->
 

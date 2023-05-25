@@ -13,83 +13,128 @@ const metaDescription =
 
 <Layout title="About Me" description={metaDescription}>
     <!-- sttart: header -->
-    <header class="pt-48 pb-72 text-center">
-      <ScrollTrigger
-        as="p"
-        target="header__word"
-        apply={{ transform: 'translateY(0)' }}
-        class="text-lg text-content-variant mb-4 overflow-y-hidden"
-        duration={0.6}
-        delay={0.1}
-        easing="easeOutCubic"
-        client:visible
-      >
-        <span class="inline-block translate-y-100% header__word text-content-variant">
-          About
-        </span>
-      </ScrollTrigger>
-
-      <ScrollTrigger
-        as="h1"
-        target="header__letter"
-        apply={{ transform: 'translateY(0)' }}
-        class="text-6xl tracking-tight mb-12 overflow-y-hidden"
-        duration={0.6}
-        delay={0.75}
-        stagger={0.05}
-        easing="easeOutQuart"
-        client:visible
-      >
-        <span class="inline-block translate-y-100% header__letter">
-          /
-        </span><span class="inline-block translate-y-100% header__letter">
-          n
-        </span><span class="inline-block translate-y-100% header__letter">
-          a
-        </span><span class="inline-block translate-y-100% header__letter">
-          &middot;
-        </span><span class="inline-block translate-y-100% header__letter">
-          m
-        </span><span class="inline-block translate-y-100% header__letter">
-          c
-        </span><span class="inline-block translate-y-100% header__letter">
-          e
-        </span><span class="inline-block translate-y-100% header__letter">
-          /
-        </span>
-      </ScrollTrigger>
-
-      <ScrollTrigger
-        as="button"
-        apply={{ opacity: 1 }}
-        class="rounded-full bg-surface transition-colors hover:bg-surface-variant focus:bg-surface-variant focus:outline-none p-4 opacity-0 speech__synthesis"
-        duration={0.4}
-        delay={1.5}
-        easing="easeOutQuart"
-        client:visible
-      >
-        <Icon name="heroicons:microphone" class="w-6 text-content-variant" />
-      </ScrollTrigger>
+    <header class="py-44 grid grid-cols-12 gap-4">
+      <h1 class="text-6xl tracking-tight leading-snug col-start-2 col-end-12">
+        <p>
+          <span class="text-content-variant">Purpose-driven</span> engineer
+        </p>
+        <p>
+          that delivers <span class="text-content-variant">impact</span>
+        </p>
+      </h1>
     </header>
     <!-- end: header -->
 
-    <section class="grid grid-cols-12 gap-4 mb-32">
-      <p class="col-start-3 col-span-2 text-lg text-content-variant">
-        A little about me
-      </p>
+    <!-- start: text-heavy section -->
+    <article class="grid grid-cols-12 gap-4 pb-32">
+      <section class="col-start-2 col-span-4">
+        <p>
+          Current Location
+        </p>
 
-      <p class="col-start-6 col-end-11 text-lg leading-relaxed mb-8">
-        Hi. My name is Cristopher, but I'm commonly known as Namchee in the online space. I'm a software engineer based in Bandung, Indonesia. Currently, I create practical solutions at Tokopedia.
-      </p>
+        <p>
+          Bandung, Indonesia
+        </p>
+      </section>
 
-      <p class="col-start-6 col-end-11 text-lg leading-relaxed mb-8">
-        I dream to make the world a better place through software engineering by creating practical solutions to real-life problems for anyone, anywhere, and anytime.
-      </p>
+      <section class="col-start-6 col-span-6 space-y-16">
+        <section>
+          <p class="text-lg leading-normal text-content-variant mb-6">
+            The story
+          </p>
 
-      <p class="col-start-6 col-end-11 text-lg leading-relaxed">
-        With a lofty dream in mind, I always try to expand my craft by exploring and learning new things in various domains everyday. For me, such opportunities are the one that makes life more lively and interesting.
-      </p>
+          <p class="text-xl leading-normal">
+            Hi. My name is Cristopher, but I'm commonly known as Namchee in the online space.
+            I'm a Indonesian-based software engineer that solves real-life problems through performant and sustainable solutions. Currently, I create practical
+            solutions at Tokopedia.
+          </p>
+        </section>
+
+        <section>
+          <p class="text-lg leading-normal text-content-variant mb-6">
+            The dream
+          </p>
+
+          <p class="text-xl leading-normal mb-6">
+            I dream to make the world a better place through software engineering by creating
+            practical solutions to real-life problems for anyone, anywhere, and anytime.
+          </p>
+
+          <p class="text-xl leading-normal">
+            With a lofty dream in mind, I always try to expand my craft by exploring and learning
+            new things in various domains everyday. For me, such opportunities are the one that
+            makes life more lively and interesting.
+          </p>
+        </section>
+      </section>
+    </article>
+    <!-- end: text-heavy section -->
+
+    <!-- start: experiences table -->
+    <section class="grid grid-cols-12 gap-4 pt-16 pb-32">
+      <h2 class="col-start-2 text-3xl leading-normal mb-12">
+        Experiences
+      </h2>
+
+      <table class="col-start-2 col-end-12 table-auto">
+        <thead>
+          <tr class="text-left text-lg leading-normal border-b border-b-outline">
+            <th class="pb-4">
+              Year
+            </th>
+
+            <th class="pb-4">
+              Role
+            </th>
+
+            <th class="pb-4">
+              Place
+            </th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <tr class="text-left text-lg leading-normal border-b border-b-outline">
+            <td class="flex items-center tex py-4">
+              2023 &mdash; Present
+            </td>
+
+            <td class="py-4">
+              Software Engineer
+            </td>
+
+            <td class="py-4">
+              GLAIR
+            </td>
+          </tr>
+
+          <tr class="text-left text-lg leading-normal border-b border-b-outline">
+            <td class="py-4">
+              2021 &mdash; 2023
+            </td>
+
+            <td class="py-4">
+              Software Engineer
+            </td>
+
+            <td class="py-4">
+              Tokopedia
+            </td>
+          </tr>
+
+          <tr class="text-left text-lg leading-normal border-b border-b-outline">
+            <td class="py-4">
+              2017 &mdash; 2021
+            </td>
+
+            <td class="py-4">
+              Bachelor of Computer Science
+            </td>
+          </tr>
+        </tbody>
+      </table>
     </section>
+    <!-- end: experiences table -->
 </Layout>
 
 <script>
@@ -104,5 +149,5 @@ const metaDescription =
     }
   }
 
-  speechBtn.addEventListener('click', speak);
+  // speechBtn.addEventListener('click', speak);
 </script>

@@ -1,0 +1,57 @@
+---
+import { Icon } from 'astro-iconify';
+
+import AppLink from '@/components/astro/AppLink.astro';
+import Layout from '@/components/astro/Layout.astro';
+import TextLink from '@/components/astro/TextLink.astro';
+
+import ScrollTrigger from '@/components/vue/ScrollTrigger.vue';
+
+const metaDescription =
+  'Cristopher, or more commonly known as Namchee, is a software engineer based in Bandung, Indonesia. Namchee is focused solving real-life problems to make the world a better place.';
+---
+
+<Layout title="About Me" description={metaDescription}>
+    <!-- sttart: header -->
+    <header class="py-[180px] text-center">
+      <p class="text-lg leading-normal mb-2 text-content-variant">
+        About me
+      </p>
+
+      <h1 class="text-6xl tracking-tight leading-snug">
+        /næm·chi&#720;/
+      </h1>
+
+      <button class="bg-surface transition-colors hover:bg-surface-variant focus:bg-surface-variant focus:outline-none rounded-full mt-12 p-4 speech__synthesis">
+        <Icon name="heroicons:microphone" class="w-6 text-content-variant" />
+      </button>
+    </header>
+    <!-- end: header -->
+
+    <!-- start: text-heavy section -->
+    <article class="grid grid-cols-12 gap-4 py-32">
+      <p class="col-start-3 col-end-11 text-center text-content-variant text-3xl leading-normal tracking-tight">
+        Namchee is a purpose-driven software engineer that is dedicated to solve real-life problems
+        with <span class="text-content">performant and sustainable</span> softwares.
+      </p>
+    </article>
+    <!-- end: text-heavy section -->
+
+    <!-- start: experiences table -->
+    <!-- end: experiences table -->
+</Layout>
+
+<script>
+  const speechBtn = document.querySelector('.speech__synthesis');
+
+  const utterance = new SpeechSynthesisUtterance('Namchee');
+  utterance.lang = 'en-ID';
+
+  function speak() {
+    if (window.speechSynthesis) {
+      window.speechSynthesis.speak(utterance);
+    }
+  }
+
+  speechBtn.addEventListener('click', speak);
+</script>
