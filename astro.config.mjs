@@ -27,25 +27,25 @@ export default defineConfig({
         },
         colors: {
           background: {
-            DEFAULT: '#FCFCFC',
+            DEFAULT: 'var(--background)',
           },
           surface: {
-            DEFAULT: '#F1F1F1',
-            variant: '#EBEBEB'
+            DEFAULT: 'var(--surface-10)',
+            variant: 'var(--surface-20)'
           },
           outline: {
-            DEFAULT: '#DBDBDB',
+            DEFAULT: 'var(--outline)',
           },
           content: {
-            DEFAULT: '#343434',
-            variant: '#858585',
+            DEFAULT: 'var(--text-20)',
+            variant: 'var(--text-10)',
           },
           primary: {
-            DEFAULT: '#3E63DD',
-            variant: '#193CBA',
+            DEFAULT: 'var(--primary-10)',
+            variant: 'var(--primary-20)',
           },
-          red: '#E5484D',
-          green: '#46A758',
+          red: 'var(--danger)',
+          green: 'var(--success)',
         },
       },
     }),

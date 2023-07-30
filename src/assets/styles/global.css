@@ -3,7 +3,28 @@ html {
 
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  font-smooth: never;
+
+  /* Write token here */
+  --background: #FCFCFC;
+
+  --surface-10: #F1F1F1;
+  --surface-20: #EBEBEB;
+
+  --outline: #DBDBDB;
+
+  --text-10: #858585;
+  --text-20: #343434;
+
+  --primary-10: #3E63DD;
+  --primary-20: #193CBA;
+
+  --danger: #E5484D;
+  --success: #46A758;
+}
+
+html.dark {
+  /* Replace the token here */
+  --background: #121212;
 }
 
 @font-face {
