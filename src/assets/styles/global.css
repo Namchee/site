@@ -5,18 +5,17 @@ html {
   -moz-osx-font-smoothing: grayscale;
 
   /* Write token here */
-  --background: #FCFCFC;
+  --background: #FCFCFD;
 
-  --surface-10: #F1F1F1;
-  --surface-20: #EBEBEB;
+  --surface: #EEF2F6;
 
-  --outline: #DBDBDB;
+  --border: #CDD5DF;
 
-  --text-10: #858585;
-  --text-20: #343434;
+  --heading: #121926;
+  --content: #697586;
+  --link: #364152;
 
-  --primary-10: #3E63DD;
-  --primary-20: #193CBA;
+  --accent: #6172F3;
 
   --danger: #E5484D;
   --success: #46A758;
@@ -24,7 +23,13 @@ html {
 
 html.dark {
   /* Replace the token here */
-  --background: #121212;
+  --background: #141414;
+
+  --surface: #292929;
+
+  --border: #424242;
+
+  --header: #FCFCFC;
 }
 
 @font-face {

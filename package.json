@@ -10,36 +10,29 @@
     "preview": "astro preview"
   },
   "devDependencies": {
-    "@astrojs/vue": "^1.2.2",
-    "@types/three": "^0.148.0",
+    "@astrojs/vue": "^3.0.4",
+    "@biomejs/biome": "1.4.1",
+    "@namchee/eslint-config": "^2.0.3",
     "@typescript-eslint/eslint-plugin": "^5.38.0",
     "@typescript-eslint/parser": "^5.38.0",
     "@unocss/eslint-config": "^0.51.4",
-    "astro": "2.4.2",
+    "astro": "3.6.4",
     "autoprefixer": "^10.4.13",
     "cssnano": "^5.1.14",
-    "eslint": "^8.14.0",
-    "eslint-config-prettier": "^8.5.0",
-    "eslint-config-xo": "^0.40.0",
+    "eslint": "^8.55.0",
     "eslint-plugin-astro": "^0.20.0",
-    "eslint-plugin-prettier": "^4.0.0",
     "eslint-plugin-vue": "^9.6.0",
     "postcss-easings": "^3.0.1",
     "postcss-for": "^2.1.1",
     "postcss-preset-env": "^7.8.3",
     "prettier": "^2.6.2",
     "prettier-plugin-astro": "^0.7.2",
-    "typescript": "^4.8.3",
-    "unocss": "^0.48.0",
-    "vite": "^3.1.6",
-    "vue": "^3.2.45"
+    "typescript": "^5.3.2",
+    "unocss": "^0.58.0",
+    "vue": "^3.3.10"
   },
   "dependencies": {
     "@headlessui/vue": "^1.7.3",
-    "astro-iconify": "^1.2.0",
-    "lil-gui": "^0.17.0",
-    "motion": "^10.14.2",
-    "three": "~0.148.0",
-    "troisjs": "^0.3.4"
+    "motion": "^10.14.2"
   }
 }
