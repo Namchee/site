@@ -1,35 +1,36 @@
+:root {
+  /* Write token here */
+  --background: 98.99% 0.5 285.28;
+  --surface: 95.27% 2.56 250.95;
+  --border: 84.87% 6.09 256.9;
+
+  --heading: 8.56% 10.09 270.09;
+  --content: 48.69% 11.07 261.31;
+  --link: 27.08% 11.91 264.71;
+
+  --accent: 52.01% 72.17 289.08;
+
+  --success: 64.14% 57.67 153.39;
+}
+
 html {
   scroll-behavior: smooth;
 
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-
-  /* Write token here */
-  --background: #FCFCFD;
-
-  --surface: #EEF2F6;
-
-  --border: #CDD5DF;
-
-  --heading: #121926;
-  --content: #697586;
-  --link: #364152;
-
-  --accent: #6172F3;
-
-  --danger: #E5484D;
-  --success: #46A758;
 }
 
 html.dark {
   /* Replace the token here */
-  --background: #141414;
+  --background: 6.32% 0 0;
+  --surface: 16.59% 0 0;
+  --border: 27.97% 0 0;
 
-  --surface: #292929;
+  --heading: 98.96% 0 0;
+  --content: 66.99% 0 0;
+  --link: 96.54% 0 0;
 
-  --border: #424242;
-
-  --header: #FCFCFC;
+  --accent: 64.21% 53.13 282.12;
 }
 
 @font-face {
