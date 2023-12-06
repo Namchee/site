@@ -7,22 +7,25 @@ export default defineConfig({
       mono: ['JetBrains Mono'],
     },
     fontSize: {
-      'sm': '0.812rem',
-      'lg': '1.25rem',
-      'xl': '1.562rem',
-      '2xl': '1.938rem',
-      '3xl': '2.438rem',
-      '4xl': '3.062rem',
-      '5xl': '3.812rem',
-      '6xl': '4.750rem',
-      '7xl': '5.938rem',
+      'sm': ['0.812rem', '1.5'],
+      'base': ['1rem', '1.5'],
+      'lg': ['1.25rem', '1.5'],
+      'xl': ['1.562rem', '1.25'],
+      '2xl': ['1.938rem', '1.25'],
+      '3xl': ['2.438rem', '1.25'],
     },
     colors: {
-      background: 'oklch(--background)',
-      surface: 'oklch(--surface)',
-      border: 'oklch(--border)',
+      background: 'oklch(var(--background))',
+      surface: 'oklch(var(--surface))',
+      border: 'oklch(var(--border))',
 
+      heading: 'oklch(var(--heading))',
+      content: 'oklch(var(--content))',
+      link: 'oklch(var(--link))',
 
+      accent: 'oklch(var(--accent))',
+
+      success: 'oklch(var(--success))',
     },
   },
 })

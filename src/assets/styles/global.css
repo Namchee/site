@@ -1,16 +1,16 @@
 :root {
   /* Write token here */
-  --background: 98.99% 0.5 285.28;
-  --surface: 95.27% 2.56 250.95;
-  --border: 84.87% 6.09 256.9;
+  --background: 99.14% 0.001 286.38;
+  --surface: 95.92% 0.007 247.9;
+  --border: 86.98% 0.016 253.91;
 
-  --heading: 8.56% 10.09 270.09;
-  --content: 48.69% 11.07 261.31;
-  --link: 27.08% 11.91 264.71;
+  --heading: 21.32% 0.028 262.41;
+  --content: 55.85% 0.03 257.07;
+  --link: 37.26% 0.033 258.99;
 
-  --accent: 52.01% 72.17 289.08;
+  --accent: 60.71% 0.192 273.58;
 
-  --success: 64.14% 57.67 153.39;
+  --success: 67.31% 0.16 155.59;
 }
 
 html {
@@ -22,15 +22,15 @@ html {
 
 html.dark {
   /* Replace the token here */
-  --background: 6.32% 0 0;
-  --surface: 16.59% 0 0;
-  --border: 27.97% 0 0;
+  --background: 19.13% 0 102.07;
+  --surface: 28.09% 0 102.07;
+  --border: 37.91% 0 102.07;
 
-  --heading: 98.96% 0 0;
-  --content: 66.99% 0 0;
-  --link: 96.54% 0 0;
+  --heading: 99.1% 0 102.07;
+  --content: 71.54% 0 102.07;
+  --link: 97.02% 0 102.07;
 
-  --accent: 64.21% 53.13 282.12;
+  --accent: 70.35% 0.145 271.74;
 }
 
 @font-face {
@@ -41,7 +41,6 @@ html.dark {
   font-style: normal;
   font-weight: 400;
   font-display: swap;
-
 }
 
 @font-face {
