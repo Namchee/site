@@ -1,0 +1,74 @@
+<button
+  title="Toggles site theme"
+  aria-label="auto"
+  aria-live="polite"
+  class="bg-transparent text-heading
+    p-2
+    rounded-md
+    transition-colors
+    hover:bg-surface
+    theme-toggle"
+>
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    aria-hidden="true"
+    width="1em"
+    height="1em"
+    fill="currentColor"
+    class="w-5 h-auto theme-toggle__around"
+    viewBox="0 0 32 32"
+  >
+    <clipPath id="theme-toggle__around__cutout">
+      <path d="M0 0h42v30a1 1 0 00-16 13H0Z"></path>
+    </clipPath>
+    <g clip-path="url(#theme-toggle__around__cutout)">
+      <circle cx="16" cy="16" r="8.4"></circle>
+      <g>
+        <circle cx="16" cy="3.3" r="2.3"></circle>
+        <circle cx="27" cy="9.7" r="2.3"></circle>
+        <circle cx="27" cy="22.3" r="2.3"></circle>
+        <circle cx="16" cy="28.7" r="2.3"></circle>
+        <circle cx="5" cy="22.3" r="2.3"></circle>
+        <circle cx="5" cy="9.7" r="2.3"></circle>
+      </g>
+    </g>
+  </svg>
+</button>
+
+<script is:inline>
+  const html = document.documentElement;
+  const button = document.querySelector(".theme-toggle");
+  const media = window.matchMedia("(prefers-color-scheme: dark)");
+
+  const theme = (() => {
+    if (
+      typeof window.localStorage !== "undefined" &&
+      window.localStorage.getItem("theme")
+    ) {
+      return window.localStorage.getItem("theme");
+    }
+
+    return media.matches ? "dark" : "light";
+  })();
+
+  const toggleTheme = (theme) => {
+    const method = theme === "light" ? "remove" : "add";
+
+    html.classList[method]("dark");
+    button.classList[method]("theme-toggle--toggled");
+
+    window.localStorage.setItem("theme", theme === "light" ? "light" : "dark");
+  };
+
+  toggleTheme(theme);
+
+  button.addEventListener("click", () => {
+    const newTheme = html.classList.contains("dark") ? "light" : "dark";
+    toggleTheme(newTheme);
+  });
+
+  media.addEventListener("change", () => {
+    const newTheme = media.matches ? "dark" : "light";
+    toggleTheme(newTheme);
+  });
+</script>

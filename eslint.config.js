@@ -8,7 +8,7 @@ import vueConfig from 'eslint-plugin-vue/lib/configs/vue3-strongly-recommended.j
 
 import astro from 'eslint-plugin-astro';
 import astroParser from 'astro-eslint-parser';
-import astroConfig from 'eslint-plugin-astro/lib/configs/recommended';
+import astroConfig from 'eslint-plugin-astro/lib/configs/recommended.js';
 
 /** @type {import('eslint').Linter.FlatConfig[]} */
 export default [

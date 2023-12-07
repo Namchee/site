@@ -14,6 +14,7 @@
     "@namchee/eslint-config": "^2.0.5",
     "@types/eslint": "^8.44.8",
     "@typescript-eslint/parser": "^6.13.2",
+    "@unocss/reset": "^0.58.0",
     "astro": "3.6.4",
     "astro-eslint-parser": "^0.16.0",
     "autoprefixer": "^10.4.16",
@@ -30,6 +31,7 @@
     "vue-eslint-parser": "^9.3.2"
   },
   "dependencies": {
+    "@vueuse/core": "^10.7.0",
     "motion": "^10.14.2"
   }
 }
