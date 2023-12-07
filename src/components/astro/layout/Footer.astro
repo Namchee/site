@@ -1,14 +1,49 @@
 ---
-import AppLink from "@/components/astro/AppLink.astro";
-import TextLink from "@/components/astro/TextLink.astro";
+import AppLink from "@/components/astro/ui/AppLink.astro";
 
-import BackToTop from "@/components/vue/BackToTop.vue";
+import Github from "@/components/astro/icons/Github.astro";
+import LinkedIn from "@/components/astro/icons/LinkedIn.astro";
+import X from "@/components/astro/icons/X.astro";
+
+const links = [
+  {
+    icon: Github,
+    label: "Namchee - GitHub",
+    href: "https://github.com/Namchee",
+  },
+  {
+    icon: X,
+    label: "@lakban_hitam - X (Twitter)",
+    href: "https://twitter.com/lakban_hitam",
+  },
+  {
+    icon: LinkedIn,
+    label: "Cristopher - LinkedIn",
+    href: "https://www.linkedin.com/in/namchee/",
+  },
+];
 ---
 
 <footer
   class="flex flex-col items-center
   w-full max-w-7xl mx-auto
   py-8
-  space-y-16"
+  space-y-12"
 >
+  <div class="text-center space-y-1">
+    <p class="text-sm">Say hello</p>
+    <p>
+      <AppLink href="mailto:hello@namchee.dev" class="text-link text-lg">
+        hello@namchee.dev
+      </AppLink>
+    </p>
+  </div>
+
+  <div></div>
+
+  <div class="w-full text-sm flex items-center justify-between">
+    <p>&copy; 2023 Namchee</p>
+
+    <p>Colophon</p>
+  </div>
 </footer>

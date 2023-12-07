@@ -1,9 +1,9 @@
 ---
-import type { HTMLAttributes } from 'astro/types';
+import type { HTMLAttributes } from "astro/types";
 
-import AppLink from '@/components/astro/AppLink.astro';
+import AppLink from "@/components/astro/ui/AppLink.astro";
 
-export interface Props extends HTMLAttributes<'a'> {
+export interface Props extends HTMLAttributes<"a"> {
   external?: boolean;
 }
 
@@ -13,14 +13,14 @@ const className = `font-medium relative
   text-content
   decoration-outline
   transition-colors
-  hover:text-primary
-  focus:text-primary
-  hover:decoration-primary
-  focus:decoration-primary
+  hover:text-accent
+  focus:text-accent
+  hover:decoration-accent
+  focus:decoration-accent
   focus:outline-none
   underline
   underline-offset-4
-  ${classProps || ''}`;
+  ${classProps || ""}`;
 ---
 
 <AppLink external={external} class={className} {...props}><slot /></AppLink>
