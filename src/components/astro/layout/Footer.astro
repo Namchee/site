@@ -20,16 +20,14 @@ const links = [
     icon: LinkedIn,
     label: "Cristopher - LinkedIn",
     href: "https://www.linkedin.com/in/namchee/",
+    hover: "",
   },
 ];
 ---
 
-<footer
-  class="flex flex-col items-center
+<footer class="flex flex-col items-center
   w-full max-w-7xl mx-auto
-  py-8
-  space-y-12"
->
+  py-8">
   <div class="text-center space-y-1">
     <p class="text-sm">Say hello</p>
     <p>
@@ -39,11 +37,47 @@ const links = [
     </p>
   </div>
 
-  <div></div>
+  <div class="flex items-center space-x-6 mt-8">
+    {
+      links.map((link) => (
+        <AppLink href={link.href} title={link.label} class="group">
+          <link.icon
+            aria-hidden="true"
+            focusable="false"
+            class="w-4 h-auto text-content transition-colors hover:text-link group-focus:text-link"
+          />
+          <span class="sr-only">{link.label}</span>
+        </AppLink>
+      ))
+    }
+  </div>
 
-  <div class="w-full text-sm flex items-center justify-between">
-    <p>&copy; 2023 Namchee</p>
+  <div class="w-full text-sm flex items-center justify-between mt-16">
+    <div class="flex">
+      <span>All contents are licensed under</span>
+       &nbsp;
+      <AppLink
+        external
+        href="http://creativecommons.org/licenses/by/4.0"
+        rel="license noopener noreferrer"
+        class="flex items-center text-link hover:text-heading transition-colors font-medium space-x-1"
+      >
+        <span>CC BY 4.0</span>
+        <img
+          class="h-4 w-auto"
+          src="https://mirrors.creativecommons.org/presskit/icons/cc.svg"
+        /><img
+          class="h-4 w-auto"
+          src="https://mirrors.creativecommons.org/presskit/icons/by.svg"
+        />
+      </AppLink>
+    </div>
 
-    <p>Colophon</p>
+    <AppLink
+      href="/colophon"
+      class="text-link font-medium hover:text-accent focus:text-accent transition-colors"
+    >
+      Colophon
+    </AppLink>
   </div>
 </footer>

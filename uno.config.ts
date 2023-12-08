@@ -1,5 +1,6 @@
 import { defineConfig } from 'unocss';
 
+// eslint-disable-next-line canonical/no-unused-exports
 export default defineConfig({
   theme: {
     fontFamily: {

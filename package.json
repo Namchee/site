@@ -33,5 +33,6 @@
   "dependencies": {
     "@vueuse/core": "^10.7.0",
     "motion": "^10.14.2"
-  }
+  },
+  "packageManager": "pnpm@8.11.0"
 }

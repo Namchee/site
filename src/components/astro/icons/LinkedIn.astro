@@ -1,4 +1,19 @@
-<svg role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+---
+import type { HTMLAttributes } from "astro/types";
+
+type Props = HTMLAttributes<"svg">;
+
+const { class: className, ...rest } = Astro.props;
+---
+
+<svg
+  role="img"
+  viewBox="0 0 24 24"
+  xmlns="http://www.w3.org/2000/svg"
+  class={className}
+  fill="currentColor"
+  {...rest}
+>
   <title>LinkedIn</title>
 
   <path
