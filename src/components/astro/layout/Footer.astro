@@ -1,28 +1,26 @@
 ---
+import { Icon } from "astro-iconify";
+
 import AppLink from "@/components/astro/ui/AppLink.astro";
 
-import Github from "@/components/astro/icons/Github.astro";
-import LinkedIn from "@/components/astro/icons/LinkedIn.astro";
-import X from "@/components/astro/icons/X.astro";
-
-const links = [
+const CONTACT_LINKS = [
   {
-    icon: Github,
-    label: "Namchee - GitHub",
-    href: "https://github.com/Namchee",
+    icon: "simple-icons:github",
+    label: 'Namchee - GitHub',
+    href: 'https://github.com/Namchee',
   },
   {
-    icon: X,
-    label: "@lakban_hitam - X (Twitter)",
-    href: "https://twitter.com/lakban_hitam",
+    icon: "simple-icons:x",
+    label: '@lakban_hitam - X (Twitter)',
+    href: 'https://twitter.com/lakban_hitam',
   },
   {
-    icon: LinkedIn,
-    label: "Cristopher - LinkedIn",
-    href: "https://www.linkedin.com/in/namchee/",
-    hover: "",
+    icon: "simple-icons:linkedin",
+    label: 'Cristopher - LinkedIn',
+    href: 'https://www.linkedin.com/in/namchee/',
   },
 ];
+
 ---
 
 <footer class="flex flex-col items-center
@@ -37,11 +35,12 @@ const links = [
     </p>
   </div>
 
-  <div class="flex items-center space-x-6 mt-8">
+  <div class="flex items-center space-x-6 mt-6">
     {
-      links.map((link) => (
+      CONTACT_LINKS.map((link) => (
         <AppLink href={link.href} title={link.label} class="group">
-          <link.icon
+          <Icon
+            name={link.icon}
             aria-hidden="true"
             focusable="false"
             class="w-4 h-auto text-content transition-colors hover:text-link group-focus:text-link"
@@ -60,7 +59,7 @@ const links = [
         external
         href="http://creativecommons.org/licenses/by/4.0"
         rel="license noopener noreferrer"
-        class="flex items-center text-link hover:text-heading transition-colors font-medium space-x-1"
+        class="flex items-center text-link hover:text-accent transition-colors font-medium space-x-1"
       >
         <span>CC BY 4.0</span>
         <img

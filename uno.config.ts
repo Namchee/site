@@ -8,7 +8,7 @@ export default defineConfig({
       mono: ['JetBrains Mono'],
     },
     fontSize: {
-      'sm': ['0.812rem', '1.5'],
+      'sm': ['0.85rem', '1.5'],
       'base': ['1rem', '1.5'],
       'lg': ['1.25rem', '1.5'],
       'xl': ['1.562rem', '1.25'],
@@ -29,4 +29,4 @@ export default defineConfig({
       success: 'oklch(var(--success))',
     },
   },
-})
+});

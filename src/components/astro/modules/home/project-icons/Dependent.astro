@@ -1,0 +1,16 @@
+---
+import { Icon } from "astro-iconify";
+
+import type { HTMLAttributes } from "astro/types";
+
+type Props = HTMLAttributes<"svg">;
+
+const { class: className, ...props } = Astro.props;
+---
+
+<Icon
+  name="lucide:package-search"
+  class={`cursor-default ${className}`}
+  {...props}
+  aria-hidden
+/>

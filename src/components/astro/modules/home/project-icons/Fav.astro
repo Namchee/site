@@ -1,0 +1,24 @@
+---
+import type { HTMLAttributes } from 'astro/types';
+
+type Props = HTMLAttributes<'svg'>;
+
+const { class: className, ...props } = Astro.props;
+---
+
+<svg
+  viewBox="0 0 29 24"
+  fill="currentColor"
+  xmlns="http://www.w3.org/2000/svg"
+  class={`cursor-default ${className}`}
+  {...props}
+>
+  <path
+    d="M16.7882 1.54785C16.6542 1.3158 16.4066 1.17285 16.1386 1.17285C15.8707 1.17285 15.6231 1.3158 15.4891 1.54785L4.11977 21.2402C3.98579 21.4722 3.98579 21.7581 4.11977 21.9902C4.25374 22.2222 4.50134 22.3652 4.76929 22.3652H16.1386H27.508C27.776 22.3652 28.0235 22.2222 28.1575 21.9902C28.2915 21.7581 28.2915 21.4722 28.1575 21.2402L16.7882 1.54785Z"
+    stroke="#697586"
+    fill="none"
+    stroke-width="1.75"
+    stroke-linejoin="round"></path>
+  <path
+    d="M11.8305 4.07617L23.1999 23.7685H11.8305H0.461182L11.8305 4.07617Z" fill="currentColor"></path>
+</svg>

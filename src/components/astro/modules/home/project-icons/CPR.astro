@@ -1,0 +1,18 @@
+---
+import { Icon } from "astro-iconify";
+
+import type { HTMLAttributes } from "astro/types";
+
+type Props = HTMLAttributes<"svg">;
+
+const props = Astro.props;
+---
+
+<div class="relative cursor-default" aria-hidden>
+  <Icon name="lucide:git-pull-request-arrow" {...props} />
+  <div
+    class="block w-3 h-3 text-white rounded-full bg-accent text-[8px] absolute text-background top-0 -right-1 flex items-center justify-center"
+  >
+    ?
+  </div>
+</div>

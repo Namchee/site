@@ -1,0 +1,61 @@
+---
+import AppLink from "@/components/astro/ui/AppLink.astro";
+
+const books = {
+  2023: [
+    {
+      title: 'The Clean Coder',
+      author: 'Robert C. Martin',
+      link: 'https://literal.club/book/the-clean-coder-bk300',
+    },
+    {
+      title: 'Algorithms for Modern Hardware',
+      author: 'Sergey Slotin',
+      link: 'https://en.algorithmica.org/hpc/',
+    },
+    {
+      title: 'The Pragmatic Programmer',
+      author: 'Andy Hunt & Dave Thomas',
+      link: 'https://literal.club/book/the-pragmatic-programmer-f735w',
+    },
+    {
+      title: 'Non Violent Communication',
+      author: 'Marshall B. Rosenberg',
+      link: 'https://literal.club/book/marshall-b-rosenberg-non-violent-communication-a-language-of-life-0xnv8',
+    },
+    {
+      title: 'Clean Code',
+      author: 'Robert C. Martin',
+      link: 'https://literal.club/book/clean-code-ewxiz',
+    },
+  ],
+};
+
+---
+
+{
+  Object.entries(books).map(([year, books]) => {
+    const bookList = books.map((book) => {
+      return (
+        <li class="flex items-center justify-between">
+          <AppLink
+            external
+            href={book.link}
+            class="text-heading transition-colors hover:text-accent focus:text-accent"
+          >
+            {book.title}
+          </AppLink>
+          <p>{book.author}</p>
+        </li>
+      );
+    });
+
+    return (
+      <section>
+        <p class="text-sm font-medium tracking-tight mb-3">{year}</p>
+
+        <ul class="space-y-2">{bookList}</ul>
+      </section>
+    );
+  })
+}

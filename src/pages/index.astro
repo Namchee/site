@@ -1,12 +1,74 @@
 ---
-import Layout from '@/components/astro/layout/Layout.astro';
+import Layout from "@/components/astro/layout/Layout.astro";
 
+import TextLink from "@/components/astro/ui/TextLink.astro";
+
+import Books from "@/components/astro/modules/home/Books.astro";
+import Experiences from "@/components/astro/modules/home/Experiences.astro";
+import Projects from '@/components/astro/modules/home/Projects.astro';
 ---
 
 <Layout title="Build softwares → Solve problems" description="bar">
+  <div class="grid grid-cols-12 gap-4 my-32">
+    <div class="col-start-3 col-end-4">shit</div>
 
+    <div class="col-start-6 col-end-11 space-y-12">
+      <section class="space-y-4">
+        <h2 class="font-medium tracking-tight text-heading">About me</h2>
+        <p>
+          Hello there. My name is Cristopher, but I'm commonly known as Namchee
+          in the online space. I'm a software engineer based in Bandung,
+          Indonesia. Currently, I create practical solutions at <TextLink>
+            GLAIR
+          </TextLink>.
+        </p>
+
+        <p>
+          I stumbled upon the world of code when I'm searching for a way to
+          cheat at a Facebook game during my junior high school days. Although I
+          failed to do so, the journey serves as my first step to software
+          engineering.
+        </p>
+
+        <p>
+          Outside professional work, I love playing around new tech I found
+          randomly during my engineering journey. Whenever I feel the burn out
+          is approaching, I usually play video games with my trusty little war
+          machine or read anything that sparks my interest.
+        </p>
+      </section>
+
+      <section class="space-y-4">
+        <h2 class="font-medium tracking-tight text-heading">
+          Selected Projects
+        </h2>
+
+        <Projects />
+      </section>
+
+      <section class="hidden">
+        <h2 class="font-medium tracking-tight text-heading">Writings</h2>
+      </section>
+
+      <section class="space-y-4">
+        <h2 class="font-medium tracking-tight text-heading">Experiences</h2>
+
+        <Experiences />
+      </section>
+
+      <section>
+        <h2 class="font-medium tracking-tight text-heading">Reading List</h2>
+
+        <p class="mt-4">
+          Starting from 2023, I've been building my reading habit and find the
+          experience to be very insightful. Here's the list of books I've read
+          in the past and will read in the future.
+        </p>
+
+        <div class="mt-8 space-y-8">
+          <Books />
+        </div>
+      </section>
+    </div>
+  </div>
 </Layout>
-
-<style scoped>
-
-</style>

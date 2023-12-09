@@ -1,0 +1,49 @@
+---
+import AppLink from "@/components/astro/ui/AppLink.astro";
+import Pulse from "@/components/astro/ui/Pulse.astro";
+
+const experiences = [
+  {
+    duration: "Current",
+    name: "GLAIR",
+    title: "Software Engineer",
+    link: "https://glair.ai/",
+  },
+  {
+    duration: "2021 – 2023",
+    name: "Tokopedia",
+    title: "Software Engineer",
+    link: "https://www.tokopedia.com/about/",
+  },
+  {
+    duration: "2017 – 2021",
+    name: "Parahyangan Catholic University",
+    title: "Bachelor Degree",
+    link: "https://informatika.unpar.ac.id/",
+  },
+];
+---
+
+<ul class="space-y-3">
+  {
+    experiences.map((exp) => (
+      <li class="grid grid-cols-5 gap-4">
+        <p class="flex items-center space-x-2 ml-auto">
+          {exp.duration.toLowerCase() === 'current' && <Pulse class="-mt-[3.1px]" />}
+          <span class="inline-block">{exp.duration}</span>
+        </p>
+
+        <div class="flex justify-between items-center col-start-2 col-span-full">
+          <AppLink
+            href={exp.link}
+            external
+            class="text-heading transition-colors hover:text-accent focus:text-accent"
+          >
+            {exp.name}
+          </AppLink>
+          <p>{exp.title}</p>
+        </div>
+      </li>
+    ))
+  }
+</ul>

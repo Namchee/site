@@ -15,6 +15,5 @@
     }
   },
   "extends": "astro/tsconfigs/base",
-  "include": ["."],
   "exclude": ["node_modules"]
 }
