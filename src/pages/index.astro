@@ -3,14 +3,17 @@ import Layout from "@/components/astro/layout/Layout.astro";
 
 import TextLink from "@/components/astro/ui/TextLink.astro";
 
-import Books from "@/components/astro/modules/home/Books.astro";
-import Experiences from "@/components/astro/modules/home/Experiences.astro";
+import Profile from '@/components/astro/modules/home/Profile.astro';
 import Projects from '@/components/astro/modules/home/Projects.astro';
+import Experiences from "@/components/astro/modules/home/Experiences.astro";
+import Books from "@/components/astro/modules/home/Books.astro";
 ---
 
 <Layout title="Build softwares → Solve problems" description="bar">
   <div class="grid grid-cols-12 gap-4 my-32">
-    <div class="col-start-3 col-end-4">shit</div>
+    <div class="col-start-3 col-end-5">
+      <Profile />
+    </div>
 
     <div class="col-start-6 col-end-11 space-y-12">
       <section class="space-y-4">
@@ -18,9 +21,9 @@ import Projects from '@/components/astro/modules/home/Projects.astro';
         <p>
           Hello there. My name is Cristopher, but I'm commonly known as Namchee
           in the online space. I'm a software engineer based in Bandung,
-          Indonesia. Currently, I create practical solutions at <TextLink>
+          Indonesia. Currently, I create practical solutions at <TextLink href="https://glair.ai/" external>
             GLAIR
-          </TextLink>.
+          </TextLink>
         </p>
 
         <p>

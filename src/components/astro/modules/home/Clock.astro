@@ -1,0 +1,18 @@
+<p class="clock"></p>
+
+<script is:inline>
+  const clock = document.querySelector(".clock");
+
+  function setTime() {
+    const text = new Intl.DateTimeFormat("en-GB", {
+      timeStyle: "long",
+      timeZone: "Asia/Jakarta",
+    }).format(new Date());
+
+    clock.textContent = text;
+
+    setTimeout(setTime, 1_000);
+  }
+
+  setTime();
+</script>

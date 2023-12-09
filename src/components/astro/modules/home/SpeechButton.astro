@@ -1,0 +1,25 @@
+---
+import { Icon } from "astro-iconify";
+---
+
+<button
+  class="rounded-full bg-surface hover:text-link hover:bg-border transition-colors p-1 grid place-items-center speech__button"
+>
+  <Icon pack="lucide" name="volume-2" class="w-4 h-auto" />
+</button>
+
+<script is:inline>
+  if (
+    typeof window.speechSynthesis !== "undefined" &&
+    typeof window.SpeechSynthesisUtterance !== "undefined"
+  ) {
+    const utterance = new window.SpeechSynthesisUtterance("namce");
+    utterance.lang = "id-ID";
+    utterance.pitch = 1.25;
+
+    const button = document.querySelector(".speech__button");
+    button.addEventListener("click", () => {
+      window.speechSynthesis.speak(utterance);
+    });
+  }
+</script>

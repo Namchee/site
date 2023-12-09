@@ -9,7 +9,7 @@ export interface Props extends HTMLAttributes<"a"> {
 
 const { external, class: classProps, ...props } = Astro.props;
 
-const className = `font-medium relative
+const className = `font-medium
   text-link
   cursor-pointer
   decoration-outline
@@ -19,9 +19,8 @@ const className = `font-medium relative
   focus:text-accent
   hover:decoration-accent
   focus:decoration-accent
-  focus:outline-none
   underline
-  underline-offset-6
+  underline-offset-4
   ${classProps || ""}`;
 ---
 
