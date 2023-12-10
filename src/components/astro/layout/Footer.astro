@@ -1,9 +1,9 @@
 ---
-import { co2 } from "@tgwf/co2";
 import { Icon } from "astro-iconify";
 
 import AppLink from "@/components/astro/ui/AppLink.astro";
-import TextLink from '../ui/TextLink.astro';
+
+import { getInsight } from "@/scripts/carbon";
 
 const CONTACT_LINKS = [
   {
@@ -13,52 +13,53 @@ const CONTACT_LINKS = [
   },
   {
     icon: "simple-icons:github",
-    label: 'Namchee - GitHub',
-    href: 'https://github.com/Namchee',
+    label: "Namchee - GitHub",
+    href: "https://github.com/Namchee",
   },
   {
     icon: "simple-icons:x",
-    label: '@lakban_hitam - X (Twitter)',
-    href: 'https://twitter.com/lakban_hitam',
+    label: "@lakban_hitam - X (Twitter)",
+    href: "https://twitter.com/lakban_hitam",
   },
   {
     icon: "simple-icons:linkedin",
-    label: 'Cristopher - LinkedIn',
-    href: 'https://www.linkedin.com/in/namchee/',
+    label: "Cristopher - LinkedIn",
+    href: "https://www.linkedin.com/in/namchee/",
   },
 ];
 
-/*
-const params = new URLSearchParams();
-const location = import.meta.env.PROD ? Astro.url.pathname : 'https://www.namchee.dev';
-params.set("url", location);
-params.set("key", import.meta.env.PAGESPEED_KEY);
-params.set("category", "performance");
+const location = import.meta.env.PROD
+  ? Astro.url.pathname
+  : "https://developer.mozilla.org/en-US/";
 
-const response = await fetch(`${import.meta.env.PAGESPEED_API}?${params.toString()}`);
-const pagespeed = await response.json();
-
-console.log(pagespeed.lighthouseResult.audits['network-requests'].details.items);
-*/
+const { time, carbon } = await getInsight(location);
 ---
 
-<footer class="grid grid-cols-12 gap-6
+<footer
+  class="grid grid-cols-12 gap-6
   w-full max-w-7xl mx-auto
   py-8
-  text-sm">
+  text-sm"
+>
   <div class="flex items-center justify-between col-start-3 col-end-11">
     <div>
       <p>
-        This page is loaded in 0.0 seconds and emits 0.0 g of CO<sub>2</sub>
+        This page is loaded in <span
+          title="Measured from time to interactive"
+          class="font-medium text-link text-sm">{time.toFixed(2)} seconds</span
+        > and emits <span class="font-medium text-link text-sm"
+          >{carbon.toFixed(2)}</span
+        > grams of CO<sub>2</sub>
       </p>
 
       <p>
         Learn more about <AppLink
-        href="https://www.thegreenwebfoundation.org/"
-        class="text-link font-medium hover:text-accent focus:text-accent transition-colors"
-        external
-      >carbon footprints on websites
-      </AppLink>
+          href="https://www.thegreenwebfoundation.org/"
+          class="text-link font-medium hover:text-accent focus:text-accent transition-colors"
+          external
+        >
+          carbon footprints on websites
+        </AppLink>
       </p>
     </div>
 
