@@ -1,9 +1,16 @@
 ---
+import { co2 } from "@tgwf/co2";
 import { Icon } from "astro-iconify";
 
 import AppLink from "@/components/astro/ui/AppLink.astro";
+import TextLink from '../ui/TextLink.astro';
 
 const CONTACT_LINKS = [
+  {
+    icon: "lucide:mail",
+    label: "hello@namchee.dev",
+    href: "mailto:hello@namchee.dev",
+  },
   {
     icon: "simple-icons:github",
     label: 'Namchee - GitHub',
@@ -21,37 +28,60 @@ const CONTACT_LINKS = [
   },
 ];
 
+/*
+const params = new URLSearchParams();
+const location = import.meta.env.PROD ? Astro.url.pathname : 'https://www.namchee.dev';
+params.set("url", location);
+params.set("key", import.meta.env.PAGESPEED_KEY);
+params.set("category", "performance");
+
+const response = await fetch(`${import.meta.env.PAGESPEED_API}?${params.toString()}`);
+const pagespeed = await response.json();
+
+console.log(pagespeed.lighthouseResult.audits['network-requests'].details.items);
+*/
 ---
 
-<footer class="flex flex-col items-center
+<footer class="grid grid-cols-12 gap-6
   w-full max-w-7xl mx-auto
-  py-8">
-  <div class="text-center space-y-1">
-    <p class="text-sm">Say hello</p>
-    <p>
-      <AppLink href="mailto:hello@namchee.dev" class="text-link text-lg">
-        hello@namchee.dev
+  py-8
+  text-sm">
+  <div class="flex items-center justify-between col-start-3 col-end-11">
+    <div>
+      <p>
+        This page is loaded in 0.0 seconds and emits 0.0 g of CO<sub>2</sub>
+      </p>
+
+      <p>
+        Learn more about <AppLink
+        href="https://www.thegreenwebfoundation.org/"
+        class="text-link font-medium hover:text-accent focus:text-accent transition-colors"
+        external
+      >carbon footprints on websites
       </AppLink>
-    </p>
+      </p>
+    </div>
+
+    <div class="flex items-center space-x-6">
+      {
+        CONTACT_LINKS.map((link) => (
+          <AppLink href={link.href} title={link.label} class="group">
+            <Icon
+              name={link.icon}
+              aria-hidden="true"
+              focusable="false"
+              class="w-4 h-auto text-content transition-colors hover:text-link group-focus:text-link"
+            />
+            <span class="sr-only">{link.label}</span>
+          </AppLink>
+        ))
+      }
+    </div>
   </div>
 
-  <div class="flex items-center space-x-6 mt-6">
-    {
-      CONTACT_LINKS.map((link) => (
-        <AppLink href={link.href} title={link.label} class="group">
-          <Icon
-            name={link.icon}
-            aria-hidden="true"
-            focusable="false"
-            class="w-4 h-auto text-content transition-colors hover:text-link group-focus:text-link"
-          />
-          <span class="sr-only">{link.label}</span>
-        </AppLink>
-      ))
-    }
-  </div>
+  <hr class="border-t border-border col-start-3 col-end-11" />
 
-  <div class="w-full text-sm flex items-center justify-between mt-16">
+  <div class="flex items-center justify-between col-start-3 col-end-11">
     <div class="flex">
       <span>All contents are licensed under</span>
        &nbsp;
@@ -74,7 +104,7 @@ const CONTACT_LINKS = [
 
     <AppLink
       href="/colophon"
-      class="text-link font-medium hover:text-accent focus:text-accent transition-colors"
+      class="text-link hover:text-accent focus:text-accent transition-colors"
     >
       Colophon
     </AppLink>

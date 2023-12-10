@@ -31,9 +31,11 @@
     "vue-eslint-parser": "^9.3.2"
   },
   "dependencies": {
+    "@tgwf/co2": "^0.13.9",
     "@vueuse/core": "^10.7.0",
     "astro-iconify": "^1.2.0",
-    "motion": "^10.14.2"
+    "motion": "^10.14.2",
+    "vue-command-palette": "^0.2.3"
   },
   "packageManager": "pnpm@8.11.0"
 }

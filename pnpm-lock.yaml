@@ -1,10 +1,13 @@
-lockfileVersion: '6.1'
+lockfileVersion: '6.0'
 
 settings:
   autoInstallPeers: true
   excludeLinksFromLockfile: false
 
 dependencies:
+  '@tgwf/co2':
+    specifier: ^0.13.9
+    version: 0.13.9
   '@vueuse/core':
     specifier: ^10.7.0
     version: 10.7.0(vue@3.3.10)
@@ -14,6 +17,9 @@ dependencies:
   motion:
     specifier: ^10.14.2
     version: 10.14.2
+  vue-command-palette:
+    specifier: ^0.2.3
+    version: 0.2.3
 
 devDependencies:
   '@astrojs/vue':
@@ -1812,6 +1818,11 @@ packages:
       - supports-color
       - typescript
     dev: true
+
+  /@tgwf/co2@0.13.9:
+    resolution: {integrity: sha512-7PuJkzfLFJgKauoz5u5GM21rniOMQCqOcPVcebZURCk5nhvn9R1LdVc9nCWAc9ybUClDn8QtNlkSyXcX5f8z+Q==}
+    engines: {node: '>=14.0.0'}
+    dev: false
 
   /@trysound/sax@0.2.0:
     resolution: {integrity: sha512-L7z9BgrNEcYyUYtF+HaEfiS5ebkh9jXqbszz7pC0hRBPaatV0XjSD3+eHrpqFemQfgwiFF0QPIarnIihIDn7OA==}
@@ -4461,6 +4472,11 @@ packages:
     resolution: {integrity: sha512-xckBUXyTIqT97tq2x2AMb+g163b5JFysYk0x4qxNFwbfQkmNZoiRHb6sPzI9/QV33WeuvVYBUIiD4NzNIyqaRQ==}
     dev: true
 
+  /fuse.js@6.6.2:
+    resolution: {integrity: sha512-cJaJkxCCxC8qIIcPBF9yGxY0W/tVZS3uEISDxhYIdtk8OL93pe+6Zj7LjCqVV4dzbqcriOZ+kQ/NE4RXZHsIGA==}
+    engines: {node: '>=10'}
+    dev: false
+
   /gensync@1.0.0-beta.2:
     resolution: {integrity: sha512-3hN7NaskYvMDLQY55gnW3NQ+mesEAepTqlg+VEbj7zzqEMBVNhzcGYYeqFo/TlYz6eQiFcp1HcsCZO+nGgS8zg==}
     engines: {node: '>=6.9.0'}
@@ -6024,6 +6040,10 @@ packages:
       yallist: 4.0.0
     dev: false
 
+  /mitt@3.0.1:
+    resolution: {integrity: sha512-vKivATfr97l2/QBCYAkXYDbrIWPM2IIKEl7YPhjCvKlG3kE2gm+uBo6nEXK3M5/Ffh/FLpKExzOQ3JJoJGFKBw==}
+    dev: false
+
   /mkdirp-classic@0.5.3:
     resolution: {integrity: sha512-gKLcREMhtuZRwRAfqP3RFW+TK4JqApVBtOIftVgjuABpAtpxhPGaDcfvbhNvD0B8iD1oUr/txX35NjcaY6Ns/A==}
     requiresBuild: true
@@ -6083,6 +6103,12 @@ packages:
     resolution: {integrity: sha512-eSRppjcPIatRIMC1U6UngP8XFcz8MQWGQdt1MTBQ7NaAmvXDfvNxbvWV3x2y6CdEUciCSsDHDQZbhYaB8QEo2g==}
     engines: {node: ^10 || ^12 || ^13.7 || ^14 || >=15.0.1}
     hasBin: true
+
+  /nanoid@4.0.2:
+    resolution: {integrity: sha512-7ZtY5KTCNheRGfEFxnedV5zFiORN1+Y1N6zvPTnHQd8ENUvfaDBeuJDZb2bN/oXwXxu3qkTXDzy57W5vAmDTBw==}
+    engines: {node: ^14 || ^16 || >=18}
+    hasBin: true
+    dev: false
 
   /napi-build-utils@1.0.2:
     resolution: {integrity: sha512-ONmRUqK7zj7DWX0D9ADe03wbwOBZxNAfF20PlGfCWQcD3+/MakShIHrMqx9YwPTfxDdF1zLeL+RGZiR9kGMLdg==}
@@ -8572,6 +8598,14 @@ packages:
     dependencies:
       vite: 4.4.9
     dev: true
+
+  /vue-command-palette@0.2.3:
+    resolution: {integrity: sha512-5ibmwN0BPscAhPPZLDD5KbbxfuNgdR9E/tkjGnw3JDwMGkL1dBcCqVC3rGrcWgK4QanLq6/Xh0a/RtdsZyU+Hg==}
+    dependencies:
+      fuse.js: 6.6.2
+      mitt: 3.0.1
+      nanoid: 4.0.2
+    dev: false
 
   /vue-demi@0.14.6(vue@3.3.10):
     resolution: {integrity: sha512-8QA7wrYSHKaYgUxDA5ZC24w+eHm3sYCbp0EzcDwKqN3p6HqtTCGR/GVsPyZW92unff4UlcSh++lmqDWN3ZIq4w==}
