@@ -45,21 +45,11 @@ const { time, carbon } = await getInsight(location);
     <div>
       <p>
         This page is loaded in <span
-          title="Measured from time to interactive"
+          title="Measured from speed index"
           class="font-medium text-link text-sm">{time.toFixed(2)} seconds</span
         > and emits <span class="font-medium text-link text-sm"
-          >{carbon.toFixed(2)}</span
-        > grams of CO<sub>2</sub>
-      </p>
-
-      <p>
-        Learn more about <AppLink
-          href="https://www.thegreenwebfoundation.org/"
-          class="text-link font-medium hover:text-accent focus:text-accent transition-colors"
-          external
-        >
-          carbon footprints on websites
-        </AppLink>
+          >{carbon.toFixed(2)} grams</span
+        >  of CO<sub>2</sub>
       </p>
     </div>
 

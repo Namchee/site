@@ -43,7 +43,8 @@ export async function getInsight(location: string): Promise<PageSpeed> {
   const pagespeed = (await response.json()) as PageSpeedResult;
 
   const bytes = pagespeed.lighthouseResult.audits['network-requests'];
-  const time = pagespeed.lighthouseResult.audits.interactive;
+  // use speed index since it's not a heavy-interaction website
+  const time = pagespeed.lighthouseResult.audits['speed-index'];
 
   const totalBytes = bytes.details.items.reduce((acc, curr) => acc + curr.transferSize, 0);
   // eslint-disable-next-line @typescript-eslint/no-unsafe-call
