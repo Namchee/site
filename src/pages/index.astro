@@ -10,18 +10,18 @@ import Books from "@/components/astro/modules/home/Books.astro";
 ---
 
 <Layout title="Build softwares → Solve problems" description="bar">
-  <div class="grid grid-cols-12 gap-4 my-32">
-    <div class="col-start-3 col-end-5">
+  <div class="grid grid-cols-12 gap-4 my-12 lg:my-32 px-8">
+    <div class="col-start-1 col-end-12 md:col-end-5 lg:col-start-3 lg:col-end-5">
       <Profile />
     </div>
 
-    <div class="col-start-6 col-end-11 space-y-16">
+    <div class="col-start-1 col-end-12 mt-12 md:mt-0 md:col-start-6 lg:col-start-6 lg:col-end-11 space-y-16">
       <section class="space-y-4">
         <h2 class="font-medium tracking-tight text-heading">About me</h2>
         <p>
           Hello there. My name is Cristopher, but I'm commonly known as Namchee
           in the online space. I'm a software engineer based in Bandung,
-          Indonesia with. Currently, I create practical solutions at <TextLink
+          Indonesia. Currently, I create practical solutions at <TextLink
             href="https://glair.ai/"
             external
           >
@@ -36,10 +36,10 @@ import Books from "@/components/astro/modules/home/Books.astro";
         </p>
 
         <p>
-          Outside professional work, I love playing around new tech I found
-          randomly during my engineering journey. Whenever I feel the burn out
-          is approaching, I usually play video games with my trusty little war
-          machine or read anything that sparks my interest.
+          Outside professional work, I love playing around new tech I have discovered
+          during my engineering journey. Whenever I feel the burn out is approaching fast,
+          you can find me playing video games with my trusty little war machine or continue
+          building my <TextLink href="/bookshelf">reading habit</TextLink>.
         </p>
       </section>
 
@@ -63,12 +63,6 @@ import Books from "@/components/astro/modules/home/Books.astro";
 
       <section>
         <h2 class="font-medium tracking-tight text-heading">Now Reading</h2>
-
-        <p class="mt-4 hidden">
-          Starting from 2023, I've been building my reading habit and find the
-          experience to be very insightful. Here's the list of books I've read
-          in the past and will read in the future.
-        </p>
 
         <div class="mt-8 space-y-4">
           <Books />

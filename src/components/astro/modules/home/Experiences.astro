@@ -29,8 +29,8 @@ const experiences = [
     experiences.map((exp) => (
       <li class="grid grid-cols-5 gap-4">
         <p class="flex items-center space-x-2 ml-auto">
-          {exp.duration.toLowerCase() === 'current' && <Pulse class="-mt-[3.1px]" />}
-          <span class="inline-block">{exp.duration}</span>
+          {exp.duration.toLowerCase() === 'current' && <Pulse class="-mt-[2.5px]" />}
+          <span>{exp.duration}</span>
         </p>
 
         <div class="flex justify-between items-center col-start-2 col-span-full">
@@ -41,6 +41,7 @@ const experiences = [
           >
             {exp.name}
           </AppLink>
+
           <p>{exp.title}</p>
         </div>
       </li>
