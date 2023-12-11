@@ -5,27 +5,19 @@ import AppLink from "@/components/astro/ui/AppLink.astro";
 
 import { getInsight } from "@/scripts/carbon";
 
-const CONTACT_LINKS = [
+const links = [
   {
-    icon: "lucide:mail",
-    label: "hello@namchee.dev",
-    href: "mailto:hello@namchee.dev",
+    label: "Home",
+    href: "/",
   },
   {
-    icon: "simple-icons:github",
-    label: "Namchee - GitHub",
-    href: "https://github.com/Namchee",
+    label: "Bookshelf",
+    href: "/bookshelf",
   },
   {
-    icon: "simple-icons:x",
-    label: "@lakban_hitam - X (Twitter)",
-    href: "https://twitter.com/lakban_hitam",
-  },
-  {
-    icon: "simple-icons:linkedin",
-    label: "Cristopher - LinkedIn",
-    href: "https://www.linkedin.com/in/namchee/",
-  },
+    label: "Posts",
+    href: "/posts"
+  }
 ];
 
 const location = import.meta.env.PROD
@@ -44,26 +36,25 @@ const { time, carbon } = await getInsight(location);
   <div class="flex items-center justify-between col-start-3 col-end-11">
     <div>
       <p>
-        This page is loaded in <span
+        This page loads in <span
           title="Measured from speed index"
           class="font-medium text-link text-sm">{time.toFixed(2)} seconds</span
-        > and emits <span class="font-medium text-link text-sm"
-          >{carbon.toFixed(2)} grams</span
-        >  of CO<sub>2</sub>
+        > and emits <span
+          title="Measured from bytes transferred per page view"
+          class="font-medium text-link text-sm"
+        >{carbon.toFixed(2)} grams</span> of CO<sub>2</sub>
       </p>
     </div>
 
-    <div class="flex items-center space-x-6">
+    <div class="flex items-center space-x-4">
       {
-        CONTACT_LINKS.map((link) => (
-          <AppLink href={link.href} title={link.label} class="group">
-            <Icon
-              name={link.icon}
-              aria-hidden="true"
-              focusable="false"
-              class="w-4 h-auto text-content transition-colors hover:text-link group-focus:text-link"
-            />
-            <span class="sr-only">{link.label}</span>
+        links.map((link) => (
+          <AppLink
+            href={link.href}
+            title={link.label}
+            class="transition-colors text-link hover:text-accent focus:text-accent"
+          >
+            {link.label}
           </AppLink>
         ))
       }

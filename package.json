@@ -11,13 +11,14 @@
   },
   "devDependencies": {
     "@astrojs/vue": "^3.0.4",
-    "@namchee/eslint-config": "^2.0.5",
+    "@namchee/eslint-config": "^2.0.7",
     "@types/eslint": "^8.44.8",
     "@types/node": "^20.10.4",
     "@typescript-eslint/parser": "^6.13.2",
     "@unocss/reset": "^0.58.0",
     "astro": "3.6.4",
     "astro-eslint-parser": "^0.16.0",
+    "astro-iconify": "^1.2.0",
     "autoprefixer": "^10.4.16",
     "cssnano": "^6.0.1",
     "eslint": "^8.55.0",
@@ -34,7 +35,6 @@
   "dependencies": {
     "@tgwf/co2": "^0.13.9",
     "@vueuse/core": "^10.7.0",
-    "astro-iconify": "^1.2.0",
     "motion": "^10.14.2",
     "vue-command-palette": "^0.2.3"
   },

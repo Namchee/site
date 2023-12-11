@@ -1,0 +1,84 @@
+---
+import Layout from '@/components/astro/layout/Layout.astro';
+import AppLink from '@/components/astro/ui/AppLink.astro';
+
+const books = {
+  2023: [
+    {
+      title: 'The Clean Coder',
+      author: 'Robert C. Martin',
+      link: 'https://literal.club/book/the-clean-coder-bk300',
+    },
+    {
+      title: 'Algorithms for Modern Hardware',
+      author: 'Sergey Slotin',
+      link: 'https://en.algorithmica.org/hpc/',
+    },
+    {
+      title: 'The Pragmatic Programmer',
+      author: 'Andy Hunt & Dave Thomas',
+      link: 'https://literal.club/book/the-pragmatic-programmer-f735w',
+    },
+    {
+      title: 'Non Violent Communication',
+      author: 'Marshall B. Rosenberg',
+      link: 'https://literal.club/book/marshall-b-rosenberg-non-violent-communication-a-language-of-life-0xnv8',
+    },
+    {
+      title: 'Clean Code',
+      author: 'Robert C. Martin',
+      link: 'https://literal.club/book/clean-code-ewxiz',
+    },
+  ],
+};
+---
+
+<Layout title="Book recommendations" description="later">
+  <div class="grid grid-cols-12 gap-4 my-32">
+    <header class="col-start-3 col-end-6">
+      <div class="sticky top-12">
+        <h1 class="text-xl text-heading font-medium tracking-tight">
+          Bookshelf
+        </h1>
+      </div>
+    </header>
+
+    <div class="col-start-6 col-end-11 space-y-8">
+      <section class="space-y-4">
+        <p>
+          Starting from 2023, I've been building my reading habit and found the
+          experience to be rewarding for my career and personal life.
+        </p>
+
+        <p>
+          Below is the list of books I've read
+          in the past that I found to be insightful.
+        </p>
+      </section>
+
+      {Object.entries(books).map(([year, book]) => {
+        const bookList = book.map(b => <li class="flex items-center justify-between">
+          <AppLink
+            class="text-heading transition-colors hover:text-accent focus:text-accent"
+            external
+            href={b.link}
+          >
+            {b.title}
+          </AppLink>
+
+          <span>{b.author}</span>
+        </li>);
+
+        return <div>
+          <p class="text-sm font-medium mb-4">
+            {year}
+          </p>
+
+          <ul class="space-y-2">
+            {bookList}
+          </ul>
+        </div>
+      })}
+    </div>
+  </div>
+</Layout>

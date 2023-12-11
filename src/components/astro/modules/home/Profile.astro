@@ -1,10 +1,33 @@
 ---
 import { Icon } from "astro-iconify";
 
+import AppLink from '@/components/astro/ui/AppLink.astro';
 import LogoContainer from "@/components/astro/ui/LogoContainer.astro";
 
 import SpeechButton from "@/components/astro/modules/home/SpeechButton.astro";
-import Clock from "@/components/astro/modules/home/Clock.astro";
+
+const contacts = [
+  {
+    icon: "lucide:mail",
+    label: "hello@namchee.dev",
+    href: "mailto:hello@namchee.dev",
+  },
+  {
+    icon: "simple-icons:github",
+    label: "Namchee",
+    href: "https://github.com/Namchee",
+  },
+  {
+    icon: "simple-icons:linkedin",
+    label: "Cristopher",
+    href: "https://www.linkedin.com/in/namchee/",
+  },
+  {
+    icon: "simple-icons:x",
+    label: "@lakban_hitam",
+    href: "https://twitter.com/lakban_hitam",
+  },
+];
 ---
 
 <div class="sticky top-12">
@@ -45,21 +68,20 @@ import Clock from "@/components/astro/modules/home/Clock.astro";
   </div>
 
   <div class="mt-12 space-y-2">
-    <div class="flex items-center space-x-2">
-      <Icon pack="lucide" name="briefcase" class="w-4 h-auto" />
-      <p class="relative top-[2px]">Software Engineer</p>
-    </div>
-
-    <div class="flex items-center space-x-2">
-      <Icon pack="lucide" name="map-pin" class="w-4 h-auto" />
-      <p class="relative top-[2px]">Bandung, Indonesia</p>
-    </div>
-
-    <div class="flex items-center space-x-2">
-      <Icon pack="lucide" name="clock" class="w-4 h-auto" />
-      <p class="relative top-[2px] clock">
-        <Clock />
-      </p>
-    </div>
+    {contacts.map(link => {
+      return <AppLink href={link.href} title={link.label} class="group flex items-center space-x-2">
+        <Icon
+          name={link.icon}
+          aria-hidden="true"
+          focusable="false"
+          class="w-4 h-auto text-content transition-colors group-hover:text-link group-focus:text-link"
+        />
+        <span
+          class="relative top-[2px] transition-colors group-hover:text-link group-focus:text-link"
+        >
+          {link.label}
+        </span>
+      </AppLink>
+    })}
   </div>
 </div>

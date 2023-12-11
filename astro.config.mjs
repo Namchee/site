@@ -6,4 +6,7 @@ import vue from '@astrojs/vue';
 
 export default defineConfig({
   integrations: [vue(), unocss()],
+  image: {
+    domains: ['assets.literal.club'],
+  },
 });
