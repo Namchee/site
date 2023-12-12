@@ -30,7 +30,7 @@ const contacts = [
 ];
 ---
 
-<div class="sticky top-12 grid place-items-center md:block">
+<div class="sticky top-12">
   <LogoContainer class="w-16 h-16">
     <svg
       viewBox="0 0 49 55"
@@ -67,7 +67,7 @@ const contacts = [
     </p>
   </div>
 
-  <div class="mt-8 md:mt-12 space-y-2 grid place-items-center md:block">
+  <div class="mt-8 md:mt-12 space-y-2">
     {contacts.map(link => {
       return <AppLink href={link.href} title={link.label} class="group flex items-center space-x-2">
         <Icon

@@ -1,4 +1,6 @@
 ---
+import { Icon } from "astro-iconify";
+
 import Layout from '@/components/astro/layout/Layout.astro';
 import AppLink from '@/components/astro/ui/AppLink.astro';
 
@@ -39,8 +41,8 @@ const books = {
 ---
 
 <Layout title="Book recommendations" description="later">
-  <div class="grid grid-cols-12 gap-4 my-32">
-    <header class="col-start-3 col-end-6">
+  <div class="grid grid-cols-12 gap-4 my-16 lg:my-32 px-8">
+    <header class="col-start-1 col-end-13 md:col-end-5 lg:col-start-3 lg:col-end-5">
       <div class="sticky top-12">
         <h1 class="text-xl text-heading font-medium tracking-tight">
           Bookshelf
@@ -48,7 +50,7 @@ const books = {
       </div>
     </header>
 
-    <div class="col-start-6 col-end-11 space-y-8">
+    <div class="col-start-1 col-end-13 md:mt-0 md:col-start-6 lg:col-start-6 lg:col-end-11 space-y-16">
       <section class="space-y-4">
         <p>
           Starting from 2023, I've been building my reading habit and found the
@@ -62,16 +64,17 @@ const books = {
       </section>
 
       {Object.entries(books).map(([year, book]) => {
-        const bookList = book.map(b => <li class="flex items-center justify-between">
+        const bookList = book.map(b => <li class="md:flex items-center justify-between">
           <AppLink
-            class="text-heading transition-colors hover:text-accent focus:text-accent"
+            class="text-heading transition-colors hover:text-accent focus:text-accent flex items-center space-x-[2px]"
             external
             href={b.link}
           >
-            {b.title}
+            <span>{b.title}</span>
+            <Icon pack="lucide" name="arrow-up-right" class="w-4 h-auto -mt-1" />
           </AppLink>
 
-          <span>{b.author}</span>
+          <span class="text-xs md:text-base">{b.author}</span>
         </li>);
 
         return <div>
@@ -79,7 +82,7 @@ const books = {
             {year}
           </p>
 
-          <ul class="space-y-2">
+          <ul class="space-y-3 md:space-y-2">
             {bookList}
           </ul>
         </div>

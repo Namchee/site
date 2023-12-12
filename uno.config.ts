@@ -8,6 +8,7 @@ export default defineConfig({
       mono: ['JetBrains Mono'],
     },
     fontSize: {
+      'xs': ['0.75rem', '1.5'],
       'sm': ['0.875rem', '1.5'],
       'base': ['1rem', '1.5'],
       'lg': ['1.25rem', '1.5'],
