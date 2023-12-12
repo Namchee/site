@@ -33,6 +33,7 @@
     "vue-eslint-parser": "^9.3.2"
   },
   "dependencies": {
+    "@astrojs/rss": "^4.0.1",
     "@tgwf/co2": "^0.13.9",
     "@vueuse/core": "^10.7.0",
     "motion": "^10.14.2",
