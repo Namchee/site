@@ -9,4 +9,5 @@ export default defineConfig({
   image: {
     domains: ['assets.literal.club'],
   },
+  site: 'https://www.namchee.dev',
 });
