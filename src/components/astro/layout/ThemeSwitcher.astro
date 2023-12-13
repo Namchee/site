@@ -18,7 +18,7 @@
     width="1em"
     height="1em"
     fill="currentColor"
-    class="w-5 h-auto theme-toggle__around"
+    class="w-4 h-auto theme-toggle__around"
     viewBox="0 0 32 32"
   >
     <clipPath id="theme-toggle__around__cutout">
@@ -39,7 +39,7 @@
 </button>
 
 <script is:inline>
-  const html = document.documentElement;
+  const docEl = document.documentElement;
   const button = document.querySelector(".theme-toggle");
   const media = window.matchMedia("(prefers-color-scheme: dark)");
 
@@ -57,7 +57,7 @@
   const toggleTheme = (theme) => {
     const method = theme === "light" ? "remove" : "add";
 
-    html.classList[method]("dark");
+    docEl.classList[method]("dark");
     button.classList[method]("theme-toggle--toggled");
 
     window.localStorage.setItem("theme", theme === "light" ? "light" : "dark");
@@ -66,7 +66,7 @@
   toggleTheme(theme);
 
   button.addEventListener("click", () => {
-    const newTheme = html.classList.contains("dark") ? "light" : "dark";
+    const newTheme = docEl.classList.contains("dark") ? "light" : "dark";
     toggleTheme(newTheme);
   });
 
