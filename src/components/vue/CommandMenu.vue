@@ -90,9 +90,9 @@ watch(metaK, (k) => {
     <DialogPortal>
       <DialogOverlay
         @click="visible = false"
-        class="data-[state=open]:animate-overlayShow fixed w-screen h-screen bg-background bg-opacity-50 backdrop-blur"
+        class="dialog__overlay fixed w-screen h-screen bg-background bg-opacity-50 backdrop-blur"
       />
-      <DialogContent class="data-[state=open]:animate-contentShow fixed top-[50%] left-[50%] -translate-x-[50%] -translate-y-[50%] border border-border rounded-md bg-background w-4/5 max-w-md shadow ">
+      <DialogContent class="dialog__content fixed top-[50%] left-[50%] -translate-x-[50%] -translate-y-[50%] border border-border rounded-md bg-background w-4/5 max-w-md shadow ">
         <DialogTitle class="text-mauve12 m-0 text-[17px] font-semibold border-b border-border">
           <input
             class="w-full bg-transparent focus:outline-none text-sm p-4 placeholder:font-normal font-normal leading-relaxed"
@@ -141,5 +141,55 @@ watch(metaK, (k) => {
 </template>
 
 <style>
+@keyframes overlayShow {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
 
+@keyframes contentShow {
+  from {
+    opacity: 0;
+    translate: 0 0.1rem;
+    scale: 0.985;
+  }
+
+  to {
+    opacity: 1;
+    translate: 0;
+    scale: 1;
+  }
+}
+
+@keyframes contentHide {
+  from {
+    opacity: 1;
+    transform: 'translate(-50%, -50%) scale(1)';
+  }
+
+  to {
+    opacity: 0;
+    transform: 'translate(-50%, -48%) scale(0.96)';
+  }
+}
+
+
+.dialog__overlay[data-state='open'] {
+  animation: overlayShow 200ms easeOutCubic;
+}
+
+.dialog__overlay[data-state='closed'] {
+  animation: overlayShow 200ms easeOutCubic reverse;
+}
+
+.dialog__content[data-state='open'] {
+  animation: contentShow 200ms easeOutCubic;
+}
+
+.dialog__content[data-state='closed'] {
+  animation: contentHide 200ms easeOutCubic;
+}
 </style>
