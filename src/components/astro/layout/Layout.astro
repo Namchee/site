@@ -4,6 +4,7 @@ import "@/assets/styles/global.css";
 
 import Footer from "@/components/astro/layout/Footer.astro";
 import Header from "@/components/astro/layout/Header.astro";
+import CommandMenu from "@/components/vue/CommandMenu.vue";
 
 export interface Props {
   title: string;
@@ -33,6 +34,7 @@ const { pathname } = new URL(Astro.request.url);
   <body
     class="bg-background transition-colors text-content min-h-screen flex flex-col font-sans"
   >
+    <CommandMenu client:only="vue" />
     <Header currentPath={pathname} />
     <main class="w-full max-w-7xl mx-auto flex-1">
       <slot />
