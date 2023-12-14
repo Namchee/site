@@ -70,6 +70,11 @@
     toggleTheme(newTheme);
   });
 
+  window.addEventListener("storage", () => {
+    const newTheme = window.localStorage.getItem("theme");
+    toggleTheme(newTheme);
+  })
+
   media.addEventListener("change", () => {
     const newTheme = media.matches ? "dark" : "light";
     toggleTheme(newTheme);

@@ -64,7 +64,7 @@ watch(metaK, (k) => {
     <DialogTrigger>
       <button
         @click="visible = true"
-        class="grid place-items-center h-10 w-10 rounded-full border border-border fixed top-8 right-8 bg-background group focus:ring-2 focus:ring-accent focus:ring-opacity-30 focus:outline-none transition-colors"
+        class="grid place-items-center h-10 w-10 rounded-full border border-border fixed top-8 right-8 bg-background transition-colors group"
       >
         <span class="mt-1">⌘</span>
         <p
