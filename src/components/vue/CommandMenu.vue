@@ -2,9 +2,19 @@
 import { ref, watch, computed } from 'vue';
 import { useMagicKeys } from '@vueuse/core';
 
-import { DialogRoot, DialogTrigger, DialogPortal, DialogOverlay, DialogContent, DialogTitle, DialogDescription } from 'radix-vue';
+import {
+  DialogRoot,
+  DialogTrigger,
+  DialogPortal,
+  DialogOverlay,
+  DialogContent,
+  DialogTitle,
+  DialogDescription,
+} from 'radix-vue';
 
 import { Icon } from '@iconify/vue';
+
+import { links } from '@/constant/links';
 
 const visible = ref(false);
 
@@ -23,29 +33,6 @@ const keys = useMagicKeys({
 const ctrlK = keys['Ctrl+K'];
 const metaK = keys['Meta+K'];
 
-const links = [
-  {
-    icon: 'lucide:home',
-    name: 'Home',
-    href: '/',
-  },
-  {
-    icon: 'lucide:newspaper',
-    name: 'Posts',
-    href: '/posts',
-  },
-  {
-    icon: 'lucide:library',
-    name: 'Bookshelf',
-    href: '/bookshelf',
-  },
-  {
-    icon: 'lucide:cog',
-    name: 'Colophon',
-    href: '/colophon',
-  },
-];
-
 const searchTerm = ref('');
 
 const relevantLinks = computed(() => {
@@ -57,6 +44,7 @@ const relevantLinks = computed(() => {
 
   return links.filter(link => pattern.test(link.name));
 });
+
 
 watch(ctrlK, (k) => {
   if (k) {
@@ -76,7 +64,7 @@ watch(metaK, (k) => {
     <DialogTrigger>
       <button
         @click="visible = true"
-        class="grid place-items-center h-10 w-10 rounded-full border border-border fixed top-8 right-8 bg-background group focus:ring-2 focus:ring-accent focus:ring-opacity-30 focus:outline-none"
+        class="grid place-items-center h-10 w-10 rounded-full border border-border fixed top-8 right-8 bg-background group focus:ring-2 focus:ring-accent focus:ring-opacity-30 focus:outline-none transition-colors"
       >
         <span class="mt-1">⌘</span>
         <p
@@ -92,8 +80,8 @@ watch(metaK, (k) => {
         @click="visible = false"
         class="dialog__overlay fixed w-screen h-screen bg-background bg-opacity-50 backdrop-blur"
       />
-      <DialogContent class="dialog__content fixed top-[50%] left-[50%] -translate-x-[50%] -translate-y-[50%] border border-border rounded-md bg-background w-4/5 max-w-md shadow ">
-        <DialogTitle class="text-mauve12 m-0 text-[17px] font-semibold border-b border-border">
+      <DialogContent class="dialog__content fixed top-[50%] left-[50%] -translate-x-[50%] -translate-y-[75%] border border-border rounded-md bg-background w-4/5 max-w-md shadow ">
+        <DialogTitle class="border-b border-border">
           <input
             class="w-full bg-transparent focus:outline-none text-sm p-4 placeholder:font-normal font-normal leading-relaxed"
             placeholder="Where do you want to go next?"

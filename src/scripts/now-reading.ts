@@ -51,6 +51,18 @@ interface Book {
 }
 
 export async function getCurrentlyReadBooks(): Promise<Book[]> {
+  if (import.meta.env.DEV) {
+    // mock on dev mode
+    return [
+      {
+        title: 'The Clean Coder',
+        subtitle: 'A Code of Conduct for Professional Programmers',
+        url: 'https://literal.club/book/the-clean-coder-bk300',
+        cover: 'https://assets.literal.club/2/ckhfmm2h373260yabme04vn9s.jpg',
+        author: ['Robert C. Martin'],
+      },
+    ];
+  }
   const response = await fetch('https://literal.club/graphql/', {
     method: 'POST',
     headers: {
