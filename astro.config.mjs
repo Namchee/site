@@ -5,7 +5,9 @@ import unocss from 'unocss/astro';
 import vue from '@astrojs/vue';
 
 export default defineConfig({
-  integrations: [vue(), unocss()],
+  integrations: [vue(), unocss({
+    injectReset: true,
+  })],
   image: {
     domains: ['assets.literal.club'],
   },
