@@ -83,8 +83,12 @@ const links = [
       </AppLink>
     </div>
 
-    <div class="w-full md:w-auto md:flex items-center space-x-4">
-      RSS
-    </div>
+    <AppLink
+      href="/rss.xml"
+      class="w-full md:w-auto md:flex items-center space-x-1 text-link hover:text-accent focus:text-accent transition-colors"
+    >
+      <Icon pack="lucide" name="rss" class="w-4 h-auto -mt-1" />
+      <span>RSS</span>
+    </AppLink>
   </div>
 </footer>
