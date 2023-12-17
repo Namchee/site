@@ -1,0 +1,65 @@
+---
+import { Image } from "astro:assets";
+import type { CollectionEntry } from "astro:content";
+
+import Layout from "@/components/astro/layout/Layout.astro";
+
+interface Props {
+  post: CollectionEntry<'posts'>;
+}
+
+const { post } = Astro.props;
+
+const wordCount = post.body.match(/\w+/g).length;
+const time = Math.ceil(wordCount / 240);
+---
+
+<Layout title={post.data.title} description={post.data.subtitle}>
+  <article class="grid grid-cols-12 gap-4 my-16 lg:my-32 px-8">
+    <header class="col-start-1 col-end-13 text-center text-2xl">
+      <h1 class="text-heading font-medium">
+        {post.data.title}
+      </h1>
+
+      <p class="text-lg mt-2">
+        {post.data.subtitle}
+      </p>
+
+      <p class="text-base font-medium text-accent mt-12">
+        {post.data.updatedAt.toLocaleString('id-ID', {
+          year: 'numeric',
+          month: 'long',
+          day: 'numeric',
+        })} &mdash; {time} minutes read
+      </p>
+    </header>
+
+    <figure class="mt-8 mb-16 col-start-2 col-end-12">
+      <Image
+        src={post.data.image.url}
+        alt={post.data.title}
+        width={1064}
+        height={636}
+        class="rounded-md"
+      />
+
+      <figcaption class="text-sm italic mt-2">
+        Photo by {post.data.image.author} via {post.data.image.source || 'Unsplash'}
+      </figcaption>
+    </figure>
+
+    <section class="col-start-3 col-end-11 space-y-6">
+      <slot />
+    </section>
+  </article>
+</Layout>
+
+<style is:inline>
+  h2 {
+    font-size: 1.5rem;
+    line-height: 1.5;
+    font-weight: 500;
+    color: oklch(var(--heading));
+    margin-top: 4rem !important;
+  }
+</style>
