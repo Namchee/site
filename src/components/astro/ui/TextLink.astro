@@ -10,13 +10,13 @@ export interface Props extends HTMLAttributes<"a"> {
 const { external, class: classProps, ...props } = Astro.props;
 
 const className = `font-medium
-  text-link
+  text-heading
   cursor-pointer
   decoration-outline
   decoration-border
   transition-colors
-  hover:text-accent
-  focus:text-accent
+  hover:text-primary
+  focus:text-primary
   hover:decoration-accent
   focus:decoration-accent
   underline

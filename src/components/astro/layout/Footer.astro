@@ -25,10 +25,11 @@ const links = [
 ---
 
 <footer
-  class="grid grid-cols-12 gap-6
+  class="grid grid-cols-12 gap-4
   w-full max-w-7xl mx-auto
   p-8
-  text-sm"
+  text-sm
+  md:gap-6"
 >
   <div
     class="flex justify-between items-center
@@ -41,7 +42,7 @@ const links = [
           <AppLink
             href={link.href}
             title={link.label}
-            class={`transition-colors text-link hover:text-accent focus:text-accent`}
+            class={`transition-colors text-heading hover:text-primary focus:text-primary`}
           >
             {link.label}
           </AppLink>
@@ -58,8 +59,7 @@ const links = [
   <div
     class="flex justify-between items-center
     col-start-1 col-end-13
-    space-y-6
-     lg:col-start-3 lg:col-end-11 md:space-y-0"
+    lg:col-start-3 lg:col-end-11"
   >
     <div class="w-full md:w-auto flex">
       <span>Contents are licensed under</span>
@@ -68,7 +68,7 @@ const links = [
         external
         href="http://creativecommons.org/licenses/by/4.0"
         rel="license noopener noreferrer"
-        class="flex items-center text-link hover:text-accent transition-colors font-medium space-x-1"
+        class="flex items-center text-heading hover:text-primary transition-colors font-medium space-x-1"
       >
         <span>CC BY 4.0</span>
         <img
@@ -85,7 +85,7 @@ const links = [
 
     <AppLink
       href="/rss.xml"
-      class="w-full md:w-auto md:flex items-center space-x-1 text-link hover:text-accent focus:text-accent transition-colors"
+      class="flex items-center space-x-1 text-heading hover:text-primary focus:text-primary transition-colors"
     >
       <Icon pack="lucide" name="rss" class="w-4 h-auto -mt-1" />
       <span>RSS</span>

@@ -5,6 +5,8 @@ import unocss from 'unocss/astro';
 import vue from '@astrojs/vue';
 import mdx from '@astrojs/mdx';
 
+import remarkToc from 'remark-toc';
+
 export default defineConfig({
   integrations: [
     vue(),
@@ -13,7 +15,8 @@ export default defineConfig({
     }),
     mdx({
       syntaxHighlight: 'shiki',
-      shikiConfig: { theme: 'dracula' },
+      shikiConfig: { theme: 'vitesse-dark' },
+      remarkPlugins: [remarkToc()],
     }),
   ],
   image: {

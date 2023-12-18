@@ -28,6 +28,7 @@
     "postcss-easings": "^4.0.0",
     "postcss-for": "^2.1.1",
     "postcss-preset-env": "^9.3.0",
+    "rehype-autolink-headings": "^7.1.0",
     "typescript": "^5.3.2",
     "unocss": "^0.58.0",
     "vue": "^3.3.11",
@@ -39,7 +40,8 @@
     "@iconify/vue": "^4.1.1",
     "@tgwf/co2": "^0.13.9",
     "@vueuse/core": "^10.7.0",
-    "radix-vue": "^1.2.4"
+    "radix-vue": "^1.2.4",
+    "remark-toc": "^9.0.0"
   },
   "packageManager": "pnpm@8.11.0"
 }

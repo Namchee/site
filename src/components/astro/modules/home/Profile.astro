@@ -36,7 +36,7 @@ const contacts = [
       viewBox="0 0 49 55"
       fill="currentColor"
       xmlns="http://www.w3.org/2000/svg"
-      class="w-12 h-12 text-link"
+      class="w-12 h-12 text-heading"
     >
       <path
         d="M6.41765 31.6506C7.70765 29.4162 9.29028 27.815 11.1656 26.847C13.0512 25.8849 15.1002 25.516 17.3125 25.7402C19.5248 25.9643 21.7793 26.7394 24.076 28.0654C26.3727 29.3914 28.1712 30.9563 29.4715 32.7602C30.7718 34.564 31.4716 36.5199 31.5708 38.628C31.6805 40.742 31.0903 42.9162 29.8003 45.1506C28.2943 47.759 26.394 49.5025 24.0994 50.3808C21.8152 51.2652 19.3737 51.366 16.775 50.6831L17.517 47.9939C19.5701 48.5418 21.4733 48.4975 23.2265 47.8608C24.9797 47.2241 26.4384 45.8977 27.6024 43.8816C28.6164 42.1253 29.0593 40.4342 28.9311 38.8082C28.8028 37.1823 28.1927 35.6591 27.1005 34.2388C26.0128 32.8348 24.5396 31.5824 22.681 30.4816C20.8164 29.3912 19.0042 28.726 17.2444 28.486C15.4787 28.2564 13.8515 28.4947 12.3629 29.201C10.8787 29.9238 9.62962 31.1633 8.61562 32.9196C7.45162 34.9357 7.03223 36.8621 7.35747 38.6988C7.69309 40.5414 8.60624 42.2118 10.0969 43.7099L8.13899 45.6971C6.24825 43.788 5.10958 41.6202 4.72297 39.1938C4.34675 36.7735 4.91165 34.259 6.41765 31.6506Z"
@@ -61,7 +61,7 @@ const contacts = [
 
   <div class="mt-4">
     <h1 class="font-medium text-xl tracking-tight text-heading">Namchee</h1>
-    <p class="flex items-center space-x-2 text-lg">
+    <p class="flex items-center space-x-2 text-lg text-accent">
       <span> /nam·cé/</span>
       <SpeechButton />
     </p>
@@ -69,15 +69,15 @@ const contacts = [
 
   <div class="mt-8 md:mt-12 space-y-2">
     {contacts.map(link => {
-      return <AppLink href={link.href} title={link.label} class="group flex items-center space-x-2">
+      return <AppLink href={link.href} title={link.label} class="group flex items-center text-accent space-x-2">
         <Icon
           name={link.icon}
           aria-hidden="true"
           focusable="false"
-          class="w-4 h-auto text-content transition-colors group-hover:text-link group-focus:text-link"
+          class="w-4 h-auto text-content transition-colors group-hover:text-heading group-focus:text-heading"
         />
         <span
-          class="relative top-[2px] transition-colors group-hover:text-link group-focus:text-link"
+          class="relative top-[2px] transition-colors group-hover:text-heading group-focus:text-heading"
         >
           {link.label}
         </span>

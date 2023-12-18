@@ -19,7 +19,7 @@ const books = await getCurrentlyReadBooks();
           <AppLink
             external
             href={book.url}
-            class="text-heading transition-colors hover:text-accent focus:text-accent flex items-center space-x-[2px]"
+            class="text-heading transition-colors hover:text-primary focus:text-primary flex items-center space-x-[2px]"
           >
             <span>
               {book.title}
@@ -27,8 +27,8 @@ const books = await getCurrentlyReadBooks();
 
             <Icon pack="lucide" name="arrow-up-right" class="w-4 h-auto -mt-[2px]" />
           </AppLink>
-          <p class="text-sm italic">{book.subtitle}</p>
-          <p class="mt-4">{book.author.join(' & ')}</p>
+          <p class="text-sm text-accent italic">{book.subtitle}</p>
+          <p class="mt-4 text-accent">{book.author.join(' & ')}</p>
         </div>
       </li>
     );

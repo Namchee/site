@@ -120,8 +120,8 @@ watch(metaK, (k) => {
         <div class="border-t border-border py-2 px-4 text-xs">
           Click anywhere outside the dialog or press <kbd
             title="Command Key"
-            class="p-[2px] bg-surface font-mono text-link border border-border rounded"
-          >⌘</kbd> + <kbd class="p-[2px] bg-surface font-mono border border-border text-link rounded">K</kbd> to close the menu
+            class="p-[2px] bg-surface font-mono text-heading border border-border rounded"
+          >⌘</kbd> + <kbd class="p-[2px] bg-surface font-mono border border-border text-heading rounded">K</kbd> to close the menu
         </div>
       </DialogContent>
     </DialogPortal>
