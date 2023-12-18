@@ -44,7 +44,13 @@ const time = Math.ceil(wordCount / 240);
       />
     </figure>
 
-    <section class="col-start-1 col-span-full max-w-[65ch] mx-auto space-y-6">
+    <div class="col-start-3 col-end-5">
+      <p class="sticky top-8 text-xs">
+        Table of Contents
+      </p>
+    </div>
+
+    <section class="col-start-5 col-end-11 mx-auto space-y-6">
       <slot />
     </section>
   </article>
