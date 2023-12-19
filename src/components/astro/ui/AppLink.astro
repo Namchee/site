@@ -3,13 +3,16 @@ import type { HTMLAttributes } from 'astro/types';
 
 // AppLink is a quick-wrap component for `a` tag.
 
-export interface AppLinkProps extends HTMLAttributes<'a'> {
-  external?: boolean;
-}
+type Props = HTMLAttributes<'a'>;
 
-const { external, ...props } = Astro.props;
+const { rel, ...props } = Astro.props;
+const target = props.href.toString().startsWith('http')
+  ? '_blank'
+  : '_self';
 ---
 
-<a rel="noopener noreferrer" target={external && '_blank'} {...props}
-  ><slot /></a
->
+<a
+  rel={`noopener noreferrer ${rel}`}
+  target={target}
+  {...props}
+><slot /></a>

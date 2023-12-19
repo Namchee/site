@@ -1,7 +1,15 @@
 ---
-import { getCollection } from 'astro:content';
+import { getCollection, type CollectionEntry } from 'astro:content';
 
 import PostLayout from '@/components/astro/modules/posts/PostLayout.astro';
+import TaggedHeader from '@/components/astro/modules/posts/TaggedHeader.astro';
+
+import TextLink from '@/components/astro/ui/TextLink.astro';
+
+import type { MarkdownFile } from '@/plugins/remark/types';
+
+type FrontmatterData = CollectionEntry<'posts'>['data'];
+type FrontmatterAddons = MarkdownFile['data']['astro']['frontmatter'];
 
 export async function getStaticPaths() {
   const posts = await getCollection('posts');
@@ -17,11 +25,17 @@ export async function getStaticPaths() {
 }
 
 const { entry } = Astro.props;
-const { Content, remarkPluginFrontmatter } = await entry.render();
+const { Content, remarkPluginFrontmatter, headings } = await entry.render();
 
-console.log(remarkPluginFrontmatter);
+const frontmatter = {
+  ...remarkPluginFrontmatter as FrontmatterData & FrontmatterAddons,
+  headings,
+}
 ---
 
-<PostLayout post={entry}>
-  <Content />
+<PostLayout frontmatter={frontmatter}>
+  <Content component={{
+    a: TextLink,
+    h2: TaggedHeader,
+  }} />
 </PostLayout>

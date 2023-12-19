@@ -13,13 +13,12 @@ export default defineConfig({
     unocss({
       injectReset: true,
     }),
-    mdx({
-      syntaxHighlight: 'shiki',
-      shikiConfig: { theme: 'vitesse-dark' },
-    }),
+    mdx(),
   ],
   markdown: {
-    remarkPlugins,
+    remarkPlugins: remarkPlugins,
+    syntaxHighlight: 'shiki',
+    shikiConfig: { theme: 'vitesse-dark' },
   },
   image: {
     domains: ['assets.literal.club', 'res.cloudinary'],

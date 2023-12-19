@@ -4,53 +4,52 @@ import type { CollectionEntry } from "astro:content";
 
 import Layout from "@/components/astro/layout/Layout.astro";
 
+import type { MarkdownFile } from '@/plugins/remark/types';
+import TableOfContents from './TableOfContents.astro';
+
 interface Props {
-  post: CollectionEntry<'posts'>;
+  frontmatter: CollectionEntry<'posts'>['data'] &
+    MarkdownFile['data']['astro']['frontmatter'];
 }
 
-const { post } = Astro.props;
-
-const wordCount = post.body.match(/\w+/g).length;
-const time = Math.ceil(wordCount / 240);
+const { frontmatter } = Astro.props;
 ---
 
-<Layout title={post.data.title} description={post.data.subtitle}>
-  <article class="grid grid-cols-12 gap-4 my-16 lg:my-32 px-8">
+<Layout title={frontmatter.title} description={frontmatter.subtitle}>
+  <article class="relative grid grid-cols-12 gap-4 my-16 lg:my-32 px-8">
     <header class="col-start-1 col-end-13 text-center text-2xl">
       <h1 class="text-heading font-medium">
-        {post.data.title}
+        {frontmatter.title}
       </h1>
 
       <p class="text-lg mt-2">
-        {post.data.subtitle}
+        {frontmatter.subtitle}
       </p>
 
       <p class="text-base font-medium text-primary mt-12">
-        {post.data.updatedAt.toLocaleString('en-US', {
+        {new Date(frontmatter.updatedAt).toLocaleString('en-US', {
           year: 'numeric',
           month: 'long',
           day: 'numeric',
-        })} &mdash; {time} minutes read
+        })} &mdash; {frontmatter.timeToRead} minutes read
       </p>
     </header>
 
     <figure class="mt-8 mb-16 col-start-2 col-end-12">
       <Image
-        src={post.data.image.url}
-        alt={post.data.title}
+        src={frontmatter.image.url}
+        alt={frontmatter.title}
         width={1064}
         height={599}
         class="rounded-lg aspect-video"
       />
     </figure>
 
-    <div class="col-start-3 col-end-5">
-      <p class="sticky top-8 text-xs">
-        Table of Contents
-      </p>
+    <div class="col-start-1 col-end-3">
+      <TableOfContents headings={frontmatter.headings} />
     </div>
 
-    <section class="col-start-5 col-end-11 mx-auto space-y-6">
+    <section class="relative col-start-4 col-end-10 space-y-6">
       <slot />
     </section>
   </article>
