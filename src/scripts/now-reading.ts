@@ -52,7 +52,7 @@ interface Book {
 
 export async function getCurrentlyReadBooks(): Promise<Book[]> {
   if (import.meta.env.DEV) {
-    // mock on dev mode
+    // mock on dev mode. ain't no time to wait
     return [
       {
         title: 'The Clean Coder',
@@ -63,6 +63,7 @@ export async function getCurrentlyReadBooks(): Promise<Book[]> {
       },
     ];
   }
+
   const response = await fetch('https://literal.club/graphql/', {
     method: 'POST',
     headers: {

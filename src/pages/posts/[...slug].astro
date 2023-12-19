@@ -8,7 +8,7 @@ export async function getStaticPaths() {
 
   return posts.map(entry => ({
     params: {
-      slug: entry.id.split('.').shift(),
+      slug: entry.slug,
     },
     props: {
       entry,
@@ -17,7 +17,9 @@ export async function getStaticPaths() {
 }
 
 const { entry } = Astro.props;
-const { Content } = await entry.render();
+const { Content, remarkPluginFrontmatter } = await entry.render();
+
+console.log(remarkPluginFrontmatter);
 ---
 
 <PostLayout post={entry}>
