@@ -49,7 +49,7 @@ const { frontmatter } = Astro.props;
       <TableOfContents headings={frontmatter.headings} />
     </div>
 
-    <section class="relative col-start-4 col-end-10 space-y-6">
+    <section class="relative col-start-4 col-end-10 space-y-4">
       <slot />
     </section>
   </article>
@@ -65,5 +65,12 @@ const { frontmatter } = Astro.props;
     font-weight: 500;
     color: oklch(var(--heading));
     margin-top: 4rem !important;
+  }
+
+  h3:not([id^=radix]) {
+    font-size: 1.125rem;
+    line-height: 1.5;
+    font-weight: 500;
+    color: oklch(var(--heading));
   }
 </style>
