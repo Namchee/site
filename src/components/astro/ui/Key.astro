@@ -1,0 +1,23 @@
+---
+import type { HTMLAttributes } from "astro/types";
+
+type Props = HTMLAttributes<"kbd">;
+
+const { class: className, ...rest } = Astro.props;
+---
+
+<kbd
+  class:list={[
+    "p-[2px]",
+    "bg-surface",
+    "font-mono",
+    "text-heading",
+    "border",
+    "border-border",
+    "rounded-md",
+    className,
+  ]}
+  {...rest}
+>
+  <slot />
+</kbd>

@@ -14,9 +14,12 @@ import {
 
 import { Icon } from '@iconify/vue';
 
+import Key from '@/components/vue/Key.vue';
 import { links } from '@/constant/links';
 
 const visible = ref(false);
+const navigationLinks = ref();
+const focusIndex = ref(-1);
 
 const keys = useMagicKeys({
   passive: false,
@@ -32,6 +35,11 @@ const keys = useMagicKeys({
 
 const ctrlK = keys['Ctrl+K'];
 const metaK = keys['Meta+K'];
+const home = keys['Home'];
+const arrowDown = keys['ArrowDown'];
+const arrowUp = keys['ArrowUp'];
+const enter = keys['Enter'];
+const escape = keys['Escape'];
 
 const searchTerm = ref('');
 
@@ -45,7 +53,6 @@ const relevantLinks = computed(() => {
   return links.filter(link => pattern.test(link.name));
 });
 
-
 watch(ctrlK, (k) => {
   if (k) {
     visible.value = !visible.value;
@@ -56,6 +63,62 @@ watch(metaK, (k) => {
   if (k) {
     visible.value = !visible.value;
   }
+});
+
+watch(home, (h) => {
+  if (h && visible) {
+    window.location.href = '/';
+  }
+});
+
+watch(arrowDown, (ad) => {
+  if (ad && visible) {
+    if (focusIndex.value === -1) {
+      focusIndex.value = 0;
+    } else {
+      focusIndex.value += 1;
+
+      if (focusIndex.value >= navigationLinks.value.length) {
+        focusIndex.value = navigationLinks.value.length - 1;
+      }
+    }
+
+    navigationLinks.value[focusIndex.value].focus();
+  }
+});
+
+watch(arrowUp, (au) => {
+  if (au && visible) {
+    if (focusIndex.value === -1) {
+      focusIndex.value = 0;
+    } else {
+      focusIndex.value -= 1;
+
+      if (focusIndex.value < 0) {
+        focusIndex.value = 0;
+      }
+    }
+
+    navigationLinks.value[focusIndex.value].focus();
+  }
+});
+
+watch(enter, (e) => {
+  if (e && visible) {
+    const index = focusIndex.value;
+
+    window.location.href = relevantLinks.value[index].href;
+  }
+});
+
+watch(escape, (esc) => {
+  if (esc && visible) {
+    visible.value = false;
+  }
+})
+
+watch(searchTerm, () => {
+  focusIndex.value = -1;
 });
 </script>
 
@@ -91,37 +154,89 @@ watch(metaK, (k) => {
         <DialogDescription class="p-4 max-h-xs overflow-y-auto space-y-4 h-auto transition-all transition-[height] h-auto">
           <div v-if="relevantLinks.length === 0">
             <p class="text-sm">
-              Where's that again?
+              Sorry, I don't know where that is 😕
             </p>
           </div>
+
           <div v-if="relevantLinks.length > 0">
             <span class="font-medium text-xs mb-2">
               Pages
             </span>
 
             <a
-              v-for="link in relevantLinks"
+              v-for="(link, idx) in relevantLinks"
               :key="link.href"
               :href="link.href"
-              class="flex items-center space-x-1 p-2 text-sm transition-colors hover:bg-surface hover:text-heading focus:bg-surface focus:text-heading rounded-md"
+              class="flex justify-between p-2 text-sm transition-colors hover:bg-surface hover:text-heading focus:bg-surface focus:text-heading focus:outline-none rounded-md"
               rel="noopener noreferrer"
+              ref="navigationLinks"
+              @mouseover="focusIndex = idx"
             >
-              <Icon
-                :icon="link.icon"
-                class="w-4 h-auto mr-2"
-              />
-              <span class="relative top-[2px]">
-                {{ link.name }}
-              </span>
+              <div class="flex items-center space-x-1">
+                <Icon
+                  :icon="link.icon"
+                  class="w-4 h-auto mr-2"
+                />
+                <span class="relative top-[2px]">
+                  {{ link.name }}
+                </span>
+              </div>
+
+              <kbd
+                v-if="!!link.key"
+                title="Home"
+                class="text-xs px-1 bg-surface font-mono text-heading border border-border rounded"
+              >Home</kbd>
             </a>
           </div>
         </DialogDescription>
 
-        <div class="border-t border-border py-2 px-4 text-xs">
-          Click anywhere outside the dialog or press <kbd
-            title="Command Key"
-            class="p-[2px] bg-surface font-mono text-heading border border-border rounded"
-          >⌘</kbd> + <kbd class="p-[2px] bg-surface font-mono border border-border text-heading rounded">K</kbd> to close the menu
+        <div class="border-t border-border py-2 px-4 text-sm flex items-center space-x-4">
+          <div class="flex items-center space-x-1">
+            <Key
+              title="Arrow Up"
+              class="text-[10px] px-[6px]"
+            >
+              ↑
+            </Key>
+
+            <Key
+              title="Arrow Down"
+              class="text-[10px] px-[6px]"
+            >
+              ↓
+            </Key>
+
+            <p class="mt-1 font-medium text-xs">
+              Navigate
+            </p>
+          </div>
+
+          <div class="flex items-center space-x-1">
+            <Key
+              title="Enter"
+              class="text-[10px] leading-relaxed"
+            >
+              Enter
+            </Key>
+
+            <p class="mt-1 font-medium text-xs">
+              Open
+            </p>
+          </div>
+
+          <div class="flex items-center space-x-1">
+            <Key
+              title="Escape"
+              class="text-[10px] leading-relaxed"
+            >
+              Esc
+            </Key>
+
+            <p class="mt-1 font-medium text-xs">
+              Close
+            </p>
+          </div>
         </div>
       </DialogContent>
     </DialogPortal>

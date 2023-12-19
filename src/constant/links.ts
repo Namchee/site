@@ -3,6 +3,7 @@ export const links = [
     icon: 'lucide:home',
     name: 'Home',
     href: '/',
+    key: 'Home',
   },
   {
     icon: 'lucide:newspaper',
