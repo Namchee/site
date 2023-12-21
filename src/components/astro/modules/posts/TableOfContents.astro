@@ -18,7 +18,7 @@ const marginMap = {
 }
 ---
 
-<nav class="flex flex-col sticky top-8">
+<nav class="flex flex-col sticky top-8 text-sm">
   <p class="text-accent mb-4 font-medium">
     Table of Contents
   </p>
@@ -51,9 +51,9 @@ const marginMap = {
     entries.forEach(entry => {
       const id = entry.target.id;
       if (entry.intersectionRatio > 0) {
-        document.querySelector(`nav ul li a[href="#${id}"]`).classList.add('text-primary', 'translate-x-2')
+        document.querySelector(`nav ul li a[href="#${id}"]`).classList.add('text-primary', 'translate-x-1')
       } else {
-        document.querySelector(`nav ul li a[href="#${id}"]`).classList.remove('text-primary', 'translate-x-2')
+        document.querySelector(`nav ul li a[href="#${id}"]`).classList.remove('text-primary', 'translate-x-1')
       }
     });
   });

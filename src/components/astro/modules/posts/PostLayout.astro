@@ -45,11 +45,11 @@ const { frontmatter } = Astro.props;
       />
     </figure>
 
-    <div class="col-start-1 col-end-3">
+    <div class="col-start-3 col-end-5">
       <TableOfContents headings={frontmatter.headings} />
     </div>
 
-    <section class="relative col-start-4 col-end-10 space-y-4">
+    <section class="ml-4 col-start-5 col-end-11 space-y-4">
       <slot />
     </section>
   </article>
