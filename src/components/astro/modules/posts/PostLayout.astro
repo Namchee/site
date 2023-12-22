@@ -16,13 +16,13 @@ const { frontmatter } = Astro.props;
 ---
 
 <Layout title={frontmatter.title} description={frontmatter.subtitle}>
-  <article class="relative grid grid-cols-12 gap-4 my-16 lg:my-32 px-8">
-    <header class="col-start-1 col-end-13 text-center text-2xl">
+  <article class="grid grid-cols-12 gap-4 my-24 lg:my-32 px-8">
+    <header class="col-start-1 col-end-13 text-center text-3xl md:text-4xl">
       <h1 class="text-heading font-medium">
         {frontmatter.title}
       </h1>
 
-      <p class="text-lg mt-2">
+      <p class="text-base md:text-lg mt-2 text-balance">
         {frontmatter.subtitle}
       </p>
 
@@ -35,7 +35,7 @@ const { frontmatter } = Astro.props;
       </p>
     </header>
 
-    <figure class="mt-8 mb-16 col-start-2 col-end-12">
+    <figure class="my-8 md:mb-16 col-start-1 col-end-13 md:col-start-2 md:col-end-12">
       <Image
         src={frontmatter.image.url}
         alt={frontmatter.title}
@@ -45,11 +45,11 @@ const { frontmatter } = Astro.props;
       />
     </figure>
 
-    <div class="col-start-3 col-end-5">
+    <div class="hidden lg:block lg:col-start-3 lg:col-end-5">
       <TableOfContents headings={frontmatter.headings} />
     </div>
 
-    <section class="ml-4 col-start-5 col-end-11 space-y-4">
+    <section class="lg:ml-4 col-start-1 col-end-13 md:col-start-2 md:col-end-12 lg:col-start-5 lg:col-end-11 space-y-4">
       <slot />
     </section>
   </article>
