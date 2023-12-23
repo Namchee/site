@@ -2,9 +2,14 @@
 import { Image } from "astro:assets";
 import type { CollectionEntry } from "astro:content";
 
+import { Icon } from "astro-iconify";
+
 import Layout from "@/components/astro/layout/Layout.astro";
 
+import AppLink from '@/components/astro/ui/AppLink.astro';
+
 import type { MarkdownFile } from '@/plugins/remark/types';
+
 import TableOfContents from './TableOfContents.astro';
 
 interface Props {
@@ -43,6 +48,7 @@ const { frontmatter } = Astro.props;
         height={599}
         class="rounded-lg aspect-video"
       />
+      <figcaption>foo bar</figcaption>
     </figure>
 
     <div class="hidden lg:block lg:col-start-3 lg:col-end-5">
@@ -53,6 +59,18 @@ const { frontmatter } = Astro.props;
       <slot />
     </section>
   </article>
+
+  <AppLink
+    href="/posts"
+    class="grid place-items-center h-10 w-10 rounded-full border border-border fixed top-8 left-8 bg-background transition-colors group"
+  >
+    <Icon pack="lucide" name="arrow-left" class="w-4 h-auto" />
+      <p
+        class="absolute text-sm -bottom-8 transition-all opacity-0 translate-y-1 group-hover:opacity-100 group-hover:translate-y-0 group-focus:opacity-100 group-focus:translate-y-0"
+      >
+        Back
+      </p>
+  </AppLink>
 </Layout>
 
 <style is:inline>
