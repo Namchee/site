@@ -22,16 +22,16 @@ const { frontmatter } = Astro.props;
 
 <Layout title={frontmatter.title} description={frontmatter.subtitle}>
   <article class="grid grid-cols-12 gap-4 my-24 lg:my-32 px-8">
-    <header class="col-start-1 col-end-13 text-center text-3xl md:text-4xl">
-      <h1 class="text-heading font-medium">
+    <header class="col-start-1 col-end-13 text-center">
+      <h1 class="text-3xl md:text-4xl text-heading font-medium">
         {frontmatter.title}
       </h1>
 
-      <p class="text-base md:text-lg mt-2 text-balance">
+      <p class="md:text-lg text-balance mt-2 md:mt-4">
         {frontmatter.subtitle}
       </p>
 
-      <p class="text-base font-medium text-primary mt-12">
+      <p class="text-base font-medium text-primary mt-8">
         {new Date(frontmatter.updatedAt).toLocaleString('en-US', {
           year: 'numeric',
           month: 'long',
@@ -48,7 +48,9 @@ const { frontmatter } = Astro.props;
         height={599}
         class="rounded-lg aspect-video"
       />
-      <figcaption>foo bar</figcaption>
+      <figcaption class="italic text-accent text-xs text-center mt-4">
+        Image courtesy of {frontmatter.image.author} from {frontmatter.image.source}
+      </figcaption>
     </figure>
 
     <div class="hidden lg:block lg:col-start-3 lg:col-end-5">
@@ -65,11 +67,11 @@ const { frontmatter } = Astro.props;
     class="grid place-items-center h-10 w-10 rounded-full border border-border fixed top-8 left-8 bg-background transition-colors group"
   >
     <Icon pack="lucide" name="arrow-left" class="w-4 h-auto" />
-      <p
-        class="absolute text-sm -bottom-8 transition-all opacity-0 translate-y-1 group-hover:opacity-100 group-hover:translate-y-0 group-focus:opacity-100 group-focus:translate-y-0"
-      >
-        Back
-      </p>
+    <p
+      class="absolute text-sm -bottom-8 transition-all opacity-0 translate-y-1 group-hover:opacity-100 group-hover:translate-y-0 group-focus:opacity-100 group-focus:translate-y-0"
+    >
+      Back
+    </p>
   </AppLink>
 </Layout>
 

@@ -3,6 +3,13 @@ import { defineConfig } from 'unocss';
 // eslint-disable-next-line canonical/no-unused-exports
 export default defineConfig({
   theme: {
+    breakpoints: {
+      'sm': '380px',
+      'md': '768px',
+      'lg': '1024px',
+      'xl': '1280px',
+      '2xl': '1536px',
+    },
     fontFamily: {
       sans: ['"Nacelle"', '"Roboto"', '"Arial"', 'sans-serif'],
       mono: ['JetBrains Mono'],

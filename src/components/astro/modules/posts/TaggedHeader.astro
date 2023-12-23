@@ -1,3 +1,11 @@
-<h2>
-  <slot />
+---
+import type { HTMLAttributes } from 'astro/types';
+
+type Props = HTMLAttributes<'h2'>;
+
+const props = Astro.props;
+---
+
+<h2 {...props}>
+  test component <slot />
 </h2>
