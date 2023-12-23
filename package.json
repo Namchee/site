@@ -28,7 +28,6 @@
     "hast-util-to-string": "^3.0.0",
     "hastscript": "^8.0.0",
     "postcss-easings": "^4.0.0",
-    "postcss-for": "^2.1.1",
     "postcss-preset-env": "^9.3.0",
     "rehype-autolink-headings": "^7.1.0",
     "typescript": "^5.3.2",
@@ -45,12 +44,7 @@
     "mdast-util-to-string": "^4.0.0",
     "radix-vue": "^1.2.4",
     "reading-time": "^1.5.0",
-    "rehype-accessible-emojis": "^0.3.2",
-    "rehype-toc": "^3.0.2",
-    "remark": "^15.0.1",
-    "remark-mdx": "^3.0.0",
-    "remark-toc": "^9.0.0",
-    "unified": "^11.0.4"
+    "rehype-accessible-emojis": "^0.3.2"
   },
   "packageManager": "pnpm@8.11.0"
 }

@@ -3,7 +3,6 @@ module.exports = {
     require('autoprefixer'),
     require('postcss-easings'),
     require('postcss-preset-env'),
-    require('postcss-for'),
     require('cssnano'),
   ],
 };
