@@ -24,4 +24,5 @@ export default defineConfig({
     domains: ['assets.literal.club', 'res.cloudinary'],
   },
   site: 'https://www.namchee.dev',
+  prefetch: true,
 });

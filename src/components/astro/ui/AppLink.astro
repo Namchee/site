@@ -14,5 +14,6 @@ const target = props.href.toString().startsWith('http')
 <a
   rel={`noopener noreferrer ${rel}`}
   target={target}
+  data-astro-prefetch={target === '_self' ? true : false}
   {...props}
 ><slot /></a>
