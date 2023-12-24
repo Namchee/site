@@ -25,11 +25,10 @@
     "eslint": "^8.55.0",
     "eslint-plugin-astro": "^0.30.0",
     "eslint-plugin-vue": "^9.19.2",
-    "hast-util-to-string": "^3.0.0",
-    "hastscript": "^8.0.0",
+    "mdast-util-to-string": "^4.0.0",
     "postcss-easings": "^4.0.0",
     "postcss-preset-env": "^9.3.0",
-    "rehype-autolink-headings": "^7.1.0",
+    "reading-time": "^1.5.0",
     "typescript": "^5.3.2",
     "unocss": "^0.58.0",
     "vue": "^3.3.11",
@@ -41,10 +40,7 @@
     "@iconify/vue": "^4.1.1",
     "@tgwf/co2": "^0.13.9",
     "@vueuse/core": "^10.7.0",
-    "mdast-util-to-string": "^4.0.0",
-    "radix-vue": "^1.2.4",
-    "reading-time": "^1.5.0",
-    "rehype-accessible-emojis": "^0.3.2"
+    "radix-vue": "^1.2.4"
   },
   "packageManager": "pnpm@8.11.0"
 }
