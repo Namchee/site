@@ -2,9 +2,6 @@
 import { getCollection, type CollectionEntry } from 'astro:content';
 
 import PostLayout from '@/components/astro/modules/posts/PostLayout.astro';
-import TaggedHeader from '@/components/astro/modules/posts/TaggedHeader.astro';
-
-import TextLink from '@/components/astro/ui/TextLink.astro';
 
 import type { MarkdownFile } from '@/plugins/remark/types';
 
@@ -34,9 +31,5 @@ const frontmatter = {
 ---
 
 <PostLayout frontmatter={frontmatter}>
-  <Content component={{
-    a: TextLink,
-    h2: TaggedHeader,
-    h3: TaggedHeader,
-  }} />
+  <Content />
 </PostLayout>
