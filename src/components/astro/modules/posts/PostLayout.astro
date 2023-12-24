@@ -21,6 +21,18 @@ const { frontmatter } = Astro.props;
 ---
 
 <Layout title={frontmatter.title} description={frontmatter.subtitle}>
+  <AppLink
+    href="/posts"
+    class="grid place-items-center h-10 w-10 rounded-full border border-border fixed top-8 left-8 bg-background transition-colors group"
+  >
+    <Icon pack="lucide" name="arrow-left" class="w-4 h-auto" />
+    <p
+      class="absolute text-sm -bottom-8 transition-all opacity-0 translate-y-1 group-hover:opacity-100 group-hover:translate-y-0 group-focus:opacity-100 group-focus:translate-y-0 focus-visible:outline-none"
+    >
+      Back
+    </p>
+  </AppLink>
+
   <article class="grid grid-cols-12 gap-4 my-24 lg:my-32 px-8">
     <header class="col-start-1 col-end-13 text-center">
       <h1 class="text-3xl md:text-4xl text-heading font-medium">
@@ -31,8 +43,8 @@ const { frontmatter } = Astro.props;
         {frontmatter.subtitle}
       </p>
 
-      <p class="text-base font-medium text-primary mt-8">
-        {new Date(frontmatter.updatedAt).toLocaleString('en-US', {
+      <p class="text-base font-medium text-primary mt-8 md:mt-12">
+        {new Date(frontmatter.publishedAt).toLocaleString('en-US', {
           year: 'numeric',
           month: 'long',
           day: 'numeric',
@@ -57,28 +69,17 @@ const { frontmatter } = Astro.props;
       <TableOfContents headings={frontmatter.headings} />
     </div>
 
-    <section class="lg:ml-4 col-start-1 col-end-13 md:col-start-2 md:col-end-12 lg:col-start-5 lg:col-end-11 space-y-4">
+    <section class="lg:ml-4 col-start-1 col-end-13 md:col-start-2 md:col-end-12 lg:col-start-5 lg:col-end-11 space-y-4 leading-loose">
       <slot />
     </section>
   </article>
-
-  <AppLink
-    href="/posts"
-    class="grid place-items-center h-10 w-10 rounded-full border border-border fixed top-8 left-8 bg-background transition-colors group"
-  >
-    <Icon pack="lucide" name="arrow-left" class="w-4 h-auto" />
-    <p
-      class="absolute text-sm -bottom-8 transition-all opacity-0 translate-y-1 group-hover:opacity-100 group-hover:translate-y-0 group-focus:opacity-100 group-focus:translate-y-0"
-    >
-      Back
-    </p>
-  </AppLink>
 </Layout>
 
 <style is:inline>
   p {
     line-height: 1.75;
   }
+
   h2:not([id^=radix]) {
     font-size: 1.5rem;
     line-height: 1.5;
@@ -94,3 +95,12 @@ const { frontmatter } = Astro.props;
     color: oklch(var(--heading));
   }
 </style>
+
+<script is:inline>
+  const copyButton = document.querySelector('.copy__link');
+  copyButton.addEventListener('click', async () => {
+    const url = window.location.href.split('#')[0];
+
+    await navigator.clipboard.writeText(url);
+  });
+</script>

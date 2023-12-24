@@ -11,7 +11,7 @@ const posts = defineCollection({
       source: z.string().optional(),
     }),
     tags: z.array(z.string()),
-    updatedAt: z.date(),
+    publishedAt: z.date(),
     isDraft: z.boolean().optional().default(false),
     relatedPosts: z.array(reference('posts')).optional(),
   }),

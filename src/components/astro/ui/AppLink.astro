@@ -12,7 +12,7 @@ const target = props.href.toString().startsWith('http')
 ---
 
 <a
-  rel={`noopener noreferrer ${rel}`}
+  rel={['noopener noreferrer', rel].filter(Boolean).join(' ')}
   target={target}
   data-astro-prefetch={target === '_self' ? true : false}
   {...props}
