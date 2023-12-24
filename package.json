@@ -11,6 +11,7 @@
     "sync": "astro sync"
   },
   "devDependencies": {
+    "@astrojs/sitemap": "^3.0.3",
     "@astrojs/vue": "^4.0.3",
     "@namchee/eslint-config": "^2.0.8",
     "@types/eslint": "^8.44.8",
@@ -20,6 +21,7 @@
     "astro": "4.0.6",
     "astro-eslint-parser": "^0.16.0",
     "astro-iconify": "^1.2.0",
+    "astro-robots-txt": "^1.0.0",
     "autoprefixer": "^10.4.16",
     "cssnano": "^6.0.1",
     "eslint": "^8.55.0",
