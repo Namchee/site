@@ -1,12 +1,16 @@
 ---
+import { Icon } from "astro-iconify";
+
 import Layout from "@/components/astro/layout/Layout.astro";
 
 import TextLink from "@/components/astro/ui/TextLink.astro";
 
 import Profile from "@/components/astro/modules/home/Profile.astro";
 import Projects from "@/components/astro/modules/home/Projects.astro";
+import Posts from "@/components/astro/modules/home/Posts.astro";
 import Experiences from "@/components/astro/modules/home/Experiences.astro";
 import Books from "@/components/astro/modules/home/Books.astro";
+import AppLink from '@/components/astro/ui/AppLink.astro';
 ---
 
 <Layout title="Build softwares → Solve problems" description="bar">
@@ -42,16 +46,44 @@ import Books from "@/components/astro/modules/home/Books.astro";
         </p>
       </section>
 
-      <section class="space-y-4">
-        <h2 class="font-medium tracking-tight text-heading">
+      <section>
+        <h2 class="font-medium tracking-tight text-heading mb-4">
           Selected Projects
         </h2>
 
         <Projects />
+
+        <AppLink
+          class="mt-8 inline-flex items-center arrow__link hover:text-heading focus:text-heading"
+          href="https://github.com/Namchee?tab=repositories"
+        >
+          <Icon name="lucide:arrow-right" class="w-4 external__before" />
+          <span class="link__text inline-block">View all projects</span>
+          <Icon
+            name="lucide:arrow-up-right"
+            class="w-4 -translate-x-8 opacity-0 external__after"
+          />
+        </AppLink>
       </section>
 
-      <section class="hidden">
-        <h2 class="font-medium tracking-tight text-heading">Writings</h2>
+      <section>
+        <h2 class="font-medium tracking-tight text-heading mb-4">
+          Recent Posts
+        </h2>
+
+        <Posts />
+
+        <AppLink
+          class="mt-8 inline-flex items-center arrow__link hover:text-heading focus:text-heading"
+          href="/posts"
+        >
+          <Icon name="lucide:arrow-right" class="w-4 external__before" />
+          <span class="link__text inline-block">See all posts</span>
+          <Icon
+            name="lucide:arrow-right"
+            class="w-4 -translate-x-8 opacity-0 external__after"
+          />
+        </AppLink>
       </section>
 
       <section class="space-y-4">
@@ -70,3 +102,36 @@ import Books from "@/components/astro/modules/home/Books.astro";
     </div>
   </div>
 </Layout>
+
+<style>
+  .arrow__before,
+  .arrow__after,
+  .external__before,
+  .external__after,
+  .link__text {
+    transition: all 200ms easeOutQuad;
+  }
+
+  .external__before {
+    transform: translateX(-4px) translateY(-1.5px);
+    opacity: 1;
+  }
+
+  .arrow__link:hover .external__before,
+  .arrow__link:focus .external__before {
+    opacity: 0;
+    transform: translateX(16px);
+  }
+
+  .arrow__link:hover .link__text,
+  .arrow__link:focus .link__text {
+    transform: translateX(-16px);
+  }
+
+  .arrow__link:hover .external__after,
+  .arrow__link:focus .external__after {
+    opacity: 1;
+    transform: translateX(-12px) translateY(-1.5px);
+  }
+
+</style>
