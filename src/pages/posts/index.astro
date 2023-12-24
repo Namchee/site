@@ -1,0 +1,49 @@
+---
+import { Image } from "astro:assets";
+
+import { getCollection } from 'astro:content';
+
+import Layout from '@/components/astro/layout/Layout.astro';
+import AppLink from '@/components/astro/ui/AppLink.astro';
+
+const posts = (await getCollection('posts'))
+  .filter(post => !post.data.isDraft)
+  .sort((a, b) => a.data.publishedAt.getTime() - b.data.publishedAt.getTime())
+---
+
+<Layout title="Book recommendations" description="later">
+  <div class="grid grid-cols-12 gap-4 my-16 lg:my-32 px-8">
+    <header
+      class="col-start-1 col-end-13 md:col-end-5 lg:col-start-3 lg:col-end-5"
+    >
+      <div class="sticky top-12">
+        <h1 class="text-xl text-heading font-medium tracking-tight">
+          Posts
+        </h1>
+      </div>
+    </header>
+
+    <div
+      class="mt-8 md:mt-0 col-start-1 col-end-13 md:mt-0 md:col-start-6 lg:col-start-6 lg:col-end-11 space-y-16"
+    >
+      <ul>
+        {posts.map(post => (<li class="md:grid md:grid-cols-[max-content_auto] justify-between">
+          <AppLink
+            class="text-heading text-balance inline-flex items-center space-x-[2px] transition-colors hover:text-primary focus:text-primary"
+            href={`/posts/${post.slug}`}
+          >
+            {post.data.title}
+          </AppLink>
+
+          <p class="mt-2 md:mt-0 text-xs text-accent md:text-base text-balance md:text-right">
+            {post.data.publishedAt.toLocaleString('en-US', {
+              year: 'numeric',
+              month: 'long',
+              day: 'numeric',
+            })}
+          </p>
+        </li>))}
+      </ul>
+    </div>
+  </div>
+</Layout>

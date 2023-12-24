@@ -1,16 +1,28 @@
 import { defineConfig } from 'astro/config';
 
-import icon from 'unplugin-icons/vite';
+import unocss from 'unocss/astro';
 
 import vue from '@astrojs/vue';
-import tailwind from '@astrojs/tailwind';
+import mdx from '@astrojs/mdx';
 
-// https://astro.build/config
+import { remarkPlugins } from './src/plugins/remark';
+
 export default defineConfig({
-  integrations: [tailwind(), vue()],
-  vite: {
-    plugins: [
-      icon(),
-    ],
+  integrations: [
+    vue(),
+    unocss({
+      injectReset: true,
+    }),
+    mdx(),
+  ],
+  markdown: {
+    remarkPlugins: remarkPlugins,
+    syntaxHighlight: 'shiki',
+    shikiConfig: { theme: 'vitesse-dark' },
   },
+  image: {
+    domains: ['assets.literal.club', 'res.cloudinary'],
+  },
+  site: 'https://www.namchee.dev',
+  prefetch: true,
 });

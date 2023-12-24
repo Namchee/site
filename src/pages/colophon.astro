@@ -1,0 +1,199 @@
+---
+import { Icon } from "astro-iconify";
+
+import Layout from "@/components/astro/layout/Layout.astro";
+import TextLink from "@/components/astro/ui/TextLink.astro";
+import AppLink from "@/components/astro/ui/AppLink.astro";
+
+const inspirations = [
+  {
+    name: "Fabian Schlutz",
+    href: "https://www.fabianschultz.com/",
+  },
+  {
+    name: "Linus Rogge",
+    href: "https://linusrogge.com/",
+  },
+  {
+    name: "Connell McCarthy",
+    href: "https://connellmccarthy.com/",
+  },
+  {
+    name: "Marco Koenig",
+    href: "https://www.marcokoenig.de/",
+  },
+  {
+    name: "John Zanussi",
+    href: "https://johnzanussi.com/",
+  },
+  {
+    name: "60fps Design",
+    href: "https://www.60fps.design/",
+  },
+  {
+    name: "Curated Design",
+    href: "https://www.curated.design/",
+  },
+  {
+    name: "Minimal Gallery",
+    href: "https://minimal.gallery/",
+  },
+  {
+    name: "One Page Love",
+    href: "https://onepagelove.com/",
+  },
+];
+---
+
+<Layout title="How this website is made" description="later">
+  <div class="grid grid-cols-12 gap-4 my-16 md:my-32 px-8">
+    <header
+      class="col-start-1 col-end-13 md:col-end-5 lg:col-start-3 lg:col-end-6"
+    >
+      <div class="sticky top-12">
+        <h1 class="text-xl text-heading font-medium tracking-tight">
+          Colophon
+        </h1>
+
+        <div
+          class="mt-2 flex space-x-2 text-accent"
+          title="Last Updated on 9 December 2023"
+        >
+          <Icon pack="lucide" name="history" class="w-4 h-auto" />
+          <p class="relative top-[2px]">9 December 2023</p>
+        </div>
+      </div>
+    </header>
+
+    <div
+      class="col-start-1 col-end-13
+        mt-8
+        space-y-16
+        md:mt-0 md:col-start-6
+        lg:col-start-6 lg:col-end-11"
+    >
+      <section class="space-y-4">
+        <h2 class="text-heading font-medium">Technology</h2>
+
+        <p>
+          This website is powered by <TextLink
+            href="https://astro.build/"
+          >
+            Astro</TextLink> as the static web generator combined with <TextLink
+            href="https://vuejs.org/"
+          >
+            Vue</TextLink> in the mix. Stylings are powered by <TextLink
+            href="https://unocss.dev/"
+          >
+            UnoCSS</TextLink>, an on-demand atomic CSS engine.
+        </p>
+
+        <p>
+          Website is hosted with 100% renewable energy on <TextLink
+            href="https://pages.cloudflare.com/"
+          >
+            Cloudflare Pages</TextLink>. Site analytics are powered by Plausible.
+        </p>
+      </section>
+
+      <section class="space-y-4">
+        <h2 class="text-heading font-medium">Design</h2>
+
+        <p>
+          Color palletes are taken from <TextLink
+            href="https://www.untitledui.com/"
+          >
+            Untitled UI</TextLink> with a few twist of my own.
+        </p>
+
+        <p>
+          <TextLink href="https://dotcolon.net/font/nacelle/">
+            Nacelle</TextLink> is a neo-grotesque sans-serif font created by Sora Sagano
+          and distributed under SIL Font License. Nacelle is used as the
+          all-purpose for body and headings alike.
+        </p>
+
+        <p>
+          <TextLink href="https://www.jetbrains.com/lp/mono/">
+            JetBrains Mono</TextLink> is a monospaced font created by JetBrains and distributed
+          under the SIL Font License. JetBrains Mono is used in codeblocks and
+          miscellanous accents.
+        </p>
+      </section>
+
+      <section class="space-y-4">
+        <h2 class="text-heading font-medium">Graphical Contents</h2>
+
+        <p>
+          All images in my posts are taken from <TextLink
+            href="https://unsplash.com/"
+          >
+            Unsplash</TextLink> unless specified. Credits can be found as a text on the
+          bottom of the image.
+        </p>
+
+        <p>
+          Icons are handpicked from the combination of <TextLink
+            href="https://lucide.dev/"
+          >
+            Lucide</TextLink> for the general UI icons and <TextLink
+            href="https://simpleicons.org/"
+          >
+            Simple Icons</TextLink> for all brand icons.
+        </p>
+
+        <p>
+          Icons are served with the help of <TextLink
+            href="https://iconify.design/"
+          >
+            Iconify</TextLink>.
+        </p>
+      </section>
+
+      <section class="space-y-4">
+        <h2 class="text-heading font-medium">Inspirations</h2>
+
+        <p>
+          The design of this website is influenced by multiple sources I
+          stumbled upon. Below is the list of inspirations that influences this
+          website in no particular order:
+        </p>
+
+        <ul class="grid grid-cols-1 sm:grid-cols-2 gap-y-2 gap-x-4">
+          {
+            inspirations.map((inspiration) => (
+              <li>
+                <AppLink
+                  href={inspiration.href}
+                  class="text-heading hover:text-primary focus:text-primary transition-colors inline-flex items-center space-x-1"
+                >
+                  <span>{inspiration.name}</span>
+                  <Icon
+                    pack="lucide"
+                    name="arrow-up-right"
+                    class="w-4 h-auto -mt-1"
+                  />
+                </AppLink>
+              </li>
+            ))
+          }
+        </ul>
+      </section>
+
+      <section class="space-y-4">
+        <h2 class="text-heading font-medium">Open Source</h2>
+
+        <p>
+          This website is open-sourced and can be found on my <TextLink
+            href="https://www.github.com/Namchee/site"
+          >
+            GitHub</TextLink>. If you notice any mistakes in
+          this website, feel free to
+          create an
+          <TextLink href="https://github.com/Namchee/site/issues">
+            issue</TextLink>.
+        </p>
+      </section>
+    </div>
+  </div>
+</Layout>

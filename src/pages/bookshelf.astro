@@ -1,0 +1,103 @@
+---
+import { Icon } from "astro-iconify";
+
+import Layout from "@/components/astro/layout/Layout.astro";
+import AppLink from "@/components/astro/ui/AppLink.astro";
+
+const books = {
+  2023: [
+    {
+      title: "The Clean Coder",
+      author: "Robert C. Martin",
+      link: "https://literal.club/book/the-clean-coder-bk300",
+    },
+    {
+      title: "Algorithms for Modern Hardware",
+      author: "Sergey Slotin",
+      link: "https://en.algorithmica.org/hpc/",
+    },
+    {
+      title: "The Pragmatic Programmer",
+      author: "Andy Hunt & Dave Thomas",
+      link: "https://literal.club/book/the-pragmatic-programmer-f735w",
+    },
+    {
+      title: "Non Violent Communication",
+      author: "Marshall B. Rosenberg",
+      link: "https://literal.club/book/marshall-b-rosenberg-non-violent-communication-a-language-of-life-0xnv8",
+    },
+    {
+      title: "INSPIRED",
+      author: "Marthy Cagan",
+      link: "https://literal.club/book/inspired-qoqb4",
+    },
+    {
+      title: "Clean Code",
+      author: "Robert C. Martin",
+      link: "https://literal.club/book/clean-code-ewxiz",
+    },
+  ],
+};
+---
+
+<Layout title="Book recommendations" description="later">
+  <div class="grid grid-cols-12 gap-4 my-16 lg:my-32 px-8">
+    <header
+      class="col-start-1 col-end-13 md:col-end-5 lg:col-start-3 lg:col-end-5"
+    >
+      <div class="sticky top-12">
+        <h1 class="text-xl text-heading font-medium tracking-tight">
+          Bookshelf
+        </h1>
+      </div>
+    </header>
+
+    <div
+      class="mt-8 md:mt-0 col-start-1 col-end-13 md:mt-0 md:col-start-6 lg:col-start-6 lg:col-end-11 space-y-16"
+    >
+      <section class="space-y-4">
+        <p>
+          Starting from 2023, I've been building my reading habit and found the
+          experience to be rewarding for my career and personal life.
+        </p>
+
+        <p>
+          Below is the list of books I've read in the past that I found to be
+          insightful.
+        </p>
+      </section>
+
+      {
+        Object.entries(books).map(([year, book]) => {
+          const bookList = book.map((b) => (
+            <li class="md:grid md:grid-cols-[max-content_auto] justify-between">
+              <AppLink
+                class="text-heading text-balance inline-flex items-center space-x-[2px] transition-colors hover:text-primary focus:text-primary"
+                href={b.link}
+              >
+                <span>{b.title}</span>
+                <Icon
+                  pack="lucide"
+                  name="arrow-up-right"
+                  class="w-4 h-auto -mt-1"
+                />
+              </AppLink>
+
+              <p class="text-xs text-accent md:text-base text-balance md:text-right">
+                {b.author}
+              </p>
+            </li>
+          ));
+
+          return (
+            <div>
+              <p class="text-sm text-accent font-medium mb-4">{year}</p>
+
+              <ul class="space-y-3 md:space-y-2">{bookList}</ul>
+            </div>
+          );
+        })
+      }
+    </div>
+  </div>
+</Layout>

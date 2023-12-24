@@ -1,0 +1,93 @@
+---
+import { Icon } from "astro-iconify";
+
+import AppLink from "@/components/astro/ui/AppLink.astro";
+import ThemeSwitcher from "@/components/astro/layout/ThemeSwitcher.astro";
+
+const links = [
+  {
+    label: "Home",
+    href: "/",
+  },
+  {
+    label: "Bookshelf",
+    href: "/bookshelf",
+  },
+  {
+    label: "Posts",
+    href: "/posts",
+  },
+  {
+    label: "Colophon",
+    href: "/colophon",
+  },
+];
+---
+
+<footer
+  class="grid grid-cols-12 gap-4
+  w-full max-w-7xl mx-auto
+  p-8
+  text-sm
+  md:gap-6"
+>
+  <div
+    class="flex justify-between items-center
+    col-start-1 col-end-13
+    lg:col-start-3 lg:col-end-11 md:space-y-0"
+  >
+    <div class="w-full md:w-auto flex items-center space-x-4">
+      {
+        links.map((link) => (
+          <AppLink
+            href={link.href}
+            title={link.label}
+            class={`transition-colors text-heading hover:text-primary focus:text-primary`}
+          >
+            {link.label}
+          </AppLink>
+        ))
+      }
+    </div>
+
+    <ThemeSwitcher />
+  </div>
+
+  <hr class="border-t border-border transition-colors col-start-1 col-end-13
+    lg:col-start-3 lg:col-end-11" />
+
+  <div
+    class="flex justify-between items-center
+    col-start-1 col-end-13
+    lg:col-start-3 lg:col-end-11"
+  >
+    <div class="w-full md:w-auto flex">
+      <span>Contents are licensed under</span>
+       &nbsp;
+      <AppLink
+        href="http://creativecommons.org/licenses/by/4.0"
+        rel="license noopener noreferrer"
+        class="flex items-center text-heading hover:text-primary transition-colors font-medium space-x-1"
+      >
+        <span>CC BY 4.0</span>
+        <img
+          class="h-4 w-auto -mt-1"
+          src="https://mirrors.creativecommons.org/presskit/icons/cc.svg"
+          alt="Creative Commons"
+        /><img
+          class="h-4 w-auto -mt-1"
+          src="https://mirrors.creativecommons.org/presskit/icons/by.svg"
+          alt="By Attributions"
+        />
+      </AppLink>
+    </div>
+
+    <AppLink
+      href="/rss.xml"
+      class="flex items-center space-x-1 text-heading hover:text-primary focus:text-primary transition-colors"
+    >
+      <Icon pack="lucide" name="rss" class="w-4 h-auto -mt-1" />
+      <span>RSS</span>
+    </AppLink>
+  </div>
+</footer>

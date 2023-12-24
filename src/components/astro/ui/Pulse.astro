@@ -1,0 +1,36 @@
+---
+import type { HTMLAttributes } from "astro/types";
+
+type Props = HTMLAttributes<"span">;
+
+const { class: className } = Astro.props;
+---
+
+<span
+  class={`w-2 h-2 rounded-full bg-success inline-block pulse ${className}`}
+  aria-hidden="true"></span>
+
+<style>
+  .pulse {
+    opacity: 1;
+    animation: pulse 2s infinite;
+  }
+
+  @keyframes pulse {
+    0%,
+    100% {
+      transform: scale(0.95);
+      box-shadow: 0 0 0 0 rgba(101, 186, 117, 0.5);
+    }
+
+    60% {
+      transform: scale(1);
+      box-shadow: 0 0 0 8px rgba(101, 186, 117, 0);
+    }
+
+    80% {
+      transform: scale(0.95);
+      box-shadow: 0 0 0 0 rgba(101, 186, 117, 0);
+    }
+  }
+</style>

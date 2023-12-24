@@ -1,0 +1,63 @@
+---
+import type { MarkdownHeading } from 'astro';
+
+import { Icon } from 'astro-iconify';
+
+import AppLink from '@/components/astro/ui/AppLink.astro';
+
+interface Props {
+  headings: MarkdownHeading[];
+}
+
+const { headings } = Astro.props;
+
+const marginMap = {
+  2: 'pl-0',
+  3: 'pl-4',
+  4: 'pl-8',
+}
+---
+
+<nav class="flex flex-col sticky top-8 bottom-0 text-sm">
+  <p class="text-accent mb-4 font-medium">
+    Table of Contents
+  </p>
+
+  <ul class="space-y-2">
+    {headings.map(
+      head => (
+        <li class={marginMap[head.depth]}>
+          <AppLink href={`#${head.slug}`} class="text-accent block transition-all">
+            {head.text}
+          </AppLink>
+        </li>
+      )
+    )}
+  </ul>
+
+  <AppLink href="#" class="flex items-center space-x-2 mt-12 text-heading backToTop__button">
+    <Icon pack="lucide" name="corner-left-up" class="w-4 h-auto relative -top-[2px]" />
+    <span>Back to Top</span>
+  </AppLink>
+</nav>
+
+<script>
+  const backToTop = document.querySelector('.backToTop__button');
+  backToTop.addEventListener('click', () => {
+    window.scrollTo(0, 0);
+  });
+
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      const id = entry.target.id;
+      if (entry.intersectionRatio > 0) {
+        document.querySelector(`nav ul li a[href="#${id}"]`).classList.add('text-primary', 'translate-x-1')
+      } else {
+        document.querySelector(`nav ul li a[href="#${id}"]`).classList.remove('text-primary', 'translate-x-1')
+      }
+    });
+  });
+
+  const tocLinks = document.querySelectorAll('h2[id], h3[id]');
+  tocLinks.forEach(link => observer.observe(link));
+</script>

@@ -1,0 +1,71 @@
+---
+import { Icon } from "astro-iconify";
+
+import AppLink from "@/components/astro/ui/AppLink.astro";
+import LogoContainer from "@/components/astro/ui/LogoContainer.astro";
+
+import CPR from "@/components/astro/modules/home/project-icons/CPR.astro";
+import Fav from "@/components/astro/modules/home/project-icons/Fav.astro";
+import Dependent from "@/components/astro/modules/home/project-icons/Dependent.astro";
+
+const projects = [
+  {
+    icon: Fav,
+    title: "Fav",
+    description: "Modern favicon generator for modern websites",
+    link: "https://fav.namchee.dev/",
+    github: "https://github.com/Namchee/fav",
+  },
+  {
+    icon: CPR,
+    title: "Conventional PR",
+    description: "Prevent bad PRs through set of customizable rules",
+    github: "https://github.com/Namchee/conventional-pr",
+  },
+  {
+    icon: Dependent,
+    title: "Dependent",
+    description: "Find out where and how your Node dependency is used",
+    github: "https://github.com/Namchee/dependent",
+  },
+];
+---
+
+<ul class="space-y-4">
+  {
+    projects.map((project) => {
+      return (
+        <li class="flex space-x-4">
+          <LogoContainer class="w-12 h-12" title={project.title}>
+            <project.icon class="w-6 h-6 text-heading" />
+          </LogoContainer>
+
+          <div class="flex-1 flex flex-col justify-between">
+            <p class="text-heading font-medium">{project.title}</p>
+
+            <p class="text-sm text-accent">{project.description}</p>
+          </div>
+
+          <div class="flex items-center space-x-4">
+            {project.link && (
+              <AppLink
+                href={project.link}
+                class="transition-colors hover:text-heading focus:text-heading"
+              >
+                <Icon pack="lucide" name="external-link" class="w-4 h-auto" />
+              </AppLink>
+            )}
+            {project.github && (
+              <AppLink
+                href={project.github}
+                class="transition-colors hover:text-heading focus:text-heading"
+              >
+                <Icon pack="simple-icons" name="github" class="w-4 h-auto" />
+              </AppLink>
+            )}
+          </div>
+        </li>
+      );
+    })
+  }
+</ul>

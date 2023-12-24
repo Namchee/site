@@ -1,23 +1,57 @@
+:root {
+  /* Write token here */
+  --background: 99.14% 0.001 286.38;
+  --surface: 95.92% 0.007 247.9;
+  --border: 86.98% 0.016 253.91;
+
+  --heading: 21.32% 0.028 262.41;
+  --content: 44.69% 0.029 259.77;
+  --accent: 55.85% 0.03 257.07;
+
+  --primary: 51.47% 0.229 272.81;
+
+  --success: 67.31% 0.16 155.59;
+}
+
 html {
   scroll-behavior: smooth;
+
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  scrollbar-gutter: stable both-edges;
+}
+
+html.dark {
+  /* Replace the token here */
+  --background: 19.13% 0 102.07;
+  --surface: 28.09% 0 102.07;
+  --border: 37.91% 0 102.07;
+
+  --heading: 99.1% 0 102.07;
+  --content: 86.69% 0 0;
+  --accent: 71.54% 0 102.07;
+
+  --primary: 70.35% 0.145 271.74;
 }
 
 @font-face {
-  font-family: "Open Sauce";
-  src: local("Open Sauce One"),
-    url("/fonts/open-sauce-regular.woff2") format("woff2"),
-    url("/fonts/open-sauce-regular.woff") format("woff");
+  font-family: "Nacelle";
+  src: local("Nacelle"),
+    url("/fonts/nacelle.woff2") format("woff2"),
+    url("/fonts/nacelle.woff") format("woff");
   font-style: normal;
   font-weight: 400;
   font-display: swap;
-
 }
 
 @font-face {
-  font-family: "Open Sauce";
-  src: local("Open Sauce One"),
-    url("/fonts/open-sauce-italic.woff2") format("woff2"),
-    url("/fonts/open-sauce-italic.woff") format("woff");
+  font-family: "Nacelle";
+  src: local("Nacelle"),
+    url("/fonts/nacelle-italic.woff2") format("woff2"),
+    url("/fonts/nacelle-italic.woff") format("woff");
   font-style: italic;
   font-weight: 400;
   font-display: swap;
@@ -25,10 +59,10 @@ html {
 }
 
 @font-face {
-  font-family: "Open Sauce";
-  src: local("Open Sauce One"),
-    url("/fonts/open-sauce-medium.woff2") format("woff2"),
-    url("/fonts/open-sauce-medium.woff") format("woff");
+  font-family: "Nacelle";
+  src: local("Nacelle"),
+    url("/fonts/nacelle-medium.woff2") format("woff2"),
+    url("/fonts/nacelle-medium.woff") format("woff");
   font-style: normal;
   font-weight: 500;
   font-display: swap;
@@ -36,10 +70,10 @@ html {
 }
 
 @font-face {
-  font-family: "Open Sauce";
-  src: local("Open Sauce One"),
-    url("/fonts/open-sauce-semibold.woff2") format("woff2"),
-    url("/fonts/open-sauce-semibold.woff") format("woff");
+  font-family: "Nacelle";
+  src: local("Nacelle"),
+    url("/fonts/nacelle-semibold.woff2") format("woff2"),
+    url("/fonts/nacelle-semibold.woff") format("woff");
   font-style: normal;
   font-weight: 600;
   font-display: swap;
