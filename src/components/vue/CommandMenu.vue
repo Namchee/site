@@ -127,7 +127,7 @@ watch(searchTerm, () => {
     <DialogTrigger>
       <button
         @click="visible = true"
-        class="grid place-items-center h-10 w-10 rounded-full border border-border fixed top-8 right-8 bg-background transition-colors shadow lg:shadow-none group"
+        class="grid place-items-center h-10 w-10 rounded-full border border-border fixed top-8 right-8 bg-background transition-all shadow lg:shadow-none group hover:scale-105 focus:scale-105"
       >
         <span class="mt-1">⌘</span>
         <p
