@@ -30,10 +30,10 @@ const { title, description } = Astro.props;
     <title>{title}</title>
   </head>
   <body
-    class="bg-background transition-colors text-content min-h-screen flex flex-col font-sans"
+    class="bg-background transition-colors text-content font-sans"
   >
     <CommandMenu client:idle />
-    <main class="w-full max-w-7xl mx-auto flex-1">
+    <main class="w-full max-w-7xl mx-auto">
       <slot />
     </main>
     <Footer />
