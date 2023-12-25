@@ -1,0 +1,18 @@
+---
+import type { HTMLAttributes } from 'astro/types';
+
+import { Icon } from 'astro-iconify';
+
+import AppLink from '@/components/astro/ui/AppLink.astro';
+
+type Props = HTMLAttributes<'h1'>;
+
+const { id, ...props } = Astro.props;
+---
+
+<h3 class="group flex items-center text-lg font-medium" id={id} {...props}>
+  <slot />
+  <AppLink href={`#${id}`} class="-mt-1 ml-1 text-accent hover:text-primary opacity-0 group-hover:opacity-100 transition-all">
+    <Icon pack="lucide" name="link" class="w-4 h-auto" />
+  </AppLink>
+</h3>
