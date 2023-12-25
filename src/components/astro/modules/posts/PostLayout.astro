@@ -20,7 +20,7 @@ interface Props {
 const { frontmatter } = Astro.props;
 ---
 
-<Layout title={frontmatter.title} description={frontmatter.subtitle}>
+<Layout title={`${frontmatter.title} — Namchee`} description={frontmatter.subtitle}>
   <AppLink
     href="/posts"
     class="grid place-items-center h-10 w-10 rounded-full border border-border fixed top-8 left-8 bg-background transition-colors group"

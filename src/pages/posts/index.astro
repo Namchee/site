@@ -1,6 +1,4 @@
 ---
-import { Image } from "astro:assets";
-
 import { getCollection } from 'astro:content';
 
 import Layout from '@/components/astro/layout/Layout.astro';
@@ -8,10 +6,13 @@ import AppLink from '@/components/astro/ui/AppLink.astro';
 
 const posts = (await getCollection('posts'))
   .filter(post => !post.data.isDraft)
-  .sort((a, b) => a.data.publishedAt.getTime() - b.data.publishedAt.getTime())
+  .sort((a, b) => a.data.publishedAt.getTime() - b.data.publishedAt.getTime());
+
+const title = 'Thoughts of Namchee';
+const description = 'Food for thoughts or just Namchee\'s passing whims in form of well-written posts';
 ---
 
-<Layout title="Book recommendations" description="later">
+<Layout title={title} description={description}>
   <div class="grid grid-cols-12 gap-4 my-16 lg:my-32 px-8">
     <header
       class="col-start-1 col-end-13 md:col-end-5 lg:col-start-3 lg:col-end-5"

@@ -10,7 +10,6 @@ export interface Props {
 }
 
 const { title, description } = Astro.props;
-const { pathname } = new URL(Astro.request.url);
 ---
 
 <!doctype html>
@@ -28,7 +27,7 @@ const { pathname } = new URL(Astro.request.url);
       rel="stylesheet"
       href="https://cdn.jsdelivr.net/npm/theme-toggles@4.10.1/css/around.min.css"
     />
-    <title>{title} | Namchee, Software Engineer</title>
+    <title>{title}</title>
   </head>
   <body
     class="bg-background transition-colors text-content min-h-screen flex flex-col font-sans"
