@@ -53,8 +53,10 @@ const links = [
     <ThemeSwitcher />
   </div>
 
-  <hr class="border-t border-border transition-colors col-start-1 col-end-13
-    lg:col-start-3 lg:col-end-11" />
+  <hr
+    class="border-t border-border transition-colors col-start-1 col-end-13
+    lg:col-start-3 lg:col-end-11"
+  />
 
   <div
     class="flex justify-between items-center
@@ -67,17 +69,18 @@ const links = [
       <AppLink
         href="http://creativecommons.org/licenses/by/4.0"
         rel="license noopener noreferrer"
-        class="flex items-center text-heading hover:text-primary transition-colors font-medium space-x-1"
+        class="flex items-center text-heading hover:text-primary transition-colors font-medium space-x-1 group"
       >
         <span>CC BY 4.0</span>
-        <img
+        <Icon
           class="h-4 w-auto -mt-1"
-          src="https://mirrors.creativecommons.org/presskit/icons/cc.svg"
-          alt="Creative Commons"
-        /><img
+          pack="simple-icons"
+          name="creativecommons"
+        />
+        <Icon
           class="h-4 w-auto -mt-1"
-          src="https://mirrors.creativecommons.org/presskit/icons/by.svg"
-          alt="By Attributions"
+          pack="cib"
+          name="creative-commons-by"
         />
       </AppLink>
     </div>

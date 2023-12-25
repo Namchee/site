@@ -51,6 +51,7 @@ const projects = [
               <AppLink
                 href={project.link}
                 class="transition-colors hover:text-heading focus:text-heading"
+                aria-label={`Click to visit ${project.title}`}
               >
                 <Icon pack="lucide" name="external-link" class="w-4 h-auto" />
               </AppLink>
@@ -59,6 +60,7 @@ const projects = [
               <AppLink
                 href={project.github}
                 class="transition-colors hover:text-heading focus:text-heading"
+                aria-label={`Click to view source code of ${project.title}`}
               >
                 <Icon pack="simple-icons" name="github" class="w-4 h-auto" />
               </AppLink>
