@@ -1,0 +1,109 @@
+/* taken from https://cdn.jsdelivr.net/npm/theme-toggles@4.10.1/css/around.min.css, inlined to avoid LCP */
+
+.theme-toggle.theme-toggle--reversed .theme-toggle__around {
+  transform: scale(-1, 1)
+}
+
+.theme-toggle {
+  --theme-toggle__around--duration: 500ms
+}
+
+.theme-toggle__around * {
+  transform-origin: center;
+  transition: transform calc(var(--theme-toggle__around--duration) * .6) ease
+}
+
+.theme-toggle__around>g g circle {
+  transition-duration: calc(var(--theme-toggle__around--duration) * .2)
+}
+
+.theme-toggle__around>g g :nth-child(1) {
+  transition-delay: calc(var(--theme-toggle__around--duration)*0.253)
+}
+
+.theme-toggle__around>g g :nth-child(2) {
+  transition-delay: calc(var(--theme-toggle__around--duration)*0.348)
+}
+
+.theme-toggle__around>g g :nth-child(3) {
+  transition-delay: calc(var(--theme-toggle__around--duration)*0.443)
+}
+
+.theme-toggle__around>g g :nth-child(4) {
+  transition-delay: calc(var(--theme-toggle__around--duration)*0.538)
+}
+
+.theme-toggle__around>g g :nth-child(5) {
+  transition-delay: calc(var(--theme-toggle__around--duration)*0.633)
+}
+
+.theme-toggle__around>g g :nth-child(6) {
+  transition-delay: calc(var(--theme-toggle__around--duration)*0.728)
+}
+
+.theme-toggle__around>:first-child path {
+  transition-property: transform, d
+}
+
+.theme-toggle input[type=checkbox]:checked~.theme-toggle__around *,
+.theme-toggle--toggled:not(label).theme-toggle .theme-toggle__around * {
+  transition-delay: 0s;
+  transition-duration: var(--theme-toggle__around--duration)
+}
+
+.theme-toggle input[type=checkbox]:checked~.theme-toggle__around>g>circle,
+.theme-toggle--toggled:not(label).theme-toggle .theme-toggle__around>g>circle {
+  transform: scale(1.4)
+}
+
+.theme-toggle input[type=checkbox]:checked~.theme-toggle__around>g g circle,
+.theme-toggle--toggled:not(label).theme-toggle .theme-toggle__around>g g circle {
+  transform: scale(0);
+  transition-duration: calc(var(--theme-toggle__around--duration) * .4)
+}
+
+.theme-toggle input[type=checkbox]:checked~.theme-toggle__around>:first-child,
+.theme-toggle--toggled:not(label).theme-toggle .theme-toggle__around>:first-child {
+  transform: rotate(-90deg)
+}
+
+.theme-toggle input[type=checkbox]:checked~.theme-toggle__around>:first-child path,
+.theme-toggle--toggled:not(label).theme-toggle .theme-toggle__around>:first-child path {
+  d: path("M-12-14h42v30a1 1 0 00-16 13H0Z")
+}
+
+@supports not (d:path("")) {
+
+  .theme-toggle input[type=checkbox]:checked~.theme-toggle__around:first-child path,
+  .theme-toggle--toggled:not(label).theme-toggle .theme-toggle__around:first-child path {
+    transform: translate3d(-12px, -14px, 0)
+  }
+}
+
+.theme-toggle {
+  border: none;
+  background: 0 0;
+  cursor: pointer
+}
+
+.theme-toggle input[type=checkbox] {
+  display: none
+}
+
+.theme-toggle .theme-toggle-sr {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0
+}
+
+@media (prefers-reduced-motion:reduce) {
+  .theme-toggle:not(.theme-toggle--force-motion) * {
+    transition: none !important
+  }
+}
