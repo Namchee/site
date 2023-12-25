@@ -9,27 +9,29 @@ import { getCurrentlyReadBooks } from "@/scripts/now-reading";
 const books = await getCurrentlyReadBooks();
 ---
 
-{
-  books.map((book) => {
-    return (
-      <li class="flex space-x-6">
-        <Image src={book.cover} alt={book.title} width={80} height={120} class="rounded" />
+<ul>
+  {
+    books.map((book) => {
+      return (
+        <li class="flex space-x-6">
+          <Image src={book.cover} alt={book.title} width={80} height={120} class="rounded" />
 
-        <div class="flex flex-col justify-center">
-          <AppLink
-            href={book.url}
-            class="text-heading transition-colors hover:text-primary focus:text-primary flex items-center space-x-[2px]"
-          >
-            <span>
-              {book.title}
-            </span>
+          <div class="flex flex-col justify-center">
+            <AppLink
+              href={book.url}
+              class="text-heading transition-colors hover:text-primary focus:text-primary flex items-center space-x-[2px]"
+            >
+              <span>
+                {book.title}
+              </span>
 
-            <Icon pack="lucide" name="arrow-up-right" class="w-4 h-auto -mt-[2px]" />
-          </AppLink>
-          <p class="text-sm text-accent italic">{book.subtitle}</p>
-          <p class="mt-4 text-accent">{book.author.join(' & ')}</p>
-        </div>
-      </li>
-    );
-  })
-}
+              <Icon pack="lucide" name="arrow-up-right" class="w-4 h-auto -mt-[2px]" />
+            </AppLink>
+            <p class="text-sm text-accent italic">{book.subtitle}</p>
+            <p class="mt-4 text-accent">{book.author.join(' & ')}</p>
+          </div>
+        </li>
+      );
+    })
+  }
+</ul>
