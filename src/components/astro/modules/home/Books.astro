@@ -13,7 +13,7 @@ const books = await getCurrentlyReadBooks();
   books.map((book) => {
     return (
       <li class="flex space-x-6">
-        <Image src={book.cover} alt={book.title} width={80} height={128} class="rounded" />
+        <Image src={book.cover} alt={book.title} width={80} height={120} class="rounded" />
 
         <div class="flex flex-col justify-center">
           <AppLink
