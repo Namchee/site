@@ -10,7 +10,6 @@ export interface Props {
 }
 
 const { title, description } = Astro.props;
-const { pathname } = new URL(Astro.request.url);
 ---
 
 <!doctype html>
@@ -23,16 +22,17 @@ const { pathname } = new URL(Astro.request.url);
     <link rel="icon" href="/favicon.ico" sizes="any" />
     <link rel="icon" href="/icon.svg" type="image/svg+xml" />
     <meta name="description" content={description} />
+    <link rel="sitemap" href="/sitemap-index.xml" />
     <link
       rel="stylesheet"
       href="https://cdn.jsdelivr.net/npm/theme-toggles@4.10.1/css/around.min.css"
     />
-    <title>{title} | Namchee, Software Engineer</title>
+    <title>{title}</title>
   </head>
   <body
     class="bg-background transition-colors text-content min-h-screen flex flex-col font-sans"
   >
-    <CommandMenu client:only="vue" />
+    <CommandMenu client:idle />
     <main class="w-full max-w-7xl mx-auto flex-1">
       <slot />
     </main>

@@ -11,9 +11,12 @@ import Posts from "@/components/astro/modules/home/Posts.astro";
 import Experiences from "@/components/astro/modules/home/Experiences.astro";
 import Books from "@/components/astro/modules/home/Books.astro";
 import AppLink from '@/components/astro/ui/AppLink.astro';
+
+const title = 'Namchee — Software Engineer'
+const description = 'Namchee is a no-nonsense software engineer that is dedicated to solving real-life problems through performant and sustainable software-based solutions.'
 ---
 
-<Layout title="Build softwares → Solve problems" description="bar">
+<Layout title={title} description={description}>
   <div class="grid grid-cols-12 gap-4 my-16 lg:my-32 px-8">
     <div class="col-start-1 col-end-13 md:col-end-5 lg:col-start-2 xl:col-start-3 xl:col-end-5">
       <Profile />
