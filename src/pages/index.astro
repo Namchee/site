@@ -60,11 +60,11 @@ const description = 'Namchee is a no-nonsense software engineer that is dedicate
           class="mt-8 inline-flex items-center arrow__link hover:text-heading focus:text-heading"
           href="https://github.com/Namchee?tab=repositories"
         >
-          <Icon name="lucide:arrow-right" class="w-4 external__before" />
+          <Icon name="lucide:arrow-right" class="w-4 arrow__before" />
           <span class="link__text inline-block">View all projects</span>
           <Icon
             name="lucide:arrow-up-right"
-            class="w-4 -translate-x-8 opacity-0 external__after"
+            class="w-4 -translate-x-8 opacity-0 arrow__after"
           />
         </AppLink>
       </section>
@@ -80,11 +80,11 @@ const description = 'Namchee is a no-nonsense software engineer that is dedicate
           class="mt-8 inline-flex items-center arrow__link hover:text-heading focus:text-heading"
           href="/posts"
         >
-          <Icon name="lucide:arrow-right" class="w-4 external__before" />
+          <Icon name="lucide:arrow-right" class="w-4 arrow__before" />
           <span class="link__text inline-block">See all posts</span>
           <Icon
             name="lucide:arrow-right"
-            class="w-4 -translate-x-8 opacity-0 external__after"
+            class="w-4 -translate-x-8 opacity-0 arrow__after"
           />
         </AppLink>
       </section>
@@ -109,19 +109,17 @@ const description = 'Namchee is a no-nonsense software engineer that is dedicate
 <style>
   .arrow__before,
   .arrow__after,
-  .external__before,
-  .external__after,
   .link__text {
     transition: all 200ms easeOutQuad;
   }
 
-  .external__before {
+  .arrow__before {
     transform: translateX(-4px) translateY(-1.5px);
     opacity: 1;
   }
 
-  .arrow__link:hover .external__before,
-  .arrow__link:focus .external__before {
+  .arrow__link:hover .arrow__before,
+  .arrow__link:focus .arrow__before {
     opacity: 0;
     transform: translateX(16px);
   }
@@ -131,8 +129,8 @@ const description = 'Namchee is a no-nonsense software engineer that is dedicate
     transform: translateX(-16px);
   }
 
-  .arrow__link:hover .external__after,
-  .arrow__link:focus .external__after {
+  .arrow__link:hover .arrow__after,
+  .arrow__link:focus .arrow__after {
     opacity: 1;
     transform: translateX(-12px) translateY(-1.5px);
   }
