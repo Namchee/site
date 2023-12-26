@@ -1,15 +1,16 @@
 ---
-import { getCollection } from 'astro:content';
+import { getCollection } from "astro:content";
 
-import Layout from '@/components/astro/layout/Layout.astro';
-import AppLink from '@/components/astro/ui/AppLink.astro';
+import Layout from "@/components/astro/layout/Layout.astro";
+import AppLink from "@/components/astro/ui/AppLink.astro";
 
-const posts = (await getCollection('posts'))
-  .filter(post => !post.data.isDraft)
+const posts = (await getCollection("posts"))
+  .filter((post) => !post.data.isDraft)
   .sort((a, b) => a.data.publishedAt.getTime() - b.data.publishedAt.getTime());
 
-const title = 'Thoughts of Namchee';
-const description = 'Food for thoughts or just Namchee\'s passing whims in form of well-written posts';
+const title = "Thoughts of Namchee";
+const description =
+  "Food for thoughts or just Namchee's passing whims in form of well-written posts";
 ---
 
 <Layout title={title} description={description}>
@@ -18,32 +19,50 @@ const description = 'Food for thoughts or just Namchee\'s passing whims in form 
       class="col-start-1 col-end-13 md:col-end-5 lg:col-start-3 lg:col-end-5"
     >
       <div class="sticky top-12">
-        <h1 class="text-xl text-heading font-medium tracking-tight">
-          Posts
-        </h1>
+        <h1 class="text-xl text-heading font-medium tracking-tight transition-colors">Posts</h1>
       </div>
     </header>
 
     <div
       class="mt-8 md:mt-0 col-start-1 col-end-13 md:mt-0 md:col-start-6 lg:col-start-6 lg:col-end-11 space-y-16"
     >
-      <ul>
-        {posts.map(post => (<li class="md:grid md:grid-cols-[max-content_auto] justify-between">
-          <AppLink
-            class="text-heading text-balance inline-flex items-center space-x-[2px] transition-colors hover:text-primary focus:text-primary"
-            href={`/posts/${post.slug}`}
-          >
-            {post.data.title}
-          </AppLink>
+      <ul class="space-y-8">
+        {
+          posts.map((post) => (
+            <li class="">
+              <div class="flex justify-between items-center">
+                <div>
+                  <AppLink
+                    class="text-heading font-medium text-balance inline-flex items-center space-x-[2px] transition-colors hover:text-primary focus:text-primary"
+                    href={`/posts/${post.slug}`}
+                  >
+                    {post.data.title}
+                  </AppLink>
 
-          <p class="mt-2 md:mt-0 text-xs text-accent md:text-base text-balance md:text-right">
-            {post.data.publishedAt.toLocaleString('en-US', {
-              year: 'numeric',
-              month: 'long',
-              day: 'numeric',
-            })}
-          </p>
-        </li>))}
+                  <p class="text-accent text-xs mt-1 transition-colors">
+                    {post.data.publishedAt.toLocaleString("en-GB", {
+                      year: "numeric",
+                      month: "long",
+                      day: "numeric",
+                    })}
+                  </p>
+                </div>
+
+                <div class="flex space-x-2">
+                  {post.data.tags.map(tag =>
+                    <div class="grid place-items-center rounded-full text-xs bg-surface py-1 px-3 transition-colors">
+                      {tag[0].toUpperCase() + tag.slice(1)}
+                    </div>
+                  )}
+                </div>
+              </div>
+
+              <p class="text-sm mt-4">
+                {post.data.subtitle}
+              </p>
+            </li>
+          ))
+        }
       </ul>
     </div>
   </div>
