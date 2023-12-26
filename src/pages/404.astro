@@ -1,0 +1,67 @@
+---
+import "@/assets/styles/global.css";
+
+import TextLink from "@/components/astro/ui/TextLink.astro";
+---
+
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <link rel="manifest" href="/manifest.webmanifest" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <link rel="icon" href="/favicon.ico" sizes="any" />
+    <link rel="icon" href="/icon.svg" type="image/svg+xml" />
+    <link rel="sitemap" href="/sitemap-index.xml" />
+    <title>404 &mdash; Not Found</title>
+  </head>
+
+  <body>
+    <div class="w-screen h-screen grid place-items-center bg-background transition-colors text-content font-sans">
+      <div class="grid place-items-center">
+        <h1 class="text-7xl text-heading tracking-tight">
+          404
+        </h1>
+
+        <p class="text-xl mt-6">
+          You're lost. Now <TextLink onclick="window.history.back()">go back</TextLink> or <TextLink href="/">go home</TextLink>
+        </p>
+      </div>
+    </div>
+  </body>
+</html>
+
+<script is:inline>
+  const docEl = document.documentElement;
+  const media = window.matchMedia("(prefers-color-scheme: dark)");
+
+  const theme = (() => {
+    if (
+      typeof window.localStorage !== "undefined" &&
+      window.localStorage.getItem("theme")
+    ) {
+      return window.localStorage.getItem("theme");
+    }
+
+    return media.matches ? "dark" : "light";
+  })();
+
+  const toggleTheme = (theme) => {
+    const method = theme === "light" ? "remove" : "add";
+
+    docEl.classList[method]("dark");
+    window.localStorage.setItem("theme", theme === "light" ? "light" : "dark");
+  };
+
+  toggleTheme(theme);
+
+  window.addEventListener("storage", () => {
+    const newTheme = window.localStorage.getItem("theme");
+    toggleTheme(newTheme);
+  })
+
+  media.addEventListener("change", () => {
+    const newTheme = media.matches ? "dark" : "light";
+    toggleTheme(newTheme);
+  });
+</script>
