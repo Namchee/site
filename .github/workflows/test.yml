@@ -1,0 +1,19 @@
+name: Run unit tests
+
+on:
+  - pull_request
+
+jobs:
+  install:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout to repository
+        uses: actions/checkout@v3
+      - name: Instal pnpm
+        uses: pnpm/action-setup@v2
+        with:
+          version: 8
+      - name: Install dependencies
+        run: pnpm install
+      - name: Run unit test
+        run: pnpm run test
