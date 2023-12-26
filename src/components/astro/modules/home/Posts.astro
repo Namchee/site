@@ -20,7 +20,7 @@ const posts = (await getCollection('posts'))
           {post.data.title}
         </AppLink>
 
-        <p class="text-accent text-xs md:text-base mt-2 md:mt-0">{post.data.publishedAt.toLocaleString('en-US', {
+        <p class="text-accent text-xs md:text-base mt-2 md:mt-0">{post.data.publishedAt.toLocaleString('en-GB', {
           year: 'numeric',
           month: 'long',
           day: 'numeric',
