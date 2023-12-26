@@ -8,8 +8,6 @@ import mdx from '@astrojs/mdx';
 import sitemap from '@astrojs/sitemap';
 import robotsTxt from 'astro-robots-txt';
 
-import cloudflareAdapter from '@astrojs/cloudflare';
-
 import { remarkPlugins } from './src/plugins/remark';
 
 export default defineConfig({
@@ -32,6 +30,4 @@ export default defineConfig({
   },
   site: 'https://www.namchee.dev',
   prefetch: true,
-  output: 'hybrid',
-  adapter: cloudflareAdapter(),
 });
