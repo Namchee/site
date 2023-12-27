@@ -22,7 +22,7 @@ const { frontmatter } = Astro.props;
 >
   <BackButton />
 
-  <article class="relative grid grid-cols-12 gap-4 my-24 lg:my-32 px-8">
+  <article class="relative grid grid-cols-12 gap-4 my-24 px-8 lg:my-32 lg:px-0">
     <header class="col-start-1 col-end-13 text-center">
       <h1 class="text-3xl
         text-heading
@@ -74,7 +74,7 @@ const { frontmatter } = Astro.props;
       class="col-start-1 col-end-13
         space-y-4
         md:col-start-2 md:col-end-12
-        lg:ml-4 lg:col-start-5 lg:col-end-11 "
+        lg:ml-4 lg:col-start-5 lg:col-end-11"
     >
       <slot />
     </section>
