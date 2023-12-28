@@ -11,13 +11,13 @@ export default defineConfig({
       '2xl': '1536px',
     },
     fontFamily: {
-      sans: ['"Nacelle"', '"Roboto"', '"Arial"', 'sans-serif'],
-      mono: ['JetBrains Mono'],
+      sans: ['"Nacelle"', 'system-ui'],
+      mono: ['"JetBrains Mono"', 'ui-monospace'],
     },
     colors: {
       background: 'oklch(var(--background))',
       surface: 'oklch(var(--surface))',
-      border: 'oklch(var(--border))',
+      separator: 'oklch(var(--separator))',
 
       heading: 'oklch(var(--heading))',
       content: 'oklch(var(--content))',
