@@ -13,19 +13,23 @@ import TextLink from './../../components/astro/ui/TextLink.astro';
 import Head2 from './../../components/astro/modules/posts/html/Head2.astro';
 import Head3 from './../../components/astro/modules/posts/html/Head3.astro';
 import Strong from './../../components/astro/modules/posts/html/Strong.astro';
+import Quote from './../../components/astro/modules/posts/html/Quote.astro';
+
 import ListTitle from './../../components/astro/modules/posts/html/ListTitle.astro';
 import ListItem from './../../components/astro/modules/posts/html/ListItem.astro';
+
 
 export const components = {
   a: TextLink,
   h2: Head2,
   h3: Head3,
   strong: Strong,
+  blockquote: Quote,
 }
 
 After three years of my career as professional software engineer, I've finally decided that it's time for me to write and share my journey in the world of software engineering through this website. But why? Why now instead of one or two years ago? What motivates me to begin at this particular moment?
 
-To understand my motivations,
+To understand my motivations, we need to take a trip down to the memory lane.
 
 ## A Flashback to the Past
 
@@ -103,4 +107,4 @@ With that in mind, I hope we (yes, including you who are reading this) are able 
 
 I know, I'm very late in the blogging game when a lot of people already started learning in public early in the career. But I figured that it's better to start late than not starting at all. Cheers!
 
-> PS: If you are interested in what empowers this website, feel free to visit the [colophon](/colophon) page!
+> PS: If you are interested in what empowers this website, feel free to visit the <TextLink href="/colophon" class="text-primary">colophon</TextLink> page!
