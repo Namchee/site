@@ -1,0 +1,24 @@
+---
+import { Image as Img } from "astro:assets";
+
+import type { HTMLAttributes } from 'astro/types';
+
+type Props = HTMLAttributes<'img'>;
+
+const { alt, src } = Astro.props;
+---
+
+<figure>
+  <Img
+    src={src}
+    alt={alt}
+    title={alt}
+    width={640}
+    height={360}
+    class="rounded-lg aspect-video"
+  />
+
+  <figcaption class="italic text-accent text-xs text-center mt-4">
+    {alt}
+  </figcaption>
+</figure>

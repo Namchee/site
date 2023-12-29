@@ -4,11 +4,10 @@ import type { CollectionEntry } from "astro:content";
 import type { MarkdownFile } from "@/plugins/remark/types";
 
 import Layout from "@/components/astro/layout/Layout.astro";
+import AppLink from "@/components/astro/ui/AppLink.astro";
 
-import BackButton from './BackButton.astro';
+import BackButton from "./BackButton.astro";
 import TableOfContents from "./TableOfContents.astro";
-import TextLink from '../../ui/TextLink.astro';
-import AppLink from '../../ui/AppLink.astro';
 
 interface Props {
   frontmatter: CollectionEntry<"posts">["data"] &
@@ -56,6 +55,7 @@ const { frontmatter } = Astro.props;
       <Image
         src={frontmatter.image.url}
         alt={frontmatter.title}
+        title={frontmatter.title}
         width={1064}
         height={599}
         class="rounded-lg aspect-video"
@@ -84,6 +84,7 @@ const { frontmatter } = Astro.props;
     <section class="col-start-1 col-end-13
       flex flex-col gap-6 mt-16
       md:col-start-2 md:col-end-12
+      bg-surface rounded-md
       lg:col-start-3 lg:col-end-11">
       <div class="flex items-center justify-between">
         <div class="flex space-x-2">
@@ -99,7 +100,6 @@ const { frontmatter } = Astro.props;
         </p>
       </div>
 
-      <hr class="border-separator" />
     </section>
   </article>
 </Layout>
