@@ -127,7 +127,7 @@ watch(searchTerm, () => {
     <DialogTrigger>
       <button
         @click="visible = true"
-        class="grid place-items-center h-10 w-10 rounded-full border border-border fixed top-6 md:top-8 right-8 bg-background transition-all shadow lg:shadow-none group hover:scale-105 focus:scale-105 z-10"
+        class="grid place-items-center h-10 w-10 rounded-full border border-separator fixed top-6 md:top-8 right-8 bg-background transition-all shadow lg:shadow-none group hover:scale-105 focus:scale-105 z-10"
       >
         <span class="mt-1">⌘</span>
         <p
@@ -143,8 +143,8 @@ watch(searchTerm, () => {
         @click="visible = false"
         class="dialog__overlay fixed w-screen h-screen bg-background bg-opacity-50 backdrop-blur"
       />
-      <DialogContent class="dialog__content fixed top-[50%] left-[50%] -translate-x-[50%] -translate-y-[75%] border border-border rounded-md bg-background w-4/5 max-w-md shadow ">
-        <DialogTitle class="border-b border-border">
+      <DialogContent class="dialog__content fixed top-[50%] left-[50%] -translate-x-[50%] -translate-y-[75%] border border-separator rounded-md bg-background w-4/5 max-w-md shadow ">
+        <DialogTitle class="border-b border-separator">
           <input
             class="w-full bg-transparent focus:outline-none text-sm p-4 placeholder:font-normal font-normal leading-relaxed"
             placeholder="Where do you want to go next?"
@@ -185,13 +185,13 @@ watch(searchTerm, () => {
               <kbd
                 v-if="!!link.key"
                 title="Home"
-                class="text-xs px-1 bg-surface font-mono text-heading border border-border rounded"
+                class="text-xs px-1 bg-surface font-mono text-heading border border-separator rounded"
               >Home</kbd>
             </a>
           </div>
         </DialogDescription>
 
-        <div class="border-t border-border py-2 px-4 text-sm flex items-center space-x-4">
+        <div class="border-t border-separator py-2 px-4 text-sm flex items-center space-x-4">
           <div class="flex items-center space-x-1">
             <Key
               title="Arrow Up"

@@ -7,6 +7,8 @@ import Layout from "@/components/astro/layout/Layout.astro";
 
 import BackButton from './BackButton.astro';
 import TableOfContents from "./TableOfContents.astro";
+import TextLink from '../../ui/TextLink.astro';
+import AppLink from '../../ui/AppLink.astro';
 
 interface Props {
   frontmatter: CollectionEntry<"posts">["data"] &
@@ -31,11 +33,11 @@ const { frontmatter } = Astro.props;
         {frontmatter.title}
       </h1>
 
-      <p class="md:text-lg text-balance mt-2 md:mt-4">
+      <p class="md:text-lg text-balance mt-4 md:mt-6">
         {frontmatter.subtitle}
       </p>
 
-      <p class="text-base font-medium text-primary mt-8 md:mt-12">
+      <p class="text-sm md:text-base font-medium text-primary mt-8 md:mt-12">
         {
           new Date(frontmatter.publishedAt).toLocaleString("en-GB", {
             year: "numeric",
@@ -72,11 +74,32 @@ const { frontmatter } = Astro.props;
 
     <section
       class="col-start-1 col-end-13
-        space-y-4
+        space-y-6
         md:col-start-2 md:col-end-12
         lg:ml-4 lg:col-start-5 lg:col-end-11"
     >
       <slot />
+    </section>
+
+    <section class="col-start-1 col-end-13
+      flex flex-col gap-6 mt-16
+      md:col-start-2 md:col-end-12
+      lg:col-start-3 lg:col-end-11">
+      <div class="flex items-center justify-between">
+        <div class="flex space-x-2">
+          {frontmatter.tags.map(tag =>
+            <div class="grid place-items-center rounded-full text-xs bg-surface py-1 px-2 transition-colors">
+              <span class="mt-[2px]">{tag[0].toUpperCase() + tag.slice(1)}</span>
+            </div>
+          )}
+        </div>
+
+        <p class="text-sm">
+          <AppLink class="text-heading font-medium">Tweet this post</AppLink>
+        </p>
+      </div>
+
+      <hr class="border-separator" />
     </section>
   </article>
 </Layout>

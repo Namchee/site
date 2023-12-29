@@ -50,8 +50,8 @@ const description =
 
                 <div class="flex space-x-2">
                   {post.data.tags.map(tag =>
-                    <div class="grid place-items-center rounded-full text-xs bg-surface py-1 px-3 transition-colors">
-                      {tag[0].toUpperCase() + tag.slice(1)}
+                    <div class="grid place-items-center rounded-full text-xs bg-surface py-1 px-2 transition-colors">
+                      <span class="mt-[2px]">{tag[0].toUpperCase() + tag.slice(1)}</span>
                     </div>
                   )}
                 </div>
