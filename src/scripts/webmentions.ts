@@ -28,12 +28,12 @@ async function fetchWebmentions() {
   const params = new URLSearchParams();
 
   params.append('domain', `namchee.dev`);
-  params.append('token', import.meta.env.WEBMENTION_API_KEY as string);
+  // eslint-disable-next-line no-undef
+  params.append('token', process.env.WEBMENTIONS_API_KEY);
   params.append('per-page', '1000');
 
-  const response = await fetch(baseURL + params.toString());
+  const response = await fetch(`${baseURL}?${params.toString()}`);
   const body = await response.json() as WebmentionResponse;
-
   if (!body.children) {
     throw new Error('Invalid WebMention response');
   }
@@ -41,7 +41,7 @@ async function fetchWebmentions() {
   return body.children;
 }
 
-export async function syncWebmentions() {
+async function syncWebmentions() {
   const webmentions = await fetchWebmentions();
   for (const mention of webmentions) {
     const slug = new URL(mention['wm-target']).pathname.
@@ -63,3 +63,8 @@ export async function syncWebmentions() {
     }
   }
 }
+
+// eslint-disable-next-line no-void
+void (async () => {
+  await syncWebmentions();
+})();

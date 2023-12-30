@@ -1,0 +1,29 @@
+name: Sync webmentions
+
+on:
+  schedule:
+    - cron: 0 */6 * * *
+  workflow_dispatch:
+
+jobs:
+  webmentions-sync:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v3
+      - uses: pnpm/action-setup@v2
+        with:
+          version: 8
+      - name: Sync webmentions
+        env:
+          WEBMENTIONS_API_KEY: ${{ secrets.WEBMENTIONS_API_KEY }}
+        run: pnpm run sync
+      - name: Commit to repository
+        env:
+          COMMIT_MSG: |
+            chore(webmentions): automated sync
+        run: |
+          git config user.email "cristophernamchee12@gmail.com"
+          git config user.name "Cristopher Namchee"
+          git add .
+          git diff --quiet && git diff --staged --quiet || (git commit -m "${COMMIT_MSG}"; git push origin master)
