@@ -19,8 +19,8 @@ interface Props {
 
 const { frontmatter } = Astro.props;
 
-const postUrl = `${Astro.site.toString()}/posts/${frontmatter.slug}`;
-const postText = `I just read \`${frontmatter.title}\` by Namchee
+const postUrl = encodeURIComponent(`${Astro.site.toString()}/posts/${frontmatter.slug}`);
+const postText = `I just read '${frontmatter.title}' by Namchee
 
 ${postUrl}`;
 ---
@@ -117,7 +117,7 @@ ${postUrl}`;
       </div>
 
       <AppLink
-        href=`http://twitter.com/share?url=${postUrl}&text=${postText}`
+        href={`https://x.com/share?url=${postUrl}&text=${postText}`}
         class="text-sm font-medium transition-colors hover:text-primary focus:text-primary">
         Tweet this post
       </AppLink>
