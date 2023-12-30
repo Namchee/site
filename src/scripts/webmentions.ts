@@ -4,7 +4,7 @@ import { fileURLToPath } from 'node:url';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 
-interface Webmention {
+export interface Webmention {
   type: string;
   content: {
     text: string;
@@ -16,6 +16,7 @@ interface Webmention {
   };
   'wm-target': string;
   'wm-id': number;
+  'wm-property': 'in-reply-to' | 'like-of' | 'repost-of' | 'mention-of';
 }
 
 interface WebmentionResponse {
@@ -48,7 +49,7 @@ export async function syncWebmentions() {
       replace(/^\//, '').
       replaceAll('/', '__');
 
-    const filename = resolve(__dirname, 'data', `${slug}.json`);
+    const filename = resolve(__dirname, 'data', 'webmentions', `${slug}.json`);
 
     if (existsSync(filename)) {
       writeFileSync(filename, JSON.stringify([mention], null, 2));

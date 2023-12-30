@@ -4,17 +4,25 @@ import type { CollectionEntry } from "astro:content";
 import type { MarkdownFile } from "@/plugins/remark/types";
 
 import Layout from "@/components/astro/layout/Layout.astro";
+
 import AppLink from "@/components/astro/ui/AppLink.astro";
 
 import BackButton from "./BackButton.astro";
 import TableOfContents from "./TableOfContents.astro";
+import Webmention from "./Webmention.astro";
 
 interface Props {
   frontmatter: CollectionEntry<"posts">["data"] &
-    MarkdownFile["data"]["astro"]["frontmatter"];
+    MarkdownFile["data"]["astro"]["frontmatter"] &
+    { slug: string };
 }
 
 const { frontmatter } = Astro.props;
+
+const postUrl = `${Astro.site.toString()}/posts/${frontmatter.slug}`;
+const postText = `I just read \`${frontmatter.title}\` by Namchee
+
+${postUrl}`;
 ---
 
 <Layout
@@ -24,7 +32,15 @@ const { frontmatter } = Astro.props;
   <BackButton />
 
   <article class="relative grid grid-cols-12 gap-4 my-24 px-8 lg:my-32 lg:px-0">
-    <header class="col-start-1 col-end-13 text-center">
+    <header class="col-start-1 col-end-13 flex flex-col items-center">
+      <div class="flex space-x-2 mb-4">
+        {frontmatter.tags.map(tag =>
+          <div class="grid place-items-center rounded-full text-xs bg-surface py-1 px-2 transition-colors">
+            <span class="mt-[2px]">{tag[0].toUpperCase() + tag.slice(1)}</span>
+          </div>
+        )}
+      </div>
+
       <h1 class="text-3xl
         text-heading
         font-medium
@@ -32,7 +48,7 @@ const { frontmatter } = Astro.props;
         {frontmatter.title}
       </h1>
 
-      <p class="md:text-lg text-balance mt-4 md:mt-6">
+      <p class="md:text-lg text-balance mt-4">
         {frontmatter.subtitle}
       </p>
 
@@ -82,24 +98,29 @@ const { frontmatter } = Astro.props;
     </section>
 
     <section class="col-start-1 col-end-13
-      flex flex-col gap-6 mt-16
+      mt-24 flex justify-between items-center
       md:col-start-2 md:col-end-12
-      bg-surface rounded-md
-      lg:col-start-3 lg:col-end-11">
-      <div class="flex items-center justify-between">
-        <div class="flex space-x-2">
-          {frontmatter.tags.map(tag =>
-            <div class="grid place-items-center rounded-full text-xs bg-surface py-1 px-2 transition-colors">
-              <span class="mt-[2px]">{tag[0].toUpperCase() + tag.slice(1)}</span>
-            </div>
-          )}
-        </div>
+      lg:col-start-3 lg:col-end-11
+      border-t border-t-separator transition-colors
+      pt-8">
+      <div>
+        <Webmention slug={frontmatter.slug} />
 
-        <p class="text-sm">
-          <AppLink class="text-heading font-medium">Tweet this post</AppLink>
+        <p class="text-xs mt-2">
+          Powered by <AppLink
+            class="font-medium transition-colors hover:text-primary focus:text-primary"
+            href="https://indieweb.org/Webmention"
+          >
+            Webmentions
+          </AppLink>
         </p>
       </div>
 
+      <AppLink
+        href=`http://twitter.com/share?url=${postUrl}&text=${postText}`
+        class="text-sm font-medium transition-colors hover:text-primary focus:text-primary">
+        Tweet this post
+      </AppLink>
     </section>
   </article>
 </Layout>
@@ -109,12 +130,3 @@ const { frontmatter } = Astro.props;
     line-height: 1.75;
   }
 </style>
-
-<script is:inline>
-  const copyButton = document.querySelector(".copy__link");
-  copyButton.addEventListener("click", async () => {
-    const url = window.location.href.split("#")[0];
-
-    await navigator.clipboard.writeText(url);
-  });
-</script>
