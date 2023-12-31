@@ -2,6 +2,8 @@
 import "@/assets/styles/global.css";
 import "@/assets/styles/toggle.css";
 
+import { getCollection } from 'astro:content';
+
 import Footer from "@/components/astro/layout/Footer.astro";
 import CommandMenu from "@/components/vue/CommandMenu.vue";
 
@@ -9,6 +11,12 @@ export interface Props {
   title: string;
   description: string;
 }
+
+const postCollection = await getCollection('posts');
+const posts = postCollection.map(collection => ({
+  title: collection.data.title || '',
+  href: `/posts/${collection.slug}`,
+}));
 
 const { title, description } = Astro.props;
 ---
@@ -30,7 +38,7 @@ const { title, description } = Astro.props;
   <body
     class="bg-background transition-colors text-content min-h-screen flex flex-col font-sans"
   >
-    <CommandMenu client:only="vue" />
+    <CommandMenu posts={posts} client:only="vue" />
     <main class="w-full max-w-7xl mx-auto flex-1">
       <slot />
     </main>
