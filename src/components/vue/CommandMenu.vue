@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref, watch, computed } from 'vue';
+import { ref, watch, computed, defineProps } from 'vue';
 import { useMagicKeys } from '@vueuse/core';
 
 import {
@@ -15,11 +15,21 @@ import {
 import { Icon } from '@iconify/vue';
 
 import Key from '@/components/vue/Key.vue';
+
 import { links } from '@/constant/links';
+
 
 const visible = ref(false);
 const navigationLinks = ref();
+const postLinks = ref();
 const focusIndex = ref(-1);
+
+const props = defineProps<{
+  posts: {
+    title: string;
+    href: string;
+  }[],
+}>();
 
 const keys = useMagicKeys({
   passive: false,
@@ -53,6 +63,16 @@ const relevantLinks = computed(() => {
   return links.filter(link => pattern.test(link.name));
 });
 
+const relevantPosts = computed(() => {
+  if (!searchTerm || !searchTerm.value) {
+    return props.posts.slice(0, 3);
+  }
+
+  const pattern = new RegExp(searchTerm.value, 'ig');
+
+  return props.posts.filter(post => pattern.test(post.title))
+});
+
 watch(ctrlK, (k) => {
   if (k) {
     visible.value = !visible.value;
@@ -72,22 +92,26 @@ watch(home, (h) => {
 });
 
 watch(arrowDown, (ad) => {
+  const links = [...navigationLinks.value, ...postLinks.value];
+
   if (ad && visible) {
     if (focusIndex.value === -1) {
       focusIndex.value = 0;
     } else {
       focusIndex.value += 1;
 
-      if (focusIndex.value >= navigationLinks.value.length) {
-        focusIndex.value = navigationLinks.value.length - 1;
+      if (focusIndex.value >= links.length) {
+        focusIndex.value = links.length - 1;
       }
     }
 
-    navigationLinks.value[focusIndex.value].focus();
+    links[focusIndex.value].focus();
   }
 });
 
 watch(arrowUp, (au) => {
+  const links = [...navigationLinks.value, ...postLinks.value];
+
   if (au && visible) {
     if (focusIndex.value === -1) {
       focusIndex.value = 0;
@@ -99,7 +123,7 @@ watch(arrowUp, (au) => {
       }
     }
 
-    navigationLinks.value[focusIndex.value].focus();
+    links[focusIndex.value].focus();
   }
 });
 
@@ -123,15 +147,25 @@ watch(searchTerm, () => {
 </script>
 
 <template>
-  <DialogRoot :open="visible">
-    <DialogTrigger>
+  <DialogRoot>
+    <DialogTrigger as-child>
       <button
-        @click="visible = true"
-        class="grid place-items-center h-10 w-10 rounded-full border border-separator fixed top-6 md:top-8 right-8 bg-background transition-all shadow lg:shadow-none group hover:scale-105 focus:scale-105 z-10"
+        class="grid place-items-center
+          h-10 w-10
+          rounded-full
+          border border-separator
+          fixed top-6 right-8
+          bg-background
+          group
+          hover:scale-105 focus:scale-105 z-10
+          transition-all
+          shadow
+          md:top-8
+          lg:shadow-none"
       >
         <span class="mt-1">⌘</span>
         <p
-          class="absolute text-sm -bottom-8 transition-all opacity-0 translate-y-1 group-hover:opacity-100 group-hover:translate-y-0 group-focus:opacity-100 group-focus:translate-y-0"
+          class="absolute -bottom-8 text-sm  transition-all opacity-0 translate-y-1 group-hover:opacity-100 group-hover:translate-y-0 group-focus:opacity-100 group-focus:translate-y-0"
         >
           Menu
         </p>
@@ -152,9 +186,9 @@ watch(searchTerm, () => {
           >
         </DialogTitle>
         <DialogDescription class="p-4 max-h-xs overflow-y-auto space-y-4 h-auto transition-all transition-[height] h-auto">
-          <div v-if="relevantLinks.length === 0">
+          <div v-if="relevantLinks.length === 0 && relevantPosts.length === 0">
             <p class="text-sm">
-              Sorry, I don't know where that is 😕
+              Sorry, I don't know what or where that is 😕
             </p>
           </div>
 
@@ -187,6 +221,28 @@ watch(searchTerm, () => {
                 title="Home"
                 class="text-xs px-1 bg-surface font-mono text-heading border border-separator rounded"
               >Home</kbd>
+            </a>
+          </div>
+
+          <div v-if="relevantPosts.length > 0">
+            <span class="font-medium text-xs mb-2">
+              Posts
+            </span>
+
+            <a
+              v-for="(post, idx) in relevantPosts"
+              :key="post.href"
+              :href="post.href"
+              class="flex justify-between p-2 text-sm transition-colors hover:bg-surface hover:text-heading focus:bg-surface focus:text-heading focus:outline-none rounded-md"
+              rel="noopener noreferrer"
+              ref="postLinks"
+              @mouseover="focusIndex = idx"
+            >
+              <div class="flex items-center space-x-1">
+                <span class="relative top-[2px]">
+                  {{ post.title }}
+                </span>
+              </div>
             </a>
           </div>
         </DialogDescription>
