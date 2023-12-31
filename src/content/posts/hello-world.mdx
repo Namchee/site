@@ -1,7 +1,7 @@
 ---
 title: 'Hello World!'
 publishedAt: 2023-12-17
-subtitle: 'Reflections of my software engineering career and plans ahead'
+subtitle: 'Reflections of my software engineering career and plans for the future'
 image:
   url: 'https://res.cloudinary.com/namchee/image/upload/f_auto,q_auto/v1/posts/hello-world/banner'
   author: 'NEOM'
@@ -10,84 +10,125 @@ tags:
   - growth
 ---
 import TextLink from './../../components/astro/ui/TextLink.astro';
-import Head2 from './../../components/astro/modules/posts/Head2.astro';
-import Head3 from './../../components/astro/modules/posts/Head3.astro';
+import Head2 from './../../components/astro/modules/posts/html/Head2.astro';
+import Head3 from './../../components/astro/modules/posts/html/Head3.astro';
+import Strong from './../../components/astro/modules/posts/html/Strong.astro';
+import Quote from './../../components/astro/modules/posts/html/Quote.astro';
+
+import ListTitle from './../../components/astro/modules/posts/html/ListTitle.astro';
+import ListItem from './../../components/astro/modules/posts/html/ListItem.astro';
+
+import Image from './../../components/astro/modules/posts/html/Image.astro';
+
 
 export const components = {
   a: TextLink,
   h2: Head2,
   h3: Head3,
+  strong: Strong,
+  blockquote: Quote,
+  img: Image,
 }
 
-After three years of my career as professional software engineer, I've finally decided that it's time for me to write and share my journey in the world of software engineering through this website.
+After three years of my career as a professional software engineer, I've finally decided that it's time for me to write
+and share my journey in the world of software engineering through this website. But why? Why now instead of one or two years ago?
+What motivates me to begin at this particular moment?
 
-But why? Why now instead of one or two years ago? What motivates me to begin at this particular moment?
+To understand my motivations, let's take a trip down memory lane.
 
 ## A Flashback to the Past
 
-In the past, I have built my own personal website in [May of 2022](https://github.com/Namchee/site/tree/1b54cab8ce574ceb11f69d727547324f42a67b55).
-The website itself contains nothing but a little bit of introduction and a showcase of personal projects adorned with a touch of fancy CSS and JS visual tricks.
+In the beginning days of my software engineering journey, I own a personal website that I built from scratch
+in [May of 2022](https://github.com/Namchee/site/tree/1b54cab8ce574ceb11f69d727547324f42a67b55).
+The resulting website is a barebone website with a short self-introduction and a showcase of personal projects
+masked with fancy CSS and JS visual tricks without any care for UI and UX principles.
 
-Looking back, the primary reason for building my personal website was to showcase my (admittedly lacking) skills in web development.
-As time goes, I started to treat my website as my own personal code playground to test out
-experimental ideas that pops in my head from time to time.
+![A screenshot of the old version of namchee.dev](https://res.cloudinary.com/namchee/image/upload/f_auto,q_auto/v1/posts/hello-world/old-web)
 
-However, I soon realized that I lose interest in keeping it 'alive' since it's just a collection of random ideas and whatever
-trends mashed up together in whim. Ultimately, I feel like the old personal website didn't contribute to my growth as a software engineer.
-So, I made a decision to abandon it and build this website from scratch.
+Back then, my reason for building my old website was to showcase my (admittedly lacking) skills in web development.
+Aside from a showcase, I treated my old website as my personal code playground to test
+experimental ideas that popped into my head, as evidenced by the amount of UI interactions I slapped on it.
 
-You might wonder why I feel like the old website didn't help my growth, even though it was a personal playground for me to explore and test my ideas.
-Part of the reason was the lack of commitment. However, the most crucial is that ***I learned very little from building my old website***.
+At first, I believed that my old website would help me grow as a software engineer. However, I soon lost
+interest in keeping it alive since it was just a collection of random ideas and whatever trends mashed up together in
+whim without more polished thoughts put on it.
 
-At this point, I received a hard lesson that creating my personal website isn't enough since I only learned a little. What makes people learn then?
-Pondering for answers for days, I accidentally stumbled upon [learning in public](https://www.swyx.io/learn-in-public). After reading
-the article, I finally found out the missing part of my learning journey is the *feedback loop*.
+Ultimately, I feel like the old personal website didn't contribute to my growth as a software engineer.
+In the end, I made a decision to abandon ship completely and build this website from scratch.
+
+While building this website, I spent a considerable amount of time contemplating the reasons behind the failure
+of my previous website to support my growth, despite being a personal playground for me to explore and test my ideas.
+Part of the reason was the lack of commitment.
+However, the most crucial factor was that **I learned almost nothing from building my old website**.
+
+At this point, I received a hard lesson that creating my personal website isn't enough to accelerate my growth as a professional software engineer.
+What makes people learn then? Pondering for answers for days, I accidentally stumbled upon [learning in public](https://www.swyx.io/learn-in-public).
+After reading the article, I finally found out the missing part of my learning journey &mdash; the **feedback loop**.
 
 ## The Feedback Loop
 
-Any kind of professional that wants to up their game knew that learning is a continous process. What I don't realize during my previous journey is that I learned everything
-in *private*. Sure, I'm [open-sourcing](https://www.github.com/Namchee/site) this website since the dawn of its creation, but I shared it
-for the sake of sharing it. I create stuff for my own amusement and doesn't share or seek feedbacks. While this isn't a bad thing since you still learned something,
-it's not the kind of learning that makes you truly grow.
+Professionals who strive to excel in their respective fields know that learning is a lifetime process. As an aspiring software engineer,
+I understand this and truly enjoy the continuous learning process every day. However, what I failed to recognize during my previous journey was the type
+of learning I was doing &mdash; **learning in private**.
 
-When you are embarking on a learning journey, it's very important to have someone (or something) that got your back. Remember that you are *learning*, you are expected
-to not have enough knowledge or expertise to the particular subject you are learning, or you are simply looking for more expertise. The fastest way to gain knowledge
-or expertise is by having another entity that have more knowledge taught you either directly or indirectly. Great! Now we figured out the best way to learn. Now, we
-only have to figure out how to have another entity bestow us with knowledge.
+While learning in private isn't necessarily bad, it's not the kind of learning that boosts your growth. By learning in private, you walled yourself out
+from the community and missed out on feedback.
 
-Now another problem arises &mdash; how could I get another entity to bestow me the knowledge? Doing it in passive way enclosing yourself in your personal garden won't
-work since nobody will bat an eye if you are a nobody, which is expected when you're still on the first step on your learning journey. Even if you are not a nobody,
-no one will bat an eye since they don't know what are you trying to achieve. In conclusion, the best way to do this is by actively *sharing* what you are currently doing,
-which is the core concept of *learning in public*. Moreover, sharing what I learned in public will also improve my writing skills.
+Embarking on a learning journey can feel daunting, and having something that got your back is crucial. It's normal to lack knowledge or expertise in the subject you're learning
+or to want to expand your understanding. The quickest way to gain knowledge or expertise is by learning from someone or something with more experience, either directly
+or indirectly. However, this is not possible if you walled yourself out from the community by learning in private.
 
-By *continously sharing* what you are learning in public, you can *continously receive feedback* to fuel up your learning cycle and grow continuously.
+Now another problem arises — how could you get another entity to bestow you the knowledge you seek? Doing it passively by enclosing yourself in your personal haven won't work
+since nobody will bat an eye if you are a nobody, which is expected when you're still on the first step of your learning journey. Even if you are not a nobody, no one
+will bat an eye since they don't know what you are trying to achieve. In conclusion, the best way to do this is by actively *sharing* what you are currently doing,
+which is the core concept of **learning in public**.
+
+By **continously sharing** what you are learning in public, you can **continously receive feedback** to fuel up your learning cycle and grow continuously.
+
+![The continuous learning loop](https://res.cloudinary.com/namchee/image/upload/f_auto,q_auto/v1/posts/hello-world/continuous-learning)
+
+As a software engineer, learning in public doesn't just mean open-sourcing whatever you're working on and leaving it as-is. Software engineers must also involve
+themselves in the community by opening themselves to feedback, which is missing from my approach to learning in my previous attempt.
 
 ## The Blueprint
 
-Moving on from the philosophical part of this post, I want this website to my personal platform to learn in the public. Specifically, this website will serve as:
+Moving on from the philosophical part of this post, I want this website to be my personal platform to learn in public. Specifically, this website will serve as:
 
-### Knowledge Base
+<dl class="space-y-6">
+  <ListTitle>
+    Knowledge Base
+  </ListTitle>
+  <ListItem>
+    Imagine having a personal library that stores records of all your experiences. Whenever I encounter a problem, I can trace back my logs and check if I have solved similar
+    issues in the past. Not only will it help me resolve my issue faster by reducing redundancy, scouring past logs will also enable others who might encounter similar problems
+    to solve them. In the end, everyone is happy!
+  </ListItem>
 
-Whenever I encountered an issue, I can simply look back to the past and see if I have encountered similar issues before. That way, I can resolve my issue faster
-and other people that encounters similar issues can solve their issues too!
+  <ListTitle>
+    Code Playground
+  </ListTitle>
+  <ListItem>
+    Since I found my past experiments to be insightful, I will continue my code playground and share ideas or experiments I've conducted as either code snippets or posts.
+    Hopefully, I can test out my ideas and sharpen them through public feedback. Don't be shy to drop feedback!
+  </ListItem>
 
-### Code Playground
+  <ListTitle>Giving Back Platform</ListTitle>
+  <ListItem>
+    I owe a lot for my current position to the open-source community. This website and all its contents will serve as a thank-you letter to the open-source community
+    and keep the open-source spirit alive.
+  </ListItem>
 
-I will share ideas or experiments I've conducted as either code snippets or posts. Hopefully, I can test out my ideas and sharpen it by gathering public feedbacks. Don't be shy to drop feedbacks!
-
-### Giving Back Platform
-
-I owe a lot for my current position to the open-source community. This website and all contents on it will serve as a thank-you letter to the open-source community and keep the open-source spirit alive.
-
-### Productive Distraction
-
-In the past, I played a lot of video games during my free time. I found that this activity is unproductive for my growth as a professional software engineer. Realizing that,
-I vow to myself to replace it with more productive habits such as learning in public.
+  <ListTitle>Productive Distraction</ListTitle>
+  <ListItem>
+    In the past, I used to play too much video games during my free time. However, I later realized that this activity was unproductive for my growth as a software engineer.
+    Therefore, I vow to replace it with more productive habits by maintaining this website.
+  </ListItem>
+</dl>
 
 ## Final Thoughts
 
-With that in mind, I hope we (yes, including you who are reading this) are able to continuously learn and grow through this website.
+With that in mind, I hope that everyone, including you who is reading this, can continuously learn and grow through this website.
 
-I know, I'm very late in the blogging game when a lot of people already started learning in public early in the career. But I figured that it's better to start late than not starting at all. Cheers!
+I know, I'm very late in the blogging game when a lot of people already started learning in public early in their careers. However, I believe that it is better to start late than never start at all. Cheers!
 
-> PS: If you are interested in what empowers this website, feel free to visit the [colophon](/colophon) page!
+> PS: If you are interested in what empowers this website, feel free to visit the <TextLink href="/colophon" class="text-primary">colophon</TextLink> page!

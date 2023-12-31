@@ -4,9 +4,10 @@ import type { MarkdownHeading } from 'astro';
 import { Icon } from 'astro-iconify';
 
 import AppLink from '@/components/astro/ui/AppLink.astro';
-import ToCList from './TocList.astro';
 
 import generateToC from '@/scripts/toc';
+
+import ToCList from './TocList.astro';
 
 interface Props {
   headings: MarkdownHeading[];

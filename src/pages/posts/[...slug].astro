@@ -27,7 +27,8 @@ const { Content, remarkPluginFrontmatter, headings } = await entry.render();
 const frontmatter = {
   ...remarkPluginFrontmatter as FrontmatterData & FrontmatterAddons,
   headings,
-}
+  slug: entry.slug,
+};
 ---
 
 <PostLayout frontmatter={frontmatter}>
