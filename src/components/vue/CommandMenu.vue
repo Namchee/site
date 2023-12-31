@@ -218,9 +218,9 @@ watch(searchTerm, () => {
 
               <kbd
                 v-if="!!link.key"
-                title="Home"
+                :title="link.key"
                 class="text-xs px-1 bg-surface font-mono text-heading border border-separator rounded"
-              >Home</kbd>
+              >{{ link.key }}</kbd>
             </a>
           </div>
 
