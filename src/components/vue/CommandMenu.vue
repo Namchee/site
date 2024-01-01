@@ -177,7 +177,7 @@ watch(searchTerm, () => {
         @click="visible = false"
         class="dialog__overlay fixed w-screen h-screen bg-background bg-opacity-50 backdrop-blur z-20"
       />
-      <DialogContent class="dialog__content fixed top-[50%] left-[50%] -translate-x-[50%] -translate-y-[75%] border border-separator rounded-md bg-background w-4/5 max-w-md shadow z-30">
+      <DialogContent class="dialog__content fixed top-[20%] left-[50%] -translate-x-[50%] border border-separator rounded-md bg-background w-4/5 max-w-md max-h-sm shadow z-30">
         <DialogTitle class="border-b border-separator">
           <input
             class="w-full bg-transparent focus:outline-none text-sm p-4 placeholder:font-normal font-normal leading-relaxed"
@@ -185,7 +185,8 @@ watch(searchTerm, () => {
             v-model="searchTerm"
           >
         </DialogTitle>
-        <DialogDescription class="p-4 max-h-xs overflow-y-auto space-y-4 h-auto transition-all transition-[height] h-auto">
+
+        <DialogDescription class="p-4 max-h-xs overflow-y-auto space-y-4">
           <div v-if="relevantLinks.length === 0 && relevantPosts.length === 0">
             <p class="text-sm">
               Sorry, I don't know what or where that is 😕
