@@ -14,10 +14,12 @@ jobs:
       - uses: pnpm/action-setup@v2
         with:
           version: 8
+      - name: Install dependencies
+        run: pnpm install
       - name: Sync webmentions
         env:
           WEBMENTIONS_API_KEY: ${{ secrets.WEBMENTIONS_API_KEY }}
-        run: pnpm run sync
+        run: pnpm run webmentions:sync
       - name: Commit to repository
         env:
           COMMIT_MSG: |
