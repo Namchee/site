@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref, watch, computed, defineProps } from 'vue';
+import { ref, watch, computed } from 'vue';
 import { useMagicKeys } from '@vueuse/core';
 
 import {
@@ -175,9 +175,9 @@ watch(searchTerm, () => {
     <DialogPortal>
       <DialogOverlay
         @click="visible = false"
-        class="dialog__overlay fixed w-screen h-screen bg-background bg-opacity-50 backdrop-blur"
+        class="dialog__overlay fixed w-screen h-screen bg-background bg-opacity-50 backdrop-blur z-20"
       />
-      <DialogContent class="dialog__content fixed top-[50%] left-[50%] -translate-x-[50%] -translate-y-[75%] border border-separator rounded-md bg-background w-4/5 max-w-md shadow ">
+      <DialogContent class="dialog__content fixed top-[20%] left-[50%] -translate-x-[50%] border border-separator rounded-md bg-background w-4/5 max-w-md max-h-sm shadow z-30">
         <DialogTitle class="border-b border-separator">
           <input
             class="w-full bg-transparent focus:outline-none text-sm p-4 placeholder:font-normal font-normal leading-relaxed"
@@ -185,7 +185,8 @@ watch(searchTerm, () => {
             v-model="searchTerm"
           >
         </DialogTitle>
-        <DialogDescription class="p-4 max-h-xs overflow-y-auto space-y-4 h-auto transition-all transition-[height] h-auto">
+
+        <DialogDescription class="p-4 max-h-xs overflow-y-auto space-y-4">
           <div v-if="relevantLinks.length === 0 && relevantPosts.length === 0">
             <p class="text-sm">
               Sorry, I don't know what or where that is 😕
@@ -201,7 +202,7 @@ watch(searchTerm, () => {
               v-for="(link, idx) in relevantLinks"
               :key="link.href"
               :href="link.href"
-              class="flex justify-between p-2 text-sm transition-colors hover:bg-surface hover:text-heading focus:bg-surface focus:text-heading focus:outline-none rounded-md"
+              class="flex justify-between p-2 text-sm transition-colors hover:bg-surface hover:text-heading focus:bg-surface focus:text-heading rounded-md link"
               rel="noopener noreferrer"
               ref="navigationLinks"
               @mouseover="focusIndex = idx"
@@ -233,7 +234,7 @@ watch(searchTerm, () => {
               v-for="(post, idx) in relevantPosts"
               :key="post.href"
               :href="post.href"
-              class="flex justify-between p-2 text-sm transition-colors hover:bg-surface hover:text-heading focus:bg-surface focus:text-heading focus:outline-none rounded-md"
+              class="flex justify-between p-2 text-sm transition-colors hover:bg-surface hover:text-heading focus:bg-surface focus:text-heading focus:outline-none rounded-md link"
               rel="noopener noreferrer"
               ref="postLinks"
               @mouseover="focusIndex = idx"
@@ -350,5 +351,9 @@ watch(searchTerm, () => {
 
 .dialog__content[data-state='closed'] {
   animation: contentHide 200ms easeOutCubic;
+}
+
+.link:focus {
+  outline: none;
 }
 </style>
