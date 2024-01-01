@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref, watch, computed, defineProps } from 'vue';
+import { ref, watch, computed } from 'vue';
 import { useMagicKeys } from '@vueuse/core';
 
 import {
