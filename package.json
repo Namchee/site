@@ -8,8 +8,9 @@
     "start": "astro dev",
     "build": "astro build",
     "preview": "astro preview",
-    "sync": "astro sync && tsx ./src/scripts/webmentions.ts",
-    "test": "vitest"
+    "sync": "astro sync",
+    "test": "vitest",
+    "webmentions:sync": "tsx ./src/scripts/webmentions.ts"
   },
   "devDependencies": {
     "@astrojs/sitemap": "^3.0.3",
