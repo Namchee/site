@@ -34,6 +34,10 @@ html.dark {
   --primary: 70.35% 0.145 271.74;
 }
 
+html.dark img {
+  filter: brightness(.75) contrast(1.1);
+}
+
 *::selection {
   color: oklch(var(--primary));
   background-color: oklch(var(--primary) / 0.15);
