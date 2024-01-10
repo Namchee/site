@@ -17,3 +17,5 @@ jobs:
         run: pnpm install
       - name: Run unit test
         run: pnpm run test
+      - name: Check astro
+        run: pnpm run check
