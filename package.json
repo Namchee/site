@@ -6,13 +6,15 @@
   "scripts": {
     "dev": "astro dev",
     "start": "astro dev",
-    "build": "astro build",
+    "build": "pnpm run check && astro build",
     "preview": "astro preview",
     "sync": "astro sync",
+    "check": "astro check",
     "test": "vitest",
     "webmentions:sync": "tsx ./src/scripts/webmentions.ts"
   },
   "devDependencies": {
+    "@astrojs/check": "^0.4.1",
     "@astrojs/sitemap": "^3.0.3",
     "@astrojs/vue": "^4.0.3",
     "@namchee/eslint-config": "^2.0.8",
