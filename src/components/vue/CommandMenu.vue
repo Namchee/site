@@ -18,7 +18,6 @@ import Key from '@/components/vue/Key.vue';
 
 import { links } from '@/constant/links';
 
-
 const visible = ref(false);
 const navigationLinks = ref();
 const postLinks = ref();
@@ -58,7 +57,7 @@ const relevantLinks = computed(() => {
     return links;
   }
 
-  const pattern = new RegExp(searchTerm.value, 'ig');
+  const pattern = new RegExp(searchTerm.value, 'i');
 
   return links.filter(link => pattern.test(link.name));
 });
@@ -68,7 +67,7 @@ const relevantPosts = computed(() => {
     return props.posts.slice(0, 3);
   }
 
-  const pattern = new RegExp(searchTerm.value, 'ig');
+  const pattern = new RegExp(searchTerm.value, 'i');
 
   return props.posts.filter(post => pattern.test(post.title))
 });
