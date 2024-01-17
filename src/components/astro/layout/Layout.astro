@@ -26,24 +26,24 @@ const { title, description } = Astro.props;
   <head>
     <script is:inline>
       const docEl = document.documentElement;
-      const media = window.matchMedia("(prefers-color-scheme: dark)");
+      const media = window.matchMedia('(prefers-color-scheme: dark)');
 
       const theme = (() => {
         if (
-          typeof window.localStorage !== "undefined" &&
-          window.localStorage.getItem("theme")
+          typeof window.localStorage !== 'undefined' &&
+          window.localStorage.getItem('theme')
         ) {
-          return window.localStorage.getItem("theme");
+          return window.localStorage.getItem('theme');
         }
 
-        return media.matches ? "dark" : "light";
+        return media.matches ? 'dark' : 'light';
       })();
 
       const toggleTheme = (theme) => {
-        const method = theme === "light" ? "remove" : "add";
+        const method = theme === 'light' ? 'remove' : 'add';
 
-        docEl.classList[method]("dark");
-        window.localStorage.setItem("theme", theme);
+        docEl.classList[method]('dark');
+        window.localStorage.setItem('theme', theme);
       };
 
       toggleTheme(theme);
