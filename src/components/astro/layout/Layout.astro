@@ -1,11 +1,11 @@
 ---
-import "@/assets/styles/global.css";
-import "@/assets/styles/toggle.css";
+import '@/assets/styles/global.css';
+import '@/assets/styles/toggle.css';
 
 import { getCollection } from 'astro:content';
 
-import Footer from "@/components/astro/layout/Footer.astro";
-import CommandMenu from "@/components/vue/CommandMenu.vue";
+import Footer from '@/components/astro/layout/Footer.astro';
+import CommandMenu from '@/components/vue/CommandMenu.vue';
 
 export interface Props {
   title: string;
@@ -13,7 +13,7 @@ export interface Props {
 }
 
 const postCollection = await getCollection('posts');
-const posts = postCollection.map(collection => ({
+const posts = postCollection.map((collection) => ({
   title: collection.data.title || '',
   href: `/posts/${collection.slug}`,
 }));
@@ -24,6 +24,31 @@ const { title, description } = Astro.props;
 <!doctype html>
 <html lang="en">
   <head>
+    <script is:inline>
+      const docEl = document.documentElement;
+      const media = window.matchMedia("(prefers-color-scheme: dark)");
+
+      const theme = (() => {
+        if (
+          typeof window.localStorage !== "undefined" &&
+          window.localStorage.getItem("theme")
+        ) {
+          return window.localStorage.getItem("theme");
+        }
+
+        return media.matches ? "dark" : "light";
+      })();
+
+      const toggleTheme = (theme) => {
+        const method = theme === "light" ? "remove" : "add";
+
+        docEl.classList[method]("dark");
+        window.localStorage.setItem("theme", theme);
+      };
+
+      toggleTheme(theme);
+    </script>
+
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width" />
     <link rel="manifest" href="/manifest.webmanifest" />
@@ -32,7 +57,10 @@ const { title, description } = Astro.props;
     <link rel="icon" href="/icon.svg" type="image/svg+xml" />
     <meta name="description" content={description} />
     <link rel="sitemap" href="/sitemap-index.xml" />
-    <link rel="webmention" href="https://webmention.io/www.namchee.dev/webmention" />
+    <link
+      rel="webmention"
+      href="https://webmention.io/www.namchee.dev/webmention"
+    />
     <title>{title}</title>
   </head>
   <body

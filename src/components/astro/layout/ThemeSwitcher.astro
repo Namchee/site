@@ -39,44 +39,29 @@
 </button>
 
 <script is:inline>
-  const docEl = document.documentElement;
   const button = document.querySelector(".theme-toggle");
-  const media = window.matchMedia("(prefers-color-scheme: dark)");
-
-  const theme = (() => {
-    if (
-      typeof window.localStorage !== "undefined" &&
-      window.localStorage.getItem("theme")
-    ) {
-      return window.localStorage.getItem("theme");
-    }
-
-    return media.matches ? "dark" : "light";
-  })();
-
-  const toggleTheme = (theme) => {
+  function toggleThemeSwitcher() {
     const method = theme === "light" ? "remove" : "add";
-
-    docEl.classList[method]("dark");
     button.classList[method]("theme-toggle--toggled");
+  }
 
-    window.localStorage.setItem("theme", theme === "light" ? "light" : "dark");
-  };
-
-  toggleTheme(theme);
+  toggleThemeSwitcher();
 
   button.addEventListener("click", () => {
     const newTheme = docEl.classList.contains("dark") ? "light" : "dark";
+    toggleThemeSwitcher();
     toggleTheme(newTheme);
   });
 
   window.addEventListener("storage", () => {
     const newTheme = window.localStorage.getItem("theme");
+    toggleThemeSwitcher();
     toggleTheme(newTheme);
   })
 
   media.addEventListener("change", () => {
     const newTheme = media.matches ? "dark" : "light";
+    toggleThemeSwitcher();
     toggleTheme(newTheme);
   });
 </script>
