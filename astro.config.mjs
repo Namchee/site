@@ -5,6 +5,8 @@ import unocss from 'unocss/astro';
 import vue from '@astrojs/vue';
 import mdx from '@astrojs/mdx';
 
+import { astroImageTools } from 'astro-imagetools';
+
 import sitemap from '@astrojs/sitemap';
 import robotsTxt from 'astro-robots-txt';
 
@@ -19,6 +21,7 @@ export default defineConfig({
     mdx(),
     sitemap(),
     robotsTxt(),
+    astroImageTools,
   ],
   markdown: {
     remarkPlugins: remarkPlugins,

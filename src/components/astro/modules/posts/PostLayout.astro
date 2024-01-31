@@ -1,5 +1,6 @@
 ---
-import { Image } from "astro:assets";
+import { Img } from "astro-imagetools/components";
+
 import type { CollectionEntry } from "astro:content";
 import type { MarkdownFile } from "@/plugins/remark/types";
 
@@ -68,13 +69,15 @@ ${postUrl}`;
         my-8
         md:mb-16 md:col-start-2 md:col-end-12"
     >
-      <Image
+      <Img
         src={frontmatter.image.url}
         alt={frontmatter.title}
         title={frontmatter.title}
-        width={1064}
-        height={599}
-        class="rounded-lg aspect-video"
+        attributes={{
+          style: {
+            borderRadius: "0.5rem",
+          },
+        }}
       />
       <figcaption class="italic text-accent text-xs text-center mt-4">
         Image courtesy of {frontmatter.image.author} from {
