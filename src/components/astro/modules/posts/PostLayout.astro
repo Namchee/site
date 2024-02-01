@@ -72,11 +72,11 @@ ${postUrl}`;
       <Img
         src={frontmatter.image.url}
         alt={frontmatter.title}
-        title={frontmatter.title}
         attributes={{
-          style: {
-            borderRadius: "0.5rem",
-          },
+          img: {
+            title: frontmatter.title,
+            class: "rounded-lg"
+          }
         }}
       />
       <figcaption class="italic text-accent text-xs text-center mt-4">
