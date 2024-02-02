@@ -11,6 +11,7 @@ import AppLink from "@/components/astro/ui/AppLink.astro";
 import BackButton from "./BackButton.astro";
 import TableOfContents from "./TableOfContents.astro";
 import Webmention from "./Webmention.astro";
+import Image from './html/Image.astro';
 
 interface Props {
   frontmatter: CollectionEntry<"posts">["data"] &
@@ -49,7 +50,7 @@ ${postUrl}`;
         {frontmatter.title}
       </h1>
 
-      <p class="md:text-lg text-balance mt-4">
+      <p class="md:text-lg text-balance text-center mt-2 leading-snug md:mt-4">
         {frontmatter.subtitle}
       </p>
 
@@ -71,7 +72,8 @@ ${postUrl}`;
     >
       <Img
         src={frontmatter.image.url}
-        alt={frontmatter.title}
+        alt={`${frontmatter.title} - by ${frontmatter.image.author}`}
+        format="webp"
         attributes={{
           img: {
             title: frontmatter.title,
