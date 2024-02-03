@@ -61,12 +61,15 @@ const { title, description } = Astro.props;
       rel="webmention"
       href="https://webmention.io/www.namchee.dev/webmention"
     />
+    <link rel="preload" href="/fonts/nacelle.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="/fonts/nacelle-italic.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="/fonts/nacelle-medium.woff2" as="font" type="font/woff2" crossorigin>
     <title>{title}</title>
   </head>
   <body
     class="bg-background transition-colors text-content min-h-screen flex flex-col font-sans"
   >
-    <CommandMenu posts={posts} client:only="vue" />
+    <CommandMenu posts={posts} client:load />
     <main class="w-full max-w-7xl mx-auto flex-1">
       <slot />
     </main>

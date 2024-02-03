@@ -1,25 +1,25 @@
 ---
-import AppLink from "@/components/astro/ui/AppLink.astro";
-import Pulse from "@/components/astro/ui/Pulse.astro";
+import AppLink from '@/components/astro/ui/AppLink.astro';
+import Pulse from '@/components/astro/ui/Pulse.astro';
 
 const experiences = [
   {
-    duration: "Current",
-    name: "GLAIR",
-    title: "Software Engineer",
-    link: "https://glair.ai/",
+    duration: 'Current',
+    name: 'GLAIR',
+    title: 'Software Engineer',
+    link: 'https://glair.ai/',
   },
   {
-    duration: "2021 – 2023",
-    name: "Tokopedia",
-    title: "Software Engineer",
-    link: "https://www.tokopedia.com/about/",
+    duration: '2021 – 2023',
+    name: 'Tokopedia',
+    title: 'Software Engineer',
+    link: 'https://www.tokopedia.com/about/',
   },
   {
-    duration: "2017 – 2021",
-    name: "Parahyangan Catholic University",
-    title: "Bachelor Degree",
-    link: "https://informatika.unpar.ac.id/",
+    duration: '2017 – 2021',
+    name: 'Parahyangan Catholic University',
+    title: 'Bachelor Degree',
+    link: 'https://informatika.unpar.ac.id/',
   },
 ];
 ---
@@ -29,7 +29,9 @@ const experiences = [
     experiences.map((exp) => (
       <li class="md:grid grid-cols-[10ch_1fr_max-content] items-center gap-x-4">
         <p class="flex items-center space-x-2 ml-auto text-sm text-accent md:text-base mb-2 md:mb-0">
-          {exp.duration.toLowerCase() === 'current' && <Pulse class="-mt-[2.5px]" />}
+          {exp.duration.toLowerCase() === 'current' && (
+            <Pulse class="-mt-[2.5px]" />
+          )}
           <span>{exp.duration}</span>
         </p>
 

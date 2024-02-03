@@ -180,7 +180,7 @@ watch(searchTerm, () => {
         <DialogTitle class="border-b border-separator">
           <input
             class="w-full bg-transparent focus:outline-none text-sm p-4 placeholder:font-normal font-normal leading-relaxed"
-            placeholder="Where do you want to go next?"
+            placeholder="Where do you want to go?"
             v-model="searchTerm"
           >
         </DialogTitle>
