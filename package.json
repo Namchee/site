@@ -50,7 +50,6 @@
     "@tgwf/co2": "^0.13.9",
     "@unpic/astro": "^0.0.41",
     "@vueuse/core": "^10.7.0",
-    "astro-imagetools": "^0.9.0",
     "radix-vue": "^1.2.4"
   },
   "packageManager": "pnpm@8.11.0"

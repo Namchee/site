@@ -1,5 +1,5 @@
 ---
-import { Image } from 'astro:assets';
+import { Image } from '@unpic/astro';
 
 import type { CollectionEntry } from 'astro:content';
 import type { MarkdownFile } from '@/plugins/remark/types';
@@ -83,6 +83,8 @@ ${postUrl}`;
         width={1064}
         height={599}
         class="rounded-lg aspect-video"
+        loading="eager"
+        background="blurhash"
       />
       <figcaption class="italic text-accent text-xs text-center mt-4">
         Image courtesy of {frontmatter.image.author} from {

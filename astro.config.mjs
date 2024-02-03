@@ -28,7 +28,9 @@ export default defineConfig({
     shikiConfig: { theme: 'vitesse-dark' },
   },
   image: {
-    service: imageService(),
+    service: imageService({
+      placeholder: 'lqip',
+    }),
     domains: ['assets.literal.club', 'res.cloudinary'],
   },
   site: 'https://www.namchee.dev',
