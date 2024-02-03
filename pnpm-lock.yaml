@@ -17,6 +17,9 @@ dependencies:
   '@tgwf/co2':
     specifier: ^0.13.9
     version: 0.13.9
+  '@unpic/astro':
+    specifier: ^0.0.41
+    version: 0.0.41(astro@4.0.6)
   '@vueuse/core':
     specifier: ^10.7.0
     version: 10.7.0(vue@3.3.11)
@@ -1462,6 +1465,11 @@ packages:
     engines: {node: ^12.22.0 || ^14.17.0 || >=16.0.0}
     dev: true
 
+  /@fastify/busboy@2.1.0:
+    resolution: {integrity: sha512-+KpH+QxZU7O4675t3mnkQKcZZg56u+K/Ct2K+N2AZYNVK8kyeo/bI18tI8aPm3tvNNRyTWfj6s5tnGNlcbQRsA==}
+    engines: {node: '>=14'}
+    dev: false
+
   /@floating-ui/core@1.5.2:
     resolution: {integrity: sha512-Ii3MrfY/GAIN3OhXNzpCKaLxHQfJF9qvwq/kEJYdqDxeIHa01K8sldugal6TmeeXl+WMvhv9cnVzUTaFFJF09A==}
     dependencies:
@@ -2801,6 +2809,38 @@ packages:
       - rollup
     dev: true
 
+  /@unpic/astro@0.0.41(astro@4.0.6):
+    resolution: {integrity: sha512-25lVLmb2YiX+waix1PzCL2/46FUdLfrWpQXy9xPJuD2ejTdvswvJrD54WpRAAoS7Er0TaoV9XxJEMbJphZB5hw==}
+    peerDependencies:
+      astro: ^2.0.0 || ^3.0.0 || ^4.0.0
+    dependencies:
+      '@unpic/core': 0.0.44
+      '@unpic/pixels': 1.2.1
+      '@unpic/placeholder': 0.1.2
+      astro: 4.0.6(@types/node@20.10.4)(typescript@5.3.2)
+      blurhash: 2.0.5
+    dev: false
+
+  /@unpic/core@0.0.44:
+    resolution: {integrity: sha512-UVZH0ti+8oo2WYvxN0KwDYyGmcxqQq0KBt1ANVjUQwT70ucG0OZmIrOXky/ra48P/jN59LNJ8fRZJcAWkxhUeg==}
+    dependencies:
+      unpic: 3.16.0
+    dev: false
+
+  /@unpic/pixels@1.2.1:
+    resolution: {integrity: sha512-KM1+LhMALb8J12ZfEcmuK0qKOwUCQNO9cTkjhlJ3lQIoOxf6QcMDdylltOPDAvkAMl3ysR5BLWy7x9edkh7odA==}
+    dependencies:
+      jpeg-js: 0.4.4
+      pngjs: 7.0.0
+      undici: 5.28.2
+    dev: false
+
+  /@unpic/placeholder@0.1.2:
+    resolution: {integrity: sha512-O++tS97biojo5sqn5TeTt+jUjl5gWOdIQuOXe8YluTJWq4L0GM6VuTkaspNpsmxHfioJw/6YBirzOpG4t87l8Q==}
+    dependencies:
+      blurhash: 2.0.5
+    dev: false
+
   /@vitejs/plugin-vue-jsx@3.1.0(vite@5.0.10)(vue@3.3.11):
     resolution: {integrity: sha512-w9M6F3LSEU5kszVb9An2/MmXNxocAnUb3WhRr8bHlimhDrXNt6n6D2nJQR3UXpGlZHh/EsgouOHCsM8V3Ln+WA==}
     engines: {node: ^14.18.0 || >=16.0.0}
@@ -3517,6 +3557,10 @@ packages:
       buffer: 6.0.3
       inherits: 2.0.4
       readable-stream: 3.6.0
+
+  /blurhash@2.0.5:
+    resolution: {integrity: sha512-cRygWd7kGBQO3VEhPiTgq4Wc43ctsM+o46urrmPOiuAe+07fzlSB9OJVdpgDL0jPqXUVQ9ht7aq7kxOeJHRK+w==}
+    dev: false
 
   /bmp-js@0.1.0:
     resolution: {integrity: sha512-vHdS19CnY3hwiNdkaqk93DvjVLfbEcI8mys4UjuWrlX1haDmroo8o4xCzh4wD6DGV6HxRCyauwhHRqMTfERtjw==}
@@ -7452,6 +7496,11 @@ packages:
     engines: {node: '>=4.0.0'}
     dev: false
 
+  /pngjs@7.0.0:
+    resolution: {integrity: sha512-LKWqWJRhstyYo9pGvgor/ivk2w94eSjE3RGVuzLGlr3NmD8bf7RcYGze1mNdEHRP6TRP6rMuDHk5t44hnTRyow==}
+    engines: {node: '>=14.19.0'}
+    dev: false
+
   /postcss-attribute-case-insensitive@6.0.2(postcss@8.4.32):
     resolution: {integrity: sha512-IRuCwwAAQbgaLhxQdQcIIK0dCVXg3XDUnzgKD8iwdiYdwU4rMWRWyl/W9/0nA4ihVpq5pyALiHB2veBJ0292pw==}
     engines: {node: ^14 || ^16 || >=18}
@@ -9311,6 +9360,13 @@ packages:
   /undici-types@5.26.5:
     resolution: {integrity: sha512-JlCMO+ehdEIKqlFxk6IfVoAUVmgz7cU7zD/h9XZ0qzeosSHmUJVOzSQvvYSYWXkFXC+IfLKSIffhv0sVZup6pA==}
 
+  /undici@5.28.2:
+    resolution: {integrity: sha512-wh1pHJHnUeQV5Xa8/kyQhO7WFa8M34l026L5P/+2TYiakvGy5Rdc8jWZVyG7ieht/0WgJLEd3kcU5gKx+6GC8w==}
+    engines: {node: '>=14.0'}
+    dependencies:
+      '@fastify/busboy': 2.1.0
+    dev: false
+
   /unherit@3.0.0:
     resolution: {integrity: sha512-UmvIQZGEc9qdLIQ8mv8/61n6PiMgfbOoASPKHpCvII5srShCQSa6jSjBjlZOR4bxt2XnT6uo6csmPKRi+zQ0Jg==}
 
@@ -9450,6 +9506,10 @@ packages:
       - rollup
       - supports-color
     dev: true
+
+  /unpic@3.16.0:
+    resolution: {integrity: sha512-XXvQGL+fvzwEX3aPXggTCrzySFPqvpC8r1LKy5ft9573AoX8CrszmA0uOzi6xgylCvvqFg46IDOudJKzM2lQ5A==}
+    dev: false
 
   /update-browserslist-db@1.0.11(browserslist@4.21.10):
     resolution: {integrity: sha512-dCwEFf0/oT85M1fHBg4F0jtLwJrutGoHSQXCh7u4o2t1drG+c0a9Flnqww6XUKSfQMPpJBRjU8d4RXB09qtvaA==}

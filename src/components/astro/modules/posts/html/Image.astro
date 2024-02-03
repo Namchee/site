@@ -1,5 +1,5 @@
 ---
-import { Img } from "astro-imagetools/components";
+import { Image as Img } from "astro:assets";
 
 import type { HTMLAttributes } from 'astro/types';
 
@@ -12,14 +12,10 @@ const { alt, src } = Astro.props;
   <Img
     src={src}
     alt={alt}
-    attributes={{
-      img: {
-        title: alt,
-        class: "rounded-md"
-      }
-    }}
+    title={alt}
     width={640}
     height={360}
+    class="rounded-md"
   />
 
   <figcaption class="italic text-accent text-xs text-center mt-4">

@@ -1,27 +1,27 @@
 ---
-import { Img } from "astro-imagetools/components";
+import { Image } from 'astro:assets';
 
-import type { CollectionEntry } from "astro:content";
-import type { MarkdownFile } from "@/plugins/remark/types";
+import type { CollectionEntry } from 'astro:content';
+import type { MarkdownFile } from '@/plugins/remark/types';
 
-import Layout from "@/components/astro/layout/Layout.astro";
+import Layout from '@/components/astro/layout/Layout.astro';
 
-import AppLink from "@/components/astro/ui/AppLink.astro";
+import AppLink from '@/components/astro/ui/AppLink.astro';
 
-import BackButton from "./BackButton.astro";
-import TableOfContents from "./TableOfContents.astro";
-import Webmention from "./Webmention.astro";
-import Image from './html/Image.astro';
+import BackButton from './BackButton.astro';
+import TableOfContents from './TableOfContents.astro';
+import Webmention from './Webmention.astro';
 
 interface Props {
-  frontmatter: CollectionEntry<"posts">["data"] &
-    MarkdownFile["data"]["astro"]["frontmatter"] &
-    { slug: string };
+  frontmatter: CollectionEntry<'posts'>['data'] &
+    MarkdownFile['data']['astro']['frontmatter'] & { slug: string };
 }
 
 const { frontmatter } = Astro.props;
 
-const postUrl = encodeURIComponent(`${Astro.site.toString()}/posts/${frontmatter.slug}`);
+const postUrl = encodeURIComponent(
+  `${Astro.site.toString()}/posts/${frontmatter.slug}`
+);
 const postText = `I just read '${frontmatter.title}' by Namchee
 
 ${postUrl}`;
@@ -36,17 +36,23 @@ ${postUrl}`;
   <article class="relative grid grid-cols-12 gap-4 my-24 px-8 lg:my-32 lg:px-0">
     <header class="col-start-1 col-end-13 flex flex-col items-center">
       <div class="flex space-x-2 mb-4">
-        {frontmatter.tags.map(tag =>
-          <div class="grid place-items-center rounded-full text-xs bg-surface py-1 px-2 transition-colors">
-            <span class="mt-[2px]">{tag[0].toUpperCase() + tag.slice(1)}</span>
-          </div>
-        )}
+        {
+          frontmatter.tags.map((tag) => (
+            <div class="grid place-items-center rounded-full text-xs bg-surface py-1 px-2 transition-colors">
+              <span class="mt-[2px]">
+                {tag[0].toUpperCase() + tag.slice(1)}
+              </span>
+            </div>
+          ))
+        }
       </div>
 
-      <h1 class="text-3xl
+      <h1
+        class="text-3xl
         text-heading
         font-medium
-        md:text-4xl">
+        md:text-4xl"
+      >
         {frontmatter.title}
       </h1>
 
@@ -56,10 +62,10 @@ ${postUrl}`;
 
       <p class="text-sm md:text-base font-medium text-primary mt-8 md:mt-12">
         {
-          new Date(frontmatter.publishedAt).toLocaleString("en-GB", {
-            year: "numeric",
-            month: "long",
-            day: "numeric",
+          new Date(frontmatter.publishedAt).toLocaleString('en-GB', {
+            year: 'numeric',
+            month: 'long',
+            day: 'numeric',
           })
         } &mdash; {frontmatter.timeToRead} minutes read
       </p>
@@ -70,16 +76,13 @@ ${postUrl}`;
         my-8
         md:mb-16 md:col-start-2 md:col-end-12"
     >
-      <Img
+      <Image
         src={frontmatter.image.url}
         alt={`${frontmatter.title} - by ${frontmatter.image.author}`}
-        format="webp"
-        attributes={{
-          img: {
-            title: frontmatter.title,
-            class: "rounded-lg"
-          }
-        }}
+        title={frontmatter.title}
+        width={1064}
+        height={599}
+        class="rounded-lg aspect-video"
       />
       <figcaption class="italic text-accent text-xs text-center mt-4">
         Image courtesy of {frontmatter.image.author} from {
@@ -102,12 +105,14 @@ ${postUrl}`;
       <slot />
     </section>
 
-    <section class="col-start-1 col-end-13
+    <section
+      class="col-start-1 col-end-13
       mt-24 flex justify-between items-center
       md:col-start-2 md:col-end-12
       lg:col-start-3 lg:col-end-11
       border-t border-t-separator transition-colors
-      pt-8">
+      pt-8"
+    >
       <div>
         <Webmention slug={frontmatter.slug} />
 
@@ -123,7 +128,8 @@ ${postUrl}`;
 
       <AppLink
         href={`https://x.com/share?url=${postUrl}&text=${postText}`}
-        class="text-sm font-medium transition-colors hover:text-primary focus:text-primary">
+        class="text-sm font-medium transition-colors hover:text-primary focus:text-primary"
+      >
         Tweet this post
       </AppLink>
     </section>

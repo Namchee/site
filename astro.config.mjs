@@ -5,7 +5,7 @@ import unocss from 'unocss/astro';
 import vue from '@astrojs/vue';
 import mdx from '@astrojs/mdx';
 
-import { astroImageTools } from 'astro-imagetools';
+import { imageService } from '@unpic/astro/service';
 
 import sitemap from '@astrojs/sitemap';
 import robotsTxt from 'astro-robots-txt';
@@ -21,7 +21,6 @@ export default defineConfig({
     mdx(),
     sitemap(),
     robotsTxt(),
-    astroImageTools,
   ],
   markdown: {
     remarkPlugins: remarkPlugins,
@@ -29,6 +28,7 @@ export default defineConfig({
     shikiConfig: { theme: 'vitesse-dark' },
   },
   image: {
+    service: imageService(),
     domains: ['assets.literal.club', 'res.cloudinary'],
   },
   site: 'https://www.namchee.dev',
