@@ -7,16 +7,6 @@
     .favicon__stroke {
       fill: #121926;
     }
-
-    @media (prefers-color-scheme: dark) {
-      .favicon__bg {
-        fill: #141414;
-      }
-
-      .favicon__stroke {
-        fill: #FCFCFC;
-      }
-    }
   </style>
 
   <rect width="72" height="72" rx="10" class="favicon__bg" />

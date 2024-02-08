@@ -24,8 +24,24 @@ const { title, description } = Astro.props;
 <!doctype html>
 <html lang="en">
   <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <link rel="manifest" href="/manifest.webmanifest" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <link rel="icon" href="/favicon.ico" sizes="any" />
+    <link rel="icon" href="/icon-light.svg" type="image/svg+xml" class="favicon" />
+    <meta name="description" content={description} />
+    <link rel="sitemap" href="/sitemap-index.xml" />
+    <link
+      rel="webmention"
+      href="https://webmention.io/www.namchee.dev/webmention"
+    />
+    <link rel="preload" href="/fonts/nacelle.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="/fonts/nacelle-italic.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="/fonts/nacelle-medium.woff2" as="font" type="font/woff2" crossorigin>
     <script is:inline>
       const docEl = document.documentElement;
+      const svgIcon = document.querySelector('.favicon');
       const media = window.matchMedia('(prefers-color-scheme: dark)');
 
       const theme = (() => {
@@ -43,27 +59,12 @@ const { title, description } = Astro.props;
         const method = theme === 'light' ? 'remove' : 'add';
 
         docEl.classList[method]('dark');
+        svgIcon.href = theme === 'light' ? '/icon-light.svg' : '/icon-dark.svg';
         window.localStorage.setItem('theme', theme);
       };
 
       toggleTheme(theme);
     </script>
-
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width" />
-    <link rel="manifest" href="/manifest.webmanifest" />
-    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
-    <link rel="icon" href="/favicon.ico" sizes="any" />
-    <link rel="icon" href="/icon.svg" type="image/svg+xml" />
-    <meta name="description" content={description} />
-    <link rel="sitemap" href="/sitemap-index.xml" />
-    <link
-      rel="webmention"
-      href="https://webmention.io/www.namchee.dev/webmention"
-    />
-    <link rel="preload" href="/fonts/nacelle.woff2" as="font" type="font/woff2" crossorigin>
-    <link rel="preload" href="/fonts/nacelle-italic.woff2" as="font" type="font/woff2" crossorigin>
-    <link rel="preload" href="/fonts/nacelle-medium.woff2" as="font" type="font/woff2" crossorigin>
     <title>{title}</title>
   </head>
   <body
