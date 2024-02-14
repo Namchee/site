@@ -1,0 +1,44 @@
+---
+title: 'Cover Your States'
+publishedAt: 2023-12-17
+subtitle: 'Why code coverage is not a good metric of test completeness'
+image:
+  url: 'https://res.cloudinary.com/namchee/image/upload/ar_16:9,c_scale/posts/hello-world/banner'
+  author: 'NEOM'
+  source: Unsplash
+tags:
+  - testing
+---
+
+import TextLink from './../../components/astro/ui/TextLink.astro';
+import Head2 from './../../components/astro/modules/posts/html/Head2.astro';
+import Head3 from './../../components/astro/modules/posts/html/Head3.astro';
+import Strong from './../../components/astro/modules/posts/html/Strong.astro';
+import Quote from './../../components/astro/modules/posts/html/Quote.astro';
+
+import Image from './../../components/astro/modules/posts/html/Image.astro';
+
+
+export const components = {
+  a: TextLink,
+  h2: Head2,
+  h3: Head3,
+  strong: Strong,
+  blockquote: Quote,
+  img: Image,
+}
+
+Given the following code
+
+```ts
+export function divide() {
+
+}
+```
+
+Can you find what's wrong with this test suite?
+
+```ts
+// let's just assume we write it with Vitest
+import { describe } from 'vitest';
+```

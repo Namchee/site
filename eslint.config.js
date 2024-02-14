@@ -41,6 +41,7 @@ export default [
     },
     rules: {
       ...astroConfig.rules,
+      'jsx-quotes': ['error', 'prefer-single'],
     },
   },
 ];
