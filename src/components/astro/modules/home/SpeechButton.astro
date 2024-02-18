@@ -14,9 +14,9 @@ import { Icon } from "astro-iconify";
     typeof window.speechSynthesis !== "undefined" &&
     typeof window.SpeechSynthesisUtterance !== "undefined"
   ) {
-    const utterance = new window.SpeechSynthesisUtterance("namce");
+    const utterance = new window.SpeechSynthesisUtterance("Nam ché");
     utterance.lang = "id-ID";
-    utterance.pitch = 1.25;
+    utterance.pitch = 1.35;
 
     const button = document.querySelector(".speech__button");
     button.addEventListener("click", () => {
