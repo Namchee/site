@@ -1,5 +1,5 @@
 ---
-import { Image } from '@unpic/astro';
+import { Image } from 'astro:assets';
 import { Icon } from 'astro-iconify';
 
 import AppLink from '@/components/astro/ui/AppLink.astro';
@@ -20,7 +20,6 @@ const books = await getCurrentlyReadBooks();
             width={75}
             height={105}
             class="rounded object-fill!"
-            placeholder="blurhash"
           />
 
           <div class="flex flex-col justify-center">

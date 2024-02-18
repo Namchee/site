@@ -5,8 +5,6 @@ import unocss from 'unocss/astro';
 import vue from '@astrojs/vue';
 import mdx from '@astrojs/mdx';
 
-import { imageService } from '@unpic/astro/service';
-
 import sitemap from '@astrojs/sitemap';
 import robotsTxt from 'astro-robots-txt';
 
@@ -28,8 +26,7 @@ export default defineConfig({
     shikiConfig: { theme: 'vitesse-dark' },
   },
   image: {
-    service: imageService(),
-    domains: ['assets.literal.club', 'res.cloudinary'],
+    domains: ['assets.literal.club', 'res.cloudinary.com'],
   },
   site: 'https://www.namchee.dev',
   prefetch: true,
