@@ -160,9 +160,14 @@ watch(searchTerm, () => {
           transition-all
           shadow
           md:top-8
-          lg:shadow-none"
+          lg:shadow-none
+          grid
+          place-items-center"
       >
-        <span class="mt-1">⌘</span>
+        <Icon
+          icon="lucide:command"
+          class="w-4 h-4"
+        />
         <p
           class="absolute -bottom-8 text-sm  transition-all opacity-0 translate-y-1 group-hover:opacity-100 group-hover:translate-y-0 group-focus:opacity-100 group-focus:translate-y-0"
         >
