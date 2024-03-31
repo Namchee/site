@@ -43,6 +43,11 @@ const books = {
       author: 'J. Warner Wallace',
       link: 'https://literal.club/namchee/book/j-warner-wallace-cold-case-christianity-fpe98',
     },
+    {
+      title: 'The Passionate Programmer',
+      author: 'Chad Fowler',
+      link: 'https://literal.club/namchee/book/the-passionate-programmer-9xgce',
+    },
   ]
 };
 
@@ -53,17 +58,17 @@ const description = 'A list of books I\'ve read and recommend to either boost yo
 <Layout title={title} description={description}>
   <div class="grid grid-cols-12 gap-4 my-16 px-8 lg:my-32 lg:px-0">
     <header
-      class="col-start-1 col-end-13 md:col-end-5 lg:col-start-3 lg:col-end-5"
+      class="col-start-1 col-end-13 md:col-end-5 lg:col-start-2 lg:col-end-5 xl:col-start-3"
     >
       <div class="sticky top-12">
-        <h1 class="text-xl text-heading font-medium tracking-tight">
+        <h1 class="text-xl text-heading font-semibold tracking-tight">
           Bookshelf
         </h1>
       </div>
     </header>
 
     <div
-      class="mt-8 md:mt-0 col-start-1 col-end-13 md:mt-0 md:col-start-6 lg:col-start-6 lg:col-end-11 space-y-16"
+      class="mt-8 md:mt-0 col-start-1 col-end-13 md:mt-0 md:col-start-6 lg:col-start-6 lg:col-end-12 xl:col-start-6 xl:col-end-11 space-y-16"
     >
       <section class="space-y-4">
         <p>
@@ -101,7 +106,7 @@ const description = 'A list of books I\'ve read and recommend to either boost yo
 
           return (
             <div>
-              <p class="text-sm text-accent font-medium mb-4">{year}</p>
+              <p class="text-sm text-accent font-semibold mb-4">{year}</p>
 
               <ul class="space-y-3 md:space-y-2">{bookList}</ul>
             </div>

@@ -198,7 +198,7 @@ watch(searchTerm, () => {
           </div>
 
           <div v-if="relevantLinks.length > 0">
-            <span class="font-medium text-xs mb-2">
+            <span class="font-semibold text-xs mb-2">
               Pages
             </span>
 
@@ -230,7 +230,7 @@ watch(searchTerm, () => {
           </div>
 
           <div v-if="relevantPosts.length > 0">
-            <span class="font-medium text-xs mb-2">
+            <span class="font-semibold text-xs mb-2">
               Posts
             </span>
 
@@ -256,19 +256,19 @@ watch(searchTerm, () => {
           <div class="flex items-center space-x-1">
             <Key
               title="Arrow Up"
-              class="text-[10px] px-[6px]"
+              class="text-[10px] px-[6px] py-0"
             >
               ↑
             </Key>
 
             <Key
               title="Arrow Down"
-              class="text-[10px] px-[6px]"
+              class="text-[10px] px-[6px] py-0"
             >
               ↓
             </Key>
 
-            <p class="mt-1 font-medium text-xs">
+            <p class="font-medium text-xs">
               Navigate
             </p>
           </div>
@@ -281,7 +281,7 @@ watch(searchTerm, () => {
               Enter
             </Key>
 
-            <p class="mt-1 font-medium text-xs">
+            <p class="font-medium text-xs">
               Open
             </p>
           </div>
@@ -294,7 +294,7 @@ watch(searchTerm, () => {
               Esc
             </Key>
 
-            <p class="mt-1 font-medium text-xs">
+            <p class="font-medium text-xs">
               Close
             </p>
           </div>

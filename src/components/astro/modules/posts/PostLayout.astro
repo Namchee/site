@@ -50,7 +50,7 @@ ${postUrl}`;
       <h1
         class="text-3xl
         text-heading
-        font-medium
+        font-semibold
         md:text-4xl"
       >
         {frontmatter.title}
@@ -94,7 +94,7 @@ ${postUrl}`;
     </figure>
 
     <div class="hidden
-      lg:block lg:col-start-3 lg:col-end-5">
+      lg:hidden lg:col-start-3 lg:col-end-5">
       <TableOfContents headings={frontmatter.headings} />
     </div>
 
@@ -102,7 +102,8 @@ ${postUrl}`;
       class="col-start-1 col-end-13
         space-y-6
         md:col-start-2 md:col-end-12
-        lg:ml-4 lg:col-start-5 lg:col-end-11"
+        lg:col-start-5 lg:col-end-11
+        col-start-4! col-end-10!"
     >
       <slot />
     </section>
@@ -120,7 +121,7 @@ ${postUrl}`;
 
         <p class="text-xs mt-2">
           Powered by <AppLink
-            class="font-medium transition-colors hover:text-primary focus:text-primary"
+            class="font-semibold transition-colors hover:text-primary focus:text-primary"
             href="https://indieweb.org/Webmention"
           >
             Webmentions
