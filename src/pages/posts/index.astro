@@ -29,7 +29,7 @@ const description =
       <ul class="space-y-8">
         {
           posts.map((post) => (
-            <li class="space-y-6">
+            <li class="space-y-4">
               <div class="flex justify-between items-center">
                 <div>
                   <AppLink
@@ -39,7 +39,7 @@ const description =
                     {post.data.title}
                   </AppLink>
 
-                  <p class="text-content/70 text-sm mt-1 transition-colors">
+                  <p class="text-content/75 text-xs mt-1 transition-colors">
                     {post.data.publishedAt.toLocaleString("en-GB", {
                       year: "numeric",
                       month: "long",
@@ -51,13 +51,13 @@ const description =
                 <div class="flex space-x-2">
                   {post.data.tags.map(tag =>
                     <div class="grid place-items-center rounded-full text-xs bg-surface py-1 px-2">
-                      <span class="mt-[2px]">{tag[0].toUpperCase() + tag.slice(1)}</span>
+                      <span>{tag[0].toUpperCase() + tag.slice(1)}</span>
                     </div>
                   )}
                 </div>
               </div>
 
-              <p class="text-sm">
+              <p class="text-sm leading-normal">
                 {post.data.subtitle}
               </p>
             </li>

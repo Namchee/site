@@ -26,17 +26,17 @@ const replies = webMentions.filter(mention => ['in-reply-to', 'mention-of'].incl
 
 <div class="flex items-center space-x-4">
   <div class="flex items-center space-x-2" title="Number of likes for this post">
-    <Icon pack="lucide" name="heart" class="-mt-1 w-4 h-auto" />
+    <Icon pack="lucide" name="hand-heart" class="w-4 h-auto" />
     <span>{likes.length}</span>
   </div>
 
   <div class="flex items-center space-x-2" title="Number of reposts">
-    <Icon pack="lucide" name="repeat-2" class="-mt-1 w-4 h-auto" />
+    <Icon pack="lucide" name="repeat-2" class="w-4 h-auto" />
     <span>{reposts.length}</span>
   </div>
 
   <div class="flex items-center space-x-2" title="Number of replies and comments">
-    <Icon pack="lucide" name="message-circle-more" class="-mt-1 w-4 h-auto" />
+    <Icon pack="lucide" name="message-square-text" class="w-4 h-auto" />
     <span>{replies.length}</span>
   </div>
 </div>

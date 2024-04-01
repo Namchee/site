@@ -146,7 +146,7 @@ watch(searchTerm, () => {
 </script>
 
 <template>
-  <DialogRoot>
+  <DialogRoot v-model:open="visible">
     <DialogTrigger as-child>
       <button
         class="grid place-items-center
@@ -160,7 +160,6 @@ watch(searchTerm, () => {
           transition-all
           shadow
           md:top-8
-          lg:shadow-none
           grid
           place-items-center"
       >
@@ -256,14 +255,14 @@ watch(searchTerm, () => {
           <div class="flex items-center space-x-1">
             <Key
               title="Arrow Up"
-              class="text-[10px] px-[6px] py-0"
+              class="text-[10px] px-[6px] py-1"
             >
               ↑
             </Key>
 
             <Key
               title="Arrow Down"
-              class="text-[10px] px-[6px] py-0"
+              class="text-[10px] px-[6px] py-1"
             >
               ↓
             </Key>

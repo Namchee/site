@@ -17,9 +17,9 @@ const { headings } = Astro.props;
 const tocList = generateToC(headings);
 ---
 
-<nav class="flex flex-col sticky top-32 bottom-0 text-sm">
+<nav class="flex flex-col sticky top-32 bottom-0">
   <p class="text-accent mb-4 font-semibold text-heading">
-    Table of Contents
+    In this post
   </p>
 
   <ToCList headings={tocList} />
@@ -40,9 +40,9 @@ const tocList = generateToC(headings);
     entries.forEach(entry => {
       const id = entry.target.id;
       if (entry.intersectionRatio > 0) {
-        document.querySelector(`nav ul li a[href="#${id}"]`).classList.add('text-primary', 'translate-x-1')
+        document.querySelector(`nav ul li a[href="#${id}"]`).classList.add('text-primary', 'font-medium')
       } else {
-        document.querySelector(`nav ul li a[href="#${id}"]`).classList.remove('text-primary', 'translate-x-1')
+        document.querySelector(`nav ul li a[href="#${id}"]`).classList.remove('text-primary', 'font-medium')
       }
     });
   });
