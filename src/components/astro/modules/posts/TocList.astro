@@ -17,11 +17,11 @@ const marginMap = {
 };
 ---
 
-<ul class="mt-2">
+<ul class="space-y-2">
   {headings.map(
     head => (
       <li class={marginMap[head.depth]}>
-        <AppLink href={`#${head.slug}`} class="text-accent block transition-all">
+        <AppLink href={`#${head.slug}`} class="text-accent block transition-all text-sm lg:text-base">
           {head.text}
         </AppLink>
 

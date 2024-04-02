@@ -32,10 +32,11 @@ const books = await getCurrentlyReadBooks();
               <Icon
                 pack="lucide"
                 name="arrow-up-right"
-                class="w-4 h-auto -mt-[2px]"
+                class="w-4 h-auto"
               />
             </AppLink>
-            <p class="text-sm text-accent italic">{book.subtitle}</p>
+
+            <p class="text-sm leading-normal text-accent italic">{book.subtitle}</p>
             <p class="mt-4 text-accent">{book.author.join(' & ')}</p>
           </div>
         </li>

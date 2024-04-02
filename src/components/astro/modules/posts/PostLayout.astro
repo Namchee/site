@@ -12,6 +12,7 @@ import LogoContainer from '@/components/astro/ui/LogoContainer.astro';
 import BackButton from './BackButton.astro';
 import TableOfContents from './TableOfContents.astro';
 import Webmention from './Webmention.astro';
+import Icon from 'astro-iconify';
 
 interface Props {
   frontmatter: CollectionEntry<'posts'>['data'] &
@@ -49,7 +50,8 @@ ${postUrl}`;
       </div>
 
       <h1
-        class="text-xl
+        class="text-lg
+        lg:text-xl
         text-heading
         font-semibold
         tracking-tight"
@@ -57,7 +59,7 @@ ${postUrl}`;
         {frontmatter.title}
       </h1>
 
-      <p class="mt-2 font-medium">
+      <p class="mt-2 font-medium text-sm lg:text-base">
         {frontmatter.subtitle}
       </p>
 
@@ -108,7 +110,10 @@ ${postUrl}`;
           </div>
         </div>
 
-        <Webmention slug={frontmatter.slug} />
+        <div class="hidden">
+          <Webmention slug={frontmatter.slug} />
+
+        </div>
       </div>
     </header>
 
@@ -134,7 +139,7 @@ ${postUrl}`;
       </figcaption>
     </figure>
 
-    <div class="lg:col-start-3 lg:col-end-5">
+    <div class="col-start-1 col-end-13 lg:col-start-3 lg:col-end-5">
       <TableOfContents headings={frontmatter.headings} />
     </div>
 
@@ -149,31 +154,29 @@ ${postUrl}`;
 
     <section
       class="col-start-1 col-end-13
-      mt-24 flex justify-between items-center
+      mt-16 flex justify-between items-center
       md:col-start-2 md:col-end-12
-      lg:col-start-3 lg:col-end-11
-      border-t border-t-separator transition-colors
-      pt-8"
+      lg:col-start-3 lg:col-end-11"
     >
       <div>
-        <Webmention slug={frontmatter.slug} />
-
-        <p class="text-xs mt-2">
-          Powered by <AppLink
-            class="font-semibold transition-colors hover:text-primary focus:text-primary"
-            href="https://indieweb.org/Webmention"
-          >
-            Webmentions
-          </AppLink>
+        <p>
+          Share this post
         </p>
-      </div>
 
-      <AppLink
-        href={`https://x.com/share?url=${postUrl}&text=${postText}`}
-        class="text-sm font-medium transition-colors hover:text-primary focus:text-primary"
-      >
-        Tweet this post
-      </AppLink>
+        <div class="mt-6 flex items-center space-x-4">
+          <button onclick='copyLink()' class="group cursor-pointer">
+            <Icon pack="lucide" name="link" class="w-4 h-4 group-hover:text-heading transition-colors" />
+          </button>
+
+          <AppLink>
+            <Icon pack="simple-icons" name="x" class="w-4 h-4" />
+          </AppLink>
+
+          <AppLink>
+            <Icon pack="simple-icons" name="linkedin" class="w-4 h-4" />
+          </AppLink>
+        </div>
+      </div>
     </section>
   </article>
 </Layout>
@@ -183,3 +186,9 @@ ${postUrl}`;
     line-height: 1.75;
   }
 </style>
+
+<script is:inline>
+  function copyLink() {
+    navigator.clipboard.writeText(window.location.origin + window.location.pathname);
+  }
+</script>

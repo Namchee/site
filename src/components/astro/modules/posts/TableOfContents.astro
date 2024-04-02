@@ -17,15 +17,15 @@ const { headings } = Astro.props;
 const tocList = generateToC(headings);
 ---
 
-<nav class="flex flex-col sticky top-32 bottom-0">
+<nav class="flex flex-col sticky top-24 bottom-0 bg-surface p-4 rounded-md">
   <p class="text-accent mb-4 font-semibold text-heading">
     In this post
   </p>
 
   <ToCList headings={tocList} />
 
-  <AppLink href="#" class="flex items-center space-x-2 mt-12 text-heading backToTop__button">
-    <Icon pack="lucide" name="corner-left-up" class="w-4 h-auto relative -top-[2px]" />
+  <AppLink href="#" class="lg:flex lg:items-center space-x-2 mt-8 text-heading hidden backToTop__button">
+    <Icon pack="lucide" name="corner-left-up" class="w-4 h-auto" />
     <span>Back to Top</span>
   </AppLink>
 </nav>
