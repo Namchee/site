@@ -35,12 +35,12 @@ ${postUrl}`;
 >
   <BackButton />
 
-  <article class="relative grid grid-cols-12 gap-4 my-24 px-8 lg:my-32 lg:px-0">
+  <article class="relative grid grid-cols-12 gap-x-4 my-24 px-8 lg:my-32 lg:px-0">
     <header class="col-start-1 col-end-13 lg:col-start-2 lg:col-end-12 xl:col-start-3 xl:col-end-11">
-      <div class="flex space-x-2 mb-4">
+      <div class="flex space-x-2 mb-2">
         {
           frontmatter.tags.map((tag) => (
-            <div class="grid place-items-center rounded-full text-sm bg-primary/10 text-primary py-1 px-2 transition-colors">
+            <div class="grid place-items-center rounded-full text-xs lg:text-sm bg-primary/10 text-primary py-1 px-2 transition-colors">
               <span>
                 {tag[0].toUpperCase() + tag.slice(1)}
               </span>
@@ -110,9 +110,8 @@ ${postUrl}`;
           </div>
         </div>
 
-        <div class="hidden">
+        <div class="hidden lg:block">
           <Webmention slug={frontmatter.slug} />
-
         </div>
       </div>
     </header>
@@ -126,8 +125,8 @@ ${postUrl}`;
         src={frontmatter.image.url}
         alt={`${frontmatter.title} - by ${frontmatter.image.author}`}
         title={frontmatter.title}
-        width={848}
-        height={477}
+        aspectRatio={16 / 9}
+        layout="fullWidth"
         class="rounded-md aspect-video"
         loading="eager"
         background="blurhash"
@@ -139,7 +138,7 @@ ${postUrl}`;
       </figcaption>
     </figure>
 
-    <div class="col-start-1 col-end-13 lg:col-start-3 lg:col-end-5">
+    <div class="col-start-1 col-end-13 lg:col-start-2 lg:col-end-5">
       <TableOfContents headings={frontmatter.headings} />
     </div>
 
@@ -147,7 +146,8 @@ ${postUrl}`;
       class="col-start-1 col-end-13
         space-y-6
         md:col-start-2 md:col-end-12
-        lg:col-start-5 lg:col-end-11"
+        lg:col-start-5
+        max-w-[68ch]"
     >
       <slot />
     </section>
@@ -156,7 +156,7 @@ ${postUrl}`;
       class="col-start-1 col-end-13
       mt-16 flex justify-between items-center
       md:col-start-2 md:col-end-12
-      lg:col-start-3 lg:col-end-11"
+      lg:col-start-3 lg:col-end-12"
     >
       <div>
         <p>
@@ -164,7 +164,7 @@ ${postUrl}`;
         </p>
 
         <div class="mt-6 flex items-center space-x-4">
-          <button onclick='copyLink()' class="group cursor-pointer">
+          <button onclick='copyLink()' class="group cursor-pointer" title="Copy Link to Clipboard">
             <Icon pack="lucide" name="link" class="w-4 h-4 group-hover:text-heading transition-colors" />
           </button>
 
