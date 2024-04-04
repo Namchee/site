@@ -40,7 +40,7 @@ ${postUrl}`;
       <div class="flex space-x-2 mb-2">
         {
           frontmatter.tags.map((tag) => (
-            <div class="grid place-items-center rounded-full text-xs lg:text-sm bg-primary/10 text-primary py-1 px-2 transition-colors">
+            <div class="grid place-items-center rounded-full text-xs bg-primary/10 text-primary py-1 px-2 transition-colors">
               <span>
                 {tag[0].toUpperCase() + tag.slice(1)}
               </span>
@@ -138,7 +138,7 @@ ${postUrl}`;
       </figcaption>
     </figure>
 
-    <div class="col-start-1 col-end-13 lg:col-start-2 lg:col-end-5">
+    <div class="col-start-1 col-end-13 lg:col-start-2 lg:col-end-5 xl:col-start-3">
       <TableOfContents headings={frontmatter.headings} />
     </div>
 
@@ -147,7 +147,7 @@ ${postUrl}`;
         space-y-6
         md:col-start-2 md:col-end-12
         lg:col-start-5
-        max-w-[68ch]"
+        xl:col-end-11"
     >
       <slot />
     </section>
