@@ -26,7 +26,7 @@ const postUrl = encodeURIComponent(
 );
 const postText = `I just read '${frontmatter.title}' by Namchee
 
-${postUrl}`;
+`;
 ---
 
 <Layout
@@ -59,7 +59,7 @@ ${postUrl}`;
         {frontmatter.title}
       </h1>
 
-      <p class="mt-2 font-medium text-sm lg:text-base">
+      <p class="mt-1 font-medium text-sm lg:text-base">
         {frontmatter.subtitle}
       </p>
 
@@ -168,11 +168,11 @@ ${postUrl}`;
             <Icon pack="lucide" name="link" class="w-4 h-4 group-hover:text-heading transition-colors" />
           </button>
 
-          <AppLink>
+          <AppLink href={`https://twitter.com/intent/post?text=${encodeURIComponent(postText) + postUrl}`}>
             <Icon pack="simple-icons" name="x" class="w-4 h-4" />
           </AppLink>
 
-          <AppLink>
+          <AppLink href={`https://www.linkedin.com/sharing/share-offsite/?url=${postUrl}`}>
             <Icon pack="simple-icons" name="linkedin" class="w-4 h-4" />
           </AppLink>
         </div>
