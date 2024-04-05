@@ -33,6 +33,7 @@ const postText = `I just read '${frontmatter.title}' by Namchee
   title={`${frontmatter.title} — Namchee`}
   description={frontmatter.subtitle}
 >
+  <progress class="reading__progress h-[4px] fixed top-0 left-0 bg-primary text-primary z-10" value="50" max="100"></progress>
   <BackButton />
 
   <article class="relative grid grid-cols-12 gap-x-4 my-24 px-8 lg:my-32 lg:px-0">
@@ -147,7 +148,8 @@ const postText = `I just read '${frontmatter.title}' by Namchee
         space-y-6
         md:col-start-2 md:col-end-12
         lg:col-start-5
-        xl:col-end-11"
+        xl:col-end-11
+        leading-[1.75]"
     >
       <slot />
     </section>
@@ -182,13 +184,34 @@ const postText = `I just read '${frontmatter.title}' by Namchee
 </Layout>
 
 <style is:inline>
-  p {
-    line-height: 1.75;
+
+  progress::-webkit-progress-bar {
+    background-color: transparent;
+  }
+  progress::-webkit-progress-value {
+    background-color: var(--primary);
   }
 </style>
 
 <script is:inline>
+  const progressBar = document.querySelector('.reading__progress');
+  const body = document.body;
+  const html = document.documentElement;
+
+  const height = Math.max(
+    body.scrollHeight,
+    body.offsetHeight,
+    html.clientHeight,
+    html.scrollHeight,
+    html.offsetHeight
+  );
+
   function copyLink() {
     navigator.clipboard.writeText(window.location.origin + window.location.pathname);
   }
+
+  window.addEventListener('scroll', () => {
+    const progres = document.body.scrollTop;
+    console.log(progres);
+  });
 </script>
