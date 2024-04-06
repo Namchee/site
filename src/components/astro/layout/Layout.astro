@@ -67,7 +67,7 @@ const { title, description } = Astro.props;
     <title>{title}</title>
   </head>
   <body
-    class="bg-background transition-colors text-content min-h-screen flex flex-col font-sans"
+    class="bg-background transition-colors text-content min-h-screen flex flex-col font-sans antialiased"
   >
     <CommandMenu posts={posts} client:load />
     <main class="w-full max-w-7xl mx-auto flex-1">

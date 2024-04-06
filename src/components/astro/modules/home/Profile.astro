@@ -62,7 +62,7 @@ const contacts = [
 
     <div class="md:mt-4">
       <h1 class="font-semibold text-xl tracking-tight text-heading">Namchee</h1>
-      <p class="flex items-center space-x-2 text-lg text-accent">
+      <p class="flex items-center space-x-2 text-lg leading-normal">
         <span>/nam·cé/</span>
         <SpeechButton />
       </p>
@@ -72,7 +72,7 @@ const contacts = [
 
   <div class="mt-8 md:mt-12 space-y-2">
     {contacts.map(link => {
-      return <AppLink href={link.href} title={link.label} class="group flex items-center text-accent space-x-2" rel="me">
+      return <AppLink href={link.href} title={link.label} class="group flex items-center space-x-2" rel="me">
         <Icon
           name={link.icon}
           aria-hidden="true"

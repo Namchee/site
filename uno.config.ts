@@ -28,7 +28,6 @@ export default defineConfig({
 
       heading: 'oklch(var(--heading))',
       content: 'oklch(var(--content))',
-      accent: 'oklch(var(--accent))',
 
       primary: 'oklch(var(--primary))',
 
