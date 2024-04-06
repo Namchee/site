@@ -4,6 +4,8 @@ import { Image } from '@unpic/astro';
 import type { CollectionEntry } from 'astro:content';
 import type { MarkdownFile } from '@/plugins/remark/types';
 
+import Icon from 'astro-iconify';
+
 import Layout from '@/components/astro/layout/Layout.astro';
 
 import AppLink from '@/components/astro/ui/AppLink.astro';
@@ -12,7 +14,6 @@ import LogoContainer from '@/components/astro/ui/LogoContainer.astro';
 import BackButton from './BackButton.astro';
 import TableOfContents from './TableOfContents.astro';
 import Webmention from './Webmention.astro';
-import Icon from 'astro-iconify';
 
 interface Props {
   frontmatter: CollectionEntry<'posts'>['data'] &
@@ -33,12 +34,13 @@ const postText = `I just read '${frontmatter.title}' by Namchee
   title={`${frontmatter.title} — Namchee`}
   description={frontmatter.subtitle}
 >
-  <progress class="reading__progress h-[4px] fixed top-0 left-0 bg-primary text-primary z-10" value="50" max="100"></progress>
+  <progress class="reading__progress h-[2px] fixed w-screen left-0 z-10" />
+
   <BackButton />
 
   <article class="relative grid grid-cols-12 gap-x-4 my-24 px-8 lg:my-32 lg:px-0">
     <header class="col-start-1 col-end-13 lg:col-start-2 lg:col-end-12 xl:col-start-3 xl:col-end-11">
-      <div class="flex space-x-2 mb-2">
+      <div class="flex space-x-2 mb-1">
         {
           frontmatter.tags.map((tag) => (
             <div class="grid place-items-center rounded-full text-xs bg-primary/10 text-primary py-1 px-2 transition-colors">
@@ -161,21 +163,21 @@ const postText = `I just read '${frontmatter.title}' by Namchee
       lg:col-start-3 lg:col-end-12"
     >
       <div>
-        <p>
+        <p class="font-medium">
           Share this post
         </p>
 
         <div class="mt-6 flex items-center space-x-4">
           <button onclick='copyLink()' class="group cursor-pointer" title="Copy Link to Clipboard">
-            <Icon pack="lucide" name="link" class="w-4 h-4 group-hover:text-heading transition-colors" />
+            <Icon pack="lucide" name="link" class="w-[18px] h-auto transition-colors group-hover:text-heading group-focus:text-heading" />
           </button>
 
-          <AppLink href={`https://twitter.com/intent/post?text=${encodeURIComponent(postText) + postUrl}`}>
-            <Icon pack="simple-icons" name="x" class="w-4 h-4" />
+          <AppLink href={`https://twitter.com/intent/post?text=${encodeURIComponent(postText) + postUrl}`} class="group">
+            <Icon pack="simple-icons" name="x" class="w-[18px] h-auto transition-color group-hover:text-heading group-focus:text-heading" />
           </AppLink>
 
-          <AppLink href={`https://www.linkedin.com/sharing/share-offsite/?url=${postUrl}`}>
-            <Icon pack="simple-icons" name="linkedin" class="w-4 h-4" />
+          <AppLink href={`https://www.linkedin.com/sharing/share-offsite/?url=${postUrl}`} class="group">
+            <Icon pack="simple-icons" name="linkedin" class="w-[18px] h-auto transition-color group-hover:text-heading group-focus:text-heading" />
           </AppLink>
         </div>
       </div>
@@ -184,34 +186,31 @@ const postText = `I just read '${frontmatter.title}' by Namchee
 </Layout>
 
 <style is:inline>
-
-  progress::-webkit-progress-bar {
+  .reading__progress::-webkit-progress-bar {
     background-color: transparent;
   }
-  progress::-webkit-progress-value {
-    background-color: var(--primary);
+  .reading__progress::-webkit-progress-value {
+    background-color: oklch(var(--primary));
+  }
+
+  .reading__progress::-moz-progress-bar {
+    background-color: oklch(var(--primary));
   }
 </style>
 
 <script is:inline>
   const progressBar = document.querySelector('.reading__progress');
-  const body = document.body;
-  const html = document.documentElement;
 
-  const height = Math.max(
-    body.scrollHeight,
-    body.offsetHeight,
-    html.clientHeight,
-    html.scrollHeight,
-    html.offsetHeight
-  );
+  const windowHeight = window.innerHeight;
+  const documentHeight = document.documentElement.scrollHeight;
+  const max = documentHeight - windowHeight;
+  progressBar.setAttribute('max', max);
 
   function copyLink() {
     navigator.clipboard.writeText(window.location.origin + window.location.pathname);
   }
 
   window.addEventListener('scroll', () => {
-    const progres = document.body.scrollTop;
-    console.log(progres);
+    progressBar.setAttribute('value', window.scrollY);
   });
 </script>

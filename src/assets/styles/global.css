@@ -57,6 +57,15 @@ html.dark img {
 }
 
 @font-face {
+  font-family: "Geist";
+  src: local("Geist"),
+    url("/fonts/geist.woff2") format("woff2-variations");
+  font-style: oblique 0deg 10deg;
+  font-weight: 100 900;
+  font-display: swap;
+}
+
+@font-face {
   font-family: "JetBrains Mono";
   src: local("JetBrains Mono"),
     url("/fonts/jetbrains-mono.woff2") format("woff2");
