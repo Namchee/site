@@ -1,29 +1,35 @@
 ---
-import { Image } from '@unpic/astro';
+import { Image } from "@unpic/astro";
 
-import type { CollectionEntry } from 'astro:content';
-import type { MarkdownFile } from '@/plugins/remark/types';
+import type { CollectionEntry } from "astro:content";
+import type { MarkdownFile } from "@/plugins/remark/types";
 
-import Icon from 'astro-iconify';
+import Icon from "astro-iconify";
 
-import Layout from '@/components/astro/layout/Layout.astro';
+import Layout from "@/components/astro/layout/Layout.astro";
 
-import AppLink from '@/components/astro/ui/AppLink.astro';
-import LogoContainer from '@/components/astro/ui/LogoContainer.astro';
+import AppLink from "@/components/astro/ui/AppLink.astro";
+import LogoContainer from "@/components/astro/ui/LogoContainer.astro";
 
-import BackButton from './BackButton.astro';
-import TableOfContents from './TableOfContents.astro';
-import Webmention from './Webmention.astro';
+import BackButton from "./BackButton.astro";
+import TableOfContents from "./TableOfContents.astro";
+import Webmention from "./Webmention.astro";
 
 interface Props {
-  frontmatter: CollectionEntry<'posts'>['data'] &
-    MarkdownFile['data']['astro']['frontmatter'] & { slug: string };
+  frontmatter: CollectionEntry<"posts">["data"] &
+    MarkdownFile["data"]["astro"]["frontmatter"] & {
+      slug: string;
+      prevPost: CollectionEntry<"posts">;
+      nextPost: CollectionEntry<"posts">;
+    };
 }
 
 const { frontmatter } = Astro.props;
 
+console.log(frontmatter.nextPost);
+
 const postUrl = encodeURIComponent(
-  `${Astro.site.toString()}/posts/${frontmatter.slug}`
+  `${Astro.site.toString()}/posts/${frontmatter.slug}`,
 );
 const postText = `I just read '${frontmatter.title}' by Namchee
 
@@ -34,19 +40,22 @@ const postText = `I just read '${frontmatter.title}' by Namchee
   title={`${frontmatter.title} — Namchee`}
   description={frontmatter.subtitle}
 >
-  <progress class="reading__progress h-[2px] fixed w-screen left-0 z-10" />
+  <progress class="reading__progress h-[2px] fixed w-screen left-0 z-10"
+  ></progress>
 
   <BackButton />
 
-  <article class="relative grid grid-cols-12 gap-x-4 my-24 px-8 lg:my-32 lg:px-0">
-    <header class="col-start-1 col-end-13 lg:col-start-2 lg:col-end-12 xl:col-start-3 xl:col-end-11">
+  <article
+    class="relative grid grid-cols-12 gap-x-4 my-32 px-8 lg:my-32 lg:px-0"
+  >
+    <header
+      class="col-start-1 col-end-13 lg:col-start-2 lg:col-end-12 xl:col-start-3 xl:col-end-11"
+    >
       <div class="flex space-x-2 mb-1">
         {
           frontmatter.tags.map((tag) => (
             <div class="grid place-items-center rounded-full text-xs bg-primary/10 text-primary py-1 px-2 transition-colors">
-              <span>
-                {tag[0].toUpperCase() + tag.slice(1)}
-              </span>
+              <span>{tag[0].toUpperCase() + tag.slice(1)}</span>
             </div>
           ))
         }
@@ -97,16 +106,14 @@ const postText = `I just read '${frontmatter.title}' by Namchee
           </LogoContainer>
 
           <div>
-            <p class="text-heading" style={{ fontWeight: 525 }}>
-              Namchee
-            </p>
+            <p class="text-heading" style={{ fontWeight: 525 }}>Namchee</p>
 
             <p class="text-sm md:text-base text-content/80">
               {
-                new Date(frontmatter.publishedAt).toLocaleString('en-GB', {
-                  year: 'numeric',
-                  month: 'long',
-                  day: 'numeric',
+                new Date(frontmatter.publishedAt).toLocaleString("en-GB", {
+                  year: "numeric",
+                  month: "long",
+                  day: "numeric",
                 })
               } &mdash; {frontmatter.timeToRead} minutes read
             </p>
@@ -141,7 +148,9 @@ const postText = `I just read '${frontmatter.title}' by Namchee
       </figcaption>
     </figure>
 
-    <div class="col-start-1 col-end-13 lg:col-start-2 lg:col-end-5 xl:col-start-3">
+    <div
+      class="col-start-1 col-end-13 lg:col-start-2 lg:col-end-5 xl:col-start-3"
+    >
       <TableOfContents headings={frontmatter.headings} />
     </div>
 
@@ -156,30 +165,68 @@ const postText = `I just read '${frontmatter.title}' by Namchee
       <slot />
     </section>
 
+    <section class="mt-16 col-start-1 col-end-13 lg:col-start-2 lg:col-end-5 xl:col-start-3">
+      <p class="font-medium">Share this post</p>
+
+      <div class="mt-6 flex items-center space-x-4">
+        <button
+          onclick="copyLink()"
+          class="group cursor-pointer"
+          title="Copy Link to Clipboard"
+        >
+          <Icon
+            pack="lucide"
+            name="link"
+            class="w-[18px] h-auto transition-colors group-hover:text-heading group-focus:text-heading"
+          />
+        </button>
+
+        <AppLink
+          href={`https://twitter.com/intent/post?text=${encodeURIComponent(postText) + postUrl}`}
+          class="group"
+        >
+          <Icon
+            pack="simple-icons"
+            name="x"
+            class="w-[18px] h-auto transition-color group-hover:text-heading group-focus:text-heading"
+          />
+        </AppLink>
+
+        <AppLink
+          href={`https://www.linkedin.com/sharing/share-offsite/?url=${postUrl}`}
+          class="group"
+        >
+          <Icon
+            pack="simple-icons"
+            name="linkedin"
+            class="w-[18px] h-auto transition-color group-hover:text-heading group-focus:text-heading"
+          />
+        </AppLink>
+      </div>
+    </section>
+
     <section
-      class="col-start-1 col-end-13
-      mt-16 flex justify-between items-center
-      md:col-start-2 md:col-end-12
-      lg:col-start-3 lg:col-end-12"
+      class="mt-16
+        flex justify-between
+        col-start-1 col-end-13
+        md:col-start-2 md:col-end-12
+        lg:col-start-5
+        xl:col-end-11"
     >
       <div>
-        <p class="font-medium">
-          Share this post
+        <p>
+          Previous Post
         </p>
 
-        <div class="mt-6 flex items-center space-x-4">
-          <button onclick='copyLink()' class="group cursor-pointer" title="Copy Link to Clipboard">
-            <Icon pack="lucide" name="link" class="w-[18px] h-auto transition-colors group-hover:text-heading group-focus:text-heading" />
-          </button>
+        {frontmatter.prevPost && frontmatter.prevPost.slug}
+      </div>
 
-          <AppLink href={`https://twitter.com/intent/post?text=${encodeURIComponent(postText) + postUrl}`} class="group">
-            <Icon pack="simple-icons" name="x" class="w-[18px] h-auto transition-color group-hover:text-heading group-focus:text-heading" />
-          </AppLink>
+      <div>
+        <p>
+          Next Post
+        </p>
 
-          <AppLink href={`https://www.linkedin.com/sharing/share-offsite/?url=${postUrl}`} class="group">
-            <Icon pack="simple-icons" name="linkedin" class="w-[18px] h-auto transition-color group-hover:text-heading group-focus:text-heading" />
-          </AppLink>
-        </div>
+        {frontmatter.nextPost && frontmatter.nextPost.slug}
       </div>
     </section>
   </article>
@@ -199,18 +246,20 @@ const postText = `I just read '${frontmatter.title}' by Namchee
 </style>
 
 <script is:inline>
-  const progressBar = document.querySelector('.reading__progress');
+  const progressBar = document.querySelector(".reading__progress");
 
   const windowHeight = window.innerHeight;
   const documentHeight = document.documentElement.scrollHeight;
   const max = documentHeight - windowHeight;
-  progressBar.setAttribute('max', max);
+  progressBar.setAttribute("max", max);
 
   function copyLink() {
-    navigator.clipboard.writeText(window.location.origin + window.location.pathname);
+    navigator.clipboard.writeText(
+      window.location.origin + window.location.pathname,
+    );
   }
 
-  window.addEventListener('scroll', () => {
-    progressBar.setAttribute('value', window.scrollY);
+  window.addEventListener("scroll", () => {
+    progressBar.setAttribute("value", window.scrollY);
   });
 </script>
