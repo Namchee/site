@@ -4,7 +4,7 @@ import { Image } from "@unpic/astro";
 import type { CollectionEntry } from "astro:content";
 import type { MarkdownFile } from "@/plugins/remark/types";
 
-import Icon from "astro-iconify";
+import { Icon } from "astro-iconify";
 
 import Layout from "@/components/astro/layout/Layout.astro";
 
@@ -14,6 +14,7 @@ import LogoContainer from "@/components/astro/ui/LogoContainer.astro";
 import BackButton from "./BackButton.astro";
 import TableOfContents from "./TableOfContents.astro";
 import Webmention from "./Webmention.astro";
+import SocialLinks from "./SocialLinks.astro";
 
 interface Props {
   frontmatter: CollectionEntry<"posts">["data"] &
@@ -25,15 +26,6 @@ interface Props {
 }
 
 const { frontmatter } = Astro.props;
-
-console.log(frontmatter.nextPost);
-
-const postUrl = encodeURIComponent(
-  `${Astro.site.toString()}/posts/${frontmatter.slug}`,
-);
-const postText = `I just read '${frontmatter.title}' by Namchee
-
-`;
 ---
 
 <Layout
@@ -77,6 +69,20 @@ const postText = `I just read '${frontmatter.title}' by Namchee
 
       <div class="flex justify-between items-end mt-8">
         <div class="flex items-center space-x-2">
+          <div>
+            <p class="text-sm">
+              Published At
+            </p>
+
+            <p class="text-heading font-medium mt-1">
+              {new Date(frontmatter.publishedAt).toLocaleString("en-GB", {
+                year: "numeric",
+                month: "long",
+                day: "numeric",
+              })}
+            </p>
+          </div>
+          <!--
           <LogoContainer class="inline-grid rounded-full! w-12 h-12">
             <svg
               viewBox="0 0 49 55"
@@ -110,14 +116,11 @@ const postText = `I just read '${frontmatter.title}' by Namchee
 
             <p class="text-sm md:text-base text-content/80">
               {
-                new Date(frontmatter.publishedAt).toLocaleString("en-GB", {
-                  year: "numeric",
-                  month: "long",
-                  day: "numeric",
-                })
+
               } &mdash; {frontmatter.timeToRead} minutes read
             </p>
           </div>
+        -->
         </div>
 
         <div class="hidden lg:block">
@@ -156,7 +159,7 @@ const postText = `I just read '${frontmatter.title}' by Namchee
 
     <section
       class="col-start-1 col-end-13
-        space-y-6
+        space-y-4
         md:col-start-2 md:col-end-12
         lg:col-start-5
         xl:col-end-11
@@ -165,44 +168,12 @@ const postText = `I just read '${frontmatter.title}' by Namchee
       <slot />
     </section>
 
-    <section class="mt-16 col-start-1 col-end-13 lg:col-start-2 lg:col-end-5 xl:col-start-3">
+    <section
+      class="mt-16 col-start-1 col-end-13 lg:col-start-2 lg:col-end-5 xl:col-start-3"
+    >
       <p class="font-medium">Share this post</p>
 
-      <div class="mt-6 flex items-center space-x-4">
-        <button
-          onclick="copyLink()"
-          class="group cursor-pointer"
-          title="Copy Link to Clipboard"
-        >
-          <Icon
-            pack="lucide"
-            name="link"
-            class="w-[18px] h-auto transition-colors group-hover:text-heading group-focus:text-heading"
-          />
-        </button>
-
-        <AppLink
-          href={`https://twitter.com/intent/post?text=${encodeURIComponent(postText) + postUrl}`}
-          class="group"
-        >
-          <Icon
-            pack="simple-icons"
-            name="x"
-            class="w-[18px] h-auto transition-color group-hover:text-heading group-focus:text-heading"
-          />
-        </AppLink>
-
-        <AppLink
-          href={`https://www.linkedin.com/sharing/share-offsite/?url=${postUrl}`}
-          class="group"
-        >
-          <Icon
-            pack="simple-icons"
-            name="linkedin"
-            class="w-[18px] h-auto transition-color group-hover:text-heading group-focus:text-heading"
-          />
-        </AppLink>
-      </div>
+      <SocialLinks slug={frontmatter.slug} title={frontmatter.title} />
     </section>
 
     <section
@@ -213,21 +184,38 @@ const postText = `I just read '${frontmatter.title}' by Namchee
         lg:col-start-5
         xl:col-end-11"
     >
-      <div>
-        <p>
-          Previous Post
-        </p>
+      {
+        frontmatter.prevPost && (
+          <div>
+            <p>Previous Post</p>
 
-        {frontmatter.prevPost && frontmatter.prevPost.slug}
-      </div>
+            <AppLink
+              href={`${frontmatter.prevPost.slug}`}
+              class="block text-heading font-medium leading-normal transition-colors text-lg mt-4 flex items-center space-x-2 hover:text-primary focus:text-primary"
+            >
+              <Icon pack="lucide" name="arrow-left" class="w-5 h-5" />
+              <span>{frontmatter.prevPost.data.title}</span>
 
-      <div>
-        <p>
-          Next Post
-        </p>
+            </AppLink>
+          </div>
+        )
+      }
 
-        {frontmatter.nextPost && frontmatter.nextPost.slug}
-      </div>
+      {
+        frontmatter.nextPost && (
+          <div class="ml-auto text-right">
+            <p>Next Post</p>
+
+            <AppLink
+              href={`${frontmatter.nextPost.slug}`}
+              class="block text-heading font-medium leading-normal transition-colors text-lg mt-4 flex items-center space-x-2 hover:text-primary focus:text-primary"
+            >
+              <span>{frontmatter.nextPost.data.title}</span>
+              <Icon pack="lucide" name="arrow-right" class="w-5 h-5" />
+            </AppLink>
+          </div>
+        )
+      }
     </section>
   </article>
 </Layout>

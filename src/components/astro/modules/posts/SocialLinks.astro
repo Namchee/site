@@ -1,0 +1,63 @@
+---
+import { Icon } from 'astro-iconify';
+
+import AppLink from '@/components/astro/ui/AppLink.astro';
+
+interface Props {
+  slug: string;
+  title: string;
+}
+
+const { slug, title } = Astro.props;
+
+const postUrl = encodeURIComponent(
+  `${Astro.site.toString()}/posts/${slug}`,
+);
+const postText = `I just read '${title}' by Namchee
+
+`;
+---
+
+<div class="mt-6 flex items-center space-x-4">
+  <button
+    onclick="copyLink()"
+    class="group cursor-pointer"
+    title="Copy Link to Clipboard"
+  >
+    <Icon
+      pack="lucide"
+      name="link"
+      class="w-[18px] h-auto transition-colors group-hover:text-heading group-focus:text-heading"
+    />
+  </button>
+
+  <AppLink
+    href={`https://twitter.com/intent/post?text=${encodeURIComponent(postText) + postUrl}`}
+    class="group"
+  >
+    <Icon
+      pack="simple-icons"
+      name="x"
+      class="w-[18px] h-auto transition-color group-hover:text-heading group-focus:text-heading"
+    />
+  </AppLink>
+
+  <AppLink
+    href={`https://www.linkedin.com/sharing/share-offsite/?url=${postUrl}`}
+    class="group"
+  >
+    <Icon
+      pack="simple-icons"
+      name="linkedin"
+      class="w-[18px] h-auto transition-color group-hover:text-heading group-focus:text-heading"
+    />
+  </AppLink>
+</div>
+
+<script is:inline>
+  function copyLink() {
+    navigator.clipboard.writeText(
+      window.location.origin + window.location.pathname,
+    );
+  }
+</script>

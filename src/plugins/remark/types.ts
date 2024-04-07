@@ -5,6 +5,7 @@ export interface MarkdownFile {
     astro: {
       frontmatter: {
         timeToRead: number;
+        lastModified: string;
         headings: MarkdownHeading[];
       }
     }
