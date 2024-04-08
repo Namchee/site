@@ -33,7 +33,7 @@ const { frontmatter } = Astro.props;
   <BackButton />
 
   <article
-    class="relative grid grid-cols-12 gap-x-4 my-32 px-8 lg:my-32 lg:px-0"
+    class="relative grid grid-cols-12 gap-x-4 my-24 px-8 lg:my-32 lg:px-0"
   >
     <header
       class="col-start-1 col-end-13 lg:col-start-2 lg:col-end-12 xl:col-start-3 xl:col-end-11"
@@ -42,7 +42,8 @@ const { frontmatter } = Astro.props;
         class="text-xl
         text-heading
         font-semibold
-        tracking-tight"
+        tracking-tight
+        md:text-2xl"
       >
         {frontmatter.title}
       </h1>
@@ -106,7 +107,7 @@ const { frontmatter } = Astro.props;
     </section>
 
     <section
-      class="mt-16 col-start-1 col-end-13 lg:col-start-2 md:col-end-5 xl:col-start-3"
+      class="mt-16 col-start-1 col-end-6 lg:col-start-2 md:col-end-5 xl:col-start-3"
     >
       <p class="font-medium">Share this post</p>
 
@@ -115,7 +116,7 @@ const { frontmatter } = Astro.props;
 
     <section
       class="mt-16
-        col-start-1 col-end-13
+        col-start-6 col-end-13
         justify-self-end
         md:col-start-5 md:col-end-12
         md:justify-self-start

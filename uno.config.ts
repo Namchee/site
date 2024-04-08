@@ -15,11 +15,12 @@ export default defineConfig({
       mono: ['"JetBrains Mono"', 'ui-monospace'],
     },
     fontSize: {
-      xs: ['12px', '1.125'],
-      sm: ['14px', '1.25'],
-      base: ['16px', '1.5'],
-      lg: ['20px', '1.75'],
-      xl: ['24px', '1.875'],
+      'xs': ['12px', '1.125'],
+      'sm': ['14px', '1.25'],
+      'base': ['16px', '1.5'],
+      'lg': ['20px', '1.75'],
+      'xl': ['24px', '1.875'],
+      '2xl': ['30px', '1.875'],
     },
     colors: {
       background: 'oklch(var(--background))',
