@@ -50,6 +50,7 @@
     "@tgwf/co2": "^0.13.9",
     "@unpic/astro": "^0.0.41",
     "@vueuse/core": "^10.7.0",
+    "class-variance-authority": "^0.7.0",
     "dayjs": "^1.11.10",
     "radix-vue": "^1.2.4"
   },

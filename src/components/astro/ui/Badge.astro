@@ -1,0 +1,29 @@
+---
+import { cva } from "class-variance-authority";
+
+import type { HTMLAttributes } from "astro/types";
+import type { VariantProps } from "class-variance-authority";
+
+const badge = cva(
+  "grid place-items-center rounded-full text-xs py-1 px-2 transition-colors",
+  {
+    variants: {
+      variant: {
+        primary: "bg-primary/10 dark:bg-primary/15 text-primary",
+        content: "bg-content/10 text-content",
+      },
+    },
+    defaultVariants: {
+      variant: "content",
+    },
+  },
+);
+
+interface Props extends HTMLAttributes<"div">, VariantProps<typeof badge> {}
+
+const { variant = "content", class: className } = Astro.props;
+---
+
+<div class:list={[badge({ variant }), className]}>
+  <slot />
+</div>
