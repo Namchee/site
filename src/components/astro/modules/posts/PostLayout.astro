@@ -4,7 +4,10 @@ import { Image } from "@unpic/astro";
 import type { CollectionEntry } from "astro:content";
 import type { MarkdownFile } from "@/plugins/remark/types";
 
+import { Icon } from "astro-iconify";
+
 import Layout from "@/components/astro/layout/Layout.astro";
+import AppLink from "@/components/astro/ui/AppLink.astro";
 import Badge from "@/components/astro/ui/Badge.astro";
 
 import BackButton from "./BackButton.astro";
@@ -51,43 +54,19 @@ const { frontmatter } = Astro.props;
         text-heading
         font-semibold
         tracking-tight
-        md:text-2xl
-        leading-normal!"
+        leading-normal!
+        md:text-2xl"
       >
         {frontmatter.title}
       </h1>
 
-      <p class="mt-3 font-medium text-sm md:text-base leading-normal">
+      <p class="mt-2 font-medium text-sm md:text-base leading-normal">
         {frontmatter.subtitle}
       </p>
 
-    </header>
-
-    <figure
-      class="col-start-1 col-end-13
-        my-8 lg:col-start-2 lg:col-end-12 xl:col-start-3 xl:col-end-11"
-    >
-      <Image
-        src={frontmatter.image.url}
-        alt={`${frontmatter.title} - image by ${frontmatter.image.author} from ${frontmatter.image.source}`}
-        title={`${frontmatter.title} - image by ${frontmatter.image.author} from ${frontmatter.image.source}`}
-        aspectRatio={16 / 9}
-        layout="fullWidth"
-        class="rounded-md aspect-video"
-        loading="eager"
-        background="blurhash"
-      />
-    </figure>
-
-    <section class="flex justify-between col-start-1 col-end-13 mb-8
-      md:mb-16 lg:col-start-2 lg:col-end-12 xl:col-start-3 xl:col-end-11">
-      <div class="flex items-center space-x-8">
-        <div class="space-y-2">
-          <p class="text-sm text-primary font-semibold">
-            Published At
-          </p>
-
-          <p class="text-heading font-medium">
+      <div class="mt-8 flex items-center justify-between">
+        <p class="text-primary text-sm font-medium">
+          <time datetime={frontmatter.publishedAt as unknown as string}>
             {
               new Date(frontmatter.publishedAt).toLocaleString("en-GB", {
                 year: "numeric",
@@ -95,36 +74,33 @@ const { frontmatter } = Astro.props;
                 day: "numeric",
               })
             }
-          </p>
-        </div>
-
-        <div class="space-y-2">
-          <p class="text-sm text-primary font-semibold">
-            Last Updated
-          </p>
-
-          <p class="text-heading font-medium">
-            {
-              new Date(frontmatter.lastModified).toLocaleString("en-GB", {
-                year: "numeric",
-                month: "long",
-                day: "numeric",
-              })
-            }
-          </p>
-        </div>
-      </div>
-
-      <div class="space-y-2 text-right">
-        <p class="text-sm text-primary font-semibold">
-          Time to Read
+          </time> &bull; {frontmatter.timeToRead} minutes read
         </p>
 
-        <p class="text-heading font-medium">
-          {frontmatter.timeToRead} minutes read
-        </p>
+        <div class="hidden md:block">
+          <Webmention slug={frontmatter.slug} />
+        </div>
       </div>
-    </section>
+    </header>
+
+    <figure
+      class="col-start-1 col-end-13
+        my-8 md:mb-12 lg:col-start-2 lg:col-end-12 xl:col-start-3 xl:col-end-11"
+    >
+      <Image
+        src={frontmatter.image.url}
+        alt={`Image by ${frontmatter.image.author} from ${frontmatter.image.source}`}
+        title={frontmatter.title}
+        aspectRatio={16 / 9}
+        layout="fullWidth"
+        class="rounded-md aspect-video"
+        loading="eager"
+        background="blurhash"
+      />
+      <figcaption class="italic text-xs text-center mt-4">
+        Image by {frontmatter.image.author} from {frontmatter.image.source}
+      </figcaption>
+    </figure>
 
     <div
       class="col-start-1 col-end-13 lg:col-start-2 md:col-end-5 xl:col-start-3"
@@ -143,23 +119,54 @@ const { frontmatter } = Astro.props;
       <slot />
     </section>
 
-    <section
-      class="mt-16 col-start-1 col-end-6 lg:col-start-2 md:col-end-5 xl:col-start-3"
+    <div
+      class="mt-16 col-start-1 col-end-13 lg:col-start-2 md:col-end-5 xl:col-start-3 flex flex-col items-center md:items-start"
     >
-      <SocialLinks slug={frontmatter.slug} title={frontmatter.title} />
-    </section>
+      <p class="text-center text-sm lg:text-base md:text-left mb-6">Share this Post</p>
 
-    <section
+      <SocialLinks slug={frontmatter.slug} title={frontmatter.title} />
+    </div>
+
+    <div
       class="mt-16
-        col-start-6 col-end-13
-        justify-self-end
-        md:col-start-5 md:col-end-12
-        md:justify-self-start
-        lg:col-start-5
-        xl:col-end-11"
+      flex justify-between
+      col-start-1 col-end-13
+      md:col-start-5
+      lg:col-end-12
+      xl:col-end-11"
     >
-      <Webmention slug={frontmatter.slug} />
-    </section>
+      {
+        frontmatter.prevPost && (
+          <div>
+            <p class="text-sm lg:text-base">Previous Post</p>
+
+            <AppLink
+              href={`${frontmatter.prevPost.slug}`}
+              class="block text-heading font-medium leading-normal transition-colors lg:text-lg mt-4 flex items-center space-x-2 hover:text-primary focus:text-primary"
+            >
+              <Icon pack="lucide" name="arrow-left" class="w-5 h-5" />
+              <span>{frontmatter.prevPost.data.title}</span>
+            </AppLink>
+          </div>
+        )
+      }
+
+      {
+        frontmatter.nextPost && (
+          <div class="ml-auto text-right">
+            <p class="text-sm lg:text-base">Next Post</p>
+
+            <AppLink
+              href={`${frontmatter.nextPost.slug}`}
+              class="block text-heading font-medium leading-normal transition-colors lg:text-lg mt-4 flex items-center space-x-2 hover:text-primary focus:text-primary"
+            >
+              <span>{frontmatter.nextPost.data.title}</span>
+              <Icon pack="lucide" name="arrow-right" class="w-5 h-5" />
+            </AppLink>
+          </div>
+        )
+      }
+    </div>
   </article>
 </Layout>
 
