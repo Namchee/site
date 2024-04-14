@@ -14,14 +14,6 @@ export default defineConfig({
       sans: ['"Pretendard"', 'system-ui'],
       mono: ['"JetBrains Mono"', 'ui-monospace'],
     },
-    fontSize: {
-      'xs': ['12px', '1.25'],
-      'sm': ['14px', '1.25'],
-      'base': ['16px', '1.5'],
-      'lg': ['20px', '1.75'],
-      'xl': ['24px', '1.875'],
-      '2xl': ['30px', '1.875'],
-    },
     colors: {
       background: 'oklch(var(--background))',
       surface: 'oklch(var(--surface))',

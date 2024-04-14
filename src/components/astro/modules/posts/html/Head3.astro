@@ -10,9 +10,9 @@ type Props = HTMLAttributes<'h3'>;
 const { id, ...props } = Astro.props;
 ---
 
-<h3 class="group inline-flex items-center text-heading font-semibold transition-colors" id={id} {...props}>
+<h3 class="group inline-flex items-center text-heading text-xl font-semibold transition-colors" id={id} {...props}>
   <slot />
-  <AppLink href={`#${id}`} class="ml-1 text-content/70 hover:text-primary opacity-0 group-hover:opacity-100 transition-all">
+  <AppLink href={`#${id}`} class="ml-2 text-content/70 hover:text-primary opacity-0 group-hover:opacity-100 transition-all">
     <Icon pack="lucide" name="hash" class="w-4 h-auto" />
   </AppLink>
 </h3>

@@ -5,7 +5,7 @@ import AppLink from "@/components/astro/ui/AppLink.astro";
 
 const posts = (await getCollection('posts'))
   .filter(post => !post.data.isDraft)
-  .sort((a, b) => a.data.publishedAt.getTime() - b.data.publishedAt.getTime())
+  .sort((a, b) => b.data.publishedAt.getTime() - a.data.publishedAt.getTime())
   .slice(0, 3);
 ---
 
