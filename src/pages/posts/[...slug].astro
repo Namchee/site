@@ -11,37 +11,23 @@ type FrontmatterAddons = MarkdownFile["data"]["astro"]["frontmatter"];
 export async function getStaticPaths() {
   const posts = await getCollection("posts");
 
-  function sortPostByDate(
-    a: { data: FrontmatterData },
-    b: { data: FrontmatterData },
-  ) {
-    return (
-      new Date(b.data.publishedAt).getTime() -
-      new Date(a.data.publishedAt).getTime()
-    );
-  }
-
-  return posts.sort(sortPostByDate).map((entry, idx) => ({
+  return posts.map(entry => ({
     params: {
       slug: entry.slug,
     },
     props: {
       entry,
-      prevPost: idx + 1 === posts.length ? undefined : posts[idx + 1],
-      nextPost: idx === 0 ? undefined : posts[idx - 1],
     },
   }));
 }
 
-const { entry, prevPost, nextPost } = Astro.props;
+const { entry } = Astro.props;
 const { Content, remarkPluginFrontmatter, headings } = await entry.render();
 
 const frontmatter = {
   ...(remarkPluginFrontmatter as FrontmatterData & FrontmatterAddons),
   headings,
   slug: entry.slug,
-  prevPost,
-  nextPost,
 };
 ---
 

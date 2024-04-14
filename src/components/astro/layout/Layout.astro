@@ -13,10 +13,13 @@ export interface Props {
 }
 
 const postCollection = await getCollection('posts');
-const posts = postCollection.map((collection) => ({
-  title: collection.data.title || '',
-  href: `/posts/${collection.slug}`,
-}));
+const posts = postCollection
+  .filter(post => !post.data.isDraft)
+  .sort((a, b) => b.data.publishedAt.getTime() - a.data.publishedAt.getTime())
+  .map((collection) => ({
+    title: collection.data.title || '',
+    href: `/posts/${collection.slug}`,
+  }));
 
 const { title, description } = Astro.props;
 ---

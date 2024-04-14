@@ -14,11 +14,7 @@ import SocialLinks from "./SocialLinks.astro";
 
 interface Props {
   frontmatter: CollectionEntry<"posts">["data"] &
-    MarkdownFile["data"]["astro"]["frontmatter"] & {
-      slug: string;
-      prevPost: CollectionEntry<"posts">;
-      nextPost: CollectionEntry<"posts">;
-    };
+    MarkdownFile["data"]["astro"]["frontmatter"];
 }
 
 const { frontmatter } = Astro.props;
