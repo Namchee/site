@@ -42,7 +42,7 @@ const tocList = generateToC(headings);
       if (entry.intersectionRatio > 0) {
         document.querySelector(`nav ul li a[href="#${id}"]`).classList.add('text-primary', 'font-medium')
       } else {
-        document.querySelector(`nav ul li a[href="#${id}"]`).classList.remove('text-primary', 'font-medium')
+        document.querySelector(`nav ul li a[href="#${id}"]`).classList.remove('text-primary', 'font-medium');
       }
     });
   });

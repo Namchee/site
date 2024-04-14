@@ -5,5 +5,3 @@
     <slot />
   </kbd>
 </template>
-
-

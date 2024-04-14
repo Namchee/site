@@ -18,38 +18,40 @@ const postText = `I just read '${title}' by Namchee
 `;
 ---
 
-<div class="flex items-center space-x-4">
+<div class="flex items-center space-x-4 md:space-x-5">
   <button
     onclick="copyLink()"
     class="group cursor-pointer"
-    title="Copy Link to Clipboard"
+    title="Copy Post Link to Clipboard"
   >
     <Icon
       pack="lucide"
       name="link"
-      class="w-4 h-auto transition-colors group-hover:text-heading group-focus:text-heading"
+      class="w-4 md:w-5 h-auto transition-colors group-hover:text-heading group-focus:text-heading"
     />
   </button>
 
   <AppLink
     href={`https://twitter.com/intent/post?text=${encodeURIComponent(postText) + postUrl}`}
+    title="Share Post on Twitter"
     class="group"
   >
     <Icon
       pack="simple-icons"
       name="x"
-      class="w-4 h-auto transition-color group-hover:text-heading group-focus:text-heading"
+      class="w-4 md:w-5 h-auto transition-color group-hover:text-heading group-focus:text-heading"
     />
   </AppLink>
 
   <AppLink
     href={`https://www.linkedin.com/sharing/share-offsite/?url=${postUrl}`}
+    title="Share Post on LinkedIn"
     class="group"
   >
     <Icon
       pack="simple-icons"
       name="linkedin"
-      class="w-4 h-auto transition-color group-hover:text-heading group-focus:text-heading"
+      class="w-4 md:w-5 h-auto transition-color group-hover:text-heading group-focus:text-heading"
     />
   </AppLink>
 </div>

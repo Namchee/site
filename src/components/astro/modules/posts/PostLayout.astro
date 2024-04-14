@@ -9,7 +9,7 @@ import Badge from "@/components/astro/ui/Badge.astro";
 
 import BackButton from "./BackButton.astro";
 import TableOfContents from "./TableOfContents.astro";
-import Webmention from "./Webmention.astro";
+import Webmention from "./Webmentions.astro";
 import SocialLinks from "./SocialLinks.astro";
 
 interface Props {
@@ -152,7 +152,7 @@ const { frontmatter } = Astro.props;
 
     <section class="mt-16 flex justify-between items-center col-start-1 col-end-13 lg:col-start-2 lg:col-end-12 xl:col-start-3 xl:col-end-11">
       <div>
-        <p class="text-sm lg:text-base md:text-left mb-4">
+        <p class="text-sm md:text-base text-heading font-medium mb-4">
           Share this Post
         </p>
 
@@ -160,7 +160,7 @@ const { frontmatter } = Astro.props;
       </div>
 
       <div>
-        <p class="text-sm lg:text-base text-right mb-4">
+        <p class="text-sm md:text-base text-heading font-medium text-right mb-4">
           Webmentions
         </p>
 

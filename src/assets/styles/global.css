@@ -27,7 +27,7 @@ body {
 html.dark {
   /* Replace the token here */
   --background: 17.5% 0 0;
-  --surface: 28.09% 0 0;
+  --surface: 25% 0 0;
   --separator: 30% 0 0;
 
   --heading: 98.51% 0 0;
