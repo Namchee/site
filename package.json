@@ -52,7 +52,7 @@
     "@vueuse/core": "^10.7.0",
     "class-variance-authority": "^0.7.0",
     "dayjs": "^1.11.10",
-    "radix-vue": "^1.2.4"
+    "radix-vue": "^1.7.0"
   },
   "packageManager": "pnpm@8.11.0",
   "pnpm": {

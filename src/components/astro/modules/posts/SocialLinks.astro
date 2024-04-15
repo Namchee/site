@@ -3,6 +3,8 @@ import { Icon } from 'astro-iconify';
 
 import AppLink from '@/components/astro/ui/AppLink.astro';
 
+import CopyPostLink from '@/components/vue/CopyPostLink.vue';
+
 interface Props {
   slug: string;
   title: string;
@@ -19,17 +21,7 @@ const postText = `I just read '${title}' by Namchee
 ---
 
 <div class="flex items-center space-x-4">
-  <button
-    onclick="copyLink()"
-    class="group cursor-pointer"
-    title="Copy Post Link to Clipboard"
-  >
-    <Icon
-      pack="lucide"
-      name="link"
-      class="w-4 md:w-[18px] h-auto transition-colors group-hover:text-heading group-focus:text-heading"
-    />
-  </button>
+  <CopyPostLink client:visible />
 
   <AppLink
     href={`https://twitter.com/intent/post?text=${encodeURIComponent(postText) + postUrl}`}

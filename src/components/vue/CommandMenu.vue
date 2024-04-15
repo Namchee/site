@@ -168,7 +168,7 @@ watch(searchTerm, () => {
           class="w-4 h-4"
         />
         <p
-          class="absolute -bottom-8 text-sm  transition-all opacity-0 translate-y-1 group-hover:opacity-100 group-hover:translate-y-0 group-focus:opacity-100 group-focus:translate-y-0"
+          class="absolute -bottom-8 text-sm transition-all opacity-0 translate-y-1 group-hover:opacity-100 group-hover:translate-y-0 group-focus:opacity-100 group-focus:translate-y-0"
         >
           Menu
         </p>
@@ -255,14 +255,14 @@ watch(searchTerm, () => {
           <div class="flex items-center space-x-1">
             <Key
               title="Arrow Up"
-              class="text-[10px] px-[6px] py-1"
+              class="text-[10px] px-[6px] leading-normal"
             >
               ↑
             </Key>
 
             <Key
               title="Arrow Down"
-              class="text-[10px] px-[6px] py-1"
+              class="text-[10px] px-[6px] leading-normal"
             >
               ↓
             </Key>

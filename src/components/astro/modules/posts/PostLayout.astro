@@ -131,11 +131,6 @@ const { frontmatter } = Astro.props;
     </section>
 
     <div
-      class="col-start-1 col-end-13 lg:col-start-2 lg:col-end-12 xl:col-start-3 xl:col-end-11"
-    >
-    </div>
-
-    <div
       class="col-start-1 col-end-13 lg:col-start-2 md:col-end-5 xl:col-start-3"
     >
       <TableOfContents headings={frontmatter.headings} />
@@ -143,7 +138,7 @@ const { frontmatter } = Astro.props;
 
     <section
       class="col-start-1 col-end-13
-        space-y-6
+        space-y-5
         md:col-start-5
         lg:col-end-12
         xl:col-end-11
@@ -154,7 +149,7 @@ const { frontmatter } = Astro.props;
 
     <section class="mt-16 flex justify-between items-center col-start-1 col-end-13 lg:col-start-2 lg:col-end-12 xl:col-start-3 xl:col-end-11">
       <div>
-        <p class="text-sm md:text-base text-heading font-medium mb-4">
+        <p class="text-sm leading-normal md:text-base text-heading font-medium mb-5">
           Share this Post
         </p>
 
@@ -162,7 +157,7 @@ const { frontmatter } = Astro.props;
       </div>
 
       <div>
-        <p class="text-sm md:text-base text-heading font-medium text-right mb-4">
+        <p class="text-sm md:text-base text-heading font-medium text-right mb-5">
           Webmentions
         </p>
 

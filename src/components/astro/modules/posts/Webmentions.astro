@@ -29,17 +29,17 @@ const numberFormatter = Intl.NumberFormat('id-ID');
 <div class="flex items-center space-x-4">
   <div class="flex items-center space-x-2 md:text-lg" title="Number of likes for this post">
     <Icon pack="lucide" name="hand-heart" class="w-4 md:w-[18px] h-auto" />
-    <span>{numberFormatter.format(likes.length)}</span>
+    <span class="leading-none!">{numberFormatter.format(likes.length)}</span>
   </div>
 
-  <div class="flex items-center space-x-2 md:text-lg" title="Number of reposts">
+  <div class="flex items-center space-x-2 md:text-lg leading-none" title="Number of reposts">
     <Icon pack="lucide" name="repeat-2" class="w-4 md:w-[18px] h-auto" />
-    <span>{numberFormatter.format(reposts.length)}</span>
+    <span class="leading-none!">{numberFormatter.format(reposts.length)}</span>
   </div>
 
-  <div class="flex items-center space-x-2 md:text-lg" title="Number of replies and comments">
+  <div class="flex items-center space-x-2 md:text-lg leading-none" title="Number of replies and comments">
     <Icon pack="lucide" name="message-square-text" class="w-4 md:w-[18px] h-auto" />
-    <span>{numberFormatter.format(replies.length)}</span>
+    <span class="leading-none!">{numberFormatter.format(replies.length)}</span>
   </div>
 </div>
 
