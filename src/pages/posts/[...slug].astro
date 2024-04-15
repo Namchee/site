@@ -1,15 +1,15 @@
 ---
-import { getCollection, type CollectionEntry } from 'astro:content';
+import { getCollection, type CollectionEntry } from "astro:content";
 
-import PostLayout from '@/components/astro/modules/posts/PostLayout.astro';
+import PostLayout from "@/components/astro/modules/posts/PostLayout.astro";
 
-import type { MarkdownFile } from '@/plugins/remark/types';
+import type { MarkdownFile } from "@/plugins/remark/types";
 
-type FrontmatterData = CollectionEntry<'posts'>['data'];
-type FrontmatterAddons = MarkdownFile['data']['astro']['frontmatter'];
+type FrontmatterData = CollectionEntry<"posts">["data"];
+type FrontmatterAddons = MarkdownFile["data"]["astro"]["frontmatter"];
 
 export async function getStaticPaths() {
-  const posts = await getCollection('posts');
+  const posts = await getCollection("posts");
 
   return posts.map(entry => ({
     params: {
@@ -17,7 +17,7 @@ export async function getStaticPaths() {
     },
     props: {
       entry,
-    }
+    },
   }));
 }
 
@@ -25,7 +25,7 @@ const { entry } = Astro.props;
 const { Content, remarkPluginFrontmatter, headings } = await entry.render();
 
 const frontmatter = {
-  ...remarkPluginFrontmatter as FrontmatterData & FrontmatterAddons,
+  ...(remarkPluginFrontmatter as FrontmatterData & FrontmatterAddons),
   headings,
   slug: entry.slug,
 };

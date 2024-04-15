@@ -28,7 +28,7 @@ const experiences = [
   {
     experiences.map((exp) => (
       <li class="md:grid grid-cols-[10ch_1fr_max-content] items-center gap-x-4">
-        <p class="flex items-center space-x-2 ml-auto text-sm text-accent md:text-base mb-2 md:mb-0">
+        <p class="flex items-center space-x-2 ml-auto text-sm md:text-base mb-2 md:mb-0">
           {exp.duration.toLowerCase() === 'current' && (
             <Pulse class="-mt-[2.5px]" />
           )}
@@ -37,12 +37,12 @@ const experiences = [
 
         <AppLink
           href={exp.link}
-          class="font-medium md:font-normal text-heading transition-colors hover:text-primary focus:text-primary inline-flex items-center space-x-2 text-balance"
+          class="font-medium text-heading transition-colors hover:text-primary focus:text-primary inline-flex items-center space-x-2 text-balance"
         >
           {exp.name}
         </AppLink>
 
-        <p class="text-accent">{exp.title}</p>
+        <p>{exp.title}</p>
       </li>
     ))
   }

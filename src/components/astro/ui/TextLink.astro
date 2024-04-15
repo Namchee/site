@@ -7,8 +7,7 @@ type Props = HTMLAttributes<'a'>;
 
 const { class: className, ...props } = Astro.props;
 
-const baseClass = `font-medium
-  text-heading
+const baseClass = `text-heading
   cursor-pointer
   decoration-outline
   decoration-heading
@@ -27,5 +26,8 @@ const baseClass = `font-medium
 
 <AppLink
   class:list={[baseClass, className]}
+  style={{
+    fontWeight: 525,
+  }}
   {...props}
 ><slot /></AppLink>

@@ -11,7 +11,7 @@ export default defineConfig({
       '2xl': '1536px',
     },
     fontFamily: {
-      sans: ['"Nacelle"', 'system-ui'],
+      sans: ['"Pretendard"', 'system-ui'],
       mono: ['"JetBrains Mono"', 'ui-monospace'],
     },
     colors: {
@@ -21,7 +21,6 @@ export default defineConfig({
 
       heading: 'oklch(var(--heading))',
       content: 'oklch(var(--content))',
-      accent: 'oklch(var(--accent))',
 
       primary: 'oklch(var(--primary))',
 

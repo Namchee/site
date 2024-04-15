@@ -17,17 +17,17 @@ const { headings } = Astro.props;
 const tocList = generateToC(headings);
 ---
 
-<nav class="flex flex-col sticky top-8 bottom-0 text-sm">
-  <p class="text-accent mb-4 font-medium text-heading">
-    Table of Contents
+<nav class="flex flex-col sticky top-24 bottom-0 bg-surface p-4 rounded-md md:bg-transparent md:p-0 mb-8 md:mb-0">
+  <p class="mb-4 font-semibold text-heading transition-colors">
+    In this post
   </p>
 
   <ToCList headings={tocList} />
 
-  <AppLink href="#" class="flex items-center space-x-2 mt-12 text-heading backToTop__button">
-    <Icon pack="lucide" name="corner-left-up" class="w-4 h-auto relative -top-[2px]" />
+  <button class="md:flex md:items-center space-x-2 mt-8 text-heading hidden transition-colors backToTop__button">
+    <Icon pack="lucide" name="corner-left-up" class="w-4 h-auto" />
     <span>Back to Top</span>
-  </AppLink>
+  </button>
 </nav>
 
 <script>
@@ -40,9 +40,9 @@ const tocList = generateToC(headings);
     entries.forEach(entry => {
       const id = entry.target.id;
       if (entry.intersectionRatio > 0) {
-        document.querySelector(`nav ul li a[href="#${id}"]`).classList.add('text-primary', 'translate-x-1')
+        document.querySelector(`nav ul li a[href="#${id}"]`).classList.add('text-primary', 'font-medium')
       } else {
-        document.querySelector(`nav ul li a[href="#${id}"]`).classList.remove('text-primary', 'translate-x-1')
+        document.querySelector(`nav ul li a[href="#${id}"]`).classList.remove('text-primary', 'font-medium');
       }
     });
   });

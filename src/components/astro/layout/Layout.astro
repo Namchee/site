@@ -13,10 +13,13 @@ export interface Props {
 }
 
 const postCollection = await getCollection('posts');
-const posts = postCollection.map((collection) => ({
-  title: collection.data.title || '',
-  href: `/posts/${collection.slug}`,
-}));
+const posts = postCollection
+  .filter(post => !post.data.isDraft)
+  .sort((a, b) => b.data.publishedAt.getTime() - a.data.publishedAt.getTime())
+  .map((collection) => ({
+    title: collection.data.title || '',
+    href: `/posts/${collection.slug}`,
+  }));
 
 const { title, description } = Astro.props;
 ---
@@ -36,9 +39,8 @@ const { title, description } = Astro.props;
       rel="webmention"
       href="https://webmention.io/www.namchee.dev/webmention"
     />
-    <link rel="preload" href="/fonts/nacelle.woff2" as="font" type="font/woff2" crossorigin>
-    <link rel="preload" href="/fonts/nacelle-italic.woff2" as="font" type="font/woff2" crossorigin>
-    <link rel="preload" href="/fonts/nacelle-medium.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="/fonts/pretendard.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="/fonts/jetbrains-mono.woff2" as="font" type="font/woff2" crossorigin>
     <script is:inline>
       const docEl = document.documentElement;
       const svgIcon = document.querySelector('.favicon');
@@ -68,7 +70,7 @@ const { title, description } = Astro.props;
     <title>{title}</title>
   </head>
   <body
-    class="bg-background transition-colors text-content min-h-screen flex flex-col font-sans"
+    class="bg-background transition-colors text-content min-h-screen flex flex-col font-sans antialiased"
   >
     <CommandMenu posts={posts} client:load />
     <main class="w-full max-w-7xl mx-auto flex-1">
@@ -95,7 +97,7 @@ const { title, description } = Astro.props;
          ▀      ▀█▄  ▄█▀      ▀
                ▄▄██████▄▄
 
-         Hey there developers!
+        Hey there developers 🤓!
     There's nothing here, so scram!
 `);
 </script>

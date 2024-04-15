@@ -146,7 +146,7 @@ watch(searchTerm, () => {
 </script>
 
 <template>
-  <DialogRoot>
+  <DialogRoot v-model:open="visible">
     <DialogTrigger as-child>
       <button
         class="grid place-items-center
@@ -160,7 +160,6 @@ watch(searchTerm, () => {
           transition-all
           shadow
           md:top-8
-          lg:shadow-none
           grid
           place-items-center"
       >
@@ -169,7 +168,7 @@ watch(searchTerm, () => {
           class="w-4 h-4"
         />
         <p
-          class="absolute -bottom-8 text-sm  transition-all opacity-0 translate-y-1 group-hover:opacity-100 group-hover:translate-y-0 group-focus:opacity-100 group-focus:translate-y-0"
+          class="absolute -bottom-8 text-sm transition-all opacity-0 translate-y-1 group-hover:opacity-100 group-hover:translate-y-0 group-focus:opacity-100 group-focus:translate-y-0"
         >
           Menu
         </p>
@@ -198,7 +197,7 @@ watch(searchTerm, () => {
           </div>
 
           <div v-if="relevantLinks.length > 0">
-            <span class="font-medium text-xs mb-2">
+            <span class="font-semibold text-xs mb-2">
               Pages
             </span>
 
@@ -230,7 +229,7 @@ watch(searchTerm, () => {
           </div>
 
           <div v-if="relevantPosts.length > 0">
-            <span class="font-medium text-xs mb-2">
+            <span class="font-semibold text-xs mb-2">
               Posts
             </span>
 
@@ -256,19 +255,19 @@ watch(searchTerm, () => {
           <div class="flex items-center space-x-1">
             <Key
               title="Arrow Up"
-              class="text-[10px] px-[6px]"
+              class="text-[10px] px-[6px] leading-normal"
             >
               ↑
             </Key>
 
             <Key
               title="Arrow Down"
-              class="text-[10px] px-[6px]"
+              class="text-[10px] px-[6px] leading-normal"
             >
               ↓
             </Key>
 
-            <p class="mt-1 font-medium text-xs">
+            <p class="font-medium text-xs">
               Navigate
             </p>
           </div>
@@ -281,7 +280,7 @@ watch(searchTerm, () => {
               Enter
             </Key>
 
-            <p class="mt-1 font-medium text-xs">
+            <p class="font-medium text-xs">
               Open
             </p>
           </div>
@@ -294,7 +293,7 @@ watch(searchTerm, () => {
               Esc
             </Key>
 
-            <p class="mt-1 font-medium text-xs">
+            <p class="font-medium text-xs">
               Close
             </p>
           </div>

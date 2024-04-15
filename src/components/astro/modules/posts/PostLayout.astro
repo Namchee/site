@@ -1,145 +1,201 @@
 ---
-import { Image } from '@unpic/astro';
+import { Image } from "@unpic/astro";
 
-import type { CollectionEntry } from 'astro:content';
-import type { MarkdownFile } from '@/plugins/remark/types';
+import type { CollectionEntry } from "astro:content";
+import type { MarkdownFile } from "@/plugins/remark/types";
 
-import Layout from '@/components/astro/layout/Layout.astro';
+import Layout from "@/components/astro/layout/Layout.astro";
+import Badge from "@/components/astro/ui/Badge.astro";
 
-import AppLink from '@/components/astro/ui/AppLink.astro';
-
-import BackButton from './BackButton.astro';
-import TableOfContents from './TableOfContents.astro';
-import Webmention from './Webmention.astro';
+import BackButton from "./BackButton.astro";
+import TableOfContents from "./TableOfContents.astro";
+import Webmention from "./Webmentions.astro";
+import SocialLinks from "./SocialLinks.astro";
 
 interface Props {
-  frontmatter: CollectionEntry<'posts'>['data'] &
-    MarkdownFile['data']['astro']['frontmatter'] & { slug: string };
+  frontmatter: CollectionEntry<"posts">["data"] &
+    MarkdownFile["data"]["astro"]["frontmatter"] & {
+      slug: string;
+    };
 }
 
 const { frontmatter } = Astro.props;
-
-const postUrl = encodeURIComponent(
-  `${Astro.site.toString()}/posts/${frontmatter.slug}`
-);
-const postText = `I just read '${frontmatter.title}' by Namchee
-
-${postUrl}`;
 ---
 
 <Layout
   title={`${frontmatter.title} — Namchee`}
   description={frontmatter.subtitle}
 >
+  <progress class="reading__progress h-[2px] fixed w-screen left-0 z-10"
+  ></progress>
+
   <BackButton />
 
-  <article class="relative grid grid-cols-12 gap-4 my-24 px-8 lg:my-32 lg:px-0">
-    <header class="col-start-1 col-end-13 flex flex-col items-center">
-      <div class="flex space-x-2 mb-4">
+  <article class="grid grid-cols-12 gap-x-4 px-8 my-32 lg:px-0">
+    <header
+      class="col-start-1 col-end-13 lg:col-start-2 lg:col-end-12 xl:col-start-3 xl:col-end-11"
+    >
+      <div class="flex space-x-2 mb-2">
         {
           frontmatter.tags.map((tag) => (
-            <div class="grid place-items-center rounded-full text-xs bg-surface py-1 px-2 transition-colors">
-              <span class="mt-[2px]">
-                {tag[0].toUpperCase() + tag.slice(1)}
-              </span>
-            </div>
+            <Badge variant="primary">
+              {tag[0].toUpperCase() + tag.slice(1)}
+            </Badge>
           ))
         }
       </div>
-
       <h1
-        class="text-3xl
+        class="text-2xl
         text-heading
-        font-medium
-        md:text-4xl"
+        font-semibold
+        tracking-tight
+        leading-normal!
+        md:text-3xl"
       >
         {frontmatter.title}
       </h1>
 
-      <p class="md:text-lg text-balance text-center mt-2 leading-snug md:mt-4">
+      <p class="mt-4 text-sm md:text-base leading-normal!">
         {frontmatter.subtitle}
-      </p>
-
-      <p class="text-sm md:text-base font-medium text-primary mt-8 md:mt-12">
-        {
-          new Date(frontmatter.publishedAt).toLocaleString('en-GB', {
-            year: 'numeric',
-            month: 'long',
-            day: 'numeric',
-          })
-        } &mdash; {frontmatter.timeToRead} minutes read
       </p>
     </header>
 
-    <figure
+    <section
       class="col-start-1 col-end-13
-        my-8
-        md:mb-16 md:col-start-2 md:col-end-12"
+      my-8 md:mb-16 lg:col-start-2 lg:col-end-12 xl:col-start-3 xl:col-end-11"
     >
-      <Image
-        src={frontmatter.image.url}
-        alt={`${frontmatter.title} - by ${frontmatter.image.author}`}
-        title={frontmatter.title}
-        width={1064}
-        height={599}
-        class="rounded-lg aspect-video"
-        loading="eager"
-        background="blurhash"
-      />
-      <figcaption class="italic text-accent text-xs text-center mt-4">
-        Image courtesy of {frontmatter.image.author} from {
-          frontmatter.image.source
-        }
-      </figcaption>
-    </figure>
+      <figure>
+        <Image
+          src={frontmatter.image.url}
+          alt={`${frontmatter.title} - Image by ${frontmatter.image.author} from ${frontmatter.image.source}`}
+          title={`${frontmatter.title} - Image by ${frontmatter.image.author} from ${frontmatter.image.source}`}
+          width={1280}
+          height={720}
+          aspectRatio={16 / 9}
+          class="rounded-md aspect-video"
+          loading="eager"
+          background="blurhash"
+        />
+      </figure>
 
-    <div class="hidden
-      lg:block lg:col-start-3 lg:col-end-5">
+      <div class="mt-4 md:mt-8 flex items-center justify-between">
+        <div class="flex items-center space-x-8">
+          <div>
+            <p class="text-xs md:text-sm font-medium text-primary leading-normal mb-1">
+              Published At
+            </p>
+
+            <time
+              datetime={frontmatter.publishedAt as unknown as string}
+              class="text-sm md:text-base text-heading font-medium"
+            >
+              {
+                new Date(frontmatter.publishedAt).toLocaleString("en-GB", {
+                  year: "numeric",
+                  month: "long",
+                  day: "numeric",
+                })
+              }
+            </time>
+          </div>
+
+          <div class="hidden md:block">
+            <p class="text-sm font-medium text-primary leading-normal mb-1">
+              Last Updated
+            </p>
+
+            <time
+              datetime={frontmatter.lastModified as unknown as string}
+              class="text-heading font-medium"
+            >
+              {
+                new Date(frontmatter.lastModified).toLocaleString("en-GB", {
+                  year: "numeric",
+                  month: "long",
+                  day: "numeric",
+                })
+              }
+            </time>
+          </div>
+        </div>
+
+        <div class="text-right">
+          <p class="text-xs md:text-sm font-medium text-primary leading-normal mb-1">
+            Time to Read
+          </p>
+
+          <p class="text-sm md:text-base text-heading font-medium">
+            {frontmatter.timeToRead} minutes read
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <div
+      class="col-start-1 col-end-13 lg:col-start-2 md:col-end-5 xl:col-start-3"
+    >
       <TableOfContents headings={frontmatter.headings} />
     </div>
 
     <section
       class="col-start-1 col-end-13
-        space-y-6
-        md:col-start-2 md:col-end-12
-        lg:ml-4 lg:col-start-5 lg:col-end-11"
+        space-y-5
+        md:col-start-5
+        lg:col-end-12
+        xl:col-end-11
+        leading-[1.75]"
     >
       <slot />
     </section>
 
-    <section
-      class="col-start-1 col-end-13
-      mt-24 flex justify-between items-center
-      md:col-start-2 md:col-end-12
-      lg:col-start-3 lg:col-end-11
-      border-t border-t-separator transition-colors
-      pt-8"
-    >
+    <section class="mt-16 flex justify-between items-center col-start-1 col-end-13 lg:col-start-2 lg:col-end-12 xl:col-start-3 xl:col-end-11">
       <div>
-        <Webmention slug={frontmatter.slug} />
-
-        <p class="text-xs mt-2">
-          Powered by <AppLink
-            class="font-medium transition-colors hover:text-primary focus:text-primary"
-            href="https://indieweb.org/Webmention"
-          >
-            Webmentions
-          </AppLink>
+        <p class="text-sm leading-normal md:text-base text-heading font-medium mb-5">
+          Share this Post
         </p>
+
+        <SocialLinks slug={frontmatter.slug} title={frontmatter.title} />
       </div>
 
-      <AppLink
-        href={`https://x.com/share?url=${postUrl}&text=${postText}`}
-        class="text-sm font-medium transition-colors hover:text-primary focus:text-primary"
-      >
-        Tweet this post
-      </AppLink>
+      <div>
+        <p class="text-sm md:text-base text-heading font-medium text-right mb-5">
+          Webmentions
+        </p>
+
+        <Webmention slug={frontmatter.slug} />
+      </div>
     </section>
   </article>
 </Layout>
 
 <style is:inline>
-  p {
-    line-height: 1.75;
+  .reading__progress::-webkit-progress-bar {
+    background-color: transparent;
+  }
+  .reading__progress::-webkit-progress-value {
+    background-color: oklch(var(--primary));
+  }
+
+  .reading__progress::-moz-progress-bar {
+    background-color: oklch(var(--primary));
   }
 </style>
+
+<script is:inline>
+  const progressBar = document.querySelector(".reading__progress");
+
+  const windowHeight = window.innerHeight;
+  const documentHeight = document.documentElement.scrollHeight;
+  const max = documentHeight - windowHeight;
+  progressBar.setAttribute("max", max);
+
+  function copyLink() {
+    navigator.clipboard.writeText(
+      window.location.origin + window.location.pathname,
+    );
+  }
+
+  window.addEventListener("scroll", () => {
+    progressBar.setAttribute("value", window.scrollY);
+  });
+</script>

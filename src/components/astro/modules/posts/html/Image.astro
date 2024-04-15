@@ -1,9 +1,9 @@
 ---
-import { Image as Img } from '@unpic/astro';
+import { Image as Img } from "@unpic/astro";
 
-import type { HTMLAttributes } from 'astro/types';
+import type { HTMLAttributes } from "astro/types";
 
-type Props = HTMLAttributes<'img'>;
+type Props = HTMLAttributes<"img">;
 
 const { alt, src } = Astro.props;
 ---
@@ -13,13 +13,14 @@ const { alt, src } = Astro.props;
     src={src}
     alt={alt}
     title={alt}
-    width={616}
-    height={347}
+    width={640}
+    height={360}
+    aspectRatio={16 / 9}
     class="rounded-md"
     placeholder="blurhash"
   />
 
-  <figcaption class="italic text-accent text-xs text-center mt-4">
+  <figcaption class="italic text-xs text-center mt-4">
     {alt}
   </figcaption>
 </figure>

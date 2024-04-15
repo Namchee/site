@@ -5,7 +5,7 @@ import AppLink from "@/components/astro/ui/AppLink.astro";
 
 const posts = (await getCollection('posts'))
   .filter(post => !post.data.isDraft)
-  .sort((a, b) => a.data.publishedAt.getTime() - b.data.publishedAt.getTime())
+  .sort((a, b) => b.data.publishedAt.getTime() - a.data.publishedAt.getTime())
   .slice(0, 3);
 ---
 
@@ -15,12 +15,12 @@ const posts = (await getCollection('posts'))
       <li class="flex flex-col md:flex-row md:justify-between md:items-center gap-x-4">
         <AppLink
           href={`/posts/${post.slug}`}
-          class="font-medium md:font-normal text-heading transition-colors hover:text-primary focus:text-primary inline-flex items-center space-x-2 text-balance"
+          class="font-medium text-heading transition-colors hover:text-primary focus:text-primary inline-flex items-center space-x-2 text-balance"
         >
           {post.data.title}
         </AppLink>
 
-        <p class="text-accent text-xs md:text-base mt-2 md:mt-0">{post.data.publishedAt.toLocaleString('en-GB', {
+        <p class="text-xs md:text-base mt-2 md:mt-0">{post.data.publishedAt.toLocaleString('en-GB', {
           year: 'numeric',
           month: 'long',
           day: 'numeric',

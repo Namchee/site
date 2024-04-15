@@ -25,18 +25,19 @@ const books = await getCurrentlyReadBooks();
           <div class="flex flex-col justify-center">
             <AppLink
               href={book.url}
-              class="text-heading transition-colors hover:text-primary focus:text-primary flex items-center space-x-[2px]"
+              class="text-heading font-medium transition-colors hover:text-primary focus:text-primary flex items-center space-x-[2px]"
             >
               <span>{book.title}</span>
 
               <Icon
                 pack="lucide"
                 name="arrow-up-right"
-                class="w-4 h-auto -mt-[2px]"
+                class="w-4 h-auto"
               />
             </AppLink>
-            <p class="text-sm text-accent italic">{book.subtitle}</p>
-            <p class="mt-4 text-accent">{book.author.join(' & ')}</p>
+
+            <p class="text-sm leading-normal italic">{book.subtitle}</p>
+            <p class="mt-4">{book.author.join(' & ')}</p>
           </div>
         </li>
       );

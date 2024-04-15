@@ -1,0 +1,57 @@
+---
+import { Icon } from 'astro-iconify';
+
+import AppLink from '@/components/astro/ui/AppLink.astro';
+
+import CopyPostLink from '@/components/vue/CopyPostLink.vue';
+
+interface Props {
+  slug: string;
+  title: string;
+}
+
+const { slug, title } = Astro.props;
+
+const postUrl = encodeURIComponent(
+  `${Astro.site.toString()}/posts/${slug}`,
+);
+const postText = `I just read '${title}' by Namchee
+
+`;
+---
+
+<div class="flex items-center space-x-4">
+  <CopyPostLink client:visible />
+
+  <AppLink
+    href={`https://twitter.com/intent/post?text=${encodeURIComponent(postText) + postUrl}`}
+    title="Share Post on Twitter"
+    class="group"
+  >
+    <Icon
+      pack="simple-icons"
+      name="x"
+      class="w-4 md:w-[18px] h-auto transition-color group-hover:text-heading group-focus:text-heading"
+    />
+  </AppLink>
+
+  <AppLink
+    href={`https://www.linkedin.com/sharing/share-offsite/?url=${postUrl}`}
+    title="Share Post on LinkedIn"
+    class="group"
+  >
+    <Icon
+      pack="simple-icons"
+      name="linkedin"
+      class="w-4 md:w-[18px] h-auto transition-color group-hover:text-heading group-focus:text-heading"
+    />
+  </AppLink>
+</div>
+
+<script is:inline>
+  function copyLink() {
+    navigator.clipboard.writeText(
+      window.location.origin + window.location.pathname,
+    );
+  }
+</script>
