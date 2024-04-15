@@ -19,6 +19,7 @@ const { id, ...props } = Astro.props;
   <AppLink
     href={`#${id}`}
     class="ml-1 text-content/70 hover:text-primary opacity-0 group-hover:opacity-100 transition-all"
+    aria-hidden="true"
   >
     <Icon pack="lucide" name="hash" class="w-4 h-auto" />
   </AppLink>
