@@ -46,7 +46,10 @@ export async function getInsight(location: string): Promise<PageSpeed> {
   // use speed index since it's not a heavy-interaction website
   const time = pagespeed.lighthouseResult.audits['speed-index'];
 
-  const totalBytes = bytes.details.items.reduce((acc, curr) => acc + curr.transferSize, 0);
+  const totalBytes = bytes.details.items.reduce(
+    (acc, curr) => acc + curr.transferSize,
+    0,
+  );
   // eslint-disable-next-line @typescript-eslint/no-unsafe-call
   const swd = new co2({ model: 'swd' }) as Calculator;
 

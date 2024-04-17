@@ -37,16 +37,16 @@ const description =
             <li>
               <AppLink
                 href={`/posts/${post.slug}`}
-                class=":uno: text-heading font-semibold tracking-tigh hover:text-primary focus:text-primary transition-colors"
+                class=":uno: text-heading font-semibold hover:text-primary focus:text-primary transition-colors tracking-tigh"
               >
                 {post.data.title}
               </AppLink>
 
-              <p class=":uno: text-sm leading-relaxed mt-1 transition-colors">
+              <p class=":uno: text-sm leading-relaxed transition-colors mt-1">
                 {post.data.subtitle}
               </p>
 
-              <div class=":uno: flex items-center space-x-4 mt-4 text-xs">
+              <div class=":uno: flex items-center space-x-4 text-xs mt-4">
                 <time>
                   {new Date(post.data.publishedAt).toLocaleString("en-GB", {
                     year: "numeric",

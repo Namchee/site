@@ -27,8 +27,8 @@ const experiences = [
 <ul class=":uno: space-y-6 md:space-y-3">
   {
     experiences.map((exp) => (
-      <li class=":uno: md:grid grid-cols-[10ch_1fr_max-content] items-center gap-x-4">
-        <p class=":uno: flex items-center space-x-2 ml-auto text-sm md:text-base mb-2 md:mb-0">
+      <li class=":uno: md:grid items-center gap-x-4 grid-cols-[10ch_1fr_max-content]">
+        <p class=":uno: flex items-center space-x-2 text-sm md:text-base mb-2 ml-auto md:mb-0">
           {exp.duration.toLowerCase() === 'current' && (
             <Pulse class=":uno: -mt-[2.5px]" />
           )}

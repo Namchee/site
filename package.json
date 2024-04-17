@@ -11,6 +11,8 @@
     "sync": "astro sync",
     "check": "astro check",
     "test": "vitest",
+    "lint": "eslint src",
+    "lint:fix": "eslint src --fix",
     "webmentions:sync": "tsx ./src/scripts/webmentions.ts"
   },
   "devDependencies": {

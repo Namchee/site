@@ -61,14 +61,14 @@ const description = 'A list of books I\'ve read and recommend to either boost yo
       class=":uno: col-start-1 col-end-13 md:col-end-5 lg:col-start-2 lg:col-end-5 xl:col-start-3"
     >
       <div class=":uno: sticky top-12">
-        <h1 class=":uno: text-xl text-heading font-semibold tracking-tight">
+        <h1 class=":uno: text-xl text-heading tracking-tight font-semibold">
           Bookshelf
         </h1>
       </div>
     </header>
 
     <div
-      class=":uno: mt-8 md:mt-0 col-start-1 col-end-13 md:mt-0 md:col-start-6 lg:col-start-6 lg:col-end-12 xl:col-start-6 xl:col-end-11 space-y-16"
+      class=":uno: col-start-1 col-end-13 mt-8 md:mt-0 md:mt-0 md:col-start-6 lg:col-start-6 lg:col-end-12 xl:col-start-6 xl:col-end-11 space-y-16"
     >
       <section class=":uno: space-y-4">
         <p>
@@ -87,7 +87,7 @@ const description = 'A list of books I\'ve read and recommend to either boost yo
           const bookList = book.map((b) => (
             <li class=":uno: md:grid md:grid-cols-[max-content_auto] justify-between">
               <AppLink
-                class=":uno: text-heading text-balance inline-flex items-center space-x-[2px] transition-colors hover:text-primary focus:text-primary"
+                class=":uno: text-heading transition-colors text-balance inline-flex items-center space-x-[2px] hover:text-primary focus:text-primary"
                 href={b.link}
               >
                 <span>{b.title}</span>
@@ -98,7 +98,7 @@ const description = 'A list of books I\'ve read and recommend to either boost yo
                 />
               </AppLink>
 
-              <p class=":uno: text-xs md:text-base text-balance md:text-right">
+              <p class=":uno: text-balance text-xs md:text-base md:text-right">
                 {b.author}
               </p>
             </li>
@@ -106,7 +106,7 @@ const description = 'A list of books I\'ve read and recommend to either boost yo
 
           return (
             <div>
-              <p class=":uno: text-sm font-semibold mb-4">{year}</p>
+              <p class=":uno: font-semibold text-sm mb-4">{year}</p>
 
               <ul class=":uno: space-y-3 md:space-y-2">{bookList}</ul>
             </div>
