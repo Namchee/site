@@ -3,8 +3,6 @@ import type { MarkdownHeading } from 'astro';
 
 import { Icon } from 'astro-iconify';
 
-import AppLink from '@/components/astro/ui/AppLink.astro';
-
 import generateToC from '@/scripts/toc';
 
 import ToCList from './TocList.astro';
@@ -17,15 +15,15 @@ const { headings } = Astro.props;
 const tocList = generateToC(headings);
 ---
 
-<nav class="flex flex-col sticky top-24 bottom-0 bg-surface p-4 rounded-md md:bg-transparent md:p-0 mb-8 md:mb-0">
-  <p class="mb-4 font-semibold text-heading transition-colors">
+<nav class=":uno: flex flex-col sticky top-24 bottom-0 bg-surface p-4 rounded-md md:bg-transparent md:p-0 mb-8 md:mb-0">
+  <p class=":uno: mb-4 font-semibold text-heading transition-colors">
     In this post
   </p>
 
   <ToCList headings={tocList} />
 
-  <button class="md:flex md:items-center space-x-2 mt-8 text-heading hidden transition-colors backToTop__button">
-    <Icon pack="lucide" name="corner-left-up" class="w-4 h-auto" />
+  <button class=":uno: md:flex md:items-center space-x-2 mt-8 text-heading hidden transition-colors backToTop__button">
+    <Icon pack="lucide" name="corner-left-up" class=":uno: w-4 h-auto" />
     <span>Back to Top</span>
   </button>
 </nav>

@@ -56,21 +56,21 @@ const description = 'A list of books I\'ve read and recommend to either boost yo
 ---
 
 <Layout title={title} description={description}>
-  <div class="grid grid-cols-12 gap-4 my-16 px-8 lg:my-32 lg:px-0">
+  <div class=":uno: grid grid-cols-12 gap-4 my-16 px-8 lg:my-32 lg:px-0">
     <header
-      class="col-start-1 col-end-13 md:col-end-5 lg:col-start-2 lg:col-end-5 xl:col-start-3"
+      class=":uno: col-start-1 col-end-13 md:col-end-5 lg:col-start-2 lg:col-end-5 xl:col-start-3"
     >
-      <div class="sticky top-12">
-        <h1 class="text-xl text-heading font-semibold tracking-tight">
+      <div class=":uno: sticky top-12">
+        <h1 class=":uno: text-xl text-heading font-semibold tracking-tight">
           Bookshelf
         </h1>
       </div>
     </header>
 
     <div
-      class="mt-8 md:mt-0 col-start-1 col-end-13 md:mt-0 md:col-start-6 lg:col-start-6 lg:col-end-12 xl:col-start-6 xl:col-end-11 space-y-16"
+      class=":uno: mt-8 md:mt-0 col-start-1 col-end-13 md:mt-0 md:col-start-6 lg:col-start-6 lg:col-end-12 xl:col-start-6 xl:col-end-11 space-y-16"
     >
-      <section class="space-y-4">
+      <section class=":uno: space-y-4">
         <p>
           Starting from 2023, I've been building my reading habit and found the
           experience to be rewarding for my career and personal life.
@@ -85,20 +85,20 @@ const description = 'A list of books I\'ve read and recommend to either boost yo
       {
         Object.entries(books).map(([year, book]) => {
           const bookList = book.map((b) => (
-            <li class="md:grid md:grid-cols-[max-content_auto] justify-between">
+            <li class=":uno: md:grid md:grid-cols-[max-content_auto] justify-between">
               <AppLink
-                class="text-heading text-balance inline-flex items-center space-x-[2px] transition-colors hover:text-primary focus:text-primary"
+                class=":uno: text-heading text-balance inline-flex items-center space-x-[2px] transition-colors hover:text-primary focus:text-primary"
                 href={b.link}
               >
                 <span>{b.title}</span>
                 <Icon
                   pack="lucide"
                   name="arrow-up-right"
-                  class="w-4 h-auto"
+                  class=":uno: w-4 h-auto"
                 />
               </AppLink>
 
-              <p class="text-xs md:text-base text-balance md:text-right">
+              <p class=":uno: text-xs md:text-base text-balance md:text-right">
                 {b.author}
               </p>
             </li>
@@ -106,9 +106,9 @@ const description = 'A list of books I\'ve read and recommend to either boost yo
 
           return (
             <div>
-              <p class="text-sm font-semibold mb-4">{year}</p>
+              <p class=":uno: text-sm font-semibold mb-4">{year}</p>
 
-              <ul class="space-y-3 md:space-y-2">{bookList}</ul>
+              <ul class=":uno: space-y-3 md:space-y-2">{bookList}</ul>
             </div>
           );
         })

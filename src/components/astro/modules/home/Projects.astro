@@ -31,38 +31,38 @@ const projects = [
 ];
 ---
 
-<ul class="space-y-4">
+<ul class=":uno: space-y-4">
   {
     projects.map((project) => {
       return (
-        <li class="flex space-x-4">
-          <LogoContainer class="w-12 h-12" title={project.title}>
-            <project.icon class="w-6 h-6 text-heading" />
+        <li class=":uno: flex space-x-4">
+          <LogoContainer class=":uno: w-12 h-12" title={project.title}>
+            <project.icon class=":uno: w-6 h-6 text-heading" />
           </LogoContainer>
 
-          <div class="flex-1 flex flex-col justify-between">
-            <p class="text-heading font-medium">{project.title}</p>
+          <div class=":uno: flex-1 flex flex-col justify-between">
+            <p class=":uno: text-heading font-medium">{project.title}</p>
 
-            <p class="text-sm leading-normal">{project.description}</p>
+            <p class=":uno: text-sm leading-normal">{project.description}</p>
           </div>
 
-          <div class="flex items-center space-x-4">
+          <div class=":uno: flex items-center space-x-4">
             {project.link && (
               <AppLink
                 href={project.link}
-                class="transition-colors hover:text-heading focus:text-heading"
+                class=":uno: transition-colors hover:text-heading focus:text-heading"
                 aria-label={`Click to visit ${project.title}`}
               >
-                <Icon pack="lucide" name="external-link" class="w-4 h-auto" />
+                <Icon pack="lucide" name="external-link" class=":uno: w-4 h-auto" />
               </AppLink>
             )}
             {project.github && (
               <AppLink
                 href={project.github}
-                class="transition-colors hover:text-heading focus:text-heading"
+                class=":uno: transition-colors hover:text-heading focus:text-heading"
                 aria-label={`Click to view source code of ${project.title}`}
               >
-                <Icon pack="simple-icons" name="github" class="w-4 h-auto" />
+                <Icon pack="simple-icons" name="github" class=":uno: w-4 h-auto" />
               </AppLink>
             )}
           </div>

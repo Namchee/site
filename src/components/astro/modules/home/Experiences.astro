@@ -24,20 +24,20 @@ const experiences = [
 ];
 ---
 
-<ul class="space-y-6 md:space-y-3">
+<ul class=":uno: space-y-6 md:space-y-3">
   {
     experiences.map((exp) => (
-      <li class="md:grid grid-cols-[10ch_1fr_max-content] items-center gap-x-4">
-        <p class="flex items-center space-x-2 ml-auto text-sm md:text-base mb-2 md:mb-0">
+      <li class=":uno: md:grid grid-cols-[10ch_1fr_max-content] items-center gap-x-4">
+        <p class=":uno: flex items-center space-x-2 ml-auto text-sm md:text-base mb-2 md:mb-0">
           {exp.duration.toLowerCase() === 'current' && (
-            <Pulse class="-mt-[2.5px]" />
+            <Pulse class=":uno: -mt-[2.5px]" />
           )}
           <span>{exp.duration}</span>
         </p>
 
         <AppLink
           href={exp.link}
-          class="font-medium text-heading transition-colors hover:text-primary focus:text-primary inline-flex items-center space-x-2 text-balance"
+          class=":uno: font-medium text-heading transition-colors hover:text-primary focus:text-primary inline-flex items-center space-x-2 text-balance"
         >
           {exp.name}
         </AppLink>
