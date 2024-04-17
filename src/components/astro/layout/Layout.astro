@@ -32,7 +32,7 @@ const { title, description } = Astro.props;
     <link rel="manifest" href="/manifest.webmanifest" />
     <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
     <link rel="icon" href="/favicon.ico" sizes="any" />
-    <link rel="icon" href="/icon-light.svg" type="image/svg+xml" class="favicon" />
+    <link rel="icon" href="/icon-light.svg" type="image/svg+xml" class=":uno: favicon" />
     <meta name="description" content={description} />
     <link rel="sitemap" href="/sitemap-index.xml" />
     <link
@@ -70,10 +70,10 @@ const { title, description } = Astro.props;
     <title>{title}</title>
   </head>
   <body
-    class="bg-background transition-colors text-content min-h-screen flex flex-col font-sans antialiased"
+    class=":uno: bg-background transition-colors text-content flex flex-col font-sans min-h-screen antialiased"
   >
     <CommandMenu posts={posts} client:load />
-    <main class="w-full max-w-7xl mx-auto flex-1">
+    <main class=":uno: w-full max-w-7xl mx-auto flex-1">
       <slot />
     </main>
     <Footer />

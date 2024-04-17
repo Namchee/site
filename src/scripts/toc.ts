@@ -2,7 +2,7 @@ import type { MarkdownHeading } from 'astro';
 
 export type Heading = MarkdownHeading & {
   subheadings: Heading[];
-}
+};
 
 export default function generateToC(headings: MarkdownHeading[]): Heading[] {
   const hist: Heading[] = [];

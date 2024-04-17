@@ -19,19 +19,19 @@ function copyLink() {
   <ToastProvider>
     <button
       @click="copyLink"
-      class="group cursor-pointer"
+      class=":uno: group cursor-pointer"
       title="Copy Post Link to Clipboard"
     >
       <Icon
         icon="lucide:link"
-        class="w-4 md:w-[18px] h-auto transition-colors group-hover:text-heading group-focus:text-heading"
+        class=":uno: w-4 h-auto transition-colors md:w-[18px] group-hover:text-heading group-focus:text-heading"
       />
     </button>
 
     <ToastRoot
       v-model:open="open"
       :duration="3000"
-      class="toast__root text-sm border border-separator dark:bg-surface dark:border-none text-heading rounded-md shadow p-4 grid [grid-template-areas:_'title_action'_'description_action'] grid-cols-[auto_max-content] gap-x-4 items-center"
+      class=":uno: text-sm border border-separator text-heading rounded-md shadow p-4 grid gap-x-4 items-center toast__root dark:bg-surface dark:border-none [grid-template-areas:_'title_action'_'description_action'] grid-cols-[auto_max-content]"
     >
       <ToastDescription>
         Link copied to clipboard!
@@ -39,13 +39,13 @@ function copyLink() {
       <ToastClose>
         <Icon
           icon="lucide:x"
-          class="w-[14px] h-auto transition-colors group-hover:text-heading group-focus:text-heading"
+          class=":uno: h-auto transition-colors group-hover:text-heading group-focus:text-heading w-[14px]"
         />
       </ToastClose>
     </ToastRoot>
 
     <ToastViewport
-      class="[--viewport-padding:_25px] fixed bottom-0 right-0 flex flex-col p-[var(--viewport-padding)] gap-[10px] w-96 max-w-screen m-0 list-none z-[2147483647] outline-none"
+      class=":uno: fixed flex [--viewport-padding:_25px] bottom-0 right-0 flex-col p-[var(--viewport-padding)] gap-[10px] w-96 max-w-screen m-0 list-none z-[2147483647] outline-none"
     />
   </ToastProvider>
 </template>

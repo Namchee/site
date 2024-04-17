@@ -15,13 +15,13 @@ const description =
 ---
 
 <Layout title={title} description={description}>
-  <div class="grid grid-cols-12 gap-4 my-16 lg:my-32 px-8">
+  <div class=":uno: grid grid-cols-12 gap-4 my-16 lg:my-32 px-8">
     <header
-      class="col-start-1 col-end-13 md:col-end-5 lg:col-start-2 lg:col-end-5 xl:col-start-3"
+      class=":uno: col-start-1 col-end-13 md:col-end-5 lg:col-start-2 lg:col-end-5 xl:col-start-3"
     >
-      <div class="sticky top-12">
+      <div class=":uno: sticky top-12">
         <h1
-          class="text-xl text-heading font-semibold tracking-tight transition-colors"
+          class=":uno: text-xl text-heading font-semibold tracking-tight transition-colors"
         >
           Posts
         </h1>
@@ -29,24 +29,24 @@ const description =
     </header>
 
     <div
-      class="mt-8 md:mt-0 col-start-1 col-end-13 md:mt-0 md:col-start-6 lg:col-start-6 lg:col-end-12 xl:col-end-11 space-y-16"
+      class=":uno: mt-8 md:mt-0 col-start-1 col-end-13 md:mt-0 md:col-start-6 lg:col-start-6 lg:col-end-12 xl:col-end-11 space-y-16"
     >
-      <ul class="space-y-8">
+      <ul class=":uno: space-y-8">
         {
           posts.map((post) => (
             <li>
               <AppLink
                 href={`/posts/${post.slug}`}
-                class="text-heading font-semibold tracking-tigh hover:text-primary focus:text-primary transition-colors"
+                class=":uno: text-heading font-semibold hover:text-primary focus:text-primary transition-colors tracking-tigh"
               >
                 {post.data.title}
               </AppLink>
 
-              <p class="text-sm leading-relaxed mt-1 transition-colors">
+              <p class=":uno: text-sm leading-relaxed transition-colors mt-1">
                 {post.data.subtitle}
               </p>
 
-              <div class="flex items-center space-x-4 mt-4 text-xs">
+              <div class=":uno: flex items-center space-x-4 text-xs mt-4">
                 <time>
                   {new Date(post.data.publishedAt).toLocaleString("en-GB", {
                     year: "numeric",

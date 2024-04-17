@@ -1,5 +1,7 @@
 import { defineConfig } from 'unocss';
 
+import transformerCompileClass from '@unocss/transformer-compile-class';
+
 // eslint-disable-next-line canonical/no-unused-exports
 export default defineConfig({
   theme: {
@@ -27,4 +29,7 @@ export default defineConfig({
       success: 'oklch(var(--success))',
     },
   },
+  transformers: [
+    transformerCompileClass(),
+  ],
 });

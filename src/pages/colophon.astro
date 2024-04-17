@@ -53,35 +53,30 @@ const description = 'A full list of resources and technologies that empowers nam
 ---
 
 <Layout title={title} description={description}>
-  <div class="grid grid-cols-12 gap-4 my-16 px-8 lg:my-32 lg:px-0">
+  <div class=":uno: grid grid-cols-12 gap-4 my-16 px-8 lg:my-32 lg:px-0">
     <header
-      class="col-start-1 col-end-13 md:col-end-5 lg:col-start-2 lg:col-end-6 xl:col-start-3"
+      class=":uno: col-start-1 col-end-13 md:col-end-5 lg:col-start-2 xl:col-start-3 lg:col-end-6"
     >
-      <div class="sticky top-12">
-        <h1 class="text-xl text-heading font-semibold tracking-tight">
+      <div class=":uno: sticky top-12">
+        <h1 class=":uno: text-xl text-heading font-semibold tracking-tight">
           Colophon
         </h1>
 
         <time
-          class="mt-2 flex space-x-2"
+          class=":uno: mt-2 flex space-x-2"
           title="Last Updated on 14 April 2024"
         >
-          <Icon pack="lucide" name="history" class="w-4 h-auto" />
+          <Icon pack="lucide" name="history" class=":uno: w-4 h-auto" />
           <span>14 April 2024</span>
         </time>
       </div>
     </header>
 
     <div
-      class="col-start-1 col-end-13
-        mt-8
-        space-y-16
-        md:mt-0 md:col-start-6
-        lg:col-start-6 lg:col-end-12
-        xl:col-end-11"
+      class=":uno: col-start-1 col-end-13 mt-8 space-y-16 md:mt-0 md:col-start-6 lg:col-start-6 lg:col-end-12 xl:col-end-11"
     >
-      <section class="space-y-4">
-        <h2 class="text-heading font-semibold">Technology</h2>
+      <section class=":uno: space-y-4">
+        <h2 class=":uno: text-heading font-semibold">Technology</h2>
 
         <p>
           This website is powered by <TextLink
@@ -104,8 +99,8 @@ const description = 'A full list of resources and technologies that empowers nam
         </p>
       </section>
 
-      <section class="space-y-4">
-        <h2 class="text-heading font-semibold">Design</h2>
+      <section class=":uno: space-y-4">
+        <h2 class=":uno: text-heading font-semibold">Design</h2>
 
         <p>
           Color palletes are taken from <TextLink
@@ -128,8 +123,8 @@ const description = 'A full list of resources and technologies that empowers nam
         </p>
       </section>
 
-      <section class="space-y-4">
-        <h2 class="text-heading font-semibold">Graphical Contents</h2>
+      <section class=":uno: space-y-4">
+        <h2 class=":uno: text-heading font-semibold">Graphical Contents</h2>
 
         <p>
           All header images in my posts are taken from <TextLink
@@ -160,8 +155,8 @@ const description = 'A full list of resources and technologies that empowers nam
         </p>
       </section>
 
-      <section class="space-y-4">
-        <h2 class="text-heading font-semibold">Inspirations</h2>
+      <section class=":uno: space-y-4">
+        <h2 class=":uno: text-heading font-semibold">Inspirations</h2>
 
         <p>
           The design of this website is influenced by multiple sources I
@@ -169,19 +164,19 @@ const description = 'A full list of resources and technologies that empowers nam
           website in no particular order:
         </p>
 
-        <ul class="grid grid-cols-1 sm:grid-cols-2 gap-y-2 gap-x-4">
+        <ul class=":uno: grid grid-cols-1 sm:grid-cols-2 gap-y-2 gap-x-4">
           {
             inspirations.map((inspiration) => (
               <li>
                 <AppLink
                   href={inspiration.href}
-                  class="text-heading hover:text-primary focus:text-primary transition-colors inline-flex items-center space-x-1"
+                  class=":uno: text-heading hover:text-primary focus:text-primary transition-colors inline-flex items-center space-x-1"
                 >
                   <span>{inspiration.name}</span>
                   <Icon
                     pack="lucide"
                     name="arrow-up-right"
-                    class="w-4 h-auto -mt-1"
+                    class=":uno: w-4 h-auto -mt-1"
                   />
                 </AppLink>
               </li>
@@ -190,8 +185,8 @@ const description = 'A full list of resources and technologies that empowers nam
         </ul>
       </section>
 
-      <section class="space-y-4">
-        <h2 class="text-heading font-semibold">Open Source</h2>
+      <section class=":uno: space-y-4">
+        <h2 class=":uno: text-heading font-semibold">Open Source</h2>
 
         <p>
           This website is open-sourced and can be found on my <TextLink

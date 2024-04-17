@@ -20,38 +20,30 @@ const postText = `I just read '${title}' by Namchee
 `;
 ---
 
-<div class="flex items-center space-x-4">
+<div class=":uno: flex items-center space-x-4">
   <CopyPostLink client:visible />
 
   <AppLink
     href={`https://twitter.com/intent/post?text=${encodeURIComponent(postText) + postUrl}`}
     title="Share Post on Twitter"
-    class="group"
+    class=":uno: group"
   >
     <Icon
       pack="simple-icons"
       name="x"
-      class="w-4 md:w-[18px] h-auto transition-color group-hover:text-heading group-focus:text-heading"
+      class=":uno: w-4 md:w-[18px] h-auto group-hover:text-heading group-focus:text-heading transition-color"
     />
   </AppLink>
 
   <AppLink
     href={`https://www.linkedin.com/sharing/share-offsite/?url=${postUrl}`}
     title="Share Post on LinkedIn"
-    class="group"
+    class=":uno: group"
   >
     <Icon
       pack="simple-icons"
       name="linkedin"
-      class="w-4 md:w-[18px] h-auto transition-color group-hover:text-heading group-focus:text-heading"
+      class=":uno: w-4 md:w-[18px] h-auto transition-color group-hover:text-heading group-focus:text-heading"
     />
   </AppLink>
 </div>
-
-<script is:inline>
-  function copyLink() {
-    navigator.clipboard.writeText(
-      window.location.origin + window.location.pathname,
-    );
-  }
-</script>

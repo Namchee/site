@@ -13,31 +13,31 @@ const books = await getCurrentlyReadBooks();
   {
     books.map((book) => {
       return (
-        <li class="flex space-x-6">
+        <li class=":uno: flex space-x-6">
           <Image
             src={book.cover}
             alt={book.title}
             width={75}
             height={105}
-            class="rounded object-fill!"
+            class=":uno: rounded object-fill!"
           />
 
-          <div class="flex flex-col justify-center">
+          <div class=":uno: flex flex-col justify-center">
             <AppLink
               href={book.url}
-              class="text-heading font-medium transition-colors hover:text-primary focus:text-primary flex items-center space-x-[2px]"
+              class=":uno: text-heading font-medium transition-colors hover:text-primary focus:text-primary flex items-center space-x-[2px]"
             >
               <span>{book.title}</span>
 
               <Icon
                 pack="lucide"
                 name="arrow-up-right"
-                class="w-4 h-auto"
+                class=":uno: w-4 h-auto"
               />
             </AppLink>
 
-            <p class="text-sm leading-normal italic">{book.subtitle}</p>
-            <p class="mt-4">{book.author.join(' & ')}</p>
+            <p class=":uno: text-sm leading-normal italic">{book.subtitle}</p>
+            <p class=":uno: mt-4">{book.author.join(' & ')}</p>
           </div>
         </li>
       );

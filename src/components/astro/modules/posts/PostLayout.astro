@@ -26,16 +26,16 @@ const { frontmatter } = Astro.props;
   title={`${frontmatter.title} — Namchee`}
   description={frontmatter.subtitle}
 >
-  <progress class="reading__progress h-[2px] fixed w-screen left-0 z-10"
+  <progress class=":uno: fixed w-screen z-10 reading__progress h-[2px] left-0"
   ></progress>
 
   <BackButton />
 
-  <article class="grid grid-cols-12 gap-x-4 px-8 my-32 lg:px-0">
+  <article class=":uno: grid grid-cols-12 gap-x-4 px-8 lg:px-0 my-32">
     <header
-      class="col-start-1 col-end-13 lg:col-start-2 lg:col-end-12 xl:col-start-3 xl:col-end-11"
+      class=":uno: col-start-1 col-end-13 lg:col-start-2 lg:col-end-12 xl:col-start-3 xl:col-end-11"
     >
-      <div class="flex space-x-2 mb-2">
+      <div class=":uno: flex space-x-2 mb-2">
         {
           frontmatter.tags.map((tag) => (
             <Badge variant="primary">
@@ -45,24 +45,18 @@ const { frontmatter } = Astro.props;
         }
       </div>
       <h1
-        class="text-2xl
-        text-heading
-        font-semibold
-        tracking-tight
-        leading-normal!
-        md:text-3xl"
+        class=":uno: text-heading font-semibold tracking-tight text-2xl leading-normal! md:text-3xl"
       >
         {frontmatter.title}
       </h1>
 
-      <p class="mt-4 text-sm md:text-base leading-normal!">
+      <p class=":uno: text-sm md:text-base leading-normal! mt-4">
         {frontmatter.subtitle}
       </p>
     </header>
 
     <section
-      class="col-start-1 col-end-13
-      my-8 md:mb-16 lg:col-start-2 lg:col-end-12 xl:col-start-3 xl:col-end-11"
+      class=":uno: col-start-1 col-end-13 lg:col-start-2 lg:col-end-12 xl:col-start-3 xl:col-end-11 my-8 md:mb-16"
     >
       <figure>
         <Image
@@ -72,22 +66,22 @@ const { frontmatter } = Astro.props;
           width={1280}
           height={720}
           aspectRatio={16 / 9}
-          class="rounded-md aspect-video"
+          class=":uno: rounded-md aspect-video"
           loading="eager"
           background="blurhash"
         />
       </figure>
 
-      <div class="mt-4 md:mt-8 flex items-center justify-between">
-        <div class="flex items-center space-x-8">
+      <div class=":uno: mt-4 flex items-center justify-between md:mt-8">
+        <div class=":uno: flex items-center space-x-8">
           <div>
-            <p class="text-xs md:text-sm font-medium text-primary leading-normal mb-1">
+            <p class=":uno: text-xs font-medium leading-normal md:text-sm text-primary mb-1">
               Published At
             </p>
 
             <time
               datetime={frontmatter.publishedAt as unknown as string}
-              class="text-sm md:text-base text-heading font-medium"
+              class=":uno: text-sm md:text-base text-heading font-medium"
             >
               {
                 new Date(frontmatter.publishedAt).toLocaleString("en-GB", {
@@ -99,14 +93,14 @@ const { frontmatter } = Astro.props;
             </time>
           </div>
 
-          <div class="hidden md:block">
-            <p class="text-sm font-medium text-primary leading-normal mb-1">
+          <div class=":uno: hidden md:block">
+            <p class=":uno: text-sm font-medium text-primary leading-normal mb-1">
               Last Updated
             </p>
 
             <time
               datetime={frontmatter.lastModified as unknown as string}
-              class="text-heading font-medium"
+              class=":uno: text-heading font-medium"
             >
               {
                 new Date(frontmatter.lastModified).toLocaleString("en-GB", {
@@ -119,12 +113,12 @@ const { frontmatter } = Astro.props;
           </div>
         </div>
 
-        <div class="text-right">
-          <p class="text-xs md:text-sm font-medium text-primary leading-normal mb-1">
+        <div class=":uno: text-right">
+          <p class=":uno: text-xs md:text-sm font-medium text-primary leading-normal mb-1">
             Time to Read
           </p>
 
-          <p class="text-sm md:text-base text-heading font-medium">
+          <p class=":uno: text-sm md:text-base text-heading font-medium">
             {frontmatter.timeToRead} minutes read
           </p>
         </div>
@@ -132,25 +126,20 @@ const { frontmatter } = Astro.props;
     </section>
 
     <div
-      class="col-start-1 col-end-13 lg:col-start-2 md:col-end-5 xl:col-start-3"
+      class=":uno: col-start-1 col-end-13 lg:col-start-2 md:col-end-5 xl:col-start-3"
     >
       <TableOfContents headings={frontmatter.headings} />
     </div>
 
     <section
-      class="col-start-1 col-end-13
-        space-y-5
-        md:col-start-5
-        lg:col-end-12
-        xl:col-end-11
-        leading-[1.75]"
+      class=":uno: col-start-1 col-end-13 lg:col-end-12 xl:col-end-11 space-y-5 md:col-start-5 leading-[1.75]"
     >
       <slot />
     </section>
 
-    <section class="mt-16 flex justify-between items-center col-start-1 col-end-13 lg:col-start-2 lg:col-end-12 xl:col-start-3 xl:col-end-11">
+    <section class=":uno: flex justify-between items-center col-start-1 col-end-13 lg:col-start-2 lg:col-end-12 xl:col-start-3 xl:col-end-11 mt-16">
       <div>
-        <p class="text-sm leading-normal md:text-base text-heading font-medium mb-5">
+        <p class=":uno: text-sm leading-normal md:text-base text-heading font-medium mb-5">
           Share this Post
         </p>
 
@@ -158,7 +147,7 @@ const { frontmatter } = Astro.props;
       </div>
 
       <div>
-        <p class="text-sm md:text-base text-heading font-medium text-right mb-5">
+        <p class=":uno: text-sm md:text-base text-heading font-medium text-right mb-5">
           Webmentions
         </p>
 
@@ -188,12 +177,6 @@ const { frontmatter } = Astro.props;
   const documentHeight = document.documentElement.scrollHeight;
   const max = documentHeight - windowHeight;
   progressBar.setAttribute("max", max);
-
-  function copyLink() {
-    navigator.clipboard.writeText(
-      window.location.origin + window.location.pathname,
-    );
-  }
 
   window.addEventListener("scroll", () => {
     progressBar.setAttribute("value", window.scrollY);
