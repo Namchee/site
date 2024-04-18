@@ -30,19 +30,15 @@
     "astro-eslint-parser": "^0.16.0",
     "astro-iconify": "^1.2.0",
     "astro-robots-txt": "^1.0.0",
-    "autoprefixer": "^10.4.16",
-    "cssnano": "^6.0.1",
     "eslint": "^8.57.0",
     "eslint-plugin-astro": "^0.30.0",
     "eslint-plugin-vue": "^9.19.2",
     "mdast-util-to-string": "^4.0.0",
-    "postcss-easings": "^4.0.0",
-    "postcss-preset-env": "^9.3.0",
     "reading-time": "^1.5.0",
     "tsx": "^4.7.0",
     "typescript": "^5.3.2",
     "unocss": "^0.59.3",
-    "vite": "^5.0.13",
+    "vite": "^5.2.9",
     "vitest": "^1.1.0",
     "vue": "^3.3.11",
     "vue-eslint-parser": "^9.3.2"
@@ -58,7 +54,7 @@
     "dayjs": "^1.11.10",
     "radix-vue": "^1.7.0"
   },
-  "packageManager": "pnpm@8.11.0",
+  "packageManager": "pnpm@9.0.2",
   "pnpm": {
     "overrides": {
       "follow-redirects@<=1.15.5": ">=1.15.6"
