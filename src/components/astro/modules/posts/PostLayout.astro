@@ -50,7 +50,7 @@ const { frontmatter } = Astro.props;
         {frontmatter.title}
       </h1>
 
-      <p class=":uno: text-sm md:text-base leading-normal! mt-4">
+      <p class=":uno: text-sm leading-normal! md:text-base mt-4">
         {frontmatter.subtitle}
       </p>
     </header>
@@ -63,8 +63,7 @@ const { frontmatter } = Astro.props;
           src={frontmatter.image.url}
           alt={`${frontmatter.title} - Image by ${frontmatter.image.author} from ${frontmatter.image.source}`}
           title={`${frontmatter.title} - Image by ${frontmatter.image.author} from ${frontmatter.image.source}`}
-          width={1280}
-          height={720}
+          layout="fullWidth"
           aspectRatio={16 / 9}
           class=":uno: rounded-md aspect-video"
           loading="eager"
@@ -75,7 +74,7 @@ const { frontmatter } = Astro.props;
       <div class=":uno: mt-4 flex items-center justify-between md:mt-8">
         <div class=":uno: flex items-center space-x-8">
           <div>
-            <p class=":uno: text-xs font-medium leading-normal md:text-sm text-primary mb-1">
+            <p class=":uno: font-medium leading-normal text-xs md:text-sm text-primary mb-1">
               Published At
             </p>
 
