@@ -29,7 +29,7 @@ const description =
     </header>
 
     <div
-      class=":uno: mt-8 md:mt-0 col-start-1 col-end-13 md:mt-0 md:col-start-6 lg:col-start-6 lg:col-end-12 xl:col-end-11 space-y-16"
+      class=":uno: col-start-1 col-end-13 mt-8 md:mt-0 md:mt-0 md:col-start-6 lg:col-start-6 lg:col-end-12 xl:col-end-11 space-y-16"
     >
       <ul class=":uno: space-y-8">
         {
@@ -37,12 +37,12 @@ const description =
             <li>
               <AppLink
                 href={`/posts/${post.slug}`}
-                class=":uno: text-heading font-semibold hover:text-primary focus:text-primary transition-colors tracking-tigh"
+                class=":uno: text-heading font-semibold transition-colors hover:text-primary focus:text-primary tracking-tigh"
               >
                 {post.data.title}
               </AppLink>
 
-              <p class=":uno: text-sm leading-relaxed transition-colors mt-1">
+              <p class=":uno: transition-colors text-sm leading-relaxed mt-1">
                 {post.data.subtitle}
               </p>
 
