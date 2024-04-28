@@ -11,20 +11,27 @@ import TextLink from "@/components/astro/ui/TextLink.astro";
     <link rel="manifest" href="/manifest.webmanifest" />
     <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
     <link rel="icon" href="/favicon.ico" sizes="any" />
-    <link rel="icon" href="/icon.svg" type="image/svg+xml" />
+    <link
+      rel="icon"
+      href="/icon-light.svg"
+      type="image/svg+xml"
+      class=":uno: favicon"
+    />
     <link rel="sitemap" href="/sitemap-index.xml" />
     <title>404 &mdash; Not Found</title>
   </head>
 
   <body>
-    <div class=":uno: grid transition-colors w-screen h-screen place-items-center bg-background text-content font-sans">
+    <div
+      class=":uno: grid transition-colors w-screen h-screen place-items-center bg-background text-content font-sans"
+    >
       <div class=":uno: grid place-items-center">
-        <h1 class=":uno: text-heading tracking-tight text-7xl">
-          404
-        </h1>
+        <h1 class=":uno: text-heading tracking-tight text-7xl">404</h1>
 
         <p class=":uno: text-xl mt-6">
-          You're lost. Now <TextLink onclick="window.history.back()">go back</TextLink> or <TextLink href="/">go home</TextLink>
+          You're lost. Now <TextLink onclick="window.history.back()"
+            >go back</TextLink
+          > or <TextLink href="/">go home</TextLink>
         </p>
       </div>
     </div>
@@ -33,6 +40,7 @@ import TextLink from "@/components/astro/ui/TextLink.astro";
 
 <script is:inline>
   const docEl = document.documentElement;
+  const svgIcon = document.querySelector(".favicon");
   const media = window.matchMedia("(prefers-color-scheme: dark)");
 
   const theme = (() => {
@@ -50,6 +58,7 @@ import TextLink from "@/components/astro/ui/TextLink.astro";
     const method = theme === "light" ? "remove" : "add";
 
     docEl.classList[method]("dark");
+    svgIcon.href = theme === "light" ? "/icon-light.svg" : "/icon-dark.svg";
     window.localStorage.setItem("theme", theme === "light" ? "light" : "dark");
   };
 
@@ -58,7 +67,7 @@ import TextLink from "@/components/astro/ui/TextLink.astro";
   window.addEventListener("storage", () => {
     const newTheme = window.localStorage.getItem("theme");
     toggleTheme(newTheme);
-  })
+  });
 
   media.addEventListener("change", () => {
     const newTheme = media.matches ? "dark" : "light";

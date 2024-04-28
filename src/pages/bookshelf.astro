@@ -85,7 +85,7 @@ const description = 'A list of books I\'ve read and recommend to either boost yo
       {
         Object.entries(books).map(([year, book]) => {
           const bookList = book.map((b) => (
-            <li class=":uno: md:grid md:grid-cols-[max-content_auto] justify-between">
+            <li class=":uno: justify-between md:grid md:grid-cols-[max-content_auto]">
               <AppLink
                 class=":uno: text-heading transition-colors items-center hover:text-primary focus:text-primary text-balance inline-flex space-x-[2px]"
                 href={b.link}

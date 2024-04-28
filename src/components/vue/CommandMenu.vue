@@ -329,19 +329,19 @@ watch(searchTerm, () => {
 
 
 .dialog__overlay[data-state='open'] {
-  animation: overlayShow 200ms easeOutCubic;
+  animation: overlayShow 200ms cubic-bezier(0.33, 1, 0.68, 1);
 }
 
 .dialog__overlay[data-state='closed'] {
-  animation: overlayShow 200ms easeOutCubic reverse;
+  animation: overlayShow 200ms cubic-bezier(0.33, 1, 0.68, 1) reverse;
 }
 
 .dialog__content[data-state='open'] {
-  animation: contentShow 200ms easeOutCubic;
+  animation: contentShow 200ms cubic-bezier(0.33, 1, 0.68, 1);
 }
 
 .dialog__content[data-state='closed'] {
-  animation: contentHide 200ms easeOutCubic;
+  animation: contentHide 200ms cubic-bezier(0.33, 1, 0.68, 1);
 }
 
 .link:focus {
