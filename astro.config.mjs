@@ -8,6 +8,8 @@ import mdx from '@astrojs/mdx';
 import sitemap from '@astrojs/sitemap';
 import robotsTxt from 'astro-robots-txt';
 
+import { subset } from '@namchee/astro-subfont';
+
 import { remarkPlugins } from './src/plugins/remark';
 
 export default defineConfig({
@@ -19,6 +21,7 @@ export default defineConfig({
     mdx(),
     sitemap(),
     robotsTxt(),
+    subset(),
   ],
   markdown: {
     remarkPlugins: remarkPlugins,
