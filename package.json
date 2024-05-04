@@ -19,6 +19,7 @@
     "@astrojs/check": "^0.4.1",
     "@astrojs/sitemap": "^3.0.3",
     "@astrojs/vue": "^4.0.3",
+    "@namchee/astro-subfont": "^0.1.0",
     "@namchee/eslint-config": "^2.0.8",
     "@types/eslint": "^8.44.8",
     "@types/node": "^20.10.4",

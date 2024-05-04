@@ -48,6 +48,9 @@ importers:
       '@astrojs/vue':
         specifier: ^4.0.3
         version: 4.1.0(astro@4.0.6(@types/node@20.12.7)(typescript@5.4.5))(vite@5.2.9(@types/node@20.12.7))(vue@3.4.23(typescript@5.4.5))
+      '@namchee/astro-subfont':
+        specifier: ^0.1.0
+        version: 0.1.0(astro@4.0.6(@types/node@20.12.7)(typescript@5.4.5))
       '@namchee/eslint-config':
         specifier: ^2.0.8
         version: 2.0.10(eslint@8.57.0)(typescript@5.4.5)
@@ -725,6 +728,11 @@ packages:
   '@mdx-js/mdx@3.0.1':
     resolution: {integrity: sha512-eIQ4QTrOWyL3LWEe/bu6Taqzq2HQvHcyTMaOrI95P2/LmJE7AsfPfgJGuFLPVqBUE1BC1rik3VIhU+s9u72arA==}
 
+  '@namchee/astro-subfont@0.1.0':
+    resolution: {integrity: sha512-D/qZFK6KkfpddynAE2odJewdawRsI17wMs/pZizOEEtfx0/CJMA0WGu+iMbu0UeOhbQ6FK+uKV96R9rRMzGUZQ==}
+    peerDependencies:
+      astro: ^4
+
   '@namchee/eslint-config@2.0.10':
     resolution: {integrity: sha512-mTFn/qHwaucJHvzEDpN23y7Es8otkBtx1ql6U9lMi+QDb+LjSKaFlqE0ActHvnzgLJQMpOWMhtOxaX7iSdn6uw==}
     engines: {node: '>=18'}
@@ -1396,6 +1404,15 @@ packages:
 
   astro-iconify@1.2.0:
     resolution: {integrity: sha512-arLDiSop3DAHHS30raZysspkz5MO9moJJZ4rJk1Ty+4W1jZDa00Jme0LrnRJRDB6BB2EDTxC553fo20yz3MeYw==}
+
+  astro-integration-kit@0.12.0:
+    resolution: {integrity: sha512-fCtebn/vQF5bmPW5TxF/gRoDFZ1iuA1h0FJcv/e7S96gfFIYZjiQ5G+Mwv6i/X9Y27FTkMHXhuWtqE6xosCgBQ==}
+    peerDependencies:
+      '@astrojs/db': ^0.9.0
+      astro: ^4.4.1
+    peerDependenciesMeta:
+      '@astrojs/db':
+        optional: true
 
   astro-robots-txt@1.0.0:
     resolution: {integrity: sha512-6JQSLid4gMhoWjOm85UHLkgrw0+hHIjnJVIUqxjU2D6feKlVyYukMNYjH44ZDZBK1P8hNxd33PgWlHzCASvedA==}
@@ -5038,6 +5055,14 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
+  '@namchee/astro-subfont@0.1.0(astro@4.0.6(@types/node@20.12.7)(typescript@5.4.5))':
+    dependencies:
+      astro: 4.0.6(@types/node@20.12.7)(typescript@5.4.5)
+      astro-integration-kit: 0.12.0(astro@4.0.6(@types/node@20.12.7)(typescript@5.4.5))
+      kleur: 4.1.5
+    transitivePeerDependencies:
+      - '@astrojs/db'
+
   '@namchee/eslint-config@2.0.10(eslint@8.57.0)(typescript@5.4.5)':
     dependencies:
       '@eslint/js': 8.57.0
@@ -5968,6 +5993,12 @@ snapshots:
     transitivePeerDependencies:
       - debug
       - supports-color
+
+  astro-integration-kit@0.12.0(astro@4.0.6(@types/node@20.12.7)(typescript@5.4.5)):
+    dependencies:
+      astro: 4.0.6(@types/node@20.12.7)(typescript@5.4.5)
+      pathe: 1.1.2
+      recast: 0.23.6
 
   astro-robots-txt@1.0.0:
     dependencies:
