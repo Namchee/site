@@ -9,6 +9,7 @@ const { class: className, ...props } = Astro.props;
 
 const baseClass = `:uno:
   text-heading
+  font-medium
   cursor-pointer
   decoration-heading
   decoration-opacity-25
@@ -26,8 +27,5 @@ const baseClass = `:uno:
 
 <AppLink
   class:list={[baseClass, className]}
-  style={{
-    fontWeight: 525,
-  }}
   {...props}
 ><slot /></AppLink>

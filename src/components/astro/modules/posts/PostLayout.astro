@@ -1,6 +1,4 @@
 ---
-import { Image } from "@unpic/astro";
-
 import type { CollectionEntry } from "astro:content";
 import type { MarkdownFile } from "@/plugins/remark/types";
 
@@ -31,11 +29,38 @@ const { frontmatter } = Astro.props;
 
   <BackButton />
 
-  <article class=":uno: grid grid-cols-12 gap-x-4 px-8 lg:px-0 my-32">
-    <header
-      class=":uno: col-start-1 col-end-13 lg:col-start-2 lg:col-end-12 xl:col-start-3 xl:col-end-11"
+  <article class=":uno: grid grid-cols-12 px-8 gap-x-4 lg:px-0 my-32">
+    <h1
+      class=":uno: text-heading font-semibold col-start-1 col-end-13 md:col-start-5 xl:ml-8 lg:col-end-12 xl:col-end-11 mb-8 text-2xl md:text-3xl"
     >
-      <div class=":uno: flex space-x-2 mb-2">
+      {frontmatter.title}
+    </h1>
+
+    <section
+      class=":uno: col-start-1 col-end-13 md:col-end-5 lg:col-start-2 lg:col-end-5 xl:col-start-3"
+    >
+      <div class="space-y-4">
+        <div>
+          <time
+            datetime={frontmatter.publishedAt as unknown as string}
+            class=":uno: text-heading text-sm mt-1 font-medium block"
+          >
+            {
+              new Date(frontmatter.publishedAt).toLocaleString("en-GB", {
+                year: "numeric",
+                month: "long",
+                day: "numeric",
+              })
+            }
+          </time>
+
+          <p class="text-sm mt-1">
+            {frontmatter.timeToRead} minutes read
+          </p>
+        </div>
+      </div>
+
+      <div class=":uno: flex mt-6 space-x-2 mb-16">
         {
           frontmatter.tags.map((tag) => (
             <Badge variant="primary">
@@ -44,101 +69,23 @@ const { frontmatter } = Astro.props;
           ))
         }
       </div>
-      <h1
-        class=":uno: text-heading font-semibold tracking-tight text-2xl leading-normal! md:text-3xl"
-      >
-        {frontmatter.title}
-      </h1>
 
-      <p class=":uno: text-sm leading-normal! md:text-base mt-4">
-        {frontmatter.subtitle}
-      </p>
-    </header>
-
-    <section
-      class=":uno: col-start-1 col-end-13 lg:col-start-2 lg:col-end-12 xl:col-start-3 xl:col-end-11 my-8 md:mb-16"
-    >
-      <figure>
-        <Image
-          src={frontmatter.image.url}
-          alt={`${frontmatter.title} - Image by ${frontmatter.image.author} from ${frontmatter.image.source}`}
-          title={`${frontmatter.title} - Image by ${frontmatter.image.author} from ${frontmatter.image.source}`}
-          layout="fullWidth"
-          aspectRatio={16 / 9}
-          class=":uno: rounded-md aspect-video"
-          loading="eager"
-          background="blurhash"
-        />
-      </figure>
-
-      <div class=":uno: mt-4 flex items-center justify-between md:mt-8">
-        <div class=":uno: flex items-center space-x-8">
-          <div>
-            <p class=":uno: font-medium leading-normal text-xs md:text-sm text-primary mb-1">
-              Published At
-            </p>
-
-            <time
-              datetime={frontmatter.publishedAt as unknown as string}
-              class=":uno: text-sm md:text-base text-heading font-medium"
-            >
-              {
-                new Date(frontmatter.publishedAt).toLocaleString("en-GB", {
-                  year: "numeric",
-                  month: "long",
-                  day: "numeric",
-                })
-              }
-            </time>
-          </div>
-
-          <div class=":uno: hidden md:block">
-            <p class=":uno: text-sm font-medium text-primary leading-normal mb-1">
-              Last Updated
-            </p>
-
-            <time
-              datetime={frontmatter.lastModified as unknown as string}
-              class=":uno: text-heading font-medium"
-            >
-              {
-                new Date(frontmatter.lastModified).toLocaleString("en-GB", {
-                  year: "numeric",
-                  month: "long",
-                  day: "numeric",
-                })
-              }
-            </time>
-          </div>
-        </div>
-
-        <div class=":uno: text-right">
-          <p class=":uno: text-xs md:text-sm font-medium text-primary leading-normal mb-1">
-            Time to Read
-          </p>
-
-          <p class=":uno: text-sm md:text-base text-heading font-medium">
-            {frontmatter.timeToRead} minutes read
-          </p>
-        </div>
-      </div>
+      <TableOfContents headings={frontmatter.headings} />
     </section>
 
-    <div
-      class=":uno: col-start-1 col-end-13 lg:col-start-2 md:col-end-5 xl:col-start-3"
-    >
-      <TableOfContents headings={frontmatter.headings} />
-    </div>
-
     <section
-      class=":uno: col-start-1 col-end-13 lg:col-end-12 xl:col-end-11 space-y-5 md:col-start-5 leading-[1.75]"
+      class=":uno: col-start-1 col-end-13 lg:col-end-12 xl:col-end-11 md:col-start-5 leading-[1.75] space-y-4 xl:ml-8"
     >
       <slot />
     </section>
 
-    <section class=":uno: flex justify-between items-center col-start-1 col-end-13 lg:col-start-2 lg:col-end-12 xl:col-start-3 xl:col-end-11 mt-16">
+    <section
+      class=":uno: flex col-start-1 col-end-13 lg:col-start-2 lg:col-end-12 xl:col-start-3 xl:col-end-11 items-center justify-between mt-16"
+    >
       <div>
-        <p class=":uno: text-sm leading-normal md:text-base text-heading font-medium mb-5">
+        <p
+          class=":uno: text-heading font-medium text-sm leading-normal md:text-base mb-5"
+        >
           Share this Post
         </p>
 
@@ -146,7 +93,9 @@ const { frontmatter } = Astro.props;
       </div>
 
       <div>
-        <p class=":uno: text-sm md:text-base text-heading font-medium text-right mb-5">
+        <p
+          class=":uno: text-sm md:text-base text-heading font-medium mb-5 text-right"
+        >
           Webmentions
         </p>
 

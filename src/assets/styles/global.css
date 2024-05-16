@@ -6,14 +6,13 @@
   --separator: 90% 0.011 256.7;
 
   --heading: 21.31% 0.028 262.4;
-  --content: 47.5% 0.029 259.77;
+  --content: 44.69% 0.029 259.77;
 
   --primary: 51.47% 0.229 272.81;
 
   --success: 67.31% 0.16 155.59;
 
   font-feature-settings: "cv05" 1, "cv03" 1, "cv04" 1, "tnum" 1, "calt" 1, "case" 1;
-  font-weight: 450;
 }
 
 html {
@@ -26,14 +25,14 @@ body {
 
 html.dark {
   /* Replace the token here */
-  --background: 17.5% 0 0;
+  --background: 15% 0 0;
   --surface: 25% 0 0;
   --separator: 30% 0 0;
 
   --heading: 98.51% 0 0;
   --content: 77.31% 0 0;
 
-  --primary: 64.41% 0.172 274.96;
+  --primary: 72.34% 0.145 271.74;
 }
 
 html.dark img {
