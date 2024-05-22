@@ -9,12 +9,14 @@ const { alt, src } = Astro.props;
 ---
 
 <figure class="mt-8! mb-8!">
-  <img
+  <Img
     src={src}
     alt={alt}
     title={alt}
-
+    layout="fullWidth"
+    aspectRatio={16 / 9}
     class=":uno: rounded-md"
+    placeholder="blurhash"
   />
 
   <figcaption class=":uno: text-xs mt-2 italic text-center">

@@ -1,4 +1,6 @@
 ---
+import { Icon } from "astro-iconify";
+
 import type { CollectionEntry } from "astro:content";
 import type { MarkdownFile } from "@/plugins/remark/types";
 
@@ -31,7 +33,7 @@ const { frontmatter } = Astro.props;
 
   <article class=":uno: grid grid-cols-12 px-8 gap-x-4 lg:px-0 my-32">
     <h1
-      class=":uno: text-heading font-semibold col-start-1 col-end-13 md:col-start-5 xl:ml-8 lg:col-end-12 xl:col-end-11 mb-8 text-2xl md:text-3xl"
+      class=":uno: text-heading font-semibold col-start-1 col-end-13 md:col-start-5 lg:col-end-12 xl:col-end-11 mb-4 md:mb-8 text-2xl md:text-3xl"
     >
       {frontmatter.title}
     </h1>
@@ -39,11 +41,18 @@ const { frontmatter } = Astro.props;
     <section
       class=":uno: col-start-1 col-end-13 md:col-end-5 lg:col-start-2 lg:col-end-5 xl:col-start-3"
     >
-      <div class="space-y-4">
-        <div>
+      <div
+        class="space-y-0 md:space-y-2 mb-12 md:mb-16 flex md:flex-col items-center md:items-start"
+      >
+        <div
+          class="flex items-center space-x-[6px] md:space-x-2 text-xs md:text-sm"
+          title={`Published At ${new Date(frontmatter.publishedAt).toDateString()}`}
+        >
+          <Icon pack="lucide" name="pencil-line" class="w-4 h-auto" />
+
           <time
             datetime={frontmatter.publishedAt as unknown as string}
-            class=":uno: text-heading text-sm mt-1 font-medium block"
+            class=":uno: text-heading font-medium block"
           >
             {
               new Date(frontmatter.publishedAt).toLocaleString("en-GB", {
@@ -53,34 +62,69 @@ const { frontmatter } = Astro.props;
               })
             }
           </time>
+        </div>
 
-          <p class="text-sm mt-1">
-            {frontmatter.timeToRead} minutes read
+        <div
+          class="items-center space-x-[6px] md:space-x-2 text-xs md:text-sm sm:flex ml-4 md:ml-unset hidden"
+          title={`Last Modified ${new Date(frontmatter.lastModified).toDateString()}`}
+        >
+          <Icon pack="lucide" name="history" class="w-4 h-auto" />
+
+          <time
+            datetime={frontmatter.lastModified as unknown as string}
+            class=":uno: text-heading font-medium block"
+          >
+            {
+              new Date(frontmatter.lastModified).toLocaleString("en-GB", {
+                year: "numeric",
+                month: "long",
+                day: "numeric",
+              })
+            }
+          </time>
+        </div>
+
+        <div
+          class="flex items-center space-x-[6px] md:space-x-2 text-xs md:text-sm md:ml-unset ml-auto"
+          title={`${frontmatter.timeToRead} minutes read`}
+        >
+          <Icon pack="lucide" name="timer" class="w-4 h-auto" />
+
+          <p class="text-heading font-medium">
+            {frontmatter.timeToRead} minutes
           </p>
         </div>
-      </div>
-
-      <div class=":uno: flex mt-6 space-x-2 mb-16">
-        {
-          frontmatter.tags.map((tag) => (
-            <Badge variant="primary">
-              {tag[0].toUpperCase() + tag.slice(1)}
-            </Badge>
-          ))
-        }
       </div>
 
       <TableOfContents headings={frontmatter.headings} />
     </section>
 
     <section
-      class=":uno: col-start-1 col-end-13 lg:col-end-12 xl:col-end-11 md:col-start-5 leading-[1.75] space-y-4 xl:ml-8"
+      class=":uno: col-start-1 col-end-13 lg:col-end-12 xl:col-end-11 md:col-start-5 leading-[1.75] space-y-4"
     >
       <slot />
     </section>
 
     <section
-      class=":uno: flex col-start-1 col-end-13 lg:col-start-2 lg:col-end-12 xl:col-start-3 xl:col-end-11 items-center justify-between mt-16"
+      class=":uno: col-start-1 col-end-13 md:col-end-5 lg:col-start-2 lg:col-end-5 xl:col-start-3 mx-auto mt-16 md:mx-unset"
+    >
+      <p
+        class=":uno: text-center text-heading font-medium text-sm leading-normal md:text-base mb-5 md:text-left"
+      >
+        Tags
+      </p>
+
+      <div class=":uno: flex space-x-2">
+        {
+          frontmatter.tags.map((tag) => (
+            <Badge>{tag[0].toUpperCase() + tag.slice(1)}</Badge>
+          ))
+        }
+      </div>
+    </section>
+
+    <section
+      class=":uno: flex col-start-1 col-end-13 lg:col-end-12 xl:col-end-11 md:col-start-5 items-center justify-between mt-16"
     >
       <div>
         <p
@@ -128,5 +172,10 @@ const { frontmatter } = Astro.props;
 
   window.addEventListener("scroll", () => {
     progressBar.setAttribute("value", window.scrollY);
+  });
+
+  const backToTop = document.querySelector(".backToTop__button");
+  backToTop.addEventListener("click", () => {
+    window.scrollTo(0, 0);
   });
 </script>
