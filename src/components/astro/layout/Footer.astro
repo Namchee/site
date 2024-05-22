@@ -1,5 +1,5 @@
 ---
-import { Icon } from "astro-iconify";
+import { Icon } from "astro-icon/components";
 
 import AppLink from "@/components/astro/ui/AppLink.astro";
 import ThemeSwitcher from "@/components/astro/layout/ThemeSwitcher.astro";
@@ -65,10 +65,9 @@ const links = [
         <span>CC BY 4.0</span>
         <Icon
           class=":uno: h-4 w-auto"
-          pack="simple-icons"
-          name="creativecommons"
+          name="simple-icons:creativecommons"
         />
-        <Icon class=":uno: h-4 w-auto" pack="cib" name="creative-commons-by" />
+        <Icon class=":uno: h-4 w-auto" name="cib:creative-commons-by" />
       </AppLink>
     </div>
 
@@ -76,7 +75,7 @@ const links = [
       href="/rss.xml"
       class=":uno: flex items-center space-x-1 text-heading hover:text-primary focus:text-primary transition-colors"
     >
-      <Icon pack="lucide" name="rss" class=":uno: w-4 h-auto -mt-[2px]" />
+      <Icon name="lucide:rss" class=":uno: w-4 h-auto -mt-[2px]" />
       <span>RSS</span>
     </AppLink>
   </div>

@@ -1,10 +1,10 @@
 ---
-import { Image } from 'astro:assets';
-import { Icon } from 'astro-iconify';
+import { Image } from "astro:assets";
+import { Icon } from "astro-icon/components";
 
-import AppLink from '@/components/astro/ui/AppLink.astro';
+import AppLink from "@/components/astro/ui/AppLink.astro";
 
-import { getCurrentlyReadBooks } from '@/scripts/now-reading';
+import { getCurrentlyReadBooks } from "@/scripts/now-reading";
 
 const books = await getCurrentlyReadBooks();
 ---
@@ -30,14 +30,13 @@ const books = await getCurrentlyReadBooks();
               <span>{book.title}</span>
 
               <Icon
-                pack="lucide"
-                name="arrow-up-right"
+                name="lucide:arrow-up-right"
                 class=":uno: w-4 h-auto"
               />
             </AppLink>
 
             <p class=":uno: text-sm leading-normal italic">{book.subtitle}</p>
-            <p class=":uno: mt-4">{book.author.join(' & ')}</p>
+            <p class=":uno: mt-4">{book.author.join(" & ")}</p>
           </div>
         </li>
       );

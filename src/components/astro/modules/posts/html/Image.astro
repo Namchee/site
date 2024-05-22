@@ -8,7 +8,7 @@ type Props = HTMLAttributes<"img">;
 const { alt, src } = Astro.props;
 ---
 
-<figure>
+<figure class="mt-8! mb-8!">
   <Img
     src={src}
     alt={alt}
@@ -19,7 +19,7 @@ const { alt, src } = Astro.props;
     placeholder="blurhash"
   />
 
-  <figcaption class=":uno: text-xs mt-4 italic text-center">
+  <figcaption class=":uno: text-xs mt-2 italic text-center">
     {alt}
   </figcaption>
 </figure>

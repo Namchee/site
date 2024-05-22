@@ -2,6 +2,8 @@ import { defineConfig } from 'astro/config';
 
 import unocss from 'unocss/astro';
 
+import icon from 'astro-icon';
+
 import vue from '@astrojs/vue';
 import mdx from '@astrojs/mdx';
 
@@ -19,6 +21,13 @@ export default defineConfig({
       injectReset: true,
     }),
     mdx(),
+    icon({
+      include: {
+        simpleIcons: ['*'],
+        lucide: ['*'],
+        cib: ['creative-commons-by'],
+      },
+    }),
     sitemap(),
     robotsTxt(),
     subset(),

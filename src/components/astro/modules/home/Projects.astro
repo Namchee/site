@@ -1,5 +1,5 @@
 ---
-import { Icon } from "astro-iconify";
+import { Icon } from "astro-icon/components";
 
 import AppLink from "@/components/astro/ui/AppLink.astro";
 import LogoContainer from "@/components/astro/ui/LogoContainer.astro";
@@ -53,7 +53,7 @@ const projects = [
                 class=":uno: transition-colors hover:text-heading focus:text-heading"
                 aria-label={`Click to visit ${project.title}`}
               >
-                <Icon pack="lucide" name="external-link" class=":uno: w-4 h-auto" />
+                <Icon name="lucide:external-link" class=":uno: w-4 h-auto" />
               </AppLink>
             )}
             {project.github && (
@@ -62,7 +62,7 @@ const projects = [
                 class=":uno: transition-colors hover:text-heading focus:text-heading"
                 aria-label={`Click to view source code of ${project.title}`}
               >
-                <Icon pack="simple-icons" name="github" class=":uno: w-4 h-auto" />
+                <Icon name="simple-icons:github" class=":uno: w-4 h-auto" />
               </AppLink>
             )}
           </div>

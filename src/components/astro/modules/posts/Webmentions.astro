@@ -1,10 +1,10 @@
 ---
-import { existsSync, readFileSync } from 'node:fs';
-import { resolve } from 'path';
+import { existsSync, readFileSync } from "node:fs";
+import { resolve } from "path";
 
-import { Icon } from 'astro-iconify';
+import { Icon } from "astro-icon/components";
 
-import type { Webmention } from '@/scripts/webmentions';
+import type { Webmention } from "@/scripts/webmentions";
 
 interface Props {
   slug: string;
@@ -14,32 +14,60 @@ const { slug } = Astro.props;
 
 let webMentions: Webmention[] = [];
 
-const wmPath = resolve(process.cwd(), 'data', 'webmentions', `${slug}.json`);
+const wmPath = resolve(process.cwd(), "data", "webmentions", `${slug}.json`);
 if (existsSync(wmPath)) {
-  webMentions = JSON.parse(readFileSync(wmPath).toString('utf-8')) as Webmention[];
+  webMentions = JSON.parse(
+    readFileSync(wmPath).toString("utf-8"),
+  ) as Webmention[];
 }
 
-const likes = webMentions.filter(mention => mention['wm-property'] === 'like-of');
-const reposts = webMentions.filter(mention => mention['wm-property'] === 'repost-of');
-const replies = webMentions.filter(mention => ['in-reply-to', 'mention-of'].includes(mention['wm-property']));
+const likes = webMentions.filter(
+  (mention) => mention["wm-property"] === "like-of",
+);
+const reposts = webMentions.filter(
+  (mention) => mention["wm-property"] === "repost-of",
+);
+const replies = webMentions.filter((mention) =>
+  ["in-reply-to", "mention-of"].includes(mention["wm-property"]),
+);
 
-const numberFormatter = Intl.NumberFormat('id-ID');
+const numberFormatter = Intl.NumberFormat("id-ID");
 ---
 
 <div class=":uno: flex items-center space-x-4">
-  <div class=":uno: flex items-center space-x-2 md:text-lg" title="Number of likes for this post">
-    <Icon pack="lucide" name="hand-heart" class=":uno: w-4 md:w-[18px] h-auto" />
-    <span class=":uno: leading-none!">{numberFormatter.format(likes.length)}</span>
+  <div
+    class=":uno: flex items-center space-x-2 md:text-lg"
+    title="Number of likes for this post"
+  >
+    <Icon
+      name="lucide:hand-heart"
+      class=":uno: w-4 md:w-[18px] h-auto"
+    />
+    <span class=":uno: leading-none!"
+      >{numberFormatter.format(likes.length)}</span
+    >
   </div>
 
-  <div class=":uno: flex items-center space-x-2 md:text-lg leading-none" title="Number of reposts">
-    <Icon pack="lucide" name="repeat-2" class=":uno: w-4 md:w-[18px] h-auto" />
-    <span class=":uno: leading-none!">{numberFormatter.format(reposts.length)}</span>
+  <div
+    class=":uno: flex items-center space-x-2 md:text-lg leading-none"
+    title="Number of reposts"
+  >
+    <Icon name="lucide:repeat-2" class=":uno: w-4 md:w-[18px] h-auto" />
+    <span class=":uno: leading-none!"
+      >{numberFormatter.format(reposts.length)}</span
+    >
   </div>
 
-  <div class=":uno: flex items-center space-x-2 md:text-lg leading-none" title="Number of replies and comments">
-    <Icon pack="lucide" name="message-square-text" class=":uno: w-4 md:w-[18px] h-auto" />
-    <span class=":uno: leading-none!">{numberFormatter.format(replies.length)}</span>
+  <div
+    class=":uno: flex items-center space-x-2 md:text-lg leading-none"
+    title="Number of replies and comments"
+  >
+    <Icon
+      name="lucide:message-square-text"
+      class=":uno: w-4 md:w-[18px] h-auto"
+    />
+    <span class=":uno: leading-none!"
+      >{numberFormatter.format(replies.length)}</span
+    >
   </div>
 </div>
-

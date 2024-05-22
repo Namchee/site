@@ -149,14 +149,14 @@ watch(searchTerm, () => {
   <DialogRoot v-model:open="visible">
     <DialogTrigger as-child>
       <button
-        class=":uno: grid place-items-center bg-background grid place-items-center h-10 w-10 rounded-full border border-separator fixed top-6 right-8 group hover:scale-105 focus:scale-105 z-10 transition-all shadow md:top-8"
+        class=":uno: grid place-items-center bg-background grid place-items-center w-10 h-10 rounded-full border border-separator dark:bg-surface fixed top-6 right-8 group hover:scale-105 focus:scale-105 z-10 transition-all shadow md:top-8 dark:border-surface"
       >
         <Icon
           icon="lucide:command"
           class=":uno: w-4 h-4"
         />
         <p
-          class=":uno: text-sm transition-all opacity-0 absolute -bottom-8 translate-y-1 group-hover:opacity-100 group-hover:translate-y-0 group-focus:opacity-100 group-focus:translate-y-0"
+          class=":uno: transition-all text-sm opacity-0 absolute -bottom-8 translate-y-1 group-hover:opacity-100 group-hover:translate-y-0 group-focus:opacity-100 group-focus:translate-y-0"
         >
           Menu
         </p>
@@ -166,9 +166,11 @@ watch(searchTerm, () => {
     <DialogPortal>
       <DialogOverlay
         @click="visible = false"
-        class=":uno: fixed w-screen h-screen bg-background dialog__overlay bg-opacity-50 backdrop-blur z-20"
+        class=":uno: fixed bg-background w-screen h-screen dialog__overlay bg-opacity-50 backdrop-blur z-20"
       />
-      <DialogContent class=":uno: fixed border border-separator bg-background shadow dialog__content top-[20%] left-[50%] -translate-x-[50%] rounded-md w-4/5 max-w-md max-h-sm z-30">
+      <DialogContent
+        class=":uno: fixed border border-separator bg-background shadow dialog__content top-[20%] left-[50%] -translate-x-[50%] rounded-md w-4/5 max-w-md max-h-sm z-30"
+      >
         <DialogTitle class=":uno: border-separator border-b">
           <input
             class=":uno: text-sm w-full bg-transparent focus:outline-none p-4 placeholder:font-normal font-normal leading-relaxed"
@@ -193,7 +195,7 @@ watch(searchTerm, () => {
               v-for="(link, idx) in relevantLinks"
               :key="link.href"
               :href="link.href"
-              class=":uno: flex justify-between text-sm transition-colors hover:text-heading focus:text-heading rounded-md p-2 hover:bg-surface focus:bg-surface link"
+              class=":uno: text-sm rounded-md flex justify-between transition-colors hover:text-heading focus:text-heading p-2 hover:bg-surface focus:bg-surface link"
               rel="noopener noreferrer"
               ref="navigationLinks"
               @mouseover="focusIndex = idx"
@@ -211,8 +213,9 @@ watch(searchTerm, () => {
               <kbd
                 v-if="!!link.key"
                 :title="link.key"
-                class=":uno: text-xs text-heading border border-separator px-1 bg-surface font-mono rounded"
-              >{{ link.key }}</kbd>
+                class=":uno: text-xs border border-separator text-heading px-1 bg-surface font-mono rounded"
+              >{{ link.key
+              }}</kbd>
             </a>
           </div>
 
@@ -296,6 +299,7 @@ watch(searchTerm, () => {
   from {
     opacity: 0;
   }
+
   to {
     opacity: 1;
   }

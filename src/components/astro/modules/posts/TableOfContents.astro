@@ -1,11 +1,11 @@
 ---
-import type { MarkdownHeading } from 'astro';
+import type { MarkdownHeading } from "astro";
 
-import { Icon } from 'astro-iconify';
+import { Icon } from "astro-icon/components";
 
-import generateToC from '@/scripts/toc';
+import generateToC from "@/scripts/toc";
 
-import ToCList from './TocList.astro';
+import ToCList from "./TocList.astro";
 
 interface Props {
   headings: MarkdownHeading[];
@@ -15,36 +15,44 @@ const { headings } = Astro.props;
 const tocList = generateToC(headings);
 ---
 
-<nav class=":uno: flex flex-col sticky bottom-0 bg-surface p-4 rounded-md md:mb-0 top-24 md:bg-transparent md:p-0 mb-8">
+<nav
+  class=":uno: text-sm flex-col hidden md:flex md:sticky bottom-0 p-4 rounded-md md:mb-0 top-24 md:p-0 mb-8"
+>
   <p class=":uno: mb-4 font-semibold text-heading transition-colors">
     In this post
   </p>
 
   <ToCList headings={tocList} />
 
-  <button class=":uno: md:items-center space-x-2 mt-8 text-heading hidden transition-colors md:flex backToTop__button">
-    <Icon pack="lucide" name="corner-left-up" class=":uno: w-4 h-auto" />
+  <button
+    class=":uno: md:items-center space-x-2 mt-8 text-heading hidden transition-colors md:flex backToTop__button"
+  >
+    <Icon name="lucide:corner-left-up" class=":uno: w-4 h-auto" />
     <span>Back to Top</span>
   </button>
 </nav>
 
 <script>
-  const backToTop = document.querySelector('.backToTop__button');
-  backToTop.addEventListener('click', () => {
+  const backToTop = document.querySelector(".backToTop__button");
+  backToTop.addEventListener("click", () => {
     window.scrollTo(0, 0);
   });
 
-  const observer = new IntersectionObserver(entries => {
-    entries.forEach(entry => {
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
       const id = entry.target.id;
       if (entry.intersectionRatio > 0) {
-        document.querySelector(`nav ul li a[href="#${id}"]`).classList.add('text-primary', 'font-medium')
+        document
+          .querySelector(`nav ul li a[href="#${id}"]`)
+          .classList.add("text-primary", "font-medium");
       } else {
-        document.querySelector(`nav ul li a[href="#${id}"]`).classList.remove('text-primary', 'font-medium');
+        document
+          .querySelector(`nav ul li a[href="#${id}"]`)
+          .classList.remove("text-primary", "font-medium");
       }
     });
   });
 
-  const tocLinks = document.querySelectorAll('h2[id], h3[id]');
-  tocLinks.forEach(link => observer.observe(link));
+  const tocLinks = document.querySelectorAll("h2[id], h3[id]");
+  tocLinks.forEach((link) => observer.observe(link));
 </script>

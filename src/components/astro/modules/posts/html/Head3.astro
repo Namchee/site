@@ -1,7 +1,7 @@
 ---
 import type { HTMLAttributes } from "astro/types";
 
-import { Icon } from "astro-iconify";
+import { Icon } from "astro-icon/components";
 
 import AppLink from "@/components/astro/ui/AppLink.astro";
 
@@ -21,6 +21,6 @@ const { id, ...props } = Astro.props;
     class=":uno: hover:text-primary opacity-0 group-hover:opacity-100 transition-all ml-1 text-content/70"
     aria-label={id}
   >
-    <Icon pack="lucide" name="hash" class=":uno: w-4 h-auto" aria-hidden="true" />
+    <Icon name="lucide:hash" class=":uno: w-4 h-auto" aria-hidden="true" />
   </AppLink>
 </h3>

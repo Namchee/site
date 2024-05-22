@@ -1,9 +1,9 @@
 ---
-import { Icon } from 'astro-iconify';
+import { Icon } from "astro-icon/components";
 
-import AppLink from '@/components/astro/ui/AppLink.astro';
+import AppLink from "@/components/astro/ui/AppLink.astro";
 
-import CopyPostLink from '@/components/vue/CopyPostLink.vue';
+import CopyPostLink from "@/components/vue/CopyPostLink.vue";
 
 interface Props {
   slug: string;
@@ -12,9 +12,7 @@ interface Props {
 
 const { slug, title } = Astro.props;
 
-const postUrl = encodeURIComponent(
-  `${Astro.site.toString()}/posts/${slug}`,
-);
+const postUrl = encodeURIComponent(`${Astro.site.toString()}/posts/${slug}`);
 const postText = `I just read '${title}' by Namchee
 
 `;
@@ -29,9 +27,8 @@ const postText = `I just read '${title}' by Namchee
     class=":uno: group"
   >
     <Icon
-      pack="simple-icons"
-      name="x"
-      class=":uno: w-4 md:w-[18px] h-auto group-hover:text-heading group-focus:text-heading transition-color"
+      name="simple-icons:x"
+      class=":uno: w-4 h-auto md:w-[18px] group-hover:text-heading group-focus:text-heading transition-color"
     />
   </AppLink>
 
@@ -41,8 +38,7 @@ const postText = `I just read '${title}' by Namchee
     class=":uno: group"
   >
     <Icon
-      pack="simple-icons"
-      name="linkedin"
+      name="simple-icons:linkedin"
       class=":uno: w-4 md:w-[18px] h-auto transition-color group-hover:text-heading group-focus:text-heading"
     />
   </AppLink>

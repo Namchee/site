@@ -1,5 +1,5 @@
 ---
-import { Icon } from "astro-iconify";
+import { Icon } from "astro-icon/components";
 
 import Layout from "@/components/astro/layout/Layout.astro";
 
@@ -22,8 +22,8 @@ const description = 'Namchee is a no-nonsense software engineer that is dedicate
       <Profile />
     </div>
 
-    <div class=":uno: col-start-1 col-end-13 md:mt-0 md:col-start-6 lg:col-end-12 xl:col-end-11 space-y-16 mt-12">
-      <section class=":uno: space-y-4">
+    <div class=":uno: prose col-start-1 col-end-13 md:mt-0 md:col-start-6 lg:col-end-12 xl:col-end-11 space-y-16 mt-12">
+      <section class=":uno: space-y-4 leading-[1.75]">
         <h2 class=":uno: font-semibold tracking-tight text-heading">About me</h2>
         <p>
           Hello there. My name is Cristopher, but I'm commonly known as Namchee
@@ -57,14 +57,14 @@ const description = 'Namchee is a no-nonsense software engineer that is dedicate
         <Projects />
 
         <AppLink
-          class=":uno: mt-8 inline-flex items-center arrow__link hover:text-heading focus:text-heading"
+          class=":uno: mt-8 inline-flex items-center hover:text-heading focus:text-heading arrow__link"
           href="https://github.com/Namchee?tab=repositories"
         >
           <Icon name="lucide:arrow-right" class=":uno: w-4 arrow__before" />
           <span class=":uno: link__text inline-block">View all projects</span>
           <Icon
             name="lucide:arrow-up-right"
-            class=":uno: w-4 -translate-x-8 opacity-0 arrow__after"
+            class=":uno: w-4 opacity-0 -translate-x-8 arrow__after"
           />
         </AppLink>
       </section>

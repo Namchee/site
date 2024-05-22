@@ -12,7 +12,6 @@ export async function GET(context: APIContext) {
     site: context.site,
     items: posts.map(post => ({
       title: post.data.title,
-      image: post.data.image.url,
       pubDate: post.data.publishedAt,
       description: post.data.subtitle,
       link: `/posts/${post.slug}`,

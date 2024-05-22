@@ -1,5 +1,5 @@
 ---
-import { Icon } from "astro-iconify";
+import { Icon } from "astro-icon/components";
 
 import Layout from "@/components/astro/layout/Layout.astro";
 import AppLink from "@/components/astro/ui/AppLink.astro";
@@ -56,7 +56,7 @@ const description = 'A list of books I\'ve read and recommend to either boost yo
 ---
 
 <Layout title={title} description={description}>
-  <div class=":uno: grid grid-cols-12 gap-4 my-16 px-8 lg:my-32 lg:px-0">
+  <div class=":uno: grid grid-cols-12 gap-4 my-16 px-8 lg:my-32 lg:px-0 leading-[1.75]">
     <header
       class=":uno: col-start-1 col-end-13 md:col-end-5 lg:col-start-2 lg:col-end-5 xl:col-start-3"
     >
@@ -87,13 +87,12 @@ const description = 'A list of books I\'ve read and recommend to either boost yo
           const bookList = book.map((b) => (
             <li class=":uno: justify-between md:grid md:grid-cols-[max-content_auto]">
               <AppLink
-                class=":uno: text-heading transition-colors items-center hover:text-primary focus:text-primary text-balance inline-flex space-x-[2px]"
+                class=":uno: text-heading transition-colors items-center hover:text-primary focus:text-primary inline-flex text-balance space-x-[2px]"
                 href={b.link}
               >
                 <span>{b.title}</span>
                 <Icon
-                  pack="lucide"
-                  name="arrow-up-right"
+                  name="lucide:arrow-up-right"
                   class=":uno: w-4 h-auto"
                 />
               </AppLink>
