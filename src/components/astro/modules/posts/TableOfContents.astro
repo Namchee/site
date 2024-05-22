@@ -1,7 +1,7 @@
 ---
 import type { MarkdownHeading } from "astro";
 
-import { Icon } from "astro-iconify";
+import { Icon } from "astro-icon/components";
 
 import generateToC from "@/scripts/toc";
 
@@ -27,7 +27,7 @@ const tocList = generateToC(headings);
   <button
     class=":uno: md:items-center space-x-2 mt-8 text-heading hidden transition-colors md:flex backToTop__button"
   >
-    <Icon pack="lucide" name="corner-left-up" class=":uno: w-4 h-auto" />
+    <Icon name="lucide:corner-left-up" class=":uno: w-4 h-auto" />
     <span>Back to Top</span>
   </button>
 </nav>

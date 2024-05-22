@@ -1,5 +1,5 @@
 ---
-import { Icon } from "astro-iconify";
+import { Icon } from "astro-icon/components";
 
 import type { CollectionEntry } from "astro:content";
 import type { MarkdownFile } from "@/plugins/remark/types";
@@ -48,7 +48,7 @@ const { frontmatter } = Astro.props;
           class="flex items-center space-x-[6px] md:space-x-2 text-xs md:text-sm"
           title={`Published At ${new Date(frontmatter.publishedAt).toDateString()}`}
         >
-          <Icon pack="lucide" name="pencil-line" class="w-4 h-auto" />
+          <Icon name="lucide:pencil-line" class="w-4 h-auto" />
 
           <time
             datetime={frontmatter.publishedAt as unknown as string}
@@ -68,7 +68,7 @@ const { frontmatter } = Astro.props;
           class="items-center space-x-[6px] md:space-x-2 text-xs md:text-sm sm:flex ml-4 md:ml-unset hidden"
           title={`Last Modified ${new Date(frontmatter.lastModified).toDateString()}`}
         >
-          <Icon pack="lucide" name="history" class="w-4 h-auto" />
+          <Icon name="lucide:history" class="w-4 h-auto" />
 
           <time
             datetime={frontmatter.lastModified as unknown as string}
@@ -88,7 +88,7 @@ const { frontmatter } = Astro.props;
           class="flex items-center space-x-[6px] md:space-x-2 text-xs md:text-sm md:ml-unset ml-auto"
           title={`${frontmatter.timeToRead} minutes read`}
         >
-          <Icon pack="lucide" name="timer" class="w-4 h-auto" />
+          <Icon name="lucide:timer" class="w-4 h-auto" />
 
           <p class="text-heading font-medium">
             {frontmatter.timeToRead} minutes

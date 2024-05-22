@@ -1,5 +1,5 @@
 ---
-import { Icon } from "astro-iconify";
+import { Icon } from "astro-icon/components";
 
 import Layout from "@/components/astro/layout/Layout.astro";
 import AppLink from "@/components/astro/ui/AppLink.astro";
@@ -92,8 +92,7 @@ const description = 'A list of books I\'ve read and recommend to either boost yo
               >
                 <span>{b.title}</span>
                 <Icon
-                  pack="lucide"
-                  name="arrow-up-right"
+                  name="lucide:arrow-up-right"
                   class=":uno: w-4 h-auto"
                 />
               </AppLink>
