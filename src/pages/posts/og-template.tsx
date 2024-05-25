@@ -1,6 +1,6 @@
 interface OGProps {
   title: string;
-  publishedDate: Date;
+  publishedAt: Date;
   tags: string[];
 }
 
@@ -21,7 +21,7 @@ export const Template = (props: OGProps) => (
       <div style={{ display: 'flex', flexFlow: 'column' }}>
         <time style={{ display: 'block', fontWeight: 500, marginBottom: '16px', fontSize: '20px', color: '#697586', lineHeight: 1 }}>
           {
-            new Date(props.publishedDate).toLocaleString('en-GB', {
+            new Date(props.publishedAt).toLocaleString('en-GB', {
               year: 'numeric',
               month: 'long',
               day: 'numeric',
