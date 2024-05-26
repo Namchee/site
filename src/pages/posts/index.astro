@@ -11,10 +11,10 @@ const posts = (await getCollection("posts"))
 
 const title = "My Personal Thoughts — Namchee";
 const description =
-  "Food for thoughts or just Namchee's passing whims in form of well-written posts";
+  "Food for thoughts or just passing whims in form of well-written posts that covers various topics.";
 ---
 
-<Layout title={title} description={description}>
+<Layout title={title} description={description} og="og-posts">
   <div class=":uno: grid grid-cols-12 gap-4 my-16 lg:my-32 px-8">
     <header
       class=":uno: col-start-1 col-end-13 md:col-end-5 lg:col-start-2 lg:col-end-5 xl:col-start-3"
