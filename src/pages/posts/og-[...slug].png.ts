@@ -2,12 +2,15 @@ import { readFileSync } from 'node:fs';
 import sharp from 'sharp';
 
 import { getCollection } from 'astro:content';
+import type { APIContext } from 'astro';
 
 import satori, { type SatoriOptions } from 'satori';
 
 import { Template } from './og-template';
 
 interface Params {
+  host: string;
+
   title: string;
   publishedAt: Date;
   tags: string[];
@@ -42,8 +45,12 @@ async function generateOGImage(params: Params) {
   return buffer;
 }
 
-export async function GET({ params }: { params: Params; }) {
-  const image = await generateOGImage(params);
+export async function GET(ctx: APIContext) {
+  const host = import.meta.env.DEV ? `${ctx.url.protocol}//${ctx.url.host}` : import.meta.env.SITE;
+  const image = await generateOGImage({
+    ...ctx.props as Params,
+    host,
+  });
 
   return new Response(image, {
     status: 200,
@@ -58,10 +65,12 @@ export async function getStaticPaths() {
 
   return blogPosts.map(post => ({
     params: {
+      slug: post.slug,
+    },
+    props: {
       title: post.data.title,
       publishedAt: post.data.publishedAt,
       tags: post.data.tags,
     },
-    props: { post },
   }));
 }
