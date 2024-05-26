@@ -10,6 +10,8 @@ import CommandMenu from '@/components/vue/CommandMenu.vue';
 export interface Props {
   title: string;
   description: string;
+
+  og?: string;
 }
 
 const postCollection = await getCollection('posts');
@@ -21,8 +23,11 @@ const posts = postCollection
     href: `/posts/${collection.slug}`,
   }));
 
-const { title, description } = Astro.props;
+const { title, description, og } = Astro.props;
+
 const url = Astro.url;
+const ogHost = import.meta.env.DEV ? `${url.protocol}//${url.host}` : import.meta.env.SITE;
+const ogFile = og ? `${og}.png` : 'og.png';
 ---
 
 <!doctype html>
@@ -39,7 +44,7 @@ const url = Astro.url;
     <meta property="og:type" content="website">
     <meta property="og:title" content={title}>
     <meta property="og:description" content={description}>
-    <meta property="og:image" content="http://localhost:4321/og.png">
+    <meta property="og:image" content={`${ogHost}/${ogFile}`}>
 
     <!-- Twitter Meta Tags -->
     <meta name="twitter:card" content="summary_large_image">
@@ -47,7 +52,7 @@ const url = Astro.url;
     <meta property="twitter:url" content="https://www.namchee.dev">
     <meta name="twitter:title" content={title}>
     <meta name="twitter:description" content={description}>
-    <meta name="twitter:image" content="/og.png">
+    <meta name="twitter:image" content={`${ogHost}/${ogFile}`}>
 
     <meta name="description" content={description} />
     <link rel="sitemap" href="/sitemap-index.xml" />
