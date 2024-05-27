@@ -13,6 +13,7 @@ interface Params {
 
   title: string;
   publishedAt: Date;
+  timeToRead: number;
   tags: string[];
 }
 
@@ -70,6 +71,7 @@ export async function getStaticPaths() {
     props: {
       title: post.data.title,
       publishedAt: post.data.publishedAt,
+      timeToRead: (post.data as { timeToRead: number; }).timeToRead,
       tags: post.data.tags,
     },
   }));
