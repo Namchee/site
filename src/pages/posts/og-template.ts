@@ -26,7 +26,7 @@ export const Template = (props: OGProps, imageBuffer: Buffer) => html`
             month: 'long',
             day: 'numeric',
           })}
-        </time> — <span style="display: flex; margin-left: 8px;">Namchee</span>
+        </time> — <span style="display: flex; margin-left: 8px;">${props.timeToRead} minutes read</span>
       </div>
 
       <div style="display: flex; color: #444CE7;">

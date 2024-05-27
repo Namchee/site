@@ -1,10 +1,11 @@
 import { readFileSync } from 'node:fs';
-import sharp from 'sharp';
 
 import { getCollection } from 'astro:content';
 import type { APIContext } from 'astro';
 
 import satori, { type SatoriOptions } from 'satori';
+import sharp from 'sharp';
+import getReadingTime from 'reading-time';
 
 import { Template } from './og-template';
 
@@ -67,7 +68,7 @@ export async function getStaticPaths() {
     props: {
       title: post.data.title,
       publishedAt: post.data.publishedAt,
-      timeToRead: (post.data as { timeToRead: number; }).timeToRead,
+      timeToRead: Math.ceil(getReadingTime(post.body).minutes),
       tags: post.data.tags,
     },
   }));
