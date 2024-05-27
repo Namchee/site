@@ -48,14 +48,24 @@ const books = {
       author: 'Chad Fowler',
       link: 'https://literal.club/namchee/book/the-passionate-programmer-9xgce',
     },
+    {
+      title: 'Refactoring UI',
+      author: 'Adam Wathan & Steve Schoger',
+      link: 'https://literal.club/book/adam-wathan-steve-schoger-refactoring-ui-8k1eh',
+    },
+    {
+      title: 'System Design Interview – An Insider\'s Guide',
+      author: 'Alex Xu',
+      link: 'https://literal.club/book/alex-xu-system-design-interview-an-insiders-guide-i97ig',
+    }
   ]
 };
 
 const title = 'Bookshelf';
-const description = 'A list of books I\'ve read and recommend to either boost your professional career or spice up your life!'
+const description = 'A list of books that I\'ve read and recommend to either boost your professional career or spice up your life!'
 ---
 
-<Layout title={title} description={description}>
+<Layout title={title} description={description} og="og-bookshelf">
   <div class=":uno: grid grid-cols-12 gap-4 my-16 px-8 lg:my-32 lg:px-0 leading-[1.75]">
     <header
       class=":uno: col-start-1 col-end-13 md:col-end-5 lg:col-start-2 lg:col-end-5 xl:col-start-3"

@@ -25,6 +25,7 @@ const { frontmatter } = Astro.props;
 <Layout
   title={`${frontmatter.title} — Namchee`}
   description={frontmatter.subtitle}
+  og={`posts/og-${frontmatter.slug}`}
 >
   <progress class=":uno: fixed w-screen z-10 reading__progress h-[2px] left-0"
   ></progress>
