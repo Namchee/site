@@ -1,16 +1,15 @@
 import { readFileSync } from 'node:fs';
-import sharp from 'sharp';
 
 import { getCollection } from 'astro:content';
 import type { APIContext } from 'astro';
 
 import satori, { type SatoriOptions } from 'satori';
+import sharp from 'sharp';
+import getReadingTime from 'reading-time';
 
 import { Template } from './og-template';
 
 interface Params {
-  host: string;
-
   title: string;
   publishedAt: Date;
   timeToRead: number;
@@ -37,7 +36,9 @@ async function generateOGImage(params: Params) {
     ],
   };
 
-  const svg = await satori(Template(params), opts);
+  const logoBuffer = readFileSync('./public/og-logo.png');
+
+  const svg = await satori(Template(params, logoBuffer), opts);
 
   const sharpSvg = Buffer.from(svg);
 
@@ -47,11 +48,7 @@ async function generateOGImage(params: Params) {
 }
 
 export async function GET(ctx: APIContext) {
-  const host = import.meta.env.DEV ? `${ctx.url.protocol}//${ctx.url.host}` : import.meta.env.SITE;
-  const image = await generateOGImage({
-    ...ctx.props as Params,
-    host,
-  });
+  const image = await generateOGImage(ctx.props as Params);
 
   return new Response(image, {
     status: 200,
@@ -71,7 +68,7 @@ export async function getStaticPaths() {
     props: {
       title: post.data.title,
       publishedAt: post.data.publishedAt,
-      timeToRead: (post.data as { timeToRead: number; }).timeToRead,
+      timeToRead: Math.ceil(getReadingTime(post.body).minutes),
       tags: post.data.tags,
     },
   }));
