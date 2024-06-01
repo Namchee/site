@@ -27,9 +27,8 @@ async function fetchWebmentions() {
   const baseURL = 'https://webmention.io/api/mentions.jf2';
   const params = new URLSearchParams();
 
-  params.append('domain', `namchee.dev`);
-  // eslint-disable-next-line no-undef
-  params.append('token', process.env.WEBMENTIONS_API_KEY);
+  params.append('domain', `www.namchee.dev`);
+  params.append('token', process.env.WEBMENTION_URL);
   params.append('per-page', '1000');
 
   const response = await fetch(`${baseURL}?${params.toString()}`);
