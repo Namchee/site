@@ -1,8 +1,5 @@
 import { existsSync, readFileSync, writeFileSync } from 'node:fs';
-import { resolve, dirname } from 'node:path';
-import { fileURLToPath } from 'node:url';
-
-const __dirname = dirname(fileURLToPath(import.meta.url));
+import { resolve } from 'node:path';
 
 export interface Webmention {
   type: string;
@@ -27,7 +24,7 @@ async function fetchWebmentions() {
   const baseURL = 'https://webmention.io/api/mentions.jf2';
   const params = new URLSearchParams();
 
-  params.append('domain', `www.namchee.dev`);
+  params.append('domain', 'www.namchee.dev');
   params.append('token', process.env.WEBMENTIONS_API_KEY);
   params.append('per-page', '1000');
 
