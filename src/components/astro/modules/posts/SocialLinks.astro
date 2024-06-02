@@ -42,4 +42,15 @@ const postText = `I just read '${title}' by Namchee
       class=":uno: w-4 md:w-[18px] h-auto transition-color group-hover:text-heading group-focus:text-heading"
     />
   </AppLink>
+
+  <AppLink
+    href={`https://bsky.app/intent/compose?text=${postText}%20${postUrl}`}
+    title="Share Post on Bluesky"
+    class=":uno: group"
+  >
+    <Icon
+      name="simple-icons:bluesky"
+      class=":uno: w-4 md:w-[18px] h-auto transition-color group-hover:text-heading group-focus:text-heading"
+    />
+  </AppLink>
 </div>

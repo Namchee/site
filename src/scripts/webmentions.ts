@@ -1,8 +1,5 @@
 import { existsSync, readFileSync, writeFileSync } from 'node:fs';
-import { resolve, dirname } from 'node:path';
-import { fileURLToPath } from 'node:url';
-
-const __dirname = dirname(fileURLToPath(import.meta.url));
+import { resolve } from 'node:path';
 
 export interface Webmention {
   type: string;
@@ -27,8 +24,7 @@ async function fetchWebmentions() {
   const baseURL = 'https://webmention.io/api/mentions.jf2';
   const params = new URLSearchParams();
 
-  params.append('domain', `namchee.dev`);
-  // eslint-disable-next-line no-undef
+  params.append('domain', 'www.namchee.dev');
   params.append('token', process.env.WEBMENTIONS_API_KEY);
   params.append('per-page', '1000');
 
@@ -45,13 +41,12 @@ async function syncWebmentions() {
   const webmentions = await fetchWebmentions();
   for (const mention of webmentions) {
     const slug = new URL(mention['wm-target']).pathname.
-      replace(/\/$/, '').
-      replace(/^\//, '').
-      replaceAll('/', '__');
+      split('/').
+      pop();
 
-    const filename = resolve(__dirname, 'data', 'webmentions', `${slug}.json`);
+    const filename = resolve(process.cwd(), 'data', 'webmentions', `${slug}.json`);
 
-    if (existsSync(filename)) {
+    if (!existsSync(filename)) {
       writeFileSync(filename, JSON.stringify([mention], null, 2));
     } else {
       const entries = JSON.parse(readFileSync(filename, 'utf-8')) as Webmention[];
