@@ -23,7 +23,7 @@ jobs:
         env:
           WEBMENTIONS_API_KEY: ${{ secrets.WEBMENTIONS_API_KEY }}
         run: pnpm run webmentions:sync
-      - name: Commit webmentions to repository
+      - name: Commit to repository
         env:
           COMMIT_MSG: |
             chore(webmentions): automated sync
@@ -32,11 +32,10 @@ jobs:
           git config user.name "Cristopher Namchee"
           git add .
           git diff --quiet && git diff --staged --quiet || (git commit -m "${COMMIT_MSG}"; git push origin master)
-      - name: Build the site
-        run: pnpm run build
       - name: Publish to Cloudflare Pages
-        uses: cloudflare/wrangler-action@v3
+        uses: cloudflare/pages-action@v1.5.0
         with:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           accountId: 1a99b52ba5412ca55475fdbec4e0ab26
-          command: pages deploy dist --project-name=${{ vars.CLOUDFLARE_PROJECT_NAME }} --commit-dirty=true
+          projectName: site
+          directory: dist
