@@ -15,7 +15,7 @@ jobs:
           token: ${{ secrets.GH_TOKEN }}
       - uses: pnpm/action-setup@v4
         with:
-          version: 8
+          version: 9.0.2
       - name: Install dependencies
         run: pnpm install
       - name: Sync webmentions
