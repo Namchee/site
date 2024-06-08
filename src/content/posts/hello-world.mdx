@@ -5,6 +5,8 @@ subtitle: 'Reflections of my software engineering career and plans for the futur
 tags:
   - growth
 ---
+import { Code } from 'astro:components';
+
 import TextLink from './../../components/astro/ui/TextLink.astro';
 import Head2 from './../../components/astro/modules/posts/html/Head2.astro';
 import Head3 from './../../components/astro/modules/posts/html/Head3.astro';
@@ -16,6 +18,8 @@ import ListItem from './../../components/astro/modules/posts/html/ListItem.astro
 
 import Image from './../../components/astro/modules/posts/html/Image.astro';
 
+import CodeSnippet from './../../components/astro/modules/posts/html/CodeSnippet.astro';
+
 
 export const components = {
   a: TextLink,
@@ -25,6 +29,37 @@ export const components = {
   blockquote: Quote,
   img: Image,
 }
+
+<Code code={`enum LogLevel {
+  ERROR,
+  WARN,
+  INFO,
+  DEBUG,
+}
+
+/**
+ * This is equivalent to:
+ * type LogLevelStrings = 'ERROR' | 'WARN' | 'INFO' | 'DEBUG';
+ */
+type LogLevelStrings = keyof typeof LogLevel;
+
+function printImportant(key: LogLevelStrings, message: string) {
+  const num = LogLevel[key];
+  if (num <= LogLevel.WARN) {
+    console.log("Log level key is:", key);
+    console.log("Log level value is:", num);
+    console.log("Log level message is:", message);
+  }
+}
+printImportant("ERROR", "This is a message");`} lang="js">
+
+</Code>
+
+<CodeSnippet>
+```
+aaa
+```
+</CodeSnippet>
 
 After three years of my career as a professional software engineer, I've finally decided that it's time for me to write
 and share my journey in the world of software engineering through this website. But why? Why now instead of one or two years ago?

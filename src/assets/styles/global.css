@@ -79,3 +79,22 @@ html.dark img {
 ::-webkit-scrollbar-thumb:hover {
   background-color: rgba(111,111,111, 0.6);
 }
+
+code {
+  font-family: 'JetBrains Mono', ui-monospace;
+}
+
+.astro-code code {
+  counter-reset: step;
+  counter-increment: step 0;
+}
+
+.astro-code code .line::before {
+  content: counter(step);
+  counter-increment: step;
+  width: 1rem;
+  margin-right: 1.5rem;
+  display: inline-block;
+  text-align: right;
+  color: rgba(115,138,148,.4)
+}

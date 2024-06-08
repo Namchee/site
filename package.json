@@ -24,6 +24,7 @@
     "@iconify-json/simple-icons": "^1.1.102",
     "@namchee/astro-subfont": "^0.1.0",
     "@namchee/eslint-config": "^2.0.8",
+    "@shikijs/transformers": "^1.6.3",
     "@types/eslint": "^8.44.8",
     "@types/node": "^20.10.4",
     "@typescript-eslint/parser": "^6.13.2",

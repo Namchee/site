@@ -1,0 +1,12 @@
+---
+const { props } = Astro.props;
+const html = await Astro.slots.render('default');
+---
+
+<div class="rounded-md text-sm">
+  <div class="bg-surface p-2 border border-border">
+    Foo bar
+  </div>
+
+  <Fragment set:html={html} />
+</div>

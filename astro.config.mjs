@@ -35,7 +35,13 @@ export default defineConfig({
   markdown: {
     remarkPlugins: remarkPlugins,
     syntaxHighlight: 'shiki',
-    shikiConfig: { theme: 'vitesse-dark' },
+    shikiConfig: {
+      themes: {
+        light: 'github-light',
+        dark: 'github-light',
+      },
+      defaultColor: 'light',
+    },
   },
   image: {
     domains: ['assets.literal.club', 'res.cloudinary.com'],
