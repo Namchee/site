@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref, defineProps } from 'vue';
+import { ref } from 'vue';
 
 import { ToastProvider, ToastDescription, ToastRoot, ToastClose, ToastViewport } from 'radix-vue';
 import { Icon } from '@iconify/vue';

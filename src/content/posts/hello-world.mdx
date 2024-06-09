@@ -28,19 +28,26 @@ export const components = {
   strong: Strong,
   blockquote: Quote,
   img: Image,
+  pre: CodeSnippet,
 }
 
 After three years of my career as a professional software engineer, I've finally decided that it's time for me to write
 and share my journey in the world of software engineering through this website. But why? Why now instead of one or two years ago?
 What motivates me to begin at this particular moment?
 
-<CodeSnippet lang="typescript" title="A simple unit test. Surely nothing can go wrong 🙃">
-```ts
+```ts title='A simple and working unit test. Surely nothing goes wrong right?'
 function testAdd() {
+  const a = 1;
+  const b = 1;
+  const c = 3;
+
+  const d = 4;
+
+  const f = 10;
+  const t1 = 122;
   expect(add(1, 2)).toBe(2);
 }
 ```
-</CodeSnippet>
 
 To understand my motivations, let's take a trip down memory lane.
 
