@@ -18,7 +18,13 @@ const { children, attribs } = document.children[0] as unknown as DataElement;
 const text = children[0].data.trim();
 
 const lang = attribs['class'].split('-').pop() as BundledLanguage;
-const title = attribs['metastring'].split('=').pop().slice(1, -1);
+const [meta, copyable] = attribs['metastring'].split(',');
+
+const title = meta.split('=').pop().slice(1, -1);
+
+console.log(attribs);
+console.log(title);
+console.log(copyable);
 
 ---
 
