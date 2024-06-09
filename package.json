@@ -31,7 +31,7 @@
     "@unocss/eslint-config": "^0.59.3",
     "@unocss/reset": "^0.58.0",
     "@unocss/transformer-compile-class": "^0.59.3",
-    "astro": "4.4.15",
+    "astro": "4.10.1",
     "astro-eslint-parser": "^0.16.0",
     "astro-robots-txt": "^1.0.0",
     "eslint": "^8.57.0",

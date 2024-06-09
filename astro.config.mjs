@@ -12,6 +12,10 @@ import robotsTxt from 'astro-robots-txt';
 
 import { subset } from '@namchee/astro-subfont';
 
+import {
+  transformerNotationHighlight,
+} from '@shikijs/transformers';
+
 import { remarkPlugins } from './src/plugins/remark';
 
 export default defineConfig({
@@ -38,9 +42,9 @@ export default defineConfig({
     shikiConfig: {
       themes: {
         light: 'github-light',
-        dark: 'github-light',
+        dark: 'github-dark',
       },
-      defaultColor: 'light',
+      transformers: [transformerNotationHighlight()],
     },
   },
   image: {

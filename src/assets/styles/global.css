@@ -39,7 +39,7 @@ html.dark img {
   filter: brightness(.8) contrast(1.1);
 }
 
-*::selection {
+*:not(.astro-code)::selection {
   color: oklch(var(--primary));
   background-color: oklch(var(--primary) / 0.15);
 }
@@ -84,17 +84,33 @@ code {
   font-family: 'JetBrains Mono', ui-monospace;
 }
 
+html.dark .astro-code,
+html.dark .astro-code span {
+  color: var(--shiki-dark) !important;
+  background-color: var(--shiki-dark-bg) !important;
+  /* Optional, if you also want font styles */
+  font-style: var(--shiki-dark-font-style) !important;
+  font-weight: var(--shiki-dark-font-weight) !important;
+  text-decoration: var(--shiki-dark-text-decoration) !important;
+}
+
+.astro-code {
+  padding: 0.5rem 0;
+}
+
 .astro-code code {
   counter-reset: step;
   counter-increment: step 0;
+  font-size: 14px;
 }
 
 .astro-code code .line::before {
   content: counter(step);
   counter-increment: step;
-  width: 1rem;
+  width: 1.75rem;
   margin-right: 1.5rem;
   display: inline-block;
+  margin-left: auto;
   text-align: right;
-  color: rgba(115,138,148,.4)
+  color: oklch(var(--content) / 0.25);
 }
