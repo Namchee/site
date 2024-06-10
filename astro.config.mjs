@@ -32,10 +32,6 @@ export default defineConfig({
     remarkPlugins: remarkPlugins,
     syntaxHighlight: false,
     shikiConfig: {
-      themes: {
-        light: 'github-light',
-        dark: 'tokyo-night',
-      },
       transformers: [transformerNotationHighlight()],
     },
   },

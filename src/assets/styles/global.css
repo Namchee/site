@@ -84,8 +84,8 @@ code {
   font-family: 'JetBrains Mono', ui-monospace;
 }
 
-html.dark .astro-code,
-html.dark .astro-code span {
+html.dark .shiki,
+html.dark .shiki span {
   color: var(--shiki-dark) !important;
   background-color: oklch(var(--background)) !important;
   /* Optional, if you also want font styles */
@@ -94,17 +94,22 @@ html.dark .astro-code span {
   text-decoration: var(--shiki-dark-text-decoration) !important;
 }
 
-.astro-code {
+.shiki {
   padding: 0.5rem 0;
 }
 
-.astro-code code {
+.shiki code {
   counter-reset: step;
   counter-increment: step 0;
   font-size: 14px;
 }
 
-.astro-code code .line::before {
+.shiki code .line {
+  display: inline-block;
+  width: 100%;
+}
+
+.shiki code .line::before {
   content: counter(step);
   counter-increment: step;
   width: 1.75rem;
@@ -113,4 +118,12 @@ html.dark .astro-code span {
   margin-left: auto;
   text-align: right;
   color: oklch(var(--content) / 0.25);
+}
+
+.shiki code .line.highlighted {
+  background-color: oklch(var(--primary) / 0.15) !important;
+}
+
+.shiki code .line.highlighted span {
+  background-color: transparent !important;
 }
