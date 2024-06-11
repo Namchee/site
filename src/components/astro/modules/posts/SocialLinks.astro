@@ -3,7 +3,7 @@ import { Icon } from "astro-icon/components";
 
 import AppLink from "@/components/astro/ui/AppLink.astro";
 
-import CopyButton from "@/components/vue/CopyButton.vue";
+import ToastAction from "@/components/vue/ToastAction.vue";
 
 interface Props {
   slug: string;
@@ -21,7 +21,7 @@ const postText = `I just read '${title}' by Namchee
 ---
 
 <div class=":uno: flex items-center space-x-4">
-  <CopyButton content={url} client:visible>
+  <ToastAction content={url} client:visible>
     <Icon
       name="lucide:link"
       class=":uno: w-4 h-auto md:w-[18px] group-hover:text-heading group-focus:text-heading transition-colors"
@@ -31,7 +31,7 @@ const postText = `I just read '${title}' by Namchee
     <p slot="message">
       Post link copied to clipboard!
     </p>
-  </CopyButton>
+  </ToastAction>
 
   <AppLink
     href={`https://twitter.com/intent/post?text=${encodeURIComponent(postText) + postUrl}`}

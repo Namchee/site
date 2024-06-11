@@ -5,7 +5,7 @@ import { ToastProvider, ToastDescription, ToastRoot, ToastClose, ToastViewport }
 import { Icon } from '@iconify/vue';
 
 const props = defineProps({
-  content: { type: String, required: true },
+  action: { type: Function, required: true },
 });
 
 const open = ref(false);
@@ -30,7 +30,7 @@ function copyLink() {
     <ToastRoot
       v-model:open="open"
       :duration="3000"
-      class=":uno: text-sm border border-separator text-heading rounded-md shadow p-4 grid gap-x-4 items-center toast__root dark:bg-surface dark:border-none [grid-template-areas:_'title_action'_'description_action'] grid-cols-[auto_max-content]"
+      class=":uno: text-sm border border-separator text-heading rounded-md shadow p-4 grid items-center dark:bg-surface gap-x-4 toast__root dark:border-none [grid-template-areas:_'title_action'_'description_action'] grid-cols-[auto_max-content]"
     >
       <ToastDescription>
         <slot name="message" />

@@ -1,0 +1,103 @@
+<script setup lang="ts">
+import { ref } from 'vue';
+
+import { ToastProvider, ToastDescription, ToastRoot, ToastClose, ToastViewport } from 'radix-vue';
+import { Icon } from '@iconify/vue';
+
+const props = defineProps({
+  action: { type: Function, required: true },
+});
+
+const open = ref(false);
+
+function copyLink() {
+  navigator.clipboard.writeText(props.content);
+
+  open.value = true;
+}
+</script>
+
+<template>
+  <ToastProvider>
+    <button
+      @click="copyLink"
+      class=":uno: group cursor-pointer"
+      title="Copy to Clipboard"
+    >
+      <slot name="button" />
+    </button>
+
+    <ToastRoot
+      v-model:open="open"
+      :duration="3000"
+      class=":uno: text-sm border border-separator text-heading rounded-md shadow p-4 grid items-center dark:bg-surface gap-x-4 toast__root dark:border-none [grid-template-areas:_'title_action'_'description_action'] grid-cols-[auto_max-content]"
+    >
+      <ToastDescription>
+        <slot name="message" />
+      </ToastDescription>
+      <ToastClose>
+        <Icon
+          icon="lucide:x"
+          class=":uno: h-auto transition-colors group-hover:text-heading group-focus:text-heading w-[14px]"
+        />
+      </ToastClose>
+    </ToastRoot>
+
+    <ToastViewport
+      class=":uno: fixed flex [--viewport-padding:_25px] bottom-0 right-0 flex-col p-[var(--viewport-padding)] gap-[10px] w-96 max-w-screen m-0 list-none z-[2147483647] outline-none"
+    />
+  </ToastProvider>
+</template>
+
+<style>
+.toast__root[data-state='open'] {
+  animation: slideIn 150ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.toast__root[data-state='closed'] {
+  animation: hide 100ms ease-in;
+}
+
+.toast__root[data-swipe='move'] {
+  transform: translateX(var(--radix-toast-swipe-move-x));
+}
+
+.toast_root[data-swipe='cancel'] {
+  transform: translateX(0);
+  transition: transform 200ms ease-out;
+}
+
+.toast__root[data-swipe='end'] {
+  animation: swipeOut 100ms ease-out;
+}
+
+@keyframes hide {
+  from {
+    opacity: 1;
+  }
+
+  to {
+    opacity: 0;
+  }
+}
+
+@keyframes slideIn {
+  from {
+    transform: translateX(calc(100% + var(--viewport-padding)));
+  }
+
+  to {
+    transform: translateX(0);
+  }
+}
+
+@keyframes swipeOut {
+  from {
+    transform: translateX(var(--radix-toast-swipe-end-x));
+  }
+
+  to {
+    transform: translateX(calc(100% + var(--viewport-padding)));
+  }
+}
+</style>
