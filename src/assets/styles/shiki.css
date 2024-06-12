@@ -13,8 +13,6 @@ html.dark .shiki span {
 
 .shiki {
   overflow-x: auto;
-
-  padding-right: 1.75rem;
 }
 
 .shiki code {

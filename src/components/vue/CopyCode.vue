@@ -32,7 +32,7 @@ function copyCode() {
 
       <TooltipPortal>
         <TooltipContent
-          class="tooltip__content text-background select-none rounded-md bg-primary shadow py-2 px-3 text-xs shadow will-change-[transform,opacity]"
+          class="text-xs tooltip__content text-background select-none rounded-md bg-primary shadow py-2 px-3 shadow will-change-[transform,opacity]"
           :side-offset="5"
         >
           Copied!
