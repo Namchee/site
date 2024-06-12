@@ -3,7 +3,7 @@ import { Icon } from "astro-icon/components";
 
 import AppLink from "@/components/astro/ui/AppLink.astro";
 
-import ToastAction from "@/components/vue/ToastAction.vue";
+import CopyPostLink from "@/components/vue/CopyPostLink.vue";
 
 interface Props {
   slug: string;
@@ -12,8 +12,6 @@ interface Props {
 
 const { slug, title } = Astro.props;
 
-const url = Astro.url.origin + Astro.url.pathname;
-
 const postUrl = encodeURIComponent(`${Astro.site.toString()}/posts/${slug}`);
 const postText = `I just read '${title}' by Namchee
 
@@ -21,17 +19,12 @@ const postText = `I just read '${title}' by Namchee
 ---
 
 <div class=":uno: flex items-center space-x-4">
-  <ToastAction content={url} client:visible>
+  <CopyPostLink client:visible>
     <Icon
       name="lucide:link"
-      class=":uno: w-4 h-auto md:w-[18px] group-hover:text-heading group-focus:text-heading transition-colors"
-      slot="button"
+      class=":uno: w-4 h-auto transition-colors md:w-[18px] group-hover:text-heading group-focus:text-heading"
     />
-
-    <p slot="message">
-      Post link copied to clipboard!
-    </p>
-  </ToastAction>
+  </CopyPostLink>
 
   <AppLink
     href={`https://twitter.com/intent/post?text=${encodeURIComponent(postText) + postUrl}`}

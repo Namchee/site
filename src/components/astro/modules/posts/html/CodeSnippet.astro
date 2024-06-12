@@ -1,12 +1,12 @@
 ---
-import { Code } from "astro:components";
+import { parseDocument } from "htmlparser2";
 
 import { codeToHtml, type BundledLanguage } from "shiki";
-import {
-  transformerNotationHighlight,
-} from '@shikijs/transformers';
+import { transformerNotationHighlight } from "@shikijs/transformers";
 
-import { parseDocument } from "htmlparser2";
+import { Icon } from "astro-icon/components";
+
+import CopyCode from "@/components/vue/CopyCode.vue";
 
 type DataElement = {
   attribs: Record<string, string>;
@@ -33,8 +33,8 @@ const isCopyable = "copyable" in codeProps;
 const htmlCode = await codeToHtml(text, {
   lang,
   themes: {
-    light: 'github-light',
-    dark: 'tokyo-night',
+    light: "github-light",
+    dark: "tokyo-night",
   },
   transformers: [transformerNotationHighlight()],
 });
@@ -44,7 +44,6 @@ const htmlCode = await codeToHtml(text, {
   class:list={[
     "mt-8!",
     "mb-8!",
-    "overflow-hidden",
     "border",
     "border-separator",
     "rounded-md",
@@ -55,13 +54,20 @@ const htmlCode = await codeToHtml(text, {
       <div class="flex justify-between items-center text-xs leading-normal p-3 border-b border-separator rounded-t-md bg-surface text-balance">
         <p>{title}</p>
 
-        <p class="font-mono text-xs text-heading">BAR</p>
+        {isCopyable && (
+          <CopyCode code={text} client:visible>
+            <Icon
+              name="lucide:clipboard"
+              class=":uno: w-[14px] h-auto transition-colors text-content/75 group-hover:text-heading group-focus:text-heading"
+            />
+          </CopyCode>
+        )}
       </div>
     )
   }
 
-  <div class="relative">
-    <p class="absolute top-4 right-4 font-mono text-sm text-content">
+  <div class="flex relative overflow-x-auto">
+    <p class="absolute top-3 right-4 font-mono text-sm text-content/50">
       {lang}
     </p>
 

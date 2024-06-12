@@ -4,14 +4,12 @@ import { ref } from 'vue';
 import { ToastProvider, ToastDescription, ToastRoot, ToastClose, ToastViewport } from 'radix-vue';
 import { Icon } from '@iconify/vue';
 
-const props = defineProps({
-  action: { type: Function, required: true },
-});
-
 const open = ref(false);
 
 function copyLink() {
-  navigator.clipboard.writeText(props.content);
+  navigator.clipboard.writeText(
+    window.location.origin + window.location.pathname,
+  );
 
   open.value = true;
 }
@@ -21,19 +19,19 @@ function copyLink() {
   <ToastProvider>
     <button
       @click="copyLink"
-      class=":uno: group cursor-pointer"
-      title="Copy to Clipboard"
+      class=":uno: group"
+      title="Copy Post Link to Clipboard"
     >
-      <slot name="button" />
+      <slot />
     </button>
 
     <ToastRoot
       v-model:open="open"
       :duration="3000"
-      class=":uno: text-sm border border-separator text-heading rounded-md shadow p-4 grid items-center dark:bg-surface gap-x-4 toast__root dark:border-none [grid-template-areas:_'title_action'_'description_action'] grid-cols-[auto_max-content]"
+      class=":uno: text-sm border border-separator text-heading rounded-md shadow p-4 grid gap-x-4 items-center toast__root dark:bg-surface dark:border-none [grid-template-areas:_'title_action'_'description_action'] grid-cols-[auto_max-content]"
     >
       <ToastDescription>
-        <slot name="message" />
+        Link copied to clipboard!
       </ToastDescription>
       <ToastClose>
         <Icon
