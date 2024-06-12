@@ -12,14 +12,22 @@ html.dark .shiki span {
 }
 
 .shiki {
-  padding: 0.5rem 0;
-  flex: 1;
+  overflow-x: auto;
+
+  padding-right: 1.75rem;
 }
 
 .shiki code {
   counter-reset: step;
   counter-increment: step 0;
   font-size: 14px;
+
+  width: fit-content;
+  min-width: 100%;
+  display: block;
+  line-height: 2;
+
+  padding: 0.5rem 0;
 }
 
 .shiki code .line {
