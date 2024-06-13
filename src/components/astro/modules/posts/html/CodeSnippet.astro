@@ -22,10 +22,13 @@ const text = children[0].data.trim();
 
 const lang = attribs["class"].split("-").pop() as BundledLanguage;
 const codeProps = {};
-attribs["metastring"].split(",").forEach((prop) => {
-  const tokens = prop.split("=");
-  codeProps[tokens[0].trim()] = tokens[1];
-});
+
+if (attribs["metastring"]) {
+  attribs["metastring"].split(",").forEach((prop) => {
+    const tokens = prop.split("=");
+    codeProps[tokens[0].trim()] = tokens[1];
+  });
+}
 
 const title = codeProps["title"];
 const isCopyable = "copyable" in codeProps;
