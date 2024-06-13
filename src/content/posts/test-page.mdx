@@ -1,9 +1,12 @@
 ---
-title: 'Hello World!'
-publishedAt: 2023-12-17
-subtitle: 'Reflections of my software engineering career and plans for the future'
+title: 'Post Test Page'
+publishedAt: 2023-12-15
+subtitle: 'This is a dummy blogpost page to test how the blogpost would look'
+isDraft: true
 tags:
   - growth
+  - testing
+  - javascript
 ---
 import { Code } from 'astro:components';
 
@@ -34,6 +37,20 @@ export const components = {
 After three years of my career as a professional software engineer, I've finally decided that it's time for me to write
 and share my journey in the world of software engineering through this website. But why? Why now instead of one or two years ago?
 What motivates me to begin at this particular moment?
+
+```ts title=A simple unit test. Surely nothing goes wrong right? 🙃, copyable
+function testAdd() {
+  const a = 1;
+  const b = 1;
+  const c = 3; // [!code highlight]
+
+  const d = 4;
+
+  const f = 10;
+  const t1 = 122;
+  expect(add(1, 2)).toBe(2); // this should be true btw
+}
+```
 
 To understand my motivations, let's take a trip down memory lane.
 
