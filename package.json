@@ -59,6 +59,7 @@
     "@vueuse/core": "^10.7.0",
     "astro-expressive-code": "^0.35.3",
     "astro-icon": "^1.1.0",
+    "astro-tweet": "^0.0.4",
     "class-variance-authority": "^0.7.0",
     "htmlparser2": "^9.1.0",
     "radix-vue": "^1.7.0"

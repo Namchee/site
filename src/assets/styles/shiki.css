@@ -13,6 +13,8 @@ html.dark .shiki span {
 
 .shiki {
   overflow-x: auto;
+
+  transition: all 200ms ease-out;
 }
 
 .shiki code {
