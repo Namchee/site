@@ -156,7 +156,7 @@ watch(searchTerm, () => {
           class=":uno: w-4 h-4"
         />
         <p
-          class=":uno: transition-all text-sm opacity-0 absolute -bottom-8 translate-y-1 group-hover:opacity-100 group-hover:translate-y-0 group-focus:opacity-100 group-focus:translate-y-0"
+          class=":uno: transition-all text-sm opacity-0 absolute -bottom-8 translate-y-1 group-hover:opacity-100 group-hover:translate-y-0 group-focus:opacity-100 group-focus:translate-y-0 pointer-events-none"
         >
           Menu
         </p>

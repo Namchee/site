@@ -1,0 +1,13 @@
+.astro-tweet-theme {
+  border: 1px solid oklch(var(--content) / 0.25) !important;
+  margin-top: 2rem !important;
+  margin-bottom: 2rem !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+
+  --tweet-border: 1px solid oklch(var(--content) / 0.25) !important;
+}
+
+html.dark .astro-tweet-theme {
+  background: oklch(var(--surface)) !important;
+}

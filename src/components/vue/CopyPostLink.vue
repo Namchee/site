@@ -19,13 +19,10 @@ function copyLink() {
   <ToastProvider>
     <button
       @click="copyLink"
-      class=":uno: group cursor-pointer"
+      class=":uno: group"
       title="Copy Post Link to Clipboard"
     >
-      <Icon
-        icon="lucide:link"
-        class=":uno: w-4 h-auto transition-colors md:w-[18px] group-hover:text-heading group-focus:text-heading"
-      />
+      <slot />
     </button>
 
     <ToastRoot

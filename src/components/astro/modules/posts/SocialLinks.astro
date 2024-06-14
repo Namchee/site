@@ -19,7 +19,12 @@ const postText = `I just read '${title}' by Namchee
 ---
 
 <div class=":uno: flex items-center space-x-4">
-  <CopyPostLink client:visible />
+  <CopyPostLink client:visible>
+    <Icon
+      name="lucide:link"
+      class=":uno: w-4 h-auto transition-colors md:w-[18px] group-hover:text-heading group-focus:text-heading"
+    />
+  </CopyPostLink>
 
   <AppLink
     href={`https://twitter.com/intent/post?text=${encodeURIComponent(postText) + postUrl}`}

@@ -13,13 +13,13 @@ const { alt, src } = Astro.props;
     src={src}
     alt={alt}
     title={alt}
-    layout="fullWidth"
-    aspectRatio={16 / 9}
+    width={703}
+    height={420}
     class=":uno: rounded-md"
     placeholder="blurhash"
   />
 
-  <figcaption class=":uno: text-xs mt-2 italic text-center">
+  <figcaption class=":uno: text-xs text-center mt-2 italic">
     {alt}
   </figcaption>
 </figure>
