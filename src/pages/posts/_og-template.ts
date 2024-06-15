@@ -13,7 +13,7 @@ export const Template = (props: OGProps, imageBuffer: Buffer) => html`
     <img width="64" height="64" src='data:image/png;base64,${imageBuffer.toString('base64')}' />
 
     <div style="display: flex;">
-      <h1 style="font-size: 56px; font-weight: 600; lineHeight: 1; letter-spacing: -2px">
+      <h1 style="font-size: 64px; font-weight: 600; lineHeight: 1; letter-spacing: -2px">
         ${props.title}
       </h1>
     </div>

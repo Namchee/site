@@ -17,5 +17,5 @@
     }
   },
   "extends": "astro/tsconfigs/base",
-  "exclude": ["node_modules"]
+  "exclude": ["node_modules", "dist", "public", "eslint.config.js"]
 }

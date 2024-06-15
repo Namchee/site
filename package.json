@@ -5,8 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "astro dev",
-    "start": "astro dev",
-    "build": "pnpm run check && astro build",
+    "build": "astro check && astro build",
     "preview": "astro preview",
     "sync": "astro sync",
     "check": "astro check",
