@@ -7,7 +7,7 @@ import satori, { type SatoriOptions } from 'satori';
 import sharp from 'sharp';
 import getReadingTime from 'reading-time';
 
-import { Template } from './og-template';
+import { Template } from './_og-template';
 
 interface Params {
   title: string;

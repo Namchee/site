@@ -1,11 +1,18 @@
 ---
 import { Image as Img } from "@unpic/astro";
+import { getPixels } from '@unpic/pixels';
 
 import type { HTMLAttributes } from "astro/types";
 
 type Props = HTMLAttributes<"img">;
 
+// the maximum image width on 1023px
+const MAX_WIDTH = 703;
+
 const { alt, src } = Astro.props;
+
+const { width, height } = await getPixels(src);
+const scaledHeight = Math.ceil(MAX_WIDTH / width * height);
 ---
 
 <figure class="mt-8! mb-8!">
@@ -13,10 +20,11 @@ const { alt, src } = Astro.props;
     src={src}
     alt={alt}
     title={alt}
-    width={703}
-    height={420}
+    width={MAX_WIDTH}
+    height={scaledHeight}
     class=":uno: rounded-md"
     placeholder="blurhash"
+    loading="lazy"
   />
 
   <figcaption class=":uno: text-xs text-center mt-2 italic">

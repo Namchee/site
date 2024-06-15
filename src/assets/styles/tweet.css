@@ -1,4 +1,6 @@
 .astro-tweet-theme {
+  background: oklch(var(--background)) !important;
+  color: oklch(var(--content)) !important;
   border: 1px solid oklch(var(--content) / 0.25) !important;
   margin-top: 2rem !important;
   margin-bottom: 2rem !important;
@@ -10,4 +12,5 @@
 
 html.dark .astro-tweet-theme {
   background: oklch(var(--surface)) !important;
+  color: oklch(var(--heading)) !important;
 }

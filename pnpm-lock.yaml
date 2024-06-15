@@ -87,6 +87,9 @@ importers:
       '@unocss/transformer-compile-class':
         specifier: ^0.59.4
         version: 0.59.4
+      '@unpic/pixels':
+        specifier: ^1.2.2
+        version: 1.2.2
       astro:
         specifier: 4.10.1
         version: 4.10.1(@types/node@20.14.2)(typescript@5.4.5)
