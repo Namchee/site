@@ -1,0 +1,53 @@
+---
+title: 'Testing the State Coverage'
+publishedAt: 2023-12-17
+subtitle: 'Stop using code coverage as a measure of test quality'
+isDraft: true
+tags:
+  - testing
+---
+
+import Tweet from 'astro-tweet';
+
+import TextLink from './../../components/astro/ui/TextLink.astro';
+import Head2 from './../../components/astro/modules/posts/html/Head2.astro';
+import Head3 from './../../components/astro/modules/posts/html/Head3.astro';
+import Strong from './../../components/astro/modules/posts/html/Strong.astro';
+import Quote from './../../components/astro/modules/posts/html/Quote.astro';
+
+import ListTitle from './../../components/astro/modules/posts/html/ListTitle.astro';
+import ListItem from './../../components/astro/modules/posts/html/ListItem.astro';
+
+import Image from './../../components/astro/modules/posts/html/Image.astro';
+
+import CodeSnippet from './../../components/astro/modules/posts/html/CodeSnippet.astro';
+
+
+export const components = {
+  a: TextLink,
+  h2: Head2,
+  h3: Head3,
+  strong: Strong,
+  img: Image,
+  pre: CodeSnippet,
+}
+
+Test. Such is the word that becomes the bane of many software developers worldwide.
+
+Writing tests are something that good software developers can't ignore when developing high-quality softwares.
+If you still think that tests aren't important, I suggest that you take a look at [Ariane 5 rocket crash](https://www.youtube.com/watch?v=N6PWATvLQCY) that
+costs 360 million US dollars
+
+due to numeric value conversion.
+
+This incident raises the awareness of software testing to produce higher quality and less buggy softwares.
+
+<Tweet id="1068615953989087232" />
+
+While it does look like an inside joke from Twitter for software engineers, the tweet above exposes a **dangerous misconception** commonly present
+in the mind of software engineers: *more test -> better coverage -> better test quality -> better softwares -> happy customers -> ~~more money~~*.
+
+This misconception is usually present &mdash; but not limited to &mdash; in inexperienced software engineers when
+writing their first test. To understand why more tests aren't equal to better softwares, we need to understand the basic concept of **test coverage**.
+
+## Basics of Code Coverage
