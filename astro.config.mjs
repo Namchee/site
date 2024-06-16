@@ -9,31 +9,36 @@ import robotsTxt from 'astro-robots-txt';
 
 import unocss from 'unocss/astro';
 
-import {
-  transformerNotationHighlight,
-} from '@shikijs/transformers';
+import rehypeMathjax from 'rehype-mathjax';
 
 import { subset } from '@namchee/astro-subfont';
+
 import { remarkPlugins } from './src/plugins/remark';
 
 
 // https://astro.build/config
 export default defineConfig({
-  integrations: [vue(), unocss({
-    injectReset: true,
-  }), mdx(), icon({
-    include: {
-      simpleIcons: ['*'],
-      lucide: ['*'],
-      cib: ['creative-commons-by'],
-    },
-  }), sitemap(), robotsTxt(), subset()],
+  integrations: [
+    vue(),
+    unocss({
+      injectReset: true,
+    }),
+    mdx(),
+    icon({
+      include: {
+        simpleIcons: ['*'],
+        lucide: ['*'],
+        cib: ['creative-commons-by'],
+      },
+    }),
+    sitemap(),
+    robotsTxt(),
+    subset(),
+  ],
   markdown: {
     remarkPlugins: remarkPlugins,
+    rehypePlugins: [rehypeMathjax],
     syntaxHighlight: false,
-    shikiConfig: {
-      transformers: [transformerNotationHighlight()],
-    },
   },
   image: {
     domains: ['assets.literal.club', 'res.cloudinary.com'],

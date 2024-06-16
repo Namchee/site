@@ -79,3 +79,7 @@ html.dark img {
 ::-webkit-scrollbar-thumb:hover {
   background-color: rgba(111,111,111, 0.6);
 }
+
+.MathJax:not([display="true"]) {
+  display: inline !important;
+}

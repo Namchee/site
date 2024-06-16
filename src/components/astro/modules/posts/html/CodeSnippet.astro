@@ -20,7 +20,7 @@ const { children, attribs } = document.children[0] as unknown as DataElement;
 
 const text = children[0].data.trim();
 
-const lang = attribs["class"].split("-").pop() as BundledLanguage;
+const lang = attribs["class"]?.split("-")?.pop() || '' as BundledLanguage;
 const codeProps = {};
 
 if (attribs["metastring"]) {
@@ -32,6 +32,7 @@ if (attribs["metastring"]) {
 
 const title = codeProps["title"];
 const isCopyable = "copyable" in codeProps;
+const noLang = "no-lang" in codeProps;
 
 const htmlCode = await codeToHtml(text, {
   lang,
@@ -71,7 +72,7 @@ const htmlCode = await codeToHtml(text, {
   }
 
   <div class="relative">
-    <p class="absolute top-3 right-4 font-mono text-sm text-content/50">
+    <p class:list={["absolute top-3 right-4 font-mono text-sm text-content/50", { 'hidden': noLang }]}>
       {lang}
     </p>
 

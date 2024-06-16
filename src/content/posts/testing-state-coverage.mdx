@@ -1,9 +1,10 @@
 ---
-title: 'Testing the State Coverage'
+title: 'Increasing the State Coverage'
 publishedAt: 2023-12-17
-subtitle: 'Stop using code coverage as a measure of test quality'
+subtitle: 'Using state coverage as an additional measure of test quality'
 isDraft: true
 tags:
+  - engineering
   - testing
 ---
 
@@ -32,22 +33,75 @@ export const components = {
   pre: CodeSnippet,
 }
 
-Test. Such is the word that becomes the bane of many software developers worldwide.
+Code coverage has been a engineering metric that is parroted in every single sync up by managers. In the eyes of some managers, code coverage
+is the holy grail of metrics for measuring the quality of code that engineers write through rigorous testing.
 
-Writing tests are something that good software developers can't ignore when developing high-quality softwares.
-If you still think that tests aren't important, I suggest that you take a look at [Ariane 5 rocket crash](https://www.youtube.com/watch?v=N6PWATvLQCY) that
-costs 360 million US dollars
-
-due to numeric value conversion.
-
-This incident raises the awareness of software testing to produce higher quality and less buggy softwares.
-
-<Tweet id="1068615953989087232" />
-
-While it does look like an inside joke from Twitter for software engineers, the tweet above exposes a **dangerous misconception** commonly present
-in the mind of software engineers: *more test -> better coverage -> better test quality -> better softwares -> happy customers -> ~~more money~~*.
-
-This misconception is usually present &mdash; but not limited to &mdash; in inexperienced software engineers when
-writing their first test. To understand why more tests aren't equal to better softwares, we need to understand the basic concept of **test coverage**.
+Unfortunately, this creates a misconception of *higher coverage = better tests* that leads to counter intuitive hacks such as
+[assertion-free testing](https://martinfowler.com/bliki/AssertionFreeTesting.html). To resolve this misconception, let's take a look on how
+code coverage is calculated.
 
 ## Basics of Code Coverage
+
+In modern days, it's really easy to test our code by simply writing test code that will be executed by automated test runners. Test runners
+instrument your code and collect various metrics, such as the number of lines, paths, and blocks executed during the test. These metrics collected
+during the test will then be compared to the same metrics of the code, resulting in a percentage of code coverage.
+
+To illustrate it better, suppose that we have the following code:
+
+```ts title=math.ts
+export function add(a: number, b: number): number {
+    return a + b;
+}
+
+export function subtract(a: number, b: number): number {
+    return a - b;
+}
+
+export function divide(a: number, b: number): number {
+    return a / b;
+}
+
+export function modulo(a: number, b: number): number {
+    return a % b;
+}
+```
+
+which is tested by the following test file:
+
+```ts title=math.spec.ts
+import { describe, it, expect } from 'vitest';
+
+import { add, subtract, divide } from './math';
+
+describe('Math Operations', () => {
+  it('should add two numbers', () => {
+    expect(add(1, 2)).toBe(3);
+  });
+
+  it('should subtract two numbers', () => {
+    expect(subtract(5, 3)).toBe(2);
+  });
+
+  it('should divide two numbers', () => {
+    expect(divide(10, 2)).toBe(5);
+  });
+});
+```
+
+After execution, our test runner reports the following code coverage.
+
+```bash no-lang
+----------|---------|----------|---------|---------|-------------------
+File      | % Stmts | % Branch | % Funcs | % Lines | Uncovered Line #s
+----------|---------|----------|---------|---------|-------------------
+All files |   86.66 |      100 |      75 |   86.66 |
+ math.ts  |   86.66 |      100 |      75 |   86.66 | 14-15
+----------|---------|----------|---------|---------|-------------------
+```
+
+The code coverage report shows that our test code covers all possible branches but only partially covers
+statements, functions, and lines because the modulo function is not executed in any test scenario.
+
+By the example above, code coverage
+
+## What Code Coverage Doesn't Tell You
