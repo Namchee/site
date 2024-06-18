@@ -47,7 +47,7 @@ as the holy grail of metrics. In my observation, code coverage is commonly abuse
     Setting code coverage to an exceedingly high threshold
   </ListTitle>
   <ListTitle>
-    Using code coverage as the only metric of test quality
+    Using code coverage as the perfect metric of test quality
   </ListTitle>
 </dl>
 
@@ -60,20 +60,9 @@ These days, it's rare to find a language ecosystem that doesn't have a test ecos
 ecosystem of the tech stack, we can easily test our code by writing the tests as a code in a testing framework and execute
 them with an automated test runner.
 
-In simplified terms, there are 4 steps that a test runner do when executing tests:
-
-<ol class="list-decimal list-inside text-heading font-medium">
-  <li>Collect all test files</li>
-  <li>[Instrument](https://en.wikipedia.org/wiki/Instrumentation_(computer_programming)) the test cases</li>
-  <li>(if language is a compiled language) Compile the source and test code</li>
-</ol>
-
-What test runners do are basically instrumenting your source code, compile them for non-interpreted languages, and collect the metrics from your code,
-such as runtime of the code.
-
-But most importantly, the number of lines, paths, and blocks executed during the test.
-
-These metrics that are collected during the test will then be compared to the same metrics of the code, resulting in a percentage of code coverage.
+Most of the time, modern test ecosystem also includes an additional tool called **coverage reporter** that instruments and
+collect metrics of executed lines, branches, statements, blocks, etc of our code. These metrics will then be compared to the
+same metrics of the code, resulting in a percentage of coverage.
 
 To illustrate it better, suppose that we have the following code:
 
@@ -117,7 +106,7 @@ describe('Math Operations', () => {
 });
 ```
 
-After execution, our test runner reports the following code coverage.
+After execution, our test runner reports the following code coverage:
 
 ```bash no-lang
 ----------|---------|----------|---------|---------|-------------------
@@ -128,15 +117,15 @@ All files |   86.66 |      100 |      75 |   86.66 |
 ----------|---------|----------|---------|---------|-------------------
 ```
 
-The code coverage report shows that the test covers all possible branches, as the source code doesn't have any alternative path of execution through `if` or `switch`.
+The code coverage report shows that the test covers all possible branches, as the source code doesn't have any alternative
+path of execution through a branching statement such as `if` or `switch`.
 
-However, the coverage report also shows that the test haven't fully covered the code
+However, the coverage report also shows that the test haven't fully explored all statements, functions, and lines in our code
+as the `modulo` function is not executed in any test scenario.
 
-all statements, functions, and lines of the source code because the `modulo` function is not executed in any test scenario.
+### What Coverage is Good At
 
-## Pitfalls of Code Coverage
-
-While code coverage is a
+There are 2 advantages
 
 that leads to counter intuitive hacks such as
 [assertion-free testing](https://martinfowler.com/bliki/AssertionFreeTesting.html).
