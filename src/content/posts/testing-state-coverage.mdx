@@ -54,13 +54,24 @@ as the holy grail of metrics. In my observation, code coverage is commonly abuse
 While it's debatable on how much should an effective code coverage be, code coverage shouldn't be **the** metric for
 test quality. To understand why code coverage isn't enough, we need to understand how code coverage is calculated.
 
-## Code Coverage as a Metric
+## Measuring the Coverage
 
-In modern practice of software development, it's really easy to test our code by simply writing test code that will be executed by an automated test runners.
+These days, it's rare to find a language ecosystem that doesn't have a test ecosystem. Depending on the maturity of the
+ecosystem of the tech stack, we can easily test our code by writing the tests as a code in a testing framework and execute
+them with an automated test runner.
 
-Test runners instrument your source code, compile them for non-interpreted languages
+In simplified terms, there are 4 steps that a test runner do when executing tests:
 
- and collect various metrics, such as the number of lines, paths, and blocks executed during the test.
+<ol class="list-decimal list-inside text-heading font-medium">
+  <li>Collect all test files</li>
+  <li>[Instrument](https://en.wikipedia.org/wiki/Instrumentation_(computer_programming)) the test cases</li>
+  <li>(if language is a compiled language) Compile the source and test code</li>
+</ol>
+
+What test runners do are basically instrumenting your source code, compile them for non-interpreted languages, and collect the metrics from your code,
+such as runtime of the code.
+
+But most importantly, the number of lines, paths, and blocks executed during the test.
 
 These metrics that are collected during the test will then be compared to the same metrics of the code, resulting in a percentage of code coverage.
 
