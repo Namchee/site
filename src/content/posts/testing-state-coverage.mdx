@@ -54,11 +54,11 @@ as the holy grail of metrics. In my observation, code coverage is commonly abuse
 While it's debatable on how much should an effective code coverage be, code coverage shouldn't be **the** metric for
 test quality. To understand why code coverage isn't enough, we need to understand how code coverage is calculated.
 
-## Measuring the Coverage
+## Measuring Code Coverage
 
 These days, it's rare to find a language ecosystem that doesn't have a test ecosystem. Depending on the maturity of the
-ecosystem of the tech stack, we can easily test our code by writing the tests as a code in a testing framework and execute
-them with an automated test runner.
+ecosystem of the tech stack, we can easily test our code by writing the test suite in a testing framework and run
+them through an automated test runner.
 
 Most of the time, modern test ecosystem also includes an additional tool called **coverage reporter** that instruments and
 collect metrics of executed lines, branches, statements, blocks, etc of our code. These metrics will then be compared to the
@@ -106,7 +106,7 @@ describe('Math Operations', () => {
 });
 ```
 
-After execution, our test runner reports the following code coverage:
+After execution, the test runner reports the following code coverage:
 
 ```bash no-lang
 ----------|---------|----------|---------|---------|-------------------
@@ -123,9 +123,29 @@ path of execution through a branching statement such as `if` or `switch`.
 However, the coverage report also shows that the test haven't fully explored all statements, functions, and lines in our code
 as the `modulo` function is not executed in any test scenario.
 
-### What Coverage is Good At
+There are 2 main advantages of using code coverage as a metric of tests:
 
-There are 2 advantages
+<dl class=":uno space-y-6">
+  <ListTitle>
+    Easy to Measure
+  </ListTitle>
+  <ListItem>
+    Depending on the maturity of the test ecosystem, measuring code coverage
+    is as simple as enabling a configuration, such as [Go](https://go.dev/doc/build-cover) through the `-cover` flag
+    or by installing one additional dependencies in an opt-in way, such as [Vitest](https://vitest.dev/guide/coverage.html#coverage-setup)
+    that installs [v8](https://v8.dev/blog/javascript-code-coverage) or [Istanbul](https://istanbul.js.org/) for coverage reporting.
+  </ListItem>
+  <ListTitle>
+    Quantitative
+  </ListTitle>
+  <ListItem>
+    Since code coverage is a quantitative metric, code coverage can be easily compared to one another. While this post aims
+    to challenge the belief that more coverage means better tests, we can always say that a code with higher coverage
+    should generally be more reliable than a code with low coverage.
+  </ListItem>
+</dl>
+
+## What Coverage Doesn't Tell You
 
 that leads to counter intuitive hacks such as
 [assertion-free testing](https://martinfowler.com/bliki/AssertionFreeTesting.html).
