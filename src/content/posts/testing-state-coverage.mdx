@@ -64,7 +64,7 @@ Most of the time, modern test ecosystem also includes an additional tool called 
 collect metrics of executed lines, branches, statements, blocks, etc of our code. These metrics will then be compared to the
 same metrics of the code, resulting in a percentage of coverage.
 
-To illustrate it better, suppose that we have the following code:
+To illustrate code coverage better, suppose that we have a collection of mathematical helper functions that we store in `math.ts`:
 
 ```ts title=math.ts
 export function add(a: number, b: number): number {
@@ -84,14 +84,14 @@ export function modulo(a: number, b: number): number {
 }
 ```
 
-which is tested by the following test file:
+`math.ts` is tested by the following test file:
 
 ```ts title=math.spec.ts
 import { describe, it, expect } from 'vitest';
 
 import { add, subtract, divide } from './math';
 
-describe('Math Operations', () => {
+describe('math.ts', () => {
   it('should add two numbers', () => {
     expect(add(1, 2)).toBe(3);
   });
@@ -123,7 +123,7 @@ path of execution through a branching statement such as `if` or `switch`.
 However, the coverage report also shows that the test haven't fully explored all statements, functions, and lines in our code
 as the `modulo` function is not executed in any test scenario.
 
-There are 2 main advantages of using code coverage as a metric of tests:
+There are 2 main advantages of using code coverage as a metric for your tests:
 
 <dl class=":uno space-y-6">
   <ListTitle>
@@ -139,13 +139,56 @@ There are 2 main advantages of using code coverage as a metric of tests:
     Quantitative
   </ListTitle>
   <ListItem>
-    Since code coverage is a quantitative metric, code coverage can be easily compared to one another. While this post aims
-    to challenge the belief that more coverage means better tests, we can always say that a code with higher coverage
-    should generally be more reliable than a code with low coverage.
+    Since code coverage is a quantitative metric, code coverage can be easily compared to one another. We can always say that a code
+    with higher coverage should generally be more reliable than a code with low coverage as it covers more scenario.
   </ListItem>
 </dl>
 
-## What Coverage Doesn't Tell You
+## Pitfalls of Code Coverage
+
+At a glance, code coverage seems to be **the** all-in-one metric for measuring test quality, as it can show parts of the code
+that has been executed by the test suite.
+
+However, we can't say that code coverage measures test suites completely as it doesn't cover **states** of the program, which
+is arguably the most important part of the program. While they sound similar, program state is not equivalent to statements.
+
+To understand the pitfalls of code coverage in measuring program state, let's take a look again at function `divide` from the example above.
+
+```ts title=math.ts
+export function divide(a: number, b: number): number {
+    return a / b;
+}
+```
+
+This particular function is tested by the following test case
+
+```ts title=math.spec.ts
+import { describe, it, expect } from 'vitest';
+
+import { add, subtract, divide } from './math';
+
+describe('math.ts', () => {
+  it('should divide two numbers', () => {
+    expect(divide(10, 2)).toBe(5);
+  });
+});
+```
+
+After execution, the test runner reports the following code coverage:
+
+```bash no-lang
+----------|---------|----------|---------|---------|-------------------
+File      | % Stmts | % Branch | % Funcs | % Lines | Uncovered Line #s
+----------|---------|----------|---------|---------|-------------------
+All files |     100 |      100 |     100 |     100 |
+ math.ts  |     100 |      100 |     100 |     100 |
+----------|---------|----------|---------|---------|-------------------
+```
+
+Judging
+
+able to tell us that the code has been tested throughoutly as all blocks of our code has been
+covered by the suite. However, code coverage
 
 that leads to counter intuitive hacks such as
 [assertion-free testing](https://martinfowler.com/bliki/AssertionFreeTesting.html).
