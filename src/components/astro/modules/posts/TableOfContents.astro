@@ -38,19 +38,31 @@ const tocList = generateToC(headings);
     window.scrollTo(0, 0);
   });
 
+  let currentActiveLink = null;
+
   const observer = new IntersectionObserver((entries) => {
+    let mostVisibleEntry = null;
+
     entries.forEach((entry) => {
-      const id = entry.target.id;
       if (entry.intersectionRatio > 0) {
-        document
-          .querySelector(`nav ul li a[href="#${id}"]`)
-          .classList.add("text-primary", "font-medium");
-      } else {
-        document
-          .querySelector(`nav ul li a[href="#${id}"]`)
-          .classList.remove("text-primary", "font-medium");
+        if (!mostVisibleEntry || entry.intersectionRatio > mostVisibleEntry.intersectionRatio) {
+          mostVisibleEntry = entry;
+        }
       }
     });
+
+    if (mostVisibleEntry) {
+      const id = mostVisibleEntry.target.id;
+      const newActiveLink = document.querySelector(`nav ul li a[href="#${id}"]`);
+
+      if (currentActiveLink !== newActiveLink) {
+        if (currentActiveLink) {
+          currentActiveLink.classList.remove("text-primary", "font-medium");
+        }
+        newActiveLink.classList.add("text-primary", "font-medium");
+        currentActiveLink = newActiveLink;
+      }
+    }
   });
 
   const tocLinks = document.querySelectorAll("h2[id], h3[id]");
