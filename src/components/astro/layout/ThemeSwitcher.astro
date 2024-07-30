@@ -2,7 +2,7 @@
   title="Toggles site theme"
   aria-label="auto"
   aria-live="polite"
-  class=":uno: bg-transparent text-content p-2 rounded-md transition-colors hover:bg-surface hover:text-heading focus:bg-surface focus:text-heading theme-toggle"
+  class=":uno: text-content transition-colors bg-transparent p-2 rounded-md hover:bg-surface hover:text-heading focus:bg-surface focus:text-heading theme-toggle"
 >
   <svg
     xmlns="http://www.w3.org/2000/svg"
@@ -29,32 +29,3 @@
     </g>
   </svg>
 </button>
-
-<script is:inline>
-  const button = document.querySelector('.theme-toggle');
-  function toggleThemeSwitcher() {
-    button.classList.toggle('theme-toggle--toggled');
-  }
-
-  if (theme === 'dark') {
-    button.classList.add('theme-toggle--toggled');
-  }
-
-  button.addEventListener('click', () => {
-    const newTheme = docEl.classList.contains('dark') ? 'light' : 'dark';
-    toggleThemeSwitcher();
-    toggleTheme(newTheme);
-  });
-
-  window.addEventListener('storage', () => {
-    const newTheme = window.localStorage.getItem('theme');
-    toggleThemeSwitcher();
-    toggleTheme(newTheme);
-  });
-
-  media.addEventListener('change', () => {
-    const newTheme = media.matches ? 'dark' : 'light';
-    toggleThemeSwitcher();
-    toggleTheme(newTheme);
-  });
-</script>

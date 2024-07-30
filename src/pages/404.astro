@@ -18,6 +18,7 @@ import TextLink from "@/components/astro/ui/TextLink.astro";
       class=":uno: favicon"
     />
     <link rel="sitemap" href="/sitemap-index.xml" />
+    <script src="../scripts/theme.ts"></script>
     <title>404 &mdash; Not Found</title>
   </head>
 
@@ -38,39 +39,3 @@ import TextLink from "@/components/astro/ui/TextLink.astro";
   </body>
 </html>
 
-<script is:inline>
-  const docEl = document.documentElement;
-  const svgIcon = document.querySelector(".favicon");
-  const media = window.matchMedia("(prefers-color-scheme: dark)");
-
-  const theme = (() => {
-    if (
-      typeof window.localStorage !== "undefined" &&
-      window.localStorage.getItem("theme")
-    ) {
-      return window.localStorage.getItem("theme");
-    }
-
-    return media.matches ? "dark" : "light";
-  })();
-
-  const toggleTheme = (theme) => {
-    const method = theme === "light" ? "remove" : "add";
-
-    docEl.classList[method]("dark");
-    svgIcon.href = theme === "light" ? "/icon-light.svg" : "/icon-dark.svg";
-    window.localStorage.setItem("theme", theme === "light" ? "light" : "dark");
-  };
-
-  toggleTheme(theme);
-
-  window.addEventListener("storage", () => {
-    const newTheme = window.localStorage.getItem("theme");
-    toggleTheme(newTheme);
-  });
-
-  media.addEventListener("change", () => {
-    const newTheme = media.matches ? "dark" : "light";
-    toggleTheme(newTheme);
-  });
-</script>

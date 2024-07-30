@@ -63,32 +63,7 @@ const ogFile = og ? `${og}.png` : 'og.png';
       href="https://webmention.io/www.namchee.dev/webmention"
     />
     <link rel="preload" href="/fonts/pretendard.woff2" as="font" type="font/woff2" crossorigin>
-    <script is:inline>
-      const docEl = document.documentElement;
-      const svgIcon = document.querySelector('.favicon');
-      const media = window.matchMedia('(prefers-color-scheme: dark)');
-
-      const theme = (() => {
-        if (
-          typeof window.localStorage !== 'undefined' &&
-          window.localStorage.getItem('theme')
-        ) {
-          return window.localStorage.getItem('theme');
-        }
-
-        return media.matches ? 'dark' : 'light';
-      })();
-
-      const toggleTheme = (theme) => {
-        const method = theme === 'light' ? 'remove' : 'add';
-
-        docEl.classList[method]('dark');
-        svgIcon.href = theme === 'light' ? '/icon-light.svg' : '/icon-dark.svg';
-        window.localStorage.setItem('theme', theme);
-      };
-
-      toggleTheme(theme);
-    </script>
+    <script src="../../../scripts/theme.ts"></script>
     <title>{title}</title>
   </head>
   <body

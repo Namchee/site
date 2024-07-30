@@ -153,7 +153,7 @@ const lastModified = !!frontmatter.lastModified ? frontmatter.lastModified : pub
   </article>
 </Layout>
 
-<style is:inline>
+<style>
   .reading__progress::-webkit-progress-bar {
     background-color: transparent;
   }
@@ -166,16 +166,16 @@ const lastModified = !!frontmatter.lastModified ? frontmatter.lastModified : pub
   }
 </style>
 
-<script is:inline>
+<script>
   const progressBar = document.querySelector(".reading__progress");
 
   const windowHeight = window.innerHeight;
   const documentHeight = document.documentElement.scrollHeight;
   const max = documentHeight - windowHeight;
-  progressBar.setAttribute("max", max);
+  progressBar.setAttribute("max", max.toString());
 
   window.addEventListener("scroll", () => {
-    progressBar.setAttribute("value", window.scrollY);
+    progressBar.setAttribute("value", window.scrollY.toString());
   });
 
   const backToTop = document.querySelector(".backToTop__button");
