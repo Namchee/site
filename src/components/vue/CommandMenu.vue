@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { ref, watch, computed } from 'vue';
-import { useMagicKeys } from '@vueuse/core';
+import { useMagicKeys, whenever } from '@vueuse/core';
 
 import {
   DialogRoot,
@@ -19,8 +19,8 @@ import Key from '@/components/vue/Key.vue';
 import { links } from '@/constant/links';
 
 const visible = ref(false);
-const navigationLinks = ref();
-const postLinks = ref();
+const navigationLinks = ref<HTMLDivElement>();
+const postLinks = ref<HTMLDivElement>();
 const focusIndex = ref(-1);
 
 const props = defineProps<{
@@ -41,14 +41,6 @@ const keys = useMagicKeys({
     }
   }
 });
-
-const ctrlK = keys['Ctrl+K'];
-const metaK = keys['Meta+K'];
-const home = keys['Home'];
-const arrowDown = keys['ArrowDown'];
-const arrowUp = keys['ArrowUp'];
-const enter = keys['Enter'];
-const escape = keys['Escape'];
 
 const searchTerm = ref('');
 
@@ -72,28 +64,61 @@ const relevantPosts = computed(() => {
   return props.posts.filter(post => pattern.test(post.title))
 });
 
-watch(ctrlK, (k) => {
-  if (k) {
-    visible.value = !visible.value;
+function handleMouseOver(href: string) {
+  const links = [];
+  if (navigationLinks && navigationLinks.value) {
+    const nav = navigationLinks.value.querySelectorAll('a');
+
+    links.push(...nav);
   }
+
+  if (postLinks && postLinks.value) {
+    const posts = postLinks.value.querySelectorAll('a');
+
+    links.push(...posts);
+  }
+
+  for (let idx = 0; idx < links.length; idx++) {
+    const { pathname } = new URL(links[idx].href);
+
+    if (pathname === href) {
+      focusIndex.value = idx;
+      links[idx].focus();
+    } else {
+      links[idx].blur();
+    }
+  }
+}
+
+whenever(keys.ctrl_k, () => {
+  visible.value = !visible.value;
 });
 
-watch(metaK, (k) => {
-  if (k) {
-    visible.value = !visible.value;
-  }
+whenever(keys.meta_k, () => {
+  visible.value = !visible.value;
 });
 
-watch(home, (h) => {
-  if (h && visible) {
+whenever(keys.home, () => {
+  if (visible) {
     window.location.href = '/';
   }
 });
 
-watch(arrowDown, (ad) => {
-  const links = [...navigationLinks.value, ...postLinks.value];
+whenever(keys.arrowDown, () => {
+  if (visible) {
+    const links = [];
+    if (navigationLinks && navigationLinks.value) {
+      const nav = navigationLinks.value.querySelectorAll('a');
 
-  if (ad && visible) {
+      links.push(...nav);
+    }
+
+    if (postLinks && postLinks.value) {
+      const posts = postLinks.value.querySelectorAll('a');
+
+      links.push(...posts);
+    }
+
     if (focusIndex.value === -1) {
       focusIndex.value = 0;
     } else {
@@ -108,10 +133,21 @@ watch(arrowDown, (ad) => {
   }
 });
 
-watch(arrowUp, (au) => {
-  const links = [...navigationLinks.value, ...postLinks.value];
+whenever(keys.arrowUp, () => {
+  if (visible) {
+    const links = [];
+    if (navigationLinks && navigationLinks.value) {
+      const nav = navigationLinks.value.querySelectorAll('a');
 
-  if (au && visible) {
+      links.push(...nav);
+    }
+
+    if (postLinks && postLinks.value) {
+      const posts = postLinks.value.querySelectorAll('a');
+
+      links.push(...posts);
+    }
+
     if (focusIndex.value === -1) {
       focusIndex.value = 0;
     } else {
@@ -126,19 +162,17 @@ watch(arrowUp, (au) => {
   }
 });
 
-watch(enter, (e) => {
-  if (e && visible) {
+whenever(keys.enter, () => {
+  if (visible) {
     const index = focusIndex.value;
 
     window.location.href = relevantLinks.value[index].href;
   }
 });
 
-watch(escape, (esc) => {
-  if (esc && visible) {
-    visible.value = false;
-  }
-})
+whenever(keys.escape, () => {
+  visible.value = false;
+});
 
 watch(searchTerm, () => {
   focusIndex.value = -1;
@@ -169,7 +203,7 @@ watch(searchTerm, () => {
         class=":uno: fixed bg-background w-screen h-screen dialog__overlay bg-opacity-50 backdrop-blur z-20"
       />
       <DialogContent
-        class=":uno: fixed border border-separator bg-background shadow dialog__content top-[20%] left-[50%] -translate-x-[50%] rounded-md w-4/5 max-w-md max-h-sm z-30"
+        class=":uno: fixed border border-separator bg-background shadow dialog__content top-[20%] left-[50%] -translate-x-[50%] rounded-md w-4/5 max-w-md max-h-sm z-30 focus:outline-none"
       >
         <DialogTitle class=":uno: border-separator border-b">
           <input
@@ -181,64 +215,65 @@ watch(searchTerm, () => {
 
         <DialogDescription class=":uno: p-4 space-y-4 max-h-xs overflow-y-auto">
           <div v-if="relevantLinks.length === 0 && relevantPosts.length === 0">
-            <p class=":uno: text-sm">
+            <p class=":uno: text-sm text-center opacity-85">
               Sorry, I don't know what or where that is 😕
             </p>
           </div>
 
-          <div v-if="relevantLinks.length > 0">
+          <div
+            v-if="relevantLinks.length > 0"
+          >
             <span class=":uno: font-semibold text-xs mb-2">
               Pages
             </span>
 
-            <a
-              v-for="(link, idx) in relevantLinks"
-              :key="link.href"
-              :href="link.href"
-              class=":uno: text-sm rounded-md flex justify-between transition-colors hover:text-heading focus:text-heading p-2 hover:bg-surface focus:bg-surface link"
-              rel="noopener noreferrer"
-              ref="navigationLinks"
-              @mouseover="focusIndex = idx"
-            >
-              <div class=":uno: flex items-center space-x-1">
-                <Icon
-                  :icon="link.icon"
-                  class=":uno: w-4 h-auto mr-2"
-                />
-                <span class=":uno: relative top-[2px]">
-                  {{ link.name }}
-                </span>
-              </div>
+            <div ref="navigationLinks">
+              <a
+                v-for="(link) in relevantLinks"
+                :key="link.href"
+                :href="link.href"
+                class=":uno: text-sm rounded-md flex justify-between transition-colors focus:text-heading focus:outline-none p-2 focus:bg-surface link"
+                rel="noopener noreferrer"
+                @mouseover="() => handleMouseOver(link.href)"
+              >
+                <div class=":uno: flex items-center space-x-4">
+                  <Icon
+                    :icon="link.icon"
+                    class=":uno: w-4 h-auto"
+                  />
+                  <span class=":uno: relative">
+                    {{ link.name }}
+                  </span>
+                </div>
 
-              <kbd
-                v-if="!!link.key"
-                :title="link.key"
-                class=":uno: text-xs border border-separator text-heading px-1 bg-surface font-mono rounded"
-              >{{ link.key
-              }}</kbd>
-            </a>
+                <kbd
+                  v-if="!!link.key"
+                  :title="link.key"
+                  class=":uno: text-xs border border-separator text-heading px-1 bg-surface font-mono rounded"
+                >{{ link.key }}</kbd>
+              </a>
+            </div>
           </div>
 
-          <div v-if="relevantPosts.length > 0">
+          <div
+            v-if="relevantPosts.length > 0"
+          >
             <span class=":uno: font-semibold text-xs mb-2">
               Posts
             </span>
 
-            <a
-              v-for="(post, idx) in relevantPosts"
-              :key="post.href"
-              :href="post.href"
-              class=":uno: flex justify-between p-2 text-sm transition-colors hover:bg-surface hover:text-heading focus:bg-surface focus:text-heading focus:outline-none rounded-md link"
-              rel="noopener noreferrer"
-              ref="postLinks"
-              @mouseover="focusIndex = idx"
-            >
-              <div class=":uno: flex items-center space-x-1">
-                <span class=":uno: relative top-[2px]">
-                  {{ post.title }}
-                </span>
-              </div>
-            </a>
+            <div ref="postLinks">
+              <a
+                v-for="(post) in relevantPosts"
+                :key="post.href"
+                :href="post.href"
+                class=":uno: flex justify-between p-2 text-sm transition-colors focus:bg-surface focus:text-heading focus:outline-none rounded-md link"
+                rel="noopener noreferrer"
+                @mouseover="() => handleMouseOver(post.href)"
+              >
+                {{ post.title }}
+              </a>
+            </div>
           </div>
         </DialogDescription>
 
