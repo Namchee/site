@@ -64,7 +64,7 @@ const relevantPosts = computed(() => {
   return props.posts.filter(post => pattern.test(post.title))
 });
 
-function handleMouseOver(href: string) {
+const allLinks = computed<HTMLLinkElement[]>(() => {
   const links = [];
   if (navigationLinks && navigationLinks.value) {
     const nav = navigationLinks.value.querySelectorAll('a');
@@ -77,6 +77,12 @@ function handleMouseOver(href: string) {
 
     links.push(...posts);
   }
+
+  return links;
+});
+
+function handleMouseOver(href: string) {
+  const links = allLinks.value;
 
   for (let idx = 0; idx < links.length; idx++) {
     const { pathname } = new URL(links[idx].href);
@@ -106,18 +112,7 @@ whenever(keys.home, () => {
 
 whenever(keys.arrowDown, () => {
   if (visible) {
-    const links = [];
-    if (navigationLinks && navigationLinks.value) {
-      const nav = navigationLinks.value.querySelectorAll('a');
-
-      links.push(...nav);
-    }
-
-    if (postLinks && postLinks.value) {
-      const posts = postLinks.value.querySelectorAll('a');
-
-      links.push(...posts);
-    }
+    const links = allLinks.value;
 
     if (focusIndex.value === -1) {
       focusIndex.value = 0;
@@ -135,18 +130,7 @@ whenever(keys.arrowDown, () => {
 
 whenever(keys.arrowUp, () => {
   if (visible) {
-    const links = [];
-    if (navigationLinks && navigationLinks.value) {
-      const nav = navigationLinks.value.querySelectorAll('a');
-
-      links.push(...nav);
-    }
-
-    if (postLinks && postLinks.value) {
-      const posts = postLinks.value.querySelectorAll('a');
-
-      links.push(...posts);
-    }
+    const links = allLinks.value;
 
     if (focusIndex.value === -1) {
       focusIndex.value = 0;
