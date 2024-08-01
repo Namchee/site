@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { ref, watch, computed } from 'vue';
-import { useMagicKeys, whenever } from '@vueuse/core';
+import { useMagicKeys, useThrottleFn, whenever } from '@vueuse/core';
 
 import {
   DialogRoot,
