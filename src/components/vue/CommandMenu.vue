@@ -105,13 +105,13 @@ whenever(keys.meta_k, () => {
 });
 
 whenever(keys.home, () => {
-  if (visible) {
+  if (visible.value) {
     window.location.href = '/';
   }
 });
 
 whenever(keys.arrowDown, () => {
-  if (visible) {
+  if (visible.value) {
     const links = allLinks.value;
 
     if (focusIndex.value === -1) {
@@ -129,7 +129,7 @@ whenever(keys.arrowDown, () => {
 });
 
 whenever(keys.arrowUp, () => {
-  if (visible) {
+  if (visible.value) {
     const links = allLinks.value;
 
     if (focusIndex.value === -1) {
@@ -147,7 +147,7 @@ whenever(keys.arrowUp, () => {
 });
 
 whenever(keys.enter, () => {
-  if (visible) {
+  if (visible.value) {
     const index = focusIndex.value;
 
     window.location.href = relevantLinks.value[index].href;
@@ -160,6 +160,16 @@ whenever(keys.escape, () => {
 
 watch(searchTerm, () => {
   focusIndex.value = -1;
+});
+
+watch(visible, () => {
+  if (visible.value) {
+    const links = allLinks.value;
+
+    if (focusIndex.value !== -1 && links[focusIndex.value]) {
+      links[focusIndex.value].focus();
+    }
+  }
 });
 </script>
 

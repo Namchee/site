@@ -63,13 +63,36 @@ const ogFile = og ? `${og}.png` : 'og.png';
       href="https://webmention.io/www.namchee.dev/webmention"
     />
     <link rel="preload" href="/fonts/pretendard.woff2" as="font" type="font/woff2" crossorigin>
-    <script src="../../../scripts/theme.ts"></script>
     <title>{title}</title>
+    <script is:inline>
+      // do not try to optimize this. is:inline is there to avoid pre-opt that causes theme flicker
+      const docEl = document.documentElement;
+      const svgIcon = document.querySelector('.favicon');
+      const media = window.matchMedia('(prefers-color-scheme: dark)');
+
+      let theme = media.matches ? 'dark' : 'light';
+      if (
+        typeof window.localStorage !== 'undefined' &&
+        window.localStorage.getItem('theme')
+      ) {
+        theme = window.localStorage.getItem('theme');
+      }
+
+      const toggleTheme = (theme) => {
+        const method = theme === 'light' ? 'remove' : 'add';
+
+        docEl.classList[method]('dark');
+        svgIcon.href = theme === 'light' ? '/icon-light.svg' : '/icon-dark.svg';
+        window.localStorage.setItem('theme', theme);
+      };
+
+      toggleTheme(theme);
+    </script>
   </head>
   <body
     class=":uno: bg-background transition-colors text-content flex flex-col font-sans min-h-screen antialiased"
   >
-    <CommandMenu posts={posts} client:load />
+    <CommandMenu posts={posts} client:only />
     <main class=":uno: w-full max-w-3xl lg:max-w-4xl xl:max-w-7xl mx-auto flex-1">
       <slot />
     </main>
