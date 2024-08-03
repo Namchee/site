@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref, watch, computed } from 'vue';
+import { ref, watch, computed, nextTick, watchEffect } from 'vue';
 import { useMagicKeys, useThrottleFn, whenever } from '@vueuse/core';
 
 import {
@@ -14,14 +14,13 @@ import {
 
 import { Icon } from '@iconify/vue';
 
-import Key from '@/components/vue/Key.vue';
-
 import { links } from '@/constant/links';
 
+import Key from '@/components/vue/Key.vue';
+
 const visible = ref(false);
-const navigationLinks = ref<HTMLDivElement>();
-const postLinks = ref<HTMLDivElement>();
-const focusIndex = ref(-1);
+const searchEl = ref<HTMLInputElement>();
+const focusIndex = ref(0);
 
 const props = defineProps<{
   posts: {
@@ -33,10 +32,10 @@ const props = defineProps<{
 const keys = useMagicKeys({
   passive: false,
   onEventFired(e) {
-    const isCtrlK = e.ctrlKey && e.key === 'k';
-    const isMetaK = e.metaKey && e.key === 'k';
+    const isOpeningMenu = (e.ctrlKey || e.metaKey) && e.key === 'k';
+    const isNavigatingMenu = (['ArrowDown', 'ArrowUp'].includes(e.key)) && visible.value;
 
-    if (isCtrlK || isMetaK) {
+    if (isOpeningMenu || isNavigatingMenu) {
       e.preventDefault();
     }
   }
@@ -64,37 +63,7 @@ const relevantPosts = computed(() => {
   return props.posts.filter(post => pattern.test(post.title))
 });
 
-const allLinks = computed<HTMLLinkElement[]>(() => {
-  const links = [];
-  if (navigationLinks && navigationLinks.value) {
-    const nav = navigationLinks.value.querySelectorAll('a');
-
-    links.push(...nav);
-  }
-
-  if (postLinks && postLinks.value) {
-    const posts = postLinks.value.querySelectorAll('a');
-
-    links.push(...posts);
-  }
-
-  return links;
-});
-
-function handleMouseOver(href: string) {
-  const links = allLinks.value;
-
-  for (let idx = 0; idx < links.length; idx++) {
-    const { pathname } = new URL(links[idx].href);
-
-    if (pathname === href) {
-      focusIndex.value = idx;
-      links[idx].focus();
-    } else {
-      links[idx].blur();
-    }
-  }
-}
+const allLinks = computed(() => [...relevantLinks.value, ...relevantPosts.value]);
 
 whenever(keys.ctrl_k, () => {
   visible.value = !visible.value;
@@ -112,37 +81,21 @@ whenever(keys.home, () => {
 
 whenever(keys.arrowDown, () => {
   if (visible.value) {
-    const links = allLinks.value;
+    focusIndex.value += 1;
 
-    if (focusIndex.value === -1) {
-      focusIndex.value = 0;
-    } else {
-      focusIndex.value += 1;
-
-      if (focusIndex.value >= links.length) {
-        focusIndex.value = links.length - 1;
-      }
+    if (focusIndex.value >= allLinks.value.length) {
+      focusIndex.value = allLinks.value.length - 1;
     }
-
-    links[focusIndex.value].focus();
   }
 });
 
 whenever(keys.arrowUp, () => {
   if (visible.value) {
-    const links = allLinks.value;
+    focusIndex.value -= 1;
 
-    if (focusIndex.value === -1) {
+    if (focusIndex.value < 0) {
       focusIndex.value = 0;
-    } else {
-      focusIndex.value -= 1;
-
-      if (focusIndex.value < 0) {
-        focusIndex.value = 0;
-      }
     }
-
-    links[focusIndex.value].focus();
   }
 });
 
@@ -159,15 +112,20 @@ whenever(keys.escape, () => {
 });
 
 watch(searchTerm, () => {
-  focusIndex.value = -1;
+  focusIndex.value = 0;
 });
 
-watch(visible, () => {
+watch(visible, async () => {
   if (visible.value) {
-    const links = allLinks.value;
+    // ensure that the ref is populated first
+    await nextTick();
 
-    if (focusIndex.value !== -1 && links[focusIndex.value]) {
-      links[focusIndex.value].focus();
+    if (searchEl.value) {
+      searchEl.value.focus();
+    }
+
+    if (focusIndex.value === -1) {
+      focusIndex.value = 0;
     }
   }
 });
@@ -197,12 +155,13 @@ watch(visible, () => {
         class=":uno: fixed bg-background w-screen h-screen dialog__overlay bg-opacity-50 backdrop-blur z-20"
       />
       <DialogContent
-        class=":uno: fixed border border-separator bg-background shadow dialog__content top-[20%] left-[50%] -translate-x-[50%] rounded-md w-4/5 max-w-md max-h-sm z-30 focus:outline-none"
+        class=":uno: fixed border border-separator bg-background shadow dialog__content rounded-md w-4/5 max-w-md max-h-sm z-30 focus:outline-none"
       >
         <DialogTitle class=":uno: border-separator border-b">
           <input
             class=":uno: text-sm w-full bg-transparent focus:outline-none p-4 placeholder:font-normal font-normal leading-relaxed"
             placeholder="Where do you want to go?"
+            ref="searchEl"
             v-model="searchTerm"
           >
         </DialogTitle>
@@ -221,14 +180,15 @@ watch(visible, () => {
               Pages
             </span>
 
-            <div ref="navigationLinks">
+            <ul ref="currentLinks">
               <a
-                v-for="(link) in relevantLinks"
+                v-for="(link, idx) in relevantLinks"
                 :key="link.href"
                 :href="link.href"
-                class=":uno: text-sm rounded-md flex justify-between transition-colors focus:text-heading focus:outline-none p-2 focus:bg-surface link"
+                class=":uno: text-sm rounded-md flex justify-between transition-colors outline-none p-2"
+                :class="{ 'bg-surface text-heading': focusIndex === idx }"
                 rel="noopener noreferrer"
-                @mouseover="() => handleMouseOver(link.href)"
+                @mouseover="() => focusIndex = idx"
               >
                 <div class=":uno: flex items-center space-x-4">
                   <Icon
@@ -246,7 +206,7 @@ watch(visible, () => {
                   class=":uno: text-xs border border-separator text-heading px-1 bg-surface font-mono rounded"
                 >{{ link.key }}</kbd>
               </a>
-            </div>
+            </ul>
           </div>
 
           <div
@@ -256,18 +216,17 @@ watch(visible, () => {
               Posts
             </span>
 
-            <div ref="postLinks">
-              <a
-                v-for="(post) in relevantPosts"
-                :key="post.href"
-                :href="post.href"
-                class=":uno: flex justify-between p-2 text-sm transition-colors focus:bg-surface focus:text-heading focus:outline-none rounded-md link"
-                rel="noopener noreferrer"
-                @mouseover="() => handleMouseOver(post.href)"
-              >
-                {{ post.title }}
-              </a>
-            </div>
+            <a
+              v-for="(post, idx) in relevantPosts"
+              :key="post.href"
+              :href="post.href"
+              class=":uno: flex justify-between p-2 text-sm transition-colors outline-none rounded-md"
+              :class="{ 'bg-surface text-heading': focusIndex === idx + relevantLinks.length }"
+              rel="noopener noreferrer"
+              @mouseover="() => focusIndex = idx + relevantLinks.length"
+            >
+              {{ post.title }}
+            </a>
           </div>
         </DialogDescription>
 
@@ -337,27 +296,32 @@ watch(visible, () => {
 @keyframes contentShow {
   from {
     opacity: 0;
-    translate: 0 0.1rem;
-    scale: 0.985;
+    transform: translate(-50%, -35%) scale(0.925);
   }
 
   to {
     opacity: 1;
-    translate: 0;
-    scale: 1;
+    transform: translate(-50%, -35%) scale(1);
   }
 }
 
 @keyframes contentHide {
   from {
     opacity: 1;
-    transform: 'translate(-50%, -50%) scale(1)';
+    transform: translate(-50%, -35%) scale(1);
   }
 
   to {
     opacity: 0;
-    transform: 'translate(-50%, -48%) scale(0.96)';
+    transform: translate(-50%, -35%) scale(0.925);
   }
+}
+
+.dialog__content {
+  transform-origin: center;
+  left: 50%;
+  transform: translate(-50%, -35%);
+  top: 35%;
 }
 
 
@@ -375,9 +339,5 @@ watch(visible, () => {
 
 .dialog__content[data-state='closed'] {
   animation: contentHide 200ms cubic-bezier(0.33, 1, 0.68, 1);
-}
-
-.link:focus {
-  outline: none;
 }
 </style>
