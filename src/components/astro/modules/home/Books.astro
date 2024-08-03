@@ -17,9 +17,8 @@ const books = await getCurrentlyReadBooks();
           <Image
             src={book.cover}
             alt={book.title}
-            width={75}
-            height={105}
-            class=":uno: rounded object-fill!"
+            inferSize
+            class=":uno: rounded w-[80px] object-fill!"
           />
 
           <div class=":uno: flex flex-col justify-center">
