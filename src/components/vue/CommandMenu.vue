@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref, watch, computed, nextTick, watchEffect } from 'vue';
+import { ref, watch, computed, nextTick } from 'vue';
 import { useMagicKeys, useThrottleFn, whenever } from '@vueuse/core';
 
 import {
