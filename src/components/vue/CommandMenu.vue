@@ -134,19 +134,7 @@ watch(visible, async () => {
 <template>
   <DialogRoot v-model:open="visible">
     <DialogTrigger as-child>
-      <button
-        class=":uno: grid place-items-center bg-background grid place-items-center w-10 h-10 rounded-full border border-separator dark:bg-surface fixed top-6 right-8 group hover:scale-105 focus:scale-105 z-10 transition-all shadow md:top-8 dark:border-surface"
-      >
-        <Icon
-          icon="lucide:command"
-          class=":uno: w-4 h-4"
-        />
-        <p
-          class=":uno: transition-all text-sm opacity-0 absolute -bottom-8 translate-y-1 group-hover:opacity-100 group-hover:translate-y-0 group-focus:opacity-100 group-focus:translate-y-0 pointer-events-none"
-        >
-          Menu
-        </p>
-      </button>
+      <slot />
     </DialogTrigger>
 
     <DialogPortal>
@@ -296,7 +284,7 @@ watch(visible, async () => {
 @keyframes contentShow {
   from {
     opacity: 0;
-    transform: translate(-50%, -35%) scale(0.925);
+    transform: translate(-50%, -35%) scale(0.935);
   }
 
   to {
@@ -313,7 +301,7 @@ watch(visible, async () => {
 
   to {
     opacity: 0;
-    transform: translate(-50%, -35%) scale(0.925);
+    transform: translate(-50%, -35%) scale(0.935);
   }
 }
 
