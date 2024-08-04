@@ -176,7 +176,7 @@ watch(visible, async () => {
                 class=":uno: text-sm rounded-md flex justify-between transition-colors outline-none p-2"
                 :class="{ 'bg-surface text-heading': focusIndex === idx }"
                 rel="noopener noreferrer"
-                @mouseover="() => focusIndex = idx"
+                @mouseenter="() => focusIndex = idx"
               >
                 <div class=":uno: flex items-center space-x-4">
                   <Icon
@@ -211,7 +211,7 @@ watch(visible, async () => {
               class=":uno: flex justify-between p-2 text-sm transition-colors outline-none rounded-md"
               :class="{ 'bg-surface text-heading': focusIndex === idx + relevantLinks.length }"
               rel="noopener noreferrer"
-              @mouseover="() => focusIndex = idx + relevantLinks.length"
+              @mouseenter="() => focusIndex = idx + relevantLinks.length"
             >
               {{ post.title }}
             </a>
