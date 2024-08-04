@@ -1,4 +1,6 @@
 ---
+import '@/assets/styles/tweet.css';
+
 import { Icon } from "astro-icon/components";
 
 import type { CollectionEntry } from "astro:content";
@@ -153,9 +155,9 @@ const lastModified = !!frontmatter.lastModified ? frontmatter.lastModified : pub
   </article>
 </Layout>
 
-<style is:inline>
+<style>
   .reading__progress::-webkit-progress-bar {
-    background-color: transparent;
+    background-color: oklch(var(--background));
   }
   .reading__progress::-webkit-progress-value {
     background-color: oklch(var(--primary));
@@ -166,16 +168,16 @@ const lastModified = !!frontmatter.lastModified ? frontmatter.lastModified : pub
   }
 </style>
 
-<script is:inline>
+<script>
   const progressBar = document.querySelector(".reading__progress");
 
   const windowHeight = window.innerHeight;
   const documentHeight = document.documentElement.scrollHeight;
   const max = documentHeight - windowHeight;
-  progressBar.setAttribute("max", max);
+  progressBar.setAttribute("max", max.toString());
 
   window.addEventListener("scroll", () => {
-    progressBar.setAttribute("value", window.scrollY);
+    progressBar.setAttribute("value", window.scrollY.toString());
   });
 
   const backToTop = document.querySelector(".backToTop__button");

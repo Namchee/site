@@ -19,15 +19,23 @@ import { remarkPlugins } from './src/plugins/remark';
 
 // https://astro.build/config
 export default defineConfig({
-  integrations: [vue(), unocss({
-    injectReset: true,
-  }), mdx(), icon({
-    include: {
-      simpleIcons: ['*'],
-      lucide: ['*'],
-      cib: ['creative-commons-by'],
-    },
-  }), sitemap(), robotsTxt(), subset()],
+  integrations: [
+    vue(),
+    unocss({
+      injectReset: true,
+    }),
+    mdx(),
+    icon({
+      include: {
+        simpleIcons: ['*'],
+        lucide: ['*'],
+        cib: ['creative-commons-by'],
+      },
+    }),
+    sitemap(),
+    robotsTxt(),
+    subset(),
+  ],
   markdown: {
     remarkPlugins: remarkPlugins,
     syntaxHighlight: false,
@@ -36,7 +44,7 @@ export default defineConfig({
     },
   },
   image: {
-    domains: ['assets.literal.club', 'res.cloudinary.com'],
+    domains: ['books.google.com', 'assets.literal.club', 'res.cloudinary.com'],
   },
   site: 'https://www.namchee.dev',
   prefetch: true,
