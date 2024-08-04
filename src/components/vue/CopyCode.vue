@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref } from 'vue';
+import { onBeforeUnmount, ref } from 'vue';
 
 import { TooltipProvider, TooltipArrow, TooltipRoot, TooltipPortal, TooltipTrigger, TooltipContent } from 'radix-vue';
 
@@ -8,13 +8,20 @@ const props = defineProps({
 });
 
 const open = ref(false);
+const timeoutId = ref<number>(-1);
 
 function copyCode() {
   navigator.clipboard.writeText(props.code);
 
   open.value = true;
-  setTimeout(() => open.value = false, 2_500);
+  window.clearTimeout(timeoutId.value);
+
+  timeoutId.value = window.setTimeout(() => open.value = false, 2_500);
 }
+
+onBeforeUnmount(() => {
+  window.clearTimeout(timeoutId.value);
+});
 </script>
 
 <template>
