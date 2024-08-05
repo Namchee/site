@@ -15,7 +15,7 @@ const posts = (await getCollection('posts'))
       <li class=":uno: flex gap-x-4 flex-col md:items-center md:flex-row md:justify-between">
         <AppLink
           href={`/posts/${post.slug}`}
-          class=":uno: text-heading transition-colors items-center font-medium hover:text-primary focus:text-primary inline-flex text-balance space-x-2"
+          class=":uno: text-heading transition-colors items-center hover:text-primary focus:text-primary inline-flex text-balance space-x-2 font-medium"
         >
           {post.data.title}
         </AppLink>

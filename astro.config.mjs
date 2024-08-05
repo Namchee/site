@@ -41,7 +41,7 @@ export default defineConfig({
     syntaxHighlight: false,
   },
   image: {
-    domains: ['assets.literal.club', 'res.cloudinary.com'],
+    domains: ['books.google.com', 'assets.literal.club', 'res.cloudinary.com'],
   },
   site: 'https://www.namchee.dev',
   prefetch: true,
