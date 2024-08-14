@@ -39,13 +39,13 @@ const lastModified = !!frontmatter.lastModified ? frontmatter.lastModified : pub
 
   <article class=":uno: grid grid-cols-12 px-8 gap-x-4 lg:px-0 my-32">
     <h1
-      class=":uno: text-heading font-semibold col-start-1 col-end-13 md:col-start-5 lg:col-end-12 xl:col-end-11 mb-4 md:mb-8 text-2xl md:text-3xl"
+      class=":uno: text-heading font-semibold col-start-1 col-end-13 md:col-start-4 md:col-end-9 mb-4 md:mb-8 text-3xl md:text-4xl tracking-tight"
     >
       {frontmatter.title}
     </h1>
 
     <section
-      class=":uno: col-start-1 col-end-13 md:col-end-5 lg:col-start-2 lg:col-end-5 xl:col-start-3"
+      class=":uno: col-start-1 col-end-13 md:col-end-5 lg:col-start-2 lg:col-end-5 xl:col-start-3 hidden"
     >
       <div
         class="space-y-0 md:space-y-2 mb-12 md:mb-16 flex md:flex-col items-center md:items-start"
@@ -106,7 +106,7 @@ const lastModified = !!frontmatter.lastModified ? frontmatter.lastModified : pub
     </section>
 
     <section
-      class=":uno: col-start-1 col-end-13 lg:col-end-12 xl:col-end-11 md:col-start-5 leading-[1.75] space-y-4"
+      class=":uno: col-start-1 col-end-13 md:col-start-4 md:col-end-10 leading-[1.75] space-y-4"
     >
       <slot />
     </section>
