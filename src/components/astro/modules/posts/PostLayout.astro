@@ -1,5 +1,5 @@
 ---
-import '@/assets/styles/tweet.css';
+import "@/assets/styles/tweet.css";
 
 import { Icon } from "astro-icon/components";
 
@@ -13,6 +13,7 @@ import BackButton from "./BackButton.astro";
 import TableOfContents from "./TableOfContents.astro";
 import Webmention from "./Webmentions.astro";
 import SocialLinks from "./SocialLinks.astro";
+import AppLink from "../../ui/AppLink.astro";
 
 interface Props {
   frontmatter: CollectionEntry<"posts">["data"] &
@@ -24,7 +25,9 @@ interface Props {
 const { frontmatter } = Astro.props;
 
 const publishedAt = frontmatter.publishedAt;
-const lastModified = !!frontmatter.lastModified ? frontmatter.lastModified : publishedAt;
+const lastModified = !!frontmatter.lastModified
+  ? frontmatter.lastModified
+  : publishedAt;
 ---
 
 <Layout
@@ -38,103 +41,83 @@ const lastModified = !!frontmatter.lastModified ? frontmatter.lastModified : pub
   <BackButton />
 
   <article class=":uno: grid grid-cols-12 px-8 gap-x-4 lg:px-0 my-32">
+    <AppLink href="/posts" class=":uno: flex col-start-1 col-end-13 md:col-start-2 md:col-end-12 lg:col-start-3 lg:col-end-11 xl:col-start-4 xl:col-end-10 mb-8 space-x-1">
+      <Icon name="lucide:arrow-left" class="w-4 h-auto" />
+
+      <span>Back to Posts</span>
+    </AppLink>
+
     <h1
-      class=":uno: text-heading font-semibold col-start-1 col-end-13 md:col-start-4 md:col-end-9 mb-4 md:mb-8 text-3xl md:text-4xl tracking-tight"
+      class=":uno: text-heading font-semibold col-start-1 col-end-13 md:col-start-2 md:col-end-12 lg:col-start-3 lg:col-end-11 xl:col-start-4 xl:col-end-10 text-3xl md:text-4xl mb-4 tracking-tight leading-tight!"
     >
       {frontmatter.title}
     </h1>
 
-    <section
-      class=":uno: col-start-1 col-end-13 md:col-end-5 lg:col-start-2 lg:col-end-5 xl:col-start-3 hidden"
-    >
+    <section class=":uno: flex col-start-1 col-end-13 md:col-start-2 md:col-end-12 lg:col-start-3 lg:col-end-11 xl:col-start-4 xl:col-end-10 space-x-4 mb-8">
       <div
-        class="space-y-0 md:space-y-2 mb-12 md:mb-16 flex md:flex-col items-center md:items-start"
+        class="flex items-center space-x-[6px] md:space-x-2 text-xs md:text-sm"
+        title={`Published At ${new Date(publishedAt).toDateString()}`}
       >
-        <div
-          class="flex items-center space-x-[6px] md:space-x-2 text-xs md:text-sm"
-          title={`Published At ${new Date(publishedAt).toDateString()}`}
+        <Icon name="lucide:pencil-line" class="w-4 h-auto" />
+
+        <time
+          datetime={frontmatter.publishedAt as unknown as string}
+          class=":uno: text-heading font-medium block"
         >
-          <Icon name="lucide:pencil-line" class="w-4 h-auto" />
-
-          <time
-            datetime={frontmatter.publishedAt as unknown as string}
-            class=":uno: text-heading font-medium block"
-          >
-            {
-              new Date(publishedAt).toLocaleString("en-GB", {
-                year: "numeric",
-                month: "long",
-                day: "numeric",
-              })
-            }
-          </time>
-        </div>
-
-        <div
-          class="items-center space-x-[6px] md:space-x-2 text-xs md:text-sm sm:flex ml-4 md:ml-unset hidden"
-          title={`Last Modified ${new Date(lastModified).toDateString()}`}
-        >
-          <Icon name="lucide:history" class="w-4 h-auto" />
-
-          <time
-            datetime={frontmatter.lastModified as unknown as string}
-            class=":uno: text-heading font-medium block"
-          >
-            {
-              new Date(lastModified).toLocaleString("en-GB", {
-                year: "numeric",
-                month: "long",
-                day: "numeric",
-              })
-            }
-          </time>
-        </div>
-
-        <div
-          class="flex items-center space-x-[6px] md:space-x-2 text-xs md:text-sm md:ml-unset ml-auto"
-          title={`${frontmatter.timeToRead} minutes read`}
-        >
-          <Icon name="lucide:timer" class="w-4 h-auto" />
-
-          <p class="text-heading font-medium">
-            {frontmatter.timeToRead} minutes
-          </p>
-        </div>
+          {
+            new Date(publishedAt).toLocaleString("en-GB", {
+              year: "numeric",
+              month: "long",
+              day: "numeric",
+            })
+          }
+        </time>
       </div>
 
-      <TableOfContents headings={frontmatter.headings} />
+      <div
+        class="items-center space-x-[6px] md:space-x-2 text-xs md:text-sm sm:flex ml-4 md:ml-unset hidden"
+        title={`Last Modified ${new Date(lastModified).toDateString()}`}
+      >
+        <Icon name="lucide:history" class="w-4 h-auto" />
+
+        <time
+          datetime={frontmatter.lastModified as unknown as string}
+          class=":uno: text-heading font-medium block"
+        >
+          {
+            new Date(lastModified).toLocaleString("en-GB", {
+              year: "numeric",
+              month: "long",
+              day: "numeric",
+            })
+          }
+        </time>
+      </div>
+
+      <div
+        class="flex items-center space-x-[6px] md:space-x-2 text-xs md:text-sm ml-auto!"
+        title={`${frontmatter.timeToRead} minutes read`}
+      >
+        <Icon name="lucide:timer" class="w-4 h-auto" />
+
+        <p class="text-heading font-medium">
+          {frontmatter.timeToRead} minutes
+        </p>
+      </div>
     </section>
 
     <section
-      class=":uno: col-start-1 col-end-13 md:col-start-4 md:col-end-10 leading-[1.75] space-y-4"
+      class=":uno: col-start-1 col-end-13 md:col-start-2 md:col-end-12 lg:col-start-3 lg:col-end-11 xl:col-start-4 xl:col-end-10 leading-[1.75] space-y-4"
     >
       <slot />
     </section>
 
     <section
-      class=":uno: col-start-1 col-end-13 md:col-end-5 lg:col-start-2 lg:col-end-5 xl:col-start-3 mx-auto mt-16 md:mx-unset"
-    >
-      <p
-        class=":uno: text-center text-heading font-medium text-sm leading-normal md:text-base mb-5 md:text-left"
-      >
-        Tags
-      </p>
-
-      <div class=":uno: flex flex-wrap gap-2">
-        {
-          frontmatter.tags.map((tag) => (
-            <Badge>{tag[0].toUpperCase() + tag.slice(1)}</Badge>
-          ))
-        }
-      </div>
-    </section>
-
-    <section
-      class=":uno: flex col-start-1 col-end-13 lg:col-end-12 xl:col-end-11 md:col-start-5 justify-between mt-16"
+      class=":uno: flex col-start-1 col-end-13 md:col-start-2 md:col-end-12 lg:col-start-3 lg:col-end-11 xl:col-start-4 xl:col-end-10 justify-between mt-16"
     >
       <div>
         <p
-          class=":uno: text-heading font-medium text-sm leading-normal md:text-base mb-5"
+          class=":uno: font-semibold text-sm leading-normal md:text-base mb-5"
         >
           Share this Post
         </p>
@@ -144,12 +127,18 @@ const lastModified = !!frontmatter.lastModified ? frontmatter.lastModified : pub
 
       <div>
         <p
-          class=":uno: text-sm md:text-base text-heading font-medium mb-5 text-right"
+          class=":uno: font-semibold text-sm leading-normal md:text-base mb-5 text-right"
         >
-          Webmentions
+          Tags
         </p>
 
-        <Webmention slug={frontmatter.slug} />
+        <div class=":uno: flex flex-wrap gap-2">
+          {
+            frontmatter.tags.map((tag) => (
+              <Badge>{tag[0].toUpperCase() + tag.slice(1)}</Badge>
+            ))
+          }
+        </div>
       </div>
     </section>
   </article>
