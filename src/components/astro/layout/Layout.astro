@@ -89,22 +89,25 @@ const ogFile = og ? `${og}.png` : 'og.png';
     </script>
   </head>
   <body
-    class=":uno: bg-background transition-colors text-content flex flex-col font-sans min-h-screen antialiased"
+    class=":uno: bg-background transition-colors text-content flex flex-col font-sans min-h-screen mx-auto antialiased"
   >
-    <CommandMenu posts={posts} client:load>
-      <button
-        class=":uno: grid place-items-center bg-background grid place-items-center w-10 h-10 rounded-full border border-separator dark:bg-surface fixed top-6 right-8 group hover:scale-105 focus:scale-105 z-10 transition-all shadow md:top-8 dark:border-surface"
-      >
-        ⌘
-        <p
-          class=":uno: transition-all text-sm opacity-0 absolute -bottom-8 translate-y-1 group-hover:opacity-100 group-hover:translate-y-0 group-focus:opacity-100 group-focus:translate-y-0 pointer-events-none"
+    <div class="w-full h-16">
+      <CommandMenu posts={posts} client:load>
+        <button
+          class=":uno: grid bg-background grid fixed z-10 place-items-center place-items-center w-10 h-10 rounded-full border border-separator dark:bg-surface top-6 right-8 group hover:scale-105 focus:scale-105 transition-all shadow md:top-8 dark:border-surface"
         >
-          Menu
-        </p>
-      </button>
-    </CommandMenu>
+          ⌘
+          <p
+            class=":uno: transition-all text-sm opacity-0 absolute -bottom-8 translate-y-1 group-hover:opacity-100 group-hover:translate-y-0 group-focus:opacity-100 group-focus:translate-y-0 pointer-events-none"
+          >
+            Menu
+          </p>
+        </button>
+      </CommandMenu>
+    </div>
 
-    <main class=":uno: w-full max-w-3xl lg:max-w-5xl xl:max-w-7xl mx-auto flex-1">
+
+    <main class=":uno: w-full mx-auto flex-1">
       <slot />
     </main>
     <Footer />
