@@ -31,7 +31,7 @@ const inspirations = [
     href: "https://jackyef.com/",
   },
   {
-    name: "60fps Design",
+    name: "60FPS Design",
     href: "https://www.60fps.design/",
   },
   {
@@ -46,6 +46,10 @@ const inspirations = [
     name: "One Page Love",
     href: "https://onepagelove.com/",
   },
+  {
+    name: "Dead Simple Sites",
+    href: "https://deadsimplesites.com/"
+  }
 ];
 
 const title = 'Colophon';
@@ -53,9 +57,9 @@ const description = 'A full list of resources and technologies that empowers nam
 ---
 
 <Layout title={title} description={description} og="og-colophon">
-  <div class=":uno: grid grid-cols-12 gap-4 my-16 px-8 lg:my-32 lg:px-0 leading-[1.75]">
+  <div class=":uno: grid grid-cols-12 gap-4 px-8 my-32 leading-[1.75]">
     <header
-      class=":uno: col-start-1 col-end-13 md:col-end-5 lg:col-start-2 xl:col-start-3 lg:col-end-6"
+      class=":uno: col-start-1 col-end-13 md:col-end-5"
     >
       <div class=":uno: sticky top-12">
         <h1 class=":uno: text-2xl text-heading font-semibold tracking-tight">
@@ -64,16 +68,16 @@ const description = 'A full list of resources and technologies that empowers nam
 
         <time
           class=":uno: flex space-x-2 mt-2"
-          title="Last Updated on 14 April 2024"
+          title="Last Updated on 16 August 2024"
         >
           <Icon name="lucide:history" class=":uno: w-4 h-auto" />
-          <span>14 April 2024</span>
+          <span>16 August 2024</span>
         </time>
       </div>
     </header>
 
     <div
-      class=":uno: col-start-1 col-end-13 mt-8 space-y-16 md:mt-0 md:col-start-6 lg:col-start-6 lg:col-end-12 xl:col-end-11"
+      class=":uno: col-start-1 col-end-13 mt-8 space-y-16 md:mt-0 md:col-start-6"
     >
       <section class=":uno: space-y-4">
         <h2 class=":uno: text-heading font-semibold">Technology</h2>
@@ -103,7 +107,7 @@ const description = 'A full list of resources and technologies that empowers nam
         <h2 class=":uno: text-heading font-semibold">Design</h2>
 
         <p>
-          Color palletes are taken from <TextLink
+          Colors are extracted from <TextLink
             href="https://www.untitledui.com/"
           >
             Untitled UI</TextLink> with a few twist of my own.
@@ -170,12 +174,12 @@ const description = 'A full list of resources and technologies that empowers nam
               <li>
                 <AppLink
                   href={inspiration.href}
-                  class=":uno: text-heading hover:text-primary focus:text-primary transition-colors inline-flex items-center space-x-1"
+                  class=":uno: text-heading hover:text-primary focus:text-primary transition-colors inline-flex items-center font-medium -tracking-[0.0125em] space-x-[2px]"
                 >
                   <span>{inspiration.name}</span>
                   <Icon
                     name="lucide:arrow-up-right"
-                    class=":uno: w-4 h-auto -mt-1"
+                    class=":uno: w-4 h-auto"
                   />
                 </AppLink>
               </li>
@@ -188,11 +192,10 @@ const description = 'A full list of resources and technologies that empowers nam
         <h2 class=":uno: text-heading font-semibold">Open Source</h2>
 
         <p>
-          This website is open-sourced and can be found on my <TextLink
+          This website is open-sourced and the source code can be found on my <TextLink
             href="https://www.github.com/Namchee/site"
           >
-            GitHub</TextLink>. If you notice any mistakes in
-          this website, feel free to
+            GitHub</TextLink>. If you find a bug or just want to submit a feedback, feel free to
           create an
           <TextLink href="https://github.com/Namchee/site/issues">
             issue</TextLink>.

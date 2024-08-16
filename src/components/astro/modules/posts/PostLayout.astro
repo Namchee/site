@@ -40,15 +40,15 @@ const lastModified = !!frontmatter.lastModified
 
   <BackButton />
 
-  <article class=":uno: grid grid-cols-12 px-8 gap-x-4 lg:px-0 my-32">
-    <AppLink href="/posts" class=":uno: flex col-start-1 col-end-13 md:col-start-2 md:col-end-12 lg:col-start-3 lg:col-end-11 xl:col-start-4 xl:col-end-10 mb-8 space-x-1">
+  <article class=":uno: w-full mx-auto px-8 my-32 max-w-[45rem]">
+    <AppLink href="/posts" class=":uno: flex col-start-1 col-end-13 space-x-1 mb-8">
       <Icon name="lucide:arrow-left" class="w-4 h-auto" />
 
       <span>Back to Posts</span>
     </AppLink>
 
     <h1
-      class=":uno: text-heading font-semibold col-start-1 col-end-13 md:col-start-2 md:col-end-12 lg:col-start-3 lg:col-end-11 xl:col-start-4 xl:col-end-10 text-3xl md:text-4xl mb-4 tracking-tight text-balance leading-tight!"
+      class=":uno: text-heading font-semibold text-3xl md:text-4xl mb-4 tracking-tight text-balance leading-tight!"
     >
       {frontmatter.title}
     </h1>
@@ -107,7 +107,7 @@ const lastModified = !!frontmatter.lastModified
     </section>
 
     <section
-      class=":uno: col-start-1 col-end-13 md:col-start-2 md:col-end-12 lg:col-start-3 lg:col-end-11 xl:col-start-4 xl:col-end-10 leading-[1.75] space-y-4"
+      class=":uno: col-start-1 col-end-13 md:col-start-2 md:col-end-12 lg:col-start-3 lg:col-end-11 xl:col-start-4 xl:col-end-10 leading-[1.75] space-y-5"
     >
       <slot />
     </section>

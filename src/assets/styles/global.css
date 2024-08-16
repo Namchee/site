@@ -12,7 +12,7 @@
 
   --success: 67.31% 0.16 155.59;
 
-  font-feature-settings: "cv05" 1, "cv03" 1, "cv04" 1, "tnum" 1, "calt" 1, "case" 1;
+  font-feature-settings: "cv05" 1, "cv03" 1, "cv04" 1, "tnum" 1, "calt" 1, "case" 1, "liga" 1;
 }
 
 html {
@@ -50,6 +50,14 @@ html.dark img {
     url("/fonts/pretendard.woff2") format("woff2-variations");
   font-style: oblique 0deg 10deg;
   font-weight: 45 920;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Inter";
+  src: url("/fonts/inter.woff2") format("woff2-variations");
+  font-style: oblique 0deg 10deg;
+  font-weight: 100 900;
   font-display: swap;
 }
 

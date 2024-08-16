@@ -66,9 +66,9 @@ const description = 'A list of books that I\'ve read and recommend to either boo
 ---
 
 <Layout title={title} description={description} og="og-bookshelf">
-  <div class=":uno: grid grid-cols-12 gap-4 my-16 px-8 lg:my-32 lg:px-0 leading-[1.75]">
+  <div class=":uno: grid grid-cols-12 gap-4 px-8 my-32 leading-[1.75]">
     <header
-      class=":uno: col-start-1 col-end-13 md:col-end-5 lg:col-start-2 lg:col-end-5 xl:col-start-3"
+      class=":uno: col-start-1 col-end-13 md:col-end-5"
     >
       <div class=":uno: sticky top-12">
         <h1 class=":uno: text-2xl text-heading tracking-tight font-semibold">
@@ -78,7 +78,7 @@ const description = 'A list of books that I\'ve read and recommend to either boo
     </header>
 
     <div
-      class=":uno: col-start-1 col-end-13 mt-8 md:mt-0 md:mt-0 md:col-start-6 lg:col-start-6 lg:col-end-12 xl:col-end-11 space-y-16 xl:col-start-6"
+      class=":uno: col-start-1 col-end-13 md:col-start-6 space-y-16"
     >
       <section class=":uno: space-y-4">
         <p>
@@ -97,7 +97,7 @@ const description = 'A list of books that I\'ve read and recommend to either boo
           const bookList = book.map((b) => (
             <li class=":uno: justify-between md:grid md:grid-cols-[max-content_auto]">
               <AppLink
-                class=":uno: text-heading transition-colors items-center hover:text-primary focus:text-primary inline-flex text-balance space-x-[2px]"
+                class=":uno: text-heading transition-colors items-center hover:text-primary focus:text-primary inline-flex text-balance font-medium -tracking-[0.0125em] space-x-[2px]"
                 href={b.link}
               >
                 <span>{b.title}</span>
@@ -107,7 +107,7 @@ const description = 'A list of books that I\'ve read and recommend to either boo
                 />
               </AppLink>
 
-              <p class=":uno: text-balance text-xs md:text-base md:text-right">
+              <p class=":uno: text-balance text-sm md:text-base md:text-right">
                 {b.author}
               </p>
             </li>
