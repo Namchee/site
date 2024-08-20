@@ -12,7 +12,7 @@
 
   --success: 67.31% 0.16 155.59;
 
-  font-feature-settings: "cv05" 1, "cv03" 1, "cv04" 1, "tnum" 1, "calt" 1, "case" 1, "liga" 1;
+  font-feature-settings: "calt" 1, "case" 1, "ss07" 1, "ss08" 1, "ss03" 1, "cv05" 1, "tnum" 1;
 }
 
 html {
@@ -42,15 +42,6 @@ html.dark img {
 *::selection {
   color: oklch(var(--primary));
   background-color: oklch(var(--primary) / 0.15);
-}
-
-@font-face {
-  font-family: "Pretendard";
-  src: local("Pretendard"),
-    url("/fonts/pretendard.woff2") format("woff2-variations");
-  font-style: oblique 0deg 10deg;
-  font-weight: 45 920;
-  font-display: swap;
 }
 
 @font-face {
