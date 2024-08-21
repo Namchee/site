@@ -140,10 +140,10 @@ watch(visible, async () => {
     <DialogPortal>
       <DialogOverlay
         @click="visible = false"
-        class=":uno: fixed bg-background w-screen h-screen dialog__overlay bg-opacity-50 backdrop-blur z-20"
+        class=":uno: fixed bg-background w-screen h-screen z-20 dialog__overlay bg-opacity-50 backdrop-blur"
       />
       <DialogContent
-        class=":uno: fixed border border-separator bg-background shadow dialog__content rounded-md w-4/5 max-w-md max-h-sm z-30 focus:outline-none"
+        class=":uno: fixed border border-separator bg-background shadow rounded-md dialog__content w-4/5 max-w-md max-h-sm z-30 focus:outline-none"
       >
         <DialogTitle class=":uno: border-separator border-b">
           <input
@@ -164,7 +164,7 @@ watch(visible, async () => {
           <div
             v-if="relevantLinks.length > 0"
           >
-            <span class=":uno: font-semibold mb-2 text-xs">
+            <span class=":uno: font-semibold text-xs mb-2">
               Pages
             </span>
 
@@ -173,7 +173,7 @@ watch(visible, async () => {
                 v-for="(link, idx) in relevantLinks"
                 :key="link.href"
                 :href="link.href"
-                class=":uno: text-sm rounded-md flex transition-colors justify-between outline-none p-2"
+                class=":uno: text-sm rounded-md flex transition-colors justify-between p-2 outline-none"
                 :class="{ 'bg-surface text-heading': focusIndex === idx }"
                 rel="noopener noreferrer"
                 @mouseenter="() => focusIndex = idx"
@@ -191,7 +191,7 @@ watch(visible, async () => {
                 <kbd
                   v-if="!!link.key"
                   :title="link.key"
-                  class=":uno: text-xs border border-separator text-heading px-1 bg-surface font-mono rounded"
+                  class=":uno: text-xs border border-separator text-heading font-mono px-1 bg-surface rounded"
                 >{{ link.key }}</kbd>
               </a>
             </ul>

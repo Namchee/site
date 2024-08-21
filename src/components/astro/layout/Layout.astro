@@ -1,14 +1,11 @@
 ---
-import '@/assets/styles/global.css';
-import '@/assets/styles/toggle.css';
+import "@/assets/styles/global.css";
+import "@/assets/styles/toggle.css";
 
-import { getCollection } from 'astro:content';
+import { getCollection } from "astro:content";
 
-import Footer from '@/components/astro/layout/Footer.astro';
-import CommandMenu from '@/components/vue/CommandMenu.vue';
-import Topbar from './Topbar.astro';
-import NewFooter from './NewFooter.astro';
-import MiniNav from './MiniNav.astro';
+import Footer from "@/components/astro/layout/Footer.astro";
+import CommandMenu from "@/components/vue/CommandMenu.vue";
 
 export interface Props {
   title: string;
@@ -17,20 +14,22 @@ export interface Props {
   og?: string;
 }
 
-const postCollection = await getCollection('posts');
+const postCollection = await getCollection("posts");
 const posts = postCollection
-  .filter(post => !post.data.isDraft)
+  .filter((post) => !post.data.isDraft)
   .sort((a, b) => b.data.publishedAt.getTime() - a.data.publishedAt.getTime())
   .map((collection) => ({
-    title: collection.data.title || '',
+    title: collection.data.title || "",
     href: `/posts/${collection.slug}`,
   }));
 
 const { title, description, og } = Astro.props;
 
 const url = Astro.url;
-const ogHost = import.meta.env.DEV ? `${url.protocol}//${url.host}` : import.meta.env.SITE;
-const ogFile = og ? `${og}.png` : 'og.png';
+const ogHost = import.meta.env.DEV
+  ? `${url.protocol}//${url.host}`
+  : import.meta.env.SITE;
+const ogFile = og ? `${og}.png` : "og.png";
 ---
 
 <!doctype html>
@@ -41,21 +40,26 @@ const ogFile = og ? `${og}.png` : 'og.png';
     <link rel="manifest" href="/manifest.webmanifest" />
     <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
     <link rel="icon" href="/favicon.ico" sizes="any" />
-    <link rel="icon" href="/icon-light.svg" type="image/svg+xml" class=":uno: favicon" />
+    <link
+      rel="icon"
+      href="/icon-light.svg"
+      type="image/svg+xml"
+      class=":uno: favicon"
+    />
 
-    <meta property="og:url" content="https://www.namchee.dev/">
-    <meta property="og:type" content="website">
-    <meta property="og:title" content={title}>
-    <meta property="og:description" content={description}>
-    <meta property="og:image" content={`${ogHost}/${ogFile}`}>
+    <meta property="og:url" content="https://www.namchee.dev/" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={`${ogHost}/${ogFile}`} />
 
     <!-- Twitter Meta Tags -->
-    <meta name="twitter:card" content="summary_large_image">
-    <meta property="twitter:domain" content="lakban_hitam">
-    <meta property="twitter:url" content="https://www.namchee.dev">
-    <meta name="twitter:title" content={title}>
-    <meta name="twitter:description" content={description}>
-    <meta name="twitter:image" content={`${ogHost}/${ogFile}`}>
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta property="twitter:domain" content="lakban_hitam" />
+    <meta property="twitter:url" content="https://www.namchee.dev" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={`${ogHost}/${ogFile}`} />
 
     <meta name="description" content={description} />
     <link rel="sitemap" href="/sitemap-index.xml" />
@@ -63,30 +67,42 @@ const ogFile = og ? `${og}.png` : 'og.png';
       rel="webmention"
       href="https://webmention.io/www.namchee.dev/webmention"
     />
-    <link rel="preload" href="/fonts/inter.woff2" as="font" type="font/woff2" crossorigin>
-    <link rel="preload" href="/fonts/jetbrains-mono.woff2" as="font" type="font/woff2" crossorigin>
+    <link
+      rel="preload"
+      href="/fonts/inter.woff2"
+      as="font"
+      type="font/woff2"
+      crossorigin
+    />
+    <link
+      rel="preload"
+      href="/fonts/jetbrains-mono.woff2"
+      as="font"
+      type="font/woff2"
+      crossorigin
+    />
 
     <title>{title}</title>
     <script is:inline>
       // do not try to optimize this. is:inline is there to avoid pre-opt that causes theme flicker
       const docEl = document.documentElement;
-      const svgIcon = document.querySelector('.favicon');
-      const media = window.matchMedia('(prefers-color-scheme: dark)');
+      const svgIcon = document.querySelector(".favicon");
+      const media = window.matchMedia("(prefers-color-scheme: dark)");
 
-      let theme = media.matches ? 'dark' : 'light';
+      let theme = media.matches ? "dark" : "light";
       if (
-        typeof window.localStorage !== 'undefined' &&
-        window.localStorage.getItem('theme')
+        typeof window.localStorage !== "undefined" &&
+        window.localStorage.getItem("theme")
       ) {
-        theme = window.localStorage.getItem('theme');
+        theme = window.localStorage.getItem("theme");
       }
 
       const toggleTheme = (theme) => {
-        const method = theme === 'light' ? 'remove' : 'add';
+        const method = theme === "light" ? "remove" : "add";
 
-        docEl.classList[method]('dark');
-        svgIcon.href = theme === 'light' ? '/icon-light.svg' : '/icon-dark.svg';
-        window.localStorage.setItem('theme', theme);
+        docEl.classList[method]("dark");
+        svgIcon.href = theme === "light" ? "/icon-light.svg" : "/icon-dark.svg";
+        window.localStorage.setItem("theme", theme);
       };
 
       toggleTheme(theme);
@@ -95,15 +111,26 @@ const ogFile = og ? `${og}.png` : 'og.png';
   <body
     class=":uno: bg-background transition-colors text-content flex flex-col font-sans min-h-screen mx-auto antialiased"
   >
-    <Topbar />
-
-    <MiniNav />
+    <CommandMenu posts={posts} client:load>
+      <button
+        class=":uno: grid bg-background grid fixed z-10 place-items-center place-items-center w-10 h-10 rounded-full border border-separator dark:bg-surface top-6 right-8 group hover:scale-105 focus:scale-105 transition-all shadow md:top-8 dark:border-surface"
+      >
+        ⌘
+        <p
+          class=":uno: transition-all text-sm opacity-0 absolute -bottom-8 translate-y-1 group-hover:opacity-100 group-hover:translate-y-0 group-focus:opacity-100 group-focus:translate-y-0 pointer-events-none"
+        >
+          Menu
+        </p>
+      </button>
+    </CommandMenu>
 
     <main class=":uno: w-full max-w-[85ch] mx-auto flex-1">
       <slot />
-
-      <NewFooter />
     </main>
+
+    <div class=":uno: w-full max-w-[85ch] mx-auto">
+      <Footer />
+    </div>
   </body>
 </html>
 
