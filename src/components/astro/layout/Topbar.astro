@@ -1,43 +1,18 @@
 ---
 import { Icon } from "astro-icon/components";
 
-import AppLink from '@/components/astro/ui/AppLink.astro';
+import AppLink from "@/components/astro/ui/AppLink.astro";
 import LogoContainer from "@/components/astro/ui/LogoContainer.astro";
-
-import SpeechButton from "@/components/astro/modules/home/SpeechButton.astro";
-
-const contacts = [
-  {
-    icon: "lucide:mail",
-    label: "hello@namchee.dev",
-    href: "mailto:hello@namchee.dev",
-  },
-  {
-    icon: "simple-icons:github",
-    label: "Namchee",
-    href: "https://github.com/Namchee",
-  },
-  {
-    icon: "simple-icons:linkedin",
-    label: "Cristopher",
-    href: "https://www.linkedin.com/in/namchee/",
-  },
-  {
-    icon: "simple-icons:x",
-    label: "@lakban_hitam",
-    href: "https://twitter.com/lakban_hitam",
-  },
-];
 ---
 
-<div class=":uno:">
-  <div class=":uno: flex items-center space-x-4 md:block md:space-x-0">
-    <LogoContainer class=":uno: w-16 h-16">
+<div class=":uno: flex justify-between w-full max-w-7xl mx-auto p-8">
+  <AppLink href="/" title="Namchee">
+    <LogoContainer class=":uno: p-1">
       <svg
         viewBox="0 0 49 55"
         fill="currentColor"
         xmlns="http://www.w3.org/2000/svg"
-        class=":uno: text-heading w-12 h-12"
+        class=":uno: text-heading w-6 h-6"
       >
         <path
           d="M6.41765 31.6506C7.70765 29.4162 9.29028 27.815 11.1656 26.847C13.0512 25.8849 15.1002 25.516 17.3125 25.7402C19.5248 25.9643 21.7793 26.7394 24.076 28.0654C26.3727 29.3914 28.1712 30.9563 29.4715 32.7602C30.7718 34.564 31.4716 36.5199 31.5708 38.628C31.6805 40.742 31.0903 42.9162 29.8003 45.1506C28.2943 47.759 26.394 49.5025 24.0994 50.3808C21.8152 51.2652 19.3737 51.366 16.775 50.6831L17.517 47.9939C19.5701 48.5418 21.4733 48.4975 23.2265 47.8608C24.9797 47.2241 26.4384 45.8977 27.6024 43.8816C28.6164 42.1253 29.0593 40.4342 28.9311 38.8082C28.8028 37.1823 28.1927 35.6591 27.1005 34.2388C26.0128 32.8348 24.5396 31.5824 22.681 30.4816C20.8164 29.3912 19.0042 28.726 17.2444 28.486C15.4787 28.2564 13.8515 28.4947 12.3629 29.201C10.8787 29.9238 9.62962 31.1633 8.61562 32.9196C7.45162 34.9357 7.03223 36.8621 7.35747 38.6988C7.69309 40.5414 8.60624 42.2118 10.0969 43.7099L8.13899 45.6971C6.24825 43.788 5.10958 41.6202 4.72297 39.1938C4.34675 36.7735 4.91165 34.259 6.41765 31.6506Z"
@@ -59,32 +34,76 @@ const contacts = [
         ></path>
       </svg>
     </LogoContainer>
+  </AppLink>
 
-    <div class=":uno: md:mt-4">
-      <h1 class=":uno: text-heading font-semibold text-2xl tracking-tight">Namchee</h1>
-      <p class=":uno: flex items-center space-x-2 leading-normal text-lg">
-        <span>/nam·cé/</span>
-        <SpeechButton />
-      </p>
-    </div>
-  </div>
+  <div class=":uno: flex items-center space-x-4">
+    <AppLink
+      href="/rss.xml"
+      title="RSS"
+      class=":uno: text-content transition-colors bg-transparent p-2 rounded-md hover:bg-surface hover:text-heading focus:bg-surface focus:text-heading"
+    >
+      <Icon name="lucide:rss" class=":uno: w-4 h-auto" />
+    </AppLink>
 
-
-  <div class=":uno: mt-8 md:mt-12 space-y-2">
-    {contacts.map(link => {
-      return <AppLink href={link.href} title={link.label} class=":uno: group flex items-center space-x-2" rel="me">
-        <Icon
-          name={link.icon}
-          aria-hidden="true"
-          focusable="false"
-          class=":uno: w-4 h-auto text-content transition-colors group-hover:text-heading group-focus:text-heading flex-none"
-        />
-        <span
-          class=":uno: text-content relative transition-colors group-hover:text-heading group-focus:text-heading"
-        >
-          {link.label}
-        </span>
-      </AppLink>
-    })}
+    <button
+      title="Toggles site theme"
+      aria-label="auto"
+      aria-live="polite"
+      class=":uno: text-content transition-colors bg-transparent p-2 rounded-md hover:bg-surface hover:text-heading focus:bg-surface focus:text-heading theme-toggle"
+    >
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        aria-hidden="true"
+        width="1em"
+        height="1em"
+        fill="currentColor"
+        class=":uno: w-4 h-auto theme-toggle__around"
+        viewBox="0 0 32 32"
+      >
+        <clipPath id="theme-toggle__around__cutout">
+          <path d="M0 0h42v30a1 1 0 00-16 13H0Z"></path>
+        </clipPath>
+        <g clip-path="url(#theme-toggle__around__cutout)">
+          <circle cx="16" cy="16" r="8.4"></circle>
+          <g>
+            <circle cx="16" cy="3.3" r="2.3"></circle>
+            <circle cx="27" cy="9.7" r="2.3"></circle>
+            <circle cx="27" cy="22.3" r="2.3"></circle>
+            <circle cx="16" cy="28.7" r="2.3"></circle>
+            <circle cx="5" cy="22.3" r="2.3"></circle>
+            <circle cx="5" cy="9.7" r="2.3"></circle>
+          </g>
+        </g>
+      </svg>
+    </button>
   </div>
 </div>
+
+<script is:inline>
+  const button = document.querySelector(".theme-toggle");
+  function toggleThemeSwitcher() {
+    button.classList.toggle("theme-toggle--toggled");
+  }
+
+  if (theme === "dark") {
+    button.classList.add("theme-toggle--toggled");
+  }
+
+  button.addEventListener("click", () => {
+    const newTheme = docEl.classList.contains("dark") ? "light" : "dark";
+    toggleThemeSwitcher();
+    toggleTheme(newTheme);
+  });
+
+  window.addEventListener("storage", () => {
+    const newTheme = window.localStorage.getItem("theme");
+    toggleThemeSwitcher();
+    toggleTheme(newTheme);
+  });
+
+  media.addEventListener("change", () => {
+    const newTheme = media.matches ? "dark" : "light";
+    toggleThemeSwitcher();
+    toggleTheme(newTheme);
+  });
+</script>

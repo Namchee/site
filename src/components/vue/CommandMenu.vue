@@ -147,7 +147,7 @@ watch(visible, async () => {
       >
         <DialogTitle class=":uno: border-separator border-b">
           <input
-            class=":uno: text-sm w-full bg-transparent focus:outline-none p-4 placeholder:font-normal font-normal leading-relaxed"
+            class=":uno: text-sm w-full focus:outline-none bg-transparent p-4 placeholder:font-normal font-normal leading-relaxed"
             placeholder="Where do you want to go?"
             ref="searchEl"
             v-model="searchTerm"
@@ -164,7 +164,7 @@ watch(visible, async () => {
           <div
             v-if="relevantLinks.length > 0"
           >
-            <span class=":uno: font-semibold text-xs mb-2">
+            <span class=":uno: font-semibold mb-2 text-xs">
               Pages
             </span>
 
@@ -173,7 +173,7 @@ watch(visible, async () => {
                 v-for="(link, idx) in relevantLinks"
                 :key="link.href"
                 :href="link.href"
-                class=":uno: text-sm rounded-md flex justify-between transition-colors outline-none p-2"
+                class=":uno: text-sm rounded-md flex transition-colors justify-between outline-none p-2"
                 :class="{ 'bg-surface text-heading': focusIndex === idx }"
                 rel="noopener noreferrer"
                 @mouseenter="() => focusIndex = idx"
@@ -218,11 +218,11 @@ watch(visible, async () => {
           </div>
         </DialogDescription>
 
-        <div class=":uno: border-separator text-sm flex items-center border-t py-2 px-4 space-x-4">
+        <div class=":uno: border-separator text-sm flex items-center space-x-4 border-t py-2 px-4">
           <div class=":uno: flex items-center space-x-1">
             <Key
               title="Arrow Up"
-              class=":uno: text-[10px] px-[6px] leading-normal"
+              class=":uno: leading-normal text-[10px] px-[6px]"
             >
               ↑
             </Key>
