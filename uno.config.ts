@@ -13,7 +13,7 @@ export default defineConfig({
       '2xl': '1536px',
     },
     fontFamily: {
-      sans: ['"Pretendard"', 'system-ui'],
+      sans: ['"Inter"', 'system-ui'],
       mono: ['"JetBrains Mono"', 'ui-monospace'],
     },
     colors: {
@@ -24,7 +24,9 @@ export default defineConfig({
       heading: 'oklch(var(--heading))',
       content: 'oklch(var(--content))',
 
-      primary: 'oklch(var(--primary))',
+      navigationBg: 'oklch(var(--navigation-background))',
+      navigationSeparator: 'oklch(var(--navigation-separator))',
+      navigationAccent: 'oklch(var(--navigation-accent))',
 
       success: 'oklch(var(--success))',
     },

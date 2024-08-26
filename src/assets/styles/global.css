@@ -1,16 +1,18 @@
 :root {
   /* Write token here */
 
-  --background: 99.14% 0.001 286.38;
-  --surface: 95.93% 0.007 247.9;
-  --separator: 90% 0.011 256.7;
+  --background: 99.13% 0.001 286.38;
+  --surface: 93.13% 0.001 286.37;
+  --separator: 90.05% 0.016 253.91;
 
   --heading: 21.31% 0.028 262.4;
-  --content: 44.69% 0.029 259.77;
-
-  --primary: 51.47% 0.229 272.81;
+  --content: 49.7% 0.028 259.79;
 
   --success: 67.31% 0.16 155.59;
+
+  --navigation-background: 99.13% 0.001 286.38;
+  --navigation-separator: 90.05% 0.016 253.91;
+  --navigation-accent: 93.13% 0.001 286.37;
 
   font-feature-settings: "cv05" 1, "cv03" 1, "cv04" 1, "tnum" 1, "calt" 1, "case" 1;
 }
@@ -25,14 +27,16 @@ body {
 
 html.dark {
   /* Replace the token here */
-  --background: 16.84% 0 0;
-  --surface: 25% 0 0;
-  --separator: 30% 0 0;
+  --background: 19.13% 0 0;
+  --surface: 27.27% 0 0;
+  --separator: 43.86% 0 0;
 
-  --heading: 98.51% 0 0;
-  --content: 77.31% 0 0;
+  --heading: 99.11% 0 0;
+  --content: 82.66% 0 0;
 
-  --primary: 72.34% 0.145 271.74;
+  --navigation-background: 24.78% 0 0;
+  --navigation-separator: 24.78% 0 0;
+  --navigation-accent: 30.12% 0 0;
 }
 
 html.dark img {
