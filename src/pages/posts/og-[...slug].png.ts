@@ -22,14 +22,14 @@ async function generateOGImage(params: Params) {
     height: 630,
     fonts: [
       {
-        name: 'Pretendard',
-        data: readFileSync('./public/fonts/pretendard-medium.ttf'),
+        name: 'Inter',
+        data: readFileSync('./public/fonts/inter-medium.ttf'),
         weight: 500,
         style: 'normal',
       },
       {
-        name: 'Pretendard',
-        data: readFileSync('./public/fonts/pretendard-semibold.ttf'),
+        name: 'Inter',
+        data: readFileSync('./public/fonts/inter-semibold.ttf'),
         weight: 600,
         style: 'normal',
       },
