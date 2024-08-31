@@ -1,0 +1,342 @@
+---
+title: 'Embracing Code Coverage Effectively'
+publishedAt: 2024-08-31
+subtitle: 'You probably measuring your test quality wrong'
+isDraft: true
+tags:
+  - engineering
+  - testing
+---
+
+import Tweet from 'astro-tweet';
+
+import TextLink from './../../components/astro/ui/TextLink.astro';
+import Head2 from './../../components/astro/modules/posts/html/Head2.astro';
+import Head3 from './../../components/astro/modules/posts/html/Head3.astro';
+import Strong from './../../components/astro/modules/posts/html/Strong.astro';
+import Quote from './../../components/astro/modules/posts/html/Quote.astro';
+
+import ListTitle from './../../components/astro/modules/posts/html/ListTitle.astro';
+import ListItem from './../../components/astro/modules/posts/html/ListItem.astro';
+
+import Image from './../../components/astro/modules/posts/html/Image.astro';
+
+import CodeSnippet from './../../components/astro/modules/posts/html/CodeSnippet.astro';
+
+
+export const components = {
+  a: TextLink,
+  h2: Head2,
+  h3: Head3,
+  strong: Strong,
+  img: Image,
+  pre: CodeSnippet,
+}
+
+Writing high-quality code means writing high-quality tests. A common metric used to measure test quality is code coverage.
+For many projects, code coverage is used as one of the thresholds for acceptable code.
+
+Sadly, code coverage is frequently misused in two ways:
+
+<dl class=":uno: space-y-2">
+  <ListTitle class="font-normal">
+    Using code coverage with excessive thresholds
+  </ListTitle>
+  <ListTitle class="font-normal">
+    Using code coverage as **the** metric of test quality
+  </ListTitle>
+</dl>
+
+Due to its common misuse, code coverage has spawned differing views on its effectiveness.
+While the effectiveness of code coverage may vary across teams, there&apos;s one statement
+that I would like to focus on: code coverage is **a** metric, not **the** metric for test quality.
+
+## Primers of Code Coverage
+
+By its definition, code coverage is a percentage of source code that has been executed during a particular test suite.
+There are various types of code coverage but the commonly used ones are *functions*, *statements*, *branches*, and *lines*.
+
+In theory, higher code coverage means lower chance for a software to have undetected bugs as they have more of its source code
+executed during software testing compared to a software that has lower code coverage.
+
+Code coverage is calculated by an additional static analysis tool called **coverage reporter** that instruments and collect metrics
+of the tested code. These metrics will then be divided by the total metrics of the code, resulting in a percentage of coverage.
+
+To illustrate code coverage better, suppose that we have a collection of mathematical helper functions that we store in `math.ts`:
+
+```ts title=math.ts, copyable
+/**
+ * Perform an addition between 2 numbers.
+ *
+ * @args {number} a - First number
+ * @args {number} b - Second number
+ *
+ * @returns {number} Sum of `a` and `b`
+ */
+export function add(a: number, b: number): number {
+    return a + b;
+}
+
+/**
+ * Perform a division between 2 numbers.
+ *
+ * @args {number} a - First number
+ * @args {number} b - Second number
+ *
+ * @returns {number} `a` divided by `b`
+ */
+export function divide(a: number, b: number): number {
+    return a / b;
+}
+
+/**
+ * Perform a modulo operation between 2 numbers.
+ *
+ * @args {number} a - First number
+ * @args {number} b - Second number
+ *
+ * @returns {number} Remainder of `a` divided by `b`
+ */
+export function modulo(a: number, b: number): number {
+    return a % b;
+}
+
+```
+
+`math.ts` is tested by the following test file:
+
+```ts title=math.spec.ts
+import { describe, it, expect } from 'vitest';
+
+import { add, divide } from './math';
+
+describe('math.ts', () => {
+  it('should add two numbers', () => {
+    expect(add(1, 2)).toBe(3);
+  });
+
+  it('should divide two numbers', () => {
+    expect(divide(10, 2)).toBe(5);
+  });
+});
+```
+
+After execution, the test runner reports the following code coverage:
+
+```bash no-lang
+----------|---------|----------|---------|---------|-------------------
+File      | % Stmts | % Branch | % Funcs | % Lines | Uncovered Line #s
+----------|---------|----------|---------|---------|-------------------
+All files |   77.77 |      100 |   66.66 |   77.77 |
+ math.ts  |   77.77 |      100 |   66.66 |   77.77 | 34-35
+----------|---------|----------|---------|---------|-------------------
+```
+
+The code coverage report shows that the test covers all possible branches, as the source code
+doesn't have any alternative path of execution through a branching statement such as `if` or `switch`.
+
+However, the coverage report also shows that the test hasn't fully explored all statements,
+functions, and lines in our code as the `modulo` function is not executed in any test scenario.
+
+## Misusing Code Coverage
+
+From my observation, there are two reasons why code coverage is a popular metric for tests:
+
+<dl class=":uno space-y-4">
+  <ListTitle>
+    Easy to Measure
+  </ListTitle>
+  <ListItem>
+    Depending on the maturity of the test ecosystem, measuring code coverage
+    can be as simple as enabling the coverage reporter through a command line flag or a
+    configuration key in a testing framework
+  </ListItem>
+  <ListTitle>
+    Quantitative
+  </ListTitle>
+  <ListItem>
+    Since code coverage is a quantitative metric, code coverage can be easily compared to one another.
+    We can always say that a code with higher coverage covers more scenario and states than a code with low coverage.
+  </ListItem>
+</dl>
+
+At a glance, code coverage seems to be the all-in-one metric for measuring test quality, as it can show parts of the code
+that have been executed by the test suite. Most of the time, engineering teams apply a threshold of coverage to reach for
+a code to be considered as acceptable.
+
+Unfortunately, the obsession with quantitative data often led to an exceedingly high code coverage threshold to be considered
+acceptable. Contrary to its purposes, setting the threshold too high is **counterproductive** for the following reasons:
+
+<dl class=":uno space-y-4">
+  <ListTitle>
+    Limited Engineering Time
+  </ListTitle>
+  <ListItem>
+    While increasing coverage from 0% to ~60% is relatively simple, the same cannot be said for increasing coverage from 80% to ~90%.
+    Rather than getting blocked by the coverage requirements, engineers should spend their time prioritizing more important tasks,
+    such as developing critical features.
+  </ListItem>
+  <ListTitle>
+    Promoting Bad Standards
+  </ListTitle>
+  <ListItem>
+    Nifty engineers have devised a workaround for the combination of unrealistic thresholds and tight deadlines: **assertion-free tests**.
+    Consider the following function:
+
+    ```ts title=divide.ts
+    /**
+     * Perform a division between 2 numbers.
+     *
+     * @args {number} a - First number
+     * @args {number} b - Second number
+     *
+     * @returns {number} `a` divided by `b`
+     */
+    export function divide(a, b) {
+	    return a - b; // oops
+    }
+    ```
+
+    An assertion-free test will &apos;test&apos; the code above with the following test suite:
+
+    ```ts title=divide.spec.ts
+    import { describe, it, expect } from 'vitest';
+
+    import { add, subtract, divide } from './math';
+
+    describe('math.ts', () => {
+      it('should divide two numbers', () => {
+        const result = divide(10, 2); // surprise, it's not 5!
+      });
+    });
+    ```
+
+    Executing the 'test' above will guarantee you a 100% coverage from the coverage reporter, even though the
+    result doesn&apos;t match with the intention of the function.
+
+    In this case code coverage only promotes a sense of false security through false positive results,
+    which is a good example of [Goodhart&apos;s Law](https://en.wikipedia.org/wiki/Goodhart%27s_law):
+
+    <Quote class="italic">
+      Any observed statistical regularity will tend to collapse once pressure is placed upon it for control purposes
+    </Quote>
+
+    Assertion-free tests aren&apos;t 100% useless as they are still able to catch common bugs such as bad pointers.
+
+    However, writing a test without assertion is a waste of time as it defeats the whole purpose of testing:
+    ensuring the tested code is **working as expected**.
+  </ListItem>
+</dl>
+
+## What Code Coverage Can&apos;t Tell You
+
+Some may argue that the problems stated above are primarily a management problem or bad test cases problem and
+doesn&apos;t correlate with why code coverage isn&apos;t the metric for test quality.
+
+However, fixing those bad tests and changing the mindset of the management doesn&apos;t cover the inherent weakness of
+code coverage: *it doesn&apos;t guarantee that all possible program states are explored*.
+
+Let&apos;s revisit the `divide` function from the example above:
+
+```ts title=divide.ts
+/**
+ * Perform a division between 2 numbers.
+ *
+ * @args {number} a - First number
+ * @args {number} b - Second number
+ *
+ * @returns {number} `a` divided by `b`
+ */
+export function divide(a, b) {
+	return a - b; // oops
+}
+```
+
+which is tested by the following test suite:
+
+```ts title=divide.spec.ts
+import { expect, it } from 'vitest';
+
+import { divide } from '.';
+
+it("should pass", () => {
+  const a = 2;
+  const b = 1;
+
+  expect(divide(a, b)).toBe(2);
+});
+```
+
+After executing the above test suite, the coverage report will output the following coverage report:
+
+```bash no-lang
+----------|---------|----------|---------|---------|-------------------
+File      | % Stmts | % Branch | % Funcs | % Lines | Uncovered Line #s
+----------|---------|----------|---------|---------|-------------------
+All files |     100 |      100 |     100 |     100 |
+ math.ts  |     100 |      100 |     100 |     100 |
+----------|---------|----------|---------|---------|-------------------
+```
+
+which basically says that all of our code has been covered by our test suite, therefore is fully tested *in theory*.
+But what if the `divide` function is called with the following arguments?
+
+```ts title=Nah it's fine as I have 100% coverage. Right?
+const c = divide(1, 0);
+
+// Aw, snap! 🙄
+```
+
+The function will just throw a `RangeError` exception to the user. While the problem itself lies in the lack of test cases,
+code coverage cannot tell you that you *lack one*.
+
+This is not surprising as coverage reporter is inherently just a *static* analysis tool, which only provides an analysis based
+on provided data in test suites. It does not provide an analysis on how the code is executed in *reality*.
+
+The mismatch between how the code behaves according to the code coverage and how it behaves in reality is better illustrated
+in the following Tweet:
+
+<Tweet id="1068615953989087232" />
+
+## What Code Coverage CAN Tell You
+
+Judging from the misuse and weakness I&apos;ve presented in the previous sections, does it mean that code coverage has made
+us waste a lot of engineering time to chase for useless numbers?
+
+Fortunately not! Let&apos; revisit the coverage report from [Primers of Code Coverage](#primers-of-code-coverage) section:
+
+```bash no-lang
+----------|---------|----------|---------|---------|-------------------
+File      | % Stmts | % Branch | % Funcs | % Lines | Uncovered Line #s
+----------|---------|----------|---------|---------|-------------------
+All files |   77.77 |      100 |   66.66 |   77.77 |
+ math.ts  |   77.77 |      100 |   66.66 |   77.77 | 34-35
+----------|---------|----------|---------|---------|-------------------
+```
+
+Take the function coverage as an example. Based on the weaknesses of code coverage, we can&apos;t confidently say that
+66.66% of the functions has been fully tested yet as code coverage doesn&apos;t guarantee that all program states has been explored.
+
+However if we focused on what&apos;s *missing* from the test result and combine them with how code coverage is calculated, we can
+confidently say that 33.34% of the functions has not been tested at all as none of our test suite has executed those functions.
+
+This observation has revealed what code coverage is good at: finding the untested. Instead of treating code coverage as **the** metric
+of test quality, engineering teams should treat it as **a** metric to find untested part of our code.
+
+In a sense, code coverage is analogous to taking the pessimistic approach on the "half-empty, half-full" glass rhetoric — paying attention to the empty part (the untested areas), not the full part (what has already been covered).
+
+![Focus on the 15% of the unfilled parts. Photo by Engin Akyrut from Unsplash](https://res.cloudinary.com/namchee/image/upload/v1725083488/posts/embracing-code-coverage-effectively/glass-of-water.jpg)
+
+## Final Thoughts
+
+At the end of the day, code coverage is just a tool and shouldn&apos;t be treated as the all-purpose metric of tests.
+We should instead use it at what it does best: finding untested part of the code.
+
+When talking about the importance about the untested part of the code, [Brian Marrick](http://www.exampler.com/testing-com/writings/coverage.pdf) has an interesting take on it:
+
+<Quote>
+ If a part of your test suite is weak in a way that coverage can detect, it&apos;s likely also weak in a way coverage can&apos;t detect.
+</Quote>
+
+Rather than limiting its effectiveness by using it as **the** metric of tests, I believe the correct approach for code coverage is
+augmenting it with other types of coverage, such as state coverage (which I will be writing about in the future).
