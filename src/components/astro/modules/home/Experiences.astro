@@ -5,7 +5,7 @@ import Pulse from '@/components/astro/ui/Pulse.astro';
 const experiences = [
   {
     duration: 'Current',
-    name: 'GLAIR',
+    name: 'GLAIR.ai',
     title: 'Software Engineer',
     link: 'https://glair.ai/',
   },
@@ -27,7 +27,7 @@ const experiences = [
 <ul class=":uno: space-y-6 md:space-y-3">
   {
     experiences.map((exp) => (
-      <li class=":uno: md:grid items-center gap-x-4 grid-cols-[10ch_1fr_max-content]">
+      <li class=":uno: items-center md:grid gap-x-4 grid-cols-[10ch_1fr_max-content]">
         <p class=":uno: flex items-center space-x-2 text-sm md:text-base mb-2 ml-auto md:mb-0">
           {exp.duration.toLowerCase() === 'current' && (
             <Pulse class=":uno: -mt-[2.5px]" />
@@ -37,12 +37,12 @@ const experiences = [
 
         <AppLink
           href={exp.link}
-          class=":uno: font-medium text-heading transition-colors hover:text-primary focus:text-primary inline-flex items-center space-x-2 text-balance"
+          class=":uno: font-medium text-heading transition-colors hover:text-primary focus:text-primary inline-flex items-center space-x-2 text-balance w-content"
         >
           {exp.name}
         </AppLink>
 
-        <p>{exp.title}</p>
+        <p class="text-sm md:text-base leading-[1.75]">{exp.title}</p>
       </li>
     ))
   }

@@ -12,7 +12,7 @@
 
   --success: 67.31% 0.16 155.59;
 
-  font-feature-settings: "cv05" 1, "cv03" 1, "cv04" 1, "tnum" 1, "calt" 1, "case" 1;
+  font-feature-settings: "calt" 1, "ss07" 1, "ss08" 1, "ss03" 1, "cv05" 1;
 }
 
 html {
@@ -45,11 +45,10 @@ html.dark img {
 }
 
 @font-face {
-  font-family: "Pretendard";
-  src: local("Pretendard"),
-    url("/fonts/pretendard.woff2") format("woff2-variations");
+  font-family: "Inter";
+  src: url("/fonts/inter.woff2") format("woff2-variations");
   font-style: oblique 0deg 10deg;
-  font-weight: 45 920;
+  font-weight: 100 900;
   font-display: swap;
 }
 
@@ -78,4 +77,8 @@ html.dark img {
 
 ::-webkit-scrollbar-thumb:hover {
   background-color: rgba(111,111,111, 0.6);
+}
+
+.MathJax:not([display="true"]) {
+  display: inline !important;
 }

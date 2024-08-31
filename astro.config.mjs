@@ -9,11 +9,10 @@ import robotsTxt from 'astro-robots-txt';
 
 import unocss from 'unocss/astro';
 
-import {
-  transformerNotationHighlight,
-} from '@shikijs/transformers';
+import rehypeMathjax from 'rehype-mathjax';
 
 import { subset } from '@namchee/astro-subfont';
+
 import { remarkPlugins } from './src/plugins/remark';
 
 
@@ -38,10 +37,8 @@ export default defineConfig({
   ],
   markdown: {
     remarkPlugins: remarkPlugins,
+    rehypePlugins: [rehypeMathjax],
     syntaxHighlight: false,
-    shikiConfig: {
-      transformers: [transformerNotationHighlight()],
-    },
   },
   image: {
     domains: ['books.google.com', 'assets.literal.club', 'res.cloudinary.com'],

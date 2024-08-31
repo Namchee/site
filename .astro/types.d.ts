@@ -136,6 +136,13 @@ declare module 'astro:content' {
 
 	type ContentEntryMap = {
 		"posts": {
+"embracing-code-coverage-effectively.mdx": {
+	id: "embracing-code-coverage-effectively.mdx";
+  slug: "embracing-code-coverage-effectively";
+  body: string;
+  collection: "posts";
+  data: InferEntrySchema<"posts">
+} & { render(): Render[".mdx"] };
 "hello-world.mdx": {
 	id: "hello-world.mdx";
   slug: "hello-world";

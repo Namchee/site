@@ -140,14 +140,14 @@ watch(visible, async () => {
     <DialogPortal>
       <DialogOverlay
         @click="visible = false"
-        class=":uno: fixed bg-background w-screen h-screen dialog__overlay bg-opacity-50 backdrop-blur z-20"
+        class=":uno: fixed bg-background w-screen h-screen z-20 dialog__overlay bg-opacity-50 backdrop-blur"
       />
       <DialogContent
-        class=":uno: fixed border border-separator bg-background shadow dialog__content rounded-md w-4/5 max-w-md max-h-sm z-30 focus:outline-none"
+        class=":uno: fixed border border-separator bg-background shadow rounded-md dialog__content w-4/5 max-w-md max-h-sm z-30 focus:outline-none"
       >
         <DialogTitle class=":uno: border-separator border-b">
           <input
-            class=":uno: text-sm w-full bg-transparent focus:outline-none p-4 placeholder:font-normal font-normal leading-relaxed"
+            class=":uno: text-sm w-full focus:outline-none bg-transparent p-4 placeholder:font-normal font-normal leading-relaxed"
             placeholder="Where do you want to go?"
             ref="searchEl"
             v-model="searchTerm"
@@ -173,7 +173,7 @@ watch(visible, async () => {
                 v-for="(link, idx) in relevantLinks"
                 :key="link.href"
                 :href="link.href"
-                class=":uno: text-sm rounded-md flex justify-between transition-colors outline-none p-2"
+                class=":uno: text-sm rounded-md flex transition-colors justify-between p-2 outline-none"
                 :class="{ 'bg-surface text-heading': focusIndex === idx }"
                 rel="noopener noreferrer"
                 @mouseenter="() => focusIndex = idx"
@@ -191,7 +191,7 @@ watch(visible, async () => {
                 <kbd
                   v-if="!!link.key"
                   :title="link.key"
-                  class=":uno: text-xs border border-separator text-heading px-1 bg-surface font-mono rounded"
+                  class=":uno: text-xs border border-separator text-heading font-mono px-1 bg-surface rounded"
                 >{{ link.key }}</kbd>
               </a>
             </ul>
@@ -218,11 +218,11 @@ watch(visible, async () => {
           </div>
         </DialogDescription>
 
-        <div class=":uno: border-separator text-sm flex items-center border-t py-2 px-4 space-x-4">
+        <div class=":uno: border-separator text-sm flex items-center space-x-4 border-t py-2 px-4">
           <div class=":uno: flex items-center space-x-1">
             <Key
               title="Arrow Up"
-              class=":uno: text-[10px] px-[6px] leading-normal"
+              class=":uno: leading-normal text-[10px] px-[6px]"
             >
               ↑
             </Key>

@@ -30,7 +30,7 @@ const contacts = [
 ];
 ---
 
-<div class=":uno: sticky top-12">
+<div class=":uno:">
   <div class=":uno: flex items-center space-x-4 md:block md:space-x-0">
     <LogoContainer class=":uno: w-16 h-16">
       <svg
@@ -77,10 +77,10 @@ const contacts = [
           name={link.icon}
           aria-hidden="true"
           focusable="false"
-          class=":uno: w-4 h-auto text-content transition-colors group-hover:text-heading group-focus:text-heading"
+          class=":uno: w-4 h-auto text-content transition-colors group-hover:text-heading group-focus:text-heading flex-none"
         />
         <span
-          class=":uno: text-content relative top-[2px] transition-colors group-hover:text-heading group-focus:text-heading"
+          class=":uno: text-content relative transition-colors group-hover:text-heading group-focus:text-heading"
         >
           {link.label}
         </span>

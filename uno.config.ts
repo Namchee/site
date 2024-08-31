@@ -13,7 +13,7 @@ export default defineConfig({
       '2xl': '1536px',
     },
     fontFamily: {
-      sans: ['"Pretendard"', 'system-ui'],
+      sans: ['"Inter"', 'system-ui'],
       mono: ['"JetBrains Mono"', 'ui-monospace'],
     },
     colors: {

@@ -1,8 +1,10 @@
 ---
 import { Icon } from "astro-icon/components";
+
+const { class: className } = Astro.props;
 ---
 
 <dt class=":uno: flex items-center space-x-2">
   <Icon name="lucide:arrow-right" class=":uno: w-4 h-auto text-primary" />
-  <span class=":uno: font-semibold text-heading transition-colors"><slot /></span>
+  <span class:list={[":uno: font-semibold text-heading transition-colors", className]}><slot /></span>
 </dt>

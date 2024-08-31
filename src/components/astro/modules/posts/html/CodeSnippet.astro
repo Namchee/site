@@ -22,7 +22,7 @@ const { children, attribs } = document.children[0] as unknown as DataElement;
 
 const text = children[0].data.trim();
 
-const lang = attribs["class"].split("-").pop() as BundledLanguage;
+const lang = attribs["class"]?.split("-")?.pop() || '' as BundledLanguage;
 const codeProps = {};
 
 if (attribs["metastring"]) {
@@ -34,6 +34,7 @@ if (attribs["metastring"]) {
 
 const title = codeProps["title"];
 const isCopyable = "copyable" in codeProps;
+const noLang = "no-lang" in codeProps;
 
 const htmlCode = await codeToHtml(text, {
   lang,
@@ -45,7 +46,7 @@ const htmlCode = await codeToHtml(text, {
 });
 ---
 
-<div
+<figure
   class:list={[
     "mt-8!",
     "mb-8!",
@@ -57,7 +58,7 @@ const htmlCode = await codeToHtml(text, {
 >
   {
     (title || isCopyable) && (
-      <div class="flex justify-between items-center text-xs leading-normal border-separator p-3 border-b rounded-t-md bg-surface text-balance transition-colors">
+      <figcaption class="flex justify-between items-center text-xs leading-normal border-separator p-2 px-4 border-b rounded-t-md bg-surface text-balance transition-colors">
         <p>{title}</p>
 
         {isCopyable && (
@@ -68,15 +69,15 @@ const htmlCode = await codeToHtml(text, {
             />
           </CopyCode>
         )}
-      </div>
+      </figcaption>
     )
   }
 
   <div class="relative">
-    <p class="absolute top-3 right-4 font-mono text-sm text-content/50">
+    <p class:list={["absolute top-3 right-4 font-mono text-sm text-content/50", { 'hidden': noLang }]}>
       {lang}
     </p>
 
     <Fragment set:html={htmlCode} />
   </div>
-</div>
+</figure>
