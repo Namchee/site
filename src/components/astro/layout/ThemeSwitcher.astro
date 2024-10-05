@@ -1,8 +1,11 @@
-<button
+---
+import IconButton from "@/components/astro/ui/IconButton.astro";
+---
+
+<IconButton
   title="Toggles site theme"
   aria-label="auto"
   aria-live="polite"
-  class=":uno: text-content transition-colors bg-transparent p-2 rounded-md hover:bg-surface hover:text-heading focus:bg-surface focus:text-heading theme-toggle"
 >
   <svg
     xmlns="http://www.w3.org/2000/svg"
@@ -28,7 +31,7 @@
       </g>
     </g>
   </svg>
-</button>
+</IconButton>
 
 <script is:inline>
   const button = document.querySelector('.theme-toggle');

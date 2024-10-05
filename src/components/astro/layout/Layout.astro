@@ -6,6 +6,7 @@ import { getCollection } from "astro:content";
 
 import Footer from "@/components/astro/layout/Footer.astro";
 import CommandMenu from "@/components/vue/CommandMenu.vue";
+import Header from "./Header.astro";
 
 export interface Props {
   title: string;
@@ -111,18 +112,7 @@ const ogFile = og ? `${og}.png` : "og.png";
   <body
     class=":uno: bg-background transition-colors text-content flex flex-col font-sans min-h-screen mx-auto antialiased"
   >
-    <CommandMenu posts={posts} client:load>
-      <button
-        class=":uno: grid bg-background grid fixed z-10 place-items-center place-items-center w-10 h-10 rounded-full border border-separator dark:bg-surface top-6 right-8 group hover:scale-105 focus:scale-105 transition-all shadow md:top-8 dark:border-surface"
-      >
-        ⌘
-        <p
-          class=":uno: transition-all text-sm opacity-0 absolute -bottom-8 translate-y-1 group-hover:opacity-100 group-hover:translate-y-0 group-focus:opacity-100 group-focus:translate-y-0 pointer-events-none"
-        >
-          Menu
-        </p>
-      </button>
-    </CommandMenu>
+    <Header />
 
     <main class=":uno: w-full max-w-[85ch] mx-auto flex-1">
       <slot />
