@@ -147,7 +147,7 @@ watch(visible, async () => {
       >
         <DialogTitle class=":uno: border-separator border-b">
           <input
-            class=":uno: text-sm w-full focus:outline-none bg-transparent p-4 placeholder:font-normal font-normal leading-relaxed"
+            class=":uno: text-sm w-full focus:outline-none p-4 bg-transparent placeholder:font-normal font-normal leading-relaxed"
             placeholder="Where do you want to go?"
             ref="searchEl"
             v-model="searchTerm"
