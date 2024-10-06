@@ -19,6 +19,8 @@ export default defineConfig({
     colors: {
       background: 'oklch(var(--background))',
       surface: 'oklch(var(--surface))',
+      pressurized: 'oklch(var(--pressurized))',
+
       separator: 'oklch(var(--separator))',
 
       heading: 'oklch(var(--heading))',
