@@ -2,80 +2,67 @@
 import { Icon } from "astro-icon/components";
 
 import AppLink from "@/components/astro/ui/AppLink.astro";
-import ThemeSwitcher from "@/components/astro/layout/ThemeSwitcher.astro";
+import ButtonLink from "@/components/astro/ui/ButtonLink.astro";
+import Logo from "@/components/astro/ui/Logo.astro";
 
-const links = [
+const contacts = [
   {
-    label: "Home",
-    href: "/",
+    icon: "lucide:mail",
+    label: "hello@namchee.dev",
+    href: "mailto:hello@namchee.dev",
   },
   {
-    label: "Bookshelf",
-    href: "/bookshelf",
+    icon: "simple-icons:github",
+    label: "Namchee",
+    href: "https://github.com/Namchee",
   },
   {
-    label: "Posts",
-    href: "/posts",
+    icon: "simple-icons:linkedin",
+    label: "Cristopher",
+    href: "https://www.linkedin.com/in/namchee/",
   },
   {
-    label: "Colophon",
-    href: "/colophon",
+    icon: "simple-icons:x",
+    label: "@lakban_hitam",
+    href: "https://twitter.com/lakban_hitam",
   },
 ];
 ---
 
 <footer
-  class=":uno: space-y-4 w-full mx-auto text-sm p-8"
+  class=":uno: space-y-6 md:space-y-8 w-full mx-auto text-sm py-8 md:pb-[43px] pb-24"
 >
-  <div
-    class=":uno: flex justify-between items-center md:space-y-0"
-  >
-    <div class=":uno: w-full flex items-center space-x-4 md:w-auto">
-      {
-        links.map((link) => (
-          <AppLink
-            href={link.href}
-            title={link.label}
-            class=":uno: transition-colors text-heading hover:text-primary focus:text-primary"
-          >
-            {link.label}
-          </AppLink>
-        ))
-      }
-    </div>
+  <div class="flex md:flex-col items-center space-x-4 md:space-x-0 md:space-y-4">
+    <Logo class="w-8 h-[36px]" />
 
+    <div class=":uno: flex items-center space-x-2">
+      {contacts.map(link => {
+        return <ButtonLink href={link.href} title={link.label} class=":uno: group flex items-center space-x-2" rel="me">
+          <Icon
+            name={link.icon}
+            title={link.label}
+            aria-hidden="true"
+            focusable="false"
+            class=":uno: w-4 h-auto text-content transition-colors group-hover:text-heading group-focus:text-heading flex-none"
+          />
+        </ButtonLink>
+      })}
+    </div>
   </div>
 
-  <hr
-    class=":uno: border-t border-separator transition-colors col-start-1 col-end-13 md:col-start-2 md:col-end-12"
-  />
+  <div class="flex justify-between items-center">
+    <p>
+      <AppLink class="font-medium transition-colors hover:text-heading focus:text-heading" href="https://creativecommons.org/licenses/by/4.0/deed" >CC BY 4.0</AppLink> &copy; Namchee
+    </p>
 
-  <div
-    class=":uno: flex justify-between items-center col-start-1 col-end-13 md:col-start-2 md:col-end-12"
-  >
-    <div class=":uno: w-full md:w-auto flex">
-      <span class=":uno: hidden sm:block">Contents are licensed under</span>
-       &nbsp;
-      <AppLink
-        href="http://creativecommons.org/licenses/by/4.0"
-        rel="license noopener noreferrer"
-        class=":uno: :uno: flex items-center text-heading hover:text-primary transition-colors font-semibold space-x-1 group"
-      >
-        <span>CC BY 4.0</span>
-        <Icon
-          class=":uno: h-4 w-auto"
-          name="simple-icons:creativecommons"
-        />
-        <Icon class=":uno: h-4 w-auto" name="cib:creative-commons-by" />
+    <div class="flex space-x-4">
+      <AppLink href="/sitemap-0.xml" class="font-medium transition-colors hover:text-heading focus:text-heading">
+        Sitemap
+      </AppLink>
+
+      <AppLink href="/Colophon" class="font-medium transition-colors hover:text-heading focus:text-heading">
+        Colophon
       </AppLink>
     </div>
-
-    <AppLink
-      href="/rss.xml"
-      class=":uno: flex items-center space-x-1 text-heading hover:text-primary focus:text-primary transition-colors"
-    >
-      <Icon name="lucide:rss" class=":uno: w-4 h-auto -mt-[2px]" />
-      <span>RSS</span>
-    </AppLink>
   </div>
 </footer>
