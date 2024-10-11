@@ -7,6 +7,7 @@ import Card from "@/components/astro/ui/Card.astro";
 import ButtonLink from "@/components/astro/ui/ButtonLink.astro";
 
 import ThemeSwitcher from "./ThemeSwitcher.astro";
+import IconButton from "../ui/IconButton.astro";
 ---
 
 <div class=":uno: w-full flex items-center justify-between px-8 h-20">
@@ -17,9 +18,9 @@ import ThemeSwitcher from "./ThemeSwitcher.astro";
   </AppLink>
 
   <div class="flex items-center space-x-4">
-    <ButtonLink href="/rss.xml" title="RSS Feed">
-      <Icon name="lucide:rss" class=":uno: w-4 h-auto" />
-    </ButtonLink>
+    <IconButton>
+      <Icon name="lucide:command" />
+    </IconButton>
 
     <ThemeSwitcher />
   </div>
