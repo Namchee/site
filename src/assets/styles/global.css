@@ -1,20 +1,20 @@
 :root {
   /* Write token here */
 
-  --background: 99.13% 0.0013 286.38;
-  --surface: 93.13% 0.0013 286.37;
-  --pressurized: 91.13% 0.0013 286.37;
+  --background: 99.4% 0 0;
+  --surface: 92.75% 0.0017 247.84;
+  --pressurized: 90.75% 0.0017 247.84;
 
-  --separator: 90.05% 0.0162 253.91;
+  --separator: 87.85% 0.0047 258.33;
 
-  --heading: 21.31% 0.028 262.4;
-  --content: 49.7% 0.0285 259.79;
+  --heading: 23.04% 0.0209 264.04;
+  --content: 45.96% 0.0174 264.39;
 
-  --navigation-background: 93.13% 0.0013 286.38;
-  --navigation-border: 90.05% 0.0162 253.91;
-  --navigation-accent: 99.13% 0.0013 286.37;
+  --navigation-background: 99.4% 0 0;
+  --navigation-border: 87.85% 0.0047 258.33;
+  --navigation-accent: 92.75% 0.0017 247.84;
 
-  --success: 67.31% 0.16 155.59;
+  --success: 67.31% 0.1596 155.59;
 
   font-feature-settings: "calt" 1, "ss07" 1, "ss08" 1, "ss03" 1, "cv05" 1;
 }
