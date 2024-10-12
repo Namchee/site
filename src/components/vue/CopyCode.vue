@@ -39,7 +39,7 @@ onBeforeUnmount(() => {
 
       <TooltipPortal>
         <TooltipContent
-          class="text-xs rounded-md shadow shadow tooltip__content text-background select-none bg-primary py-2 px-3 will-change-[transform,opacity]"
+          class="text-xs rounded-md shadow shadow py-2 tooltip__content text-background select-none bg-primary px-3 will-change-[transform,opacity]"
           :side-offset="5"
         >
           Copied!

@@ -6,7 +6,6 @@ import { getCollection } from "astro:content";
 
 import Footer from "@/components/astro/layout/Footer.astro";
 import CommandMenu from "@/components/vue/CommandMenu.vue";
-import Header from "./Header.astro";
 import Navigation from "./Navigation.astro";
 
 export interface Props {
@@ -113,13 +112,11 @@ const ogFile = og ? `${og}.png` : "og.png";
   <body
     class=":uno: bg-background transition-colors text-content flex flex-col font-sans min-h-screen mx-auto antialiased"
   >
-    <Header />
-
-    <main class=":uno: w-full mx-auto flex-1 max-w-[832px]">
+    <main class=":uno: w-full mx-auto flex-1 max-w-[840px]">
       <slot />
     </main>
 
-    <div class=":uno: w-full max-w-[832px] px-8 mx-auto">
+    <div class=":uno: w-full max-w-[840px] px-8 mx-auto">
       <Footer />
     </div>
 
