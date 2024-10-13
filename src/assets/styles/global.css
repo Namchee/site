@@ -11,7 +11,7 @@
   --content: 45.96% 0.0174 264.39;
 
   --navigation-background: 99.4% 0 0;
-  --navigation-border: 87.85% 0.0047 258.33;
+  --navigation-border: 90.85% 0.0047 258.33;
   --navigation-accent: 93.16% 0.0017 247.84;
 
   --success: 67.31% 0.1596 155.59;
@@ -30,17 +30,17 @@ body {
 html.dark {
   /* Replace the token here */
   --background: 19.13% 0 0;
-  --surface: 27.27% 0 0;
-  --pressurized: 29.27% 0 0;
+  --surface: 29.27% 0 0;
+  --pressurized: 31.27% 0 0;
 
   --separator: 43.86% 0 0;
 
   --heading: 99.11% 0 0;
   --content: 82.66% 0 0;
 
-  --navigation-background: 24.78% 0 0;
-  --navigation-border: 24.78% 0 0;
-  --navigation-accent: 30.12% 0 0;
+  --navigation-background: 31.78% 0 0;
+  --navigation-border: 37.78% 0 0;
+  --navigation-accent: 39.12% 0 0;
 }
 
 html.dark img {
@@ -89,4 +89,21 @@ html.dark img {
 
 .MathJax:not([display="true"]) {
   display: inline !important;
+}
+
+.tooltip__content {
+  transform-origin: var(--radix-tooltip-content-transform-origin);
+  animation: scaleIn 100ms cubic-bezier(0.33, 1, 0.68, 1);
+}
+
+@keyframes scaleIn {
+  from {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
 }

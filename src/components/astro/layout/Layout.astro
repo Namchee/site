@@ -24,6 +24,15 @@ const posts = postCollection
     href: `/posts/${collection.slug}`,
   }));
 
+posts.push({
+  title: 'Utilpocalypse',
+  href: '/posts/utilpocalypse',
+});
+posts.push({
+  title: 'Eating Your Own Dogfood',
+  href: '/posts/eating-your-own-dogfood',
+});
+
 const { title, description, og } = Astro.props;
 
 const url = Astro.url;
@@ -112,15 +121,15 @@ const ogFile = og ? `${og}.png` : "og.png";
   <body
     class=":uno: bg-background transition-colors text-content flex flex-col font-sans min-h-screen mx-auto antialiased"
   >
-    <main class=":uno: w-full mx-auto flex-1 max-w-[840px]">
+    <Navigation posts={posts} />
+
+    <main class=":uno: w-full mx-auto flex-1 max-w-[832px]">
       <slot />
     </main>
 
-    <div class=":uno: w-full max-w-[840px] px-8 mx-auto">
+    <div class=":uno: w-full max-w-[832px] mx-auto">
       <Footer />
     </div>
-
-    <Navigation />
   </body>
 </html>
 

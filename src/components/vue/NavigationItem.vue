@@ -2,45 +2,38 @@
 import { TooltipProvider, TooltipRoot, TooltipTrigger, TooltipContent, TooltipArrow, TooltipPortal } from 'radix-vue';
 
 const props = defineProps({
-  label: { type: String, required: true }
+  label: { type: String, required: true },
+  className: { type: String, default: '' },
+  href: { type: String, required: true },
 });
 </script>
 
 <template>
-  <TooltipProvider :delay-duration="200">
+  <TooltipProvider :delay-duration="100">
     <TooltipRoot>
       <TooltipTrigger as-child>
-        <slot />
+        <a
+          rel="noopener noreferrer"
+          :href="props.href"
+          :class="`w-[36px] h-[36px] grid place-items-center transition-colors text-content rounded-md hover:bg-navigation-accent focus:bg-navigation-accent text-sm my-1 mr-1 ${props.className}`"
+        >
+          <slot />
+        </a>
       </TooltipTrigger>
 
       <TooltipPortal>
         <TooltipContent
-          class="text-xs rounded-md shadow py-2 tooltip__content text-background select-none px-3 will-change-[transform,opacity] bg-heading"
-          :side-offset="5">
+          class="text-sm rounded-md shadow py-2 tooltip__content bg-content text-background shadow-lg select-none px-3 will-change-[transform,opacity]"
+          :side-offset="5"
+        >
           <p>{{ props.label }}</p>
 
-          <TooltipArrow :width="8" />
+          <TooltipArrow
+            :width="8"
+            class="fill-content"
+          />
         </TooltipContent>
       </TooltipPortal>
     </TooltipRoot>
   </TooltipProvider>
 </template>
-
-<style>
-.tooltip__content {
-  transform-origin: var(--radix-tooltip-content-transform-origin);
-  animation: scaleIn 100ms cubic-bezier(0.33, 1, 0.68, 1);
-}
-
-@keyframes scaleIn {
-  from {
-    opacity: 0;
-    transform: scale(0.9);
-  }
-
-  to {
-    opacity: 1;
-    transform: scale(1);
-  }
-}
-</style>

@@ -1,13 +1,8 @@
 ---
-import IconButton from "@/components/astro/ui/IconButton.astro";
+import TooltipWrapper from "@/components/vue/ThemeSwitcher.vue";
 ---
 
-<IconButton
-  title="Toggles site theme"
-  aria-label="auto"
-  aria-live="polite"
-  class="theme-toggle"
->
+<TooltipWrapper client:load>
   <svg
     xmlns="http://www.w3.org/2000/svg"
     aria-hidden="true"
@@ -32,32 +27,32 @@ import IconButton from "@/components/astro/ui/IconButton.astro";
       </g>
     </g>
   </svg>
-</IconButton>
+</TooltipWrapper>
 
 <script is:inline>
-  const button = document.querySelector('.theme-toggle');
+  const button = document.querySelector(".theme-toggle");
   function toggleThemeSwitcher() {
-    button.classList.toggle('theme-toggle--toggled');
+    button.classList.toggle("theme-toggle--toggled");
   }
 
-  if (theme === 'dark') {
-    button.classList.add('theme-toggle--toggled');
+  if (theme === "dark") {
+    button.classList.add("theme-toggle--toggled");
   }
 
-  button.addEventListener('click', () => {
-    const newTheme = docEl.classList.contains('dark') ? 'light' : 'dark';
+  button.addEventListener("click", () => {
+    const newTheme = docEl.classList.contains("dark") ? "light" : "dark";
     toggleThemeSwitcher();
     toggleTheme(newTheme);
   });
 
-  window.addEventListener('storage', () => {
-    const newTheme = window.localStorage.getItem('theme');
+  window.addEventListener("storage", () => {
+    const newTheme = window.localStorage.getItem("theme");
     toggleThemeSwitcher();
     toggleTheme(newTheme);
   });
 
-  media.addEventListener('change', () => {
-    const newTheme = media.matches ? 'dark' : 'light';
+  media.addEventListener("change", () => {
+    const newTheme = media.matches ? "dark" : "light";
     toggleThemeSwitcher();
     toggleTheme(newTheme);
   });

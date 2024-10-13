@@ -60,7 +60,7 @@
     "astro-tweet": "^0.0.4",
     "class-variance-authority": "^0.7.0",
     "htmlparser2": "^9.1.0",
-    "radix-vue": "^1.8.3",
+    "radix-vue": "^1.9.7",
     "rehype-mathjax": "^6.0.0",
     "remark-math": "^6.0.0"
   },
