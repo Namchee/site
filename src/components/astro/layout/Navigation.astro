@@ -27,17 +27,18 @@ const currentPath = Astro.url.pathname;
 ---
 
 <nav
-  class="flex fixed bottom-8 left-1/2 translate-x-[-50%] transition-colors bg-navigation-background border border-navigation-border shadow-md rounded-md space-x-1"
+  class="flex fixed bottom-8 left-1/2 translate-x-[-50%] transition-colors bg-navigation-background border border-navigation-border shadow-lg rounded-md"
 >
   {
-    links.map((link) => (
+    links.map((link, idx) => (
       <NavigationItem label={link.label} client:load>
         <AppLink
           href={link.href}
           class:list={[
-            "w-[36px] h-[36px] grid place-items-center transition-colors rounded-md hover:bg-navigation-accent focus:bg-navigation-accent text-sm",
+            "w-[36px] h-[36px] grid place-items-center transition-colors  text-content rounded-md hover:bg-navigation-accent focus:bg-navigation-accent text-sm my-1 mr-1",
             {
               "text-heading bg-navigation-accent": link.href === currentPath,
+              "ml-1": idx === 0,
             },
           ]}
         >
@@ -47,10 +48,10 @@ const currentPath = Astro.url.pathname;
     ))
   }
 
-  <div class="border border-navigation-border space-x-1"></div>
+  <div class="border border-navigation-border"></div>
 
   <NavigationItem label="Command Palette (Ctrl + K)" client:load>
-    <IconButton class="m-1">
+    <IconButton class="ml-1 my-1">
       <Icon
         name="lucide:command"
         aria-label="Command Palette"
@@ -60,7 +61,7 @@ const currentPath = Astro.url.pathname;
   </NavigationItem>
 
   <NavigationItem label="Switch Theme" client:load>
-    <IconButton class="m-1!">
+    <IconButton class="my-1 mx-1">
       <Icon
         name="lucide:sun"
         aria-label="Toggle site theme"

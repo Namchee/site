@@ -1,10 +1,6 @@
 ---
-import { Icon } from "astro-icon/components";
-
 import AppLink from "@/components/astro/ui/AppLink.astro";
-import ButtonLink from "@/components/astro/ui/ButtonLink.astro";
 import Logo from "@/components/astro/ui/Logo.astro";
-import TextLink from "../ui/TextLink.astro";
 
 const contacts = [
   {
@@ -30,32 +26,51 @@ const contacts = [
 ];
 ---
 
-<footer
-  class=":uno: w-full mx-auto text-sm py-8 md:pb-[43px] pb-24"
->
-  <div class="flex md:flex-col items-center space-x-4 md:space-x-0 md:space-y-4">
+<footer class=":uno: w-full mx-auto text-sm py-8 md:pb-[43px] pb-24">
+  <div
+    class="flex md:flex-col items-center space-x-4 md:space-x-0 md:space-y-4"
+  >
     <Logo class="w-8 h-[36px]" />
 
-    <div class=":uno: flex items-center space-x-2">
-      {contacts.map(link => {
-        return <TextLink href={link.href} title={link.label} class=":uno: flex items-center space-x-2 group" rel="me">
-          {link.label}
-        </TextLink>
-      })}
+    <div class=":uno: flex items-center space-x-4">
+      {
+        contacts.map((link) => {
+          return (
+            <AppLink
+              href={link.href}
+              title={link.label}
+              class=":uno: flex items-center space-x-2 hover:text-heading focus:text-heading transition-colors font-medium text-heading/85"
+              rel="me"
+            >
+              {link.label}
+            </AppLink>
+          );
+        })
+      }
     </div>
   </div>
 
   <div class="flex items-center justify-between mt-[43px]">
     <p>
-      &copy; Namchee. <AppLink class="font-medium transition-colors text-heading hover:text-opacity-80 focus:text-opacity-80" href="https://creativecommons.org/licenses/by/4.0/deed" >CC BY 4.0</AppLink>
+      &copy; Namchee. <AppLink
+        class="hover:text-heading focus:text-heading transition-colors font-medium text-heading/85"
+        href="https://creativecommons.org/licenses/by/4.0/deed"
+        >CC BY 4.0</AppLink
+      >
     </p>
 
     <div class="flex space-x-4">
-      <AppLink href="/rss.xml" class="font-medium transition-colors hover:text-heading focus:text-headin">
+      <AppLink
+        href="/rss.xml"
+        class="font-medium transition-colors hover:text-heading focus:text-heading"
+      >
         RSS
       </AppLink>
 
-      <AppLink href="/colophon" class="font-medium transition-colors hover:text-heading focus:text-heading">
+      <AppLink
+        href="/colophon"
+        class="font-medium transition-colors hover:text-heading focus:text-heading"
+      >
         Colophon
       </AppLink>
     </div>
