@@ -2,14 +2,7 @@
 import { Icon } from "astro-icon/components";
 
 import AppLink from "@/components/astro/ui/AppLink.astro";
-import IconButton from "../ui/IconButton.astro";
-import {
-  TooltipContent,
-  TooltipPortal,
-  TooltipProvider,
-  TooltipRoot,
-  TooltipTrigger,
-} from "radix-vue";
+import IconButton from "@/components/astro/ui/IconButton.astro";
 import NavigationItem from "@/components/vue/NavigationItem.vue";
 
 const links = [
@@ -42,7 +35,7 @@ const currentPath = Astro.url.pathname;
         <AppLink
           href={link.href}
           class:list={[
-            "w-[36px] h-[36px] grid place-items-center transition-colors rounded-md hover:bg-navigation-accent focus:bg-navigation-accent text-sm m-1",
+            "w-[36px] h-[36px] grid place-items-center transition-colors rounded-md hover:bg-navigation-accent focus:bg-navigation-accent text-sm",
             {
               "text-heading bg-navigation-accent": link.href === currentPath,
             },

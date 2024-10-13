@@ -4,59 +4,54 @@ import { Icon } from "astro-icon/components";
 import AppLink from "@/components/astro/ui/AppLink.astro";
 import ButtonLink from "@/components/astro/ui/ButtonLink.astro";
 import Logo from "@/components/astro/ui/Logo.astro";
+import TextLink from "../ui/TextLink.astro";
 
 const contacts = [
   {
     icon: "lucide:mail",
-    label: "hello@namchee.dev",
+    label: "Mail",
     href: "mailto:hello@namchee.dev",
   },
   {
     icon: "simple-icons:github",
-    label: "Namchee",
+    label: "GitHub",
     href: "https://github.com/Namchee",
   },
   {
     icon: "simple-icons:linkedin",
-    label: "Cristopher",
+    label: "LinkedIn",
     href: "https://www.linkedin.com/in/namchee/",
   },
   {
     icon: "simple-icons:x",
-    label: "@lakban_hitam",
+    label: "Twitter",
     href: "https://twitter.com/lakban_hitam",
   },
 ];
 ---
 
 <footer
-  class=":uno: space-y-6 md:space-y-8 w-full mx-auto text-sm py-8 md:pb-[43px] pb-24"
+  class=":uno: w-full mx-auto text-sm py-8 md:pb-[43px] pb-24"
 >
   <div class="flex md:flex-col items-center space-x-4 md:space-x-0 md:space-y-4">
     <Logo class="w-8 h-[36px]" />
 
     <div class=":uno: flex items-center space-x-2">
       {contacts.map(link => {
-        return <ButtonLink href={link.href} title={link.label} class=":uno: flex items-center space-x-2 group" rel="me">
-          <Icon
-            name={link.icon}
-            title={link.label}
-            aria-hidden="true"
-            focusable="false"
-            class=":uno: h-auto transition-colors w-4 text-content group-hover:text-heading group-focus:text-heading flex-none"
-          />
-        </ButtonLink>
+        return <TextLink href={link.href} title={link.label} class=":uno: flex items-center space-x-2 group" rel="me">
+          {link.label}
+        </TextLink>
       })}
     </div>
   </div>
 
-  <div class="flex items-center justify-between">
+  <div class="flex items-center justify-between mt-[43px]">
     <p>
-      &copy; Namchee. <AppLink class="font-medium transition-colors hover:text-heading focus:text-heading" href="https://creativecommons.org/licenses/by/4.0/deed" >CC BY 4.0</AppLink>
+      &copy; Namchee. <AppLink class="font-medium transition-colors text-heading hover:text-opacity-80 focus:text-opacity-80" href="https://creativecommons.org/licenses/by/4.0/deed" >CC BY 4.0</AppLink>
     </p>
 
     <div class="flex space-x-4">
-      <AppLink href="/rss.xml" class="font-medium transition-colors hover:text-heading focus:text-heading">
+      <AppLink href="/rss.xml" class="font-medium transition-colors hover:text-heading focus:text-headin">
         RSS
       </AppLink>
 
