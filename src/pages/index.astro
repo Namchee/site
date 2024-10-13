@@ -17,13 +17,11 @@ const description = 'Namchee is a no-nonsense software engineer that is dedicate
 ---
 
 <Layout title={title} description={description}>
-  <div class=":uno: grid grid-cols-12 gap-4 px-8 my-32">
-    <div class=":uno: col-start-1 col-end-13 md:col-end-4">
+  <div class=":uno: space-y-16 px-8 my-32">
+    <section class=":uno: grid grid-cols-12 gap-4">
       <Profile />
-    </div>
 
-    <div class=":uno: col-start-1 col-end-13 mt-12 md:mt-0 md:col-start-5 space-y-16">
-      <section class=":uno: space-y-4 leading-[1.75]">
+      <div class="col-start-1 col-end-13 md:col-start-5 space-y-4 leading-[1.75]">
         <p>
           Hello there. My name is Cristopher, but I'm commonly known as Namchee
           in the online space. I'm a software engineer based in Bandung,
@@ -46,13 +44,15 @@ const description = 'Namchee is a no-nonsense software engineer that is dedicate
           you can find me playing video games with my trusty little war machine or
           building my <TextLink href="/bookshelf">reading habit</TextLink>.
         </p>
-      </section>
+      </div>
+    </section>
 
-      <section>
-        <h2 class=":uno: font-semibold tracking-tight text-heading mb-4">
-          Selected Projects
-        </h2>
+    <section class=":uno: grid grid-cols-12 gap-4">
+      <h2 class=":uno: col-start-1 col-end-13 md:col-end-4 font-semibold tracking-tight text-heading">
+        Selected Projects
+      </h2>
 
+      <div class="col-start-1 col-end-13 md:col-start-5 space-y-4 leading-[1.75]">
         <Projects />
 
         <AppLink
@@ -66,13 +66,15 @@ const description = 'Namchee is a no-nonsense software engineer that is dedicate
             class=":uno: w-4 opacity-0 -translate-x-8 arrow__after"
           />
         </AppLink>
-      </section>
+      </div>
+    </section>
 
-      <section>
-        <h2 class=":uno: font-semibold tracking-tight text-heading mb-4">
-          Recent Posts
-        </h2>
+    <section class=":uno: grid grid-cols-12 gap-4">
+      <h2 class=":uno: col-start-1 col-end-13 md:col-end-4 font-semibold tracking-tight text-heading">
+        Recent Posts
+      </h2>
 
+      <div class="col-start-1 col-end-13 md:col-start-5 space-y-4 leading-[1.75]">
         <Posts />
 
         <AppLink
@@ -86,22 +88,28 @@ const description = 'Namchee is a no-nonsense software engineer that is dedicate
             class=":uno: w-4 -translate-x-8 opacity-0 arrow__after"
           />
         </AppLink>
-      </section>
+      </div>
+    </section>
 
-      <section class=":uno: space-y-4">
-        <h2 class=":uno: font-semibold tracking-tight text-heading">Experiences</h2>
+    <section class=":uno: grid grid-cols-12 gap-4">
+      <h2 class=":uno: col-start-1 col-end-13 md:col-end-4 font-semibold tracking-tight text-heading">
+        Experiences
+      </h2>
 
+      <div class="col-start-1 col-end-13 md:col-start-5 space-y-4 leading-[1.75]">
         <Experiences />
-      </section>
+      </div>
+    </section>
 
-      <section>
-        <h2 class=":uno: font-semibold tracking-tight text-heading">Now Reading</h2>
+    <section class=":uno: grid grid-cols-12 gap-4">
+      <h2 class=":uno: col-start-1 col-end-13 md:col-end-4 font-semibold tracking-tight text-heading">
+        Now Reading
+      </h2>
 
-        <div class=":uno: mt-8">
-          <Books />
-        </div>
-      </section>
-    </div>
+      <div class="col-start-1 col-end-13 md:col-start-5 space-y-4 leading-[1.75]">
+        <Books />
+      </div>
+    </section>
   </div>
 </Layout>
 
@@ -113,7 +121,7 @@ const description = 'Namchee is a no-nonsense software engineer that is dedicate
   }
 
   .arrow__before {
-    transform: translateX(-4px) translateY(-1.5px);
+    transform: translateX(-4px);
     opacity: 1;
   }
 
@@ -131,7 +139,7 @@ const description = 'Namchee is a no-nonsense software engineer that is dedicate
   .arrow__link:hover .arrow__after,
   .arrow__link:focus .arrow__after {
     opacity: 1;
-    transform: translateX(-12px) translateY(-1.5px);
+    transform: translateX(-12px);
   }
 
 </style>
