@@ -7,8 +7,7 @@ import { TooltipProvider, TooltipRoot, TooltipTrigger, TooltipContent, TooltipAr
     <TooltipRoot>
       <TooltipTrigger as-child>
         <button
-          class=":uno: text-content transition-colors bg-transparent p-2 rounded-md hover:bg-navigation-accent hover:text-heading focus:bg-navigation-accent focus:text-heading active:bg-pressurized theme-toggle m-1"
-          title="Switch Theme"
+          class=":uno: text-content transition-colors bg-transparent p-2 rounded-md hover:bg-navigation-accent hover:text-heading focus:bg-navigation-accent focus:text-heading active:bg-pressurized theme-toggle m-1 w-[36px] h-[36px]"
           aria-live="polite"
         >
           <slot />
