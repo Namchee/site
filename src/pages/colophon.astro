@@ -48,31 +48,40 @@ const inspirations = [
   },
   {
     name: "Dead Simple Sites",
-    href: "https://deadsimplesites.com/"
-  }
+    href: "https://deadsimplesites.com/",
+  },
 ];
 
-const title = 'Colophon';
-const description = 'A full list of resources and technologies that empowers namchee.dev';
+const title = "Colophon";
+const description =
+  "A full list of resources and technologies that empowers namchee.dev";
+
+const sha = process.env.CF_PAGES_COMMIT_SHA || "2e5dd4b";
 ---
 
 <Layout title={title} description={description} og="og-colophon">
   <div class=":uno: grid grid-cols-12 gap-4 px-8 my-32 leading-[1.75]">
-    <header
-      class=":uno: col-start-1 col-end-13 md:col-end-4"
-    >
-      <div class=":uno: sticky top-12">
+    <header class=":uno: col-start-1 col-end-13 md:col-end-4">
+      <div>
         <h1 class=":uno: text-2xl text-heading font-semibold tracking-tight">
           Colophon
         </h1>
 
-        <time
-          class=":uno: flex space-x-2 mt-2"
-          title="Last Updated on 31 August 2024"
-        >
-          <Icon name="lucide:history" class=":uno: w-4 h-auto" />
-          <span>31 August 2024</span>
-        </time>
+        <div class="mt-2 md:mt-4 space-y-0 space-x-4 md:space-y-2 md:space-x-0 flex md:flex-col">
+          <time
+            class=":uno: flex items-center space-x-2"
+            title="Last Updated on 31 August 2024"
+          >
+            <Icon name="lucide:history" class=":uno: w-4 h-auto" />
+            <span class="text-xs">31 August 2024</span>
+          </time>
+
+          <p class=":uno: flex items-center space-x-2 font-mono">
+            <Icon name="simple-icons:github" class=":uno: w-4 h-auto" />
+
+            <AppLink class="text-xs">Namchee/site#{sha}</AppLink>
+          </p>
+        </div>
       </div>
     </header>
 
@@ -83,23 +92,25 @@ const description = 'A full list of resources and technologies that empowers nam
         <h2 class=":uno: text-heading font-semibold">Technology</h2>
 
         <p>
-          This website is powered by <TextLink
-            href="https://astro.build/"
-          >
-            Astro</TextLink> as the static web generator combined with <TextLink
+          This website is powered by <TextLink href="https://astro.build/">
+            Astro</TextLink
+          > as the static web generator combined with <TextLink
             href="https://vuejs.org/"
           >
-            Vue</TextLink> in the mix. Stylings are powered by <TextLink
+            Vue</TextLink
+          > in the mix. Stylings are powered by <TextLink
             href="https://unocss.dev/"
           >
-            UnoCSS</TextLink>, an on-demand atomic CSS engine.
+            UnoCSS</TextLink
+          >, an on-demand atomic CSS engine.
         </p>
 
         <p>
           Website is hosted with 100% renewable energy on <TextLink
             href="https://pages.cloudflare.com/"
           >
-            Cloudflare Pages</TextLink>. Site analytics are powered by Plausible.
+            Cloudflare Pages</TextLink
+          >. Site analytics are powered by Plausible.
         </p>
       </section>
 
@@ -110,22 +121,30 @@ const description = 'A full list of resources and technologies that empowers nam
           Colors are extracted from <TextLink
             href="https://www.untitledui.com/"
           >
-            Untitled UI</TextLink> design system and <TextLink href="https://tailwindcss.com/docs/customizing-colors">TailwindCSS</TextLink> color system with a few twist of my own.
+            Untitled UI</TextLink
+          > design system and <TextLink
+            href="https://tailwindcss.com/docs/customizing-colors"
+            >TailwindCSS</TextLink
+          > color system with a few twist of my own.
         </p>
 
         <p>
-          There are 2 typefaces that are used in this website: Inter and JetBrains Mono.
+          There are 2 typefaces that are used in this website: Inter and
+          JetBrains Mono.
         </p>
 
         <p>
-          <TextLink href="https://rsms.me/inter/">Inter</TextLink> is a neo-grosteque sans-serif designed as a workhorse typeface for a wide range of applications, including user interfaces. Inter is used as the main font of this website, serving as the typeface body copies and headings alike.
+          <TextLink href="https://rsms.me/inter/">Inter</TextLink> is a neo-grosteque
+          sans-serif designed as a workhorse typeface for a wide range of applications,
+          including user interfaces. Inter is used as the main font of this website,
+          serving as the typeface body copies and headings alike.
         </p>
 
         <p>
           <TextLink href="https://www.jetbrains.com/lp/mono/">
-            JetBrains Mono</TextLink> is a monospaced font created by JetBrains and distributed
-          under the SIL Font License. JetBrains Mono is used in codeblocks and
-          miscellanous accents.
+            JetBrains Mono</TextLink
+          > is a monospaced font created by JetBrains and distributed under the SIL
+          Font License. JetBrains Mono is used in codeblocks and miscellanous accents.
         </p>
       </section>
 
@@ -136,28 +155,33 @@ const description = 'A full list of resources and technologies that empowers nam
           All header images in my posts are taken from <TextLink
             href="https://unsplash.com/"
           >
-            Unsplash</TextLink> unless specified. Credits can be found as a text on the
-          bottom of the image. Diagram-like images are generated with <TextLink
-          href="https://miro.com/"
-        >
-          Miro</TextLink>.
+            Unsplash</TextLink
+          > unless specified. Credits can be found as a text on the bottom of the
+          image. Diagram-like images are generated with <TextLink
+            href="https://miro.com/"
+          >
+            Miro</TextLink
+          >.
         </p>
 
         <p>
           Icons are handpicked from the combination of <TextLink
             href="https://lucide.dev/"
           >
-            Lucide</TextLink> for the general UI icons and <TextLink
+            Lucide</TextLink
+          > for the general UI icons and <TextLink
             href="https://simpleicons.org/"
           >
-            Simple Icons</TextLink> for all brand icons.
+            Simple Icons</TextLink
+          > for all brand icons.
         </p>
 
         <p>
           Icons are served with the help of <TextLink
             href="https://iconify.design/"
           >
-            Iconify</TextLink>.
+            Iconify</TextLink
+          >.
         </p>
       </section>
 
@@ -179,10 +203,7 @@ const description = 'A full list of resources and technologies that empowers nam
                   class=":uno: text-heading hover:text-primary focus:text-primary transition-colors inline-flex items-center font-medium -tracking-[0.0125em] space-x-[2px]"
                 >
                   <span>{inspiration.name}</span>
-                  <Icon
-                    name="lucide:arrow-up-right"
-                    class=":uno: w-4 h-auto"
-                  />
+                  <Icon name="lucide:arrow-up-right" class=":uno: w-4 h-auto" />
                 </AppLink>
               </li>
             ))
@@ -197,10 +218,11 @@ const description = 'A full list of resources and technologies that empowers nam
           This website is open-sourced and the source code can be found on my <TextLink
             href="https://www.github.com/Namchee/site"
           >
-            GitHub</TextLink>. If you find a bug on this site, feel free to
-          create an
+            GitHub</TextLink
+          >. If you find a bug on this site, feel free to create an
           <TextLink href="https://github.com/Namchee/site/issues">
-            issue</TextLink>.
+            issue</TextLink
+          >.
         </p>
       </section>
     </div>
