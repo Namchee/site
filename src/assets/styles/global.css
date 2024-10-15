@@ -29,14 +29,14 @@ body {
 
 html.dark {
   /* Replace the token here */
-  --background: 19.13% 0 0;
-  --surface: 29.27% 0 0;
+  --background: 16.13% 0 0;
+  --surface: 27.27% 0 0;
   --pressurized: 31.27% 0 0;
 
-  --separator: 43.86% 0 0;
+  --separator: 30.86% 0 0;
 
   --heading: 99.11% 0 0;
-  --content: 75.66% 0 0;
+  --content: 73.55% 0 0;
 
   --navigation-background: 31.78% 0 0;
   --navigation-border: 37.78% 0 0;

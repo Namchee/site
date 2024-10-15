@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref, watch, computed, nextTick, onMounted } from 'vue';
+import { ref, watch, computed, nextTick } from 'vue';
 import { useMagicKeys, whenever } from '@vueuse/core';
 
 import {
@@ -27,10 +27,6 @@ import Key from '@/components/vue/Key.vue';
 const visible = ref(false);
 const searchEl = ref<HTMLInputElement>();
 const focusIndex = ref(0);
-
-onMounted(() => {
-  console.log(navigator.userAgent.includes('Mac'));
-});
 
 const isMac = false;
 
