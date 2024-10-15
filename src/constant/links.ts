@@ -12,8 +12,8 @@ export const links = [
   },
   {
     icon: 'lucide:library',
-    name: 'Bookshelf',
-    href: '/bookshelf',
+    name: 'Library',
+    href: '/library',
   },
   {
     icon: 'lucide:cog',
