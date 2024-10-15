@@ -48,8 +48,7 @@ html.dark img {
 }
 
 *::selection {
-  color: oklch(var(--primary));
-  background-color: oklch(var(--primary) / 0.15);
+  background-color: oklch(var(--content) / 0.125);
 }
 
 @font-face {
