@@ -35,7 +35,7 @@ const books = await getCurrentlyReadBooks();
             </AppLink>
 
             <p class=":uno: text-sm leading-normal italic">{book.subtitle}</p>
-            <p class=":uno: mt-4 text-heading/85">{book.author.join(" & ")}</p>
+            <p class=":uno: mt-4 text-heading/85 transition-colors">{book.author.join(" & ")}</p>
           </div>
         </li>
       );

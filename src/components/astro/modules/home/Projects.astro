@@ -38,11 +38,11 @@ const projects = [
       return (
         <li class=":uno: flex space-x-4">
           <LogoContainer class=":uno: w-12 h-12" title={project.title}>
-            <project.icon class=":uno: text-heading w-6 h-6" />
+            <project.icon class=":uno: text-heading w-6 h-6 transition-colors" />
           </LogoContainer>
 
           <div class=":uno: flex-1 flex flex-col justify-between">
-            <p class=":uno: text-heading font-medium">{project.title}</p>
+            <p class=":uno: text-heading font-medium transition-colors">{project.title}</p>
 
             <p class=":uno: text-sm leading-normal">{project.description}</p>
           </div>
@@ -51,7 +51,7 @@ const projects = [
             {project.link && (
               <AppLink
                 href={project.link}
-                class=":uno: transition-colors hover:text-heading focus:text-heading"
+                class=":uno: text-content transition-colors hover:text-heading focus:text-heading"
                 aria-label={`Click to visit ${project.title}`}
               >
                 <Icon name="lucide:external-link" class=":uno: w-4 h-auto" />
@@ -60,7 +60,7 @@ const projects = [
             {project.github && (
               <AppLink
                 href={project.github}
-                class=":uno: transition-colors hover:text-heading focus:text-heading"
+                class=":uno: text-content transition-colors hover:text-heading focus:text-heading"
                 aria-label={`Click to view source code of ${project.title}`}
               >
                 <Icon name="simple-icons:github" class=":uno: w-4 h-auto" />
