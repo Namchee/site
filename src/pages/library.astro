@@ -61,67 +61,59 @@ const books = {
   ]
 };
 
-const title = 'Bookshelf';
+const title = 'Library';
 const description = 'A list of books that I\'ve read and recommend to either boost your professional career or spice up your life!'
 ---
 
 <Layout title={title} description={description} og="og-bookshelf">
-  <div class=":uno: grid leading-[1.75] grid-cols-12 gap-4 px-8 my-32">
-    <header
-      class=":uno: col-start-1 col-end-13 md:col-end-4"
-    >
-      <div class=":uno: sticky top-12">
-        <h1 class=":uno: text-2xl text-heading tracking-tight font-semibold">
-          Bookshelf
-        </h1>
-      </div>
-    </header>
+  <div class=":uno: space-y-16 px-8 my-32">
+    <section class=":uno: grid grid-cols-12 gap-4">
+      <h1 class=":uno: col-start-1 col-end-13 md:col-end-4 text-2xl text-heading tracking-tight font-semibold">
+        Library
+      </h1>
 
-    <div
-      class=":uno: col-start-1 col-end-13 md:col-start-5 space-y-16"
-    >
-      <section class=":uno: space-y-4">
+      <div class=":uno: col-start-1 col-end-13 md:col-start-5 leading-[1.75] space-y-4">
         <p>
           Starting from 2023, I've been building my reading habit and found the
           experience to be rewarding for my career and personal life.
         </p>
 
         <p>
-          Below is the list of books I've read in the past that I found to be
-          insightful.
+          I mostly read non-fiction books since they contain insights for self-improvement.
+          However, I occasionally read fiction when I'm bored with current manga offerings.
         </p>
-      </section>
+      </div>
+    </section>
 
-      {
-        Object.entries(books).map(([year, book]) => {
-          const bookList = book.map((b) => (
-            <li class=":uno: justify-between md:grid md:grid-cols-[max-content_auto]">
-              <AppLink
-                class=":uno: text-heading transition-colors items-center hover:text-primary focus:text-primary inline-flex text-balance font-medium -tracking-[0.0125em] space-x-[2px]"
-                href={b.link}
-              >
-                <span>{b.title}</span>
-                <Icon
-                  name="lucide:arrow-up-right"
-                  class=":uno: w-4 h-auto"
-                />
-              </AppLink>
+    {
+      Object.entries(books).map(([year, book]) => {
+        const bookList = book.map((b) => (
+          <li class=":uno: justify-between md:grid md:grid-cols-[max-content_auto]">
+            <AppLink
+              class=":uno: group text-heading/85 transition-colors items-center hover:text-heading focus:text-heading inline-flex text-balance font-medium -tracking-[0.0125em] space-x-1"
+              href={b.link}
+            >
+              <span>{b.title}</span>
+              <Icon
+                name="lucide:arrow-up-right"
+                class=":uno: w-4 h-auto transition-all text-heading/50 group-hover:text-heading group-focus:text-heading group-hover:rotate-45 group-focus:rotate-45"
+              />
+            </AppLink>
 
-              <p class=":uno: text-balance text-sm md:text-base md:text-right">
-                {b.author}
-              </p>
-            </li>
-          ));
+            <p class=":uno: text-balance text-sm md:text-base md:text-right">
+              {b.author}
+            </p>
+          </li>
+        ));
 
-          return (
-            <div>
-              <p class=":uno: font-semibold text-sm mb-4">{year}</p>
+        return (
+          <section class=":uno: grid grid-cols-12 gap-4">
+            <p class=":uno: font-semibold text-sm col-start-1 col-end-13 md:col-end-4">{year}</p>
 
-              <ul class=":uno: space-y-3 md:space-y-2">{bookList}</ul>
-            </div>
-          );
-        })
-      }
-    </div>
+            <ul class=":uno: space-y-3 col-start-1 col-end-13 md:col-start-5">{bookList}</ul>
+          </section>
+        );
+      })
+    }
   </div>
 </Layout>
