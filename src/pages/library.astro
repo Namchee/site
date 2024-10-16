@@ -90,17 +90,17 @@ const description = 'A list of books that I\'ve read and recommend to either boo
         const bookList = book.map((b) => (
           <li class=":uno: justify-between md:grid md:grid-cols-[max-content_auto]">
             <AppLink
-              class=":uno: group text-heading/85 transition-colors items-center hover:text-heading focus:text-heading inline-flex text-balance font-medium -tracking-[0.0125em] space-x-1"
+              class=":uno: group text-heading/85 transition-colors items-center hover:text-heading focus:text-heading flex text-balance font-medium -tracking-[0.0125em] space-x-1"
               href={b.link}
             >
-              <span>{b.title}</span>
+              <span class="flex-1">{b.title}</span>
               <Icon
                 name="lucide:arrow-up-right"
                 class=":uno: w-4 h-auto transition-all text-heading/50 group-hover:text-heading group-focus:text-heading group-hover:rotate-45 group-focus:rotate-45"
               />
             </AppLink>
 
-            <p class=":uno: text-balance text-sm md:text-base md:text-right">
+            <p class=":uno: text-balance text-sm leading-normal md:text-base md:text-right">
               {b.author}
             </p>
           </li>
