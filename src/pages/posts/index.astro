@@ -16,9 +16,7 @@ const description =
 
 <Layout title={title} description={description} og="og-posts">
   <div class=":uno: grid grid-cols-12 gap-4 my-32 px-8">
-    <header
-      class=":uno: col-start-1 col-end-13 md:col-end-4"
-    >
+    <header class=":uno: col-start-1 col-end-13 md:col-end-4">
       <div class=":uno: sticky top-12">
         <h1
           class=":uno: text-heading font-semibold transition-colors text-2xl tracking-tight"
@@ -31,37 +29,31 @@ const description =
     <div
       class=":uno: col-start-1 col-end-13 mt-8 md:mt-0 md:col-start-5 space-y-16"
     >
-      <ul class=":uno: space-y-8">
+      <ul class=":uno: space-y-4">
         {
           posts.map((post) => (
             <li>
-              <AppLink
-                href={`/posts/${post.slug}`}
-                class=":uno: text-heading font-semibold transition-colors hover:text-primary focus:text-primary"
-              >
-                {post.data.title}
-              </AppLink>
+              <div class="flex flex-col md:flex-row justify-between">
+                <div>
+                  <AppLink
+                    href={`/posts/${post.slug}`}
+                    class=":uno: text-heading/85 font-semibold transition-colors hover:text-heading focus:text-heading"
+                  >
+                    {post.data.title}
+                  </AppLink>
 
-              <p class=":uno: transition-colors text-sm leading-relaxed mt-1">
-                {post.data.subtitle}
-              </p>
+                  <p class=":uno: transition-colors text-sm leading-[1.75]">
+                    {post.data.subtitle}
+                  </p>
+                </div>
 
-              <div class=":uno: items-center text-xs flex space-x-4 mt-4">
-                <time>
+                <time class="flex-shrink-0">
                   {new Date(post.data.publishedAt).toLocaleString("en-GB", {
                     year: "numeric",
                     month: "long",
                     day: "numeric",
                   })}
                 </time>
-
-                <div>
-                  {post.data.tags.map((tag) => (
-                    <Badge variant="content">
-                      {tag[0].toUpperCase() + tag.slice(1)}
-                    </Badge>
-                  ))}
-                </div>
               </div>
             </li>
           ))
