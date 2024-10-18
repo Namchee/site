@@ -57,7 +57,7 @@ const books = {
       title: 'System Design Interview – An Insider\'s Guide',
       author: 'Alex Xu',
       link: 'https://literal.club/book/alex-xu-system-design-interview-an-insiders-guide-i97ig',
-    }
+    },
   ]
 };
 
@@ -96,7 +96,7 @@ const description = 'A list of books that I\'ve read and recommend to either boo
               <span class="flex-1">{b.title}</span>
               <Icon
                 name="lucide:arrow-up-right"
-                class=":uno: w-4 h-auto transition-all text-heading/50 group-hover:text-heading group-focus:text-heading group-hover:rotate-45 group-focus:rotate-45"
+                class=":uno: w-4 h-auto transition-all text-heading/50 group-hover:text-heading group-focus:text-heading group-hover:rotate-45 group-focus:rotate-45 flex-shrink-0"
               />
             </AppLink>
 
@@ -110,7 +110,7 @@ const description = 'A list of books that I\'ve read and recommend to either boo
           <section class=":uno: grid grid-cols-12 gap-4">
             <p class=":uno: font-semibold text-sm col-start-1 col-end-13 md:col-end-4">{year}</p>
 
-            <ul class=":uno: space-y-3 col-start-1 col-end-13 md:col-start-5">{bookList}</ul>
+            <ul class=":uno: col-start-1 col-end-13 md:col-start-5 space-y-3">{bookList}</ul>
           </section>
         );
       })
