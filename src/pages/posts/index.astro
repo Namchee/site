@@ -42,12 +42,12 @@ const description =
                     {post.data.title}
                   </AppLink>
 
-                  <p class=":uno: transition-colors text-sm leading-[1.75]">
+                  <p class=":uno: transition-colors text-sm leading-[1.75] hidden md:block">
                     {post.data.subtitle}
                   </p>
                 </div>
 
-                <time class="flex-shrink-0">
+                <time class="flex-shrink-0 leading-[1.75]">
                   {new Date(post.data.publishedAt).toLocaleString("en-GB", {
                     year: "numeric",
                     month: "long",
