@@ -15,16 +15,11 @@ const experiences = [
     title: 'Software Engineer',
     link: 'https://www.tokopedia.com/about/',
   },
-  {
-    duration: '2017 – 2021',
-    name: 'UNPAR',
-    title: 'Bachelor Degree',
-    link: 'https://informatika.unpar.ac.id/',
-  },
 ];
 ---
 
-<ul class=":uno: space-y-4">
+<!-- reduce spacing for one-liners -->
+<ul class=":uno: space-y-4 md:space-y-3">
   {
     experiences.map((exp) => (
       <li class=":uno: items-center grid gap-x-4 md:grid-cols-[10ch_1fr_max-content] grid-cols-[1fr_max-content]">
