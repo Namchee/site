@@ -8,6 +8,7 @@ import type { MarkdownFile } from "@/plugins/remark/types";
 
 import Layout from "@/components/astro/layout/Layout.astro";
 import Badge from "@/components/astro/ui/Badge.astro";
+import AppLink from "../../ui/AppLink.astro";
 
 import BackButton from "./BackButton.astro";
 import TableOfContents from "./TableOfContents.astro";
@@ -33,22 +34,17 @@ const lastModified = !!frontmatter.lastModified
   description={frontmatter.subtitle}
   og={`posts/og-${frontmatter.slug}`}
 >
-  <progress class=":uno: fixed w-screen z-10 reading__progress h-[2px] left-0"
-  ></progress>
+  <article class=":uno: grid grid-cols-12 gap-4">
+    <header class=":uno: col-start-1 col-end-13 md:col-start-2 md:col-end-12">
+      <BackButton />
 
-  <BackButton />
-
-  <article class=":uno: w-full mx-auto px-8 my-32 grid grid-cols-12 gap-4">
-    <section class=":uno: col-start-1 col-end-13 md:col-end-4 mb-8">
-      <h1
-        class=":uno: text-heading font-semibold text-2xl col-start-1 col-end-13 md:col-end-4 mb-4 md:mb-8 tracking-tight leading-tight!"
-      >
+      <h1 class=":uno: text-heading tracking-tight text-2xl md:text-4xl leading-normal font-semibold mt-4">
         {frontmatter.title}
       </h1>
 
-      <div class=":uno: flex md:flex-col space-x-4 md:space-x-0 md:space-y-2 md:mb-12">
+      <div class=":uno: flex space-x-4 mt-2 md:mt-4">
         <div
-          class="flex items-center space-x-2 text-xs md:text-sm"
+          class="flex items-center space-x-2 text-sm"
           title={`Published At ${new Date(publishedAt).toDateString()}`}
         >
           <Icon name="lucide:pencil-line" class="w-4 h-auto" />
@@ -68,7 +64,7 @@ const lastModified = !!frontmatter.lastModified
         </div>
 
         <div
-          class="items-center space-x-2 text-xs md:text-sm hidden md:flex"
+          class="items-center space-x-2 text-sm hidden md:flex"
           title={`Last Modified ${new Date(lastModified).toDateString()}`}
         >
           <Icon name="lucide:history" class="w-4 h-auto" />
@@ -88,26 +84,27 @@ const lastModified = !!frontmatter.lastModified
         </div>
 
         <div
-          class="flex items-center space-x-2 text-xs md:text-sm"
+          class="flex items-center space-x-2 text-sm md:ml-auto!"
           title={`${frontmatter.timeToRead} minutes read`}
         >
           <Icon name="lucide:timer" class="w-4 h-auto" />
 
           <p class="font-medium">
-            {frontmatter.timeToRead} minutes
+            {frontmatter.timeToRead} minutes read
           </p>
         </div>
       </div>
-
-      <TableOfContents headings={frontmatter.headings} />
-    </section>
+    </header>
 
     <section
-      class=":uno: col-start-1 col-end-13 md:col-start-5 leading-[1.75] space-y-4"
+      class=":uno: col-start-1 col-end-13 md:col-start-2 md:col-end-12 leading-[1.75] space-y-4 mt-8"
     >
       <slot />
     </section>
 
+  </article>
+
+  <article class=":uno: w-full mx-auto px-8 my-32 grid grid-cols-12 gap-4">
     <section
       class=":uno: flex col-start-1 col-end-13 justify-between mt-16"
     >

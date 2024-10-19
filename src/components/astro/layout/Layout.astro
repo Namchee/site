@@ -5,7 +5,6 @@ import "@/assets/styles/toggle.css";
 import { getCollection } from "astro:content";
 
 import Footer from "@/components/astro/layout/Footer.astro";
-import CommandMenu from "@/components/vue/CommandMenu.vue";
 import Navigation from "./Navigation.astro";
 
 export interface Props {
@@ -23,11 +22,6 @@ const posts = postCollection
     title: collection.data.title || "",
     href: `/posts/${collection.slug}`,
   }));
-
-posts.push({
-  title: 'Utilpocalypse',
-  href: '/posts/utilpocalypse',
-});
 
 const { title, description, og } = Astro.props;
 

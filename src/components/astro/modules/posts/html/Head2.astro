@@ -11,19 +11,19 @@ const { id, ...props } = Astro.props;
 ---
 
 <h2
-  class=":uno: group inline-flex items-center font-semibold text-heading transition-colors mt-8!"
+  class=":uno: relative group inline-flex items-center text-lg md:text-2xl font-semibold text-heading transition-colors mt-8!"
   id={id}
   {...props}
 >
   <slot />
   <AppLink
     href={`#${id}`}
-    class=":uno: hover:text-primary opacity-0 group-hover:opacity-100 transition-all ml-1 text-content/70"
+    class=":uno: absolute top-[6px] -left-5 md:top-[3.5px] md:-left-7 opacity-0 group-hover:opacity-100 transition-all text-content/70 hover:text-content"
     aria-label={id}
   >
     <Icon
       name="lucide:hash"
-      class=":uno: h-auto w-4"
+      class=":uno: h-auto w-4 md:w-6"
       aria-hidden="true"
     />
   </AppLink>
