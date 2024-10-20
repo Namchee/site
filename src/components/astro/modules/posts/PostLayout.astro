@@ -8,10 +8,10 @@ import type { MarkdownFile } from "@/plugins/remark/types";
 
 import Layout from "@/components/astro/layout/Layout.astro";
 import Badge from "@/components/astro/ui/Badge.astro";
-import AppLink from "../../ui/AppLink.astro";
+
+import TableOfContents from "@/components/vue/TableOfContents.vue";
 
 import BackButton from "./BackButton.astro";
-import TableOfContents from "./TableOfContents.astro";
 import SocialLinks from "./SocialLinks.astro";
 
 interface Props {
@@ -35,6 +35,10 @@ const lastModified = !!frontmatter.lastModified
   og={`posts/og-${frontmatter.slug}`}
 >
   <article class=":uno: grid grid-cols-12 gap-4">
+    <TableOfContents client:load>
+      <Icon slot="button" name="lucide:pencil" class="w-5 h-auto" />
+    </TableOfContents>
+
     <header class=":uno: col-start-1 col-end-13 md:col-start-2 md:col-end-12">
       <BackButton />
 
