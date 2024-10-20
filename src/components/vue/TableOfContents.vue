@@ -19,7 +19,7 @@ onMounted(() => {
 
 <template>
   <div
-    class=":uno: fixed border border-navigation-border bottom-8 left-8 z-40 grid place-items-center p-1 lg:p-0 lg:border-none shadow lg:shadow-none bg-navigation-background lg:top-32 lg:bottom-unset transition-colors text-content rounded-md shadow-md lg:shadow-none"
+    class=":uno: border border-navigation-border bottom-8 left-8 z-40 grid place-items-center p-1 lg:p-0 lg:border-none shadow lg:shadow-none bg-navigation-background lg:top-32 lg:bottom-unset transition-colors text-content rounded-md shadow-md lg:shadow-none fixed"
   >
     <TooltipProvider :delay-duration="100">
       <TooltipRoot>
