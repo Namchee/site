@@ -28,7 +28,6 @@ export default defineConfig({
       include: {
         simpleIcons: ['*'],
         lucide: ['*'],
-        cib: ['creative-commons-by'],
       },
     }),
     sitemap(),

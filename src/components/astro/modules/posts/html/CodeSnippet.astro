@@ -48,6 +48,7 @@ const htmlCode = await codeToHtml(text, {
 
 <figure
   class:list={[
+    ":uno:",
     "mt-8!",
     "mb-8!",
     "overflow-hidden",
@@ -58,7 +59,7 @@ const htmlCode = await codeToHtml(text, {
 >
   {
     (title || isCopyable) && (
-      <figcaption class="flex justify-between items-center text-xs leading-normal border-separator p-2 px-4 border-b rounded-t-md bg-surface text-balance transition-colors">
+      <figcaption class="flex justify-between items-center text-xs leading-normal border-separator bg-surface text-balance transition-colors p-2 px-4 border-b rounded-t-md">
         <p>{title}</p>
 
         {isCopyable && (

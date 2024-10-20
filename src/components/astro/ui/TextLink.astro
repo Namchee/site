@@ -8,14 +8,14 @@ type Props = HTMLAttributes<'a'>;
 const { class: className, ...props } = Astro.props;
 
 const baseClass = `:uno:
-  text-heading
+  text-heading/85
   font-medium
   cursor-pointer
   decoration-heading
   decoration-opacity-25
   transition-colors
-  hover:text-primary
-  focus:text-primary
+  hover:text-heading
+  focus:text-heading
   hover:decoration-primary
   focus:decoration-primary
   underline

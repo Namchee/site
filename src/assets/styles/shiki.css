@@ -25,7 +25,7 @@ html.dark .shiki span {
   width: fit-content;
   min-width: 100%;
   display: block;
-  line-height: 2;
+  line-height: 1.75;
 
   padding: 0.5rem 0;
 }

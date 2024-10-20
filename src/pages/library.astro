@@ -1,0 +1,127 @@
+---
+import { Icon } from "astro-icon/components";
+
+import Layout from "@/components/astro/layout/Layout.astro";
+import AppLink from "@/components/astro/ui/AppLink.astro";
+
+const books = {
+  2023: [
+    {
+      title: "The Clean Coder",
+      author: "Robert C. Martin",
+      link: "https://literal.club/book/the-clean-coder-bk300",
+    },
+    {
+      title: "Algorithms for Modern Hardware",
+      author: "Sergey Slotin",
+      link: "https://en.algorithmica.org/hpc/",
+    },
+    {
+      title: "The Pragmatic Programmer",
+      author: "Andy Hunt & Dave Thomas",
+      link: "https://literal.club/book/the-pragmatic-programmer-f735w",
+    },
+    {
+      title: "Non Violent Communication",
+      author: "Marshall B. Rosenberg",
+      link: "https://literal.club/book/marshall-b-rosenberg-non-violent-communication-a-language-of-life-0xnv8",
+    },
+    {
+      title: "INSPIRED",
+      author: "Marthy Cagan",
+      link: "https://literal.club/book/inspired-qoqb4",
+    },
+    {
+      title: "Clean Code",
+      author: "Robert C. Martin",
+      link: "https://literal.club/book/clean-code-ewxiz",
+    },
+  ],
+  2024: [
+    {
+      title: "Cold Case Christianity",
+      author: "J. Warner Wallace",
+      link: "https://literal.club/namchee/book/j-warner-wallace-cold-case-christianity-fpe98",
+    },
+    {
+      title: "The Passionate Programmer",
+      author: "Chad Fowler",
+      link: "https://literal.club/namchee/book/the-passionate-programmer-9xgce",
+    },
+    {
+      title: "Refactoring UI",
+      author: "Adam Wathan & Steve Schoger",
+      link: "https://literal.club/book/adam-wathan-steve-schoger-refactoring-ui-8k1eh",
+    },
+    {
+      title: "System Design Interview",
+      author: "Alex Xu",
+      link: "https://literal.club/book/alex-xu-system-design-interview-an-insiders-guide-i97ig",
+    },
+  ],
+};
+
+const title = "Library";
+const description =
+  "A list of books that I've read and recommend to either boost your professional career or spice up your life!";
+---
+
+<Layout title={title} description={description} og="og-bookshelf">
+  <section class=":uno: grid grid-cols-12 gap-4">
+    <h1
+      class=":uno: col-start-1 col-end-13 md:col-end-4 text-2xl text-heading tracking-tight font-semibold transition-colors"
+    >
+      Library
+    </h1>
+
+    <div
+      class=":uno: col-start-1 col-end-13 md:col-start-5 leading-[1.75] space-y-4"
+    >
+      <p>
+        Starting from 2023, I've been building my reading habit and found the
+        experience to be rewarding for my career and personal life.
+      </p>
+
+      <p>
+        I mostly read non-fiction books since they contain insights for
+        self-improvement. However, I occasionally read fiction when I'm bored
+        with current manga offerings.
+      </p>
+    </div>
+  </section>
+
+  {
+    Object.entries(books).map(([year, book]) => {
+      const bookList = book.map((b) => (
+        <li class=":uno: justify-between md:grid md:grid-cols-[max-content_auto]">
+          <AppLink
+            class=":uno: group text-heading/85 transition-colors items-center hover:text-heading focus:text-heading flex text-balance font-medium -tracking-[0.0125em] space-x-1"
+            href={b.link}
+          >
+            <span class="flex-1">{b.title}</span>
+            <Icon
+              name="lucide:arrow-up-right"
+              class=":uno: w-4 h-auto transition-all text-heading/50 group-hover:text-heading group-focus:text-heading group-hover:rotate-45 group-focus:rotate-45 flex-shrink-0"
+            />
+          </AppLink>
+
+          <p class=":uno: text-balance text-sm leading-normal md:text-base md:text-right">
+            {b.author}
+          </p>
+        </li>
+      ));
+
+      return (
+        <section class=":uno: grid grid-cols-12 gap-4">
+          <p class=":uno: font-semibold text-sm col-start-1 col-end-13 md:col-end-4">
+            {year}
+          </p>
+
+          <ul class=":uno: col-start-1 col-end-13 md:col-start-5 space-y-2">
+            {bookList}
+          </ul>
+        </section>
+      );
+    })
+  }
+</Layout>

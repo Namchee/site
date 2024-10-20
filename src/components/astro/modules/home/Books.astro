@@ -18,24 +18,24 @@ const books = await getCurrentlyReadBooks();
             src={book.cover}
             alt={book.title}
             inferSize
-            class=":uno: rounded w-[80px] object-fill!"
+            class=":uno: rounded h-[120px] w-[80px] object-fill!"
           />
 
           <div class=":uno: flex flex-col justify-center">
             <AppLink
               href={book.url}
-              class=":uno: text-heading font-medium transition-colors hover:text-primary focus:text-primary inline-flex items-center space-x-[2px] w-fit leading-[1.75]"
+              class=":uno: group text-heading/85 font-medium transition-colors hover:text-heading focus:text-heading inline-flex items-center leading-[1.75] space-x-1 w-fit"
             >
               <span>{book.title}</span>
 
               <Icon
                 name="lucide:arrow-up-right"
-                class=":uno: w-4 h-auto"
+                class=":uno: w-4 h-auto transition-all text-heading/50 group-hover:text-heading group-focus:text-heading group-focus:rotate-45 group-hover:rotate-45"
               />
             </AppLink>
 
             <p class=":uno: text-sm leading-normal italic">{book.subtitle}</p>
-            <p class=":uno: mt-4 text-heading">{book.author.join(" & ")}</p>
+            <p class=":uno: mt-4 text-heading/85 transition-colors text-sm">{book.author.join(" & ")}</p>
           </div>
         </li>
       );

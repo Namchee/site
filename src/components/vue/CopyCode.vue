@@ -39,12 +39,12 @@ onBeforeUnmount(() => {
 
       <TooltipPortal>
         <TooltipContent
-          class="text-xs rounded-md shadow shadow tooltip__content text-background select-none bg-primary py-2 px-3 will-change-[transform,opacity]"
+          class="text-xs rounded-md shadow shadow py-2 tooltip__content text-background select-none bg-content px-3 will-change-[transform,opacity]"
           :side-offset="5"
         >
           Copied!
           <TooltipArrow
-            class="fill-primary"
+            class="fill-content"
             :width="8"
           />
         </TooltipContent>

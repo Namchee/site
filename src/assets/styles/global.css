@@ -1,16 +1,20 @@
 :root {
   /* Write token here */
 
-  --background: 99.14% 0.001 286.38;
-  --surface: 95.93% 0.007 247.9;
-  --separator: 90% 0.011 256.7;
+  --background: 99.4% 0 0;
+  --surface: 93.16% 0.0017 247.84;
+  --pressurized: 90.66% 0.0017 247.84;
 
-  --heading: 21.31% 0.028 262.4;
-  --content: 44.69% 0.029 259.77;
+  --separator: 87.85% 0.0047 258.33;
 
-  --primary: 51.47% 0.229 272.81;
+  --heading: 23.04% 0.0209 264.04;
+  --content: 45.96% 0.0174 264.39;
 
-  --success: 67.31% 0.16 155.59;
+  --navigation-background: 99.4% 0 0;
+  --navigation-border: 90.85% 0.0047 258.33;
+  --navigation-accent: 93.16% 0.0017 247.84;
+
+  --success: 67.31% 0.1596 155.59;
 
   font-feature-settings: "calt" 1, "ss07" 1, "ss08" 1, "ss03" 1, "cv05" 1;
 }
@@ -25,14 +29,18 @@ body {
 
 html.dark {
   /* Replace the token here */
-  --background: 16.84% 0 0;
-  --surface: 25% 0 0;
-  --separator: 30% 0 0;
+  --background: 16.13% 0 0;
+  --surface: 24.27% 0 0;
+  --pressurized: 31.27% 0 0;
 
-  --heading: 98.51% 0 0;
-  --content: 77.31% 0 0;
+  --separator: 30.86% 0 0;
 
-  --primary: 72.34% 0.145 271.74;
+  --heading: 99.11% 0 0;
+  --content: 73.55% 0 0;
+
+  --navigation-background: 29.78% 0 0;
+  --navigation-border: 35.78% 0 0;
+  --navigation-accent: 37.12% 0 0;
 }
 
 html.dark img {
@@ -40,8 +48,7 @@ html.dark img {
 }
 
 *::selection {
-  color: oklch(var(--primary));
-  background-color: oklch(var(--primary) / 0.15);
+  background-color: oklch(var(--content) / 0.125);
 }
 
 @font-face {
@@ -81,4 +88,21 @@ html.dark img {
 
 .MathJax:not([display="true"]) {
   display: inline !important;
+}
+
+.tooltip__content {
+  transform-origin: var(--radix-tooltip-content-transform-origin);
+  animation: scaleIn 100ms cubic-bezier(0.33, 1, 0.68, 1);
+}
+
+@keyframes scaleIn {
+  from {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
 }

@@ -17,16 +17,22 @@ export default defineConfig({
       mono: ['"JetBrains Mono"', 'ui-monospace'],
     },
     colors: {
-      background: 'oklch(var(--background))',
-      surface: 'oklch(var(--surface))',
-      separator: 'oklch(var(--separator))',
+      'background': 'oklch(var(--background))',
+      'surface': 'oklch(var(--surface))',
+      'pressurized': 'oklch(var(--pressurized))',
 
-      heading: 'oklch(var(--heading))',
-      content: 'oklch(var(--content))',
+      'separator': 'oklch(var(--separator))',
 
-      primary: 'oklch(var(--primary))',
+      'heading': 'oklch(var(--heading))',
+      'content': 'oklch(var(--content))',
 
-      success: 'oklch(var(--success))',
+      'primary': 'oklch(var(--primary))',
+
+      'success': 'oklch(var(--success))',
+
+      'navigation-background': 'oklch(var(--navigation-background))',
+      'navigation-border': 'oklch(var(--navigation-border))',
+      'navigation-accent': 'oklch(var(--navigation-accent))',
     },
   },
   transformers: [

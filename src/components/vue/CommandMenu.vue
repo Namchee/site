@@ -10,6 +10,12 @@ import {
   DialogContent,
   DialogTitle,
   DialogDescription,
+  TooltipRoot,
+  TooltipPortal,
+  TooltipTrigger,
+  TooltipProvider,
+  TooltipContent,
+  TooltipArrow,
 } from 'radix-vue';
 
 import { Icon } from '@iconify/vue';
@@ -21,6 +27,8 @@ import Key from '@/components/vue/Key.vue';
 const visible = ref(false);
 const searchEl = ref<HTMLInputElement>();
 const focusIndex = ref(0);
+
+const isMac = false;
 
 const props = defineProps<{
   posts: {
@@ -133,9 +141,28 @@ watch(visible, async () => {
 
 <template>
   <DialogRoot v-model:open="visible">
-    <DialogTrigger as-child>
-      <slot />
-    </DialogTrigger>
+    <TooltipProvider :delay-duration="100">
+      <TooltipRoot>
+        <DialogTrigger as-child>
+          <TooltipTrigger as-child>
+            <button class="w-[36px] h-[36px] grid place-items-center transition-colors text-content rounded-md hover:bg-navigation-accent focus:bg-navigation-accent text-sm my-1 ml-1">
+              <slot />
+            </button>
+          </TooltipTrigger>
+
+          <TooltipPortal>
+            <TooltipContent class="text-sm rounded-md shadow py-2 tooltip__content bg-content text-background shadow-lg select-none px-3 will-change-[transform,opacity]" :side-offset="5">
+              <p>Command Palette ({{ isMac ? '⌘' : 'Ctrl' }} + K)</p>
+
+              <TooltipArrow
+                :width="8"
+                class="fill-content"
+              />
+            </TooltipContent>
+          </TooltipPortal>
+        </DialogTrigger>
+      </TooltipRoot>
+    </TooltipProvider>
 
     <DialogPortal>
       <DialogOverlay
@@ -143,18 +170,18 @@ watch(visible, async () => {
         class=":uno: fixed bg-background w-screen h-screen z-20 dialog__overlay bg-opacity-50 backdrop-blur"
       />
       <DialogContent
-        class=":uno: fixed border border-separator bg-background shadow rounded-md dialog__content w-4/5 max-w-md max-h-sm z-30 focus:outline-none"
+        class=":uno: fixed border border-separator bg-background shadow rounded-md dialog__content w-4/5 max-w-md z-30 focus:outline-none"
       >
         <DialogTitle class=":uno: border-separator border-b">
           <input
-            class=":uno: text-sm w-full focus:outline-none bg-transparent p-4 placeholder:font-normal font-normal leading-relaxed"
+            class=":uno: text-sm w-full focus:outline-none p-4 bg-transparent placeholder:font-normal font-normal leading-relaxed"
             placeholder="Where do you want to go?"
             ref="searchEl"
             v-model="searchTerm"
           >
         </DialogTitle>
 
-        <DialogDescription class=":uno: p-4 space-y-4 max-h-xs overflow-y-auto">
+        <DialogDescription class=":uno: p-4 space-y-4 max-h-[25rem] overflow-y-auto">
           <div v-if="relevantLinks.length === 0 && relevantPosts.length === 0">
             <p class=":uno: text-sm text-center opacity-85">
               Sorry, I don't know what or where that is 😕
@@ -164,9 +191,9 @@ watch(visible, async () => {
           <div
             v-if="relevantLinks.length > 0"
           >
-            <span class=":uno: font-semibold text-xs mb-2">
+            <p class=":uno: font-semibold text-xs mb-2">
               Pages
-            </span>
+            </p>
 
             <ul ref="currentLinks">
               <a
@@ -200,9 +227,9 @@ watch(visible, async () => {
           <div
             v-if="relevantPosts.length > 0"
           >
-            <span class=":uno: font-semibold text-xs mb-2">
+            <p class=":uno: font-semibold text-xs mb-2">
               Posts
-            </span>
+            </p>
 
             <a
               v-for="(post, idx) in relevantPosts"
