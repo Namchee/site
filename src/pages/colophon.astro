@@ -88,7 +88,7 @@ const sha = process.env.CF_PAGES_COMMIT_SHA || "418ed9f";
 
           <AppLink
             href={`https://github.com/Namchee/site/tree/${sha}`}
-            class="text-xs">Namchee/site#{sha.slice(7)}</AppLink
+            class="text-xs">Namchee/site#{sha.slice(0, 7)}</AppLink
           >
         </p>
       </div>
