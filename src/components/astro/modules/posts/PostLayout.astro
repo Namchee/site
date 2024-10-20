@@ -8,6 +8,7 @@ import type { MarkdownFile } from "@/plugins/remark/types";
 
 import Layout from "@/components/astro/layout/Layout.astro";
 import Badge from "@/components/astro/ui/Badge.astro";
+import BackToTop from "@/components/vue/BackToTop.vue";
 
 import TableOfContentsWrapper from "@/components/vue/TableOfContents.vue";
 import TableOfContents from "./TableOfContents.astro";
@@ -45,6 +46,10 @@ const lastModified = !!frontmatter.lastModified
         class=":uno: w-4 h-auto"
       />
     </TableOfContentsWrapper>
+
+    <BackToTop client:load>
+      <Icon name="lucide:arrow-up" class=":uno: w-5 h-auto" />
+    </BackToTop>
 
     <header class=":uno: col-start-1 col-end-13 md:col-start-2 md:col-end-12">
       <BackButton />

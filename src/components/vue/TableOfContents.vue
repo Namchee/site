@@ -23,7 +23,11 @@ onMounted(() => {
   >
     <TooltipProvider :delay-duration="100">
       <TooltipRoot>
-        <DropdownMenuRoot :modal="false" :open="isDesktop" @update:open="(open) => isDesktop = open">
+        <DropdownMenuRoot
+          :modal="false"
+          :open="isDesktop"
+          @update:open="(open) => isDesktop = open"
+        >
           <TooltipTrigger as-child>
             <DropdownMenuTrigger class=":uno: w-[36px] h-[36px] lg:w-auto lg:h-auto grid place-items-center transition-colors hover:bg-navigation-accent focus:bg-navigation-accent lg:hover:bg-transparent rounded-md lg:focus:bg-transparent">
               <slot name="button" />
