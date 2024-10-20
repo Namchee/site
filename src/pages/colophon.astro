@@ -75,10 +75,10 @@ const sha = process.env.CF_PAGES_COMMIT_SHA || "418ed9f";
       >
         <time
           class=":uno: flex items-center space-x-2"
-          title="Last Updated on 31 August 2024"
+          title="Last Updated on 18 October 2024"
         >
           <Icon name="lucide:history" class=":uno: w-4 h-auto" />
-          <span class="text-xs">31 August 2024</span>
+          <span class="text-xs">18 October 2024</span>
         </time>
 
         <p
@@ -88,7 +88,7 @@ const sha = process.env.CF_PAGES_COMMIT_SHA || "418ed9f";
 
           <AppLink
             href={`https://github.com/Namchee/site/tree/${sha}`}
-            class="text-xs">Namchee/site#{sha}</AppLink
+            class="text-xs">Namchee/site#{sha.slice(7)}</AppLink
           >
         </p>
       </div>
