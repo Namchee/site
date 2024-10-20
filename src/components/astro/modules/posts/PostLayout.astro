@@ -9,7 +9,8 @@ import type { MarkdownFile } from "@/plugins/remark/types";
 import Layout from "@/components/astro/layout/Layout.astro";
 import Badge from "@/components/astro/ui/Badge.astro";
 
-import TableOfContents from "@/components/vue/TableOfContents.vue";
+import TableOfContentsWrapper from "@/components/vue/TableOfContents.vue";
+import TableOfContents from "./TableOfContents.astro";
 
 import BackButton from "./BackButton.astro";
 import SocialLinks from "./SocialLinks.astro";
@@ -35,14 +36,20 @@ const lastModified = !!frontmatter.lastModified
   og={`posts/og-${frontmatter.slug}`}
 >
   <article class=":uno: grid grid-cols-12 gap-4">
-    <TableOfContents client:load>
-      <Icon slot="button" name="lucide:pencil" class="w-5 h-auto" />
-    </TableOfContents>
+    <TableOfContentsWrapper client:load>
+      <Icon slot="button" name="lucide:table-of-contents" class="w-5 h-auto" />
+      <TableOfContents slot="toc" headings={frontmatter.headings} />
+      <Icon
+        slot="btt"
+        name="lucide:corner-left-up"
+        class=":uno: w-4 h-auto"
+      />
+    </TableOfContentsWrapper>
 
     <header class=":uno: col-start-1 col-end-13 md:col-start-2 md:col-end-12">
       <BackButton />
 
-      <h1 class=":uno: text-heading tracking-tight text-2xl md:text-4xl leading-normal font-semibold mt-4">
+      <h1 class=":uno: text-heading tracking-tight text-2xl md:text-4xl leading-normal font-semibold mt-4 transition-colors">
         {frontmatter.title}
       </h1>
 
@@ -150,6 +157,39 @@ const lastModified = !!frontmatter.lastModified
 </style>
 
 <script>
+  let currentActiveLink = null;
+
+  const observer = new IntersectionObserver((entries) => {
+    let mostVisibleEntry = null;
+
+    entries.forEach((entry) => {
+      if (entry.intersectionRatio > 0) {
+        if (!mostVisibleEntry || entry.intersectionRatio > mostVisibleEntry.intersectionRatio) {
+          mostVisibleEntry = entry;
+        }
+      }
+    });
+
+    if (mostVisibleEntry) {
+      const id = mostVisibleEntry.target.id;
+      const newActiveLink = document.querySelector(`nav ul li a[href="#${id}"]`);
+
+      if (newActiveLink && currentActiveLink !== newActiveLink) {
+        if (currentActiveLink) {
+          currentActiveLink.classList.remove("text-heading", "font-medium");
+        }
+        newActiveLink.classList.add("text-heading", "font-medium");
+        currentActiveLink = newActiveLink;
+      }
+    }
+  });
+
+  const tocLinks = document.querySelectorAll("h2[id], h3[id]");
+  tocLinks.forEach((link) => observer.observe(link));
+</script>
+
+
+<!-- <script>
   const progressBar = document.querySelector(".reading__progress");
 
   const windowHeight = window.innerHeight;
@@ -165,4 +205,4 @@ const lastModified = !!frontmatter.lastModified
   backToTop.addEventListener("click", () => {
     window.scrollTo(0, 0);
   });
-</script>
+</script> -->

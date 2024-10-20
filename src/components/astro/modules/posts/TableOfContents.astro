@@ -1,8 +1,6 @@
 ---
 import type { MarkdownHeading } from "astro";
 
-import { Icon } from "astro-icon/components";
-
 import generateToC from "@/scripts/toc";
 
 import ToCList from "./TocList.astro";
@@ -16,55 +14,11 @@ const tocList = generateToC(headings);
 ---
 
 <nav
-  class=":uno: text-sm hidden top-24 sticky md:block xl:mr-4"
+  class=":uno: text-sm max-w-64"
 >
   <p class=":uno: mb-4 font-semibold text-heading transition-colors">
     In this post
   </p>
 
   <ToCList headings={tocList} />
-
-  <button
-    class=":uno: md:items-center space-x-2 mt-8 text-heading hidden transition-colors md:flex backToTop__button"
-  >
-    <Icon name="lucide:corner-left-up" class=":uno: w-4 h-auto" />
-    <span>Back to Top</span>
-  </button>
 </nav>
-
-<script>
-  const backToTop = document.querySelector(".backToTop__button");
-  backToTop.addEventListener("click", () => {
-    window.scrollTo(0, 0);
-  });
-
-  let currentActiveLink = null;
-
-  const observer = new IntersectionObserver((entries) => {
-    let mostVisibleEntry = null;
-
-    entries.forEach((entry) => {
-      if (entry.intersectionRatio > 0) {
-        if (!mostVisibleEntry || entry.intersectionRatio > mostVisibleEntry.intersectionRatio) {
-          mostVisibleEntry = entry;
-        }
-      }
-    });
-
-    if (mostVisibleEntry) {
-      const id = mostVisibleEntry.target.id;
-      const newActiveLink = document.querySelector(`nav ul li a[href="#${id}"]`);
-
-      if (currentActiveLink !== newActiveLink) {
-        if (currentActiveLink) {
-          currentActiveLink.classList.remove("text-primary", "font-medium");
-        }
-        newActiveLink.classList.add("text-primary", "font-medium");
-        currentActiveLink = newActiveLink;
-      }
-    }
-  });
-
-  const tocLinks = document.querySelectorAll("h2[id], h3[id]");
-  tocLinks.forEach((link) => observer.observe(link));
-</script>
