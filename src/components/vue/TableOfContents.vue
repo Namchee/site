@@ -6,7 +6,7 @@ import { DropdownMenuPortal, DropdownMenuRoot, DropdownMenuTrigger, TooltipProvi
   <DropdownMenuRoot :modal="false">
     <DropdownMenuTrigger as-child>
       <button
-        class="fixed border border-navigation-border top-32 left-8 w-8 h-8 grid place-items-center transition-colors text-content rounded-md hover:bg-navigation-accent focus:bg-navigation-accent text-sm">
+        class="fixed border border-navigation-border bottom-8 z-40 bg-navigation-background md:top-32 left-8 w-8 h-8 grid place-items-center transition-colors text-content rounded-md hover:bg-navigation-accent focus:bg-navigation-accent text-sm">
         <slot name="button" />
       </button>
       <!-- <TooltipProvider :delay-duration="100">

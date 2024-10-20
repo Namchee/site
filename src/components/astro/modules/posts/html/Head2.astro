@@ -18,12 +18,12 @@ const { id, ...props } = Astro.props;
   <slot />
   <AppLink
     href={`#${id}`}
-    class=":uno: absolute top-[6px] -left-5 md:top-[3.5px] md:-left-7 opacity-0 group-hover:opacity-100 transition-all text-content/70 hover:text-content"
+    class=":uno: absolute translate-y-0 -left-6 md:-left-7 opacity-0 group-hover:opacity-100 transition-all text-content/70 hover:text-content"
     aria-label={id}
   >
     <Icon
       name="lucide:hash"
-      class=":uno: h-auto w-4 md:w-6"
+      class=":uno: h-auto w-5 md:w-6"
       aria-hidden="true"
     />
   </AppLink>
