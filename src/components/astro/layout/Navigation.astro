@@ -39,7 +39,7 @@ const { posts } = Astro.props;
     links.map((link, idx) => (
       <NavigationItem
         label={link.label}
-        className={`${idx === 0 ? "ml-1" : ""} ${currentPath.match(`${link.href}/.?`) ? "text-heading bg-navigation-accent" : ""}`.trim()}
+        className={`${idx === 0 ? "ml-1" : ""} ${currentPath.match(`${link.href}/.?`) || currentPath === link.href ? "text-heading bg-navigation-accent" : ""}`.trim()}
         href={link.href}
         client:load
       >
