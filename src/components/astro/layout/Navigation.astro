@@ -1,10 +1,9 @@
 ---
 import { Icon } from "astro-icon/components";
 
-import AppLink from "@/components/astro/ui/AppLink.astro";
-import IconButton from "@/components/astro/ui/IconButton.astro";
 import NavigationItem from "@/components/vue/NavigationItem.vue";
 import CommandMenu from "@/components/vue/CommandMenu.vue";
+
 import ThemeSwitcher from "./ThemeSwitcher.astro";
 
 interface Props {
@@ -40,7 +39,7 @@ const { posts } = Astro.props;
     links.map((link, idx) => (
       <NavigationItem
         label={link.label}
-        className={`${idx === 0 ? "ml-1" : ""} ${link.href === currentPath ? "text-heading bg-navigation-accent" : ""}`.trim()}
+        className={`${idx === 0 ? "ml-1" : ""} ${currentPath.match(`${link.href}/.?`) || currentPath === link.href ? "text-heading bg-navigation-accent" : ""}`.trim()}
         href={link.href}
         client:load
       >
