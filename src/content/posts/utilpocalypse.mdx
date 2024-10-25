@@ -16,6 +16,8 @@ import ListItem from './../../components/astro/modules/posts/html/ListItem.astro
 
 import Image from './../../components/astro/modules/posts/html/Image.astro';
 
+import CodeSnippet from './../../components/astro/modules/posts/html/CodeSnippet.astro';
+
 export const components = {
   a: TextLink,
   h2: Head2,
@@ -23,6 +25,7 @@ export const components = {
   strong: Strong,
   blockquote: Quote,
   img: Image,
+  pre: CodeSnippet,
 }
 
 It's weekend, you're burning up and currently building a killer side project that (hopefully) make billions
@@ -55,4 +58,3 @@ export function toSnakeCase(text: string): string {
 		.toLowerCase();
 }
 ```
-

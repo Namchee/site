@@ -172,6 +172,13 @@ declare module 'astro:content' {
   collection: "posts";
   data: InferEntrySchema<"posts">
 } & { render(): Render[".mdx"] };
+"utilpocalypse.mdx": {
+	id: "utilpocalypse.mdx";
+  slug: "utilpocalypse";
+  body: string;
+  collection: "posts";
+  data: InferEntrySchema<"posts">
+} & { render(): Render[".mdx"] };
 };
 
 	};
