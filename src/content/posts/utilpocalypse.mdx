@@ -32,7 +32,7 @@ It's weekend, you're burning up and currently building a killer side project tha
 in the future. You're starting of with writing a simple function for your authentication flow that transforms
 a `pascalCase` string to a `snake_case` one.
 
-```ts, title=auth.ts
+```ts title=auth.ts
 // ...the rest of authentication code
 
 function toSnakeCase(text: string): string {
@@ -51,10 +51,198 @@ A brilliant idea pops up on your head:
 You finally extracted this function to a separate file that you call `util.ts`, thus mark the starting point of *utility* or
 *helper* file (or class / module). You are feeling that creating the utility file is the best decision you've made in this project.
 
-```ts, title=util.ts
+```ts  title=util.ts
 export function toSnakeCase(text: string): string {
 	return text.split(/\.?(?=[A-Z])/)
 		.join("_")
 		.toLowerCase();
 }
 ```
+
+## From Utilities to Utilpocalypse
+
+Two days later, a module needs to capitalize each words from a string to make them look prettier to the user.
+Since other modules _might_ also need this function, you decided to implement it by appending it to the utility file you've
+created previously.
+
+```ts title=The first addition to util.ts
+export function toSnakeCase(text: string): string {
+	return text.split(/\.?(?=[A-Z])/)
+		.join("_")
+		.toLowerCase();
+}
+
+export function capitalizeWords(text: string): string {
+	return text.split(" ")
+		.map(word => word.charAt(0).toUppercase() + word.slice(1).toLowercase())
+		.join(" ");
+}
+```
+
+That's one small task down the drain and indeed, there _are_ modules that actually need this function too!
+
+But the next day, you need a function to generate a random number between two values. Without thinking much, you implemented
+it in the utility file based on the previous positive experience.
+
+```ts title=The second addition to util.ts
+export function toSnakeCase(text: string): string {
+	return text.split(/\.?(?=[A-Z])/)
+		.join("_")
+		.toLowerCase();
+}
+
+export function capitalizeWords(text: string): string {
+	return text.split(" ")
+		.map(word => word.charAt(0).toUppercase() + word.slice(1).toLowercase())
+		.join(" ");
+}
+
+// inclusive random
+export function randomInt(min: number, max: number): number {
+	return Math.floor(Math.random() * (max - min + 1)) + min;
+}
+```
+
+And the implementation goes on and on with each passing days until 3 months later the utility file has bloated beyond
+belief from trying to share small functions that _might_ be used by multiple modules.
+
+```ts title=The XXX addition to util.ts (why it's so big now?)
+export function toSnakeCase(text: string): string {
+	return text.split(/\.?(?=[A-Z])/)
+		.join("_")
+		.toLowerCase();
+}
+
+export function capitalizeWords(text: string): string {
+	return text.split(" ")
+		.map(word => word.charAt(0).toUppercase() + word.slice(1).toLowercase())
+		.join(" ");
+}
+
+// inclusive random
+export function randomInt(min: number, max: number): number {
+	return Math.floor(Math.random() * (max - min + 1)) + min;
+}
+
+// shuffle using Fisher-Yates
+export function shuffleArray<T = unknown>(array: T[]): T[] {
+	let currentIndex = array.length, randomIndex;
+
+	while (currentIndex !== 0) {
+		randomIndex = Math.floor(Math.random() * currentIndex);
+	    currentIndex--;
+
+	    [array[currentIndex], array[randomIndex]] = [array[randomIndex], array[currentIndex]];
+	  }
+
+	  return array;
+}
+
+export function debounce<T = (...args: unknown[]) => unknown>(func: T, wait: number): T {
+  let timeout;
+  return function(...args) {
+    clearTimeout(timeout);
+    timeout = setTimeout(() => func.apply(this, args), wait);
+  };
+}
+
+// and 50 more 'small' functions that constitues into a 2_000+ lines of code
+```
+
+While it _does_ solve the potential repetition problem, the utility file is now hardly readable
+even with the help of code comments and even harder to maintain due it sheer size. At this point,
+the code has reached a point that I call **utilpocalypse**.
+
+## The Problem With Utilpocalypse
+
+Using a utility file isn't 100% a bad thing. Compared to using something robust like [design patterns](https://refactoring.guru/), they are
+much simpler and have lower overhead. However, bloating your utility file to the point of utilpocalypse poses several problems:
+
+<dl class=":uno: space-y-6">
+  <ListTitle>
+    Unclear Intentions
+  </ListTitle>
+  <ListItem>
+    [Intention-revealing names](https://wiki.c2.com/?IntentionRevealingNames) is one of recommended practices in software development,
+    which can also be applied to files. What a file does should be clear just from reading its name.
+
+    But what can we actually discern from a file called `util`, `lib`, `common`, or `helper`? Yes, it's a utility, but what _kind_ of utility is it?
+    At a hindsight, it doesn't look too bad... until you see this kind of folder structure from my old project.
+
+    ![Utilities of utility of libraries. Very clear indeed](https://res.cloudinary.com/namchee/image/upload/v1729928350/posts/utilpocalypse/nested-utils.jpg)
+  </ListItem>
+
+  <ListTitle>
+    Maintenance Nightmare
+  </ListTitle>
+  <ListItem>
+    One day, you need a utility and want to check if the function has been implemented or not.
+    Since you have a utility file, you decide to search for relevant implementations on the file.
+    Unfortunately, it's hard to traverse the file with naked eye due to its bloated size.
+
+    Although the IDE search functionality helps, the implementation still escapes your search as it exist
+    with a different name ([naming things are hard](https://martinfowler.com/bliki/TwoHardThings.html) you know?) and you're not sure how to query it correctly.
+    Since you can't find it, you implemented it from scratch and appended it.
+
+    Congratulations, you have unintentionally created a [functional duplication](https://blog.cleancoder.com/uncle-bob/2021/10/28/functional-duplication.html) which is a problem that utility file tries to solve!
+
+    Other problems with utilpocalypse is they are harder to test due to the sheer number of code it contains and harder to refactor due to the possibility
+    of utilities that depends on other utilities.
+  </ListItem>
+
+  <ListTitle>Promoting Bad Practices</ListTitle>
+  <ListItem>
+    When you need a functionality, you will instinctively try to append it to the utility file instead of trying to do intricate design of the implementation to avoid code smells, thus adding more bloat to the utility file.
+
+    It works _before_ (when the utility file hasn't reached utilpocalypse), why not now?
+  </ListItem>
+</dl>
+
+In simple terms, utilpocalypse is a concrete case of [god objects](https://en.wikipedia.org/wiki/God_object).
+It's too big and contains too much capabilities.
+
+## Untangling Utilpocalypse
+
+As I've said in the previous section, I don't disregard utility module as something taboo. The main problem of utilpocalypse is *how the utilities are being structured*.
+In short, you shouldn't combine your utilities into a single file or module.
+
+There are two ways to organize your utilities without grouping them into a single module and turning them into a utilpocalypse:
+
+<dl class=":uno: space-y-6">
+  <ListTitle>
+    Group by Proximity
+  </ListTitle>
+  <ListItem>
+    The first and the most effective way to untangle the utilpocalypse is by organizing the utilities by their proximity.
+
+    Suppose that you want to extract a group of utilities that's only used by a specific module, instead of extracting them into the global utility,
+    you can create a local utility module that is not exposed outside the module instead of appending it to the global utility module.
+  </ListItem>
+
+  <ListTitle>
+    Group By Functionality
+  </ListTitle>
+  <ListItem>
+    In most cases, utilities can be grouped by their similar functionalities. The usual way to organize utilities is by creating
+    a utility folder and group utilities together into modules or service classes.
+
+    From the example above, we can group `toSnakeCase` and `capitalizeWords` into a utility module called `string.ts`
+    as they both deals with strings, `shuffleArray` into a module called `array.ts`, etc.
+
+    > You might be wondering on how to determine the newly separated module name.
+    > The thing is, you can name them whatever you want as long as its not something generic like `util(s)`, `helper`, `lib`, `common`, `lib`, `handler`, and other similar words.
+
+    Do keep in mind that having too much module in the same level may cause maintenance problems. Try to find your own
+    sweet spot by limiting the number of utility modules or logically group them into subdirectories.
+  </ListItem>
+</dl>
+
+## Final Thoughts
+
+Utility module is widely known as a good tool to share small-but-reusable libraries to multiple unrelated module.
+Alas like every other good tool, using it irresponsibly turns them into a utilpocalypse which can slow your development workflow.
+
+When a utilpocalypse happens, don't be afraid to split and organize your utilities by their proximity or functionalities into smaller
+and more focused utility modules. Find your own sweet spot and [move those utilities until it feels right](https://react-file-structure.surge.sh/).
+
+Although it feels wasteful on small scale projects, keeping your utilities clean will save your time from unnecessary searching and accidental duplication.
