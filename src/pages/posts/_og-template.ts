@@ -18,8 +18,8 @@ export const Template = (props: OGProps, imageBuffer: Buffer) => html`
       </h1>
     </div>
 
-    <div style="display: flex; justify-content: space-between; font-weight: 500; font-size: 20px;">
-      <div style="display: flex; color: #697586;">
+    <div style="display: flex; align-items: center; justify-content: space-between; font-weight: 500; font-size: 20px;">
+      <div style="display: flex; color: #535862;">
         <time style="display: flex; margin-right: 8px;">
           ${new Date(props.publishedAt).toLocaleString('en-GB', {
             year: 'numeric',
@@ -29,8 +29,8 @@ export const Template = (props: OGProps, imageBuffer: Buffer) => html`
         </time> — <span style="display: flex; margin-left: 8px;">${props.timeToRead} minutes read</span>
       </div>
 
-      <div style="display: flex; color: #444CE7;">
-        ${props.tags.map(t => t[0].toUpperCase() + t.slice(1).toLowerCase()).join(', ')}
+      <div style="display: flex; gap: 8px; color: #535862;">
+        ${props.tags.map(t => t[0].toUpperCase() + t.slice(1).toLowerCase())}
       </div>
     </div>
   </div>
