@@ -3,7 +3,6 @@ import { getCollection } from "astro:content";
 
 import Layout from "@/components/astro/layout/Layout.astro";
 import AppLink from "@/components/astro/ui/AppLink.astro";
-import Badge from "@/components/astro/ui/Badge.astro";
 
 const posts = (await getCollection("posts"))
   .filter((post) => !post.data.isDraft)
