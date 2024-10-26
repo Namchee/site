@@ -39,7 +39,7 @@ onMounted(() => {
           <TooltipPortal>
             <TooltipContent
               :side="isDesktop ? 'right' : 'top'"
-              :side-offset="isDesktop ? 0 : 8"
+              :side-offset="isDesktop ? 0 : 5"
               :align="isDesktop ? 'center' : 'start'"
               :align-offset="isDesktop ? 0 : -4"
               class="rounded-md text-sm py-2 tooltip__content bg-content text-background lg:bg-transparent lg:text-unset lg:border-none select-none px-3 will-change-[transform,opacity]"
