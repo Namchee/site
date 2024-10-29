@@ -37,7 +37,7 @@ const lastModified = !!frontmatter.lastModified
   og={`posts/og-${frontmatter.slug}`}
 >
   <article class=":uno: grid grid-cols-12 gap-4">
-    <TableOfContentsWrapper client:load>
+    <TableOfContentsWrapper client:visible>
       <Icon slot="button" name="lucide:table-of-contents" class="w-5 h-auto" />
       <TableOfContents slot="toc" headings={frontmatter.headings} />
       <Icon
