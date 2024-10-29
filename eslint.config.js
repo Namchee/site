@@ -12,7 +12,6 @@ import astroConfig from 'eslint-plugin-astro/lib/configs/recommended.js';
 
 import unocss from '@unocss/eslint-config/flat';
 
-/** @type {import('eslint').Linter.FlatConfig[]} */
 export default [
   ...config,
   unocss,
