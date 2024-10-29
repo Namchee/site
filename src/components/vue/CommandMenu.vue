@@ -109,9 +109,14 @@ whenever(keys.arrowUp, () => {
 
 whenever(keys.enter, () => {
   if (visible.value) {
-    const index = focusIndex.value;
+    let index = focusIndex.value;
 
-    window.location.href = relevantLinks.value[index].href;
+    if (index < relevantLinks.value.length) {
+      window.location.href = relevantLinks.value[index].href;
+      return;
+    }
+
+    window.location.href = relevantPosts.value[index - relevantLinks.value.length].href;
   }
 });
 
@@ -203,7 +208,7 @@ watch(visible, async () => {
                 class=":uno: text-sm rounded-md flex transition-colors justify-between p-2 outline-none"
                 :class="{ 'bg-surface text-heading': focusIndex === idx }"
                 rel="noopener noreferrer"
-                @mouseenter="() => focusIndex = idx"
+                @mouseover="() => focusIndex = idx"
               >
                 <div class=":uno: flex items-center space-x-4">
                   <Icon
@@ -217,7 +222,7 @@ watch(visible, async () => {
 
                 <kbd
                   v-if="!!link.key"
-                  :title="link.key"
+                  :title="link.key as string"
                   class=":uno: text-xs border border-separator text-heading font-mono px-1 bg-surface rounded"
                 >{{ link.key }}</kbd>
               </a>
@@ -238,7 +243,7 @@ watch(visible, async () => {
               class=":uno: flex justify-between p-2 text-sm transition-colors outline-none rounded-md"
               :class="{ 'bg-surface text-heading': focusIndex === idx + relevantLinks.length }"
               rel="noopener noreferrer"
-              @mouseenter="() => focusIndex = idx + relevantLinks.length"
+              @mouseover="() => focusIndex = idx + relevantLinks.length"
             >
               {{ post.title }}
             </a>
