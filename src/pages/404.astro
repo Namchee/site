@@ -1,6 +1,7 @@
 ---
 import "@/assets/styles/global.css";
 
+import AppLink from "@/components/astro/ui/AppLink.astro";
 import TextLink from "@/components/astro/ui/TextLink.astro";
 ---
 
@@ -58,18 +59,29 @@ import TextLink from "@/components/astro/ui/TextLink.astro";
 
   <body>
     <div
-      class=":uno: grid transition-colors w-screen h-screen place-items-center bg-background text-content font-sans"
+      class=":uno: grid transition-colors w-screen h-screen place-items-center bg-background text-content font-sans px-8"
     >
       <div class=":uno: grid place-items-center">
-        <h1 class=":uno: text-heading tracking-tight text-7xl">404</h1>
+        <h1 class=":uno: text-heading tracking-tight text-7xl font-medium">404</h1>
 
-        <p class=":uno: text-xl mt-6">
-          You're lost. Now <TextLink onclick="window.history.back()"
-            >go back</TextLink
-          > or <TextLink href="/">go home</TextLink>
+        <p class=":uno: text-xl mt-8 text-balance text-center">
+          Yes, page isn't here so you're lost. <TextLink href="/"
+            >Go home</TextLink
+          >
         </p>
+
+        <AppLink href='#' class="text-xs relative top-16 lucky__try">Feeling lucky instead?</AppLink>
       </div>
     </div>
+
+    <script>
+      const gacha = document.querySelector('.lucky__try');
+
+      gacha.addEventListener('click', () => {
+        // cool video
+        window.open('https://youtu.be/dQw4w9WgXcQ?si=ef9xir6ogPQL5Plq');
+      });
+    </script>
   </body>
 </html>
 
