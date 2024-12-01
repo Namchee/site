@@ -10,7 +10,7 @@ function backToTop() {
 
 <template>
   <div
-    class=":uno: fixed border border-navigation-border bottom-8 right-8 z-40 grid place-items-center p-1 shadow bg-navigation-background transition-colors text-content rounded-md shadow-md lg:hidden"
+    class=":uno: fixed border border-navigation-border bottom-8 right-8 z-40 grid place-items-center p-1 shadow bg-navigation-background transition-colors text-content rounded-md shadow-md md:hidden"
   >
     <TooltipProvider :delay-duration="100">
       <TooltipRoot>

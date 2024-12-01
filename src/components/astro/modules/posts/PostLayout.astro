@@ -33,8 +33,8 @@ const lastModified = !!frontmatter.lastModified
 
 
 <progress
-    class=":uno: fixed w-screen z-10 reading__progress h-[2px] left-0 top-0"
-  ></progress>
+  class=":uno: fixed w-screen z-10 reading__progress h-[2px] left-0 top-0"
+/>
 
 <Layout
   title={`${frontmatter.title} — Namchee`}
@@ -48,7 +48,7 @@ const lastModified = !!frontmatter.lastModified
       <Icon slot="btt" name="lucide:corner-left-up" class=":uno: w-4 h-auto" />
     </TableOfContentsWrapper>
 
-    <BackToTop client:load>
+    <BackToTop client:visible>
       <Icon name="lucide:arrow-up" class=":uno: w-5 h-auto" />
     </BackToTop>
 
