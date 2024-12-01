@@ -22,7 +22,7 @@ onMounted(() => {
 
 <template>
   <div
-    class=":uno: border border-navigation-border bottom-8 left-8 z-40 grid place-items-center p-1 lg:p-0 lg:border-none shadow lg:shadow-none lg:bg-transparent bg-navigation-background lg:top-32 lg:bottom-unset transition-colors text-content rounded-md shadow-md lg:shadow-none fixed"
+    class=":uno: border border-navigation-border bottom-8 left-8 z-40 grid place-items-center p-1 md:p-0 md:border-none shadow md:shadow-none md:bg-transparent bg-navigation-background md:top-32 md:bottom-unset transition-colors text-content rounded-md shadow-md fixed"
   >
     <TooltipProvider :delay-duration="100">
       <TooltipRoot>
@@ -42,7 +42,7 @@ onMounted(() => {
               :side-offset="isDesktop ? 0 : 5"
               :align="isDesktop ? 'center' : 'start'"
               :align-offset="isDesktop ? 0 : -4"
-              class="rounded-md text-sm py-2 tooltip__content bg-content text-background lg:bg-transparent lg:text-unset lg:border-none select-none px-3 will-change-[transform,opacity]"
+              class="rounded-md text-sm py-2 tooltip__content bg-content text-background xl:bg-transparent xl:text-unset xl:border-none select-none px-3 will-change-[transform,opacity]"
             >
               <p>Table of Contents</p>
 
@@ -65,12 +65,12 @@ onMounted(() => {
                 }
               }"
               :force-mount="true"
-              class=":uno: lg:mt-4 lg:mb-0 mb-4 border border-navigation-border rounded-md xl:rounded-none xl:shadow-none shadow-md bg-navigation-background p-4 xl:p-0 xl:bg-transparent xl:translate-x-0 -translate-x-1 xl:border-none transition-all origin-bottom-left lg:origin-top-left data-[state=closed]:opacity-0 data-[state=opened]:opacity-100 data-[state=closed]:scale-95 data-[state=opened]:scale-100"
+              class=":uno: md:mt-4 md:mb-0 mb-4 border border-navigation-border rounded-md xl:rounded-none xl:shadow-none shadow-md bg-navigation-background p-4 xl:p-0 xl:bg-transparent xl:translate-x-0 -translate-x-1 xl:border-none transition-all origin-bottom-left lg:origin-top-left data-[state=closed]:opacity-0 data-[state=opened]:opacity-100 data-[state=closed]:scale-95 data-[state=opened]:scale-100"
             >
               <slot name="toc" />
 
               <button
-                class=":uno: lg:items-center space-x-2 mt-8 text-heading hidden transition-colors lg:flex text-sm"
+                class=":uno: lg:items-center space-x-2 mt-8 text-heading hidden transition-colors md:flex text-sm"
                 @click="backToTop"
                 :tabindex="-1"
               >
