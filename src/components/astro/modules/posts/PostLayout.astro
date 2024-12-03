@@ -163,42 +163,6 @@ const lastModified = !!frontmatter.lastModified
 </style>
 
 <script>
-  // table of contents
-  let currentActiveLink = null;
-
-  const observer = new IntersectionObserver((entries) => {
-    let mostVisibleEntry = null;
-
-    entries.forEach((entry) => {
-      if (entry.intersectionRatio > 0) {
-        if (
-          !mostVisibleEntry ||
-          entry.intersectionRatio > mostVisibleEntry.intersectionRatio
-        ) {
-          mostVisibleEntry = entry;
-        }
-      }
-    });
-
-    if (mostVisibleEntry) {
-      const id = mostVisibleEntry.target.id;
-      const newActiveLink = document.querySelector(
-        `nav ul li a[href="#${id}"]`
-      );
-
-      if (newActiveLink && currentActiveLink !== newActiveLink) {
-        if (currentActiveLink) {
-          currentActiveLink.classList.remove("text-heading", "font-medium");
-        }
-        newActiveLink.classList.add("text-heading", "font-medium");
-        currentActiveLink = newActiveLink;
-      }
-    }
-  });
-
-  const tocLinks = document.querySelectorAll("h2[id], h3[id]");
-  tocLinks.forEach((link) => observer.observe(link));
-
   // reading progress indicator
   const progressBar = document.querySelector(".reading__progress");
 

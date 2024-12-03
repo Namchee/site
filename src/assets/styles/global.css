@@ -95,6 +95,11 @@ html.dark img {
   animation: scaleIn 100ms cubic-bezier(0.33, 1, 0.68, 1);
 }
 
+.dropdown__menu {
+  transform-origin: var(--radix-dropdown-menu-content-transform-origin);
+  animation: scaleIn 100ms cubic-bezier(0.33, 1, 0.68, 1);
+}
+
 @keyframes scaleIn {
   from {
     opacity: 0;
