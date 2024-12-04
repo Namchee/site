@@ -36,19 +36,18 @@ const marginMap = {
 </ul>
 
 <script>
+  console.log('here');
   let currentActiveLink = null;
 
   const observer = new IntersectionObserver((entries) => {
     let mostVisibleEntry = null;
 
     entries.forEach((entry) => {
-      if (entry.intersectionRatio > 0) {
-        if (
+      if (entry.intersectionRatio > 0 &&  (
           !mostVisibleEntry ||
           entry.intersectionRatio > mostVisibleEntry.intersectionRatio
-        ) {
-          mostVisibleEntry = entry;
-        }
+        )) {
+        mostVisibleEntry = entry;
       }
     });
 
