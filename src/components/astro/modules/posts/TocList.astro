@@ -1,7 +1,7 @@
 ---
-import AppLink from '@/components/astro/ui/AppLink.astro';
+import AppLink from "@/components/astro/ui/AppLink.astro";
 
-import type { Heading } from '@/scripts/toc';
+import type { Heading } from "@/scripts/toc";
 
 interface Props {
   headings: Heading[];
@@ -10,23 +10,64 @@ interface Props {
 const { headings } = Astro.props;
 
 const marginMap = {
-  2: 'pl-0',
-  3: 'pl-4 first:mt-2',
-  4: 'pl-8 first:mt-2',
-  5: 'pl-12 first:mt-2',
+  2: "pl-0",
+  3: "pl-4 first:mt-2",
+  4: "pl-8 first:mt-2",
+  5: "pl-12 first:mt-2",
 };
 ---
 
 <ul class=":uno: space-y-2">
-  {headings.map(
-    head => (
+  {
+    headings.map((head) => (
       <li class={marginMap[head.depth]}>
-        <AppLink href={`#${head.slug}`} class=":uno: text-content transition-all text-sm block" tabindex={-1}>
+        <AppLink
+          href={`#${head.slug}`}
+          class=":uno: text-content transition-all text-sm block"
+          tabindex={-1}
+        >
           {head.text}
         </AppLink>
 
         {head.subheadings && <Astro.self headings={head.subheadings} />}
       </li>
-    )
-  )}
+    ))
+  }
 </ul>
+
+<script>
+  let currentActiveLink = null;
+
+  const observer = new IntersectionObserver((entries) => {
+    let mostVisibleEntry = null;
+
+    entries.forEach((entry) => {
+      if (entry.intersectionRatio > 0) {
+        if (
+          !mostVisibleEntry ||
+          entry.intersectionRatio > mostVisibleEntry.intersectionRatio
+        ) {
+          mostVisibleEntry = entry;
+        }
+      }
+    });
+
+    if (mostVisibleEntry) {
+      const id = mostVisibleEntry.target.id;
+      const newActiveLink = document.querySelector(
+        `nav ul li a[href="#${id}"]`
+      );
+
+      if (newActiveLink && currentActiveLink !== newActiveLink) {
+        if (currentActiveLink) {
+          currentActiveLink.classList.remove("text-heading", "font-medium");
+        }
+        newActiveLink.classList.add("text-heading", "font-medium");
+        currentActiveLink = newActiveLink;
+      }
+    }
+  });
+
+  const tocLinks = document.querySelectorAll("h2[id], h3[id]");
+  tocLinks.forEach((link) => observer.observe(link));
+</script>

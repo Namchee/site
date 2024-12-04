@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { DropdownMenuPortal, DropdownMenuRoot, DropdownMenuTrigger, TooltipProvider, TooltipRoot, TooltipTrigger, TooltipPortal, TooltipContent, TooltipArrow, DropdownMenuContent } from 'radix-vue';
-import { onMounted, ref, watch } from 'vue';
+import { onMounted, ref } from 'vue';
 
 function backToTop() {
   if (window) {
@@ -18,47 +18,6 @@ onMounted(() => {
     isOpen.value = true;
   }
 });
-
-watch(isOpen, () => {
-  // table of contents
-  if (isOpen) {
-    let currentActiveLink = null;
-
-    const observer = new IntersectionObserver((entries) => {
-      let mostVisibleEntry = null;
-
-      entries.forEach((entry) => {
-        if (entry.intersectionRatio > 0) {
-          if (
-            !mostVisibleEntry ||
-            entry.intersectionRatio > mostVisibleEntry.intersectionRatio
-          ) {
-            mostVisibleEntry = entry;
-          }
-        }
-      });
-
-      if (mostVisibleEntry) {
-        const id = mostVisibleEntry.target.id;
-        const newActiveLink = document.querySelector(
-          `nav ul li a[href="#${id}"]`
-        );
-
-        if (newActiveLink && currentActiveLink !== newActiveLink) {
-          if (currentActiveLink) {
-            currentActiveLink.classList.remove("text-heading", "font-medium");
-          }
-          newActiveLink.classList.add("text-heading", "font-medium");
-          currentActiveLink = newActiveLink;
-        }
-      }
-    });
-
-    const tocLinks = document.querySelectorAll("h2[id], h3[id]");
-    tocLinks.forEach((link) => observer.observe(link));
-  }
-
-})
 </script>
 
 <template>
@@ -69,33 +28,35 @@ watch(isOpen, () => {
         <DropdownMenuRoot :modal="false" :open="isOpen" @update:open="(open) => isOpen = open">
           <TooltipTrigger as-child>
             <DropdownMenuTrigger
-              class=":uno: w-[36px] h-[36px] lg:w-auto lg:h-auto grid place-items-center transition-colors hover:bg-navigation-accent focus:bg-navigation-accent lg:hover:bg-transparent rounded-md lg:focus:bg-transparent">
+              class=":uno: w-[36px] h-[36px] xl:w-auto xl:h-auto grid place-items-center transition-colors hover:bg-navigation-accent focus:bg-navigation-accent rounded-md xl:hover:bg-transparent xl:focus:bg-transparent">
               <slot name="button" />
             </DropdownMenuTrigger>
           </TooltipTrigger>
           <TooltipPortal>
-            <TooltipContent :side="isDesktop ? 'right' : 'top'" :side-offset="isDesktop ? 0 : 5"
-              :align="isDesktop ? 'center' : 'start'" :align-offset="isDesktop ? 0 : -4"
-              class="rounded-md text-sm py-2 tooltip__content bg-content text-background xl:bg-transparent xl:text-unset xl:border-none select-none px-3 will-change-[transform,opacity]">
+            <TooltipContent :collision-padding="32" :side-offset="4"
+              :class='{
+                "rounded-md text-sm py-2 tooltip__content bg-content text-background xl:border-none select-none px-3 will-change-[transform,opacity]": true,
+                "hidden md:block": isOpen,
+              }'>
               <p>Table of Contents</p>
 
-              <TooltipArrow :width="8" v-if="!isDesktop" class="fill-content" />
+              <TooltipArrow :width="8" class="fill-content" />
             </TooltipContent>
           </TooltipPortal>
 
           <DropdownMenuPortal>
-            <DropdownMenuContent :side="'bottom'" :align="'start'" :align-offset="-10" :side-offset="16"
+            <DropdownMenuContent :side="'bottom'" :align="'start'"
               @interact-outside="(e) => {
                 if (isDesktop) {
                   e.preventDefault();
                   return;
                 }
               }"
-              class=":uno: border border-navigation-border rounded-md xl:rounded-none xl:shadow-none shadow-md bg-navigation-background p-4 xl:p-0 xl:bg-transparent md:translate-x-0 xl:border-none transition-all origin-bottom-left lg:origin-top-left dropdown__menu">
+              class=":uno: border border-navigation-border rounded-md xl:rounded-none xl:shadow-none shadow-md bg-navigation-background p-4 xl:p-0 md:mt-2 md:mb-0 mb-4 xl:mt-4 -ml-1 md:ml-0 xl:bg-transparent md:translate-x-0 xl:border-none transition-all origin-bottom-left lg:origin-top-left dropdown__menu">
               <slot name="toc" />
 
               <button class=":uno: lg:items-center space-x-2 mt-8 text-heading hidden transition-colors md:flex text-sm"
-                @click="backToTop" :tabindex="-1">
+                @click="backToTop">
                 <slot name="btt" />
 
                 <span>Back to Top</span>
