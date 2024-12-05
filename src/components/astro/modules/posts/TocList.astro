@@ -24,7 +24,6 @@ const marginMap = {
         <AppLink
           href={`#${head.slug}`}
           class=":uno: text-content transition-all text-sm block"
-          tabindex={-1}
         >
           {head.text}
         </AppLink>
@@ -36,17 +35,16 @@ const marginMap = {
 </ul>
 
 <script>
-  console.log('here');
-  let currentActiveLink = null;
+  let currentActiveLink: HTMLAnchorElement;
 
   const observer = new IntersectionObserver((entries) => {
     let mostVisibleEntry = null;
 
     entries.forEach((entry) => {
-      if (entry.intersectionRatio > 0 &&  (
-          !mostVisibleEntry ||
-          entry.intersectionRatio > mostVisibleEntry.intersectionRatio
-        )) {
+      if (entry.intersectionRatio > 0 && (
+        !mostVisibleEntry ||
+        entry.intersectionRatio > mostVisibleEntry.intersectionRatio
+      )) {
         mostVisibleEntry = entry;
       }
     });
@@ -55,7 +53,7 @@ const marginMap = {
       const id = mostVisibleEntry.target.id;
       const newActiveLink = document.querySelector(
         `nav ul li a[href="#${id}"]`
-      );
+      ) as HTMLAnchorElement;
 
       if (newActiveLink && currentActiveLink !== newActiveLink) {
         if (currentActiveLink) {
@@ -68,5 +66,6 @@ const marginMap = {
   });
 
   const tocLinks = document.querySelectorAll("h2[id], h3[id]");
+
   tocLinks.forEach((link) => observer.observe(link));
 </script>

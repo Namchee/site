@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { DropdownMenuPortal, DropdownMenuRoot, DropdownMenuTrigger, TooltipProvider, TooltipRoot, TooltipTrigger, TooltipPortal, TooltipContent, TooltipArrow, DropdownMenuContent } from 'radix-vue';
-import { onMounted, ref, watch } from 'vue';
+import { onMounted, ref } from 'vue';
 
 function backToTop() {
   if (window) {
@@ -18,10 +18,6 @@ onMounted(() => {
     isOpen.value = true;
   }
 });
-
-watch(isOpen, () => {
-
-});
 </script>
 
 <template>
@@ -37,26 +33,25 @@ watch(isOpen, () => {
             </DropdownMenuTrigger>
           </TooltipTrigger>
           <TooltipPortal>
-            <TooltipContent :collision-padding="32" :side-offset="4"
-              :class='{
-                "rounded-md text-sm py-2 tooltip__content bg-content text-background xl:border-none select-none px-3 will-change-[transform,opacity]": true,
-                "hidden md:block": isOpen,
-              }'>
+            <TooltipContent :collision-padding="32" :side-offset="4" :class='{
+              "rounded-md text-sm py-2 tooltip__content bg-content text-background xl:border-none select-none px-3 will-change-[transform,opacity]": true,
+              "hidden md:block": isOpen,
+            }'>
               <p>Table of Contents</p>
 
               <TooltipArrow :width="8" class="fill-content" />
             </TooltipContent>
           </TooltipPortal>
 
-          <DropdownMenuPortal>
-            <DropdownMenuContent :side="'bottom'" :align="'start'"
-              @interact-outside="(e) => {
-                if (isDesktop) {
-                  e.preventDefault();
-                  return;
-                }
-              }"
-              class="border border-navigation-border rounded-md xl:rounded-none xl:shadow-none shadow-md bg-navigation-background p-4 xl:p-0 md:mt-2 md:mb-0 mb-4 xl:mt-4 -ml-1 md:ml-0 xl:bg-transparent md:translate-x-0 xl:border-none dropdown__menu">
+          <DropdownMenuPortal class="data-[state=closed]:pointer-events-none!">
+            <DropdownMenuContent :side="'bottom'" :align="'start'" @interact-outside="(e) => {
+              if (isDesktop) {
+                e.preventDefault();
+                return;
+              }
+            }"
+              :force-mount="true"
+              class="border border-navigation-border rounded-md xl:rounded-none xl:shadow-none shadow-md bg-navigation-background p-4 xl:p-0 md:mt-2 md:mb-0 mb-4 xl:mt-4 -ml-1 md:ml-0 xl:bg-transparent md:translate-x-0 xl:border-none transition-all origin-bottom-left lg:origin-top-left data-[state=closed]:opacity-0 data-[state=opened]:opacity-100 data-[state=closed]:scale-95 data-[state=opened]:scale-100">
               <slot name="toc" />
 
               <button class=":uno: lg:items-center space-x-2 mt-8 text-heading hidden transition-colors md:flex text-sm"
