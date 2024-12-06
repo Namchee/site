@@ -37,8 +37,11 @@
     "eslint-plugin-astro": "^1.3.0",
     "eslint-plugin-import": "^2.31.0",
     "eslint-plugin-vue": "^9.30.0",
+    "htmlparser2": "^9.1.0",
     "mdast-util-to-string": "^4.0.0",
     "reading-time": "^1.5.0",
+    "rehype-mathjax": "^6.0.0",
+    "remark-math": "^6.0.0",
     "satori": "^0.10.13",
     "satori-html": "^0.3.2",
     "sharp": "^0.33.4",
@@ -59,10 +62,8 @@
     "astro-icon": "^1.1.1",
     "astro-tweet": "^0.0.4",
     "class-variance-authority": "^0.7.0",
-    "htmlparser2": "^9.1.0",
     "radix-vue": "^1.9.7",
-    "rehype-mathjax": "^6.0.0",
-    "remark-math": "^6.0.0"
+    "remark-sectionize": "^2.1.0"
   },
   "packageManager": "pnpm@9.0.2",
   "pnpm": {
