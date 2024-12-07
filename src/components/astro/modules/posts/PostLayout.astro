@@ -42,7 +42,7 @@ const lastModified = !!frontmatter.lastModified
   og={`posts/og-${frontmatter.slug}`}
 >
   <article class=":uno: grid grid-cols-12 gap-4">
-    <TableOfContentsWrapper client:visible>
+    <TableOfContentsWrapper client:load>
       <Icon slot="button" name="lucide:table-of-contents" class="w-5 h-auto" />
       <TableOfContents slot="toc" headings={frontmatter.headings} />
       <Icon slot="btt" name="lucide:corner-left-up" class=":uno: w-4 h-auto" />
@@ -116,7 +116,7 @@ const lastModified = !!frontmatter.lastModified
     </header>
 
     <div
-      class=":uno: col-start-1 col-end-13 md:col-start-2 md:col-end-12 leading-[1.75] space-y-4 mt-8 overflow-x-visible"
+      class=":uno: col-start-1 col-end-13 md:col-start-2 md:col-end-12 leading-[1.75] space-y-4 mt-8 overflow-x-visible article__body"
     >
       <slot />
     </div>

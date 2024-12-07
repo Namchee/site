@@ -2,6 +2,7 @@
  * Code is taken from 'remark-sectionize' by Jake Low with few modifications.
  */
 
+import { slug } from 'github-slugger';
 import type { Transformer } from 'unified';
 
 import { toString } from 'mdast-util-to-string';
@@ -35,11 +36,6 @@ function sectionize(node, index, parent) {
   const between = parent.children.slice(startIndex, endIndex > 0 ? endIndex : undefined);
 
   const headingText = toString(start);
-  const id = headingText
-    .toLowerCase()
-    .replace(/[^\w]+/g, '-')
-    .replace(/^-+|-+$/g, '');
-
 
   const section = {
     type: 'section',
@@ -48,7 +44,7 @@ function sectionize(node, index, parent) {
     data: {
       hName: 'section',
       hProperties: {
-        id,
+        id: slug(headingText),
         class: 'space-y-4',
       }
     }
