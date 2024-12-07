@@ -44,13 +44,13 @@ onMounted(() => {
           </TooltipPortal>
 
           <DropdownMenuPortal>
-            <DropdownMenuContent :side="'bottom'" :align="'start'" @interact-outside="(e) => {
+            <DropdownMenuContent :side="'bottom'" :align="'start'" :force-mount="true" @interact-outside="(e) => {
               if (isDesktop) {
                 e.preventDefault();
                 return;
               }
             }"
-              class="border border-navigation-border rounded-md xl:rounded-none xl:shadow-none shadow-md bg-navigation-background p-4 xl:p-0 md:mt-2 md:mb-0 mb-4 xl:mt-4 -ml-1 md:ml-0 xl:bg-transparent md:translate-x-0 xl:border-none transition-all origin-bottom-left lg:origin-top-left toc__container">
+              class="border border-navigation-border rounded-md xl:rounded-none xl:shadow-none shadow-md bg-navigation-background p-4 xl:p-0 md:mt-2 md:mb-0 mb-4 xl:mt-4 -ml-1 md:ml-0 xl:bg-transparent md:translate-x-0 xl:border-none transition-all origin-bottom-left lg:origin-top-left data-[state=closed]:opacity-0 data-[state=opened]:opacity-100 data-[state=closed]:scale-95 data-[state=opened]:scale-100">
               <slot name="toc" />
 
               <button class=":uno: lg:items-center space-x-2 mt-8 text-heading hidden transition-colors md:flex text-sm"

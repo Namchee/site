@@ -44,22 +44,24 @@ const marginMap = {
 
   const observer = new IntersectionObserver(
     (entries) => {
-      const intersectingEntries = entries.filter(
-        (entry) => entry.isIntersecting
-      );
+      const visibleSections = Array.from(tocLinks).filter((section) => {
+        const rect = section.getBoundingClientRect();
+        return rect.top < window.innerHeight && rect.bottom > 0;
+      });
 
-      if (intersectingEntries.length > 0) {
+      if (visibleSections.length > 0) {
         // Determine scroll direction
         const scrollDirection = window.scrollY > lastScrollY ? "down" : "up";
         lastScrollY = window.scrollY;
 
-        const targetEntry =
+        // Get the closest section based on direction
+        const targetSection =
           scrollDirection === "down"
-            ? intersectingEntries[intersectingEntries.length - 1]
-            : intersectingEntries[0];
+            ? visibleSections[visibleSections.length - 1] // Closest section when scrolling down
+            : visibleSections[0]; // Closest section when scrolling up
 
-        if (targetEntry) {
-          const id = targetEntry.target.id;
+        if (targetSection) {
+          const id = targetSection.id;
           const newActiveLink = document.querySelector<HTMLAnchorElement>(
             `nav ul li a[href="#${id}"]`
           );
@@ -76,7 +78,7 @@ const marginMap = {
       }
     },
     {
-      threshold: [0.5],
+      rootMargin: "0px 0px -50% 0px", // Ensures sections are considered visible earlier
     }
   );
 

@@ -95,10 +95,6 @@ html.dark img {
   animation: scaleIn 100ms cubic-bezier(0.33, 1, 0.68, 1);
 }
 
-.toc__container {
-  animation: scaleIn 100ms cubic-bezier(0.33, 1, 0.68, 1);
-}
-
 @keyframes scaleIn {
   from {
     opacity: 0;
