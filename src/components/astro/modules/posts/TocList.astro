@@ -35,27 +35,77 @@ const marginMap = {
 </ul>
 
 <script>
-  let currentActiveLink: HTMLAnchorElement;
+  const tocLinks = document.querySelectorAll("section[id]");
+  let currentActiveLink;
 
-  const observer = new IntersectionObserver((entries) => {
-    let mostVisibleEntry = null;
+  const observer = new IntersectionObserver(
+    (entries) => {
+      // Filter only intersecting entries
+      const intersectingEntries = entries.filter(
+        (entry) => entry.isIntersecting
+      );
 
-    entries.forEach((entry) => {
-      if (entry.intersectionRatio > 0 && (
-        !mostVisibleEntry ||
-        entry.intersectionRatio > mostVisibleEntry.intersectionRatio
-      )) {
-        mostVisibleEntry = entry;
+      // Use the latest intersecting entry (most recent visibility change)
+      const latestEntry = intersectingEntries[intersectingEntries.length - 1];
+
+      if (latestEntry) {
+        const id = latestEntry.target.id;
+        const newActiveLink = document.querySelector(
+          `nav ul li a[href="#${id}"]`
+        );
+
+        if (newActiveLink && currentActiveLink !== newActiveLink) {
+          if (currentActiveLink) {
+            currentActiveLink.classList.remove("text-heading", "font-medium");
+          }
+
+          newActiveLink.classList.add("text-heading", "font-medium");
+          currentActiveLink = newActiveLink;
+        }
       }
+    },
+    {
+      threshold: [0.25],
+      rootMargin: "0px 0px 0px 0px",
+    }
+  );
+
+  function initializeActiveLink(): void {
+    const tocLinks = document.querySelectorAll<HTMLElement>("section[id]");
+
+    // Find all partially visible sections
+    const visibleSections = Array.from(tocLinks).filter((section) => {
+      const rect = section.getBoundingClientRect();
+      return rect.top < window.innerHeight && rect.bottom > 0;
     });
 
-    if (mostVisibleEntry) {
-      const id = mostVisibleEntry.target.id;
-      const newActiveLink = document.querySelector(
-        `nav ul li a[href="#${id}"]`
-      ) as HTMLAnchorElement;
+    console.log(visibleSections);
 
-      if (newActiveLink && currentActiveLink !== newActiveLink) {
+    // Select the section closest to the top of the viewport
+    const closestSection = visibleSections.reduce<{
+      section: HTMLElement;
+      rectTop: number;
+    } | null>((closest, section) => {
+      const rect = section.getBoundingClientRect();
+      if (!closest || rect.top < closest.rectTop) {
+        return { section, rectTop: rect.top };
+      }
+      return closest;
+    }, null);
+
+    console.log(closestSection);
+
+    if (closestSection) {
+      const id = closestSection.section.id;
+      console.log(closestSection.section.id);
+      console.log(`nav ul li a[href="#${id}"]`);
+      const newActiveLink = document.querySelector<HTMLAnchorElement>(
+        `nav ul li a[href="#${id}"]`
+      );
+
+      console.log(newActiveLink);
+
+      if (newActiveLink) {
         if (currentActiveLink) {
           currentActiveLink.classList.remove("text-heading", "font-medium");
         }
@@ -63,9 +113,9 @@ const marginMap = {
         currentActiveLink = newActiveLink;
       }
     }
-  });
+  }
 
-  const tocLinks = document.querySelectorAll("h2[id], h3[id]");
-
+  // Observe each section and set initial active link
   tocLinks.forEach((link) => observer.observe(link));
+  initializeActiveLink();
 </script>

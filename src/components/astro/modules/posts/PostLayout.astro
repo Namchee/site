@@ -115,11 +115,11 @@ const lastModified = !!frontmatter.lastModified
       </div>
     </header>
 
-    <section
+    <div
       class=":uno: col-start-1 col-end-13 md:col-start-2 md:col-end-12 leading-[1.75] space-y-4 mt-8 overflow-x-visible"
     >
       <slot />
-    </section>
+    </div>
 
     <section class=":uno: flex col-start-1 col-end-13 justify-between mt-16">
       <div>
@@ -151,13 +151,16 @@ const lastModified = !!frontmatter.lastModified
 
 <style>
   .reading__progress::-webkit-progress-bar {
+    transition: background 150ms ease-out;
     background-color: oklch(var(--background));
   }
   .reading__progress::-webkit-progress-value {
+    transition: background 150ms ease-out;
     background-color: oklch(var(--heading));
   }
 
   .reading__progress::-moz-progress-bar {
+    transition: background 150ms ease-out;
     background-color: oklch(var(--heading));
   }
 </style>

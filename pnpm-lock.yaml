@@ -81,9 +81,6 @@ importers:
       '@unocss/reset':
         specifier: ^0.58.9
         version: 0.58.9
-      '@unocss/transformer-compile-class':
-        specifier: ^0.59.4
-        version: 0.59.4
       '@unpic/pixels':
         specifier: ^1.2.2
         version: 1.2.2
@@ -138,6 +135,12 @@ importers:
       typescript:
         specifier: ^5.4.5
         version: 5.4.5
+      unist-util-find-after:
+        specifier: ^5.0.0
+        version: 5.0.0
+      unist-util-visit:
+        specifier: ^5.0.0
+        version: 5.0.0
       unocss:
         specifier: ^0.59.4
         version: 0.59.4(postcss@8.4.47)(rollup@4.24.0)(vite@5.4.9(@types/node@20.14.2))
