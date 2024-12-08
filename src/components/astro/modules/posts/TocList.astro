@@ -37,89 +37,28 @@ const marginMap = {
 </ul>
 
 <script>
-  const tocLinks = document.querySelectorAll("section[id]");
+  const sections = document.querySelectorAll<HTMLElement>("section[id]");
 
-  let lastScrollY = window.scrollY;
-  let currentActiveLink;
+  let currIdx: HTMLAnchorElement = null;
 
   const observer = new IntersectionObserver(
     (entries) => {
-      const visibleSections = Array.from(tocLinks).filter((section) => {
-        const rect = section.getBoundingClientRect();
-        return rect.top < window.innerHeight && rect.bottom > 0;
-      });
+      for (const entry of entries) {
+        const id = entry.target.id;
 
-      if (visibleSections.length > 0) {
-        // Determine scroll direction
-        const scrollDirection = window.scrollY > lastScrollY ? "down" : "up";
-        lastScrollY = window.scrollY;
+        const link = document.querySelector<HTMLAnchorElement>(
+          `nav ul li a[href="#${id}"]`
+        );
 
-        // Get the closest section based on direction
-        const targetSection =
-          scrollDirection === "down"
-            ? visibleSections[visibleSections.length - 1] // Closest section when scrolling down
-            : visibleSections[0]; // Closest section when scrolling up
-
-        if (targetSection) {
-          const id = targetSection.id;
-          const newActiveLink = document.querySelector<HTMLAnchorElement>(
-            `nav ul li a[href="#${id}"]`
-          );
-
-          if (newActiveLink && currentActiveLink !== newActiveLink) {
-            if (currentActiveLink) {
-              currentActiveLink.classList.remove("text-heading", "font-medium");
-            }
-
-            newActiveLink.classList.add("text-heading", "font-medium");
-            currentActiveLink = newActiveLink;
-          }
+        if (!link) {
+          return;
         }
+
+        const method = entry.intersectionRatio > 0 ? 'add' : 'remove';
+        link.classList[method]("text-heading", "font-medium");
       }
     },
-    {
-      rootMargin: "0px 0px -50% 0px", // Ensures sections are considered visible earlier
-    }
   );
 
-  function initializeActiveLink(): void {
-    const tocLinks = document.querySelectorAll<HTMLElement>("section[id]");
-
-    // Find all partially visible sections
-    const visibleSections = Array.from(tocLinks).filter((section) => {
-      const rect = section.getBoundingClientRect();
-      return rect.top < window.innerHeight && rect.bottom > 0;
-    });
-
-    // Select the section closest to the top of the viewport
-    const closestSection = visibleSections.reduce<{
-      section: HTMLElement;
-      rectTop: number;
-    } | null>((closest, section) => {
-      const rect = section.getBoundingClientRect();
-      if (!closest || rect.top < closest.rectTop) {
-        return { section, rectTop: rect.top };
-      }
-      return closest;
-    }, null);
-
-    if (closestSection) {
-      const id = closestSection.section.id;
-      const newActiveLink = document.querySelector<HTMLAnchorElement>(
-        `nav ul li a[href="#${id}"]`
-      );
-
-      if (newActiveLink) {
-        if (currentActiveLink) {
-          currentActiveLink.classList.remove("text-heading", "font-medium");
-        }
-        newActiveLink.classList.add("text-heading", "font-medium");
-        currentActiveLink = newActiveLink;
-      }
-    }
-  }
-
-  // Observe each section and set initial active link
-  tocLinks.forEach((link) => observer.observe(link));
-  initializeActiveLink();
+  sections.forEach((link) => observer.observe(link));
 </script>
