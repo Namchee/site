@@ -19,7 +19,7 @@ function copyLink() {
   <ToastProvider>
     <button
       @click="copyLink"
-      class=":uno: group"
+      class=":uno: group cursor-pointer"
       title="Copy Post Link to Clipboard"
     >
       <slot />
@@ -28,7 +28,7 @@ function copyLink() {
     <ToastRoot
       v-model:open="open"
       :duration="2_500"
-      class=":uno: text-sm border border-separator text-heading rounded-md shadow p-4 grid gap-x-4 items-center toast__root dark:bg-surface dark:border-none [grid-template-areas:_'title_action'_'description_action'] grid-cols-[auto_max-content]"
+      class=":uno: hidden text-sm bg-background border border-separator text-heading rounded-md shadow p-4 lg:grid gap-x-4 items-center toast__root dark:bg-surface dark:border-none [grid-template-areas:_'title_action'_'description_action'] grid-cols-[auto_max-content]"
     >
       <ToastDescription>
         Link copied to clipboard!

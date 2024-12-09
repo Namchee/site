@@ -1,6 +1,4 @@
-import { defineConfig } from 'unocss';
-
-import transformerCompileClass from '@unocss/transformer-compile-class';
+import { defineConfig, transformerCompileClass } from 'unocss';
 
 // eslint-disable-next-line canonical/no-unused-exports
 export default defineConfig({
