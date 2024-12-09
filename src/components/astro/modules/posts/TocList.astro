@@ -39,8 +39,6 @@ const marginMap = {
 <script>
   const sections = document.querySelectorAll<HTMLElement>("section[id]");
 
-  let currIdx: HTMLAnchorElement = null;
-
   const observer = new IntersectionObserver(
     (entries) => {
       for (const entry of entries) {
