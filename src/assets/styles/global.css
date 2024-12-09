@@ -106,3 +106,9 @@ html.dark img {
     transform: scale(1);
   }
 }
+
+@media (pointer: coarse) {
+  .no-touchscreen {
+    display: none;
+  }
+}

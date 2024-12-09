@@ -22,7 +22,7 @@ onMounted(() => {
 
 <template>
   <div
-    class=":uno: border border-navigation-border bottom-8 left-8 z-40 grid place-items-center p-1 md:p-0 md:border-none shadow md:shadow-none md:bg-transparent bg-navigation-background md:top-32 md:bottom-unset transition-colors text-content rounded-md shadow-md fixed">
+    class=":uno: border border-navigation-border bottom-8 left-8 z-10 grid place-items-center p-1 md:p-0 md:border-none shadow md:shadow-none md:bg-transparent bg-navigation-background md:top-32 md:bottom-unset transition-colors text-content rounded-md shadow-md fixed">
     <TooltipProvider :delay-duration="100">
       <TooltipRoot>
         <DropdownMenuRoot :modal="false" :open="isOpen" @update:open="(open) => isOpen = open">
@@ -44,17 +44,25 @@ onMounted(() => {
           </TooltipPortal>
 
           <DropdownMenuPortal>
-            <DropdownMenuContent :side="'bottom'" :align="'start'" :force-mount="true" @interact-outside="(e) => {
-              if (isDesktop) {
-                e.preventDefault();
-                return;
-              }
-            }"
-              class="border border-navigation-border rounded-md xl:rounded-none xl:shadow-none shadow-md bg-navigation-background p-4 xl:p-0 md:mt-2 md:mb-0 mb-4 xl:mt-4 -ml-1 md:ml-0 xl:bg-transparent md:translate-x-0 xl:border-none transition-all origin-bottom-left lg:origin-top-left data-[state=closed]:opacity-0 data-[state=opened]:opacity-100 data-[state=closed]:scale-95 data-[state=opened]:scale-100 toc__container">
+            <DropdownMenuContent
+              side="bottom"
+              align="start"
+              :force-mount="true"
+              @interact-outside="(e) => {
+                if (isDesktop) {
+                  e.preventDefault();
+                  return;
+                }
+              }"
+              class="border border-navigation-border rounded-md xl:rounded-none xl:shadow-none shadow-md bg-navigation-background p-4 xl:p-0 md:mt-2 md:mb-0 mb-4 xl:mt-4 -ml-1 md:ml-0 xl:bg-transparent md:translate-x-0 xl:border-none transition-all origin-bottom-left lg:origin-top-left data-[state=closed]:opacity-0 data-[state=opened]:opacity-100 data-[state=closed]:scale-95 data-[state=opened]:scale-100 toc__container"
+            >
               <slot name="toc" />
 
-              <button class=":uno: lg:items-center space-x-2 mt-8 text-heading hidden transition-colors md:flex text-sm"
-                @click="backToTop">
+              <button
+                class=":uno: lg:items-center space-x-2 mt-8 text-heading hidden transition-colors md:flex text-sm"
+                @click="backToTop"
+                tabindex="-1"
+              >
                 <slot name="btt" />
 
                 <span>Back to Top</span>
@@ -68,7 +76,7 @@ onMounted(() => {
 </template>
 
 <style scoped>
-div[data-radix-popper-content-wrapper]:has( .toc__container[data-state=closed]) {
+div[data-radix-popper-content-wrapper]:has(.toc__container[data-state=closed]) {
   pointer-events: none;
   visibility: hidden;
 }

@@ -23,7 +23,8 @@ const marginMap = {
       <li class={marginMap[head.depth]}>
         <AppLink
           href={`#${head.slug}`}
-          class=":uno: text-content transition-all text-sm block"
+          class=":uno: text-content transition-all text-sm"
+          tabindex={-1}
         >
           {head.text}
         </AppLink>

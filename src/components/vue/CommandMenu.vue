@@ -223,7 +223,7 @@ watch(visible, async () => {
                 <kbd
                   v-if="!!link.key"
                   :title="link.key as string"
-                  class=":uno: text-xs border border-separator text-heading font-mono px-1 bg-surface rounded"
+                  class=":uno: text-xs border border-separator text-heading font-mono px-1 bg-surface rounded no-touchscreen"
                 >{{ link.key }}</kbd>
               </a>
             </ul>
@@ -250,7 +250,7 @@ watch(visible, async () => {
           </div>
         </DialogDescription>
 
-        <div class=":uno: border-separator text-sm flex items-center space-x-4 border-t py-2 px-4">
+        <div class=":uno: border-separator text-sm flex items-center space-x-4 border-t py-2 px-4 no-touchscreen">
           <div class=":uno: flex items-center space-x-1">
             <Key
               title="Arrow Up"
