@@ -1,7 +1,7 @@
 ---
-import AppLink from '@/components/astro/ui/AppLink.astro';
+import AppLink from "@/components/astro/ui/AppLink.astro";
 
-import type { Heading } from '@/scripts/toc';
+import type { Heading } from "@/scripts/toc";
 
 interface Props {
   headings: Heading[];
@@ -10,23 +10,54 @@ interface Props {
 const { headings } = Astro.props;
 
 const marginMap = {
-  2: 'pl-0',
-  3: 'pl-4 first:mt-2',
-  4: 'pl-8 first:mt-2',
-  5: 'pl-12 first:mt-2',
+  2: "pl-0",
+  3: "pl-4 first:mt-2",
+  4: "pl-8 first:mt-2",
+  5: "pl-12 first:mt-2",
 };
 ---
 
 <ul class=":uno: space-y-2">
-  {headings.map(
-    head => (
+  {
+    headings.map((head) => (
       <li class={marginMap[head.depth]}>
-        <AppLink href={`#${head.slug}`} class=":uno: text-content transition-all text-sm block" tabindex={-1}>
+        <AppLink
+          href={`#${head.slug}`}
+          class=":uno: text-content transition-all text-sm"
+          tabindex={-1}
+        >
           {head.text}
         </AppLink>
 
-        {head.subheadings && <Astro.self headings={head.subheadings} />}
+        {head.subheadings.length > 0 && (
+          <Astro.self headings={head.subheadings} />
+        )}
       </li>
-    )
-  )}
+    ))
+  }
 </ul>
+
+<script>
+  const sections = document.querySelectorAll<HTMLElement>("section[id]");
+
+  const observer = new IntersectionObserver(
+    (entries) => {
+      for (const entry of entries) {
+        const id = entry.target.id;
+
+        const link = document.querySelector<HTMLAnchorElement>(
+          `nav ul li a[href="#${id}"]`
+        );
+
+        if (!link) {
+          return;
+        }
+
+        const method = entry.intersectionRatio > 0 ? 'add' : 'remove';
+        link.classList[method]("text-heading", "font-medium");
+      }
+    },
+  );
+
+  sections.forEach((link) => observer.observe(link));
+</script>
