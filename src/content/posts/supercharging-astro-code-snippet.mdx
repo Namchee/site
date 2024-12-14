@@ -1,0 +1,75 @@
+import { html } from "satori-html"
+import { block } from "sharp"
+
+---
+title: 'Supercharging Astro Code Snippet'
+publishedAt: 2024-12-17
+subtitle: 'Make the code snippet truly yours'
+tags:
+  - astro
+---
+
+Astro ships with a built-in support for code snippets powered by [Shiki](https://shiki.style/) (and [Prism](https://docs.astro.build/en/guides/syntax-highlighting/#markdown-code-blocks)).
+By default, it provider syntax highlighting for:
+
+<dl class=":uno: space-y-2">
+  <ListTitle class="font-normal">
+    All code fences (\`\`\`) defined in Markdown and MDX files.
+  </ListTitle>
+  <ListTitle class="font-normal">
+    Content defined with [`<Code />`](https://docs.astro.build/en/guides/syntax-highlighting/#code-) or [`<Prism />`](https://docs.astro.build/en/guides/syntax-highlighting/#prism-) component within `.astro` files.
+  </ListTitle>
+</dl>
+
+![The default snippet. Looks great, but can we make it greater?](https://res.cloudinary.com/namchee/image/upload/v1734152131/posts/supercharing-astro-code-snippet/default-snippet.png)
+
+While it's definitely enough for most cases, sometimes you might want to add some additional features such as adding a copy to clipboard button,
+displaying the language, or just want to style the code blocks to make it yours without touching the syntax highlighter internals too much.
+
+This post will try to guide you through customizing the default code snippets in markdown files and transform them into something like what you currently see in this site.
+
+<Quote>
+ I will be using Vue to handle interactivity in this post, but the functionality itself can be implemented in other frameworks, including pure JavaScript.
+</Quote>
+
+### Deconstructing the Code Snippet
+
+Before moving on to the actual customization of the snippet, we need to understand how Astro handles markdown files.
+
+For each markdown file that Astro encounters, it will parse the content using a processor called [remark](https://github.com/withastro/astro/tree/main/packages/markdown/remark),
+which is a part of the [unified](https://unifiedjs.com/) toolchain. From the markdown string, remark will produce an
+[abstract syntax tree](https://en.wikipedia.org/wiki/Abstract_syntax_tree) (AST).
+
+<Quote>
+  You might be wondering why we need to transform the markdown into an AST and not directly use something like RegExp.
+
+  This is because markdown (and HTML) is not a [regular language](https://en.wikipedia.org/wiki/Regular_language). Trying to parse non-regular language with RegExp tends to be error prone.
+</Quote>
+
+The AST will then be transformed into HTML tags using another processor in the unified toolchain called [rehype](https://github.com/rehypejs/rehype), which usually is augmented further using plugins.
+
+The diagram below shows a simplified pipeline of transforming markdown into HTML.
+
+```mermaid
+```
+
+When processing code blocks, the process above will output HTML tags similar to the following:
+
+```html title=Example HTML output of a code block. Looks pretty complex isn't it?
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="js">
+	<code>
+		<span class="line"><span style="color:#F97583">function</span>
+		<span style="color:#B392F0"> sayHello</span>
+		<span style="color:#E1E4E8">() {</span></span>
+		<span class="line"><span style="color:#E1E4E8">  console.</span>
+		<span style="color:#B392F0">log</span>
+		<span style="color:#E1E4E8">(</span>
+		<span style="color:#9ECBFF">'Hello World!'</span>
+		<span style="color:#E1E4E8">);</span></span>
+		<span class="line"><span style="color:#E1E4E8">}</span></span>
+		<span class="line"></span>
+	</code>
+</pre>
+```
+
+This HTML tags will then be used by Astro to replace code blocks when transforming markdown into an HTML page.
