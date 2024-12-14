@@ -36,9 +36,9 @@ This post will try to guide you through customizing the default code snippets in
 
 Before moving on to the actual customization of the snippet, we need to understand how Astro handles markdown files.
 
-For each markdown file that Astro encounters, it will parse the content using a processor called [remark](https://github.com/withastro/astro/tree/main/packages/markdown/remark),
-which is a part of the [unified](https://unifiedjs.com/) toolchain. From the markdown string, remark will produce an
-[abstract syntax tree](https://en.wikipedia.org/wiki/Abstract_syntax_tree) (AST).
+For each markdown file, Astro will parse the content using a processor called [remark](https://github.com/withastro/astro/tree/main/packages/markdown/remark),  which is a part of the
+[unified](https://unifiedjs.com/) toolchain. From the markdown, remark will produce an [abstract syntax tree](https://en.wikipedia.org/wiki/Abstract_syntax_tree) (AST). The AST will
+then be transformed into HTML tags using another processor in the same toolchain: [rehype](https://github.com/rehypejs/rehype).
 
 <Quote>
   You might be wondering why we need to transform the markdown into an AST and not directly use something like RegExp.
