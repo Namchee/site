@@ -1,6 +1,3 @@
-import { html } from "satori-html"
-import { block } from "sharp"
-
 ---
 title: 'Supercharging Astro Code Snippet'
 publishedAt: 2024-12-17
@@ -8,6 +5,27 @@ subtitle: 'Make the code snippet truly yours'
 tags:
   - astro
 ---
+
+import TextLink from './../../components/astro/ui/TextLink.astro';
+import Head2 from './../../components/astro/modules/posts/html/Head2.astro';
+import Head3 from './../../components/astro/modules/posts/html/Head3.astro';
+import Strong from './../../components/astro/modules/posts/html/Strong.astro';
+import Quote from './../../components/astro/modules/posts/html/Quote.astro';
+
+import ListTitle from './../../components/astro/modules/posts/html/ListTitle.astro';
+
+import Image from './../../components/astro/modules/posts/html/Image.astro';
+
+import CodeSnippet from './../../components/astro/modules/posts/html/CodeSnippet.astro';
+
+export const components = {
+	a: TextLink,
+	h2: Head2,
+	h3: Head3,
+	strong: Strong,
+	img: Image,
+	pre: CodeSnippet,
+}
 
 Astro ships with a built-in support for code snippets powered by [Shiki](https://shiki.style/) (and [Prism](https://docs.astro.build/en/guides/syntax-highlighting/#markdown-code-blocks)).
 By default, it provider syntax highlighting for:
@@ -23,16 +41,15 @@ By default, it provider syntax highlighting for:
 
 ![The default snippet. Looks great, but can we make it greater?](https://res.cloudinary.com/namchee/image/upload/v1734152131/posts/supercharing-astro-code-snippet/default-snippet.png)
 
-While it's definitely enough for most cases, sometimes you might want to add some additional features such as adding a copy to clipboard button,
-displaying the language, or just want to style the code blocks to make it yours without touching the syntax highlighter internals too much.
+While it's definitely enough for most cases, sometimes you might want to add some additional features like adding a copy to clipboard button or just want to style and make it yours without touching the syntax highlighter internals too much.
 
-This post will try to guide you through customizing the default code snippets in markdown files and transform them into something like what you currently see in this site.
+This post will guide you through customizing the default code snippets in markdown files and transform them into something like what you currently see in this site.
 
 <Quote>
- I will be using Vue to handle interactivity in this post, but the functionality itself can be implemented in other frameworks, including pure JavaScript.
+ I will be using [Vue](https://vuejs.org/) to handle interactivity in this post, but the functionality itself can be implemented in other frameworks, including pure JavaScript.
 </Quote>
 
-### Deconstructing the Code Snippet
+## Deconstructing the Code Snippet
 
 Before moving on to the actual customization of the snippet, we need to understand how Astro handles markdown files.
 
@@ -43,19 +60,29 @@ then be transformed into HTML tags using another processor in the same toolchain
 <Quote>
   You might be wondering why we need to transform the markdown into an AST and not directly use something like RegExp.
 
-  This is because markdown (and HTML) is not a [regular language](https://en.wikipedia.org/wiki/Regular_language). Trying to parse non-regular language with RegExp tends to be error prone.
+	<br />
+
+  This is because markdown (and HTML) is not a [regular language](https://en.wikipedia.org/wiki/Regular_language). Trying to parse non-regular language with **regular** tends to be error prone.
 </Quote>
 
-The AST will then be transformed into HTML tags using another processor in the unified toolchain called [rehype](https://github.com/rehypejs/rehype), which usually is augmented further using plugins.
+The functionality of remark and rehype can be augmented using [plugins](https://unifiedjs.com/learn/guide/create-a-rehype-plugin/) that provides additional features,
+such as custom syntax and syntax highlighting. Astro enables [GitHub-flavored markdown](https://github.github.com/gfm/) and [SmartyPants](https://github.com/silvenon/remark-smartypants)
+plugin by default.
 
-The diagram below shows a simplified pipeline of transforming markdown into HTML.
+The diagram below shows a simplified pipeline of markdown transformation to HTML that occurs during the build process.
 
 ```mermaid
+flowchart LR
+	Markdown --> astro[Astro Compiler]
+	astro --> remark[Remark + Plugins]
+	remark -- AST --> rehype(Rehype + Plugins)
+	rehype -- HTML tags --> astro
+	astro --> page(HTML page)
 ```
 
 When processing code blocks, the process above will output HTML tags similar to the following:
 
-```html title=Example HTML output of a code block. Looks pretty complex isn't it?
+```html title=Example HTML output of a code block. Looks pretty complex isn't it?, no-lang
 <pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="js">
 	<code>
 		<span class="line"><span style="color:#F97583">function</span>
@@ -72,4 +99,45 @@ When processing code blocks, the process above will output HTML tags similar to 
 </pre>
 ```
 
-This HTML tags will then be used by Astro to replace code blocks when transforming markdown into an HTML page.
+This HTML tags will then be used by Astro to replace code blocks during the markdown
+transformation process into an HTML page.
+
+## Replacing The Default Code Snippet
+
+Our first step to customize the code snippet is by replacing the default component with
+a custom component that wraps the original one using Astro [`<slot />`](https://docs.astro.build/en/basics/astro-components/#slots).
+
+To do that, we can assign a custom mapping for HTML elements by exporting a new constant
+called `components` in our MDX files.
+
+```markdown title=hello-world.mdx
+---
+title: 'Hello World!'
+publishedAt: 2024-12-17
+---
+
+import CodeSnippet from '../../components/CodeSnippet.astro';
+
+export const components = { // [!code highlight]
+	// in MDX, code snippets are defined with <pre>  // [!code highlight]
+	pre: CodeSnippet, // [!code highlight]
+} // [!code highlight]
+```
+
+We can then define `CodeSnippet` as:
+
+```astro title=CodeSnippet.astro
+---
+---
+
+<figure>
+	<figcaption>
+		This is a caption
+	</figcaption>
+
+	<slot />
+</figure>
+
+```
+
+Save the file and we will be greeted by this... weird element.
