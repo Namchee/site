@@ -83,18 +83,26 @@ flowchart LR
 When processing code blocks, the process above will output HTML tags similar to the following:
 
 ```html title=Example HTML output of a code block. Looks pretty complex isn't it?, no-lang
-<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="js">
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8;overflow-x:auto" tabindex="0" data-language="js">
 	<code>
-		<span class="line"><span style="color:#F97583">function</span>
-		<span style="color:#B392F0"> sayHello</span>
-		<span style="color:#E1E4E8">() {</span></span>
-		<span class="line"><span style="color:#E1E4E8">  console.</span>
-		<span style="color:#B392F0">log</span>
-		<span style="color:#E1E4E8">(</span>
-		<span style="color:#9ECBFF">'Hello World!'</span>
-		<span style="color:#E1E4E8">);</span></span>
-		<span class="line"><span style="color:#E1E4E8">}</span></span>
-		<span class="line"></span>
+		<span class="line">
+			<span style="color:#F97583">&lt;!</span>
+			<span style="color:#E1E4E8">doctype html</span>
+			<span style="color:#F97583">&gt;</span>
+		</span>
+		<span class="line">
+			<span style="color:#E1E4E8">&lt;</span>
+			<span style="color:#85E89D">html</span>
+			<span style="color:#B392F0"> lang</span>
+			<span style="color:#F97583">=</span><span style="color:#9ECBFF">"en"</span>
+			<span style="color:#E1E4E8">&gt;</span>
+		</span>
+		<span class="line">
+			<span style="color:#E1E4E8">  &lt;</span>
+			<span style="color:#85E89D">head</span>
+			<span style="color:#E1E4E8">&gt;</span>
+		</span>
+		<!-- and the rest of the tags -->
 	</code>
 </pre>
 ```
