@@ -1,5 +1,5 @@
 ---
-title: 'Supercharging Astro Code Snippet'
+title: 'Upgrading Astro MDX Components'
 publishedAt: 2024-12-17
 subtitle: 'Make the code snippet truly yours'
 tags:
@@ -13,6 +13,7 @@ import Strong from './../../components/astro/modules/posts/html/Strong.astro';
 import Quote from './../../components/astro/modules/posts/html/Quote.astro';
 
 import ListTitle from './../../components/astro/modules/posts/html/ListTitle.astro';
+import ListItem from './../../components/astro/modules/posts/html/ListItem.astro';
 
 import Image from './../../components/astro/modules/posts/html/Image.astro';
 
@@ -181,14 +182,5 @@ the entire `<pre>` element with `<figure>` as shown in the following snippet.
 </figure>
 ```
 
-While it *does* work,
-
-Obviously, this is **not** what we should do! Replacing the default behavior of `<pre>` is a bad idea
-in the long run as it is hard to replace pre-formatting in CSS. This means we can't just replace the existing
-element via the `components` constant.
-
-Since directly touching the code block element is a no-go, the safest way to customize the code block is by
-*wrapping* it inside `<figure>` and customize the surrounding elements without
-touching the `<pre>` block at all.
-
-To wrap the `<pre>` element, we need a direct access to the `<pre>` block.
+Well, that's **not** what we wanted at all! We don't want to remove the `<pre>` entirely as we need to preserve
+the code formatting. Since we need
