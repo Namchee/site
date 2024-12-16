@@ -135,9 +135,6 @@ export const components = { // [!code highlight]
 We can then define `CodeSnippet` as:
 
 ```astro title=CodeSnippet.astro
----
----
-
 <figure>
 	<figcaption>
 		This is a caption
@@ -148,4 +145,50 @@ We can then define `CodeSnippet` as:
 
 ```
 
-Save the file and we will be greeted by this... weird element.
+Save the file and we will be greeted by this weird element.
+
+![Well... that was unexpected](https://res.cloudinary.com/namchee/image/upload/v1734274270/posts/supercharing-astro-code-snippet/first-try.png)
+
+So what's happening here? Why does wrapping the code block in a `<figure>` element ruins the structure entirely? Well it turns out, we replaced
+the entire `<pre>` element with `<figure>` as shown in the following snippet.
+
+```html title=Should we replace the <pre>?
+<figure>
+	<figcaption>
+		This is a caption
+	</figcaption>
+
+	<code>
+		<span class="line">
+			<span style="color:#F97583">&lt;!</span>
+			<span style="color:#E1E4E8">doctype html</span>
+			<span style="color:#F97583">&gt;</span>
+		</span>
+		<span class="line">
+			<span style="color:#E1E4E8">&lt;</span>
+			<span style="color:#85E89D">html</span>
+			<span style="color:#B392F0"> lang</span>
+			<span style="color:#F97583">=</span><span style="color:#9ECBFF">"en"</span>
+			<span style="color:#E1E4E8">&gt;</span>
+		</span>
+		<span class="line">
+			<span style="color:#E1E4E8">  &lt;</span>
+			<span style="color:#85E89D">head</span>
+			<span style="color:#E1E4E8">&gt;</span>
+		</span>
+		<!-- and the rest of the tags -->
+	</code>
+</figure>
+```
+
+While it *does* work,
+
+Obviously, this is **not** what we should do! Replacing the default behavior of `<pre>` is a bad idea
+in the long run as it is hard to replace pre-formatting in CSS. This means we can't just replace the existing
+element via the `components` constant.
+
+Since directly touching the code block element is a no-go, the safest way to customize the code block is by
+*wrapping* it inside `<figure>` and customize the surrounding elements without
+touching the `<pre>` block at all.
+
+To wrap the `<pre>` element, we need a direct access to the `<pre>` block.
