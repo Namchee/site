@@ -165,9 +165,9 @@ declare module 'astro:content' {
   collection: "posts";
   data: InferEntrySchema<"posts">
 } & { render(): Render[".mdx"] };
-"supercharging-astro-code-snippet.mdx": {
-	id: "supercharging-astro-code-snippet.mdx";
-  slug: "supercharging-astro-code-snippet";
+"upgrading-astro-mdx-components.mdx": {
+	id: "upgrading-astro-mdx-components.mdx";
+  slug: "upgrading-astro-mdx-components";
   body: string;
   collection: "posts";
   data: InferEntrySchema<"posts">

@@ -28,6 +28,25 @@ export const components = {
 	pre: CodeSnippet,
 }
 
+Markdown is commonly used to store textual contents when building a site with Astro. During the build process, Astro will take
+all markdowns transform them into its HTML equivalent. Users can then style the markups with CSS however they wish.
+
+However, customization through CSS is pretty limited as customizing the actual markup or behavior is out of the table. To allow
+greater degree of customization, users can opt-in to [MDX](https://docs.astro.build/en/guides/integrations-guide/mdx/).
+
+MDX allows users to utilize custom components with markup-like syntax similar to how we use those components in Astro files or JSX.
+
+```astro title=Using components in MDX
+import MyComponent from 'path/to/component.astro';
+
+<MyComponent>
+	Hello World!
+</MyComponent>
+```
+
+Not only allowing usage of custom components with markup-like syntax, MDX also allows user to re-map HTML elements into custom components
+by exporting the mapping as `components` constant.
+
 Astro ships with a built-in support for code snippets powered by [Shiki](https://shiki.style/) (and [Prism](https://docs.astro.build/en/guides/syntax-highlighting/#markdown-code-blocks)).
 By default, it provider syntax highlighting for:
 
@@ -126,6 +145,12 @@ publishedAt: 2024-12-17
 ---
 
 import CodeSnippet from '../../components/CodeSnippet.astro';
+import { AstroComponentInstance } from 'astro/runtime/server/index.js'
+import { AssertionError } from 'assert'
+import { transform } from 'typescript'
+import { withScopeId } from 'vue'
+import { table } from 'console'
+import { constants } from 'buffer'
 
 export const components = { // [!code highlight]
 	// in MDX, code snippets are defined with <pre>  // [!code highlight]
