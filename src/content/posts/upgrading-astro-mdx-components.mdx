@@ -36,16 +36,41 @@ greater degree of customization, users can opt-in to [MDX](https://docs.astro.bu
 
 MDX allows users to utilize custom components with markup-like syntax similar to how we use those components in Astro files or JSX.
 
-```astro title=Using components in MDX
+```markdown title=Using components in MDX
+---
+title: 'Hello World!'
+publishedAt: 2024-12-17
+---
 import MyComponent from 'path/to/component.astro';
 
 <MyComponent>
-	Hello World!
+  Hello World!
 </MyComponent>
 ```
 
+However,
+
 Not only allowing usage of custom components with markup-like syntax, MDX also allows user to re-map HTML elements into custom components
 by exporting the mapping as `components` constant.
+
+
+```markdown title=Replacing default elements with custom elements
+---
+title: 'Hello World!'
+publishedAt: 2024-12-17
+---
+
+import Head1 from '../../components/Head1.astro';
+
+export const components = {
+  // Replace <h1> with Head1
+  h1: Head1,
+}
+```
+
+However, Astro documentation doesn't thoroughly explain about the degree of customization that users can do through this syntax.
+
+In this post, we are going to explore the customization of default elements through `components`
 
 Astro ships with a built-in support for code snippets powered by [Shiki](https://shiki.style/) (and [Prism](https://docs.astro.build/en/guides/syntax-highlighting/#markdown-code-blocks)).
 By default, it provider syntax highlighting for:
