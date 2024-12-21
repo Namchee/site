@@ -174,7 +174,10 @@ const lastModified = !!frontmatter.lastModified
   const max = documentHeight - windowHeight;
   progressBar.setAttribute("max", max.toString());
 
-  window.addEventListener("scroll", () => {
+  function setProgress() {
     progressBar.setAttribute("value", window.scrollY.toString());
-  });
+  }
+
+  window.addEventListener("scroll", setProgress);
+  setProgress();
 </script>
