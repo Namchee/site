@@ -36,7 +36,7 @@ greater degree of customization, users can opt-in to [MDX](https://docs.astro.bu
 
 MDX allows users to utilize custom components with markup-like syntax similar to how we use those components in Astro files or JSX.
 
-```markdown title=Using components in MDX
+```markdown title=Using custom components in MDX
 ---
 title: 'Hello World!'
 publishedAt: 2024-12-17
@@ -48,10 +48,11 @@ import MyComponent from 'path/to/component.astro';
 </MyComponent>
 ```
 
-However,
+However, this is impractical when users want to replace default elements as they
+are forced to use JSX-like syntax for every element and lose the simplicity of defining elements in markdown.
 
-Not only allowing usage of custom components with markup-like syntax, MDX also allows user to re-map HTML elements into custom components
-by exporting the mapping as `components` constant.
+Fortunately, MDX also allows users to re-map HTML elements into custom components
+by exporting component map in MDX files as `components` constant.
 
 
 ```markdown title=Replacing default elements with custom elements
@@ -68,30 +69,20 @@ export const components = {
 }
 ```
 
-However, Astro documentation doesn't thoroughly explain about the degree of customization that users can do through this syntax.
+After seeing the syntax, you might be wondering: how do I manage the props? What attributes are passed to the mapped element?
+Can I apply a pre-defined CSS classes to mapped elements?
 
-In this post, we are going to explore the customization of default elements through `components`
+Unfortunately, it seems that [Astro's MDX integration documentation](https://docs.astro.build/en/guides/integrations-guide/mdx/) only touches
+the surface of this syntax and the [official MDX documentation](https://mdxjs.com/table-of-components/) only tells you about what elements
+that can be re-mapped.
 
-Astro ships with a built-in support for code snippets powered by [Shiki](https://shiki.style/) (and [Prism](https://docs.astro.build/en/guides/syntax-highlighting/#markdown-code-blocks)).
-By default, it provider syntax highlighting for:
+This post will guide you through customizing default markdown elements using the `components` syntax. We will using the default code snippets
+component as the guinea pig and upgrade them into the code snippets that you see in this site.
 
-<dl class=":uno: space-y-2">
-  <ListTitle class="font-normal">
-    All code fences (\`\`\`) defined in Markdown and MDX files.
-  </ListTitle>
-  <ListTitle class="font-normal">
-    Content defined with [`<Code />`](https://docs.astro.build/en/guides/syntax-highlighting/#code-) or [`<Prism />`](https://docs.astro.build/en/guides/syntax-highlighting/#prism-) component within `.astro` files.
-  </ListTitle>
-</dl>
-
-![The default snippet. Looks great, but can we make it greater?](https://res.cloudinary.com/namchee/image/upload/v1734152131/posts/supercharing-astro-code-snippet/default-snippet.png)
-
-While it's definitely enough for most cases, sometimes you might want to add some additional features like adding a copy to clipboard button or just want to style and make it yours without touching the syntax highlighter internals too much.
-
-This post will guide you through customizing the default code snippets in markdown files and transform them into something like what you currently see in this site.
+![The default snippet. Looks great, but can we make it even better?](https://res.cloudinary.com/namchee/image/upload/v1734152131/posts/supercharing-astro-code-snippet/default-snippet.png)
 
 <Quote>
- I will be using [Vue](https://vuejs.org/) to handle interactivity in this post, but the functionality itself can be implemented in other frameworks, including pure JavaScript.
+	I will be using [Vue](https://vuejs.org/) to handle some interactivity in this post, but the functionality itself can be implemented in other frameworks, or even in pure JavaScript.
 </Quote>
 
 ## Deconstructing the Code Snippet
@@ -111,8 +102,11 @@ then be transformed into HTML tags using another processor in the same toolchain
 </Quote>
 
 The functionality of remark and rehype can be augmented using [plugins](https://unifiedjs.com/learn/guide/create-a-rehype-plugin/) that provides additional features,
-such as custom syntax and syntax highlighting. Astro enables [GitHub-flavored markdown](https://github.github.com/gfm/) and [SmartyPants](https://github.com/silvenon/remark-smartypants)
-plugin by default.
+such as custom syntax and syntax highlighting.
+
+By default, Astro enables [GitHub-flavored markdown](https://github.github.com/gfm/) and [SmartyPants](https://github.com/silvenon/remark-smartypants)
+plugin to extend the basic markdown syntax. For syntax highlighting, Astro uses [Shiki](https://shiki.matsu.io/packages/rehype) by default or
+users can opt-in to [Prism](https://prismjs.com/).
 
 The diagram below shows a simplified pipeline of markdown transformation to HTML that occurs during the build process.
 
@@ -153,7 +147,16 @@ When processing code blocks, the process above will output HTML tags similar to 
 ```
 
 This HTML tags will then be used by Astro to replace code blocks during the markdown
-transformation process into an HTML page.
+transformation process into an HTML page for:
+
+<dl class=":uno: space-y-2">
+  <ListTitle class="font-normal">
+    All code fences (\`\`\`) defined in Markdown and MDX files.
+  </ListTitle>
+  <ListTitle class="font-normal">
+    Content defined with [`<Code />`](https://docs.astro.build/en/guides/syntax-highlighting/#code-) or [`<Prism />`](https://docs.astro.build/en/guides/syntax-highlighting/#prism-) component.
+  </ListTitle>
+</dl>
 
 ## Replacing The Default Code Snippet
 
@@ -170,12 +173,6 @@ publishedAt: 2024-12-17
 ---
 
 import CodeSnippet from '../../components/CodeSnippet.astro';
-import { AstroComponentInstance } from 'astro/runtime/server/index.js'
-import { AssertionError } from 'assert'
-import { transform } from 'typescript'
-import { withScopeId } from 'vue'
-import { table } from 'console'
-import { constants } from 'buffer'
 
 export const components = { // [!code highlight]
 	// in MDX, code snippets are defined with <pre>  // [!code highlight]
@@ -233,4 +230,38 @@ the entire `<pre>` element with `<figure>` as shown in the following snippet.
 ```
 
 Well, that's **not** what we wanted at all! We don't want to remove the `<pre>` entirely as we need to preserve
-the code formatting. Since we need
+the preformatted styling. After wrapping the `<code>` block inside a `<pre>` element, the previously
+butchered element will look like this.
+
+![Look ma! I restored the formatting!](https://res.cloudinary.com/namchee/image/upload/v1734770479/posts/supercharing-astro-code-snippet/second-try.png)
+
+We've restored the formatting at this point, but we're still missing the theming from the original component. Obviously, we can apply the intended class, style, and other attributes to the `<pre>` element directly.
+However, this means that we wasted the theming we've done from Astro's config entirely.
+
+Fortunately, since the custom component is implemented as an Astro component, Astro treats those passed attributes as **component props** which is
+provided by `Astro.slot` globals.
+
+```astro title=CodeSnippet.astro
+---
+const props = Astro.props; // [!code highlight]
+---
+
+<figure>
+    <figcaption>
+        This is a caption
+    </figcaption>
+
+    <pre {...props}><slot /></pre> // [!code highlight]
+</figure>
+
+```
+
+which results in
+
+![Passing the `props` surely do the trick](https://res.cloudinary.com/namchee/image/upload/v1734792284/posts/supercharing-astro-code-snippet/third-try.png)
+
+We did it! We've successfully rendered a custom code snippet component without breaking the existing components. We can now begin customizing the component.
+
+## Supercharging The Code Snippet
+
+From the previous section, we have learned how to replace
