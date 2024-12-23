@@ -1,0 +1,10 @@
+---
+import { Icon } from "astro-icon/components";
+
+const { class: className } = Astro.props;
+---
+
+<li class=":uno: flex items-center space-x-2 group">
+  <Icon name="lucide:arrow-right" class=":uno: w-4 h-auto text-content/85 flex-shrink-0 self-start translate-y-[35%] group-hover:translate-x-[10%] transition-all" />
+  <span class:list={[":uno: text-heading transition-colors", className]}><slot /></span>
+</li>

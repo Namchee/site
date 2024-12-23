@@ -48,7 +48,7 @@ html.dark .shiki span {
 }
 
 .shiki code .line.highlighted {
-  background-color: oklch(var(--content) / 0.15) !important;
+  background-color: oklch(var(--content) / 0.10) !important;
 }
 
 .shiki code .line.highlighted span {

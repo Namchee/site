@@ -1,5 +1,5 @@
 ---
-title: 'Upgrading Astro MDX Components'
+title: 'Upgrading Default Markdown Components in Astro'
 publishedAt: 2024-12-17
 subtitle: 'Make the code snippet truly yours'
 tags:
@@ -12,12 +12,12 @@ import Head3 from './../../components/astro/modules/posts/html/Head3.astro';
 import Strong from './../../components/astro/modules/posts/html/Strong.astro';
 import Quote from './../../components/astro/modules/posts/html/Quote.astro';
 
-import ListTitle from './../../components/astro/modules/posts/html/ListTitle.astro';
-import ListItem from './../../components/astro/modules/posts/html/ListItem.astro';
-
 import Image from './../../components/astro/modules/posts/html/Image.astro';
 
 import CodeSnippet from './../../components/astro/modules/posts/html/CodeSnippet.astro';
+
+import UnorderedList from '@/components/astro/modules/posts/html/UnorderedList.astro';
+import BulletItem from '@/components/astro/modules/posts/html/BulletItem.astro';
 
 export const components = {
 	a: TextLink,
@@ -26,6 +26,8 @@ export const components = {
 	strong: Strong,
 	img: Image,
 	pre: CodeSnippet,
+	li: BulletItem,
+	ul: UnorderedList,
 }
 
 Markdown is commonly used to store textual contents when building a site with Astro. During the build process, Astro will take
@@ -149,14 +151,8 @@ When processing code blocks, the process above will output HTML tags similar to 
 This HTML tags will then be used by Astro to replace code blocks during the markdown
 transformation process into an HTML page for:
 
-<dl class=":uno: space-y-2">
-  <ListTitle class="font-normal">
-    All code fences (\`\`\`) defined in Markdown and MDX files.
-  </ListTitle>
-  <ListTitle class="font-normal">
-    Content defined with [`<Code />`](https://docs.astro.build/en/guides/syntax-highlighting/#code-) or [`<Prism />`](https://docs.astro.build/en/guides/syntax-highlighting/#prism-) component.
-  </ListTitle>
-</dl>
+- All code fences (\`\`\`) defined in Markdown and MDX files.
+- Content defined with [`<Code />`](https://docs.astro.build/en/guides/syntax-highlighting/#code-) or [`<Prism />`](https://docs.astro.build/en/guides/syntax-highlighting/#prism-) component.
 
 ## Replacing The Default Code Snippet
 
@@ -264,4 +260,21 @@ We did it! We've successfully rendered a custom code snippet component without b
 
 ## Supercharging The Code Snippet
 
-From the previous section, we have learned how to replace the default code block with our custom element. But stopping there would be boring no?
+Since we have successfully replaced the default code block with our custom element, it's time to upgrade our components with the following additional features:
+
+- Add Line Numbers
+- Add Captions
+- Line or Code Highlighting
+- Show Code Language
+- Add Copy to Clipboard Button
+
+Before we do that however, there is one important trick that we should know: passing additional props.
+
+### Passing Additional Props to Mapped Element
+
+In the previous section, all we did with the props is passing an already defined props. However, some of our additional properties requires
+additional information that Shiki doesn't provide by default (namely captions and copy to clipboard).
+
+The good news is, Shiki already addresses this issue by giving users the ability to add [metadata](https://shiki.style/guide/transformers#meta) to code blocks that users can provide
+in the opening tag after language definition.
+
