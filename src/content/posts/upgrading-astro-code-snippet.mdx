@@ -64,7 +64,7 @@ title: 'Hello World!'
 publishedAt: 2024-12-17
 ---
 
-import Head1 from '../../components/Head1.astro';
+import Head1 from 'path/to/Head1.astro';
 
 export const components = {
   // Replace <h1> with Head1
@@ -126,24 +126,25 @@ When processing code blocks, the process above will output HTML tags similar to 
 	data-language="js"
 >
 	<code>
-		<span class="line">
-			<span style="color:#F97583">&lt;!</span>
-			<span style="color:#E1E4E8">doctype html</span>
-			<span style="color:#F97583">&gt;</span>
-		</span>
-		<span class="line">
-			<span style="color:#E1E4E8">&lt;</span>
-			<span style="color:#85E89D">html</span>
-			<span style="color:#B392F0"> lang</span>
-			<span style="color:#F97583">=</span><span style="color:#9ECBFF">"en"</span>
-			<span style="color:#E1E4E8">&gt;</span>
-		</span>
-		<span class="line">
-			<span style="color:#E1E4E8">  &lt;</span>
-			<span style="color:#85E89D">head</span>
-			<span style="color:#E1E4E8">&gt;</span>
-		</span>
-		<!-- and the rest of the tags -->
+    <span class="line">
+      <span style="color:#F97583">&lt;!</span>
+      <span style="color:#E1E4E8">doctype html</span>
+      <span style="color:#F97583">&gt;</span>
+    </span>
+    <span class="line">
+      <span style="color:#E1E4E8">&lt;</span>
+      <span style="color:#85E89D">html</span>
+      <span style="color:#B392F0"> lang</span>
+      <span style="color:#F97583">=</span>
+      <span style="color:#9ECBFF">"en"</span>
+      <span style="color:#E1E4E8">&gt;</span>
+    </span>
+    <span class="line">
+      <span style="color:#E1E4E8">  &lt;</span>
+      <span style="color:#85E89D">head</span>
+      <span style="color:#E1E4E8">&gt;</span>
+    </span>
+    <!-- and the rest of the tags -->
 	</code>
 </pre>
 ```
@@ -181,7 +182,7 @@ We can then define `CodeSnippet` as:
 ```astro title=CodeSnippet.astro
 <figure>
 	<figcaption>
-		This is a caption
+    This is a caption
 	</figcaption>
 
 	<slot />
@@ -191,7 +192,7 @@ We can then define `CodeSnippet` as:
 
 Save the file and we will be greeted by this weird element.
 
-![Well... that was unexpected](https://res.cloudinary.com/namchee/image/upload/v1734274270/posts/supercharing-astro-code-snippet/first-try.png)
+![Well... that was unexpected](https://res.cloudinary.com/namchee/image/upload/v1734274270/posts/supercharing-astro-code-snippet/first-try)
 
 So what's happening here? Why does wrapping the code block in a `<figure>` element ruins the structure entirely? Well it turns out, we replaced
 the entire `<pre>` element with `<figure>` as shown in the following snippet.
@@ -199,29 +200,30 @@ the entire `<pre>` element with `<figure>` as shown in the following snippet.
 ```html title=Should we replace the <pre>?
 <figure>
 	<figcaption>
-		This is a caption
+    This is a caption
 	</figcaption>
 
-	<code>
-		<span class="line">
-			<span style="color:#F97583">&lt;!</span>
-			<span style="color:#E1E4E8">doctype html</span>
-			<span style="color:#F97583">&gt;</span>
-		</span>
-		<span class="line">
-			<span style="color:#E1E4E8">&lt;</span>
-			<span style="color:#85E89D">html</span>
-			<span style="color:#B392F0"> lang</span>
-			<span style="color:#F97583">=</span><span style="color:#9ECBFF">"en"</span>
-			<span style="color:#E1E4E8">&gt;</span>
-		</span>
-		<span class="line">
-			<span style="color:#E1E4E8">  &lt;</span>
-			<span style="color:#85E89D">head</span>
-			<span style="color:#E1E4E8">&gt;</span>
-		</span>
-		<!-- and the rest of the tags -->
-	</code>
+  <code>
+    <span class="line">
+      <span style="color:#F97583">&lt;!</span>
+      <span style="color:#E1E4E8">doctype html</span>
+      <span style="color:#F97583">&gt;</span>
+    </span>
+    <span class="line">
+      <span style="color:#E1E4E8">&lt;</span>
+      <span style="color:#85E89D">html</span>
+      <span style="color:#B392F0"> lang</span>
+      <span style="color:#F97583">=</span>
+      <span style="color:#9ECBFF">"en"</span>
+      <span style="color:#E1E4E8">&gt;</span>
+    </span>
+    <span class="line">
+      <span style="color:#E1E4E8">  &lt;</span>
+      <span style="color:#85E89D">head</span>
+      <span style="color:#E1E4E8">&gt;</span>
+    </span>
+    <!-- and the rest of the tags -->
+  </code>
 </figure>
 ```
 
@@ -229,7 +231,7 @@ Well, that's **not** what we wanted at all! We don't want to remove the `<pre>` 
 the preformatted styling. After wrapping the `<code>` block inside a `<pre>` element, the previously
 butchered element will look like this.
 
-![Look ma! I restored the formatting!](https://res.cloudinary.com/namchee/image/upload/v1734770479/posts/supercharing-astro-code-snippet/second-try.png)
+![Look ma! I restored the formatting!](https://res.cloudinary.com/namchee/image/upload/v1734770479/posts/supercharing-astro-code-snippet/second-try)
 
 We've restored the formatting at this point, but we're still missing the theming from the original component. Obviously, we can apply the intended class, style, and other attributes to the `<pre>` element directly.
 However, this means that we wasted the theming we've done from Astro's config entirely.
@@ -254,7 +256,7 @@ const props = Astro.props; // [!code highlight]
 
 which results in
 
-![Passing the `props` surely do the trick](https://res.cloudinary.com/namchee/image/upload/v1734792284/posts/supercharing-astro-code-snippet/third-try.png)
+![Passing the `props` surely do the trick](https://res.cloudinary.com/namchee/image/upload/v1734792284/posts/supercharing-astro-code-snippet/third-try)
 
 We did it! We've successfully rendered a custom code snippet component without breaking the existing components. We can now begin customizing the component.
 
@@ -285,11 +287,11 @@ The bad news is, Shiki integration in Astro doesn't pass them to the element in 
 <!doctype html>
 <html lang="en">
   <head>
-	<meta charset="utf-8" />
-	<title>Example HTML5 Document</title>
-  </head>
+    <meta charset="utf-8" />
+    <title>Example HTML5 Document</title>
+	</head>
   <body>
-	<p>Test</p>
+    <p>Test</p>
   </body>
 </html>
 <!-- ``` -->
@@ -300,22 +302,18 @@ that passes the metadata as an attribute. Fortunately, it's quite simple to do s
 
 ```js title=astro.config.mjs
 import { defineConfig } from 'astro/config';
-// ...
 
 export default defineConfig({
-	// ...
-	markdown: {
-		shikiConfig: {
-			transformers: [{
-				pre(hast) {
-					hast.properties['data-meta'] = this.options.meta?.__raw; // [!code highlight]
-				}
-			}]
-		}
-	},
-  // ...
+  markdown: {
+    shikiConfig: {
+      transformers: [{
+        pre(hast) {
+          hast.properties['data-meta'] = this.options.meta?.__raw; // [!code highlight]
+        }
+      }]
+    }
+  },
 });
-
 ```
 
 With the above config, Shiki will pass the metadata as an HTML property `data-meta` which can then be accessed normally through
@@ -329,55 +327,105 @@ With the above config, Shiki will pass the metadata as an HTML property `data-me
 	data-language="js"
 	data-meta="foo"
 >
-	<code>
-		<span class="line">
-			<span style="color:#F97583">&lt;!</span>
-			<span style="color:#E1E4E8">doctype html</span>
-			<span style="color:#F97583">&gt;</span>
-		</span>
-		<span class="line">
-			<span style="color:#E1E4E8">&lt;</span>
-			<span style="color:#85E89D">html</span>
-			<span style="color:#B392F0"> lang</span>
-			<span style="color:#F97583">=</span><span style="color:#9ECBFF">"en"</span>
-			<span style="color:#E1E4E8">&gt;</span>
-		</span>
-		<span class="line">
-			<span style="color:#E1E4E8">  &lt;</span>
-			<span style="color:#85E89D">head</span>
-			<span style="color:#E1E4E8">&gt;</span>
-		</span>
-		<!-- and the rest of the tags -->
-	</code>
+  <code>
+    <span class="line">
+      <span style="color:#F97583">&lt;!</span>
+      <span style="color:#E1E4E8">doctype html</span>
+      <span style="color:#F97583">&gt;</span>
+    </span>
+    <span class="line">
+      <span style="color:#E1E4E8">&lt;</span>
+      <span style="color:#85E89D">html</span>
+      <span style="color:#B392F0"> lang</span>
+      <span style="color:#F97583">=</span>
+      <span style="color:#9ECBFF">"en"</span>
+      <span style="color:#E1E4E8">&gt;</span>
+    </span>
+    <span class="line">
+      <span style="color:#E1E4E8">  &lt;</span>
+      <span style="color:#85E89D">head</span>
+      <span style="color:#E1E4E8">&gt;</span>
+    </span>
+    <!-- and the rest of the tags -->
+  </code>
 </pre>
 ```
 
-> Since we *might* be passing more metadata in the future, it's advisable to define a rule schema for writing metadata to avoid
-> problems during parsing in the future.
->
-> <br />
->
-> For the sake of simplicity, we are going to use `key1=value1,key2,...etc` that can be parsed with:
->
-> ```astro
->	---
-> const meta = {};
-> const props = Astro.props;
->
-> if (props['data-meta']) {
->  attribs['data-meta'].split(',').forEach((prop) => {
->    const tokens = prop.split('=');
->    meta[tokens[0].trim()] = tokens[1];
->  });
-> }
-> ---
-> ```
+Since we *might* be passing more metadata in the future, it's advisable to define a schema for writing metadata to avoid
+problems during parsing in the future.
+
+For the sake of simplicity, we are going to use `key1=value1,key2,[...key]` schema in this post that can be parsed with:
+
+```astro title=Parsing Shiki raw metadata
+---
+const meta: Record<string, string> = {};
+const { 'data-meta': dataMeta, ...props } = Astro.props;
+
+if (dataMeta) {
+  dataMeta.split(',').forEach((prop: string) => {
+    const tokens = prop.split('=');
+    meta[tokens[0].trim()] = tokens[1];
+  });
+}
+
+const title = meta.title;
+---
+```
 
 Now, we can *finally* move on to customizing the component.
 
+> For the sake of clarity, I'll be changing the default theme of Shiki to `min-light` which you can change via Astro config.
+>
+> ```js
+> import { defineConfig } from 'astro/config';
+>
+> export default defineConfig({
+>    markdown: {
+>      shikiConfig: {
+>       theme: 'min-light', // [!code highlight]
+>	  }
+>	},
+> });
+> ```
+
 ### Adding Captions
 
-To add code captions, we are going to pass `title` as a metadata to our component.
+To add code captions, we are going to pass `title` as a metadata and pass it as `figcaption` in our component. Coupled with
+some styling, our component should look like this:
+
+```astro title=CodeSnippet.astro, copyable
+---
+const meta: Record<string, string> = {};
+const { 'data-meta': dataMeta, ...props } = Astro.props;
+
+if (dataMeta) {
+  dataMeta.split(',').forEach((prop: string) => {
+    const tokens = prop.split('=');
+    meta[tokens[0].trim()] = tokens[1];
+  });
+}
+
+const title = meta.title;
+---
+
+<figure class="overflow-hidden rounded-md">
+  {
+    title && (
+      <figcaption class="flex justify-between items-center text-xs p-2 px-4 border-b border-b-gray-500 leading-normal rounded-t-md bg-gray-700 text-white">
+        <p class="mb-0">{title}</p>
+      </figcaption>
+    )
+  }
+
+  <pre
+    class={`${className} relative rounded-none`}
+    {...props}><slot /></pre>
+</figure>
+```
+
+The component should look like this now:
+
+![Look ma! I've added title to my component](https://res.cloudinary.com/namchee/image/upload/v1735005025/posts/supercharing-astro-code-snippet/adding-title)
 
 ### Adding Line Numbers
 
@@ -385,5 +433,88 @@ For this feature, Astro and Shiki doesn't provide any helper regarding with line
 
 Since all code lines are marked with `line` class, we can apply the following CSS:
 
+```css title=Applying line numbers to code snippet using CSS counters, copyable
+.astro-code {
+  overflow-x: auto;
+}
 
+.astro-code code {
+  counter-reset: step;
+  counter-increment: step 0;
 
+	font-size: 14px;
+
+  width: fit-content;
+  min-width: 100%;
+  display: block;
+}
+
+.astro-code code .line:not(:last-child) {
+  display: inline-block;
+  width: 100%;
+  padding-right: 1.75rem;
+}
+
+.astro-code code .line:not(:last-child)::before {
+  content: counter(step);
+  counter-increment: step;
+  width: 1.75rem;
+  margin-right: 1.25rem;
+  display: inline-block;
+  margin-left: auto;
+  text-align: right;
+  opacity: 0.5;
+}
+```
+
+You'll notice that we have `:not(:last-child)` selector for lines.
+The reason why we need the selector is because Shiki renders the last newline character
+as another line, so we need to prevent the empty line from being numbered by the CSS.
+
+After applying the CSS, our component should look like this:
+
+![Look ma, I've added line numbers to my component!](https://res.cloudinary.com/namchee/image/upload/v1735006683/posts/supercharing-astro-code-snippet/adding-line-numbers)
+
+### Adding Line Highlighting
+
+Fortunately, Shiki already provided us with `transformerNotationHighlight` transformer that handles this use case.
+We can install `@shikijs/transformers` package and enable `transformerNotationHighlight` in our Astro config:
+
+```js title=astro.config.mjs
+import { defineConfig } from 'astro/config';
+
+import { transformerNotationHighlight } from '@shikijs/transformers';
+
+export default defineConfig({
+	markdown: {
+		shikiConfig: {
+			transformers: [
+				{
+					pre(hast) {
+						hast.properties['data-meta'] = this.options.meta?.__raw; // [!code highlight]
+					}
+				},
+				transformerNotationHighlight(),
+			]
+		}
+	},
+});
+```
+
+We can then apply `// [!code highlight]` to any line that we want to highlight and style those lines
+with CSS:
+
+```css title=Styling highlighted line, copyable
+.astro-code code .line.highlighted {
+  background-color: hsl(0, 0%, 90%); /* light gray */
+	border-left: 2px solid hsl(217, 91%, 60%); /* blue */
+}
+```
+
+After applying the highlighted CSS, our component should now look like this:
+
+![There, a beautiful highlight!](https://res.cloudinary.com/namchee/image/upload/v1735011183/posts/supercharing-astro-code-snippet/adding-highlight)
+
+### Showing Language
+
+Since Shiki has already passed the language in the `data-language` prop, we can easily grab it and display it on the top right of the `<pre>`
