@@ -480,24 +480,24 @@ After applying the CSS, our component should look like this:
 Fortunately, Shiki already provided us with `transformerNotationHighlight` transformer that handles this use case.
 We can install `@shikijs/transformers` package and enable `transformerNotationHighlight` in our Astro config:
 
-```js title=astro.config.mjs
+```js title=astro.config.js
 import { defineConfig } from 'astro/config';
 
 import { transformerNotationHighlight } from '@shikijs/transformers';
 
 export default defineConfig({
-	markdown: {
-		shikiConfig: {
-			transformers: [
-				{
-					pre(hast) {
-						hast.properties['data-meta'] = this.options.meta?.__raw; // [!code highlight]
-					}
-				},
-				transformerNotationHighlight(),
-			]
-		}
-	},
+  markdown: {
+    shikiConfig: {
+      transformers: [
+        {
+          pre(hast) {
+            hast.properties['data-meta'] = this.options.meta?.__raw;
+          }
+        },
+        transformerNotationHighlight(), // [!code highlight]
+      ]
+    }
+  },
 });
 ```
 
@@ -517,4 +517,6 @@ After applying the highlighted CSS, our component should now look like this:
 
 ### Showing Language
 
-Since Shiki has already passed the language in the `data-language` prop, we can easily grab it and display it on the top right of the `<pre>`
+Since Shiki has already passed the language in the `data-language` prop, we can easily grab it and display it on the top right of the `<pre>` as such:
+
+
