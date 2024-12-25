@@ -31,7 +31,6 @@ onBeforeUnmount(() => {
         <button
           @click="copyCode"
           class=":uno: group"
-          title="Copy code to clipboard"
         >
           <slot />
         </button>

@@ -1,6 +1,6 @@
 ---
-title: 'Upgrading Default Markdown Components in Astro'
-publishedAt: 2024-12-17
+title: 'Upgrading Astro Code Snippets'
+publishedAt: 2024-12-25
 subtitle: 'Make the code snippet truly yours'
 tags:
   - astro
@@ -80,11 +80,11 @@ the surface of this syntax and the [official MDX documentation](https://mdxjs.co
 that can be re-mapped.
 
 This post will guide you through customizing default markdown elements using the `components` syntax. We will using the default code snippets
-component as the guinea pig and upgrade them into the code snippets that you see in this site.
+component as the guinea pig and upgrade them into similar code snippets that you see in this site.
 
 ![The default snippet. Looks great, but can we make it even better?](https://res.cloudinary.com/namchee/image/upload/v1734152131/posts/supercharing-astro-code-snippet/default-snippet.png)
 
->	I will be using [Vue](https://vuejs.org/) to handle some interactivity in this post, but the functionality itself can be implemented in other frameworks, or even in pure JavaScript.
+> I will be using [UnoCSS](https://unocss.dev/) for styling, which is an alternative of [TailwindCSS](https://tailwindcss.com/). However, the styling can 100% be implemented with vanilla CSS.
 
 ## Deconstructing the Code Snippet
 
@@ -118,7 +118,7 @@ flowchart LR
 
 When processing code blocks, the process above will output HTML tags similar to the following:
 
-```html title=Example HTML output of a code block. Looks pretty complex isn't it?
+```html title=Example HTML output of a code block after Remark + Rehype pipeline.
 <pre
 	class="astro-code github-dark"
 	style="background-color:#24292e;color:#e1e4e8;overflow-x:auto"
@@ -197,11 +197,13 @@ Save the file and we will be greeted by this weird element.
 So what's happening here? Why does wrapping the code block in a `<figure>` element ruins the structure entirely? Well it turns out, we replaced
 the entire `<pre>` element with `<figure>` as shown in the following snippet.
 
-```html title=Should we replace the <pre>?
+```html title=HTML output of CodeSnippet.astro
 <figure>
 	<figcaption>
     This is a caption
 	</figcaption>
+
+  <!-- The <pre> is gone! -->
 
   <code>
     <span class="line">
@@ -319,7 +321,7 @@ export default defineConfig({
 With the above config, Shiki will pass the metadata as an HTML property `data-meta` which can then be accessed normally through
 `Astro.props`.
 
-```html title=Look ma! I passed the metadata as props!
+```html title=data-meta is properly filled now!
 <pre
 	class="astro-code github-dark"
 	style="background-color:#24292e;color:#e1e4e8;overflow-x:auto"
@@ -356,7 +358,7 @@ problems during parsing in the future.
 
 For the sake of simplicity, we are going to use `key1=value1,key2,[...key]` schema in this post that can be parsed with:
 
-```astro title=Parsing Shiki raw metadata
+```astro title=Parsing Shiki raw metadata through Astro.props
 ---
 const meta: Record<string, string> = {};
 const { 'data-meta': dataMeta, ...props } = Astro.props;
@@ -390,8 +392,7 @@ Now, we can *finally* move on to customizing the component.
 
 ### Adding Captions
 
-To add code captions, we are going to pass `title` as a metadata and pass it as `figcaption` in our component. Coupled with
-some styling, our component should look like this:
+To add captions to the code block, we can pass the caption as `title` inside the metadata and embed it on `figcaption`:
 
 ```astro title=CodeSnippet.astro, copyable
 ---
@@ -423,15 +424,16 @@ const title = meta.title;
 </figure>
 ```
 
-The component should look like this now:
+After the changes has been applied, our component should look like this:
 
 ![Look ma! I've added title to my component](https://res.cloudinary.com/namchee/image/upload/v1735005025/posts/supercharing-astro-code-snippet/adding-title)
 
 ### Adding Line Numbers
 
-For this feature, Astro and Shiki doesn't provide any helper regarding with line numbers. There isn't any other choice than implementing it with CSS.
+Unfortunately, neither Astro nor Shiki provides us with any APIs regarding line numbers. Therefore, we have to rely to good ol' CSS
+to implement this feature.
 
-Since all code lines are marked with `line` class, we can apply the following CSS:
+Since all lines are actually `<span>`s that have `line` as one of its class, we can combine the `::before` pseudo-element with [CSS Counters](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_counter_styles/Using_CSS_counters):
 
 ```css title=Applying line numbers to code snippet using CSS counters, copyable
 .astro-code {
@@ -439,7 +441,9 @@ Since all code lines are marked with `line` class, we can apply the following CS
 }
 
 .astro-code code {
+  /* Define a counter for each <code> inside .astro-code */
   counter-reset: step;
+  /* Start from zero, increment the counter */
   counter-increment: step 0;
 
 	font-size: 14px;
@@ -452,24 +456,35 @@ Since all code lines are marked with `line` class, we can apply the following CS
 .astro-code code .line:not(:last-child) {
   display: inline-block;
   width: 100%;
-  padding-right: 1.75rem;
+  padding-right: 2rem;
 }
 
 .astro-code code .line:not(:last-child)::before {
   content: counter(step);
   counter-increment: step;
-  width: 1.75rem;
+  width: 2rem;
   margin-right: 1.25rem;
   display: inline-block;
   margin-left: auto;
   text-align: right;
-  opacity: 0.5;
+
+  /* Fix element position during horizontal scroll */
+  position: sticky;
+  left: 0;
+  z-index: 1;
+
+  /* Give a bit of space to counter on horizontal scroll */
+  padding-right: 0.25rem;
+
+  /* Illustrative purpose, please extract the value from the theme instead */
+  background-color: white;
+  color: hsla(0, 0%, 0%, 0.5);
 }
 ```
 
-You'll notice that we have `:not(:last-child)` selector for lines.
-The reason why we need the selector is because Shiki renders the last newline character
-as another line, so we need to prevent the empty line from being numbered by the CSS.
+> You might notice that we used `:not(:last-child)` selectors.
+> The reason why we need this selector is because Shiki renders the last newline character
+> as another line, so we need to prevent the empty line from being numbered.
 
 After applying the CSS, our component should look like this:
 
@@ -477,8 +492,11 @@ After applying the CSS, our component should look like this:
 
 ### Adding Line Highlighting
 
-Fortunately, Shiki already provided us with `transformerNotationHighlight` transformer that handles this use case.
-We can install `@shikijs/transformers` package and enable `transformerNotationHighlight` in our Astro config:
+To add highlights, we need to tell Shiki which line should be highlighted and Shiki needs to transform those lines to be distinguishable from non-highlighted lines. We can
+then write a CSS style to mark those highlighted lines.
+
+Fortunately, Shiki has already provided us with [`transformerMetaHighlight`](https://shiki.style/packages/transformers#transformermetahighlight) transformer that handles
+this use case that we can install through `@shikijs/transformers` package and enable in our Astro config:
 
 ```js title=astro.config.js
 import { defineConfig } from 'astro/config';
@@ -501,13 +519,24 @@ export default defineConfig({
 });
 ```
 
-We can then apply `// [!code highlight]` to any line that we want to highlight and style those lines
-with CSS:
+We can then pass meta strings that defines lines that should be highlighted and style those highlighted lines with CSS:
 
 ```css title=Styling highlighted line, copyable
 .astro-code code .line.highlighted {
-  background-color: hsl(0, 0%, 90%); /* light gray */
-	border-left: 2px solid hsl(217, 91%, 60%); /* blue */
+  /* light gray */
+  background-color: hsl(0, 0%, 90%);
+  /* Re-pad after border */
+  padding-left: 2px;
+}
+
+.astro-code code .line.highlighted::before {
+  /* light gray */
+  background-color: hsl(0, 0%, 90%);
+  /* blue */
+	border-left: 2px solid hsl(217, 91%, 60%);
+  /* Restore position after border */
+  margin-left: -2px;
+  color: hsla(0, 0%, 0%, 0.75);
 }
 ```
 
@@ -519,4 +548,142 @@ After applying the highlighted CSS, our component should now look like this:
 
 Since Shiki has already passed the language in the `data-language` prop, we can easily grab it and display it on the top right of the `<pre>` as such:
 
+```astro title=CodeSnippet.astro, copyable
+---
+const meta: Record<string, string> = {};
+const {
+  "data-meta": dataMeta,
+  "data-language": lang,
+  class: className,
+  ...props
+} = Astro.props;
 
+if (dataMeta) {
+  dataMeta.split(",").forEach((prop: string) => {
+    const tokens = prop.split("=");
+    meta[tokens[0].trim()] = tokens[1];
+  });
+}
+
+const title = meta.title;
+---
+
+<figure class="overflow-hidden border border-gray-300 rounded-md">
+  {
+    title && (
+      <figcaption class="flex justify-between items-center text-xs p-2 px-4 border-b border-b-gray-300 leading-normal rounded-t-md bg-gray-100">
+        <p class="mb-0">{title}</p>
+      </figcaption>
+    )
+  }
+
+  <!-- We can't directly set <pre> with relative, as we need to preserve original block size on horizontal scroll -->
+  <div class="relative">
+    <p class="absolute top-3 right-4 text-xs text-gray-500 font-mono">{lang}</p>
+    <pre class={`${className} rounded-none p-0`} {...props}><slot /></pre>
+  </div>
+</figure>
+```
+
+The language should be shown as a fixed element on the top right of the code block.
+
+![Which language was it again? Oh it was JavaScript](https://res.cloudinary.com/namchee/image/upload/v1735102259/posts/supercharing-astro-code-snippet/adding-language)
+
+### Adding Copy to Clipboard Button
+
+After a series of features that are uninteractive, we are finally moving to the final feature that requires a sprinkle of interactivity: copy to clipboard button.
+
+Before we implement this feature, we need to ensure that the original content is accessible by our component. We can implement the same trick that we use
+to pass captions: pass them as an attribute called `data-code`
+
+```js title=astro.config.js, copyable
+import { defineConfig } from 'astro/config';
+
+import { transformerNotationHighlight } from '@shikijs/transformers';
+
+export default defineConfig({
+  markdown: {
+    shikiConfig: {
+      transformers: [
+        {
+          pre(hast) {
+            hast.properties['data-meta'] = this.options.meta?.__raw;
+            // the original source code is stored in `source` property
+            hast.properties['data-code'] = this.source; // [!code highlight]
+          }
+        },
+        transformerNotationHighlight(),
+      ]
+    }
+  },
+});
+```
+
+To access user's clipboard, we need to use JavaScript to access the [Clipboard API](https://developer.mozilla.org/en-US/docs/Web/API/Clipboard_API)
+which is available on the [`navigator`](https://developer.mozilla.org/en-US/docs/Web/API/Navigator) interface through the browser. The functionality
+can then be triggered through a button click:
+
+```astro title=CodeSnippet.astro, copyable
+---
+const meta: Record<string, string> = {};
+const {
+  "data-meta": dataMeta,
+  "data-code": dataCode,
+  "data-language": lang,
+  class: className,
+  ...props
+} = Astro.props;
+
+if (dataMeta) {
+  dataMeta.split(",").forEach((prop: string) => {
+    const tokens = prop.split("=");
+    meta[tokens[0].trim()] = tokens[1];
+  });
+}
+
+const title = meta.title;
+---
+
+<figure class="overflow-hidden border border-gray-300 rounded-md">
+  {
+    title && (
+      <figcaption class="flex justify-between items-center text-xs p-2 px-4 border-b border-b-gray-300 leading-normal rounded-t-md bg-gray-100">
+        <p class="mb-0">{title}</p>
+        <button id="copy__code" class="text-sm text-gray-500">
+          Copy Code
+        </button>
+      </figcaption>
+    )
+  }
+
+  <div class="relative">
+    <p class="absolute top-3 right-4 text-xs text-gray-500 font-mono">{lang}</p>
+    <pre class={`${className} rounded-none p-0`} {...props}><slot /></pre>
+  </div>
+</figure>
+
+<script define:vars={{ dataCode }}>
+  if (typeof navigator.clipboard !== undefined) {
+    const trigger = document.querySelector("#copy__code");
+
+    trigger.addEventListener("click", () => {
+      // Write the code to clipboard
+      navigator.clipboard.writeText(dataCode); // [!code highlight]
+    });
+  }
+</script>
+```
+
+Now, there should be a 'Copy Code' text on the top right of the code block. Try clicking the element
+and see if the code inside the code block is copied to your clipboard by pasting it somewhere.
+
+![Try clicking the Copy Code text!](https://res.cloudinary.com/namchee/image/upload/v1735139073/posts/supercharing-astro-code-snippet/adding-copy-to-clipboard)
+
+## Final Thoughts
+
+When I first customized this component, I mistakenly believed that there's no way to customize the `<pre>` tag without replacing it.
+Therefore, I unnecessarily turned off the syntax highlighting in the Astro config and call the syntax highlighting API manually which can be seen [here](https://github.com/Namchee/site/blob/c2bbc2034972feef20e8b4653dc5965dbe9e18c7/src/components/astro/modules/posts/html/CodeSnippet.astro).
+
+However, as my understanding of MDX and Astro API grows, I realized that those steps are unneccessary and
+
+Lastly, if you like to
