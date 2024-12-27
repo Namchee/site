@@ -116,7 +116,7 @@ const lastModified = !!frontmatter.lastModified
     </header>
 
     <div
-      class=":uno: col-start-1 col-end-13 md:col-start-2 md:col-end-12 leading-[1.75] space-y-4 mt-8 overflow-x-visible"
+      class=":uno: col-start-1 col-end-13 md:col-start-2 md:col-end-12 leading-[1.75] flex flex-col gap-4 mt-8 overflow-x-visible"
     >
       <slot />
     </div>
@@ -172,10 +172,10 @@ const lastModified = !!frontmatter.lastModified
   const windowHeight = window.innerHeight;
   const documentHeight = document.documentElement.scrollHeight;
   const max = documentHeight - windowHeight;
-  progressBar.setAttribute("max", max.toString());
+  progressBar?.setAttribute("max", max.toString());
 
   function setProgress() {
-    progressBar.setAttribute("value", window.scrollY.toString());
+    progressBar?.setAttribute("value", window.scrollY.toString());
   }
 
   window.addEventListener("scroll", setProgress);

@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { onBeforeUnmount, ref } from 'vue';
+import { onBeforeUnmount, onMounted, ref } from 'vue';
 
 import { TooltipProvider, TooltipArrow, TooltipRoot, TooltipPortal, TooltipTrigger, TooltipContent } from 'radix-vue';
 
@@ -14,13 +14,21 @@ function copyCode() {
   navigator.clipboard.writeText(props.code);
 
   open.value = true;
-  window.clearTimeout(timeoutId.value);
 
-  timeoutId.value = window.setTimeout(() => open.value = false, 2_500);
+  if (timeoutId.value) {
+    window.clearTimeout(timeoutId.value);
+  }
+
+  timeoutId.value = window.setTimeout(() => {
+    open.value = false;
+    timeoutId.value = -1;
+  }, 2_500);
 }
 
 onBeforeUnmount(() => {
-  window.clearTimeout(timeoutId.value);
+  if (timeoutId.value) {
+    window.clearTimeout(timeoutId.value);
+  }
 });
 </script>
 
@@ -28,24 +36,22 @@ onBeforeUnmount(() => {
   <TooltipProvider>
     <TooltipRoot :open="open">
       <TooltipTrigger as-child>
-        <button
-          @click="copyCode"
-          class=":uno: group"
-        >
-          <slot />
+        <button @click="copyCode" :disabled="open" class=":uno: group" title="Copy code to clipboard">
+          <template v-if="!open">
+            <slot />
+          </template>
+          <template v-else>
+            <slot name="copied" />
+          </template>
         </button>
       </TooltipTrigger>
 
       <TooltipPortal>
         <TooltipContent
-          class="text-xs rounded-md shadow shadow py-2 tooltip__content text-background select-none bg-content px-3 will-change-[transform,opacity]"
-          :side-offset="5"
-        >
+          class="text-xs rounded-md shadow shadow py-2 tooltip__content text-white select-none bg-success px-3 will-change-[transform,opacity]"
+          :side-offset="5">
           Copied!
-          <TooltipArrow
-            class="fill-content"
-            :width="8"
-          />
+          <TooltipArrow class="fill-success" :width="8" />
         </TooltipContent>
       </TooltipPortal>
     </TooltipRoot>
@@ -63,6 +69,7 @@ onBeforeUnmount(() => {
     opacity: 0;
     transform: scale(0.9);
   }
+
   to {
     opacity: 1;
     transform: scale(1);

@@ -6,31 +6,6 @@ tags:
   - astro
 ---
 
-import TextLink from './../../components/astro/ui/TextLink.astro';
-import Head2 from './../../components/astro/modules/posts/html/Head2.astro';
-import Head3 from './../../components/astro/modules/posts/html/Head3.astro';
-import Strong from './../../components/astro/modules/posts/html/Strong.astro';
-import Quote from './../../components/astro/modules/posts/html/Quote.astro';
-
-import Image from './../../components/astro/modules/posts/html/Image.astro';
-
-import CodeSnippet from './../../components/astro/modules/posts/html/CodeSnippet.astro';
-
-import UnorderedList from '@/components/astro/modules/posts/html/UnorderedList.astro';
-import BulletItem from '@/components/astro/modules/posts/html/BulletItem.astro';
-
-export const components = {
-	a: TextLink,
-	h2: Head2,
-	h3: Head3,
-	strong: Strong,
-	img: Image,
-	pre: CodeSnippet,
-	blockquote: Quote,
-	li: BulletItem,
-	ul: UnorderedList,
-}
-
 Markdown is commonly used to store textual contents when building a site with Astro. During the build process, Astro will take
 all markdowns transform them into its HTML equivalent. Users can then style the markups with CSS however they wish.
 
@@ -103,7 +78,7 @@ such as custom syntax and syntax highlighting.
 
 By default, Astro enables [GitHub-flavored markdown](https://github.github.com/gfm/) and [SmartyPants](https://github.com/silvenon/remark-smartypants)
 plugin to extend the basic markdown syntax. For syntax highlighting, Astro uses [Shiki](https://shiki.matsu.io/packages/rehype) by default or
-users can opt-in to [Prism](https://prismjs.com/).
+users can opt-in to [Prism](https://prismjs.com/); both available as Rehype plugins.
 
 The diagram below shows a simplified pipeline of markdown transformation to HTML that occurs during the build process.
 
@@ -681,9 +656,11 @@ and see if the code inside the code block is copied to your clipboard by pasting
 
 ## Final Thoughts
 
-When I first customized this component, I mistakenly believed that there's no way to customize the `<pre>` tag without replacing it.
-Therefore, I unnecessarily turned off the syntax highlighting in the Astro config and call the syntax highlighting API manually which can be seen [here](https://github.com/Namchee/site/blob/c2bbc2034972feef20e8b4653dc5965dbe9e18c7/src/components/astro/modules/posts/html/CodeSnippet.astro).
+And there we have it. We have explored the capabilities of Astro API when handling MDX to transform our default code snippet component into a more feature-packed
+code snippet without having to directly define them as markups.
 
-However, as my understanding of MDX and Astro API grows, I realized that those steps are unneccessary and
+By using the same method, we can customize other default components like [what I did to my mine](https://github.com/Namchee/site/tree/master/src/components/astro/modules/posts/html)
+or you can go one step further on the features like inline execution, download code as file, or even [giving animation of code transformation](https://github.com/shikijs/shiki-magic-move).
 
-Lastly, if you like to
+Lastly, you can try [Astro Expressive Code](https://expressive-code.com/) if you want a feature-packed code snippet without the hassle. However, I believe the
+the method shown here still has its merits as outside syntax highlighting, we are in full control of the markup and behavior.

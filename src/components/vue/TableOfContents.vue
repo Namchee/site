@@ -28,7 +28,7 @@ onMounted(() => {
         <DropdownMenuRoot :modal="false" :open="isOpen" @update:open="(open) => isOpen = open">
           <TooltipTrigger as-child>
             <DropdownMenuTrigger
-              class=":uno: w-[36px] h-[36px] xl:w-auto xl:h-auto grid place-items-center transition-colors hover:bg-navigation-accent focus:bg-navigation-accent rounded-md xl:hover:bg-transparent xl:focus:bg-transparent">
+              class=":uno: w-[36px] h-[36px] xl:w-auto xl:h-auto grid place-items-center transition-colors hover:bg-surface focus:bg-surface rounded-md xl:hover:bg-transparent xl:focus:bg-transparent">
               <slot name="button" />
             </DropdownMenuTrigger>
           </TooltipTrigger>

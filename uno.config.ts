@@ -1,6 +1,5 @@
 import { defineConfig, transformerCompileClass } from 'unocss';
 
-// eslint-disable-next-line canonical/no-unused-exports
 export default defineConfig({
   theme: {
     breakpoints: {

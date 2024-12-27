@@ -45,7 +45,7 @@ function sectionize(node, index, parent) {
       hName: 'section',
       hProperties: {
         id: slug(headingText),
-        class: 'space-y-4',
+        class: "blog-section"
       }
     }
   };

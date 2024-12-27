@@ -1,14 +1,14 @@
 ---
-import '@/assets/styles/shiki.css';
+import "@/assets/styles/shiki.css";
 
 import { parseDocument } from "htmlparser2";
 
 import { codeToHtml, type BundledLanguage } from "shiki";
 import { transformerNotationHighlight } from "@shikijs/transformers";
 
-import { Icon } from "astro-icon/components";
-
 import CopyCode from "@/components/vue/CopyCode.vue";
+import Clipboard from "@/components/astro/icons/Clipboard.astro";
+import Check from "@/components/astro/icons/Check.astro";
 
 type DataElement = {
   attribs: Record<string, string>;
@@ -22,7 +22,7 @@ const { children, attribs } = document.children[0] as unknown as DataElement;
 
 const text = children[0].data.trim();
 
-const lang = attribs["class"]?.split("-")?.pop() || '' as BundledLanguage;
+const lang = attribs["class"]?.split("-")?.pop() || ("" as BundledLanguage);
 const codeProps = {};
 
 if (attribs["metastring"]) {
@@ -49,13 +49,12 @@ const htmlCode = await codeToHtml(text, {
 <figure
   class:list={[
     ":uno:",
-    "mt-8!",
-    "mb-8!",
+    "my-4",
     "overflow-hidden",
     "border",
     "border-separator",
     "rounded-md",
-    "transition-colors"
+    "transition-colors",
   ]}
 >
   {
@@ -65,9 +64,11 @@ const htmlCode = await codeToHtml(text, {
 
         {isCopyable && (
           <CopyCode code={text} client:visible>
-            <Icon
-              name="lucide:clipboard"
-              class=":uno: w-[14px] h-auto transition-colors text-content/75 group-hover:text-heading group-focus:text-heading"
+            <Clipboard class=":uno: size-[14px] transition-colors text-content/70 group-hover:text-heading group-focus:text-heading flex-shrink-0" />
+
+            <Check
+              slot="copied"
+              class=":uno: size-[14px] text-success flex-shrink-0"
             />
           </CopyCode>
         )}
@@ -76,7 +77,12 @@ const htmlCode = await codeToHtml(text, {
   }
 
   <div class="relative">
-    <p class:list={["absolute top-3 right-4 font-mono text-sm text-content/50", { 'hidden': noLang }]}>
+    <p
+      class:list={[
+        "absolute top-3 right-4 font-mono text-sm text-content/50",
+        { hidden: noLang },
+      ]}
+    >
       {lang}
     </p>
 
