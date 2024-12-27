@@ -464,7 +464,7 @@ After applying the CSS, our component should look like this:
 To add highlights, we need to tell Shiki which line should be highlighted and Shiki needs to transform those lines to be distinguishable from non-highlighted lines. We can
 then write a CSS style to mark those highlighted lines.
 
-Fortunately, Shiki has already provided us with [`transformerMetaHighlight`](https://shiki.style/packages/transformers#transformermetahighlight) transformer that handles
+Fortunately, Shiki has already provided us with `transformerMetaHighlight` transformer that handles
 this use case that we can install through `@shikijs/transformers` package and enable in our Astro config:
 
 ```js title=astro.config.js,{14}
@@ -496,6 +496,10 @@ We can then pass meta strings that defines lines that should be highlighted and 
   background-color: hsl(0, 0%, 90%);
   /* Re-pad after border */
   padding-left: 2px;
+}
+
+.astro-code code .line.highlighted span {
+  background-color: hsl(0, 0%, 90%);
 }
 
 .astro-code code .line.highlighted::before {
@@ -589,7 +593,7 @@ export default defineConfig({
 ```
 
 To access user's clipboard, we need to use JavaScript to access the [Clipboard API](https://developer.mozilla.org/en-US/docs/Web/API/Clipboard_API)
-which is available on the [`navigator`](https://developer.mozilla.org/en-US/docs/Web/API/Navigator) interface through the browser. The functionality
+which is available on the `navigator` interface through the browser. The functionality
 can then be triggered through a button click:
 
 ```astro title=CodeSnippet.astro, copy, {45}

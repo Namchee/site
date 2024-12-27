@@ -13,7 +13,7 @@
   --navigation-border: 90.85% 0.0047 258.33;
   --navigation-accent: 93.16% 0.0017 247.84;
 
-  --accent: 77.72% 0.07 64.87;
+  --accent: 60.71% 0.1923 273.59;
   --success: 67.31% 0.1596 155.59;
 
   font-feature-settings: "calt" 1, "ss07" 1, "ss08" 1, "ss03" 1, "cv05" 1;
@@ -42,7 +42,7 @@ html.dark {
   --navigation-border: 35.78% 0 0;
   --navigation-accent: 37.12% 0 0;
 
-  --accent: 84.51% 0.08 58.60;
+  --accent: 69.81% 0.1308 271.01;
 }
 
 html.dark img {
@@ -102,6 +102,19 @@ html.dark img {
   flex-direction: column;
 
   gap: 16px;
+}
+
+code:not(pre code) {
+  background-color: oklch(var(--surface));
+  font-size: 14px;
+  padding: 1px;
+  border-radius: 4px;
+  color: oklch(var(--accent));
+  border: 1px solid oklch(var(--separator));
+
+  transition-property: color, background-color, border-color, text-decoration-color, fill, stroke;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 150ms;
 }
 
 @keyframes scaleIn {

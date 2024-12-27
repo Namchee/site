@@ -60,7 +60,7 @@ html.dark .astro-code span {
 
 .astro-code code .line.highlighted::before {
   background-color: oklch(var(--surface)) !important;
-  border-left: 2px solid hsl(217, 91%, 60%);
+  border-left: 2px solid oklch(var(--accent));
   margin-left: -2px;
   color: oklch(var(--content) / 0.7);
 }
