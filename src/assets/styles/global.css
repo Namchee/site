@@ -13,6 +13,7 @@
   --navigation-border: 90.85% 0.0047 258.33;
   --navigation-accent: 93.16% 0.0017 247.84;
 
+  --accent: 77.72% 0.07 64.87;
   --success: 67.31% 0.1596 155.59;
 
   font-feature-settings: "calt" 1, "ss07" 1, "ss08" 1, "ss03" 1, "cv05" 1;
@@ -40,6 +41,8 @@ html.dark {
   --navigation-background: 29.78% 0 0;
   --navigation-border: 35.78% 0 0;
   --navigation-accent: 37.12% 0 0;
+
+  --accent: 84.51% 0.08 58.60;
 }
 
 html.dark img {

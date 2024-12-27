@@ -30,6 +30,8 @@ export default defineConfig({
       'navigation-background': 'oklch(var(--navigation-background))',
       'navigation-border': 'oklch(var(--navigation-border))',
       'navigation-accent': 'oklch(var(--navigation-accent))',
+
+      'accent': 'oklch(var(--accent))'
     },
   },
   transformers: [

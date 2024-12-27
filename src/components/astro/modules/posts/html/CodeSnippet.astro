@@ -19,7 +19,9 @@ if (dataMeta) {
   });
 }
 
-const { title, copy, noLang } = meta;
+const title = meta.title;
+const copy = 'copy' in meta;
+const noLang = 'noLang' in meta;
 ---
 
 <figure

@@ -45,22 +45,21 @@ html.dark .astro-code span {
 
   position: sticky;
   left: 0;
-  z-index: 1;
   background: oklch(var(--background));
   color: oklch(var(--content) / 0.35);
 }
 
 .astro-code code .line.highlighted {
-  background-color: oklch(var(--content) / 0.1) !important;
+  background-color: oklch(var(--surface)) !important;
   padding-left: 2px;
 }
 
 .astro-code code .line.highlighted span {
-  background-color: oklch(var(--content) / 0) !important;
+  background-color: oklch(var(--surface)) !important;
 }
 
 .astro-code code .line.highlighted::before {
-  background-color: transparent;
+  background-color: oklch(var(--surface)) !important;
   border-left: 2px solid hsl(217, 91%, 60%);
   margin-left: -2px;
   color: oklch(var(--content) / 0.7);
