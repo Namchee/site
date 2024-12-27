@@ -9,30 +9,12 @@ tags:
   - javascript
   - typescript
 ---
+
 import Tweet from 'astro-tweet';
 
-import TextLink from './../../components/astro/ui/TextLink.astro';
-import Head2 from './../../components/astro/modules/posts/html/Head2.astro';
-import Head3 from './../../components/astro/modules/posts/html/Head3.astro';
-import Strong from './../../components/astro/modules/posts/html/Strong.astro';
-import Quote from './../../components/astro/modules/posts/html/Quote.astro';
-
-import ListTitle from './../../components/astro/modules/posts/html/ListTitle.astro';
-import ListItem from './../../components/astro/modules/posts/html/ListItem.astro';
-
-import Image from './../../components/astro/modules/posts/html/Image.astro';
-
-import CodeSnippet from './../../components/astro/modules/posts/html/CodeSnippet.astro';
-
-
-export const components = {
-  a: TextLink,
-  h2: Head2,
-  h3: Head3,
-  strong: Strong,
-  img: Image,
-  pre: CodeSnippet,
-}
+import DescriptionList from '@/components/astro/modules/posts/html/DescriptionList.astro';
+import DescriptionTerm from '@/components/astro/modules/posts/html/DescriptionTerm.astro';
+import DescriptionItem from '@/components/astro/modules/posts/html/DescriptionItem.astro';
 
 Lorem ipsum dolor sit amet consectetur. Vitae amet tortor bibendum sit cursus et nisi non. Sagittis aliquet augue purus dignissim. Sodales pellentesque felis eleifend tristique molestie. **Accumsan amet erat mauris** consequat urna fames felis et sed.
 
@@ -88,43 +70,36 @@ Diam nisl sit volutpat est pellentesque aliquet porttitor egestas commodo. Purus
 
 <Tweet id="1068615953989087232" />
 
-## The Blueprint
+## Testing List
 
-Moving on from the philosophical part of this post, I want this website to be my personal platform to learn in public. Specifically, this website will serve as:
+- This is a list
+- This is another item of the list
+- Lastly, this is another item!
 
-<dl class=":uno: space-y-6">
-  <ListTitle>
-    Knowledge Base
-  </ListTitle>
-  <ListItem>
-    Imagine having a personal library that stores records of all your experiences. Whenever I encounter a problem, I can trace back my logs and check if I have solved similar
-    issues in the past. Not only will it help me resolve my issue faster by reducing redundancy, scouring past logs will also enable others who might encounter similar problems
-    to solve them. In the end, everyone is happy!
-  </ListItem>
+## Testing&nbsp;`<dd>`
 
-  <ListTitle>
-    Code Playground
-  </ListTitle>
-  <ListItem>
+<DescriptionList>
+  <DescriptionTerm>
+    Sample Term
+  </DescriptionTerm>
+  <DescriptionItem>
+    In a world that's constantly changing, staying true to your values and goals can feel like navigating through a storm. Yet, it's in those moments of uncertainty that our character is truly tested and shaped.
+
+    As we move forward, let's remember that progress often lies in persistence and that even the smallest efforts contribute to something greater. Keep striving, keep growing, and always trust in your ability to adapt and succeed.
+  </DescriptionItem>
+
+  <DescriptionTerm>
+    Another Term
+  </DescriptionTerm>
+  <DescriptionItem>
     Since I found my past experiments to be insightful, I will continue my code playground and share ideas or experiments I've conducted as either code snippets or posts.
     Hopefully, I can test out my ideas and sharpen them through public feedback. Don't be shy to drop feedback!
-  </ListItem>
-
-  <ListTitle>Giving Back Platform</ListTitle>
-  <ListItem>
-    I owe a lot for my current position to the open-source community. This website and all its contents will serve as a thank-you letter to the open-source community
-    and keep the open-source spirit alive.
-  </ListItem>
-
-  <ListTitle>Productive Distraction</ListTitle>
-  <ListItem>
-    In the past, I used to play too much video games during my free time. However, I later realized that this activity was unproductive for my growth as a software engineer.
-    Therefore, I vow to replace it with more productive habits by maintaining this website.
-  </ListItem>
-</dl>
+  </DescriptionItem>
+</DescriptionList>
 
 ## Final Thoughts
 
-With that in mind, I hope that everyone, including you who is reading this, can continuously learn and grow through this website.
+Life is a journey filled with twists, turns, and surprises, and it's often the moments we least expect that leave the greatest impact.
+Whether it's the lessons learned from challenges or the joy found in simple pleasures, every experience adds depth to our stories.
 
-I know, I'm very late in the blogging game when a lot of people already started learning in public early in their careers. However, I believe that it is better to start late than never start at all. Cheers!
+As we close this chapter, let's carry forward the resilience and insights we've gained, knowing that each step taken is a step closer to becoming the best version of ourselves.

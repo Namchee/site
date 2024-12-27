@@ -31,10 +31,9 @@ const lastModified = !!frontmatter.lastModified
   : publishedAt;
 ---
 
-
 <progress
   class=":uno: fixed w-screen z-10 reading__progress h-[2px] left-0 top-0"
-/>
+></progress>
 
 <Layout
   title={`${frontmatter.title} — Namchee`}
@@ -180,4 +179,26 @@ const lastModified = !!frontmatter.lastModified
 
   window.addEventListener("scroll", setProgress);
   setProgress();
+
+  // table of contents scrollspy
+  const sections = document.querySelectorAll<HTMLElement>("section[id]");
+
+  const observer = new IntersectionObserver((entries) => {
+    for (const entry of entries) {
+      const id = entry.target.id;
+
+      const link = document.querySelector<HTMLAnchorElement>(
+        `nav ul li a[href="#${id}"]`
+      );
+
+      if (!link) {
+        return;
+      }
+
+      const method = entry.intersectionRatio > 0 ? "add" : "remove";
+      link.classList[method]("text-heading", "font-medium");
+    }
+  });
+
+  sections.forEach((link) => observer.observe(link));
 </script>

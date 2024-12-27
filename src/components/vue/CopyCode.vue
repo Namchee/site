@@ -35,7 +35,7 @@ onBeforeUnmount(() => {
 
 <template>
   <TooltipProvider>
-    <TooltipRoot :open="open || copied" @update:open="(o) => open = o" :delay-duration="200">
+    <TooltipRoot :open="open || copied" @update:open="(o) => open = o" :delay-duration="100">
       <TooltipTrigger as-child>
         <button @click="copyCode" :disabled="open" :class="{
           'group': true,
