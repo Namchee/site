@@ -2,7 +2,6 @@
 import { ref } from 'vue';
 
 import { ToastProvider, ToastDescription, ToastRoot, ToastClose, ToastViewport } from 'radix-vue';
-import { Icon } from '@iconify/vue';
 
 const open = ref(false);
 
@@ -34,10 +33,7 @@ function copyLink() {
         Link copied to clipboard!
       </ToastDescription>
       <ToastClose>
-        <Icon
-          icon="lucide:x"
-          class=":uno: h-auto transition-colors group-hover:text-heading group-focus:text-heading w-[14px]"
-        />
+        <slot name="close" />
       </ToastClose>
     </ToastRoot>
 

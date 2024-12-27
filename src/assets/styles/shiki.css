@@ -2,8 +2,8 @@ code {
   font-family: 'JetBrains Mono', ui-monospace;
 }
 
-html.dark .shiki,
-html.dark .shiki span {
+html.dark .astro-code,
+html.dark .astro-code span {
   color: var(--shiki-dark) !important;
   background-color: oklch(var(--background)) !important;
   font-style: var(--shiki-dark-font-style) !important;
@@ -11,13 +11,11 @@ html.dark .shiki span {
   text-decoration: var(--shiki-dark-text-decoration) !important;
 }
 
-.shiki {
+.astro-code {
   overflow-x: auto;
-
-  transition: all 200ms ease-out;
 }
 
-.shiki code {
+.astro-code code {
   counter-reset: step;
   counter-increment: step 0;
   font-size: 14px;
@@ -26,31 +24,43 @@ html.dark .shiki span {
   min-width: 100%;
   display: block;
   line-height: 1.75;
-
-  padding: 0.5rem 0;
 }
 
-.shiki code .line {
+.astro-code code .line {
   display: inline-block;
   width: 100%;
-  padding-right: 1.75rem;
+  padding-right: 2rem;
 }
 
-.shiki code .line::before {
+.astro-code code .line::before {
   content: counter(step);
   counter-increment: step;
-  width: 1.75rem;
-  margin-right: 1.25rem;
+  width: 2rem;
+  margin-right: 1rem;
   display: inline-block;
   margin-left: auto;
   text-align: right;
+  opacity: 1;
+  padding-right: 0.25rem;
+
+  position: sticky;
+  left: 0;
+  background: oklch(var(--background));
   color: oklch(var(--content) / 0.35);
 }
 
-.shiki code .line.highlighted {
-  background-color: oklch(var(--content) / 0.15) !important;
+.astro-code code .line.highlighted {
+  background-color: oklch(var(--surface)) !important;
+  padding-left: 2px;
 }
 
-.shiki code .line.highlighted span {
-  background-color: transparent !important;
+.astro-code code .line.highlighted span {
+  background-color: oklch(var(--surface)) !important;
+}
+
+.astro-code code .line.highlighted::before {
+  background-color: oklch(var(--surface)) !important;
+  border-left: 2px solid oklch(var(--accent));
+  margin-left: -2px;
+  color: oklch(var(--content) / 0.7);
 }

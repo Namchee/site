@@ -1,5 +1,6 @@
 ---
 import "@/assets/styles/tweet.css";
+import "@/assets/styles/shiki.css";
 
 import { Icon } from "astro-icon/components";
 
@@ -31,10 +32,9 @@ const lastModified = !!frontmatter.lastModified
   : publishedAt;
 ---
 
-
 <progress
   class=":uno: fixed w-screen z-10 reading__progress h-[2px] left-0 top-0"
-/>
+></progress>
 
 <Layout
   title={`${frontmatter.title} — Namchee`}
@@ -116,12 +116,12 @@ const lastModified = !!frontmatter.lastModified
     </header>
 
     <div
-      class=":uno: col-start-1 col-end-13 md:col-start-2 md:col-end-12 leading-[1.75] space-y-4 mt-8 overflow-x-visible"
+      class=":uno: col-start-1 col-end-13 md:col-start-2 md:col-end-12 leading-[1.75] flex flex-col gap-4 mt-8 overflow-x-visible"
     >
       <slot />
     </div>
 
-    <section class=":uno: flex col-start-1 col-end-13 justify-between mt-16">
+    <section class=":uno: flex col-start-1 col-end-13 md:col-start-2 md:col-end-12 justify-between mt-16">
       <div>
         <p class=":uno: font-semibold text-sm leading-normal md:text-base mb-5">
           Share this Post
@@ -172,9 +172,34 @@ const lastModified = !!frontmatter.lastModified
   const windowHeight = window.innerHeight;
   const documentHeight = document.documentElement.scrollHeight;
   const max = documentHeight - windowHeight;
-  progressBar.setAttribute("max", max.toString());
+  progressBar?.setAttribute("max", max.toString());
 
-  window.addEventListener("scroll", () => {
-    progressBar.setAttribute("value", window.scrollY.toString());
+  function setProgress() {
+    progressBar?.setAttribute("value", window.scrollY.toString());
+  }
+
+  window.addEventListener("scroll", setProgress);
+  setProgress();
+
+  // table of contents scrollspy
+  const sections = document.querySelectorAll<HTMLElement>("section[id]");
+
+  const observer = new IntersectionObserver((entries) => {
+    for (const entry of entries) {
+      const id = entry.target.id;
+
+      const link = document.querySelector<HTMLAnchorElement>(
+        `nav ul li a[href="#${id}"]`
+      );
+
+      if (!link) {
+        return;
+      }
+
+      const method = entry.intersectionRatio > 0 ? "add" : "remove";
+      link.classList[method]("text-heading", "font-medium");
+    }
   });
+
+  sections.forEach((link) => observer.observe(link));
 </script>

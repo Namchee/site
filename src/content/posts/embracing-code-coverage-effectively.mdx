@@ -9,42 +9,17 @@ tags:
 
 import Tweet from 'astro-tweet';
 
-import TextLink from './../../components/astro/ui/TextLink.astro';
-import Head2 from './../../components/astro/modules/posts/html/Head2.astro';
-import Head3 from './../../components/astro/modules/posts/html/Head3.astro';
-import Strong from './../../components/astro/modules/posts/html/Strong.astro';
-import Quote from './../../components/astro/modules/posts/html/Quote.astro';
-
-import ListTitle from './../../components/astro/modules/posts/html/ListTitle.astro';
-import ListItem from './../../components/astro/modules/posts/html/ListItem.astro';
-
-import Image from './../../components/astro/modules/posts/html/Image.astro';
-
-import CodeSnippet from './../../components/astro/modules/posts/html/CodeSnippet.astro';
-
-
-export const components = {
-  a: TextLink,
-  h2: Head2,
-  h3: Head3,
-  strong: Strong,
-  img: Image,
-  pre: CodeSnippet,
-}
+import DescriptionList from '@/components/astro/modules/posts/html/DescriptionList.astro';
+import DescriptionTerm from '@/components/astro/modules/posts/html/DescriptionTerm.astro';
+import DescriptionItem from '@/components/astro/modules/posts/html/DescriptionItem.astro';
 
 Writing high-quality code means writing high-quality tests. A common metric used to measure test quality is code coverage.
 For many projects, code coverage is used as one of the thresholds for acceptable code.
 
 Sadly, code coverage is frequently misused in two ways:
 
-<dl class=":uno: space-y-2">
-  <ListTitle class="font-normal">
-    Using code coverage with excessive thresholds
-  </ListTitle>
-  <ListTitle class="font-normal">
-    Using code coverage as **the** metric of test quality
-  </ListTitle>
-</dl>
+- Using code coverage with excessive thresholds
+- Using code coverage as **the** metric of test quality
 
 Due to its common misuse, code coverage has spawned differing views on its effectiveness.
 While the effectiveness of code coverage may vary across teams, there&apos;s one statement
@@ -141,23 +116,24 @@ functions, and lines in our code as the `modulo` function is not executed in any
 
 From my observation, there are two reasons why code coverage is a popular metric for tests:
 
-<dl class=":uno space-y-4">
-  <ListTitle>
+<DescriptionList>
+  <DescriptionTerm>
     Easy to Measure
-  </ListTitle>
-  <ListItem>
+  </DescriptionTerm>
+  <DescriptionItem>
     Depending on the maturity of the test ecosystem, measuring code coverage
     can be as simple as enabling the coverage reporter through a command line flag or a
     configuration key in a testing framework
-  </ListItem>
-  <ListTitle>
+  </DescriptionItem>
+
+  <DescriptionTerm>
     Quantitative
-  </ListTitle>
-  <ListItem>
+  </DescriptionTerm>
+  <DescriptionItem>
     Since code coverage is a quantitative metric, code coverage can be easily compared to one another.
     We can always say that a code with higher coverage covers more scenario and states than a code with low coverage.
-  </ListItem>
-</dl>
+  </DescriptionItem>
+</DescriptionList>
 
 At a glance, code coverage seems to be the all-in-one metric for measuring test quality, as it can show parts of the code
 that have been executed by the test suite. Most of the time, engineering teams apply a threshold of coverage to reach for
@@ -166,19 +142,20 @@ a code to be considered as acceptable.
 Unfortunately, the obsession with quantitative data often led to an exceedingly high code coverage threshold to be considered
 acceptable. Contrary to its purposes, setting the threshold too high is **counterproductive** for the following reasons:
 
-<dl class=":uno space-y-4">
-  <ListTitle>
+<DescriptionList>
+  <DescriptionTerm>
     Limited Engineering Time
-  </ListTitle>
-  <ListItem>
+  </DescriptionTerm>
+  <DescriptionItem>
     While increasing coverage from 0% to ~60% is relatively simple, the same cannot be said for increasing coverage from 80% to ~90%.
     Rather than getting blocked by the coverage requirements, engineers should spend their time prioritizing more important tasks,
     such as developing critical features.
-  </ListItem>
-  <ListTitle>
+  </DescriptionItem>
+
+  <DescriptionTerm>
     Promoting Bad Standards
-  </ListTitle>
-  <ListItem>
+  </DescriptionTerm>
+  <DescriptionItem>
     Nifty engineers have devised a workaround for the combination of unrealistic thresholds and tight deadlines: **assertion-free tests**.
     Consider the following function:
 
@@ -216,16 +193,14 @@ acceptable. Contrary to its purposes, setting the threshold too high is **counte
     In this case code coverage only promotes a sense of false security through false positive results,
     which is a good example of [Goodhart&apos;s Law](https://en.wikipedia.org/wiki/Goodhart%27s_law):
 
-    <Quote class="italic">
-      Any observed statistical regularity will tend to collapse once pressure is placed upon it for control purposes
-    </Quote>
+    > Any observed statistical regularity will tend to collapse once pressure is placed upon it for control purposes
 
     Assertion-free tests aren&apos;t 100% useless as they are still able to catch common bugs such as bad pointers.
 
     However, writing a test without assertion is a waste of time as it defeats the whole purpose of testing:
     ensuring the tested code is **working as expected**.
-  </ListItem>
-</dl>
+  </DescriptionItem>
+</DescriptionList>
 
 ## What Code Coverage Can&apos;t Tell You
 
@@ -333,9 +308,7 @@ We should instead use it at what it does best: finding untested part of the code
 
 When talking about the importance about the untested part of the code, [Brian Marrick](http://www.exampler.com/testing-com/writings/coverage.pdf) has an interesting take on it:
 
-<Quote>
- If a part of your test suite is weak in a way that coverage can detect, it&apos;s likely also weak in a way coverage can&apos;t detect.
-</Quote>
+> If a part of your test suite is weak in a way that coverage can detect, it&apos;s likely also weak in a way coverage can&apos;t detect.
 
 Rather than limiting its effectiveness by using it as **the** metric of tests, I believe the correct approach for code coverage is
 augmenting it with other types of coverage, such as state coverage (which I will be writing about in the future).

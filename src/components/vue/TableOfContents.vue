@@ -28,7 +28,7 @@ onMounted(() => {
         <DropdownMenuRoot :modal="false" :open="isOpen" @update:open="(open) => isOpen = open">
           <TooltipTrigger as-child>
             <DropdownMenuTrigger
-              class=":uno: w-[36px] h-[36px] xl:w-auto xl:h-auto grid place-items-center transition-colors hover:bg-navigation-accent focus:bg-navigation-accent rounded-md xl:hover:bg-transparent xl:focus:bg-transparent">
+              class=":uno: w-[36px] h-[36px] xl:w-auto xl:h-auto grid place-items-center transition-colors hover:bg-surface focus:bg-surface rounded-md xl:hover:bg-transparent xl:focus:bg-transparent">
               <slot name="button" />
             </DropdownMenuTrigger>
           </TooltipTrigger>
@@ -54,7 +54,7 @@ onMounted(() => {
                   return;
                 }
               }"
-              class="border border-navigation-border rounded-md xl:rounded-none xl:shadow-none shadow-md bg-navigation-background p-4 xl:p-0 md:mt-2 md:mb-0 mb-4 xl:mt-4 -ml-1 md:ml-0 xl:bg-transparent md:translate-x-0 xl:border-none transition-all origin-bottom-left lg:origin-top-left data-[state=closed]:opacity-0 data-[state=opened]:opacity-100 data-[state=closed]:scale-95 data-[state=opened]:scale-100 toc__container"
+              class="border border-navigation-border rounded-md xl:rounded-none xl:shadow-none shadow-md bg-navigation-background p-4 xl:p-0 md:mt-2 md:mb-0 mb-4 xl:mt-4 -ml-1 md:ml-0 xl:bg-transparent md:translate-x-0 xl:border-none transition-all origin-bottom-left lg:origin-top-left data-[state=closed]:opacity-0 data-[state=opened]:opacity-100 data-[state=closed]:scale-95 data-[state=opened]:scale-100 text-balance toc__container"
             >
               <slot name="toc" />
 

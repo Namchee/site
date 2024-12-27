@@ -1,6 +1,5 @@
 import { defineConfig, transformerCompileClass } from 'unocss';
 
-// eslint-disable-next-line canonical/no-unused-exports
 export default defineConfig({
   theme: {
     breakpoints: {
@@ -31,6 +30,8 @@ export default defineConfig({
       'navigation-background': 'oklch(var(--navigation-background))',
       'navigation-border': 'oklch(var(--navigation-border))',
       'navigation-accent': 'oklch(var(--navigation-accent))',
+
+      'accent': 'oklch(var(--accent))'
     },
   },
   transformers: [

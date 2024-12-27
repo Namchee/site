@@ -11,13 +11,13 @@ const MAX_WIDTH = 670;
 
 const { alt, src } = Astro.props;
 
-const { width, height } = await getPixels(src);
+const { width, height } = await getPixels(src!);
 const scaledHeight = Math.ceil(MAX_WIDTH / width * height);
 ---
 
-<figure class=":uno: mt-8! mb-8! md:-ml-4 md:w-[calc(100%+32px)] overflow-x-visible">
+<figure class=":uno: my-4 md:-ml-4 md:w-[calc(100%+32px)] overflow-x-visible">
   <Img
-    src={src}
+    src={src!}
     alt={alt}
     title={alt}
     width={MAX_WIDTH}

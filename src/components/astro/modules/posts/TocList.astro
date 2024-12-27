@@ -36,28 +36,3 @@ const marginMap = {
     ))
   }
 </ul>
-
-<script>
-  const sections = document.querySelectorAll<HTMLElement>("section[id]");
-
-  const observer = new IntersectionObserver(
-    (entries) => {
-      for (const entry of entries) {
-        const id = entry.target.id;
-
-        const link = document.querySelector<HTMLAnchorElement>(
-          `nav ul li a[href="#${id}"]`
-        );
-
-        if (!link) {
-          return;
-        }
-
-        const method = entry.intersectionRatio > 0 ? 'add' : 'remove';
-        link.classList[method]("text-heading", "font-medium");
-      }
-    },
-  );
-
-  sections.forEach((link) => observer.observe(link));
-</script>

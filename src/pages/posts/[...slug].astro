@@ -1,7 +1,17 @@
 ---
-import { getCollection, type CollectionEntry } from "astro:content";
+import { getCollection, render, type CollectionEntry } from "astro:content";
 
 import PostLayout from "@/components/astro/modules/posts/PostLayout.astro";
+
+import TextLink from "@/components/astro/ui/TextLink.astro";
+import Head2 from "@/components/astro/modules/posts/html/Head2.astro";
+import Head3 from "@/components/astro/modules/posts/html/Head3.astro";
+import Strong from "@/components/astro/modules/posts/html/Strong.astro";
+import Image from "@/components/astro/modules/posts/html/Image.astro";
+import CodeSnippet from "@/components/astro/modules/posts/html/CodeSnippet.astro";
+import Quote from "@/components/astro/modules/posts/html/Quote.astro";
+import BulletItem from "@/components/astro/modules/posts/html/BulletItem.astro";
+import UnorderedList from "@/components/astro/modules/posts/html/UnorderedList.astro";
 
 import type { MarkdownFile } from "@/plugins/remark/types";
 
@@ -22,7 +32,7 @@ export async function getStaticPaths() {
 }
 
 const { entry } = Astro.props;
-const { Content, remarkPluginFrontmatter, headings } = await entry.render();
+const { Content, remarkPluginFrontmatter, headings } = await render(entry);
 
 const frontmatter = {
   ...(remarkPluginFrontmatter as FrontmatterData & FrontmatterAddons),
@@ -32,5 +42,17 @@ const frontmatter = {
 ---
 
 <PostLayout frontmatter={frontmatter}>
-  <Content />
+  <Content
+    components={{
+      a: TextLink,
+      h2: Head2,
+      h3: Head3,
+      strong: Strong,
+      img: Image,
+      pre: CodeSnippet,
+      blockquote: Quote,
+      li: BulletItem,
+      ul: UnorderedList,
+    }}
+  />
 </PostLayout>

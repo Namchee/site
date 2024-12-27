@@ -5,25 +5,10 @@ subtitle: 'Reflections of career and future plans'
 tags:
   - growth
 ---
-import TextLink from './../../components/astro/ui/TextLink.astro';
-import Head2 from './../../components/astro/modules/posts/html/Head2.astro';
-import Head3 from './../../components/astro/modules/posts/html/Head3.astro';
-import Strong from './../../components/astro/modules/posts/html/Strong.astro';
-import Quote from './../../components/astro/modules/posts/html/Quote.astro';
 
-import ListTitle from './../../components/astro/modules/posts/html/ListTitle.astro';
-import ListItem from './../../components/astro/modules/posts/html/ListItem.astro';
-
-import Image from './../../components/astro/modules/posts/html/Image.astro';
-
-export const components = {
-  a: TextLink,
-  h2: Head2,
-  h3: Head3,
-  strong: Strong,
-  blockquote: Quote,
-  img: Image,
-}
+import DescriptionList from '@/components/astro/modules/posts/html/DescriptionList.astro';
+import DescriptionTerm from '@/components/astro/modules/posts/html/DescriptionTerm.astro';
+import DescriptionItem from '@/components/astro/modules/posts/html/DescriptionItem.astro';
 
 After three years of my career as a professional software engineer, I've finally decided that it's time for me to write
 and share my journey in the world of software engineering through this website.
@@ -91,36 +76,38 @@ themselves in the community by opening themselves to feedback, which is missing 
 
 Moving on from the philosophical part of this post, I want this website to be my personal platform to learn in public. Specifically, this website will serve as:
 
-<dl class=":uno: space-y-6">
-  <ListTitle>
+<DescriptionList>
+  <DescriptionTerm>
     Knowledge Base
-  </ListTitle>
-  <ListItem>
+  </DescriptionTerm>
+  <DescriptionItem>
     Imagine having a personal library that stores records of all your experiences. Whenever I encounter a problem, I can trace back my logs and check if I have solved similar
     issues in the past. Not only will it help me resolve my issue faster by reducing redundancy, scouring past logs will also enable others who might encounter similar problems
     to solve them. In the end, everyone is happy!
-  </ListItem>
+  </DescriptionItem>
 
-  <ListTitle>
+  <DescriptionTerm>
     Code Playground
-  </ListTitle>
-  <ListItem>
+  </DescriptionTerm>
+  <DescriptionItem>
     Since I found my past experiments to be insightful, I will continue my code playground and share ideas or experiments I've conducted as either code snippets or posts.
     Hopefully, I can test out my ideas and sharpen them through public feedback. Don't be shy to drop feedback!
-  </ListItem>
+  </DescriptionItem>
 
-  <ListTitle>Giving Back Platform</ListTitle>
-  <ListItem>
+  <DescriptionTerm>
+    Giving Back Platform
+  </DescriptionTerm>
+  <DescriptionItem>
     I owe a lot for my current position to the open-source community. This website and all its contents will serve as a thank-you letter to the open-source community
     and keep the open-source spirit alive.
-  </ListItem>
+  </DescriptionItem>
 
-  <ListTitle>Productive Distraction</ListTitle>
-  <ListItem>
+  <DescriptionTerm>Productive Distraction</DescriptionTerm>
+  <DescriptionItem>
     In the past, I used to play too much video games during my free time. However, I later realized that this activity was unproductive for my growth as a software engineer.
     Therefore, I vow to replace it with more productive habits by maintaining this website.
-  </ListItem>
-</dl>
+  </DescriptionItem>
+</DescriptionList>
 
 ## Final Thoughts
 
