@@ -32,9 +32,6 @@ importers:
       radix-vue:
         specifier: ^1.9.7
         version: 1.9.7(vue@3.5.12(typescript@5.4.5))
-      rehype-mermaid:
-        specifier: ^3.0.0
-        version: 3.0.0(playwright@1.49.1)
       remark-mermaidjs:
         specifier: ^7.0.0
         version: 7.0.0(playwright@1.49.1)
@@ -114,9 +111,6 @@ importers:
       github-slugger:
         specifier: ^2.0.0
         version: 2.0.0
-      htmlparser2:
-        specifier: ^9.1.0
-        version: 9.1.0
       mdast-util-to-string:
         specifier: ^4.0.0
         version: 4.0.0
@@ -4219,10 +4213,6 @@ packages:
     resolution: {integrity: sha512-I9jwMn07Sy/IwOj3zVkVik2JTvgpaykDZEigL6Rx6N9LbMywwUSMtxET+7lVoDLLd3O3IXwJwvuuns8UB/HeAg==}
     engines: {node: '>=4'}
 
-  mini-svg-data-uri@1.4.4:
-    resolution: {integrity: sha512-r9deDe9p5FJUPZAk3A59wGH7Ii9YrjjWw0jmw/liSbHl2CHiyXj6FcDXDu2K3TjVAXqiJdaw3xxwlZZr9E6nHg==}
-    hasBin: true
-
   minimatch@3.0.8:
     resolution: {integrity: sha512-6FsRAQsxQ61mw+qP1ZzbL9Bc78x2p5OqNgNpnoAFLTrX8n5Kxph0CsnhmKKNXTWjXqU5L0pGPR7hYk+XWZr60Q==}
 
@@ -4693,14 +4683,6 @@ packages:
 
   rehype-mathjax@6.0.0:
     resolution: {integrity: sha512-SioRmn+0mRWtDc4QVKG9JG88bXhPazfhc11GQoQ68mwot2WWyfabyZ7tuJu3Z4LCf893wXkQTVTF8PUlntoDwA==}
-
-  rehype-mermaid@3.0.0:
-    resolution: {integrity: sha512-fxrD5E4Fa1WXUjmjNDvLOMT4XB1WaxcfycFIWiYU0yEMQhcTDElc9aDFnbDFRLxG1Cfo1I3mfD5kg4sjlWaB+Q==}
-    peerDependencies:
-      playwright: '1'
-    peerDependenciesMeta:
-      playwright:
-        optional: true
 
   rehype-parse@9.0.0:
     resolution: {integrity: sha512-WG7nfvmWWkCR++KEkZevZb/uw41E8TsH4DsY9UxsTbIXCVGbAs4S+r8FrQ+OtH5EEQAs+5UxKC42VinkmpA1Yw==}
@@ -11151,8 +11133,6 @@ snapshots:
 
   min-indent@1.0.1: {}
 
-  mini-svg-data-uri@1.4.4: {}
-
   minimatch@3.0.8:
     dependencies:
       brace-expansion: 1.1.11
@@ -11667,22 +11647,6 @@ snapshots:
       - canvas
       - supports-color
       - utf-8-validate
-
-  rehype-mermaid@3.0.0(playwright@1.49.1):
-    dependencies:
-      '@types/hast': 3.0.4
-      hast-util-from-html-isomorphic: 2.0.0
-      hast-util-to-text: 4.0.2
-      mermaid-isomorphic: 3.0.0(playwright@1.49.1)
-      mini-svg-data-uri: 1.4.4
-      space-separated-tokens: 2.0.2
-      unified: 11.0.5
-      unist-util-visit-parents: 6.0.1
-      vfile: 6.0.3
-    optionalDependencies:
-      playwright: 1.49.1
-    transitivePeerDependencies:
-      - supports-color
 
   rehype-parse@9.0.0:
     dependencies:
