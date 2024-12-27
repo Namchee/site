@@ -30,6 +30,8 @@ const ogHost = import.meta.env.DEV
   ? `${url.protocol}//${url.host}`
   : import.meta.env.SITE;
 const ogFile = og ? `${og}.png` : "og.png";
+
+const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 ---
 
 <!doctype html>
@@ -46,6 +48,9 @@ const ogFile = og ? `${og}.png` : "og.png";
       type="image/svg+xml"
       class=":uno: favicon"
     />
+
+    <meta name="generator" content={Astro.generator} />
+    <link rel="canonical" href={canonicalURL} />
 
     <meta property="og:url" content="https://www.namchee.dev/" />
     <meta property="og:type" content="website" />
