@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { onBeforeUnmount, onMounted, ref } from 'vue';
+import { onBeforeUnmount, ref } from 'vue';
 
 import { TooltipProvider, TooltipArrow, TooltipRoot, TooltipPortal, TooltipTrigger, TooltipContent } from 'radix-vue';
 
@@ -8,19 +8,20 @@ const props = defineProps({
 });
 
 const open = ref(false);
+const copied = ref(false);
 const timeoutId = ref<number>(-1);
 
 function copyCode() {
   navigator.clipboard.writeText(props.code);
 
-  open.value = true;
+  copied.value = true;
 
   if (timeoutId.value) {
     window.clearTimeout(timeoutId.value);
   }
 
   timeoutId.value = window.setTimeout(() => {
-    open.value = false;
+    copied.value = false;
     timeoutId.value = -1;
   }, 2_500);
 }
@@ -34,10 +35,14 @@ onBeforeUnmount(() => {
 
 <template>
   <TooltipProvider>
-    <TooltipRoot :open="open">
+    <TooltipRoot :open="open || copied" @update:open="(o) => open = o" :delay-duration="200">
       <TooltipTrigger as-child>
-        <button @click="copyCode" :disabled="open" class=":uno: group" title="Copy code to clipboard">
-          <template v-if="!open">
+        <button @click="copyCode" :disabled="open" :class="{
+          'group': true,
+          'cursor-default': copied,
+          'cursor-pointer': !copied,
+        }">
+          <template v-if="!copied">
             <slot />
           </template>
           <template v-else>
@@ -47,11 +52,22 @@ onBeforeUnmount(() => {
       </TooltipTrigger>
 
       <TooltipPortal>
-        <TooltipContent
-          class="text-xs rounded-md shadow shadow py-2 tooltip__content text-white select-none bg-success px-3 will-change-[transform,opacity]"
-          :side-offset="5">
-          Copied!
-          <TooltipArrow class="fill-success" :width="8" />
+        <TooltipContent :class="{
+          'text-xs rounded-md shadow shadow py-2 tooltip__content select-none px-3 will-change-[transform,opacity] transition-colors': true,
+          'bg-success text-white': copied,
+          'bg-content text-background': !copied
+        }" :side-offset="5">
+          <template v-if="!copied">
+            Copy to Clipboard
+          </template>
+
+          <template v-else>
+            Copied!
+          </template>
+          <TooltipArrow :class="{
+            'fill-content': !copied,
+            'fill-success': copied,
+          }" :width="8" />
         </TooltipContent>
       </TooltipPortal>
     </TooltipRoot>
