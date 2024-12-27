@@ -33,7 +33,7 @@ Fortunately, MDX also allows users to re-map HTML elements into custom component
 by exporting component map in MDX files as `components` constant.
 
 
-```markdown title=Replacing default elements with custom elements
+```markdown title=Replacing default elements with custom elements,{8-11}
 ---
 title: 'Hello World!'
 publishedAt: 2024-12-17
@@ -45,6 +45,19 @@ export const components = {
   // Replace <h1> with Head1
   h1: Head1,
 }
+```
+
+Alternatively, users can also provide the mapped components by passing them as a prop to the `<Content />` element
+
+```astro title=Passing component mapping via <Content />,{6-8}
+---
+import { Content } from 'path/to/Content.mdx';
+import Head1 from 'path/to/Head1.astro';
+---
+
+<Content components={{
+  h1: Head1,
+}}>
 ```
 
 After seeing the syntax, you might be wondering: how do I manage the props? What attributes are passed to the mapped element?
@@ -209,11 +222,11 @@ butchered element will look like this.
 
 ![Look ma! I restored the formatting!](https://res.cloudinary.com/namchee/image/upload/v1734770479/posts/supercharing-astro-code-snippet/second-try)
 
-We've restored the formatting at this point, but we're still missing the theming from the original component. Obviously, we can apply the intended class, style, and other attributes to the `<pre>` element directly.
-However, this means that we wasted the theming we've done from Astro's config entirely.
+We've restored the formatting at this point, but we're still missing the theming from the original component. Obviously, we can apply the intended
+class, style, and other attributes to the `<pre>` element directly. However, this means that we wasted the theming we've done from Astro's config entirely.
 
 Fortunately, since the custom component is implemented as an Astro component, Astro treats those passed attributes as **component props** which is
-provided by `Astro.slot` globals.
+provided by `Astro.props` globals.
 
 ```astro title=CodeSnippet.astro,{2,10}
 ---
