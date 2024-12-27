@@ -48,7 +48,7 @@ export default defineConfig({
         transformerMetaHighlight(),
       ],
       themes: {
-        light: 'min-light',
+        light: 'one-light',
         dark: 'tokyo-night',
       }
     }

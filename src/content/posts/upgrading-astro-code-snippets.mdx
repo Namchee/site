@@ -128,12 +128,12 @@ This HTML tags will then be used by Astro to replace code blocks during the mark
 transformation process into an HTML page for:
 
 - All code fences (\`\`\`) defined in Markdown and MDX files.
-- Content defined with [`<Code />`](https://docs.astro.build/en/guides/syntax-highlighting/#code-) or [`<Prism />`](https://docs.astro.build/en/guides/syntax-highlighting/#prism-) component.
+- Content defined with `<Code />` or `<Prism />` component.
 
 ## Replacing The Default Code Snippet
 
 Our first step to customize the code snippet is by replacing the default component with
-a custom component that wraps the original one using Astro [`<slot />`](https://docs.astro.build/en/basics/astro-components/#slots).
+a custom component that wraps the original one using Astro `<slot />`.
 
 To do that, we can assign a custom mapping for HTML elements by exporting a new constant
 called `components` in our MDX files.
