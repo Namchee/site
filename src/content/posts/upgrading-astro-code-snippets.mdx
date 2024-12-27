@@ -138,7 +138,7 @@ a custom component that wraps the original one using Astro [`<slot />`](https://
 To do that, we can assign a custom mapping for HTML elements by exporting a new constant
 called `components` in our MDX files.
 
-```markdown title=hello-world.mdx
+```markdown title=hello-world.mdx,{8-11}
 ---
 title: 'Hello World!'
 publishedAt: 2024-12-17
@@ -146,10 +146,10 @@ publishedAt: 2024-12-17
 
 import CodeSnippet from '../../components/CodeSnippet.astro';
 
-export const components = { // [!code highlight]
-	// in MDX, code snippets are defined with <pre>  // [!code highlight]
-	pre: CodeSnippet, // [!code highlight]
-} // [!code highlight]
+export const components = {
+	// in MDX, code snippets are defined with <pre>
+	pre: CodeSnippet,
+}
 ```
 
 We can then define `CodeSnippet` as:
@@ -162,7 +162,6 @@ We can then define `CodeSnippet` as:
 
 	<slot />
 </figure>
-
 ```
 
 Save the file and we will be greeted by this weird element.
@@ -216,9 +215,9 @@ However, this means that we wasted the theming we've done from Astro's config en
 Fortunately, since the custom component is implemented as an Astro component, Astro treats those passed attributes as **component props** which is
 provided by `Astro.slot` globals.
 
-```astro title=CodeSnippet.astro
+```astro title=CodeSnippet.astro,{2,10}
 ---
-const props = Astro.props; // [!code highlight]
+const props = Astro.props;
 ---
 
 <figure>
@@ -226,9 +225,8 @@ const props = Astro.props; // [!code highlight]
     This is a caption
   </figcaption>
 
-  <pre {...props}><slot /></pre> // [!code highlight]
+  <pre {...props}><slot /></pre>
 </figure>
-
 ```
 
 which results in
@@ -277,7 +275,7 @@ The bad news is, Shiki integration in Astro doesn't pass them to the element in 
 Since Astro doesn't pass metadata by default, we need to play around with the [Shiki Transformer API](https://shiki.matsu.io/guide/transformers) to create a transformer
 that passes the metadata as an attribute. Fortunately, it's quite simple to do so through `shikiConfig` that Astro exposes.
 
-```js title=astro.config.mjs
+```js title=astro.config.mjs,{8}
 import { defineConfig } from 'astro/config';
 
 export default defineConfig({
@@ -285,7 +283,7 @@ export default defineConfig({
     shikiConfig: {
       transformers: [{
         pre(hast) {
-          hast.properties['data-meta'] = this.options.meta?.__raw; // [!code highlight]
+          hast.properties['data-meta'] = this.options.meta?.__raw;
         }
       }]
     }
@@ -353,13 +351,13 @@ Now, we can *finally* move on to customizing the component.
 
 > For the sake of clarity, I'll be changing the default theme of Shiki to `min-light` which you can change via Astro config.
 >
-> ```js
+> ```js {6}
 > import { defineConfig } from 'astro/config';
 >
 > export default defineConfig({
 >    markdown: {
 >      shikiConfig: {
->       theme: 'min-light', // [!code highlight]
+>       theme: 'min-light',
 >	  }
 >	},
 > });
@@ -428,13 +426,13 @@ Since all lines are actually `<span>`s that have `line` as one of its class, we 
   display: block;
 }
 
-.astro-code code .line:not(:last-child) {
+.astro-code code .line {
   display: inline-block;
   width: 100%;
   padding-right: 2rem;
 }
 
-.astro-code code .line:not(:last-child)::before {
+.astro-code code .line::before {
   content: counter(step);
   counter-increment: step;
   width: 2rem;
@@ -457,10 +455,6 @@ Since all lines are actually `<span>`s that have `line` as one of its class, we 
 }
 ```
 
-> You might notice that we used `:not(:last-child)` selectors.
-> The reason why we need this selector is because Shiki renders the last newline character
-> as another line, so we need to prevent the empty line from being numbered.
-
 After applying the CSS, our component should look like this:
 
 ![Look ma, I've added line numbers to my component!](https://res.cloudinary.com/namchee/image/upload/v1735006683/posts/supercharing-astro-code-snippet/adding-line-numbers)
@@ -473,10 +467,10 @@ then write a CSS style to mark those highlighted lines.
 Fortunately, Shiki has already provided us with [`transformerMetaHighlight`](https://shiki.style/packages/transformers#transformermetahighlight) transformer that handles
 this use case that we can install through `@shikijs/transformers` package and enable in our Astro config:
 
-```js title=astro.config.js
+```js title=astro.config.js,{14}
 import { defineConfig } from 'astro/config';
 
-import { transformerNotationHighlight } from '@shikijs/transformers';
+import { transformerMetaHighlight } from '@shikijs/transformers';
 
 export default defineConfig({
   markdown: {
@@ -487,7 +481,7 @@ export default defineConfig({
             hast.properties['data-meta'] = this.options.meta?.__raw;
           }
         },
-        transformerNotationHighlight(), // [!code highlight]
+        transformerMetaHighlight(),
       ]
     }
   },
@@ -571,7 +565,7 @@ After a series of features that are uninteractive, we are finally moving to the 
 Before we implement this feature, we need to ensure that the original content is accessible by our component. We can implement the same trick that we use
 to pass captions: pass them as an attribute called `data-code`
 
-```js title=astro.config.js, copyable
+```js title=astro.config.js, copy, {13}
 import { defineConfig } from 'astro/config';
 
 import { transformerNotationHighlight } from '@shikijs/transformers';
@@ -584,7 +578,7 @@ export default defineConfig({
           pre(hast) {
             hast.properties['data-meta'] = this.options.meta?.__raw;
             // the original source code is stored in `source` property
-            hast.properties['data-code'] = this.source; // [!code highlight]
+            hast.properties['data-code'] = this.source;
           }
         },
         transformerNotationHighlight(),
@@ -598,7 +592,7 @@ To access user's clipboard, we need to use JavaScript to access the [Clipboard A
 which is available on the [`navigator`](https://developer.mozilla.org/en-US/docs/Web/API/Navigator) interface through the browser. The functionality
 can then be triggered through a button click:
 
-```astro title=CodeSnippet.astro, copyable
+```astro title=CodeSnippet.astro, copy, {45}
 ---
 const meta: Record<string, string> = {};
 const {
@@ -643,7 +637,7 @@ const title = meta.title;
 
     trigger.addEventListener("click", () => {
       // Write the code to clipboard
-      navigator.clipboard.writeText(dataCode); // [!code highlight]
+      navigator.clipboard.writeText(dataCode);
     });
   }
 </script>
