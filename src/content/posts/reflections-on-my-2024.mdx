@@ -1,0 +1,91 @@
+---
+title: 'Reflections of My 2024'
+publishedAt: 2025-01-15
+subtitle: Things I've done in 2024 and my expectations for 2025
+tags:
+  - growth
+---
+
+import Tweet from 'astro-tweet';
+
+import DescriptionList from '@/components/astro/modules/posts/html/DescriptionList.astro';
+import DescriptionTerm from '@/components/astro/modules/posts/html/DescriptionTerm.astro';
+import DescriptionItem from '@/components/astro/modules/posts/html/DescriptionItem.astro';
+
+
+It's been 13 months since I wrote my [first blogpost](https://www.namchee.dev/posts/hello-world/) in 2023 and we're in 2025 already.
+If you do the math, that's a 2 year gap between the blog debut and this year. What's happening on my 2024?
+
+## Growing This Website
+
+When I first started this website in the end of 2023, it didn't have a design system yet. Back then, I only standardized the color scheme and the font family that would be used.
+The rest of it was just *how should the website generally look like*.
+
+As I began pouring more content in this website, I realized that not having a design system slows down my pace as I began to notice the discrepancies between pages.
+Today it might be the color that's a bit off, but the next day it might be the spacing. This can be a source of annoyance for some keen viewers.
+
+Realizing this, I spent a lot of time building a [more concrete design system](https://github.com/Namchee/site/pull/56) for this website and some branding stuff
+such as [dynamic OG images](https://github.com/Namchee/site/pull/38). I'm pretty happy with the result as I'm not overthinking about styling anymore and can focus on the content of this site.
+
+![The current state of the design file. While there's still room for improvements, it's servicable and systematic](https://res.cloudinary.com/namchee/image/upload/v1736691416/posts/reflections-on-my-2024/design-file.png)
+
+Speaking of content, I wrote [3](https://www.namchee.dev/posts/embracing-code-coverage-effectively/) [blog](https://www.namchee.dev/posts/utilpocalypse/)[post](https://www.namchee.dev/posts/upgrading-astro-code-snippets/) in 2024.
+All engineering, but with varying topics. It's not much, but I think it's a good start.
+
+## Open Source Activities
+
+My biggest open source contribution in 2024 is to [e18e](https://e18e.dev/), which is an initiative to 'fix' the performance issue in the JavaScript ecosystem which I stumbled upon from X.
+
+<Tweet id="1806684617740587331" />
+
+While I don't do the heavy lifting like being the maintainer of the initiative or developing an alternative library, I've done my part by
+[migrating an obsolete dependency](https://e18e.dev/blog/october-contributions-showcase.html#strip-ansi) on various high-profile repositories.
+In the process, I learned quite a lot from the inner workings of the projects I've contributed.
+
+I honestly didn't expect much from e18e at the beginning but I'm happy that this community exceeds my expectations. Not only as a place to coordinate the initiative,
+I've 'stolen' a lot of libraries and technique that I didn't know existed just from hanging out in the [Discord server](https://chat.e18e.dev/).
+
+In short, I've regarded e18e as a place where developers that cares about the state of JavaScript gathers and I pray for the success of this initiative.
+Don't be shy to join us as we don't bite newcomers (at least I think [patak](https://patak.dev/) and [43081j](https://43081j.com/) don't)
+
+Besides contributing to community initiatives, I've also created some side projects:
+
+<DescriptionList>
+  <DescriptionTerm>
+    [j2v](https://github.com/Namchee/j2v)
+  </DescriptionTerm>
+  <DescriptionItem>
+    **j2v** is a small CLI tool that helps you migrate your [Jest](https://jestjs.io/) test suite
+    to [Vitest](https://vitest.dev/) automatically via codemods.
+
+    I initally made this for my company, but I decided to share it to public.
+  </DescriptionItem>
+
+  <DescriptionTerm>
+    [instablitz](https://github.com/Namchee/instablitz)
+  </DescriptionTerm>
+  <DescriptionItem>
+    **instablitz** is a [Visual Studio Code](https://code.visualstudio.com/) plugin that exports your workspace
+    to [Stackblitz](https://stackblitz.com/) directly from your IDE.
+  </DescriptionItem>
+  <DescriptionTerm>
+    [tailwind-pointer-queries](https://github.com/Namchee/instablitz)
+  </DescriptionTerm>
+  <DescriptionItem>
+    **tailwind-pointer-queries** is a work-in-progress [TailwincCSS]() plugin that adds the missing
+    [CSS pointer query](https://developer.mozilla.org/en-US/docs/Web/CSS/@media/pointer) as a [variant](https://tailwindcss.com/docs/plugins).
+
+    Since I've found out some more niche [media queries](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_media_queries/Using_media_queries)
+    that isn't present as a Tailwind variant, I'm planning to expand the scope of the project to add those missing queries.
+  </DescriptionItem>
+</DescriptionList>
+
+## New Hardware
+
+In February 2024, I short-circuited my G14 laptop by accident when I was trying to replace the thermal paste due to high temps.
+I was devastated by this as its my one-and-only device and the repair cost is almost exactly the same as buying a new one.
+
+Since I don't think it's wise to spend a lot of money to re-buy my laptop, I have to settle with
+using only my work device to code. This incident made me vow to not buy a laptop as my main developer device.
+
+On September 2024,
