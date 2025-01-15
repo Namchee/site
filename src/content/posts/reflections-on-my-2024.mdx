@@ -13,52 +13,52 @@ import DescriptionTerm from '@/components/astro/modules/posts/html/DescriptionTe
 import DescriptionItem from '@/components/astro/modules/posts/html/DescriptionItem.astro';
 
 
-It's been 13 months since I wrote my [first blogpost](https://www.namchee.dev/posts/hello-world/) in 2023 and we're in 2025 already.
-If you do the math, that's a 2 year gap between the blog debut and this year. What's happening on my 2024?
+It's been 13 months since I wrote my [first blogpost](https://www.namchee.dev/posts/hello-world/) in 2023, and now we're already in 2025.
+If you do the math, that's a 2-year gap between the blog debut and this year. What happened to my 2024?
 
 ## Growing This Website
 
-When I first started this website in the end of 2023, it didn't have a design system yet. Back then, I only standardized the color scheme and the font family that would be used.
+When I first started this website in the end of 2023, it didn't have a design system yet. Back then, I only standardized the color scheme and the font family to be used.
 The rest of it was just *how should the website generally look like*.
 
 As I began pouring more content in this website, I realized that not having a design system slows down my pace as I began to notice the discrepancies between pages.
-Today it might be the color that's a bit off, but the next day it might be the spacing. This can be a source of annoyance for some keen viewers.
+One day, it might be the color that's a bit off; the next day it might be the spacings; and so on.
 
-Realizing this, I spent a lot of time building a [more concrete design system](https://github.com/Namchee/site/pull/56) for this website and some branding stuff
-such as [dynamic OG images](https://github.com/Namchee/site/pull/38). I'm pretty happy with the result as I'm not overthinking about styling anymore and can focus on the content of this site.
+Realizing this, I spent a lot of time building a [more concrete design system](https://github.com/Namchee/site/pull/56) for this website along with public branding elements
+such as [dynamic OG images](https://github.com/Namchee/site/pull/38). I'm quite happy with the result as I no longer overthink the styling and can focus on the content of the site.
 
 ![The current state of the design file. While there's still room for improvements, it's servicable and systematic](https://res.cloudinary.com/namchee/image/upload/v1736691416/posts/reflections-on-my-2024/design-file.png)
 
 Speaking of content, I wrote [3](https://www.namchee.dev/posts/embracing-code-coverage-effectively/) [blog](https://www.namchee.dev/posts/utilpocalypse/)[post](https://www.namchee.dev/posts/upgrading-astro-code-snippets/) in 2024.
-All engineering, but with varying topics. It's not much, but I think it's a good start.
+All were engineering-related, but with varying topics. It's not much, but I think it's a good start.
 
 ## Open Source Activities
 
-My biggest open source contribution in 2024 is to [e18e](https://e18e.dev/), which is an initiative to 'fix' the performance issue in the JavaScript ecosystem which I stumbled upon from X.
+My biggest open source contribution in 2024 was to [e18e](https://e18e.dev/), an initiative aimed at addressing performance issues in the JavaScript ecosystem, which I stumbled upon from social media.
 
 <Tweet id="1806684617740587331" />
 
-While I don't do the heavy lifting like being the maintainer of the initiative or developing an alternative library, I've done my part by
+While I didn't handle the heavy lifting, such as maintaining the initiative or developing leveled-up libraries, I contributed by
 [migrating an obsolete dependency](https://e18e.dev/blog/october-contributions-showcase.html#strip-ansi) on various high-profile repositories.
-In the process, I learned quite a lot from the inner workings of the projects I've contributed.
+In the process, I learned a lot from the inner workings of the projects I contributed to.
 
-I honestly didn't expect much from e18e at the beginning but I'm happy that this community exceeds my expectations. Not only as a place to coordinate the initiative,
-I've 'stolen' a lot of libraries and technique that I didn't know existed just from hanging out in the [Discord server](https://chat.e18e.dev/).
+I honestly didn't expect much from e18e at the beginning, but I'm happy that this community has exceeded my expectations.
+Not only as a place to coordinate the initiative, I've 'stolen' a lot of libraries and technique that I didn't know existed just from hanging out in the [Discord server](https://chat.e18e.dev/).
 
-In short, I've regarded e18e as a place where developers that cares about the state of JavaScript gathers and I pray for the success of this initiative.
+In short, I see e18e as a place where developers who genuinely cares about the state of JavaScript gathers and contribute to make the ecosystem better.
 Don't be shy to join us as we don't bite newcomers (at least I think [patak](https://patak.dev/) and [43081j](https://43081j.com/) don't)
 
-Besides contributing to community initiatives, I've also created some side projects:
+Besides contributing to community initiatives, I've also worked on some shiny new side-projects:
 
 <DescriptionList>
   <DescriptionTerm>
     [j2v](https://github.com/Namchee/j2v)
   </DescriptionTerm>
   <DescriptionItem>
-    **j2v** is a small CLI tool that helps you migrate your [Jest](https://jestjs.io/) test suite
+    **j2v** is a small CLI tool that helps migrate your [Jest](https://jestjs.io/) test suite
     to [Vitest](https://vitest.dev/) automatically via codemods.
 
-    I initally made this for my company, but I decided to share it to public.
+    I initally created this for my company, but I decided to share it publicly.
   </DescriptionItem>
 
   <DescriptionTerm>
@@ -66,7 +66,7 @@ Besides contributing to community initiatives, I've also created some side proje
   </DescriptionTerm>
   <DescriptionItem>
     **astro-subfont** is a plugin for Astro that optimizes your typefaces by [subsetting](https://fonts.google.com/knowledge/glossary/subsetting)
-    it based on the build output using [subfont](https://github.com/Munter/subfont).
+    them based on the build output using [subfont](https://github.com/Munter/subfont).
 
     This integration is used on this website!
   </DescriptionItem>
@@ -83,52 +83,52 @@ Besides contributing to community initiatives, I've also created some side proje
     [tailwind-pointer-queries](https://github.com/Namchee/instablitz)
   </DescriptionTerm>
   <DescriptionItem>
-    **tailwind-pointer-queries** is a work-in-progress [TailwincCSS]() plugin that adds the missing
+    **tailwind-pointer-queries** is a work-in-progress [TailwincCSS](https://tailwindcss.com/) plugin that adds the missing
     [CSS pointer query](https://developer.mozilla.org/en-US/docs/Web/CSS/@media/pointer) as a [variant](https://tailwindcss.com/docs/plugins).
 
-    Since I've found out some more niche [media queries](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_media_queries/Using_media_queries)
-    that isn't present as a Tailwind variant, I'm planning to expand the scope of the project to add those missing queries.
+    Since I've discovered other niche [media queries](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_media_queries/Using_media_queries)
+    that aren't currently available as a Tailwind variant, I plan to expand the scope of this project to include those missing queries.
   </DescriptionItem>
 </DescriptionList>
 
 ## New Hardware
 
-In February 2024, I short-circuited my G14 laptop by accident when I was trying to replace the thermal paste due to high temps.
-I was devastated by this as its my one-and-only device and the repair cost is almost exactly the same as buying a new one.
+In February 2024, I short-circuited my G14 laptop by accident while I was trying to replace the thermal paste due to high temps.
+I was devastated, as it was my only device and the repair cost was almost exactly the same as buying a new one.
 
-Since I don't think it's wise to spend a lot of money to re-buy my laptop, I have to settle with
-using only my work device to code. This incident made me vow to not buy a laptop as my main developer device.
+Since spending a lot of money to 're-buy' my laptop didn't seem wise, I had to settle with
+using only my work device to code for a while. This incident led me to vow never to rely on a laptop as my primary development device again.
 
 On September 2024, I finally decided to treat myself by building a PC that serves as my primary device for coding.
 
 ![The parts I used to build my PC](https://res.cloudinary.com/namchee/image/upload/q_auto,w_1024/v1736767488/posts/reflections-on-my-2024/pc-parts)
 
-Aside from building my own PC, I also decided to upgrade my workspace peripherals that I used as my daily driver, namely a 27 inch IPS monitor and
-a programmable hot-swappable mechanical keyboard.
+Aside from building my own PC, I also decided to upgrade my workspace peripherals, including a 27-inch IPS monitor and
+a programmable, hot-swappable mechanical keyboard.
 
-While I'm quite skeptical at first, the ergonomics that these new peripherals bring are simply unbeatable compared
+While I was quite skeptical at first, the ergonomics provided by these new peripherals bring are simply unbeatable compared
 to peripherals that I used previously, which in turn made me more comfortable during long coding sessions.
 
 ![My current workstation. Do forgive those dangling cables.](https://res.cloudinary.com/namchee/image/upload/v1736776657/posts/reflections-on-my-2024/my-workstation)
 
 ## Advent of TypeScript
 
-Finally, I closed the year by participating in [Advent of TypeScript](https://www.adventofts.com/events/2024), which basically an [Advent of Code](https://en.wikipedia.org/wiki/Advent_of_Code)
-but designed to be tackled via [TypeScript](https://www.typescriptlang.org/) type system. My participation isn't for the first time as I've joined the [first Advent of TypeScript](https://www.adventofts.com/events/2023).
+Finally, I closed out the year by participating in [Advent of TypeScript](https://www.adventofts.com/events/2024), which is essentially an [Advent of Code](https://en.wikipedia.org/wiki/Advent_of_Code)
+designed to be tackled via [TypeScript](https://www.typescriptlang.org/) type system. This wasn't my first time participating, as I also joined the [first Advent of TypeScript](https://www.adventofts.com/events/2023).
 
-The 2024 event is more focused on the practicality of the type system that can be used in real-life projects as opposed to esotericism during the 2023 event.
+The 2024 event focused more on the practicality of the type system that can be used in real-life projects as opposed to esotericism of the 2023 event.
 
-The day that really made an impression on me is the [23rd](https://www.adventofts.com/events/2024/23) and [24th](https://www.adventofts.com/events/2024/24) day challenge when
-we are challenged to write a higher-order function in the type system. I personally don't know that it's possible to do this with just the type system!
+The days that really made an impression on me were the [23rd](https://www.adventofts.com/events/2024/23) and [24th](https://www.adventofts.com/events/2024/24) day challenge, where
+we are challenged with writing a higher-order function using the type system only. I personally didn't know that it was possible to do this with just the type system!
 
-In the end, I also placed quite high in the final leaderboard, but I think what matters the most is the knowledge that I gained from doing this event. So, I want to say
+In the end, I placed quite high in the final leaderboard, but what matters the most to me is the knowledge that I gained from doing this event. So, I'd like to say
 thanks to [trash](https://x.com/trashh_dev) and the [TypeHero](https://typehero.dev/) team for organizing this event!
 
 ![The final leaderboard of Advent of TypeScript 2024. I placed 4th!](https://res.cloudinary.com/namchee/image/upload/v1736778107/posts/reflections-on-my-2024/aots-leaderboard)
 
 ## Regrets of 2024
 
-While I think that 2024 is a pretty good year for both my career and personal life, I do have some regrets that I want to prevent in 2025
+While I think 2024 was a pretty good year for both my career and personal life, I do have some regrets that I want to avoid in 2025
 
 <DescriptionList>
   <DescriptionTerm>
@@ -136,20 +136,20 @@ While I think that 2024 is a pretty good year for both my career and personal li
   </DescriptionTerm>
 
   <DescriptionItem>
-    In my first blogpost, I [stated that I want to use this website as my learning-in-public platform](http://localhost:4321/posts/hello-world#the-feedback-loop), I realized that I didn't do
-    much in terms of being public which is proven by site metrics provided by [Umami](https://umami.is/)
+    In my first blogpost, I [mentioned that I want to use this website as my learning-in-public platform](http://www.namchee.dev/posts/hello-world#the-feedback-loop), I realized that I didn't do
+    much in terms of being public, as evidenced by the site metrics provided by [Umami](https://umami.is/)
 
     ![namchee.dev metrics in 2024. Notice that it only spiked on the end of 2024](https://res.cloudinary.com/namchee/image/upload/v1736866238/posts/reflections-on-my-2024/site-metrics.png)
 
-    While I do learn a lot of things in span of 2024, I only shared those insights in a closed Discord environment and didn't fully utilize my social media accounts ([Bluesky](https://bsky.app/profile/namchee.dev), after migrating from X)
+    While I do learn a lot of things over the course of 2024, I only shared those insights in a closed Discord environment and didn't fully utilize my social media accounts ([Bluesky](https://bsky.app/profile/namchee.dev), after migrating from X)
     to the fullest.
 
-    The number of blog posts that I wrote in 2024 also didn't contribute much to my personal branding, as I rarely published anything, even though I have a lot of topics to write about in my backlog.
+    The number of blog posts that I wrote in 2024 also didn't contribute much to my personal branding, as I rarely published anything, despite having a lot of topics to write about in my backlog.
 
-    Looking back, the main reason why I didn't publish much is because I became too focused on the quality and uniqueness of my contents, to the point where I ended up not publishing anything at all.
+    Looking back, the main reason why I didn't publish much was because I became too focused on the quality and uniqueness of my content, to the point where I ended up not publishing anything at all.
 
     Instead, I should have focused on writing and publishing posts first, leaving improvements for later.
-    After all, I'm in full control of this website, so I shouldn't feel blocked when trying to edit existing contents.
+    After all, I'm in full control of this website, so I shouldn't feel blocked when improving existing contents.
   </DescriptionItem>
 
   <DescriptionTerm>
@@ -158,12 +158,12 @@ While I think that 2024 is a pretty good year for both my career and personal li
 
   <DescriptionItem>
     In 2024, I've [finished reading 5 books](https://www.namchee.dev/library/) with 1 still in progress. While it's comparable to 2023, I feel
-    that I haven't done enough as I neglected investing on my hard skills in practice.
+    that I haven't done enough as I neglected investing in my hard skills in practice.
 
-    In the beginning of the year, I planned to expand my language repertoire by learning [Zig](https://ziglang.org/) or [Rust](https://www.rust-lang.org/)
-    and improve my front-end game by learning [ThreeJS](https://threejs.org/). Unfortunately, I spectacularly failed at all of them with various made-up excuses.
+    At the beginning of the year, I planned to expand my language repertoire by learning [Zig](https://ziglang.org/) or [Rust](https://www.rust-lang.org/)
+    and improve my front-end game by learning [Three.js](https://threejs.org/). Unfortunately, I spectacularly failed at all of them with various made-up excuses.
 
-    In 2025, I planned to take a more extreme measure by taking a paid course to ensure my accountability.
+    In 2025, I plan to take a more extreme measure by taking a paid course to ensure my accountability.
   </DescriptionItem>
 
   <DescriptionTerm>
@@ -171,16 +171,16 @@ While I think that 2024 is a pretty good year for both my career and personal li
   </DescriptionTerm>
 
   <DescriptionItem>
-    If you take a look at the commit history of my showcased project like [OJK Invest API](https://github.com/Namchee/ojk-invest-api), you'll notice that I don't do anything to it even though that
-    there's a dangling bug on the data extractor.
+    If you take a look at the commit history of my showcased project, like [OJK Invest API](https://github.com/Namchee/ojk-invest-api), you'll notice that I haven't made any updates to it, despite a
+    lingering bug on the data extractor.
 
-    Worse, the scrappers actually doesn't work until I realize it in [May 2024](https://github.com/Namchee/ojk-invest-api/pull/63)!
+    What's worse, the scrapers didn't actually work until I realize it in [May 2024](https://github.com/Namchee/ojk-invest-api/pull/63)!
 
     ![Commit History of OJK Invest API. It feels bad to neglect bugs for an entire year](https://res.cloudinary.com/namchee/image/upload/v1736951045/posts/reflections-on-my-2024/commits-ojk)
 
-    While sometimes it's OK to put projects on freeze and move on, I feel that I can still do *more* with my old projects and I believe that a good engineer is the one that writes good softwares **and** maintains them well.
+    While sometimes it's OK to put projects on freeze and move on, I feel that I can still do *more* with my old projects and I believe that a good engineer is not only someone who writes good software, but also someone who maintains it well.
 
-    In 2025, I planned to slow down on moving projects a little and invest more time on clearing the debts on my old projects.
+    In 2025, I plan to slow down on starting new projects and invest more time on addressing debts in my old projects.
   </DescriptionItem>
 
   <DescriptionTerm>
@@ -188,7 +188,7 @@ While I think that 2024 is a pretty good year for both my career and personal li
   </DescriptionTerm>
 
   <DescriptionItem>
-    Lastly, I don't do enough exercise this year and its taking its toll in the end of 2024, where I feel more sluggish compared to the beginning of the year.
+    Lastly, I didn't exercise enough in 2024 and it's starting to take its toll by the end of 2024, as I feel more sluggish compared to the beginning of the year.
 
     In 2025, I planned to make myself more accountable of my own health by tracking my exercise history on my phone through [Google Fit](https://www.google.com/fit/)
   </DescriptionItem>
@@ -196,5 +196,5 @@ While I think that 2024 is a pretty good year for both my career and personal li
 
 ## Final Thoughts
 
-And that's a wrap for 2024! While the year has some disappointing downs, 2024 is a meaningful year for me both personal and professional wise. I hope that I can
+And that's a wrap for 2024! While the year had some disappointing downs, 2024 was a meaningful year for me both personal and professional wise. I hope that I can
 learn from my regrets and improve on 2025.
