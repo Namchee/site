@@ -14,3 +14,63 @@ html.dark .astro-tweet-theme {
   background: oklch(var(--surface)) !important;
   color: oklch(var(--heading)) !important;
 }
+
+.bluesky-post-container {
+  background: oklch(var(--background)) !important;
+  border: 1px solid oklch(var(--content) / 0.25) !important;
+  color: oklch(var(--content)) !important;
+  margin-top: 2rem !important;
+  margin-bottom: 2rem !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+
+  --tweet-border: 1px solid oklch(var(--content) / 0.25) !important;
+}
+
+.bluesky-post-container .external-link {
+  background: oklch(var(--background)) !important;
+}
+
+.bluesky-post-container .post-text {
+  color: oklch(var(--heading)) !important;
+}
+
+.bluesky-post-container .display-name {
+  color: oklch(var(--heading)) !important;
+}
+
+.bluesky-post-container .username {
+  color: oklch(var(--heading) / 0.5) !important;
+}
+
+.bluesky-post-container .external-link {
+  border: 1px solid oklch(var(--content) / 0.25) !important;
+}
+
+.bluesky-post-container .timestamp {
+  color: oklch(var(--heading) / 0.5) !important;
+
+}
+
+html.dark .bluesky-post-container {
+  background: oklch(var(--surface)) !important;
+  color: oklch(var(--heading)) !important;
+}
+
+html.dark .bluesky-post-container .external-link {
+  background: oklch(var(--surface)) !important;
+  border: 1px solid oklch(var(--content) / 0.25) !important;
+}
+
+html.dark .bluesky-post-container .external-link .domain {
+  color: oklch(var(--heading) / 0.5) !important;
+}
+
+html.dark .bluesky-post-container .external-link .title {
+  color: oklch(var(--heading)) !important;
+}
+
+html.dark .bluesky-post-container .external-link .description {
+  color: oklch(var(--heading) / 0.5) !important;
+}
+
