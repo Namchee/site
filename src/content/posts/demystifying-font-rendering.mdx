@@ -4,8 +4,42 @@ publishedAt: 2025-04-20
 subtitle: Why does my font renders better in <insert your favorite OS>?
 isDraft: true
 tags:
-  - Typography
-  - CSS
+  - typography
+  - design
 ---
 
-Last March, I found out an interesting feedback when I was scouring through tester feedbacks for a large-scale project that my team have been working on. The feedback reads the following:
+Last March, I found out an interesting feedback when I was scouring through tester feedbacks for a large-scale project that my team have been working on.
+The feedback reads the following:
+
+> The font is too thin, causing eye strains for long-text reading.
+
+When I first read this feedback, I was wondering if our UI design team screwed up somehow and went to look up the mockup in Figma and compare it with the implementation.
+Unfortunately, I didn't find an answer I was hoping for as the font satisfies the design specification while being reasonably readable.
+
+One small thing that noticed though was the font looks a bit clearer on my end compared to the attached screenshot,
+so I tried to look at the finer details of the issue report and replicate the reporter environment.
+The browser settings were stock, no plugins that might interfere with rendering, and switching browsers didn't help.
+
+That just leave the OS, since the reporter was using a Windows machine while I mostly dabble on Ubuntu.
+Funnily enough, switching OS revealed that the said text consistently had worse readability compared to how it looks on my Ubuntu environment.
+
+![How the text looks on Windows vs Ubuntu. Personally, Ubuntu is clearer in my eyes]()
+
+This discovery made me wonder on the actual root cause of the issue and I began tweaking my Windows to simulate text rendering on my Ubuntu.
+Tweaking our beloved [ClearType](https://learn.microsoft.com/en-us/typography/cleartype/) yields no result and adding non-standard CSS properties such as
+[`font-smooth`](https://developer.mozilla.org/en-US/docs/Web/CSS/font-smooth) didn't do anything either.
+
+And the funniest part was, opening Figma in my Windows machine to take a closer look to the font revelated that the text is rendered differently
+in Figma App and the browser with Figma being more similar to how the font rendered on Ubuntu.
+
+![How the text looks on Windows vs Figma App. Windows takes another L]()
+
+After some digging to lower level APIs, I found out that the reason why this happens is because OSes have different font rendering engine similar to
+how browsers [have multiple standards that causes headaches to web developers](https://preview.redd.it/safari-is-such-a-pain-v0-djbncqoaz9va1.jpg?width=640&crop=smart&auto=webp&s=3991a6687ffc318ada838a471aab86160bc202a6)
+that controls how texts are displayed to users.
+
+To have more context of the problem, we're going to dive deeper on fonts in digital space, how they are made and how programs parse and render them as texts.
+
+## A Primer of Font Terminologies
+
+Before getting to the meat of the problem, we need to clarify some of terminologies we usually use to describe typography as they're commonly mixed up with each other:
