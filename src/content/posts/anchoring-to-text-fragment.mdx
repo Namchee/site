@@ -1,0 +1,209 @@
+---
+title: 'Anchoring To Text Fragment'
+publishedAt: 2025-04-28
+subtitle: 'Jumping straight to point of interest without element wrapping'
+isDraft: false
+tags:
+  - web
+  - javascript
+---
+
+import Tweet from 'astro-tweet';
+import { Image } from 'astro:assets';
+
+import TextFragmentApi from '@/components/vue/posts/TextFragmentApi.vue';
+
+I'm pretty sure all of you are already familiar with the concept of **in-page links**, URLs that contain hashbang that will make the page jump to a specific marked element.
+Still not familiar? Well, you can try it out by clicking links inside table of contents on the left side of this page.
+
+<figure class=":uno: my-4 md:-ml-4 md:w-[calc(100%+32px)] overflow-x-visible">
+  <Image
+    src="https://res.cloudinary.com/namchee/image/upload/f_auto,q_auto/v1/posts/anchoring-to-text-fragment/toc-showcase"
+    alt="What clicking the Table of Contents would do"
+    title="What clicking the Table of Contents would do"
+    width={670}
+    height={343}
+    class=":uno: rounded-md"
+  />
+
+  <figcaption class=":uno: text-xs mt-2 text-center italic">
+    What clicking the Table of Contents would do
+  </figcaption>
+</figure>
+
+The main use case of in-page links is to allow users to quickly navigate lengthy pages to a section of interest which in turn will increase UX and SEO-wise,
+increase discoverability and engagement that might increase user conversion rates.
+
+Implement in-page links are pretty simple from the start, all you have to do is to mark the section of interest with `id` and append a `#<id>` to your links.
+
+```html title=URL Fragment 101
+<!-- say, you want to jump directly to this section on navigate -->
+<div id="section-of-interest">
+	You just got coconut mall'ed
+</div>
+
+<!-- on the same page, you can jump to this section just by hash + id -->
+<a href="#section-of-interest">Wanna have some fun?</a>
+
+<!-- on different page, append the path with hash + id -->
+<a href="/cool-page#section-of-interest">Wanna have some fun?</a>
+
+<!-- when sharing to external source, again, just append hash + id -->
+https://www.your-site.com/cool-page#section-of-interest
+```
+
+## Jumping To Text?
+
+But let's say someday you want to have a link that allows users to jump a specific text instead of marked sections.
+Well easy, just mark the text in a `<span>` and give unique `id` to them! Unfortunately, it doesn't scale for the following reasons:
+
+- The solution only works if you have full control of the content. It doesn't work for third-party generated content, either from users or these days, LLMs
+- More elements means adding unnecessary complexity. Need to add words to the marked text? What if the `id` is invalid? Well, you have to modify the code again!
+
+Since using normal anchors clearly doesn't scale well, we can try using JavaScript to solve our problems which should look similar to the following
+
+```js title=scroll-to-text.js
+const targetText = `coconut mall'ed`;
+
+// let's say the text is always a descendant of this element
+const container = document.querySelector('.content');
+
+// Create a TreeWalker, which is more efficient than iterating nodes recursively
+const walker = document.createTreeWalker(container, NodeFilter.SHOW_TEXT);
+
+let node = null;
+
+while (walker.nextNode()) {
+	if (walker.currentNode.nodeValue.includes(targetText)) {
+		node = walker.currentNode;
+		break;
+	}
+}
+
+if (node && node.parentElement) {
+	// can't scroll directly to text, so we scroll to the nearest ancestor
+	// which is the parent of course
+	node.parentElement.scrollIntoView({ behavior: 'smooth', block: 'center' });
+}
+```
+
+Unfortunately, this means another reliance to JavaScript. What if your user disables JavaScript? Or maybe
+[you've had enough with JavaScript](https://www.globalnerdy.com/wp-content/uploads/2020/11/javascript-is-olive-oil-for-developers.jpg)?
+Turns out, TC39 have resolved this by adding [URL Fragment Text Directives](https://wicg.github.io/scroll-to-text-fragment/) which is finally stable in 2023.
+
+## Dissecting the API
+
+Similar to normal anchor, you can insert text fragments in a URL using hashbang:
+
+<TextFragmentApi client:only />
+
+While it does look similar to normal anchor, it has few differences besides stricter format:
+
+- All inputs inside this directive must be [percent-encoded](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/encodeURIComponent) even for normally URL-safe characters such as dashes.
+- All text strings must reside inside one [block-level element](https://developer.mozilla.org/en-US/docs/Glossary/Block-level_content), this means that you can't match texts that begins and ends in different `<div>`.
+- It's possible to define multiple text fragments by separating them with ampersands (`&`) just like what you usually do with query strings.
+- Instead of styling the fragment with `:target` pseudo-class, the text fragments are styled with `::target-text` pseudo-element. By default, the browser will style text fragments with the same default style as `<mark>`
+
+In the simplest use case, supplying `textStart` is enough for the browser to detect and execute the text fragment directive.
+
+When browsers received a navigation to a URL that contains text fragment(s), it will try to find texts that matches the directive.
+If found, the browser will scroll to and highlight the fragment. If not found, the browser will do nothing.
+
+While it's possible to combine the text fragment API with normal fragment, the browsers will ignore the normal fragment and scroll to
+the text fragment instead as demonstrated [here](https://developer.mozilla.org/en-US/docs/Web/URI/Reference/Fragment/Text_fragments#examples_with_prefix-_andor_-suffix:~:text=ampersand).
+
+## Is It A 'Navigation'?
+
+After reading the features and API specification above, you might think that this API solves a use case you need for your app.
+You have played around in an isolated environment and finds out that it works as you expected.
+
+You then ported the functionality to your app that uses a client-side navigation with [History API](https://developer.mozilla.org/en-US/docs/Web/API/History_API)
+which should look similar to the following:
+
+```js title=Text fragment directive with History API. Surely nothing could go wrong!
+const targetText = `coconut mall'ed`;
+
+if (window.history) {
+	const fragment = encodeURIComponent(targetText);
+	const url = `/cool-page#:~:text=${fragment}`;
+
+	window.history.pushState(null, '', url);
+}
+```
+
+Unfortunately, you'll find out that the text fragment doesn't work and the page just navigates normally.
+This is an expected behavior, since text fragment directive behavior only triggers on **user-initiated navigations**.
+
+Simply put, only navigations that are triggered via browser's back-forward buttons and via HTML elements that supports navigation such as
+`<a>` and `<form>` that will trigger browser's behavior of text fragment directive.
+
+For those of you that programmatically navigates using JavaScript, your only option to replicate the text fragment directive behavior is using JavaScript.
+
+> Please consult to the [Navigation API Appendix](https://github.com/WICG/navigation-api#appendix-types-of-navigations) for more information about which navigation counts as user-initiated or not.
+
+## Extracting The Fragment
+
+Suppose that you want to get the text directive programmatically, either for analytical purpose or to
+alter specific scrolling behavior such as disabling scroll-to-bottom when a text fragment directive is present.
+
+Well, since the directives are stored in hash bangs, we should be able to read the `hash` property from `URL` and parse it from there no?
+
+```js title=Extracting text fragment directive that definitely don't work
+// suppose that the the current URL is `/cool-page#:~:`
+const hash = window.location.hash;
+const textFragment = hash.match(/:~:text=(.+):/);
+
+if (textFragment) {
+	const fragments = textFragment[1]
+		.split('&') // account for possible multi-fragment
+		.map((fragment) => decodeURIComponent(fragment));
+
+	console.log(fragments); // it's empty?
+}
+```
+
+Unfortunately, you can't grab text fragments from `hash` as by its spec,
+[text fragment directives should be hidden and won't be exposed to user agents](https://wicg.github.io/scroll-to-text-fragment/#:~:text=to%20prevent%20impacting%20page%20operation).
+
+This behavior is made to maintain compatibility with hash-based navigations used in old client-side navigation library (old React Router anyone?).
+While there is [acknowledged need of it](https://github.com/WICG/scroll-to-text-fragment/issues/128), it's still not progressing anywhere.
+
+> At the time of writing, there's an [acknowledged bug](https://issues.chromium.org/issues/40136467) in Chromium-based browsers that allows you to grab text fragment directive using **Performance API**,
+> specifically by parsing `PerformanceNavigationTiming` interface.
+>
+> ```js title=Extracting text fragment directive that works (on Chromium browsers),noLang,copy
+> const navigationEvent = performance.getEntriesByType('navigation')[0];
+> // Should be `PerformanceNavigationTiming`
+> const hash = new URL(navigationEvent.name).hash;
+> const textFragment = hash.match(/:~:text=(.+):/);
+>
+> if (textFragment) {
+>	const fragments = textFragment[1]
+>		.split('&') // account for possible multi-fragment
+>		.map((fragment) => decodeURIComponent(fragment));
+>
+>	console.log(fragments); // it's NOT empty 🎉
+> }
+> ```
+>
+> But as a good developer, you shouldn't rely on a *bug* even though you're only targeting Chromium-based browsers.
+
+## Security & Privacy
+
+Text fragment directive can be made by anyone that has access to your website so it's a reasonable concern to think about its security and privacy measures.
+
+While in the [previous section](#dissecting-the-api) I wrote that text fragment directive works on user-activated navigations, there is one more requirement that the directive should fulfill: cross-origin requests should happen in `noopener` context which ensures the target page to be isolated.
+
+The context requirements ensures that the directive won't be invoked from a `<iframe>` navigation and texts will not be searched inside an `<iframe>`. While text fragment directive does look secure from a glance, the directive does open [a new attack vector related with scrolling](https://docs.google.com/document/d/1YHcl1-vE_ZnZ0kL2almeikAj2gkwCq8_5xwIae7PVik/edit?tab=t.0).
+
+This possible attack vector has raised privacy concerns that led to Brave [temporarily disabling this directive](https://github.com/brave/brave-browser/issues/8342)  which has been re-enabled on [version 1.78](https://github.com/brave/brave-browser/issues/44265). Developers may also disable text fragment by leveraging the `Document-Policy` header.
+
+```
+Document-Policy: force-load-at-top
+```
+
+If you're using Chrome on an enterprise environment, this policy can also be enforced by setting the `ScrollToTextFragmentPolicy` by your administator.
+
+## Final Thoughts
+
+When I first found out about this feature after Google introduced them for Google Search
