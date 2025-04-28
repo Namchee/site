@@ -3,17 +3,17 @@ import { TooltipProvider, TooltipRoot, TooltipArrow, TooltipTrigger, TooltipPort
 </script>
 
 <template>
-  <div class="flex justify-center my-4">
+  <div class="flex flex-wrap justify-center my-4 text-lg">
     <TooltipProvider>
       <TooltipRoot>
-        <TooltipTrigger class="font-mono text-red-400 opacity-50 hover:opacity-100 transition-opacity">
+        <TooltipTrigger class="font-mono text-red-400 opacity-70 hover:opacity-100 transition-opacity">
           :~:
         </TooltipTrigger>
 
         <TooltipPortal>
           <TooltipContent
-            class="rounded-md text-sm py-2 tooltip__content bg-content text-background lg:bg-transparent lg:text-unset lg:border-none select-none px-3 will-change-[transform,opacity]">
-            <p class="font-mono">
+            class="rounded-md text-sm py-2 tooltip__content bg-content text-background select-none px-3 will-change-[transform,opacity]">
+            <p>
               Also known as <strong>fragment directive</strong>
             </p>
             <TooltipArrow :width="8" class="fill-content" />
@@ -22,14 +22,14 @@ import { TooltipProvider, TooltipRoot, TooltipArrow, TooltipTrigger, TooltipPort
       </TooltipRoot>
 
       <TooltipRoot>
-        <TooltipTrigger class="font-mono">
+        <TooltipTrigger class="font-mono text-blue-400 opacity-70 hover:opacity-100 transition-opacity">
           text=
         </TooltipTrigger>
 
         <TooltipPortal>
           <TooltipContent
-            class="rounded-md text-sm py-2 tooltip__content bg-content text-background lg:bg-transparent lg:text-unset lg:border-none select-none px-3 will-change-[transform,opacity]">
-            <p class="font-mono">
+            class="rounded-md text-sm py-2 tooltip__content bg-content text-background select-none px-3 will-change-[transform,opacity]">
+            <p>
               Also known as <strong>fragment directive</strong>
             </p>
             <TooltipArrow :width="8" class="fill-content" />
@@ -38,14 +38,14 @@ import { TooltipProvider, TooltipRoot, TooltipArrow, TooltipTrigger, TooltipPort
       </TooltipRoot>
 
       <TooltipRoot>
-        <TooltipTrigger class="font-mono">
+        <TooltipTrigger class="font-mono text-emerald-500 opacity-70 hover:opacity-100 transition-opacity">
           [prefix-,]
         </TooltipTrigger>
 
         <TooltipPortal>
           <TooltipContent
-            class="rounded-md text-sm py-2 tooltip__content bg-content text-background lg:bg-transparent lg:text-unset lg:border-none select-none px-3 will-change-[transform,opacity]">
-            <p class="font-mono">
+            class="rounded-md text-sm py-2 tooltip__content bg-content text-background select-none px-3 will-change-[transform,opacity]">
+            <p>
               Also known as <strong>fragment directive</strong>
             </p>
             <TooltipArrow :width="8" class="fill-content" />
@@ -54,14 +54,14 @@ import { TooltipProvider, TooltipRoot, TooltipArrow, TooltipTrigger, TooltipPort
       </TooltipRoot>
 
       <TooltipRoot>
-        <TooltipTrigger class="font-mono">
+        <TooltipTrigger class="font-mono text-violet-400 opacity-70 hover:opacity-100 transition-opacity">
           textStart
         </TooltipTrigger>
 
         <TooltipPortal>
           <TooltipContent
-            class="rounded-md text-sm py-2 tooltip__content bg-content text-background lg:bg-transparent lg:text-unset lg:border-none select-none px-3 will-change-[transform,opacity]">
-            <p class="font-mono">
+            class="rounded-md text-sm py-2 tooltip__content bg-content text-background select-none px-3 will-change-[transform,opacity]">
+            <p>
               Also known as <strong>fragment directive</strong>
             </p>
             <TooltipArrow :width="8" class="fill-content" />
@@ -76,8 +76,8 @@ import { TooltipProvider, TooltipRoot, TooltipArrow, TooltipTrigger, TooltipPort
 
         <TooltipPortal>
           <TooltipContent
-            class="rounded-md text-sm py-2 tooltip__content bg-content text-background lg:bg-transparent lg:text-unset lg:border-none select-none px-3 will-change-[transform,opacity]">
-            <p class="font-mono">
+            class="rounded-md text-sm py-2 tooltip__content bg-content text-background select-none px-3 will-change-[transform,opacity]">
+            <p>
               Also known as <strong>fragment directive</strong>
             </p>
             <TooltipArrow :width="8" class="fill-content" />
@@ -92,8 +92,8 @@ import { TooltipProvider, TooltipRoot, TooltipArrow, TooltipTrigger, TooltipPort
 
         <TooltipPortal>
           <TooltipContent
-            class="rounded-md text-sm py-2 tooltip__content bg-content text-background lg:bg-transparent lg:text-unset lg:border-none select-none px-3 will-change-[transform,opacity]">
-            <p class="font-mono">
+            class="rounded-md text-sm py-2 tooltip__content bg-content text-background select-none px-3 will-change-[transform,opacity]">
+            <p>
               Also known as <strong>fragment directive</strong>
             </p>
             <TooltipArrow :width="8" class="fill-content" />
