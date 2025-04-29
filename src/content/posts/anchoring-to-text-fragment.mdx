@@ -11,10 +11,11 @@ tags:
 import Tweet from 'astro-tweet';
 import { Image } from 'astro:assets';
 
+import TextLink from '@/components/astro/ui/TextLink.astro';
 import TextFragmentApi from '@/components/vue/posts/TextFragmentApi.vue';
 
-I'm pretty sure all of you are already familiar with the concept of **in-page links**, URLs that contain hashbang that will make the page jump to a specific marked element.
-Still not familiar? Well, you can try it out by clicking links inside table of contents on the left side of this page.
+I'm pretty sure most of you are already familiar with the concept of **in-page links**&mdash;URLs that contain a hashbang and make the page jump to a specific marked element.
+Still not familiar? Well, you can try it out by clicking links inside the table of contents on the left side of this page.
 
 <figure class=":uno: my-4 md:-ml-4 md:w-[calc(100%+32px)] overflow-x-visible">
   <Image
@@ -27,16 +28,16 @@ Still not familiar? Well, you can try it out by clicking links inside table of c
   />
 
   <figcaption class=":uno: text-xs mt-2 text-center italic">
-    What clicking the Table of Contents would do
+    What clicking links in the Table of Contents would do
   </figcaption>
 </figure>
 
 The main use case of in-page links is to allow users to quickly navigate lengthy pages to a section of interest which in turn will increase UX and SEO-wise,
 increase discoverability and engagement that might increase user conversion rates.
 
-Implement in-page links are pretty simple from the start, all you have to do is to mark the section of interest with `id` and append a `#<id>` to your links.
+Implementing in-page links is pretty simple, all you need to do is to mark the section of interest with `id` and append a `#<id>` to your links.
 
-```html title=URL Fragment 101
+```html title=URL Fragment 101, noLang
 <!-- say, you want to jump directly to this section on navigate -->
 <div id="section-of-interest">
 	You just got coconut mall'ed
@@ -54,13 +55,13 @@ https://www.your-site.com/cool-page#section-of-interest
 
 ## Jumping To Text?
 
-But let's say someday you want to have a link that allows users to jump a specific text instead of marked sections.
-Well easy, just mark the text in a `<span>` and give unique `id` to them! Unfortunately, it doesn't scale for the following reasons:
+But let's say one day you want to create a link that allows users to jump a specific text instead of marked sections.
+Well easy, just mark the text in a `<span>` and give it a unique `id` to them! Unfortunately, it doesn't scale for the following reasons:
 
-- The solution only works if you have full control of the content. It doesn't work for third-party generated content, either from users or these days, LLMs
+- The solution only works if you have full control over the content. It doesn't work for third-party generated content, whether from users or these days, LLMs
 - More elements means adding unnecessary complexity. Need to add words to the marked text? What if the `id` is invalid? Well, you have to modify the code again!
 
-Since using normal anchors clearly doesn't scale well, we can try using JavaScript to solve our problems which should look similar to the following
+Since using standard element fragment clearly doesn't scale well, we can try using JavaScript to solve the problem which should look similar to the following
 
 ```js title=scroll-to-text.js
 const targetText = `coconut mall'ed`;
@@ -87,30 +88,41 @@ if (node && node.parentElement) {
 }
 ```
 
-Unfortunately, this means another reliance to JavaScript. What if your user disables JavaScript? Or maybe
-[you've had enough with JavaScript](https://www.globalnerdy.com/wp-content/uploads/2020/11/javascript-is-olive-oil-for-developers.jpg)?
-Turns out, TC39 have resolved this by adding [URL Fragment Text Directives](https://wicg.github.io/scroll-to-text-fragment/) which is finally stable in 2023.
+Unfortunately, this means another reliance on JavaScript. What if your user disables JavaScript? What if you want to reduce JavaScript footprint in your site? Or maybe
+[you've had enough of JavaScript](https://www.globalnerdy.com/wp-content/uploads/2020/11/javascript-is-olive-oil-for-developers.jpg)?
+
+Turns out, TC39 has addressed this by introducing [URL Fragment Text Directives](https://wicg.github.io/scroll-to-text-fragment/), [first introduced to the public
+in 2020](https://www.theverge.com/2020/6/4/21280115/google-search-engine-yellow-highlight-featured-snippet-anchor-text) and finally hit stable status in 2023.
 
 ## Dissecting the API
 
-Similar to normal anchor, you can insert text fragments in a URL using hashbang:
+Similar to element fragment, you can insert text fragments into a URL using a hashbang with the following syntax (psst, try hovering over it!):
 
 <TextFragmentApi client:only />
 
-While it does look similar to normal anchor, it has few differences besides stricter format:
+While it does look similar to your standard element fragment, there are few key differences besides stricter format:
 
-- All inputs inside this directive must be [percent-encoded](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/encodeURIComponent) even for normally URL-safe characters such as dashes.
-- All text strings must reside inside one [block-level element](https://developer.mozilla.org/en-US/docs/Glossary/Block-level_content), this means that you can't match texts that begins and ends in different `<div>`.
-- It's possible to define multiple text fragments by separating them with ampersands (`&`) just like what you usually do with query strings.
-- Instead of styling the fragment with `:target` pseudo-class, the text fragments are styled with `::target-text` pseudo-element. By default, the browser will style text fragments with the same default style as `<mark>`
+- All inputs within this directive must be [percent-encoded](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/encodeURIComponent)
+	even for normally URL-safe characters such as dashes. This means building text fragments with `encodeURIComponent` isn't enough to do the trick.
+- Each part of the syntax must reside inside one [block-level element](https://developer.mozilla.org/en-US/docs/Glossary/Block-level_content),
+	however the whole match may span across multiple blocks.
+- It's possible to define multiple text fragments by separating them with `&` just like what you usually do with query strings. [Example](#:~:text=separating&text=query)
+- Instead of styling the fragment with `:target` pseudo-class, the text fragments are styled with `::target-text` pseudo-element.
+	By default, the browser will style text fragments with the same default style as `<mark>`.
 
-In the simplest use case, supplying `textStart` is enough for the browser to detect and execute the text fragment directive.
+When browsers received a navigation to a URL that contains text fragment(s), it will try to find texts that matches the directive **even if they're visually hidden**.
 
-When browsers received a navigation to a URL that contains text fragment(s), it will try to find texts that matches the directive.
-If found, the browser will scroll to and highlight the fragment. If not found, the browser will do nothing.
+If a text matching the fragment is found, the browser will scroll to and highlight the first fragment it found. If not, the browser will do nothing.
 
-While it's possible to combine the text fragment API with normal fragment, the browsers will ignore the normal fragment and scroll to
-the text fragment instead as demonstrated [here](https://developer.mozilla.org/en-US/docs/Web/URI/Reference/Fragment/Text_fragments#examples_with_prefix-_andor_-suffix:~:text=ampersand).
+### Interaction With Element Fragment
+
+Since text fragment occupies the same hashbang spot as element fragment, you might be wondering if it's possible to combine them both. Actually, you can!
+You only have the append the text fragment directive after element fragment. For example:
+
+<TextLink class="font-mono text-heading text-center my-4" href="#jumping-to-text:~:text=since,scale%20well">#jumping-to-text:~:text=since,scale%20well</TextLink>
+
+Do note that when the text fragment doesn't share the same viewspace as the element fragment, the element fragment will be ignored and the browser
+will prioritize scrolling to the text fragment as demonstrated by [this link](#jumping-to-text:~:text=but%20as%20a%20good%20developer,browsers).
 
 ## Is It A 'Navigation'?
 
@@ -162,19 +174,22 @@ if (textFragment) {
 }
 ```
 
-Unfortunately, you can't grab text fragments from `hash` as by its spec,
+Unfortunately, you can't grab text fragments from `hash` as by WCIG specification,
 [text fragment directives should be hidden and won't be exposed to user agents](https://wicg.github.io/scroll-to-text-fragment/#:~:text=to%20prevent%20impacting%20page%20operation).
 
 This behavior is made to maintain compatibility with hash-based navigations used in old client-side navigation library (old React Router anyone?).
 While there is [acknowledged need of it](https://github.com/WICG/scroll-to-text-fragment/issues/128), it's still not progressing anywhere.
 
-> At the time of writing, there's an [acknowledged bug](https://issues.chromium.org/issues/40136467) in Chromium-based browsers that allows you to grab text fragment directive using **Performance API**,
+> At the time of writing, there's an [acknowledged bug](https://issues.chromium.org/issues/40136467) in Chromium-based browsers that allows you to grab text fragment directive by exploiting the **Performance API**,
 > specifically by parsing `PerformanceNavigationTiming` interface.
 >
-> ```js title=Extracting text fragment directive that works (on Chromium browsers),noLang,copy
-> const navigationEvent = performance.getEntriesByType('navigation')[0];
+> ```js title=Extracting text fragment directive that works (on Chromium browsers),copy
+> const navigationEvent = performance
+> 	.getEntriesByType('navigation')[0];
+>
 > // Should be `PerformanceNavigationTiming`
 > const hash = new URL(navigationEvent.name).hash;
+> // Match until the next possible directive
 > const textFragment = hash.match(/:~:text=(.+):/);
 >
 > if (textFragment) {
@@ -192,18 +207,34 @@ While there is [acknowledged need of it](https://github.com/WICG/scroll-to-text-
 
 Text fragment directive can be made by anyone that has access to your website so it's a reasonable concern to think about its security and privacy measures.
 
-While in the [previous section](#dissecting-the-api) I wrote that text fragment directive works on user-activated navigations, there is one more requirement that the directive should fulfill: cross-origin requests should happen in `noopener` context which ensures the target page to be isolated.
+While in the [previous section](#dissecting-the-api) I wrote that text fragment directive works on user-activated navigations, there is one more requirement
+that the directive should fulfill: cross-origin requests should happen in `noopener` context which ensures the target page to be isolated.
 
-The context requirements ensures that the directive won't be invoked from a `<iframe>` navigation and texts will not be searched inside an `<iframe>`. While text fragment directive does look secure from a glance, the directive does open [a new attack vector related with scrolling](https://docs.google.com/document/d/1YHcl1-vE_ZnZ0kL2almeikAj2gkwCq8_5xwIae7PVik/edit?tab=t.0).
+The context requirements ensures that the directive won't be invoked from a `<iframe>` navigation and texts will not be searched inside an `<iframe>`.
+While text fragment directive does look secure from a glance, the directive does open [a new attack vector related with scrolling](https://docs.google.com/document/d/1YHcl1-vE_ZnZ0kL2almeikAj2gkwCq8_5xwIae7PVik/edit?tab=t.0).
 
-This possible attack vector has raised privacy concerns that led to Brave [temporarily disabling this directive](https://github.com/brave/brave-browser/issues/8342)  which has been re-enabled on [version 1.78](https://github.com/brave/brave-browser/issues/44265). Developers may also disable text fragment by leveraging the `Document-Policy` header.
+This possible attack vector has raised privacy concerns that led to Brave [temporarily disabling this directive](https://github.com/brave/brave-browser/issues/8342) which has been re-enabled on
+[version 1.78](https://github.com/brave/brave-browser/issues/44265) which should be released by the time this post go public.
 
-```
+If you're in full-control of your site, you can tell the browser to not process **any** fragments site-wide by setting
+the `Document-Policy` header with the following value.
+
+```plaintext title=Enforce the page to ignore fragments including element fragment, noLang
 Document-Policy: force-load-at-top
 ```
 
-If you're using Chrome on an enterprise environment, this policy can also be enforced by setting the `ScrollToTextFragmentPolicy` by your administator.
+For enterprise environments that uses Chrome, network administrators may also disable text fragments by setting the `ScrollToTextFragmentPolicy` policy.
 
 ## Final Thoughts
 
-When I first found out about this feature after Google introduced them for Google Search
+When I first found out about this feature after Google introduced them in Google Search by highlighting the search result after navigation,
+I thought that this was yet another API that [will be killed sooner or later](https://killedbygoogle.com/).
+
+Imagine my joy when I found out that the feature is alive through a WCIG proposal as it solves my major gripe with element fragments = over-reliance
+to stable link structure and mandatory element wrapping while enabling us to create a higher quality citation and reference links.
+
+While crafting the URL manually is tedious, you don't need to worry as this concern has been addressed through a web extension for
+[Chromium-based browsers](https://chromewebstore.google.com/detail/link-to-text-fragment/pbcodcjpfjdpcineamnnmbkkmkdpajjg),
+[Edge](https://microsoftedge.microsoft.com/addons/detail/link-to-text-fragment/pmdldpbcbobaamgkpkghjigngamlolag),
+[Firefox](https://addons.mozilla.org/firefox/addon/link-to-text-fragment/), and
+[Safari](https://apps.apple.com/app/link-to-text-fragment/id1532224396). Happy (deep)linking!

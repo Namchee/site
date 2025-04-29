@@ -4,17 +4,22 @@ import { TooltipProvider, TooltipRoot, TooltipArrow, TooltipTrigger, TooltipPort
 
 <template>
   <div class="flex flex-wrap justify-center my-4 text-lg">
-    <TooltipProvider>
+    <TooltipProvider :delay-duration="300">
       <TooltipRoot>
-        <TooltipTrigger class="font-mono text-red-400 opacity-70 hover:opacity-100 transition-opacity">
+        <TooltipTrigger class="font-mono text-red-500 opacity-70 hover:opacity-100 transition-opacity">
           :~:
         </TooltipTrigger>
 
         <TooltipPortal>
           <TooltipContent
-            class="rounded-md text-sm py-2 tooltip__content bg-content text-background select-none px-3 will-change-[transform,opacity]">
+            class="rounded-md text-xs py-2 tooltip__content bg-content text-background select-none px-3 will-change-[transform,opacity] max-w-sm">
             <p>
-              Also known as <strong>fragment directive</strong>
+              <strong>Fragment directive</strong>
+            </p>
+
+            <p class="mt-2">
+              A sequence that tells the browsers to identify the next set of characters as user-agent
+              instructions that will be stripped from the URL during loading.
             </p>
             <TooltipArrow :width="8" class="fill-content" />
           </TooltipContent>
@@ -22,15 +27,39 @@ import { TooltipProvider, TooltipRoot, TooltipArrow, TooltipTrigger, TooltipPort
       </TooltipRoot>
 
       <TooltipRoot>
-        <TooltipTrigger class="font-mono text-blue-400 opacity-70 hover:opacity-100 transition-opacity">
+        <TooltipTrigger class="font-mono text-purple-500 opacity-70 hover:opacity-100 transition-opacity">
           text=
         </TooltipTrigger>
 
         <TooltipPortal>
           <TooltipContent
-            class="rounded-md text-sm py-2 tooltip__content bg-content text-background select-none px-3 will-change-[transform,opacity]">
+            class="rounded-md text-xs py-2 tooltip__content bg-content text-background select-none px-3 will-change-[transform,opacity] max-w-sm">
             <p>
-              Also known as <strong>fragment directive</strong>
+              <strong>Text Directive</strong>
+            </p>
+
+            <p class="mt-2">
+              An identifier for the browser to parse this directive as text fragment directive.
+            </p>
+            <TooltipArrow :width="8" class="fill-content" />
+          </TooltipContent>
+        </TooltipPortal>
+      </TooltipRoot>
+
+      <TooltipRoot>
+        <TooltipTrigger class="font-mono text-blue-500 opacity-70 hover:opacity-100 transition-opacity">
+          [prefix-,]
+        </TooltipTrigger>
+
+        <TooltipPortal>
+          <TooltipContent
+            class="rounded-md text-xs py-2 tooltip__content bg-content text-background select-none px-3 will-change-[transform,opacity] max-w-sm">
+            <p>
+              <strong>Prefix</strong>
+            </p>
+
+            <p class="mt-2">
+              A hyphen-ended string specifying the prefix of text that should match. Helps distingushing multiple possible matches in the same document. Optional.
             </p>
             <TooltipArrow :width="8" class="fill-content" />
           </TooltipContent>
@@ -39,30 +68,18 @@ import { TooltipProvider, TooltipRoot, TooltipArrow, TooltipTrigger, TooltipPort
 
       <TooltipRoot>
         <TooltipTrigger class="font-mono text-emerald-500 opacity-70 hover:opacity-100 transition-opacity">
-          [prefix-,]
-        </TooltipTrigger>
-
-        <TooltipPortal>
-          <TooltipContent
-            class="rounded-md text-sm py-2 tooltip__content bg-content text-background select-none px-3 will-change-[transform,opacity]">
-            <p>
-              Also known as <strong>fragment directive</strong>
-            </p>
-            <TooltipArrow :width="8" class="fill-content" />
-          </TooltipContent>
-        </TooltipPortal>
-      </TooltipRoot>
-
-      <TooltipRoot>
-        <TooltipTrigger class="font-mono text-violet-400 opacity-70 hover:opacity-100 transition-opacity">
           textStart
         </TooltipTrigger>
 
         <TooltipPortal>
           <TooltipContent
-            class="rounded-md text-sm py-2 tooltip__content bg-content text-background select-none px-3 will-change-[transform,opacity]">
+            class="rounded-md text-xs py-2 tooltip__content bg-content text-background select-none px-3 will-change-[transform,opacity] max-w-sm">
             <p>
-              Also known as <strong>fragment directive</strong>
+              <strong>Start Text</strong>
+            </p>
+
+            <p class="mt-2">
+              A string specifying the start of the linked text. Supplying only this is enough for the browser to parse and run the text fragment directive.
             </p>
             <TooltipArrow :width="8" class="fill-content" />
           </TooltipContent>
@@ -70,15 +87,19 @@ import { TooltipProvider, TooltipRoot, TooltipArrow, TooltipTrigger, TooltipPort
       </TooltipRoot>
 
       <TooltipRoot>
-        <TooltipTrigger class="font-mono">
+        <TooltipTrigger class="font-mono text-orange-500 opacity-70 hover:opacity-100 transition-opacity">
           [,textEnd]
         </TooltipTrigger>
 
         <TooltipPortal>
           <TooltipContent
-            class="rounded-md text-sm py-2 tooltip__content bg-content text-background select-none px-3 will-change-[transform,opacity]">
+            class="rounded-md text-xs py-2 tooltip__content bg-content text-background select-none px-3 will-change-[transform,opacity] max-w-sm">
             <p>
-              Also known as <strong>fragment directive</strong>
+              <strong>End Text</strong>
+            </p>
+
+            <p class="mt-2">
+              A string specifying the end of the linked text. Optional.
             </p>
             <TooltipArrow :width="8" class="fill-content" />
           </TooltipContent>
@@ -86,15 +107,19 @@ import { TooltipProvider, TooltipRoot, TooltipArrow, TooltipTrigger, TooltipPort
       </TooltipRoot>
 
       <TooltipRoot>
-        <TooltipTrigger class="font-mono">
+        <TooltipTrigger class="font-mono text-pink-500 opacity-70 hover:opacity-100 transition-opacity">
           [,suffix]
         </TooltipTrigger>
 
         <TooltipPortal>
           <TooltipContent
-            class="rounded-md text-sm py-2 tooltip__content bg-content text-background select-none px-3 will-change-[transform,opacity]">
+            class="rounded-md text-xs py-2 tooltip__content bg-content text-background select-none px-3 will-change-[transform,opacity] max-w-sm">
             <p>
-              Also known as <strong>fragment directive</strong>
+              <strong>Suffix</strong>
+            </p>
+
+            <p class="mt-2">
+              A hyphen-ended string specifying the suffix of text that should match. Helps distingushing multiple possible matches in the same document. Optional.
             </p>
             <TooltipArrow :width="8" class="fill-content" />
           </TooltipContent>
