@@ -33,7 +33,7 @@ A brilliant idea pops up on your head:
 You finally extracted this function to a separate file that you call `util.ts`, thus mark the starting point of *utility* or
 *helper* file (or class / module). You are feeling that creating the utility file is the best decision you've made in this project.
 
-```ts  title=util.ts
+```ts title=util.ts
 export function toSnakeCase(text: string): string {
 	return text.split(/\.?(?=[A-Z])/)
 		.join("_")
