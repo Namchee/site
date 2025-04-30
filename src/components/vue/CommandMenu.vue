@@ -28,6 +28,9 @@ const visible = ref(false);
 const searchEl = ref<HTMLInputElement>();
 const focusIndex = ref(0);
 
+const initialDelay = 300;
+const fireRate = 100;
+
 const isMac = false;
 
 const props = defineProps<{
@@ -37,7 +40,7 @@ const props = defineProps<{
   }[],
 }>();
 
-const keys = useMagicKeys({
+const { ctrl_k, meta_k, home, arrowDown, arrowUp, enter, escape, current } = useMagicKeys({
   passive: false,
   onEventFired(e) {
     const isOpeningMenu = (e.ctrlKey || e.metaKey) && e.key === 'k';
@@ -73,41 +76,37 @@ const relevantPosts = computed(() => {
 
 const allLinks = computed(() => [...relevantLinks.value, ...relevantPosts.value]);
 
-whenever(keys.ctrl_k, () => {
+whenever(ctrl_k, () => {
   visible.value = !visible.value;
 });
 
-whenever(keys.meta_k, () => {
+whenever(meta_k, () => {
   visible.value = !visible.value;
 });
 
-whenever(keys.home, () => {
+whenever(home, () => {
   if (visible.value) {
     window.location.href = '/';
   }
 });
 
-whenever(keys.arrowDown, () => {
-  if (visible.value) {
-    focusIndex.value += 1;
+whenever(() => arrowDown && visible.value, () => {
+  focusIndex.value += 1;
 
-    if (focusIndex.value >= allLinks.value.length) {
-      focusIndex.value = allLinks.value.length - 1;
-    }
+  if (focusIndex.value >= allLinks.value.length) {
+    focusIndex.value = allLinks.value.length - 1;
   }
 });
 
-whenever(keys.arrowUp, () => {
-  if (visible.value) {
-    focusIndex.value -= 1;
+whenever(() => arrowUp && visible.value, () => {
+  focusIndex.value -= 1;
 
-    if (focusIndex.value < 0) {
-      focusIndex.value = 0;
-    }
+  if (focusIndex.value < 0) {
+    focusIndex.value = 0;
   }
 });
 
-whenever(keys.enter, () => {
+whenever(enter, () => {
   if (visible.value) {
     let index = focusIndex.value;
 
@@ -120,7 +119,7 @@ whenever(keys.enter, () => {
   }
 });
 
-whenever(keys.escape, () => {
+whenever(escape, () => {
   visible.value = false;
 });
 
