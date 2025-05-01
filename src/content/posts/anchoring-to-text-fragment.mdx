@@ -103,7 +103,7 @@ Similar to element fragment, you can insert text fragments into a URL using a ha
 While it does look similar to your standard element fragment, there are few key differences besides stricter format:
 
 - All inputs within this directive must be [percent-encoded](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/encodeURIComponent)
-	even for normally URL-safe characters such as dashes. This means building text fragments with `encodeURIComponent` isn't enough to do the trick.
+	even for normally URL-safe characters such as dashes.
 - Each part of the syntax must reside inside one [block-level element](https://developer.mozilla.org/en-US/docs/Glossary/Block-level_content),
 	however the whole match may span across multiple blocks.
 - It's possible to define multiple text fragments by separating them with `&` just like what you usually do with query strings. [Example](#:~:text=separating&text=query)
@@ -113,6 +113,11 @@ While it does look similar to your standard element fragment, there are few key 
 When browsers received a navigation to a URL that contains text fragment(s), it will try to find texts that matches the directive **even if they're visually hidden**.
 
 If a text matching the fragment is found, the browser will scroll to and highlight the first matching fragment. If no match is found, the browser will do nothing.
+
+### Building Text Fragment
+
+After a short introduction to the API, now you're ready to build your first text fragment. As stated in the previous section, you need to percent-encode the target
+text
 
 ### Interaction With Element Fragment
 
@@ -219,7 +224,8 @@ This possible attack vector has raised privacy concerns, leading Brave to [tempo
 If you're in full-control of your site, you can tell the browser to not process **any** fragments site-wide by setting
 the `Document-Policy` header with the following value.
 
-```plaintext title=Enforce the page to ignore fragments including element fragment, noLang
+```yaml title=Enforce the page to ignore fragments including element fragment, noLang
+// ⚠️ Warning! This disables element fragment too!
 Document-Policy: force-load-at-top
 ```
 
