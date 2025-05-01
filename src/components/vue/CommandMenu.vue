@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref, watch, computed, nextTick } from 'vue';
+import { ref, watch, computed, nextTick, watchEffect } from 'vue';
 import { useMagicKeys, whenever } from '@vueuse/core';
 
 import {
@@ -28,8 +28,11 @@ const visible = ref(false);
 const searchEl = ref<HTMLInputElement>();
 const focusIndex = ref(0);
 
+const timeoutId = ref<NodeJS.Timeout | null>(null);
+const intervalId = ref<NodeJS.Timeout | null>(null);
+
 const initialDelay = 300;
-const fireRate = 100;
+const fireRate = 75;
 
 const isMac = false;
 
@@ -90,19 +93,53 @@ whenever(home, () => {
   }
 });
 
-whenever(() => arrowDown && visible.value, () => {
+function moveDown() {
   focusIndex.value += 1;
 
   if (focusIndex.value >= allLinks.value.length) {
     focusIndex.value = allLinks.value.length - 1;
   }
-});
+}
 
-whenever(() => arrowUp && visible.value, () => {
+function moveUp() {
   focusIndex.value -= 1;
 
   if (focusIndex.value < 0) {
     focusIndex.value = 0;
+  }
+}
+
+whenever(arrowDown, () => {
+  if (visible.value) {
+    if (intervalId.value && timeoutId.value) {
+      clearTimeout(timeoutId.value);
+      clearInterval(intervalId.value);
+    }
+
+    moveDown();
+
+    timeoutId.value = setTimeout(() => {
+      intervalId.value = setInterval(() => {
+        moveDown();
+      }, fireRate);
+    }, initialDelay);
+  }
+});
+
+whenever(arrowUp, () => {
+  if (visible.value) {
+    if (intervalId.value && timeoutId.value) {
+      clearTimeout(timeoutId.value);
+      clearInterval(intervalId.value);
+    }
+
+    moveUp();
+
+    timeoutId.value = setTimeout(() => {
+      intervalId.value = setInterval(() => {
+        moveUp();
+      }, fireRate);
+    }, initialDelay);
   }
 });
 
@@ -141,6 +178,13 @@ watch(visible, async () => {
     }
   }
 });
+
+watchEffect(() => {
+  if (!arrowUp.value && !arrowDown.value) {
+    clearTimeout(timeoutId.value!)
+    clearInterval(intervalId.value!)
+  }
+})
 </script>
 
 <template>
