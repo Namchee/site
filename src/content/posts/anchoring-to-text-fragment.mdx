@@ -116,8 +116,14 @@ If a text matching the fragment is found, the browser will scroll to and highlig
 
 ### Building Text Fragment
 
-After a short introduction to the API, now you're ready to build your first text fragment. As stated in the previous section, you need to percent-encode the target
-text
+After a short introduction to the API and what its trying to solve, now you're ready to build your first text fragment.
+
+Things will go pretty simple if you're in full control of the content. All you have to do is to use [this polyfill](https://github.com/GoogleChromeLabs/text-fragments-polyfill) and
+attach it to the URL using `encodeURIComponent`.
+
+```js title=Building Text Fragment Programmatically
+// Detect support
+```
 
 ### Interaction With Element Fragment
 
@@ -237,7 +243,7 @@ When I first learned about this feature after Google introduced it in Google Sea
 I thought that this was yet another API that [will be killed sooner or later](https://killedbygoogle.com/).
 
 Imagine my joy when I found out that the feature is alive through a WICG proposal. It solves my major gripe with element fragments = over-reliance
-to stable link structure and mandatory element wrapping while enabling us to create a higher-quality citation and reference links.
+on stable content structure and mandatory element wrapping while enabling us to create a higher-quality citation and reference links.
 
 While crafting the URL manually is tedious, you don't need to worry as this concern has been addressed with web extensions for
 [Chromium-based browsers](https://chromewebstore.google.com/detail/link-to-text-fragment/pbcodcjpfjdpcineamnnmbkkmkdpajjg),
