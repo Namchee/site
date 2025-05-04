@@ -79,7 +79,7 @@ import { TooltipProvider, TooltipRoot, TooltipArrow, TooltipTrigger, TooltipPort
             </p>
 
             <p class="mt-2">
-              A string specifying the start of the linked text. Supplying only this is enough for the browser to parse and run the text fragment directive.
+              A string specifying the start of the linked text. <strong>Required</strong>.
             </p>
             <TooltipArrow :width="8" class="fill-content" />
           </TooltipContent>
@@ -108,7 +108,7 @@ import { TooltipProvider, TooltipRoot, TooltipArrow, TooltipTrigger, TooltipPort
 
       <TooltipRoot>
         <TooltipTrigger class="font-mono text-pink-500 opacity-70 hover:opacity-100 transition-opacity">
-          [,suffix]
+          [,-suffix]
         </TooltipTrigger>
 
         <TooltipPortal>

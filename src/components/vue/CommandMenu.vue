@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref, watch, computed, nextTick } from 'vue';
+import { ref, watch, computed, nextTick, watchEffect } from 'vue';
 import { useMagicKeys, whenever } from '@vueuse/core';
 
 import {
@@ -28,6 +28,12 @@ const visible = ref(false);
 const searchEl = ref<HTMLInputElement>();
 const focusIndex = ref(0);
 
+const timeoutId = ref<NodeJS.Timeout | null>(null);
+const intervalId = ref<NodeJS.Timeout | null>(null);
+
+const initialDelay = 300;
+const fireRate = 75;
+
 const isMac = false;
 
 const props = defineProps<{
@@ -37,7 +43,7 @@ const props = defineProps<{
   }[],
 }>();
 
-const keys = useMagicKeys({
+const { ctrl_k, meta_k, home, arrowDown, arrowUp, enter, escape, current } = useMagicKeys({
   passive: false,
   onEventFired(e) {
     const isOpeningMenu = (e.ctrlKey || e.metaKey) && e.key === 'k';
@@ -73,41 +79,71 @@ const relevantPosts = computed(() => {
 
 const allLinks = computed(() => [...relevantLinks.value, ...relevantPosts.value]);
 
-whenever(keys.ctrl_k, () => {
+whenever(ctrl_k, () => {
   visible.value = !visible.value;
 });
 
-whenever(keys.meta_k, () => {
+whenever(meta_k, () => {
   visible.value = !visible.value;
 });
 
-whenever(keys.home, () => {
+whenever(home, () => {
   if (visible.value) {
     window.location.href = '/';
   }
 });
 
-whenever(keys.arrowDown, () => {
-  if (visible.value) {
-    focusIndex.value += 1;
+function moveDown() {
+  focusIndex.value += 1;
 
-    if (focusIndex.value >= allLinks.value.length) {
-      focusIndex.value = allLinks.value.length - 1;
+  if (focusIndex.value >= allLinks.value.length) {
+    focusIndex.value = allLinks.value.length - 1;
+  }
+}
+
+function moveUp() {
+  focusIndex.value -= 1;
+
+  if (focusIndex.value < 0) {
+    focusIndex.value = 0;
+  }
+}
+
+whenever(arrowDown, () => {
+  if (visible.value) {
+    if (intervalId.value && timeoutId.value) {
+      clearTimeout(timeoutId.value);
+      clearInterval(intervalId.value);
     }
+
+    moveDown();
+
+    timeoutId.value = setTimeout(() => {
+      intervalId.value = setInterval(() => {
+        moveDown();
+      }, fireRate);
+    }, initialDelay);
   }
 });
 
-whenever(keys.arrowUp, () => {
+whenever(arrowUp, () => {
   if (visible.value) {
-    focusIndex.value -= 1;
-
-    if (focusIndex.value < 0) {
-      focusIndex.value = 0;
+    if (intervalId.value && timeoutId.value) {
+      clearTimeout(timeoutId.value);
+      clearInterval(intervalId.value);
     }
+
+    moveUp();
+
+    timeoutId.value = setTimeout(() => {
+      intervalId.value = setInterval(() => {
+        moveUp();
+      }, fireRate);
+    }, initialDelay);
   }
 });
 
-whenever(keys.enter, () => {
+whenever(enter, () => {
   if (visible.value) {
     let index = focusIndex.value;
 
@@ -120,7 +156,7 @@ whenever(keys.enter, () => {
   }
 });
 
-whenever(keys.escape, () => {
+whenever(escape, () => {
   visible.value = false;
 });
 
@@ -142,6 +178,13 @@ watch(visible, async () => {
     }
   }
 });
+
+watchEffect(() => {
+  if (!arrowUp.value && !arrowDown.value) {
+    clearTimeout(timeoutId.value!)
+    clearInterval(intervalId.value!)
+  }
+})
 </script>
 
 <template>
