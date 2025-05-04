@@ -102,8 +102,8 @@ Similar to element fragment, you can insert text fragments into a URL using a ha
 
 While it does look similar to your standard element fragment, there are few key differences besides stricter format:
 
-- All inputs within this directive must be [percent-encoded](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/encodeURIComponent)
-	even for normally URL-safe characters such as dashes.
+- All inputs within this directive must be [percent-encoded](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/encodeURIComponent) with
+	some additional cases explained in the below section.
 - Each part of the syntax must reside inside one [block-level element](https://developer.mozilla.org/en-US/docs/Glossary/Block-level_content),
 	however the whole match may span across multiple blocks.
 - It's possible to define multiple text fragments by separating them with `&` just like what you usually do with query strings. [Example](#:~:text=separating&text=query)
@@ -118,12 +118,37 @@ If a text matching the fragment is found, the browser will scroll to and highlig
 
 After a short introduction to the API and what its trying to solve, now you're ready to build your first text fragment.
 
-Things will go pretty simple if you're in full control of the content. All you have to do is to use [this polyfill](https://github.com/GoogleChromeLabs/text-fragments-polyfill) and
-attach it to the URL using `encodeURIComponent`.
+Things will go pretty simple if you want to build the fragment programmatically while you have full control of the content. All you have to do
+is encode the fragment with `encodeURIComponent` function, which should be available as a global JavaScript API.
 
-```js title=Building Text Fragment Programmatically
-// Detect support
+However as mentioned above, you also need to handle special cases for `-`, `&`, and `,` characters, as they also need to be percent-encoded to
+avoid confusion with the text directive syntax [per the spec](https://wicg.github.io/scroll-to-text-fragment/#syntax).
+
+```js title=Building Text Fragment Programmatically, copy
+function encodeTextFragment(fragment) {
+	return encodeURIComponent(fragment)
+		.replace(
+			/[-&,]/g,
+			(c) => '%' + c.charCodeAt(0).toString(16).toUpperCase()
+		);
+}
+
+// Sample usage
+const textPrefix = encodeTextFragment('you just got');
+const textStart = encodeTextFragment(`coconut`);
+const textEnd = encodeTextFragment(`mall-ed`);
+const textSuffix = encodeTextFragment('share this to your friends & family!');
+
+const baseUrl = '/cool-page';
+const url = `${baseUrl}#:~:text=${textPrefix}-,${textStart},${textEnd},-${textSuffix}`;
 ```
+
+If you don't have control over the content or simply want an easy way to generate a text fragment without touching the markup, you can use web extensions for
+[Chromium-based browsers](https://chromewebstore.google.com/detail/link-to-text-fragment/pbcodcjpfjdpcineamnnmbkkmkdpajjg),
+[Edge](https://microsoftedge.microsoft.com/addons/detail/link-to-text-fragment/pmdldpbcbobaamgkpkghjigngamlolag),
+[Firefox](https://addons.mozilla.org/firefox/addon/link-to-text-fragment/), and
+[Safari](https://apps.apple.com/app/link-to-text-fragment/id1532224396) to generate one for you.
+
 
 ### Interaction With Element Fragment
 
@@ -132,8 +157,11 @@ You only need to append the text fragment directive after element fragment. For 
 
 <TextLink class="font-mono text-heading text-center my-4" href="#jumping-to-text:~:text=since,scale%20well">#jumping-to-text:~:text=since,scale%20well</TextLink>
 
-Do note that when the text fragment doesn't share the same viewspace as the element fragment, the element fragment will be ignored and the browser
-will prioritize scrolling to the text fragment as demonstrated by [this link](#jumping-to-text:~:text=but%20as%20a%20good%20developer,browsers).
+In this case, the element fragment acts as fallback for text fragment directive if the browser cannot find matching text with the text fragment directive
+as demonstrated by [this link](#interaction-with-element-fragment:~:text=wumbologic), where I searched the text `wumbologic` while falling back to this section.
+
+However if the browser is able to find text(s) that satisfies the text fragment directive, the browser will ignore the element fragment
+as demonstrated by [this link](#building-text-fragment:~:text=text(s)), where I searched the text `text(s)` while falling back to the previous section.
 
 ## Is It A 'Navigation'?
 
@@ -172,7 +200,7 @@ alter specific scrolling behavior, such as disabling scroll-to-bottom when a tex
 Well, since the directives are stored in hash bangs, we should be able to read the `hash` property from `URL` and parse it from there no?
 
 ```js title=Extracting text fragment directive that definitely don't work
-// suppose that the the current URL is `/cool-page#:~:`
+// suppose that the the current URL is `/cool-page#:~:text=xxx`
 const hash = window.location.hash;
 const textFragment = hash.match(/:~:text=(.+):/);
 
@@ -231,7 +259,7 @@ If you're in full-control of your site, you can tell the browser to not process 
 the `Document-Policy` header with the following value.
 
 ```yaml title=Enforce the page to ignore fragments including element fragment, noLang
-// ⚠️ Warning! This disables element fragment too!
+# ⚠️ Warning! This disables element fragment too!
 Document-Policy: force-load-at-top
 ```
 
@@ -242,11 +270,12 @@ For enterprise environments that uses Chrome, network administrators may also di
 When I first learned about this feature after Google introduced it in Google Search by highlighting the search result after navigation,
 I thought that this was yet another API that [will be killed sooner or later](https://killedbygoogle.com/).
 
-Imagine my joy when I found out that the feature is alive through a WICG proposal. It solves my major gripe with element fragments = over-reliance
-on stable content structure and mandatory element wrapping while enabling us to create a higher-quality citation and reference links.
+Imagine my joy when I found out that the feature is alive through a WICG proposal as it solves my major gripe with element fragments:
 
-While crafting the URL manually is tedious, you don't need to worry as this concern has been addressed with web extensions for
-[Chromium-based browsers](https://chromewebstore.google.com/detail/link-to-text-fragment/pbcodcjpfjdpcineamnnmbkkmkdpajjg),
-[Edge](https://microsoftedge.microsoft.com/addons/detail/link-to-text-fragment/pmdldpbcbobaamgkpkghjigngamlolag),
-[Firefox](https://addons.mozilla.org/firefox/addon/link-to-text-fragment/), and
-[Safari](https://apps.apple.com/app/link-to-text-fragment/id1532224396). Happy (deep)linking!
+- Over-reliance on stable content structure
+- Mandatory element wrapping to attach `id` to
+
+At the same time, the text fragment is enabling us to create a higher-quality citation and reference links by sharing more specific text to focus on
+instead of long and abstract sections.
+
+With the advantages in mind, I hope that *you* will consider adopting text fragment directives as a higher-quality alternative for providing references compared to element fragments. Happy (deep)linking!
