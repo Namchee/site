@@ -7,4 +7,4 @@ export default new Map([
 ["posts/hello-world.mdx", () => import("astro:content-layer-deferred-module?astro%3Acontent-layer-deferred-module=&fileName=posts%2Fhello-world.mdx&astroContentModuleFlag=true")],
 ["posts/reflections-on-my-2024.mdx", () => import("astro:content-layer-deferred-module?astro%3Acontent-layer-deferred-module=&fileName=posts%2Freflections-on-my-2024.mdx&astroContentModuleFlag=true")],
 ["posts/utilpocalypse.mdx", () => import("astro:content-layer-deferred-module?astro%3Acontent-layer-deferred-module=&fileName=posts%2Futilpocalypse.mdx&astroContentModuleFlag=true")]]);
-		
+
