@@ -7,11 +7,6 @@ tags:
   - javascript
 ---
 
-When writing JavaScript, it's a common occurence to write a non-blocking routine to keep your program
-responsive even while doing heavy task on the background.
-
-In the early days of JavaScript, such needs is accomplished through callbacks.
-
 If you're familiar with JavaScript, I'm pretty sure you've written at least a single `Promise` in your
 software development journey.
 
@@ -23,4 +18,4 @@ While it's really cool to run an asynchronous code, there are times where you ne
 routine to finish first before executing the next routine. Either you need whatever returned by the routine or
 you need to sync up the state.
 
-Fortunately, `Promise` allows us to
+Fortunately, `Promise` allows us to 'block' the program execution
