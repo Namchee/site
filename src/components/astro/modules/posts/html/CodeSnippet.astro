@@ -12,8 +12,6 @@ const {
   ...props
 } = Astro.props;
 
-console.log(Astro.props);
-
 if (dataMeta) {
   dataMeta.split(",").forEach((prop: string) => {
     const tokens = prop.split("=");

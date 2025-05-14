@@ -18,7 +18,7 @@
   "devDependencies": {
     "@astrojs/check": "^0.9.4",
     "@astrojs/sitemap": "^3.2.1",
-    "@astrojs/vue": "^5.0.3",
+    "@astrojs/vue": "^5.0.13",
     "@iconify-json/lucide": "^1.2.10",
     "@iconify-json/simple-icons": "^1.1.105",
     "@namchee/astro-subfont": "^0.1.0",
@@ -31,7 +31,7 @@
     "@unocss/reset": "^0.58.9",
     "@unpic/astro": "^0.1.0",
     "@unpic/pixels": "^1.3.0",
-    "astro": "^5.1.7",
+    "astro": "^5.4.3",
     "astro-eslint-parser": "^0.16.3",
     "astro-robots-txt": "^1.0.0",
     "astro-tweet": "^0.0.4",
