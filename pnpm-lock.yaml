@@ -11,12 +11,30 @@ importers:
 
   .:
     dependencies:
+<<<<<<< HEAD
+=======
+      '@astrojs/mdx':
+        specifier: ^4.0.3
+        version: 4.0.3(astro@5.4.3(@types/node@20.14.2)(jiti@2.0.0-beta.3)(rollup@4.40.2)(tsx@4.15.4)(typescript@5.4.5)(yaml@2.6.1))
+      '@astrojs/rss':
+        specifier: ^4.0.10
+        version: 4.0.10
+>>>>>>> dc78f75 (chore: bump astro to 5.4.3 and bump astro/vue to latest)
       '@iconify/vue':
         specifier: ^4.1.2
         version: 4.1.2(vue@3.5.12(typescript@5.4.5))
       '@vueuse/core':
         specifier: ^10.11.0
         version: 10.11.0(vue@3.5.12(typescript@5.4.5))
+<<<<<<< HEAD
+=======
+      astro-embed:
+        specifier: ^0.9.0
+        version: 0.9.0(astro@5.4.3(@types/node@20.14.2)(jiti@2.0.0-beta.3)(rollup@4.40.2)(tsx@4.15.4)(typescript@5.4.5)(yaml@2.6.1))
+      astro-icon:
+        specifier: ^1.1.1
+        version: 1.1.1
+>>>>>>> dc78f75 (chore: bump astro to 5.4.3 and bump astro/vue to latest)
       class-variance-authority:
         specifier: ^0.7.0
         version: 0.7.0
@@ -75,9 +93,12 @@ importers:
       astro:
         specifier: ^5.4.3
         version: 5.4.3(@types/node@20.14.2)(jiti@2.0.0-beta.3)(rollup@4.40.2)(tsx@4.15.4)(typescript@5.4.5)(yaml@2.6.1)
+<<<<<<< HEAD
       astro-embed:
         specifier: ^0.9.0
         version: 0.9.0(astro@5.4.3(@types/node@20.14.2)(jiti@2.0.0-beta.3)(rollup@4.40.2)(tsx@4.15.4)(typescript@5.4.5)(yaml@2.6.1))
+=======
+>>>>>>> dc78f75 (chore: bump astro to 5.4.3 and bump astro/vue to latest)
       astro-eslint-parser:
         specifier: ^0.16.3
         version: 0.16.3
@@ -2219,26 +2240,46 @@ packages:
   '@vue/compiler-core@3.5.12':
     resolution: {integrity: sha512-ISyBTRMmMYagUxhcpyEH0hpXRd/KqDU4ymofPgl2XAkY9ZhQ+h0ovEZJIiPop13UmR/54oA2cgMDjgroRelaEw==}
 
+<<<<<<< HEAD
   '@vue/compiler-core@3.5.14':
     resolution: {integrity: sha512-k7qMHMbKvoCXIxPhquKQVw3Twid3Kg4s7+oYURxLGRd56LiuHJVrvFKI4fm2AM3c8apqODPfVJGoh8nePbXMRA==}
+=======
+  '@vue/compiler-core@3.5.13':
+    resolution: {integrity: sha512-oOdAkwqUfW1WqpwSYJce06wvt6HljgY3fGeM9NcVA1HaYOij3mZG9Rkysn0OHuyUAGMbEbARIpsG+LPVlBJ5/Q==}
+>>>>>>> dc78f75 (chore: bump astro to 5.4.3 and bump astro/vue to latest)
 
   '@vue/compiler-dom@3.5.12':
     resolution: {integrity: sha512-9G6PbJ03uwxLHKQ3P42cMTi85lDRvGLB2rSGOiQqtXELat6uI4n8cNz9yjfVHRPIu+MsK6TE418Giruvgptckg==}
 
+<<<<<<< HEAD
   '@vue/compiler-dom@3.5.14':
     resolution: {integrity: sha512-1aOCSqxGOea5I80U2hQJvXYpPm/aXo95xL/m/mMhgyPUsKe9jhjwWpziNAw7tYRnbz1I61rd9Mld4W9KmmRoug==}
+=======
+  '@vue/compiler-dom@3.5.13':
+    resolution: {integrity: sha512-ZOJ46sMOKUjO3e94wPdCzQ6P1Lx/vhp2RSvfaab88Ajexs0AHeV0uasYhi99WPaogmBlRHNRuly8xV75cNTMDA==}
+>>>>>>> dc78f75 (chore: bump astro to 5.4.3 and bump astro/vue to latest)
 
   '@vue/compiler-sfc@3.5.12':
     resolution: {integrity: sha512-2k973OGo2JuAa5+ZlekuQJtitI5CgLMOwgl94BzMCsKZCX/xiqzJYzapl4opFogKHqwJk34vfsaKpfEhd1k5nw==}
 
+<<<<<<< HEAD
   '@vue/compiler-sfc@3.5.14':
     resolution: {integrity: sha512-9T6m/9mMr81Lj58JpzsiSIjBgv2LiVoWjIVa7kuXHICUi8LiDSIotMpPRXYJsXKqyARrzjT24NAwttrMnMaCXA==}
+=======
+  '@vue/compiler-sfc@3.5.13':
+    resolution: {integrity: sha512-6VdaljMpD82w6c2749Zhf5T9u5uLBWKnVue6XWxprDobftnletJ8+oel7sexFfM3qIxNmVE7LSFGTpv6obNyaQ==}
+>>>>>>> dc78f75 (chore: bump astro to 5.4.3 and bump astro/vue to latest)
 
   '@vue/compiler-ssr@3.5.12':
     resolution: {integrity: sha512-eLwc7v6bfGBSM7wZOGPmRavSWzNFF6+PdRhE+VFJhNCgHiF8AM7ccoqcv5kBXA2eWUfigD7byekvf/JsOfKvPA==}
 
+<<<<<<< HEAD
   '@vue/compiler-ssr@3.5.14':
     resolution: {integrity: sha512-Y0G7PcBxr1yllnHuS/NxNCSPWnRGH4Ogrp0tsLA5QemDZuJLs99YjAKQ7KqkHE0vCg4QTKlQzXLKCMF7WPSl7Q==}
+=======
+  '@vue/compiler-ssr@3.5.13':
+    resolution: {integrity: sha512-wMH6vrYHxQl/IybKJagqbquvxpWCuVYpoUJfCqFZwa/JY1GdATAQ+TgVtgrwwMZ0D07QhA99rs/EAAWfvG6KpA==}
+>>>>>>> dc78f75 (chore: bump astro to 5.4.3 and bump astro/vue to latest)
 
   '@vue/devtools-core@7.7.6':
     resolution: {integrity: sha512-ghVX3zjKPtSHu94Xs03giRIeIWlb9M+gvDRVpIZ/cRIxKHdW6HE/sm1PT3rUYS3aV92CazirT93ne+7IOvGUWg==}
@@ -2268,8 +2309,13 @@ packages:
   '@vue/shared@3.5.12':
     resolution: {integrity: sha512-L2RPSAwUFbgZH20etwrXyVyCBu9OxRSi8T/38QsvnkJyvq2LufW2lDCOzm7t/U9C1mkhJGWYfCuFBCmIuNivrg==}
 
+<<<<<<< HEAD
   '@vue/shared@3.5.14':
     resolution: {integrity: sha512-oXTwNxVfc9EtP1zzXAlSlgARLXNC84frFYkS0HHz0h3E4WZSP9sywqjqzGCP9Y34M8ipNmd380pVgmMuwELDyQ==}
+=======
+  '@vue/shared@3.5.13':
+    resolution: {integrity: sha512-/hnE/qP5ZoGpol0a5mDi45bOd7t3tjYJBjsgCsivow7D48cJeV5l05RD82lPqi7gRiphZM37rnhW1l6ZoCNNnQ==}
+>>>>>>> dc78f75 (chore: bump astro to 5.4.3 and bump astro/vue to latest)
 
   '@vueuse/core@10.11.0':
     resolution: {integrity: sha512-x3sD4Mkm7PJ+pcq3HX8PLPBadXCAlSDR/waK87dz0gQE+qJnaaFhc/dZVfJz+IUYzTMVGum2QlR7ImiJQN4s6g==}
@@ -6445,7 +6491,11 @@ snapshots:
     dependencies:
       '@vitejs/plugin-vue': 5.2.1(vite@6.3.5(@types/node@20.14.2)(jiti@2.0.0-beta.3)(tsx@4.15.4)(yaml@2.6.1))(vue@3.5.12(typescript@5.4.5))
       '@vitejs/plugin-vue-jsx': 4.1.2(vite@6.3.5(@types/node@20.14.2)(jiti@2.0.0-beta.3)(tsx@4.15.4)(yaml@2.6.1))(vue@3.5.12(typescript@5.4.5))
+<<<<<<< HEAD
       '@vue/compiler-sfc': 3.5.14
+=======
+      '@vue/compiler-sfc': 3.5.13
+>>>>>>> dc78f75 (chore: bump astro to 5.4.3 and bump astro/vue to latest)
       astro: 5.4.3(@types/node@20.14.2)(jiti@2.0.0-beta.3)(rollup@4.40.2)(tsx@4.15.4)(typescript@5.4.5)(yaml@2.6.1)
       vite: 6.3.5(@types/node@20.14.2)(jiti@2.0.0-beta.3)(tsx@4.15.4)(yaml@2.6.1)
       vite-plugin-vue-devtools: 7.7.6(rollup@4.40.2)(vite@6.3.5(@types/node@20.14.2)(jiti@2.0.0-beta.3)(tsx@4.15.4)(yaml@2.6.1))(vue@3.5.12(typescript@5.4.5))
@@ -6566,7 +6616,11 @@ snapshots:
       '@babel/traverse': 7.26.4
       '@babel/types': 7.26.3
       convert-source-map: 2.0.0
+<<<<<<< HEAD
       debug: 4.4.1
+=======
+      debug: 4.4.0
+>>>>>>> dc78f75 (chore: bump astro to 5.4.3 and bump astro/vue to latest)
       gensync: 1.0.0-beta.2
       json5: 2.2.3
       semver: 6.3.1
@@ -6586,7 +6640,11 @@ snapshots:
       '@babel/traverse': 7.27.1
       '@babel/types': 7.27.1
       convert-source-map: 2.0.0
+<<<<<<< HEAD
       debug: 4.4.1
+=======
+      debug: 4.4.0
+>>>>>>> dc78f75 (chore: bump astro to 5.4.3 and bump astro/vue to latest)
       gensync: 1.0.0-beta.2
       json5: 2.2.3
       semver: 6.3.1
@@ -7076,7 +7134,11 @@ snapshots:
       '@babel/parser': 7.26.3
       '@babel/template': 7.25.9
       '@babel/types': 7.26.3
+<<<<<<< HEAD
       debug: 4.4.1
+=======
+      debug: 4.4.0
+>>>>>>> dc78f75 (chore: bump astro to 5.4.3 and bump astro/vue to latest)
       globals: 11.12.0
     transitivePeerDependencies:
       - supports-color
@@ -7088,7 +7150,11 @@ snapshots:
       '@babel/parser': 7.27.2
       '@babel/template': 7.27.2
       '@babel/types': 7.27.1
+<<<<<<< HEAD
       debug: 4.4.1
+=======
+      debug: 4.4.0
+>>>>>>> dc78f75 (chore: bump astro to 5.4.3 and bump astro/vue to latest)
       globals: 11.12.0
     transitivePeerDependencies:
       - supports-color
@@ -8592,7 +8658,11 @@ snapshots:
       '@babel/helper-module-imports': 7.25.9
       '@babel/helper-plugin-utils': 7.25.9
       '@babel/parser': 7.26.3
+<<<<<<< HEAD
       '@vue/compiler-sfc': 3.5.14
+=======
+      '@vue/compiler-sfc': 3.5.13
+>>>>>>> dc78f75 (chore: bump astro to 5.4.3 and bump astro/vue to latest)
     transitivePeerDependencies:
       - supports-color
 
@@ -8603,7 +8673,11 @@ snapshots:
       '@babel/helper-module-imports': 7.25.9
       '@babel/helper-plugin-utils': 7.25.9
       '@babel/parser': 7.26.3
+<<<<<<< HEAD
       '@vue/compiler-sfc': 3.5.14
+=======
+      '@vue/compiler-sfc': 3.5.13
+>>>>>>> dc78f75 (chore: bump astro to 5.4.3 and bump astro/vue to latest)
     transitivePeerDependencies:
       - supports-color
 
@@ -8615,10 +8689,17 @@ snapshots:
       estree-walker: 2.0.2
       source-map-js: 1.2.1
 
+<<<<<<< HEAD
   '@vue/compiler-core@3.5.14':
     dependencies:
       '@babel/parser': 7.27.2
       '@vue/shared': 3.5.14
+=======
+  '@vue/compiler-core@3.5.13':
+    dependencies:
+      '@babel/parser': 7.26.3
+      '@vue/shared': 3.5.13
+>>>>>>> dc78f75 (chore: bump astro to 5.4.3 and bump astro/vue to latest)
       entities: 4.5.0
       estree-walker: 2.0.2
       source-map-js: 1.2.1
@@ -8628,10 +8709,17 @@ snapshots:
       '@vue/compiler-core': 3.5.12
       '@vue/shared': 3.5.12
 
+<<<<<<< HEAD
   '@vue/compiler-dom@3.5.14':
     dependencies:
       '@vue/compiler-core': 3.5.14
       '@vue/shared': 3.5.14
+=======
+  '@vue/compiler-dom@3.5.13':
+    dependencies:
+      '@vue/compiler-core': 3.5.13
+      '@vue/shared': 3.5.13
+>>>>>>> dc78f75 (chore: bump astro to 5.4.3 and bump astro/vue to latest)
 
   '@vue/compiler-sfc@3.5.12':
     dependencies:
@@ -8645,6 +8733,7 @@ snapshots:
       postcss: 8.4.47
       source-map-js: 1.2.1
 
+<<<<<<< HEAD
   '@vue/compiler-sfc@3.5.14':
     dependencies:
       '@babel/parser': 7.27.2
@@ -8652,6 +8741,15 @@ snapshots:
       '@vue/compiler-dom': 3.5.14
       '@vue/compiler-ssr': 3.5.14
       '@vue/shared': 3.5.14
+=======
+  '@vue/compiler-sfc@3.5.13':
+    dependencies:
+      '@babel/parser': 7.26.3
+      '@vue/compiler-core': 3.5.13
+      '@vue/compiler-dom': 3.5.13
+      '@vue/compiler-ssr': 3.5.13
+      '@vue/shared': 3.5.13
+>>>>>>> dc78f75 (chore: bump astro to 5.4.3 and bump astro/vue to latest)
       estree-walker: 2.0.2
       magic-string: 0.30.17
       postcss: 8.5.3
@@ -8662,10 +8760,17 @@ snapshots:
       '@vue/compiler-dom': 3.5.12
       '@vue/shared': 3.5.12
 
+<<<<<<< HEAD
   '@vue/compiler-ssr@3.5.14':
     dependencies:
       '@vue/compiler-dom': 3.5.14
       '@vue/shared': 3.5.14
+=======
+  '@vue/compiler-ssr@3.5.13':
+    dependencies:
+      '@vue/compiler-dom': 3.5.13
+      '@vue/shared': 3.5.13
+>>>>>>> dc78f75 (chore: bump astro to 5.4.3 and bump astro/vue to latest)
 
   '@vue/devtools-core@7.7.6(vite@6.3.5(@types/node@20.14.2)(jiti@2.0.0-beta.3)(tsx@4.15.4)(yaml@2.6.1))(vue@3.5.12(typescript@5.4.5))':
     dependencies:
@@ -8717,7 +8822,11 @@ snapshots:
 
   '@vue/shared@3.5.12': {}
 
+<<<<<<< HEAD
   '@vue/shared@3.5.14': {}
+=======
+  '@vue/shared@3.5.13': {}
+>>>>>>> dc78f75 (chore: bump astro to 5.4.3 and bump astro/vue to latest)
 
   '@vueuse/core@10.11.0(vue@3.5.12(typescript@5.4.5))':
     dependencies:
@@ -13268,7 +13377,11 @@ snapshots:
     dependencies:
       '@antfu/utils': 0.7.10
       '@rollup/pluginutils': 5.1.4(rollup@4.40.2)
+<<<<<<< HEAD
       debug: 4.4.1
+=======
+      debug: 4.4.0
+>>>>>>> dc78f75 (chore: bump astro to 5.4.3 and bump astro/vue to latest)
       error-stack-parser-es: 0.1.5
       fs-extra: 11.2.0
       open: 10.1.0
