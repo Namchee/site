@@ -12,7 +12,8 @@
     "test": "vitest",
     "lint": "eslint src",
     "lint:fix": "eslint src --fix",
-    "webmentions:sync": "tsx ./src/scripts/webmentions.ts"
+    "webmentions:sync": "tsx ./src/scripts/webmentions.ts",
+    "postinstall": "pnpm exec playwright install"
   },
   "devDependencies": {
     "@astrojs/mdx": "^4.0.3",
