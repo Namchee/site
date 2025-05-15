@@ -1,7 +1,6 @@
 import { readFileSync } from 'node:fs';
 
 import { getCollection } from 'astro:content';
-import type { APIContext } from 'astro';
 
 import satori, { type SatoriOptions } from 'satori';
 import sharp from 'sharp';
@@ -47,10 +46,10 @@ async function generateOGImage(params: Params) {
   return buffer;
 }
 
-export async function GET(ctx: APIContext) {
-  const image = await generateOGImage(ctx.props as Params);
+export async function GET({ props }) {
+  const image = await generateOGImage(props as Params);
 
-  return new Response(image, {
+  return new Response(new Uint8Array(image), {
     status: 200,
     headers: {
       'Content-Type': 'image/png',
@@ -63,12 +62,12 @@ export async function getStaticPaths() {
 
   return blogPosts.map(post => ({
     params: {
-      slug: post.slug,
+      slug: post.id,
     },
     props: {
       title: post.data.title,
       publishedAt: post.data.publishedAt,
-      timeToRead: Math.ceil(getReadingTime(post.body).minutes),
+      timeToRead: Math.ceil(getReadingTime(post.body ?? '').minutes),
       tags: post.data.tags,
     },
   }));

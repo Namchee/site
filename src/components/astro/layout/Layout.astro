@@ -20,7 +20,7 @@ const posts = postCollection
   .sort((a, b) => b.data.publishedAt.getTime() - a.data.publishedAt.getTime())
   .map((collection) => ({
     title: collection.data.title || "",
-    href: `/posts/${collection.slug}`,
+    href: `/posts/${collection.id}`,
   }));
 
 const { title, description, og } = Astro.props;
