@@ -1,6 +1,6 @@
 ---
 title: "I'll Try To Await That 'Promise'"
-publishedAt: 2025-05-15
+publishedAt: 2025-05-18
 subtitle: "Is it a `Promise` or synchronous code? Screw it, I'm gonna `then`"
 isDraft: false
 tags:
@@ -14,8 +14,13 @@ software development journey.
 without blocking routines that follows it. That way, your program can stay responsive without having to
 play the waiting game.
 
-While it's really cool to run an asynchronous code, there are times where you need to wait for the asynchronous
-routine to finish first before executing the next routine. Either you need whatever returned by the routine or
-you need to sync up the state.
+After being queued, the `Promise` may **resolve** or **reject** which is handled using the `.then` or `.catch` keyword
+respectively. The syntax is further streamlined to be closer to synchronous code using `async` and `await` keyword.
 
-Fortunately, `Promise` allows us to 'block' the program execution
+## Is It a Promise Though?
+
+`Promise` has already come a long way since its introduction in [2013](https://web.dev/articles/promises) as
+a standardized way to write asynchronous code in JavaScript. However, things will start getting messy when
+you're not sure with what you're dealing with.
+
+https://promisesaplus.com/
