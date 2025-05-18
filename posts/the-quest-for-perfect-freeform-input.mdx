@@ -1,14 +1,14 @@
 ---
 title: The Quest For Perfect Freeform Input
-publishedAt: 2025-05-18
-subtitle: "A case study between `<textarea>` and content-editable `<div>`"
+publishedAt: 2025-05-20
+subtitle: "A case study between `<textarea>` and `<div contenteditable>`"
 isDraft: false
 tags:
   - web
 ---
 
 If you've ever interacted with a website or an application on your smartphone, you should be
-familiar with free-form text inputs.
+familiar with freeform text inputs.
 
 Unlike the traditional text inputs, free-form text inputs are capable of handling reasonably sized
 multi-line plain-text inputs which is perfect for comments, feedbacks or in recent cases, inputs
@@ -17,12 +17,14 @@ for chatbots.
 In a context of a website, free-form chat inputs are semantically represented by `<textarea>` element if you're
 not doing incredible hacks with `<input>` or building a custom Web Component.
 
-<talk about contenteditable div here>
+The introduction of HTML5 in [2014](https://www.w3.org/TR/html5-diff) brought us a new possibility of defining
+freeform text inputs using `<div>` with the `contenteditable` attribute. This combination of element and attribute
+is commonly found in WYSIWYG editors.
 
-However, is `<textarea>` truly the endgame of free-form text inputs?
+Recently, I noticed that a lot of modern apps uses `<div contenteditable>` instead of `<textarea>` for their
+freeform text inputs, even though they don't have WYSIWYG capability. But why is everyone steers away from
+good old `<textarea>`?
 
-## A Case Study in Chatbot App
+## Building Our Perfect Input
 
-<talk about the spec here>
 
-<textarea code here>
