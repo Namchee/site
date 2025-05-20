@@ -17,17 +17,29 @@ for chatbots.
 In a context of a website, free-form chat inputs are semantically represented by `<textarea>` element if you're
 not doing incredible hacks with `<input>` or building a custom Web Component.
 
+AN EXAMPLE OF TEXTAREA
+
 The introduction of HTML5 in [2014](https://www.w3.org/TR/html5-diff) brought us a new possibility of defining
 freeform text inputs using `<div>` with the `contenteditable` attribute. This combination of element and attribute
 is commonly found in WYSIWYG editors.
 
 Recently, I noticed that a lot of modern apps uses `<div contenteditable>` instead of `<textarea>` for their
-freeform text inputs, even though they don't have WYSIWYG capability. But why is everyone steers away from
-good old `<textarea>`?
+freeform text inputs, even though they don't have and need the WYSIWYG capability `<div contenteditable>` offers.
 
-## Building The Perfect Freeform Input
+PICTURE HERE
 
-To have a better perspective on when should we use which, we are going to do some case study by building a freeform
-text input on a chatbot interface.
 
-Assuming that you're familiar with chatbots, the interface always provide the user with a freeform text input
+
+But why is everyone steers away from good old `<textarea>`? To have a better understanding on when should we use which,
+we are going to do some case study by building a freeform text input on a chatbot interface.
+
+## Case Study: Chatbot Input
+
+Assuming that you're not living in a cave, chatbot interface always provide the user with a freeform text input as user's
+main input source for prompts.
+
+Judging from the demo above, the input should be capable of:
+
+- Accepting user text input, both via standard input or speech-to-text
+- Resizes the height if the input requires more than one line
+- Scrolls the container if the text input exceeds more than eight lines
