@@ -14,19 +14,21 @@ Unlike the traditional text inputs, free-form text inputs are capable of handlin
 multi-line plain-text inputs which is perfect for comments, feedbacks or in recent cases, inputs
 for chatbots.
 
-In a context of a website, free-form chat inputs are semantically represented by `<textarea>` element if you're
+In a context of a website, free-form text inputs are semantically represented by `<textarea>` element if you're
 not doing incredible hacks with `<input>` or building a custom Web Component.
 
 AN EXAMPLE OF TEXTAREA
 
 The introduction of HTML5 in [2014](https://www.w3.org/TR/html5-diff) brought us a new possibility of defining
-freeform text inputs using `<div>` with the `contenteditable` attribute. This combination of element and attribute
+freeform text inputs using `<div>` with the `contenteditable` attribute which made users able to input anything.
+
+This combination of element and attribute
 is commonly found in WYSIWYG editors.
 
 Recently, I noticed that a lot of modern apps uses `<div contenteditable>` instead of `<textarea>` for their
 freeform text inputs, even though they don't have and need the WYSIWYG capability `<div contenteditable>` offers.
 
-PICTURE HERE
+![Bluesky is using div contenteditable instead of textarea for their freeform text input, even without WYSIWYG support](https://res.cloudinary.com/namchee/image/upload/f_auto,q_auto/v1/posts/the-quest-for-perfect-freeform-input/bsky-contenteditable)
 
 
 
@@ -38,8 +40,13 @@ we are going to do some case study by building a freeform text input on a chatbo
 Assuming that you're not living in a cave, chatbot interface always provide the user with a freeform text input as user's
 main input source for prompts.
 
-Judging from the demo above, the input should be capable of:
+DEMO
 
-- Accepting user text input, both via standard input or speech-to-text
+Aside from non text input related features like file uploads and tools, we can imply the specification of the text input:
+
+- Accepts user text input, both via standard input devices or speech-to-text
 - Resizes the height if the input requires more than one line
 - Scrolls the container if the text input exceeds more than eight lines
+
+We are going to implement all of the specifications above using `<textarea>` and `<div contenteditable>`. Finally, we compare
+both implementations to find out the advantages and disadvantages of both.
