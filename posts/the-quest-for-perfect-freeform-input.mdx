@@ -17,20 +17,13 @@ for chatbots.
 In a context of a website, free-form text inputs are semantically represented by `<textarea>` element if you're
 not doing incredible hacks with `<input>` or building a custom Web Component.
 
-AN EXAMPLE OF TEXTAREA
-
 The introduction of HTML5 in [2014](https://www.w3.org/TR/html5-diff) brought us a new possibility of defining
-freeform text inputs using `<div>` with the `contenteditable` attribute which made users able to input anything.
-
-This combination of element and attribute
-is commonly found in WYSIWYG editors.
+freeform text inputs using `contenteditable` attribute which is commonly found in rich-text WYSIWYG editors enumerated within a `<div>`.
 
 Recently, I noticed that a lot of modern apps uses `<div contenteditable>` instead of `<textarea>` for their
 freeform text inputs, even though they don't have and need the WYSIWYG capability `<div contenteditable>` offers.
 
 ![Bluesky is using div contenteditable instead of textarea for their freeform text input, even without WYSIWYG support](https://res.cloudinary.com/namchee/image/upload/f_auto,q_auto/v1/posts/the-quest-for-perfect-freeform-input/bsky-contenteditable)
-
-
 
 But why is everyone steers away from good old `<textarea>`? To have a better understanding on when should we use which,
 we are going to do some case study by building a freeform text input on a chatbot interface.
@@ -42,11 +35,15 @@ main input source for prompts.
 
 DEMO
 
-Aside from non text input related features like file uploads and tools, we can imply the specification of the text input:
+Aside from non text input related features like file uploads and other tools, we can imply that the text input has the following behavior:
 
 - Accepts user text input, both via standard input devices or speech-to-text
 - Resizes the height if the input requires more than one line
-- Scrolls the container if the text input exceeds more than eight lines
+- Scrolls the container if the text input has too many lines
 
 We are going to implement all of the specifications above using `<textarea>` and `<div contenteditable>`. Finally, we compare
 both implementations to find out the advantages and disadvantages of both.
+
+### Implementing Textarea
+
+
