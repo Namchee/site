@@ -37,13 +37,22 @@ DEMO
 
 Aside from non text input related features like file uploads and other tools, we can imply that the text input has the following behavior:
 
-- Accepts user text input, both via standard input devices or speech-to-text
+- Accepts user text input from any medium
 - Resizes the height if the input requires more than one line
 - Scrolls the container if the text input has too many lines
 
 We are going to implement all of the specifications above using `<textarea>` and `<div contenteditable>`. Finally, we compare
 both implementations to find out the advantages and disadvantages of both.
 
-### Implementing Textarea
+### Textarea
 
+To start accepting inputs, we don't need to do anything besides defining `<textarea>` in our document and our new element
+is ready to accept user inputs.
+
+Things gets a bit tricky when we're going to implement auto resizing on too much inputs as the `rows` and `cols` attribute.
+
+### Contenteditable
+
+Same with `<textarea>`, we don't need to implement anything special to our `<div>` except by adding `contenteditable` attribute
+and our element is ready to accept user inputs.
 
