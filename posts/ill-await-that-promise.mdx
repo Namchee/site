@@ -1,0 +1,21 @@
+---
+title: "I'll Try To Await That 'Promise'"
+publishedAt: 2025-05-15
+subtitle: "Is it a `Promise` or synchronous code? Screw it, I'm gonna `then`"
+isDraft: false
+tags:
+  - javascript
+---
+
+If you're familiar with JavaScript, I'm pretty sure you've written at least a single `Promise` in your
+software development journey.
+
+`Promise` allows you to define an asynchronous routine that will be executed in a **concurrent** manner
+without blocking routines that follows it. That way, your program can stay responsive without having to
+play the waiting game.
+
+While it's really cool to run an asynchronous code, there are times where you need to wait for the asynchronous
+routine to finish first before executing the next routine. Either you need whatever returned by the routine or
+you need to sync up the state.
+
+Fortunately, `Promise` allows us to 'block' the program execution
