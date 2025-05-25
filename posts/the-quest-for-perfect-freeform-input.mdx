@@ -1,6 +1,6 @@
 ---
 title: The Quest For Perfect Freeform Input
-publishedAt: 2025-05-20
+publishedAt: 2025-05-28
 subtitle: "A case study between `<textarea>` and `<div contenteditable>`"
 isDraft: false
 tags:
@@ -17,8 +17,9 @@ for chatbots.
 In a context of a website, freeform text inputs are semantically represented by `<textarea>` element if you're
 not doing incredible hacks with `<input>` or building a custom Web Component.
 
-The introduction of HTML5 in [2014](https://www.w3.org/TR/html5-diff) brought us a new possibility of defining
-freeform text inputs using `contenteditable` attribute which is commonly found in rich-text WYSIWYG editors enumerated within a `<div>`.
+The introduction of HTML5 in [2007](https://www.w3.org/blog/2007/html5-call-to-web-professionals/) brought us a new possibility of defining
+freeform text inputs using `contenteditable`, an attribute from the year of [2000](https://blog.whatwg.org/the-road-to-html-5-contenteditable#:~:text=July%202000.%20Microsoft%20releases%20Internet%20Explorer%205.5%2C%20with%20support%20for%20designMode%20and%20contentEditable.%20Other%20than%20some%20sparse%20documentation%20on%20MSDN%2C%20no%20further%20details%20were%20given.)
+commonly found in rich-text WYSIWYG editors enumerated within a `<div>`
 
 Recently, I noticed that a lot of modern apps uses `<div contenteditable>` instead of `<textarea>` for their
 freeform text inputs, even though they don't have and need the WYSIWYG capability `<div contenteditable>` offers.
