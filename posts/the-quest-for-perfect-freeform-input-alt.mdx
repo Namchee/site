@@ -1,5 +1,5 @@
 ---
-title: Plain Text Contenteditable
+title: The Quest For Perfect Plaintext Input
 publishedAt: 2025-05-29
 subtitle: "Will this new value makes us drop textarea?"
 isDraft: false
@@ -11,21 +11,26 @@ March 2025 has brought us a new update to the web platform: the induction of `pl
 `contenteditable` attribute to [Widely Available Baseline](https://web.dev/blog/contenteditable-plaintext-only-baseline),
 which is a prevalent attribute commonly used in WYSIWYG editors.
 
-As the name suggest, using this value will narrow down the value that may be received by the attributed element to only plaintext values.
+As the name suggest, using this value will narrow down the value that may be received by the `contenteditable` element to only plaintext values.
 
-However we already have the good old `<textarea>` to handle multi-line plaintext inputs, so what is WHATWG thinking when creating
+However we already have the good old `<textarea>` to handle freeform plaintext inputs, so what is WHATWG thinking when creating
 this new value?
 
 ## When Textarea Isn't Enough
 
-Since its introduction of HTML2 in [November 1995](https://www.w3.org/MarkUp/html-spec/), multi-line text inputs has always been traditionally
+Since its introduction of HTML2 in [November 1995](https://www.w3.org/MarkUp/html-spec/), freeform text inputs has always been traditionally
 defined with the `<textarea>` element instead of `<input>`.
 
 <figure class="my-4 w-full max-w-4/5 mx-auto">
-  <textarea class="border border-separator p-2 font-mono text-opacity-50 w-full">Hello, I'm textarea!</textarea>
+  <textarea class="border border-separator p-2 font-mono w-full bg-background transition-colors">Hello, I'm textarea 👋</textarea>
   <figcaption class="text-xs italic text-center">An example of textarea with minimal setup</figcaption>
 </figure>
 
-From what we can see from the
+From what we can infer from the element above, the main difference between `<textarea>` and `<input>` element besides the size
+is the additional caret on the bottom right of the element should the user want to resize the element.
+
+While it's pretty clear from the start that `<textarea>` does not support rich-text formatting for WYSIWYG purposes,
 
 ## Contenteditable To The Rescue!
+
+## The Problem Introduced By Contenteditable
