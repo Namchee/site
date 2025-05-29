@@ -18,19 +18,64 @@ this new value?
 
 ## When Textarea Isn't Enough
 
-Since its introduction of HTML2 in [November 1995](https://www.w3.org/MarkUp/html-spec/), freeform text inputs has always been traditionally
-defined with the `<textarea>` element instead of `<input>`.
+Since its introduction of HTML2 in [November 1995](https://www.w3.org/MarkUp/html-spec/), multi-line plaintext inputs has always
+been traditionally defined with the `<textarea>` element instead of `<input>`.
 
 <figure class="my-4 w-full max-w-4/5 mx-auto">
   <textarea class="border border-separator p-2 font-mono w-full bg-background transition-colors">Hello, I'm textarea 👋</textarea>
   <figcaption class="text-xs italic text-center">An example of textarea with minimal setup</figcaption>
 </figure>
 
-From what we can infer from the element above, the main difference between `<textarea>` and `<input>` element besides the size
-is the additional caret on the bottom right of the element should the user want to resize the element.
+The main difference between `<textarea>` and `<input>` element beside the wrapping behavior is the additional handle on the bottom right
+of the element for resizing and the addition of `rows` and `cols` attribute that controls the initial size of the element.
 
-While it's pretty clear from the start that `<textarea>` does not support rich-text formatting for WYSIWYG purposes,
+As you started adopting `<textarea>`, you will begin to realize that your styling options to the contents inside the `<textarea>`
+is only limited to inherited attributes that you can define in `<textarea>`.
 
-## Contenteditable To The Rescue!
+Contents inside `<textarea>` are treated the same way as [replaced elements](https://html.spec.whatwg.org/multipage/rendering.html#replaced-elements),
+they have their own intrinsic dimensions and it's up to the user agent to control how the contents are rendered.
 
-## The Problem Introduced By Contenteditable
+Since the contents exist outside the [CSS rendering model](https://www.w3.org/TR/WD-CSS2/visuren.html), `<textarea>` doesn't have the capability to
+automatically resize itself which is a common usecase for modern UI interfaces.
+
+To address this issue, developers usually handles it with JavaScript in similar fashion as the following:
+
+```js title=Textarea.js
+const textarea = document.querySelector('.textarea__autosize');
+
+document.addEventListener('input', () => {
+  if (textarea) {
+    // Reset textarea height to auto to correctly calculate the new height
+    textarea.style.height = 'auto';
+    const newHeight = textarea.scrollHeight;
+
+    textarea.style.height = `${newHeight}px`;
+    textarea.style.overflowY = 'hidden';
+
+    /**
+     * If you want autosize to a certain max number of rows:
+     *
+     * const MAX_ROWS = 8;
+     *
+     * // Calculate maximum height from maxRows
+     * const lineHeight =
+     *   parseInt(window.getComputedStyle(textarea).lineHeight, 10) || 0;
+     *
+     * const maxHeight = lineHeight * maxRows;
+     *
+     * if (newHeight > maxHeight) {
+     *   // If new height exceeds maxHeight, set to maxHeight and enable scroll
+     *   textarea.style.height = `${maxHeight}px`;
+     *   textarea.style.overflowY = 'scroll';
+     * }
+     */
+  }
+});
+```
+
+
+## When Contenteditable Does Too Much
+
+## The Middleground
+
+## Will It Kill Textarea?
