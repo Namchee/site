@@ -1,6 +1,6 @@
 ---
 title: The Quest For Perfect Plaintext Input
-publishedAt: 2025-05-29
+publishedAt: 2025-05-30
 subtitle: "Will this new value makes us drop textarea?"
 isDraft: false
 tags:
@@ -72,24 +72,21 @@ function resizeTextarea(el) {
 textarea.addEventListener('input', () => resizeTextarea(el));
 ```
 
-While the implementation above works, it introduces 2 new problems:
+While the autosizing implementation above works, it introduces 2 new problems:
 
 - Reliance to JavaScript, even though `<textarea>` works fine without it
-- Need to listen to various other event such as `change`, `paste`, `compositionend`, and more depending on your needs.
+- Developers need to do manual wiring of the autosizing logic to other HTML events such  as `change`, `paste`, `compositionend`, direct edit through `.innerHTML`, and more depending on needs.
 Failing to handle events might cause the `<textarea>` to not autosize itself and possibly hurting UX in the process.
 
-> If you're controlling the `<textarea>` with front-end libraries such as React, Vue, Svelte, etc, always
-> remember to call the autosizing function or synthesize native events after changing the `<textarea>` value
-> programmaticaly. For example:
->
-
-Adding to the list of unsupported CSS features, `::before`, `::after`, and [CSS Highlighting API]() also don't
+Adding to the list of unsupported CSS features, `::before`, `::after`, and [CSS Highlighting API](https://developer.mozilla.org/en-US/docs/Web/API/CSS_Custom_Highlight_API) also don't
 work at all with `<textarea>` due to how the user agent handles `<textarea>`.
 
 To address this issue, developers usually tend to replace their multi-line plaintext inputs with
 `<div contenteditable>` element. But is this the correct way?
 
 ## When Contenteditable Is Too Much
+
+As an alternative to `<textarea>`, HTML also provides us with `contenteditable` attribute
 
 ## Plaintext-only: The Middleground
 
