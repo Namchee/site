@@ -40,42 +40,57 @@ automatically resize itself which is a common usecase for modern UI interfaces.
 
 To address this issue, developers usually handles it with JavaScript in similar fashion as the following:
 
-```js title=Textarea.js
+```js title=textarea.js
 const textarea = document.querySelector('.textarea__autosize');
 
-document.addEventListener('input', () => {
-  if (textarea) {
-    // Reset textarea height to auto to correctly calculate the new height
-    textarea.style.height = 'auto';
-    const newHeight = textarea.scrollHeight;
+function resizeTextarea(el) {
+  // Reset textarea height to auto to correctly calculate the new height
+  el.style.height = 'auto';
+  const newHeight = el.scrollHeight;
 
-    textarea.style.height = `${newHeight}px`;
-    textarea.style.overflowY = 'hidden';
+  el.style.height = `${newHeight}px`;
+  el.style.overflowY = 'hidden';
 
-    /**
-     * If you want autosize to a certain max number of rows:
-     *
-     * const MAX_ROWS = 8;
-     *
-     * // Calculate maximum height from maxRows
-     * const lineHeight =
-     *   parseInt(window.getComputedStyle(textarea).lineHeight, 10) || 0;
-     *
-     * const maxHeight = lineHeight * maxRows;
-     *
-     * if (newHeight > maxHeight) {
-     *   // If new height exceeds maxHeight, set to maxHeight and enable scroll
-     *   textarea.style.height = `${maxHeight}px`;
-     *   textarea.style.overflowY = 'scroll';
-     * }
-     */
-  }
-});
+  /**
+   * If you want autosize to a certain max number of rows:
+   *
+   * const MAX_ROWS = 8;
+   *
+   * // Calculate maximum height from maxRows
+   * const lineHeight =
+   *   parseInt(window.getComputedStyle(el).lineHeight, 10) || 0;
+   *
+   * const maxHeight = lineHeight * maxRows;
+   *
+   * if (newHeight > maxHeight) {
+   *   el.style.height = `${maxHeight}px`;
+   *   el.style.overflowY = 'scroll';
+   * }
+   */
+}
+
+textarea.addEventListener('input', () => resizeTextarea(el));
 ```
 
+While the implementation above works, it introduces 2 new problems:
 
-## When Contenteditable Does Too Much
+- Reliance to JavaScript, even though `<textarea>` works fine without it
+- Need to listen to various other event such as `change`, `paste`, `compositionend`, and more depending on your needs.
+Failing to handle events might cause the `<textarea>` to not autosize itself and possibly hurting UX in the process.
 
-## The Middleground
+> If you're controlling the `<textarea>` with front-end libraries such as React, Vue, Svelte, etc, always
+> remember to call the autosizing function or synthesize native events after changing the `<textarea>` value
+> programmaticaly. For example:
+>
+
+Adding to the list of unsupported CSS features, `::before`, `::after`, and [CSS Highlighting API]() also don't
+work at all with `<textarea>` due to how the user agent handles `<textarea>`.
+
+To address this issue, developers usually tend to replace their multi-line plaintext inputs with
+`<div contenteditable>` element. But is this the correct way?
+
+## When Contenteditable Is Too Much
+
+## Plaintext-only: The Middleground
 
 ## Will It Kill Textarea?

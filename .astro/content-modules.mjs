@@ -9,5 +9,6 @@ export default new Map([
 ["posts/the-quest-for-perfect-freeform-input-alt.mdx", () => import("astro:content-layer-deferred-module?astro%3Acontent-layer-deferred-module=&fileName=posts%2Fthe-quest-for-perfect-freeform-input-alt.mdx&astroContentModuleFlag=true")],
 ["posts/the-quest-for-perfect-freeform-input.mdx", () => import("astro:content-layer-deferred-module?astro%3Acontent-layer-deferred-module=&fileName=posts%2Fthe-quest-for-perfect-freeform-input.mdx&astroContentModuleFlag=true")],
 ["posts/upgrading-astro-code-snippets.mdx", () => import("astro:content-layer-deferred-module?astro%3Acontent-layer-deferred-module=&fileName=posts%2Fupgrading-astro-code-snippets.mdx&astroContentModuleFlag=true")],
-["posts/utilpocalypse.mdx", () => import("astro:content-layer-deferred-module?astro%3Acontent-layer-deferred-module=&fileName=posts%2Futilpocalypse.mdx&astroContentModuleFlag=true")]]);
+["posts/utilpocalypse.mdx", () => import("astro:content-layer-deferred-module?astro%3Acontent-layer-deferred-module=&fileName=posts%2Futilpocalypse.mdx&astroContentModuleFlag=true")],
+["posts/the-quest-for-perfect-plaintext-input.mdx", () => import("astro:content-layer-deferred-module?astro%3Acontent-layer-deferred-module=&fileName=posts%2Fthe-quest-for-perfect-plaintext-input.mdx&astroContentModuleFlag=true")]]);
 		
