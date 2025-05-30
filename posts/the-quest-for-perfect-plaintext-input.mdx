@@ -75,18 +75,37 @@ textarea.addEventListener('input', () => resizeTextarea(el));
 While the autosizing implementation above works, it introduces 2 new problems:
 
 - Reliance to JavaScript, even though `<textarea>` works fine without it
-- Developers need to wire the autosizing logic manually to other HTML events such  as `paste` and direct value modification through element reference with `.innerHTML`, depending on the need.
-Failing to handle events might cause the `<textarea>` to not autosize itself and hurting UX in the process.
+- Developers need to wire the autosizing logic manually to other events such as `paste` and direct value modification
+through element reference with `.innerHTML`, depending on the requirements. Failing to handle events might cause the `<textarea>`
+to not autosize itself and hurting UX in the process.
 
-Adding to the list of unsupported CSS features, `::before`, `::after`, and [CSS Highlighting API](https://developer.mozilla.org/en-US/docs/Web/API/CSS_Custom_Highlight_API) also don't
-work at all with `<textarea>` due to how the user agent handles `<textarea>`.
+Adding to the list of unsupported CSS features, `::before`, `::after`, and
+[CSS Highlighting API](https://developer.mozilla.org/en-US/docs/Web/API/CSS_Custom_Highlight_API) also don't
+work at all with `<textarea>` without wizardy due to how the user agent handles `<textarea>`.
 
 To address this issue, developers usually tend to replace their multi-line plaintext inputs with
 `<div contenteditable>` element. But is this the correct way?
 
 ## When Contenteditable Is Too Much
 
-As an alternative to `<textarea>`, HTML also provides us with `contenteditable` attribute
+In July 2000, Microsoft introduced `designMode` and `contenteditable` attributes through Internet Explorer
+([RIP](https://techcommunity.microsoft.com/blog/windows-itpro-blog/internet-explorer-11-desktop-app-retirement-faq/2366549)) 5.5.
+
+The details were pretty lacking, but Ian Hickson wrote a [WHATWG blogpost](https://lists.whatwg.org/pipermail/whatwg-whatwg.org/2004-November/002313.html)
+outlining that the main purpose of these new attributes is to extend the capability of `<textarea>` to do
+rich-text formatting in general like WYSIWYG editors, not excluding plaintext multi-line inputs.
+
+While `designMode` makes the *entire document* editable, `contenteditable` isolate the editability to a certain element which usually is a `<div>`.
+
+<figure class="my-4 w-full max-w-4/5 mx-auto">
+  <div contenteditable class="border border-separator p-2 font-mono w-full bg-background transition-colors min-h-16">Hello, I'm a contenteditable div 👋</div>
+  <figcaption class="text-xs italic text-center mt-2">An example of contenteditable div with minimal setup</figcaption>
+</figure>
+
+When you play around with the example above, you might realize that the container automatically resize itself
+when you fired input events while you focus on them.
+
+Unlike `<textarea>`, contents inside a `contenteditable` element are enclosed inside the CSS rendering model.
 
 ## Plaintext-only: The Middleground
 
