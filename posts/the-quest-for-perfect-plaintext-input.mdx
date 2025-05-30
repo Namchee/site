@@ -75,8 +75,8 @@ textarea.addEventListener('input', () => resizeTextarea(el));
 While the autosizing implementation above works, it introduces 2 new problems:
 
 - Reliance to JavaScript, even though `<textarea>` works fine without it
-- Developers need to do manual wiring of the autosizing logic to other HTML events such  as `change`, `paste`, `compositionend`, direct edit through `.innerHTML`, and more depending on needs.
-Failing to handle events might cause the `<textarea>` to not autosize itself and possibly hurting UX in the process.
+- Developers need to wire the autosizing logic manually to other HTML events such  as `paste` and direct value modification through element reference with `.innerHTML`, depending on the need.
+Failing to handle events might cause the `<textarea>` to not autosize itself and hurting UX in the process.
 
 Adding to the list of unsupported CSS features, `::before`, `::after`, and [CSS Highlighting API](https://developer.mozilla.org/en-US/docs/Web/API/CSS_Custom_Highlight_API) also don't
 work at all with `<textarea>` due to how the user agent handles `<textarea>`.
