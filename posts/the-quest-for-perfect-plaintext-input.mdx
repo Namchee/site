@@ -5,6 +5,7 @@ subtitle: "Will this new value makes us drop textarea?"
 isDraft: false
 tags:
   - web
+  - CSS
 ---
 
 March 2025 has brought us a new update to the web platform: the induction of `plaintext-only` value for
@@ -22,7 +23,7 @@ Since its introduction of HTML2 in [November 1995](https://www.w3.org/MarkUp/htm
 been traditionally defined with the `<textarea>` element instead of `<input>`.
 
 <figure class="my-4 w-full max-w-4/5 mx-auto">
-  <textarea class="border border-separator p-2 font-mono w-full bg-background transition-colors">Hello, I'm textarea 👋</textarea>
+  <textarea class="border border-separator p-2 font-mono w-full bg-background transition-colors" placeholder="Hello, I'm textarea 👋"></textarea>
   <figcaption class="text-xs italic text-center">An example of textarea with minimal setup</figcaption>
 </figure>
 
@@ -102,18 +103,82 @@ The details were pretty lacking, but Ian Hickson wrote a [WHATWG blogpost](https
 outlining the main purpose of these new attributes: extending the capability of `<textarea>` for
 rich-text formatting in general like WYSIWYG editors.
 
-While `designMode` makes the *entire document* editable, `contenteditable` isolate the editability to a certain element, which in context of multi-line plaintext input, a `<div>`.
+While `designMode` makes the *entire document* editable, `contenteditable` isolate the editability to a certain element,
+which in context of multi-line plaintext input, a `<div>`.
 
 <figure class="my-4 w-full max-w-4/5 mx-auto">
-  <div contenteditable class="border border-separator p-2 font-mono w-full bg-background transition-colors min-h-16">Hello, I'm a contenteditable div 👋</div>
+  <div
+    contenteditable
+    class="border border-separator p-2 font-mono w-full bg-background transition-colors contenteditable__autoresize"
+    role="textbox"
+    placeholder="Hello, I'm a contenteditable div 👋"
+    aria-placeholder="Hello, I'm a contenteditable div 👋"
+  ></div>
   <figcaption class="text-xs italic text-center mt-2">An example of contenteditable div with minimal setup</figcaption>
 </figure>
 
 When you play around with the example above, you might realize that the container automatically resize itself
-when you fired input events while you focus on them.
+when you fired input events on it. Limiting the number of lines until overflow also can be implemented with only CSS.
 
-Unlike `<textarea>`, contents inside a `contenteditable` element are enclosed inside the CSS rendering model.
+```css title=contenteditable.css, copy
+:root {
+  /* Assume that we want a maximum of 8 lines before resizing */
+  --maximum-lines: 8;
+}
+
+.contenteditable__autoresize {
+  line-height: 1.5;
+  min-height: calc(4rem + 16px);
+  max-height: calc(var(--maximum-lines) * 1.5rem + 16px);
+  overflow: auto;
+  /* Ensure no width transition when scrollbar appears */
+  scrollbar-gutter: stable;
+}
+
+/* Emulate <textarea> placeholder */
+.contenteditable__autoresize:empty::before {
+  content: attr(placeholder);
+  opacity: 0.5;
+  pointer-events: none;
+}
+```
+
+Unlike `<textarea>`, contents inside a `contenteditable` element are enclosed inside the CSS rendering model. Since
+the contents are inside the usual DOM tree, it supports everything that `<textarea>` doesn't support.
+
+Perhaps due to wider CSS features it supports, many modern applications has implemented their multiline text inputs with `<div contenteditable>`
+instead of `<textarea>` even though they don't deal with WYSIWYG.
+
+![Bluesky uses contenteditable div instead of textarea for their New Post input](https://res.cloudinary.com/namchee/image/upload/v1748700530/posts/the-quest-for-perfect-plaintext-input/bsky)
+
+Since we're currently dealing with multiline **plaintext** input, we shouldn't forget to drop the rich-text formatting
+capability during `paste` event:
+
+```js title=Removing rich-text from paste event, copy
+const contenteditable = document.querySelector(
+  '.contenteditable__autosize'
+);
+
+contenteditable.addEventListener('paste', (e) => {
+  e.preventDefault();
+
+  // remove text formatting from clipboard
+  const text = e.clipboardData.getData('text/plain');
+
+  // insert text to current caret position
+  document.execCommand('insertText', false, text);
+});
+```
+
+Moreover, we also need to remember to ban direct value modification through element reference using
+`.innerHTML` as it might open up XSS vulnerabilities.
+
+Since we still need to do some legwork in JavaScript, using `contenteditable` is still prone to human errors.
+Unfortunately, we still need to find the middleground between `<textarea>` and `<div contenteditable>` for plaintext inputs.
 
 ## Plaintext-only: The Middleground
 
 ## Will It Kill Textarea?
+
+## Final Thoughts
+

@@ -134,3 +134,16 @@ code:not(pre code) {
     display: none;
   }
 }
+
+.contenteditable__autoresize {
+  line-height: 1.5;
+  min-height: calc(4rem + 16px);
+  max-height: calc(8 * 1.5rem + 16px);
+  overflow: auto;
+}
+
+.contenteditable__autoresize:empty::before {
+  content: attr(placeholder);
+  opacity: 0.5;
+  pointer-events: none;
+}
