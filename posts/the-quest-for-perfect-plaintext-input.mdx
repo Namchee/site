@@ -38,9 +38,7 @@ they have their own intrinsic dimensions and it's up to the user agent to contro
 Just like `<input>`, the user agent internally uses [Shadow DOM](https://developer.mozilla.org/en-US/docs/Web/API/Web_components/Using_shadow_DOM)
 to isolate the contents of `<textarea>` into its own DOM tree.
 
-![User agent Shadow DOM that encapsulate the contents of textarea](https://res.cloudinary.com/namchee/image/upload/v1748674003/posts/the-quest-for-perfect-plaintext-input/textarea-shadow-dom)
-
-> User agent Shadow DOM are hidden by default in DevTools. To
+![User agent Shadow DOM that encapsulate the contents of textarea (need to explicitly enable in DevTools)](https://res.cloudinary.com/namchee/image/upload/v1748674003/posts/the-quest-for-perfect-plaintext-input/textarea-shadow-dom)
 
 Since the contents largely exist outside the developer-controlled [CSS rendering model](https://www.w3.org/TR/WD-CSS2/visuren.html),
 `<textarea>` lacked the native capability to automatically resize itself which is a common usecase for modern UI interfaces.
@@ -86,14 +84,14 @@ While the autosizing implementation above works, it introduces 2 new problems:
 through element reference with `.innerHTML`, depending on the requirements. Failing to handle events might cause the `<textarea>`
 to not autosize itself and hurting UX in the process.
 
-Adding to the list of problems, the Shadow DOM encapsulation also causes
+As for the list of other CSS features that don't work at all without wizardy in `<textarea>` due to Shadow DOM encapsulation:
 
-Adding to the list of unsupported CSS features, `::before`, `::after`, and
-[CSS Highlighting API](https://developer.mozilla.org/en-US/docs/Web/API/CSS_Custom_Highlight_API) also don't
-work at all with `<textarea>` without wizardy due to how the user agent handles `<textarea>`.
+- `::before` and `::after` pseudo element
+- Scrollbar-related styling prefixed with `-webkit-scrollbar`
+- [CSS Highlight API](https://developer.mozilla.org/en-US/docs/Web/API/CSS_Custom_Highlight_API)
 
-To address this issue, developers usually tend to replace their multi-line plaintext inputs with
-`<div contenteditable>` element. But is this the correct way?
+To address the issues with `<textarea>`, developers tend to replace their multi-line plaintext inputs with
+`<div>` with additional `contenteditable` attribute. But does `<div contenteditable>` truly solve our problems?
 
 ## When Contenteditable Is Too Much
 
@@ -101,10 +99,10 @@ In July 2000, Microsoft introduced `designMode` and `contenteditable` attributes
 ([RIP](https://techcommunity.microsoft.com/blog/windows-itpro-blog/internet-explorer-11-desktop-app-retirement-faq/2366549)) 5.5.
 
 The details were pretty lacking, but Ian Hickson wrote a [WHATWG blogpost](https://lists.whatwg.org/pipermail/whatwg-whatwg.org/2004-November/002313.html)
-outlining that the main purpose of these new attributes is to extend the capability of `<textarea>` to do
-rich-text formatting in general like WYSIWYG editors, not excluding plaintext multi-line inputs.
+outlining the main purpose of these new attributes: extending the capability of `<textarea>` for
+rich-text formatting in general like WYSIWYG editors.
 
-While `designMode` makes the *entire document* editable, `contenteditable` isolate the editability to a certain element which usually is a `<div>`.
+While `designMode` makes the *entire document* editable, `contenteditable` isolate the editability to a certain element, which in context of multi-line plaintext input, a `<div>`.
 
 <figure class="my-4 w-full max-w-4/5 mx-auto">
   <div contenteditable class="border border-separator p-2 font-mono w-full bg-background transition-colors min-h-16">Hello, I'm a contenteditable div 👋</div>
