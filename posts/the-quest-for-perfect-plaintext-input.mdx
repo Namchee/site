@@ -173,8 +173,8 @@ contenteditable.addEventListener('paste', (e) => {
 Moreover, we also need to remember to ban direct value modification through element reference using
 `.innerHTML` as it might open up XSS vulnerabilities.
 
-Since we still need to do some legwork in JavaScript, using `contenteditable` is still prone to human errors.
-Unfortunately, we still need to find the middleground between `<textarea>` and `<div contenteditable>` for plaintext inputs.
+Since we still need to do some legwork in JavaScript, using `contenteditable` is still prone to human errors. Personally,
+I think `<div contenteditable>` doesn't offer substantial DX improvements over `<textarea>` for plaintext inputs.
 
 ## Plaintext-only: The Middleground
 
