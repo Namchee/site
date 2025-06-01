@@ -88,13 +88,14 @@ to not autosize itself and hurting UX in the process.
 As for the list of other CSS features that don't work at all without wizardy in `<textarea>` due to Shadow DOM encapsulation:
 
 - `::before` and `::after` pseudo element
+- `caret-color`
 - Scrollbar-related styling prefixed with `-webkit-scrollbar`
 - [CSS Highlight API](https://developer.mozilla.org/en-US/docs/Web/API/CSS_Custom_Highlight_API)
 
 To address the issues with `<textarea>`, developers tend to replace their multi-line plaintext inputs with
 `<div>` with additional `contenteditable` attribute. But does `<div contenteditable>` truly solve our problems?
 
-## When Contenteditable Is Too Much
+## Contenteditable: New Set of Problems
 
 In July 2000, Microsoft introduced `designMode` and `contenteditable` attributes through Internet Explorer
 ([RIP](https://techcommunity.microsoft.com/blog/windows-itpro-blog/internet-explorer-11-desktop-app-retirement-faq/2366549)) 5.5.
@@ -183,15 +184,33 @@ contenteditable.addEventListener('paste', (e) => {
 ```
 
 We also need to be careful when we're trying to modify the input value directly through reference, as we can't
-use `.innerHTML` since the value will be treated as rich-texts without sanitazion.
+use `.innerHTML` since the value will be treated as rich-texts without sanitation.
 
 Since we still need to do some legwork in JavaScript, can we do better with `<div contenteditable>` for our plaintext input?
+Fortunately, a usecase where rich-text formatting isn't needed is what `plaintext-only` value aims to solve.
 
-## Plaintext-only: The Middleground
+Basically, a `contenteditable` with `plaintext-only` strips all rich-text formatting from the clipboard payload
+before applying the value to the input which you can try from the following element:
 
-Fortunately,
+<figure class="my-4 w-full max-w-4/5 mx-auto">
+  <div
+    contenteditable="plaintext-only"
+    class="border border-separator p-2 font-mono w-full bg-background transition-colors contenteditable__autoresize contenteditable__plaintext"
+    role="textbox"
+    placeholder="Hello, I'm a plaintext-only contenteditable div 👋"
+    aria-placeholder="Hello, I'm a plaintext-only contenteditable div 👋"
+  ></div>
+  <figcaption class="text-xs italic text-center mt-2">An example of contenteditable div, but plaintext</figcaption>
+</figure>
 
-## Will It Kill Textarea?
+At first glance, `<div contenteditable="plaintext-only">` seems to make `<textarea>` obsolete as it successfully
+covers plaintext needs while supporting CSS features due to its implementation that exist in normal DOM tree.
+
+However, `<div contenteditable>` in general have their own unique problems compared to `<textarea>`:
+
+## Choosing The Perfect Input Element
+
+
 
 ## Final Thoughts
 
