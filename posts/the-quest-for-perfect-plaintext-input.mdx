@@ -151,7 +151,10 @@ instead of `<textarea>` even though they don't deal with WYSIWYG.
 
 ![Bluesky uses contenteditable div instead of textarea for their New Post input](https://res.cloudinary.com/namchee/image/upload/v1748700530/posts/the-quest-for-perfect-plaintext-input/bsky)
 
-Since we're currently dealing with multiline **plaintext** input, we shouldn't forget to drop the rich-text formatting
+Going back to the context however, it's quite obvious that `<div contenteditable>` is doing *too much*
+with it's rich-text formatting support since we're only dealing with multi-line **plaintext** input.
+
+While normal inputs don't get rich-text formatted by default, we need to drop the rich-text formatting
 capability during `paste` event:
 
 ```js title=Removing rich-text from paste event, copy
@@ -163,20 +166,30 @@ contenteditable.addEventListener('paste', (e) => {
   e.preventDefault();
 
   // remove text formatting from clipboard
-  const text = e.clipboardData.getData('text/plain');
+  const pastedText = (e.clipboardData || window.clipboardData).getData('text/plain');
 
-  // insert text to current caret position
-  document.execCommand('insertText', false, text);
+  // get the current caret position
+  const selection = window.getSelection();
+  if (!selection.rangeCount) {
+    return;
+  }
+
+  // remove the selected text first!
+  selection.deleteFromDocument();
+  selection.getRangeAt(0).insertNode(document.createTextNode(pastedText));
+
+  selection.collapseToEnd();
 });
 ```
 
-Moreover, we also need to remember to ban direct value modification through element reference using
-`.innerHTML` as it might open up XSS vulnerabilities.
+We also need to be careful when we're trying to modify the input value directly through reference, as we can't
+use `.innerHTML` since the value will be treated as rich-texts without sanitazion.
 
-Since we still need to do some legwork in JavaScript, using `contenteditable` is still prone to human errors. Personally,
-I think `<div contenteditable>` doesn't offer substantial DX improvements over `<textarea>` for plaintext inputs.
+Since we still need to do some legwork in JavaScript, can we do better with `<div contenteditable>` for our plaintext input?
 
 ## Plaintext-only: The Middleground
+
+Fortunately,
 
 ## Will It Kill Textarea?
 
