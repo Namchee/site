@@ -206,9 +206,13 @@ before applying the value to the input which you can try from the following elem
 At first glance, `<div contenteditable="plaintext-only">` seems to make `<textarea>` obsolete as it successfully
 covers plaintext needs while supporting CSS features due to its implementation that exist in normal DOM tree.
 
-However, `<div contenteditable>` in general have their own unique problems compared to `<textarea>`:
+As a multiline plaintext input element however, `<div contenteditable>` have their own unique problems compared to `<textarea>`:
 
-## Choosing The Perfect Input Element
+- Interacting with forms require JavaScript as `<div contenteditable>` aren't considered to be a form control element.
+- The element
+- ARIA
+
+## Choosing Your Poison
 
 
 
