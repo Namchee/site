@@ -195,11 +195,11 @@ before applying the value to the input which you can try from the following elem
 <figure class="my-4 w-full max-w-4/5 mx-auto">
   <div
     contenteditable="plaintext-only"
-    class="border border-separator p-2 font-mono w-full bg-background transition-colors contenteditable__autoresize contenteditable__plaintext"
+    class="border border-separator p-2 font-mono w-full bg-background transition-colors contenteditable__autoresize contenteditable__plaintext min-h-16"
     role="textbox"
     placeholder="Hello, I'm a plaintext-only contenteditable div 👋"
     aria-placeholder="Hello, I'm a plaintext-only contenteditable div 👋"
-  ></div>
+  />
   <figcaption class="text-xs italic text-center mt-2">An example of contenteditable div, but plaintext</figcaption>
 </figure>
 
@@ -209,7 +209,11 @@ covers plaintext needs while supporting CSS features due to its implementation t
 As a multiline plaintext input element however, `<div contenteditable>` have their own unique problems compared to `<textarea>`:
 
 - Interacting with forms require JavaScript as `<div contenteditable>` aren't considered to be a form control element.
-- The element
+- Since `<div contenteditable>` isn't a form control element, some form elements such as `<label>` and `placeholder` doesn't work on them
+without additional sprinkle of JavaScript.
+- Weird empty state behavior. Removing all inputs from a `<div contenteditable>` doesn't fulfill the `:empty` CSS pseudo-class as the element
+still has `<br />`. A lot of developers recommend
+- Inconsistent behavior
 - ARIA
 
 ## Choosing Your Poison
