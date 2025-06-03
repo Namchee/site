@@ -203,6 +203,8 @@ before applying the value to the input which you can try from the following elem
   <figcaption class="text-xs italic text-center mt-2">An example of contenteditable div, but plaintext</figcaption>
 </figure>
 
+## Choosing Your Own Poison
+
 At first glance, `<div contenteditable="plaintext-only">` seems to make `<textarea>` obsolete as it successfully
 covers plaintext needs while supporting CSS features due to its implementation that exist in normal DOM tree.
 
@@ -212,13 +214,10 @@ As a multiline plaintext input element however, `<div contenteditable>` have the
 - Since `<div contenteditable>` isn't a form control element, some form elements such as `<label>` and `placeholder` doesn't work on them
 without additional sprinkle of JavaScript.
 - Weird empty state behavior. Removing all inputs from a `<div contenteditable>` doesn't fulfill the `:empty` CSS pseudo-class as the element
-still has `<br />`. A lot of developers recommend
-- Inconsistent behavior
-- ARIA
+still has `<br />` due to the container nature as a block element.
+- Developers need to handle accessibility attributes through ARIA manually, which isn't used [responsibly](https://www.w3.org/WAI/ARIA/apg/practices/read-me-first/) or [used in a wrong way](https://webaim.org/projects/million/).
 
-## Choosing Your Poison
-
-
+Long story short, while
 
 ## Final Thoughts
 
