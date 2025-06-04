@@ -203,24 +203,28 @@ before applying the value to the input which you can try from the following elem
   <figcaption class="text-xs italic text-center mt-2">An example of contenteditable div, but plaintext</figcaption>
 </figure>
 
-At first glance, `<div contenteditable>` seems like a superior element compared to `<textarea>` as
-it covers all basic `<textarea>` capabilities while supporting CSS features that it doesn't support especially with the addition of `plaintext-only`.
-
-However, playing around `contenteditable` a bit longer reveals the 'smell' that `<textarea>` doesn't have:
-
-- `contenteditable` attribute doesn't make the element into a form control element, which means that `contenteditable` doesn't
-have basic
-
-Interacting with forms require JavaScript as `<div contenteditable>` aren't considered to be a form control element.
-- Since `<div contenteditable>` isn't a form control element, some form elements such as `<label>` and `placeholder` doesn't work on them
-without additional sprinkle of JavaScript.
-- Weird empty state behavior. Removing all inputs from a `<div contenteditable>` doesn't fulfill the `:empty` CSS pseudo-class as the element
-still has `<br />` due to the container nature as a block element.
-- Developers need to handle accessibility attributes through ARIA manually, which isn't used [responsibly](https://www.w3.org/WAI/ARIA/apg/practices/read-me-first/) or [used in a wrong way](https://webaim.org/projects/million/).
+However, rich-text formatting applied through `.innerHTML` still applies to the element. In layman terms, `plaintext-only` is a
+normal `contenteditable` with plaintext `paste` event handler implicitly attached to it.
 
 ## Choosing Your Own Poison
 
-So we now have 2 elements that can represents a multi-line plaintext input, but which one is the perfect fit for the job?
+At first glance, `<div contenteditable>` seems like a superior element compared to `<textarea>` as
+it covers all basic `<textarea>` capabilities while supporting CSS features `<textarea>` doesn't support especially with the addition of `plaintext-only`.
+
+However, playing around `contenteditable` with `plaintext-only` a bit longer reveals the 'smells' that `<textarea>` doesn't have:
+
+- Form submission requires JavaScript
+- `contenteditable` attribute doesn't transform the containing element into a form control element,
+which means no native support for `<label>` and `placeholder`
+- Implementing placeholder for `contenteditable` requires extra care as browsers will always insert an extra `<br />`
+after user have interacted with with `contenteditable` to preserve its visibility as a block-level element
+- Developers need to handle accessibility attributes through ARIA manually, which usually aren't used
+[responsibly](https://www.w3.org/WAI/ARIA/apg/practices/read-me-first/) or [used in a wrong way](https://webaim.org/projects/million/)
+
+
+So we now have 2 elements that can represents a multi-line plaintext input, both have their own advantages and weaknesses
+
+ but which one is the perfect fit for the job?
 
 As a multiline plaintext input element however, `<div contenteditable>` have their own unique problems compared to `<textarea>`:
 
