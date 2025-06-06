@@ -1,7 +1,7 @@
 ---
-title: The Quest For Perfect Plaintext Input
+title: The Quest For Perfect Freeform Input
 publishedAt: 2025-05-30
-subtitle: "Will this new value makes us drop textarea?"
+subtitle: Will the new plaintext-only replace textarea?
 isDraft: false
 tags:
   - web
@@ -10,16 +10,17 @@ tags:
 
 March 2025 has brought us a new update to the web platform: the induction of `plaintext-only` value for
 `contenteditable` attribute to [Widely Available Baseline](https://web.dev/blog/contenteditable-plaintext-only-baseline),
-which is a prevalent attribute commonly used in WYSIWYG editors.
+which is a prevalent attribute commonly used in rich-text editors.
 
-As the name suggest, using this value will narrow down the value that may be received by the `contenteditable` element to only plaintext values.
+From what we can discern from the name alone, `plaintext-only` seems to strip down all rich-text formattings
+from values inside `contenteditable` into plaintexts.
 
-However we already have the good old `<textarea>` to handle freeform plaintext inputs, so what is WHATWG thinking when creating
-this new value?
+However, won't that defeat the purpose of `contenteditable` in the first place? Moreover, we already have good old
+`<textarea>` to handle freeform inputs. What is WHATWG trying to solve when introducting this new value?
 
 ## When Textarea Isn't Enough
 
-Since its introduction of HTML2 in [November 1995](https://www.w3.org/MarkUp/html-spec/), multi-line plaintext inputs has always
+Since its introduction of HTML2 in [November 1995](https://www.w3.org/MarkUp/html-spec/), freeform inputs has always
 been traditionally defined with the `<textarea>` element instead of `<input>`.
 
 <figure class="my-4 w-full max-w-4/5 mx-auto">
@@ -81,31 +82,41 @@ textarea.addEventListener('input', () => resizeTextarea(el));
 While the autosizing implementation above works, it introduces 2 new problems:
 
 - Reliance to JavaScript, even though `<textarea>` works fine without it
-- Developers need to wire the autosizing logic manually to other events such as `paste` and direct value modification
-through element reference with `.innerHTML`, depending on the requirements. Failing to handle events might cause the `<textarea>`
-to not autosize itself and hurting UX in the process.
+- Developers must manually wire autosizing logic to various HTML events like `paste` or direct value changes via `.innerHTML`.
+Otherwise, the `<textarea>` may not resize correctly, which might hurt the UX.
 
-As for the list of other CSS features that don't work at all without wizardy in `<textarea>` due to Shadow DOM encapsulation:
+As for the list of other CSS features that don't work at all in `<textarea>` without some wizardy due to Shadow DOM encapsulation:
 
 - `::before` and `::after` pseudo element
 - `caret-color`
 - Scrollbar-related styling prefixed with `-webkit-scrollbar`
 - [CSS Highlight API](https://developer.mozilla.org/en-US/docs/Web/API/CSS_Custom_Highlight_API)
 
-To address the issues with `<textarea>`, developers tend to replace their multi-line plaintext inputs with
-`<div>` with additional `contenteditable` attribute. But does `<div contenteditable>` truly solve our problems?
+To address the issues with `<textarea>`, developers tend to replace their freeform inputs with
+a `contenteditable` element even when rich-text formatting isn't needed.
+
+However, many people who haven't dealt with `contenteditable` before don't
+realize that `contenteditable` comes with its own set of problems compared to `<textarea>` until
+they've delved too far with it.
 
 ## Contenteditable: New Set of Problems
 
-In July 2000, Microsoft introduced `designMode` and `contenteditable` attributes through Internet Explorer
+If you're not living in a cave in the past decade, you might notice that some of the freeform input inside
+you favorite apps are capable of rendering wider variety of style and formats unlike what `<textarea>` can provide with plaintext.
+
+Rich-text capabilities like that are commonly provided by `contenteditable`, which can usually be seen in discussion and social media platforms.
+
+![Bluesky post editor using contenteditable provided by ProseMirror](https://res.cloudinary.com/namchee/image/upload/v1748700530/posts/the-quest-for-perfect-plaintext-input/bsky)
+
+The attribute itself is surprisingly old, as it's first introduced in July 2000 by Microsoft alongside `designMode` through Internet Explorer
 ([RIP](https://techcommunity.microsoft.com/blog/windows-itpro-blog/internet-explorer-11-desktop-app-retirement-faq/2366549)) 5.5.
 
 The details were pretty lacking, but Ian Hickson wrote a [WHATWG blogpost](https://lists.whatwg.org/pipermail/whatwg-whatwg.org/2004-November/002313.html)
 outlining the main purpose of these new attributes: extending the capability of `<textarea>` for
 rich-text formatting in general like WYSIWYG editors.
 
-While `designMode` makes the *entire document* editable, `contenteditable` isolate the editability to a certain element,
-which in context of multi-line plaintext input, a `<div>`.
+While `designMode` makes the *entire document* editable, `contenteditable` isolate the editability to a certain element.
+Usually, a `<div>` is used as a container for a freeform input defined with `contenteditable`.
 
 <figure class="my-4 w-full max-w-4/5 mx-auto">
   <div
@@ -114,11 +125,11 @@ which in context of multi-line plaintext input, a `<div>`.
     role="textbox"
     placeholder="Hello, I'm a contenteditable div 👋"
     aria-placeholder="Hello, I'm a contenteditable div 👋"
-  ></div>
+  />
   <figcaption class="text-xs italic text-center mt-2">An example of contenteditable div with minimal setup</figcaption>
 </figure>
 
-When you play around with the example above, you might realize that the container automatically resize itself
+Aside from the obvious rich-text formatting capabilities, you might realize that the container automatically resize itself
 when you fired input events on it. Limiting the number of lines until overflow also can be implemented with only CSS.
 
 ```css title=contenteditable.css, copy
@@ -144,13 +155,21 @@ when you fired input events on it. Limiting the number of lines until overflow a
 }
 ```
 
-Unlike `<textarea>`, contents inside a `contenteditable` element are enclosed inside the CSS rendering model. Since
-the contents are inside the usual DOM tree, it supports everything that `<textarea>` doesn't support.
+Unlike `<textarea>`, contents inside `contenteditable` are rendered inside the scope of normal DOM tree.
+Since the contents exist inside the CSS rendering model, it supports more CSS features that `<textarea>` doesn't support.
 
-Perhaps due to wider CSS features it supports, many modern applications has implemented their multiline text inputs with `<div contenteditable>`
-instead of `<textarea>` even though they don't deal with WYSIWYG.
+On the surface, `contenteditable` seems like a `<textarea>` with rich-text capabilities and broader CSS feature support.
+However, playing around `contenteditable` reveals plethora of problems that `<textarea>` doesn't have:
 
-![Bluesky uses contenteditable div instead of textarea for their New Post input](https://res.cloudinary.com/namchee/image/upload/v1748700530/posts/the-quest-for-perfect-plaintext-input/bsky)
+- Form submissions require JavaScript
+- No *native* `<label>` and `placeholder` support
+- A block-level `contenteditable` always insert an extra `<br />` after interaction to preserve visibility which
+breaks the `:empty` pseudo-class
+- Developers need to handle accessibility attributes through ARIA manually, which usually aren't used
+[responsibly](https://www.w3.org/WAI/ARIA/apg/practices/read-me-first/) or [used in a wrong way](https://webaim.org/projects/million/)
+- ...[and many more](https://ckeditor.com/blog/ContentEditable-The-Good-the-Bad-and-the-Ugly/)
+
+## Plaintext-only Is Misleading
 
 Going back to the context however, it's quite obvious that `<div contenteditable>` is doing *too much*
 with it's rich-text formatting support since we're only dealing with multi-line **plaintext** input.
@@ -209,13 +228,7 @@ normal `contenteditable` with plaintext `paste` event handler implicitly attache
 While `contenteditable` have much better support on some CSS features, `contenteditable` have their own unique problems that
 `<textarea>` doesn't have as a multi-line plaintext input element:
 
-- Form submissions require JavaScript
-- No *native* `<label>` and `placeholder` support
-- A block-level `contenteditable` always insert an extra `<br />` after interaction to preserve visibility which
-breaks the `:empty` pseudo-class
-- Developers need to handle accessibility attributes through ARIA manually, which usually aren't used
-[responsibly](https://www.w3.org/WAI/ARIA/apg/practices/read-me-first/) or [used in a wrong way](https://webaim.org/projects/million/)
-- ...[and many more](https://ckeditor.com/blog/ContentEditable-The-Good-the-Bad-and-the-Ugly/)
+
 
 ## Choosing Your Own Poison
 
