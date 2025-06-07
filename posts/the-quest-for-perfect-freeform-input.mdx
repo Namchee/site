@@ -106,7 +106,7 @@ you favorite apps are capable of rendering wider variety of style and formats un
 
 Rich-text capabilities like that are commonly provided by `contenteditable`, which can usually be seen in discussion forums and social media platforms.
 
-![Bluesky post editor using contenteditable provided by ProseMirror](https://res.cloudinary.com/namchee/image/upload/v1748700530/posts/the-quest-for-perfect-plaintext-input/bsky)
+![Bluesky post editor using contenteditable. Powered by ProseMirror](https://res.cloudinary.com/namchee/image/upload/v1748700530/posts/the-quest-for-perfect-plaintext-input/bsky)
 
 The attribute itself is surprisingly old, as it's first introduced in July 2000 by Microsoft alongside `designMode` through Internet Explorer
 ([RIP](https://techcommunity.microsoft.com/blog/windows-itpro-blog/internet-explorer-11-desktop-app-retirement-faq/2366549)) 5.5.
@@ -132,11 +132,11 @@ Usually, a `<div>` is used as a container for a freeform input defined with `con
 Aside from rich-text formatting that `<textarea>` can't do, you might realize that the container element automatically resize itself
 when the contents inside are mutated.
 
-Unlike `<textarea>`, contents inside `contenteditable` are rendered inside the scope of normal DOM tree.
-Since the contents exist inside the CSS rendering model, it supports more CSS features that `<textarea>` doesn't support.
+Unlike `<textarea>`, `contenteditable` doesn't use Shadow DOM *by default* and its contents exist inside the normal DOM tree.
+As a result, it supports broader CSS features than `<textarea>`, such as those mentioned the previous section.
 
 Due to its wider CSS support, it's much easier to apply advanced styling to `contenteditable` without JavaScript, such as
-as limiting autosizing to a maximum number of lines until overflow with only pure CSS.
+as limiting autosizing to a maximum number of lines until overflow with only pure CSS:
 
 ```css title=contenteditable.css, copy
 :root {
@@ -168,21 +168,33 @@ However, playing around `contenteditable` reveals plethora of problems that `<te
 - Interacting with `contenteditable` element as a form value requires JavaScript.
 - Accessibility need to be handled manually through ARIA attributes, which usually aren't used
 [responsibly](https://www.w3.org/WAI/ARIA/apg/practices/read-me-first/) or [used in a wrong way](https://webaim.org/projects/million/)
-- Inconsistent many-to-one mapping from from rich-text to HTML elements. For example, a **bold** text might be defined with `<b>` and `<strong>`
-respectively.
-- A block-level `contenteditable` always insert an extra `<br />` after interaction to preserve visibility which
-breaks empty content detection without proper cleanup.
-- Pasting contents to the element might cause unexpected result as foreign rich-text formats are included in the Clipboard.
+- Inconsistent many-to-one representation of rich-text to HTML elements, making it not well-behaved and hard to determine equality.
+- Invisible element such as additional `<br />` in an empty `contenteditable` and occassional `<span>` must be taken into account
+before processing the contents.
+- Pasting contents to the element might cause unexpected result as foreign rich-text formats are included in the clipboard.
 - [Various cross-browser behavior inconsistencies](https://github.com/guardian/scribe/blob/master/BROWSERINCONSISTENCIES.md)
 
-`contenteditable`
-## Plaintext-only Is Misleading
+[To avoid frustration](https://ckeditor.com/blog/ContentEditable-The-Good-the-Bad-and-the-Ugly/) with `contenteditable`, seasoned developers
+usually just pick a mature library to handle rich-text editing such as [CKEditor](https://ckeditor.com/), [ProseMirror](https://prosemirror.net/),
+[TinyMCE](https://www.tiny.cloud/), any many more similar libraries.
 
-Going back to the context however, it's quite obvious that `<div contenteditable>` is doing *too much*
-with it's rich-text formatting support since we're only dealing with multi-line **plaintext** input.
+Those who avoid libraries and care about consistency will spend most of their time building a rendering model and mapping rules for
+`contenteditable` &mdash; something small teams often can't afford to do.
 
-While normal inputs don't get rich-text formatted by default, we need to drop the rich-text formatting
-capability during `paste` event:
+## Plaintext-only Do Too Little
+
+Going back to the previous section, one of the problems that `contenteditable` have is dealing with pasted inputs.
+
+Since we don't know the source of the clipboard, the pasted contents might misbehave due to containing rich-text elements
+that we don't support.
+
+Beside suggesting the users to use plaintext paste, there are 2 alternatives that can be used to solve this problem:
+
+- Re-map all supported rich-text elements to your rendering model and strip the rest of unsupported elements. This method requires
+more code.
+- Strip all rich-text elements, pasting them as plaintext.
+
+Stripping rich-text elements from the clipboard before pasting can be done by listening to `paste` event in JavaScript:
 
 ```js title=Removing rich-text from paste event, copy
 const contenteditable = document.querySelector(
@@ -209,13 +221,10 @@ contenteditable.addEventListener('paste', (e) => {
 });
 ```
 
-We also need to be careful when we're trying to modify the input value directly through reference, as we can't
-use `.innerHTML` since the value will be treated as rich-texts without sanitation.
+Recent development on web platform introduces us to `plaintext-only` value for `contenteditable` while the old behavior
+is usually referred as `true`.
 
-Since we still need to do some legwork in JavaScript, can we do better with `contenteditable` for our plaintext input?
-Fortunately, the `plaintext-only` value is introduced for use cases where rich-text formatting isn't necessary.
-
-Basically, a `contenteditable` with `plaintext-only` strips all rich-text formatting from the clipboard payload
+What it basically do is it strips all rich-text formatting from the clipboard payload
 before applying the value to the input which you can try from the following element:
 
 <figure class="my-4 w-full max-w-4/5 mx-auto">
@@ -229,13 +238,22 @@ before applying the value to the input which you can try from the following elem
   <figcaption class="text-xs italic text-center mt-2">An example of contenteditable div, but plaintext</figcaption>
 </figure>
 
-Rich-text formatting that are directly applied through `.innerHTML` will still be applied to the element. Simply put, `plaintext-only` is a
-normal `contenteditable` with plaintext `paste` event handler implicitly attached to it.
+At first,
 
-While `contenteditable` have much better support on some CSS features, `contenteditable` have their own unique problems that
-`<textarea>` doesn't have as a multi-line plaintext input element:
+However, `plaintext-only` doesn't mean that it strips the rich-text formatting capabilities from `contenteditable`. Rich-text
+formatting is still supported as evidenced by rendering HTML elements inside `contenteditable` through `.innerHTML`.
 
 
+doesn't disable the rich-text formatting capabilities as you can still apply rich-text formats with
+`.innerHTML`.
+
+Unfortunately, processing the clipboard into a plaintext is the only thing
+
+that's the only thing that it does.
+
+
+While it does offer a no-code solution for rich-text clipboard problem, it doesn't
+solve the meat of the problem with `contenteditable`
 
 ## Choosing Your Own Poison
 
