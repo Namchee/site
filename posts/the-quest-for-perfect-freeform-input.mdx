@@ -178,7 +178,7 @@ before processing the contents.
 usually just pick a mature library to handle rich-text editing such as [CKEditor](https://ckeditor.com/), [ProseMirror](https://prosemirror.net/),
 [TinyMCE](https://www.tiny.cloud/), any many more similar libraries.
 
-Those who avoid libraries and care about consistency will spend most of their time building a rendering model and mapping rules for
+Those who avoid libraries and care about consistency will spend most of their time building a model, rendering schema, and mapping rules for
 `contenteditable` &mdash; something small teams often can't afford to do.
 
 ## Plaintext-only Do Too Little
@@ -190,7 +190,7 @@ that we don't support.
 
 Beside suggesting the users to use plaintext paste, there are 2 alternatives that can be used to solve this problem:
 
-- Re-map all supported rich-text elements to your rendering model and strip the rest of unsupported elements. This method requires
+- Re-map all supported rich-text elements to your content model and strip the rest of unsupported elements. This method requires
 more code.
 - Strip all rich-text elements, pasting them as plaintext.
 
@@ -238,30 +238,18 @@ before applying the value to the input which you can try from the following elem
   <figcaption class="text-xs italic text-center mt-2">An example of contenteditable div, but plaintext</figcaption>
 </figure>
 
-At first,
-
-However, `plaintext-only` doesn't mean that it strips the rich-text formatting capabilities from `contenteditable`. Rich-text
-formatting is still supported as evidenced by rendering HTML elements inside `contenteditable` through `.innerHTML`.
-
-
-doesn't disable the rich-text formatting capabilities as you can still apply rich-text formats with
-`.innerHTML`.
-
-Unfortunately, processing the clipboard into a plaintext is the only thing
-
-that's the only thing that it does.
-
+Contrary to its name, `plaintext-only` doesn't remove rich-text capabilities from `contenteditable`. The feature is still
+supported as evidenced by rendering HTML elements inside `contenteditable` through `.innerHTML`.
 
 While it does offer a no-code solution for rich-text clipboard problem, it doesn't
-solve the meat of the problem with `contenteditable`
+solve the meat of the problem with `contenteditable`: inconsistent rendering and native form control support.
 
 ## Choosing Your Own Poison
 
-We now know that we have both `contenteditable` with `plaintext-only` and `<textarea>` to represent a multi-line plaintext input.
+Arriving at this section, we now have 2 alternatives for freeform input elements: `<textarea>` and `contenteditable`. But how should you determine
+which one to use?
 
-Since both have their own advantages and weaknesses unique to each other, you might be wondering: which one should you choose for your project?
-
-
+Simply put, choosing between 2 alternatives for defining freeform inputs can be simplified using the following flowchart:
 
 //... flowchart here
 
