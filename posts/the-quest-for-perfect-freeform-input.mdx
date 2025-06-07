@@ -104,7 +104,7 @@ they've delved too far with it.
 If you're not living in a cave in the past decade, you might notice that some of the freeform input inside
 you favorite apps are capable of rendering wider variety of style and formats unlike what `<textarea>` can provide with plaintext.
 
-Rich-text capabilities like that are commonly provided by `contenteditable`, which can usually be seen in discussion and social media platforms.
+Rich-text capabilities like that are commonly provided by `contenteditable`, which can usually be seen in discussion forums and social media platforms.
 
 ![Bluesky post editor using contenteditable provided by ProseMirror](https://res.cloudinary.com/namchee/image/upload/v1748700530/posts/the-quest-for-perfect-plaintext-input/bsky)
 
@@ -129,8 +129,14 @@ Usually, a `<div>` is used as a container for a freeform input defined with `con
   <figcaption class="text-xs italic text-center mt-2">An example of contenteditable div with minimal setup</figcaption>
 </figure>
 
-Aside from the obvious rich-text formatting capabilities, you might realize that the container automatically resize itself
-when you fired input events on it. Limiting the number of lines until overflow also can be implemented with only CSS.
+Aside from rich-text formatting that `<textarea>` can't do, you might realize that the container element automatically resize itself
+when the contents inside are mutated.
+
+Unlike `<textarea>`, contents inside `contenteditable` are rendered inside the scope of normal DOM tree.
+Since the contents exist inside the CSS rendering model, it supports more CSS features that `<textarea>` doesn't support.
+
+Due to its wider CSS support, it's much easier to apply advanced styling to `contenteditable` without JavaScript, such as
+as limiting autosizing to a maximum number of lines until overflow with only pure CSS.
 
 ```css title=contenteditable.css, copy
 :root {
@@ -155,20 +161,21 @@ when you fired input events on it. Limiting the number of lines until overflow a
 }
 ```
 
-Unlike `<textarea>`, contents inside `contenteditable` are rendered inside the scope of normal DOM tree.
-Since the contents exist inside the CSS rendering model, it supports more CSS features that `<textarea>` doesn't support.
-
-On the surface, `contenteditable` seems like a `<textarea>` with rich-text capabilities and broader CSS feature support.
+On the surface, `contenteditable` seems like an upgrade to `<textarea>` with rich-text capabilities and broader CSS feature support.
 However, playing around `contenteditable` reveals plethora of problems that `<textarea>` doesn't have:
 
-- Form submissions require JavaScript
-- No *native* `<label>` and `placeholder` support
-- A block-level `contenteditable` always insert an extra `<br />` after interaction to preserve visibility which
-breaks the `:empty` pseudo-class
-- Developers need to handle accessibility attributes through ARIA manually, which usually aren't used
+- `contenteditable` isn't a form control element, which means no *native* `<label>` and `placeholder` support.
+- Interacting with `contenteditable` element as a form value requires JavaScript.
+- Accessibility need to be handled manually through ARIA attributes, which usually aren't used
 [responsibly](https://www.w3.org/WAI/ARIA/apg/practices/read-me-first/) or [used in a wrong way](https://webaim.org/projects/million/)
-- ...[and many more](https://ckeditor.com/blog/ContentEditable-The-Good-the-Bad-and-the-Ugly/)
+- Inconsistent many-to-one mapping from from rich-text to HTML elements. For example, a **bold** text might be defined with `<b>` and `<strong>`
+respectively.
+- A block-level `contenteditable` always insert an extra `<br />` after interaction to preserve visibility which
+breaks empty content detection without proper cleanup.
+- Pasting contents to the element might cause unexpected result as foreign rich-text formats are included in the Clipboard.
+- [Various cross-browser behavior inconsistencies](https://github.com/guardian/scribe/blob/master/BROWSERINCONSISTENCIES.md)
 
+`contenteditable`
 ## Plaintext-only Is Misleading
 
 Going back to the context however, it's quite obvious that `<div contenteditable>` is doing *too much*
