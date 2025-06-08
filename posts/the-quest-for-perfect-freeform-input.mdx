@@ -1,6 +1,6 @@
 ---
 title: The Quest For Perfect Freeform Input
-publishedAt: 2025-05-30
+publishedAt: 2025-06-08
 subtitle: Will the new plaintext-only replace textarea?
 isDraft: false
 tags:
@@ -85,6 +85,9 @@ While the autosizing implementation above works, it introduces 2 new problems:
 - Developers must manually wire autosizing logic to various HTML events like `paste` or direct value changes via `.innerHTML`.
 Otherwise, the `<textarea>` may not resize correctly, which might hurt the UX.
 
+> In the future, we might not need to manually handle autosizing in `<textarea>` due to
+the introduction of `field-sizing`. At the moment however, it's only supported in Chromium-based browsers.
+
 As for the list of other CSS features that don't work at all in `<textarea>` without some wizardy due to Shadow DOM encapsulation:
 
 - `::before` and `::after` pseudo element
@@ -166,8 +169,8 @@ However, playing around `contenteditable` reveals plethora of problems that `<te
 
 - `contenteditable` isn't a form control element, which means no *native* `<label>` and `placeholder` support.
 - Interacting with `contenteditable` element as a form value requires JavaScript.
-- Accessibility need to be handled manually through ARIA attributes, which usually aren't used
-[responsibly](https://www.w3.org/WAI/ARIA/apg/practices/read-me-first/) or [used in a wrong way](https://webaim.org/projects/million/)
+- Accessibility need to be handled manually through ARIA attributes, which usually is
+[forgotten or handled incorrectly](https://webaim.org/projects/million/).
 - Inconsistent many-to-one representation of rich-text to HTML elements, making it not well-behaved and hard to determine equality.
 - Invisible element such as additional `<br />` in an empty `contenteditable` and occassional `<span>` must be taken into account
 before processing the contents.
@@ -246,12 +249,42 @@ solve the meat of the problem with `contenteditable`: inconsistent rendering and
 
 ## Choosing Your Own Poison
 
-Arriving at this section, we now have 2 alternatives for freeform input elements: `<textarea>` and `contenteditable`. But how should you determine
+We now have 2 alternatives to represent freeform input elements: `<textarea>` and `contenteditable`. But how should you determine
 which one to use?
 
-Simply put, choosing between 2 alternatives for defining freeform inputs can be simplified using the following flowchart:
+Fortunately, choosing between 2 alternatives for freeform inputs can be simplified by answering the following question:
+*do you need rich-text on your inputs?*
 
-//... flowchart here
+If the answer is **No**, just use `<textarea>`. In my experience, `contenteditable` isn't worth considering just
+for native autosize and some CSS feature support as you need to write a lot of extra code for `contenteditable` to behave itself.
+
+If the answer is **Yes**, then ask yourself again: can you afford the additional development cost of using `contenteditable` considering
+[its inherent problems](#:~:text=However%2C%20playing%20around%20contenteditable%20reveals%20plethora%20of%20problems%20that%20%3Ctextarea%3E%20doesn%E2%80%99t%20have)?
+
+If you **can afford the cost**, then design the rendering model, schema, and mapping while not forgetting about other quirks and custom features
+that you need.
+
+If you **cannot afford the cost**, consider using a mature rich-text libraries and define your input limitations to the rich-text schema.
+
+The only scenario where I think it's okay to use a barebone `contenteditable` is when you're building a throwaway code or building
+a simple proof-of-concept.
+
+If you're asking me whether `plaintext-only` changed anything, I'm going to say **no**. The paste behavior
+is only one of the smaller, easily solvable problems and doesn't fix other problems with `contenteditable`.
+
+Moreover, I personally hate the name `plaintext-only` as I think the naming is misleading since it doesn't transform
+`contenteditable` into a *plaintext-only* input, but only provide a built-in handler for plaintext paste.
 
 ## Final Thoughts
 
+While it looks like I antagonized `contenteditable` too much, I don't think that a vanilla `contenteditable` should be avoided
+at all cost as it's the simplest way to define a rich-text editor on the web.
+
+Choosing between `<textarea>` and `contenteditable` can be imagined as getting a meal. The former is akin to ordering a take-out,
+but your customization options are limited, maybe a few extra toppings or a different sauce.
+
+The later is akin to buying raw ingredients and cooking food yourself without clear recipe. If you aren't a chef or at least a home cook, there's a good
+chance that you'll mess something up along the way *but* at least you can do *almost anything* to it.
+
+That being said, it's important to *use the right tool for the job* and *be conscious of it*. If you don't need rich-texts, use a
+`<textarea>`, else use a mature rich-text library and focus on other features instead of dealing with `contenteditable` quirks.
