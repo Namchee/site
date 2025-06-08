@@ -65,6 +65,6 @@ const noLang = 'noLang' in meta;
       {props['data-language']}
     </p>
 
-    <pre class={`${className} rounded-none py-2 focus:outline-none`} {...props}><slot /></pre>
+    <pre class:list={['rounded-none', 'py-2', 'focus:outline-none', className]} {...props}><slot /></pre>
   </div>
 </figure>

@@ -15,8 +15,7 @@
       d="M11 4.702a.705.705 0 0 0-1.203-.498L6.413 7.587A1.4 1.4 0 0 1 5.416 8H3a1 1 0 0 0-1 1v6a1 1 0 0 0 1 1h2.416a1.4 1.4 0 0 1 .997.413l3.383 3.384A.705.705 0 0 0 11 19.298z"
     ></path>
     <path d="M16 9a5 5 0 0 1 0 6"></path>
-    <path
-      d="M19.364 18.364a9 9 0 0 0 0-12.728"></path>
+    <path d="M19.364 18.364a9 9 0 0 0 0-12.728"></path>
   </svg>
 </button>
 
@@ -32,20 +31,22 @@
     const button = document.querySelector(".speech__button");
     const icon = document.querySelector(".speech__icon");
 
-    button.addEventListener("click", () => {
-      window.speechSynthesis.speak(utterance);
-    });
+    if (button && icon) {
+      button.addEventListener("click", () => {
+        window.speechSynthesis.speak(utterance);
+      });
 
-    utterance.addEventListener("start", () => {
-      button.classList.toggle("bg-content/25!");
-      icon.classList.toggle("fill-content/75!");
-      icon.classList.toggle("stroke-content/75!");
-    });
+      utterance.addEventListener("start", () => {
+        button.classList.toggle("bg-content/25!");
+        icon.classList.toggle("fill-content/75!");
+        icon.classList.toggle("stroke-content/75!");
+      });
 
-    utterance.addEventListener("end", () => {
-      button.classList.toggle("bg-content/25!");
-      icon.classList.toggle("fill-content/75!");
-      icon.classList.toggle("stroke-content/75!");
-    });
+      utterance.addEventListener("end", () => {
+        button.classList.toggle("bg-content/25!");
+        icon.classList.toggle("fill-content/75!");
+        icon.classList.toggle("stroke-content/75!");
+      });
+    }
   }
 </script>
