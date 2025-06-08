@@ -16,7 +16,7 @@ import {
   TooltipProvider,
   TooltipContent,
   TooltipArrow,
-} from 'radix-vue';
+} from 'reka-ui';
 
 import { Icon } from '@iconify/vue';
 

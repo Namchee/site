@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { onBeforeUnmount, ref } from 'vue';
 
-import { TooltipProvider, TooltipArrow, TooltipRoot, TooltipPortal, TooltipTrigger, TooltipContent } from 'radix-vue';
+import { TooltipProvider, TooltipArrow, TooltipRoot, TooltipPortal, TooltipTrigger, TooltipContent } from 'reka-ui';
 
 const props = defineProps({
   code: { type: String, required: true },
@@ -76,7 +76,7 @@ onBeforeUnmount(() => {
 
 <style>
 .tooltip__content {
-  transform-origin: var(--radix-tooltip-content-transform-origin);
+  transform-origin: var(--reka-tooltip-content-transform-origin);
   animation: scaleIn 100ms cubic-bezier(0.33, 1, 0.68, 1);
 }
 

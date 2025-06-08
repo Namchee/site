@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { ref } from 'vue';
 
-import { ToastProvider, ToastDescription, ToastRoot, ToastClose, ToastViewport } from 'radix-vue';
+import { ToastProvider, ToastDescription, ToastRoot, ToastClose, ToastViewport } from 'reka-ui';
 
 const open = ref(false);
 
@@ -53,7 +53,7 @@ function copyLink() {
 }
 
 .toast__root[data-swipe='move'] {
-  transform: translateX(var(--radix-toast-swipe-move-x));
+  transform: translateX(var(--reka-toast-swipe-move-x));
 }
 
 .toast_root[data-swipe='cancel'] {
@@ -87,7 +87,7 @@ function copyLink() {
 
 @keyframes swipeOut {
   from {
-    transform: translateX(var(--radix-toast-swipe-end-x));
+    transform: translateX(var(--reka-toast-swipe-end-x));
   }
 
   to {

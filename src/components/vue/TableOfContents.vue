@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { TooltipProvider, TooltipRoot, TooltipTrigger, TooltipPortal, TooltipContent, TooltipArrow, DropdownMenuRoot, DropdownMenuPortal, DropdownMenuTrigger, DropdownMenuContent } from 'radix-vue';
+import { TooltipProvider, TooltipRoot, TooltipTrigger, TooltipPortal, TooltipContent, TooltipArrow, DropdownMenuRoot, DropdownMenuPortal, DropdownMenuTrigger, DropdownMenuContent } from 'reka-ui';
 import { onMounted, ref } from 'vue';
 
 function backToTop() {
@@ -76,7 +76,7 @@ onMounted(() => {
 </template>
 
 <style scoped>
-div[data-radix-popper-content-wrapper]:has(.toc__container[data-state=closed]) {
+div[data-reka-popper-content-wrapper]:has(.toc__container[data-state=closed]) {
   pointer-events: none;
   visibility: hidden;
 }
