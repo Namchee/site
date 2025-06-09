@@ -1,11 +1,12 @@
 import type { Transformer } from 'unified';
+import type { Root } from 'mdast';
 
 import getReadingTime from 'reading-time';
 import { toString } from 'mdast-util-to-string';
 
 import type { MarkdownFile } from '@/plugins/remark/types';
 
-export function remarkReadingTime(): Transformer {
+export function remarkReadingTime(): Transformer<Root> {
   return function(tree, file) {
     const md = file as unknown as MarkdownFile;
 

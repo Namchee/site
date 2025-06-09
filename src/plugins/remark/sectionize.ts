@@ -1,9 +1,10 @@
 /**
  * Code is taken from 'remark-sectionize' by Jake Low with few modifications.
  */
-import { slug } from 'github-slugger';
 import type { Transformer } from 'unified';
-import type { Heading, Parent, Node, RootContent } from 'mdast';
+import type { Heading, Parent, Node, RootContent, Root } from 'mdast';
+
+import { slug } from 'github-slugger';
 
 import { toString } from 'mdast-util-to-string';
 
@@ -12,7 +13,7 @@ import { findAfter } from 'unist-util-find-after';
 
 const MAX_HEADING_DEPTH = 3;
 
-export function remarkSectionize(): Transformer {
+export function remarkSectionize(): Transformer<Root> {
   return function(tree) {
     for (let depth = MAX_HEADING_DEPTH; depth > 0; depth--) {
       visit(
