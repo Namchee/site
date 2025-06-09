@@ -1,7 +1,6 @@
 /**
  * Code is taken from 'remark-sectionize' by Jake Low with few modifications.
  */
-
 import { slug } from 'github-slugger';
 import type { Transformer } from 'unified';
 
