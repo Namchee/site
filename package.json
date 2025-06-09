@@ -54,7 +54,7 @@
     "satori": "^0.13.0",
     "satori-html": "^0.3.2",
     "sharp": "^0.33.4",
-    "tsx": "^4.15.4",
+    "tsx": "^4.19.4",
     "typescript": "^5.4.5",
     "unist-util-find-after": "^5.0.0",
     "unist-util-visit": "^5.0.0",
@@ -65,16 +65,13 @@
     "vue-eslint-parser": "^9.4.3"
   },
   "dependencies": {
-    "@iconify/vue": "^4.1.2",
+    "@iconify/vue": "^5.0.0",
     "@vueuse/core": "^10.11.0",
     "class-variance-authority": "^0.7.0",
     "reka-ui": "^2.3.1"
   },
   "packageManager": "pnpm@10.11.0",
   "pnpm": {
-    "overrides": {
-      "follow-redirects@<=1.15.5": ">=1.15.6"
-    },
     "ignoredBuiltDependencies": [
       "@namchee/astro-subfont"
     ],
