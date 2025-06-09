@@ -9,12 +9,12 @@ import robotsTxt from 'astro-robots-txt';
 
 import unocss from 'unocss/astro';
 
-import rehypeMathjax from 'rehype-mathjax';
 import { transformerMetaHighlight } from '@shikijs/transformers';
 
 import { subset } from '@namchee/astro-subfont';
 
 import { remarkPlugins } from './src/plugins/remark';
+import { rehypePlugins } from './src/plugins/rehype';
 
 // https://astro.build/config
 export default defineConfig({
@@ -36,22 +36,25 @@ export default defineConfig({
   ],
   markdown: {
     remarkPlugins: remarkPlugins,
-    rehypePlugins: [rehypeMathjax],
+    rehypePlugins: rehypePlugins,
     shikiConfig: {
       transformers: [
+        transformerMetaHighlight(),
         {
-          pre(hast) {
+         pre(hast) {
             hast.properties['data-meta'] = this.options.meta?.__raw;
             hast.properties['data-code'] = this.source;
           }
         },
-        transformerMetaHighlight(),
       ],
       themes: {
         light: 'one-light',
         dark: 'tokyo-night',
-      }
-    }
+      },
+    },
+    syntaxHighlight: {
+      excludeLangs: ['math', 'mermaid'],
+    },
   },
   image: {
     domains: ['books.google.com', 'assets.literal.club', 'res.cloudinary.com'],
