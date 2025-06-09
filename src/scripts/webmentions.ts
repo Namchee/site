@@ -25,7 +25,7 @@ async function fetchWebmentions() {
   const params = new URLSearchParams();
 
   params.append('domain', 'www.namchee.dev');
-  params.append('token', process.env.WEBMENTIONS_API_KEY);
+  params.append('token', process.env.WEBMENTIONS_API_KEY as string);
   params.append('per-page', '1000');
 
   const response = await fetch(`${baseURL}?${params.toString()}`);
