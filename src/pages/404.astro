@@ -75,7 +75,7 @@ import TextLink from "@/components/astro/ui/TextLink.astro";
     </div>
 
     <script>
-      const gacha = document.querySelector('.lucky__try');
+      const gacha = document.querySelector('.lucky__try') as HTMLLinkElement;
 
       gacha.addEventListener('click', () => {
         // cool video

@@ -74,3 +74,7 @@ html.dark .bluesky-post-container .external-link .description {
   color: oklch(var(--heading) / 0.5) !important;
 }
 
+.bluesky-post-container .logo-link {
+  width: 32px;
+}
+
