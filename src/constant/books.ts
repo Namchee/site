@@ -69,6 +69,11 @@ export const BOOKS = {
       title: 'Five Lines of Code',
       author: 'Christian Clausen',
       link: 'https://literal.club/book/christian-clausen-five-lines-of-code-ncxwu'
+    },
+    {
+      title: 'Atomic Habits',
+      author: 'James Clear',
+      link: 'https://literal.club/book/james-clear-atomic-habits-q5py4'
     }
   ]
 };
