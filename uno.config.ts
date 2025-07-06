@@ -12,6 +12,7 @@ export default defineConfig({
     fontFamily: {
       sans: ['"Inter"', 'system-ui'],
       mono: ['"JetBrains Mono"', 'ui-monospace'],
+      serif: ['Georgia', 'Garamond', 'Times New Roman']
     },
     colors: {
       'background': 'oklch(var(--background))',
