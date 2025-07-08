@@ -1,3 +1,9 @@
+---
+const { children } = Astro.props;
+
+console.log(Astro.slots);
+---
+
 <ul class=":uno: space-y-2">
-  <slot />
+  <slot set:text="foo" />
 </ul>
