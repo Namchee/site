@@ -1,0 +1,33 @@
+code:not(pre code) {
+  background-color: oklch(var(--surface));
+  font-size: 14px;
+  padding: 1px;
+  border-radius: 4px;
+  color: oklch(var(--accent));
+  border: 1px solid oklch(var(--separator));
+
+  transition-property: color, background-color, border-color, text-decoration-color, fill, stroke;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 150ms;
+}
+
+.MathJax:not([display="true"]) {
+  display: inline !important;
+}
+
+.contenteditable__autoresize {
+  line-height: 1.5;
+  min-height: calc(4rem + 16px);
+  max-height: calc(8 * 1.5rem + 16px);
+  overflow: auto;
+}
+
+.contenteditable__autoresize:empty::before {
+  content: attr(placeholder);
+  opacity: 0.5;
+  pointer-events: none;
+}
+
+.mdx__ol svg {
+  display: none;
+}

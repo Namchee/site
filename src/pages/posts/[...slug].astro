@@ -15,6 +15,9 @@ import UnorderedList from "@/components/astro/modules/posts/html/UnorderedList.a
 
 import type { MarkdownFile } from "@/plugins/remark/types";
 
+import "@/assets/styles/mdx.css";
+import OrderedList from "@/components/astro/modules/posts/html/OrderedList.astro";
+
 type FrontmatterData = CollectionEntry<"posts">["data"];
 type FrontmatterAddons = MarkdownFile["data"]["astro"]["frontmatter"];
 
@@ -53,6 +56,7 @@ const frontmatter = {
       blockquote: Quote,
       li: BulletItem,
       ul: UnorderedList,
+      ol: OrderedList,
     }}
   />
 </PostLayout>
