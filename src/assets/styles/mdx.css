@@ -28,6 +28,10 @@ code:not(pre code) {
   pointer-events: none;
 }
 
+.mdx__ol li {
+  display: revert;
+}
+
 .mdx__ol svg {
   display: none;
 }
