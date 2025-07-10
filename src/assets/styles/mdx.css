@@ -29,7 +29,15 @@ code:not(pre code) {
 }
 
 .mdx__ol li {
-  display: revert;
+  counter-increment: li 1;
+}
+
+.mdx__ol li::before {
+  content: counters(li, ".") ". ";
+  margin-left: 0.125rem;
+  font-feature-settings: "tnum" 1;
+
+  color: oklch(var(--accent));
 }
 
 .mdx__ol svg {
