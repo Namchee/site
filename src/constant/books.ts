@@ -74,6 +74,11 @@ export const BOOKS = {
       title: 'Atomic Habits',
       author: 'James Clear',
       link: 'https://literal.club/book/james-clear-atomic-habits-q5py4'
+    },
+    {
+      title: 'The Effective Engineer',
+      author: 'Edmond Lau',
+      link: 'https://literal.club/book/the-effective-engineer-ejzfd'
     }
   ]
 };
