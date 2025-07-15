@@ -1,0 +1,16 @@
+:root {
+  --gray-modern-25: oklch(0.9913 0.0013 286.38);
+  --gray-modern-50: oklch(0.9842 0.0034 247.86);
+  --gray-modern-100: oklch(0.9593 0.0069 247.9);
+  --gray-modern-200: oklch(0.9292 0.0109 256.7);
+
+  --gray-true-25: ;
+
+  --indigo-25: ;
+
+  --yellow-25: ;
+
+  --green-25: ;
+
+  --red-25: ;
+}

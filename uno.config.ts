@@ -1,4 +1,4 @@
-import { defineConfig, transformerCompileClass } from 'unocss';
+import { defineConfig, presetWind4, transformerCompileClass } from 'unocss';
 
 export default defineConfig({
   theme: {
@@ -35,6 +35,9 @@ export default defineConfig({
       'accent': 'oklch(var(--accent))'
     },
   },
+  presets: [
+    presetWind4(),
+  ],
   transformers: [
     transformerCompileClass(),
   ],
