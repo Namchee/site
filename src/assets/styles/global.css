@@ -1,48 +1,9 @@
-:root {
-  /* Write token here */
-  --background: 99.4% 0 0;
-  --surface: 95.03% 0.0017 247.84;
-  --pressurized: 90.66% 0.0017 247.84;
-
-  --separator: 87.85% 0.0047 258.33;
-
-  --heading: 23.04% 0.0209 264.04;
-  --content: 45.96% 0.0174 264.39;
-
-  --navigation-background: 99.4% 0 0;
-  --navigation-border: 90.85% 0.0047 258.33;
-  --navigation-accent: 93.16% 0.0017 247.84;
-
-  --accent: 60.71% 0.1923 273.59;
-  --success: 67.31% 0.1596 155.59;
-
-  font-feature-settings: "calt" 1, "ss07" 1, "ss08" 1, "ss03" 1, "cv05" 1;
-}
-
 html {
   scroll-behavior: smooth;
 }
 
 body {
   scrollbar-gutter: stable both-edges;
-}
-
-html.dark {
-  /* Replace the token here */
-  --background: 16.13% 0 0;
-  --surface: 24.27% 0 0;
-  --pressurized: 31.27% 0 0;
-
-  --separator: 30.86% 0 0;
-
-  --heading: 99.11% 0 0;
-  --content: 73.55% 0 0;
-
-  --navigation-background: 29.78% 0 0;
-  --navigation-border: 35.78% 0 0;
-  --navigation-accent: 37.12% 0 0;
-
-  --accent: 69.81% 0.1308 271.01;
 }
 
 html.dark img {
@@ -53,22 +14,6 @@ html.dark img {
   background-color: oklch(var(--content) / 0.125);
 }
 
-@font-face {
-  font-family: "Inter";
-  src: url("/fonts/inter.woff2") format("woff2-variations");
-  font-style: oblique 0deg 10deg;
-  font-weight: 100 900;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: "JetBrains Mono";
-  src: local("JetBrains Mono"),
-    url("/fonts/jetbrains-mono.woff2") format("woff2");
-  font-style: normal;
-  font-weight: 400;
-  font-display: swap;
-}
 
 ::-webkit-scrollbar {
   width: 8px;
@@ -117,4 +62,3 @@ html.dark img {
     display: none;
   }
 }
-
