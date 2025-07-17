@@ -1,0 +1,23 @@
+/* Normal body text features only */
+:not(.font-serif):not(.font-mono) {
+  font-feature-settings: "ss02" 1, "ss03" 1, "cv09" 1, "cv10" 1;
+}
+
+@font-face {
+  font-family: "Inter";
+  src: url("/fonts/inter.woff2") format("woff2-variations");
+  font-style: oblique 0deg 10deg;
+  font-weight: 100 900;
+  font-display: swap;
+}
+
+/* Georgia is web safe */
+
+@font-face {
+  font-family: "JetBrains Mono";
+  src: local("JetBrains Mono"),
+    url("/fonts/jetbrains-mono.woff2") format("woff2");
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+}

@@ -1,4 +1,4 @@
-import { defineConfig, transformerCompileClass } from 'unocss';
+import { defineConfig, presetWind4, transformerCompileClass } from 'unocss';
 
 export default defineConfig({
   theme: {
@@ -12,6 +12,7 @@ export default defineConfig({
     fontFamily: {
       sans: ['"Inter"', 'system-ui'],
       mono: ['"JetBrains Mono"', 'ui-monospace'],
+      serif: ['Georgia', 'Garamond', 'Times New Roman']
     },
     colors: {
       'background': 'oklch(var(--background))',
@@ -34,6 +35,9 @@ export default defineConfig({
       'accent': 'oklch(var(--accent))'
     },
   },
+  presets: [
+    presetWind4(),
+  ],
   transformers: [
     transformerCompileClass(),
   ],

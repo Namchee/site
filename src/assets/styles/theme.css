@@ -1,0 +1,38 @@
+:root {
+  --heading: var(--gray-modern-900);
+  --content: var(--gray-modern-600);
+
+  --background: var(--gray-modern-25);
+
+  --surface-1: var(--gray-modern-100);
+  --surface-2: var(--gray-modern-200);
+  --surface-3: var(--gray-modern-300);
+
+  --border: var(--gray-modern-300);
+
+  --accent: var(--indigo-600);
+
+  --success: var(--green-600);
+  --warning: var(--yellow-600);
+  --danger: var(--red-600);
+}
+
+/* Dark mode variants */
+html.dark {
+  --heading:  var(--gray-true-50);
+  --content: var(--gray-true-300);
+
+  --background: var(--gray-true-950);
+
+  --surface-1: var(--gray-true-900);
+  --surface-2: var(--gray-true-800);
+  --surface-3: var(--gray-true-700);
+
+  --border: var(--gray-true-800);
+
+  --accent: var(--indigo-500);
+
+  --success: var(--green-500);
+  --warning: var(--yellow-500);
+  --danger: var(--red-500);
+}

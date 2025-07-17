@@ -51,7 +51,7 @@
     "rehype-mermaid": "^3.0.0",
     "remark-math": "^6.0.0",
     "remark-sectionize": "^2.1.0",
-    "satori": "^0.13.0",
+    "satori": "^0.15.2",
     "satori-html": "^0.3.2",
     "sharp": "^0.33.4",
     "tsx": "^4.19.4",
