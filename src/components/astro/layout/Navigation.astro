@@ -39,7 +39,7 @@ const { posts } = Astro.props;
     links.map((link, idx) => (
       <NavigationItem
         label={link.label}
-        className={`${idx === 0 ? "ml-1" : ""} ${currentPath.match(`${link.href}/.?`) || currentPath === link.href ? "text-heading bg-navigation-accent" : ""}`.trim()}
+        className={`${idx === 0 ? "ml-1" : ""} ${currentPath.match(`${link.href}/.?`) || currentPath === link.href ? "text-heading bg-heading/10" : ""}`.trim()}
         href={link.href}
         client:load
       >
@@ -48,7 +48,7 @@ const { posts } = Astro.props;
     ))
   }
 
-  <div class="border border-separator dark:border-surface-3 transition-colors"></div>
+  <div class="border-l border-separator dark:border-surface-3 transition-colors"></div>
 
   <CommandMenu posts={posts} client:load>
     <Icon
