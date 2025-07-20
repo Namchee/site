@@ -73,7 +73,6 @@
 }
 
 @supports not (d:path("")) {
-
   .theme-toggle input[type=checkbox]:checked~.theme-toggle__around:first-child path,
   .theme-toggle--toggled:not(label).theme-toggle .theme-toggle__around:first-child path {
     transform: translate3d(-12px, -14px, 0)

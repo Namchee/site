@@ -2,37 +2,35 @@ import { defineConfig, presetWind4, transformerCompileClass } from 'unocss';
 
 export default defineConfig({
   theme: {
-    breakpoints: {
+    breakpoint: {
       'sm': '400px',
       'md': '768px',
       'lg': '1024px',
       'xl': '1280px',
       '2xl': '1536px',
     },
-    fontFamily: {
-      sans: ['"Inter"', 'system-ui'],
-      mono: ['"JetBrains Mono"', 'ui-monospace'],
-      serif: ['Georgia', 'Garamond', 'Times New Roman']
+    font: {
+      sans: '"Inter", system-ui',
+      mono: '"JetBrains Mono", ui-monospace',
+      serif: 'Georgia, Garamond, Times New Roman',
     },
     colors: {
-      'background': 'oklch(var(--background))',
-      'surface': 'oklch(var(--surface))',
-      'pressurized': 'oklch(var(--pressurized))',
+      'heading': 'var(--heading)',
+      'content': 'var(--content)',
 
-      'separator': 'oklch(var(--separator))',
+      'background': 'var(--background)',
 
-      'heading': 'oklch(var(--heading))',
-      'content': 'oklch(var(--content))',
+      'surface-1': 'var(--surface-1)',
+      'surface-2': 'var(--surface-2)',
+      'surface-3': 'var(--surface-3)',
 
-      'primary': 'oklch(var(--primary))',
+      'separator': 'var(--separator)',
 
-      'success': 'oklch(var(--success))',
+      'accent': 'var(--accent)',
 
-      'navigation-background': 'oklch(var(--navigation-background))',
-      'navigation-border': 'oklch(var(--navigation-border))',
-      'navigation-accent': 'oklch(var(--navigation-accent))',
-
-      'accent': 'oklch(var(--accent))'
+      'success': 'var(--success)',
+      'warning': 'var(--warning)',
+      'danger': 'var(--danger)',
     },
   },
   presets: [

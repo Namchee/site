@@ -33,7 +33,7 @@ const { posts } = Astro.props;
 ---
 
 <nav
-  class=":uno: flex fixed transition-colors border shadow-lg rounded-md bottom-8 left-1/2 translate-x-[-50%] bg-navigation-background border-navigation-border z-10"
+  class=":uno: flex fixed transition-colors border shadow-lg rounded-md bottom-8 left-1/2 translate-x-[-50%] dark:bg-surface-2 border-separator dark:border-surface-3 bg-background z-10"
 >
   {
     links.map((link, idx) => (
@@ -48,7 +48,7 @@ const { posts } = Astro.props;
     ))
   }
 
-  <div class="border border-navigation-border transition-colors"></div>
+  <div class="border border-separator dark:border-surface-3 transition-colors"></div>
 
   <CommandMenu posts={posts} client:load>
     <Icon

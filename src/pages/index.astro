@@ -23,12 +23,12 @@ const description =
 
     <div class="col-start-1 col-end-13 md:col-start-5 space-y-4 leading-[1.75]">
       <p>
-        Hello, Halo, 你 好. My name is Cristopher, or Namchee in the online
+        Hello, Halo, <ruby>こんにちは<rp>(</rp><rt>Konnichiwa</rt><rp>)</rp></ruby>. My name is Cristopher, or Namchee in the online
         space. I'm a software engineer with passion of solving real-life
-        problems through <span
-          class="font-medium text-heading/85 transition-colors">performant</span
-        > and <span class="font-medium text-heading/85 transition-colors"
-          >sustainable</span
+        problems through <em
+          class="font-semibold text-heading/75 transition-colors">performant</em
+        > and <em class="font-semibold  text-heading/75 transition-colors"
+          >sustainable</em
         > solutions. Currently, I create practical solutions at <TextLink
           href="https://glair.ai/"
         >
@@ -65,7 +65,7 @@ const description =
       <Projects />
 
       <AppLink
-        class=":uno: mt-8 inline-flex items-center hover:text-heading focus:text-heading arrow__link"
+        class=":uno: inline-flex items-center hover:text-heading focus:text-heading arrow__link"
         href="https://github.com/Namchee?tab=repositories"
       >
         <Icon name="lucide:arrow-right" class=":uno: w-4 arrow__before" />
@@ -89,7 +89,7 @@ const description =
       <Posts />
 
       <AppLink
-        class=":uno: mt-8 inline-flex items-center arrow__link hover:text-heading focus:text-heading"
+        class=":uno: inline-flex items-center arrow__link hover:text-heading focus:text-heading"
         href="/posts"
       >
         <Icon name="lucide:arrow-right" class=":uno: w-4 arrow__before" />
@@ -153,6 +153,6 @@ const description =
   .arrow__link:hover .arrow__after,
   .arrow__link:focus .arrow__after {
     opacity: 1;
-    transform: translateX(-12px);
+    transform: translateX(20px);
   }
 </style>

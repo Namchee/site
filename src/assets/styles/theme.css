@@ -8,7 +8,7 @@
   --surface-2: var(--gray-modern-200);
   --surface-3: var(--gray-modern-300);
 
-  --border: var(--gray-modern-300);
+  --separator: var(--gray-modern-300);
 
   --accent: var(--indigo-600);
 
@@ -20,7 +20,7 @@
 /* Dark mode variants */
 html.dark {
   --heading:  var(--gray-true-50);
-  --content: var(--gray-true-300);
+  --content: var(--gray-true-400);
 
   --background: var(--gray-true-950);
 
@@ -28,7 +28,7 @@ html.dark {
   --surface-2: var(--gray-true-800);
   --surface-3: var(--gray-true-700);
 
-  --border: var(--gray-true-800);
+  --separator: var(--gray-true-800);
 
   --accent: var(--indigo-500);
 
