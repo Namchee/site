@@ -1,6 +1,6 @@
 <button
   aria-label="Pronounce Namchee"
-  class=":uno: rounded-full grid place-items-center bg-background border border-separator transition-colors hover:bg-surface-1 hover:text-content p-1 speech__button focus:bg-surface-1"
+  class=":uno: rounded-full grid place-items-center bg-surface-1 transition-colors hover:bg-surface-2 hover:text-content p-1 speech__button focus:bg-surface-2"
 >
   <svg
     xmlns="http://www.w3.org/2000/svg"
@@ -37,13 +37,13 @@
       });
 
       utterance.addEventListener("start", () => {
-        button.classList.toggle("bg-surface-2!");
+        button.classList.toggle("bg-surface-3!");
         icon.classList.toggle("fill-content");
         icon.classList.toggle("stroke-content");
       });
 
       utterance.addEventListener("end", () => {
-        button.classList.toggle("bg-surface-2!");
+        button.classList.toggle("bg-surface-3!");
         icon.classList.toggle("fill-content");
         icon.classList.toggle("stroke-content");
       });
