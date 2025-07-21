@@ -193,18 +193,18 @@ watchEffect(() => {
       <TooltipRoot>
         <DialogTrigger as-child>
           <TooltipTrigger as-child>
-            <button class="w-[36px] h-[36px] grid place-items-center transition-colors text-content rounded-md hover:bg-heading/10 focus:bg-heading/10 text-sm my-1 ml-1">
+            <button class="w-[36px] h-[36px] grid place-items-center transition-colors text-content rounded-md hover:bg-surface-2 focus:bg-surface-2 text-sm my-1 ml-1">
               <slot />
             </button>
           </TooltipTrigger>
 
           <TooltipPortal>
-            <TooltipContent class="text-sm rounded-md shadow py-2 tooltip__content bg-content text-background dark:bg-surface-3 dark:text-heading shadow-lg select-none px-3 will-change-[transform,opacity]" :side-offset="5">
+            <TooltipContent class="text-sm rounded-md shadow py-2 tooltip__content bg-content text-background dark:bg-surface-2 dark:text-heading shadow-lg select-none px-3 will-change-[transform,opacity]" :side-offset="5">
               <p>Command Palette ({{ isMac ? '⌘' : 'Ctrl' }} + K)</p>
 
               <TooltipArrow
                 :width="8"
-                class="fill-content dark:fill-surface-3"
+                class="fill-content dark:fill-surface-2"
               />
             </TooltipContent>
           </TooltipPortal>

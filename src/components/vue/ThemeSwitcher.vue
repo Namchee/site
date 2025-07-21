@@ -7,7 +7,7 @@ import { TooltipProvider, TooltipRoot, TooltipTrigger, TooltipContent, TooltipAr
     <TooltipRoot>
       <TooltipTrigger as-child>
         <button
-          class=":uno: text-content transition-colors bg-transparent p-2 rounded-md hover:bg-heading/10 focus:bg-heading/10 active:bg-heading/10 theme-toggle m-1 size-[36px]"
+          class=":uno: text-content transition-colors bg-transparent p-2 rounded-md hover:bg-surface-2 focus:bg-surface-2 theme-toggle m-1 size-[36px]"
           aria-live="polite"
         >
           <slot />
@@ -16,14 +16,14 @@ import { TooltipProvider, TooltipRoot, TooltipTrigger, TooltipContent, TooltipAr
 
       <TooltipPortal>
         <TooltipContent
-          class="text-sm rounded-md shadow py-2 tooltip__content  bg-content text-background dark:bg-surface-3 dark:text-heading select-none px-3 will-change-[transform,opacity]"
+          class="text-sm rounded-md shadow py-2 tooltip__content  bg-content text-background dark:bg-surface-2 dark:text-heading select-none px-3 will-change-[transform,opacity]"
           :side-offset="5"
         >
           <p>Switch Theme</p>
 
           <TooltipArrow
             :width="8"
-            class="fill-content dark:fill-surface-3"
+            class="fill-content dark:fill-surface-2"
           />
         </TooltipContent>
       </TooltipPortal>
