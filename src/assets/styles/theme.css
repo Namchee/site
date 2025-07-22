@@ -1,14 +1,14 @@
 :root {
-  --heading: var(--gray-modern-900);
-  --content: var(--gray-modern-600);
+  --heading: var(--gray-light-900);
+  --content: var(--gray-light-600);
 
-  --background: var(--gray-modern-25);
+  --background: var(--gray-light-25);
 
-  --surface-1: var(--gray-modern-100);
-  --surface-2: var(--gray-modern-200);
-  --surface-3: var(--gray-modern-300);
+  --surface-1: var(--gray-light-100);
+  --surface-2: var(--gray-light-200);
+  --surface-3: var(--gray-light-300);
 
-  --separator: var(--gray-modern-300);
+  --separator: var(--gray-light-300);
 
   --accent: var(--indigo-600);
 
@@ -19,16 +19,16 @@
 
 /* Dark mode variants */
 html.dark {
-  --heading:  var(--gray-true-50);
-  --content: var(--gray-true-400);
+  --heading:  var(--gray-dark-50);
+  --content: var(--gray-dark-400);
 
-  --background: var(--gray-true-950);
+  --background: var(--gray-dark-950);
 
-  --surface-1: var(--gray-true-900);
-  --surface-2: var(--gray-true-800);
-  --surface-3: var(--gray-true-700);
+  --surface-1: var(--gray-dark-900);
+  --surface-2: var(--gray-dark-800);
+  --surface-3: var(--gray-dark-700);
 
-  --separator: var(--gray-true-800);
+  --separator: var(--gray-dark-800);
 
   --accent: var(--indigo-500);
 
