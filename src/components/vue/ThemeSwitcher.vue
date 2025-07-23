@@ -16,14 +16,14 @@ import { TooltipProvider, TooltipRoot, TooltipTrigger, TooltipContent, TooltipAr
 
       <TooltipPortal>
         <TooltipContent
-          class="text-sm rounded-md shadow py-2 tooltip__content  bg-content text-background dark:bg-surface-2 dark:text-heading select-none px-3 will-change-[transform,opacity]"
+          class="text-sm rounded-md shadow py-2 tooltip__content bg-heading text-surface-1 select-none px-3 will-change-[transform,opacity]"
           :side-offset="5"
         >
           <p>Switch Theme</p>
 
           <TooltipArrow
             :width="8"
-            class="fill-content dark:fill-surface-2"
+            class="fill-heading"
           />
         </TooltipContent>
       </TooltipPortal>

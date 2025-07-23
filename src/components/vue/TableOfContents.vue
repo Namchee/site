@@ -34,12 +34,12 @@ onMounted(() => {
           </TooltipTrigger>
           <TooltipPortal>
             <TooltipContent :collision-padding="32" :side-offset="4" :class='{
-              "rounded-md text-sm py-2 tooltip__content bg-content text-background xl:border-none select-none px-3 will-change-[transform,opacity]": true,
+              "rounded-md text-sm py-2 tooltip__content bg-heading text-surface-1 xl:border-none select-none px-3 will-change-[transform,opacity]": true,
               "hidden md:block": isOpen,
             }'>
               <p>Table of Contents</p>
 
-              <TooltipArrow :width="8" class="fill-content" />
+              <TooltipArrow :width="8" class="fill-heading" />
             </TooltipContent>
           </TooltipPortal>
 

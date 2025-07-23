@@ -53,9 +53,9 @@ onBeforeUnmount(() => {
 
       <TooltipPortal>
         <TooltipContent :class="{
-          'text-xs rounded-md shadow shadow py-2 tooltip__content select-none px-3 will-change-[transform,opacity] transition-colors': true,
-          'bg-success text-white': copied,
-          'bg-content text-background': !copied
+          'text-xs rounded-md text-surface-1 shadow shadow py-2 tooltip__content select-none px-3 will-change-[transform,opacity] transition-colors': true,
+          'bg-success': copied,
+          'bg-heading': !copied
         }" :side-offset="5">
           <template v-if="!copied">
             Copy to Clipboard

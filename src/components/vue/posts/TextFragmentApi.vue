@@ -12,7 +12,7 @@ import { TooltipProvider, TooltipRoot, TooltipArrow, TooltipTrigger, TooltipPort
 
         <TooltipPortal>
           <TooltipContent
-            class="rounded-md text-xs py-2 tooltip__content bg-content text-background select-none px-3 will-change-[transform,opacity] max-w-sm">
+            class="rounded-md text-xs py-2 tooltip__content text-surface-1 bg-heading select-none px-3 will-change-[transform,opacity] max-w-sm">
             <p>
               <strong>Fragment directive</strong>
             </p>
@@ -21,7 +21,7 @@ import { TooltipProvider, TooltipRoot, TooltipArrow, TooltipTrigger, TooltipPort
               A sequence that tells the browsers to identify the next set of characters as user-agent
               instructions that will be stripped from the URL during loading.
             </p>
-            <TooltipArrow :width="8" class="fill-content" />
+            <TooltipArrow :width="8" class="fill-heading" />
           </TooltipContent>
         </TooltipPortal>
       </TooltipRoot>
@@ -33,7 +33,7 @@ import { TooltipProvider, TooltipRoot, TooltipArrow, TooltipTrigger, TooltipPort
 
         <TooltipPortal>
           <TooltipContent
-            class="rounded-md text-xs py-2 tooltip__content bg-content text-background select-none px-3 will-change-[transform,opacity] max-w-sm">
+            class="rounded-md text-xs py-2 tooltip__content text-surface-1 bg-heading select-none px-3 will-change-[transform,opacity] max-w-sm">
             <p>
               <strong>Text Directive</strong>
             </p>
@@ -41,7 +41,7 @@ import { TooltipProvider, TooltipRoot, TooltipArrow, TooltipTrigger, TooltipPort
             <p class="mt-2">
               An identifier for the browser to parse this directive as text fragment directive.
             </p>
-            <TooltipArrow :width="8" class="fill-content" />
+            <TooltipArrow :width="8" class="fill-heading" />
           </TooltipContent>
         </TooltipPortal>
       </TooltipRoot>
@@ -53,7 +53,7 @@ import { TooltipProvider, TooltipRoot, TooltipArrow, TooltipTrigger, TooltipPort
 
         <TooltipPortal>
           <TooltipContent
-            class="rounded-md text-xs py-2 tooltip__content bg-content text-background select-none px-3 will-change-[transform,opacity] max-w-sm">
+            class="rounded-md text-xs py-2 tooltip__content text-surface-1 bg-heading select-none px-3 will-change-[transform,opacity] max-w-sm">
             <p>
               <strong>Prefix</strong>
             </p>
@@ -61,7 +61,7 @@ import { TooltipProvider, TooltipRoot, TooltipArrow, TooltipTrigger, TooltipPort
             <p class="mt-2">
               A hyphen-ended string specifying the prefix of text that should match. Helps distingushing multiple possible matches in the same document. Optional.
             </p>
-            <TooltipArrow :width="8" class="fill-content" />
+            <TooltipArrow :width="8" class="fill-heading" />
           </TooltipContent>
         </TooltipPortal>
       </TooltipRoot>
@@ -73,7 +73,7 @@ import { TooltipProvider, TooltipRoot, TooltipArrow, TooltipTrigger, TooltipPort
 
         <TooltipPortal>
           <TooltipContent
-            class="rounded-md text-xs py-2 tooltip__content bg-content text-background select-none px-3 will-change-[transform,opacity] max-w-sm">
+            class="rounded-md text-xs py-2 tooltip__content text-surface-1 bg-heading select-none px-3 will-change-[transform,opacity] max-w-sm">
             <p>
               <strong>Start Text</strong>
             </p>
@@ -81,7 +81,7 @@ import { TooltipProvider, TooltipRoot, TooltipArrow, TooltipTrigger, TooltipPort
             <p class="mt-2">
               A string specifying the start of the linked text. <strong>Required</strong>.
             </p>
-            <TooltipArrow :width="8" class="fill-content" />
+            <TooltipArrow :width="8" class="fill-heading" />
           </TooltipContent>
         </TooltipPortal>
       </TooltipRoot>
@@ -93,7 +93,7 @@ import { TooltipProvider, TooltipRoot, TooltipArrow, TooltipTrigger, TooltipPort
 
         <TooltipPortal>
           <TooltipContent
-            class="rounded-md text-xs py-2 tooltip__content bg-content text-background select-none px-3 will-change-[transform,opacity] max-w-sm">
+            class="rounded-md text-xs py-2 tooltip__content text-surface-1 bg-heading select-none px-3 will-change-[transform,opacity] max-w-sm">
             <p>
               <strong>End Text</strong>
             </p>
@@ -101,7 +101,7 @@ import { TooltipProvider, TooltipRoot, TooltipArrow, TooltipTrigger, TooltipPort
             <p class="mt-2">
               A string specifying the end of the linked text. Optional.
             </p>
-            <TooltipArrow :width="8" class="fill-content" />
+            <TooltipArrow :width="8" class="fill-heading" />
           </TooltipContent>
         </TooltipPortal>
       </TooltipRoot>
@@ -113,7 +113,7 @@ import { TooltipProvider, TooltipRoot, TooltipArrow, TooltipTrigger, TooltipPort
 
         <TooltipPortal>
           <TooltipContent
-            class="rounded-md text-xs py-2 tooltip__content bg-content text-background select-none px-3 will-change-[transform,opacity] max-w-sm">
+            class="rounded-md text-xs py-2 tooltip__content text-surface-1 bg-heading select-none px-3 will-change-[transform,opacity] max-w-sm">
             <p>
               <strong>Suffix</strong>
             </p>
@@ -121,7 +121,7 @@ import { TooltipProvider, TooltipRoot, TooltipArrow, TooltipTrigger, TooltipPort
             <p class="mt-2">
               A hyphen-ended string specifying the suffix of text that should match. Helps distingushing multiple possible matches in the same document. Optional.
             </p>
-            <TooltipArrow :width="8" class="fill-content" />
+            <TooltipArrow :width="8" class="fill-heading" />
           </TooltipContent>
         </TooltipPortal>
       </TooltipRoot>
