@@ -7,13 +7,12 @@ body {
 }
 
 html.dark img {
-  filter: brightness(.8) contrast(1.1);
+  filter: brightness(.75) contrast(1.1);
 }
 
 *::selection {
   background-color: oklch(var(--content) / 0.125);
 }
-
 
 ::-webkit-scrollbar {
   width: 8px;

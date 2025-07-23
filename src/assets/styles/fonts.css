@@ -1,6 +1,6 @@
 /* Normal body text features only */
 :not(.font-serif):not(.font-mono) {
-  font-feature-settings: "ss02" 1, "ss03" 1, "cv09" 1, "cv10" 1;
+  font-feature-settings: "cv05" 1, "zero" 1, "ss03" 1, "cv09" 1, "cv10" 1;
 }
 
 @font-face {

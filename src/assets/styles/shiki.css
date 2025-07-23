@@ -45,22 +45,34 @@ html.dark .astro-code span {
 
   position: sticky;
   left: 0;
-  background: oklch(var(--background));
-  color: oklch(var(--content) / 0.35);
+  background: var(--background);
+  color: var(--surface-3);
 }
 
 .astro-code code .line.highlighted {
-  background-color: oklch(var(--surface)) !important;
+  background-color: var(--surface-2) !important;
   padding-left: 2px;
 }
 
 .astro-code code .line.highlighted span {
-  background-color: oklch(var(--surface)) !important;
+  background-color: var(--surface-2) !important;
 }
 
 .astro-code code .line.highlighted::before {
-  background-color: oklch(var(--surface)) !important;
-  border-left: 2px solid oklch(var(--accent));
+  background-color: var(--surface-2) !important;
+  border-left: 2px solid var(--accent);
   margin-left: -2px;
-  color: oklch(var(--content) / 0.7);
+  color: var(--content);
+}
+
+html.dark .astro-code code .line.highlighted {
+  background-color: var(--surface-1) !important;
+}
+
+html.dark .astro-code code .line.highlighted span {
+  background-color: var(--surface-1) !important;
+}
+
+html.dark .astro-code code .line.highlighted::before {
+  background-color: var(--surface-1) !important;
 }

@@ -28,7 +28,6 @@ const noLang = 'noLang' in meta;
   class:list={[
     ":uno:",
     "my-4",
-    "overflow-hidden",
     "border",
     "border-separator",
     "transition-colors",
@@ -38,7 +37,7 @@ const noLang = 'noLang' in meta;
 >
   {
     (title || copy) && (
-      <figcaption class="flex justify-between items-center text-xs leading-normal border-separator bg-surface text-balance transition-all p-2 px-4 border-b rounded-t-md">
+      <figcaption class="sticky top-0 z-10 flex justify-between items-center text-xs leading-normal border-separator bg-surface-1 text-balance transition-all p-2 px-4 border-b rounded-t-md">
         <p class="text-content transition-colors">{title}</p>
 
         {copy && (
