@@ -35,4 +35,6 @@ html.dark {
   --success: var(--green-500);
   --warning: var(--yellow-500);
   --danger: var(--red-500);
+
+  --navigation: color-mix(in oklch, var(--surface-1), var(--gray-dark-25) 2%);
 }
