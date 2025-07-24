@@ -35,6 +35,7 @@ code:not(pre code) {
 .mdx__ol li::before {
   content: counters(li, ".") ". ";
   margin-left: 0.125rem;
+  margin-right: 0.5rem;
   font-feature-settings: "tnum" 1;
 
   color: var(--accent);
