@@ -20,8 +20,8 @@ if (dataMeta) {
 }
 
 const title = meta.title;
-const copy = 'copy' in meta;
-const noLang = 'noLang' in meta;
+const copy = "copy" in meta;
+const noLang = "noLang" in meta;
 ---
 
 <figure
@@ -37,19 +37,21 @@ const noLang = 'noLang' in meta;
 >
   {
     (title || copy) && (
-      <figcaption class="sticky top-0 z-10 flex justify-between items-center text-xs leading-normal border-separator bg-surface-1 text-balance transition-all p-2 px-4 border-b rounded-t-md">
-        <p class="text-content transition-colors">{title}</p>
+      <figcaption class="sticky top-0 z-10 flex justify-between items-center text-xs leading-normal  bg-background  text-balance transition-all rounded-t-md ">
+        <div class="bg-surface-1 rounded-t-md border-separator border-b p-2 px-4">
+          <p class="text-content transition-colors">{title}</p>
 
-        {copy && (
-          <CopyCode code={dataCode} client:visible>
-            <Clipboard class=":uno: size-[14px] transition-colors text-content/70 group-hover:text-heading group-focus:text-heading flex-shrink-0" />
+          {copy && (
+            <CopyCode code={dataCode} client:visible>
+              <Clipboard class=":uno: size-[14px] transition-colors text-content/70 group-hover:text-heading group-focus:text-heading flex-shrink-0" />
 
-            <Check
-              slot="copied"
-              class=":uno: size-[14px] text-success flex-shrink-0"
-            />
-          </CopyCode>
-        )}
+              <Check
+                slot="copied"
+                class=":uno: size-[14px] text-success flex-shrink-0"
+              />
+            </CopyCode>
+          )}
+        </div>
       </figcaption>
     )
   }
@@ -61,9 +63,11 @@ const noLang = 'noLang' in meta;
         { hidden: noLang },
       ]}
     >
-      {props['data-language']}
+      {props["data-language"]}
     </p>
 
-    <pre class:list={['rounded-none', 'py-2', 'focus:outline-none', className]} {...props}><slot /></pre>
+    <pre
+      class:list={["rounded-none", "py-2", "focus:outline-none", className]}
+      {...props}><slot /></pre>
   </div>
 </figure>
