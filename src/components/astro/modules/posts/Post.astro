@@ -145,16 +145,16 @@ const lastModified = frontmatter.lastModified || publishedAt;
 <style>
   .reading__progress::-webkit-progress-bar {
     transition: background 150ms ease-out;
-    background-color: oklch(var(--background));
+    background-color: var(--background);
   }
   .reading__progress::-webkit-progress-value {
     transition: background 150ms ease-out;
-    background-color: oklch(var(--heading));
+    background-color: var(--heading);
   }
 
   .reading__progress::-moz-progress-bar {
     transition: background 150ms ease-out;
-    background-color: oklch(var(--heading));
+    background-color: var(--heading);
   }
 </style>
 
