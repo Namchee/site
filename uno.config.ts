@@ -14,6 +14,34 @@ export default defineConfig({
       mono: '"JetBrains Mono", ui-monospace',
       serif: 'Georgia, Garamond, Times New Roman',
     },
+    text: {
+      '2xl': {
+        fontSize: '36px',
+        lineHeight: '44px',
+        letterSpacing: '-0.02em',
+      },
+      'xl': {
+        fontSize: '24px',
+        lineHeight: '32px',
+        letterSpacing: '-0.01em',
+      },
+      lg: {
+        fontSize: '18px',
+        lineHeight: '28px',
+      },
+      'base': {
+        fontSize: '16px',
+        lineHeight: '28px',
+      },
+      sm: {
+        fontSize: '14px',
+        lineHeight: '20px',
+      },
+      xs: {
+        fontSize: '12px',
+        lineHeight: '20px',
+      },
+    },
     colors: {
       'heading': 'var(--heading)',
       'content': 'var(--content)',
@@ -34,7 +62,11 @@ export default defineConfig({
     },
   },
   presets: [
-    presetWind4(),
+    presetWind4({
+      preflights: {
+        reset: true,
+      },
+    })
   ],
   transformers: [
     transformerCompileClass(),

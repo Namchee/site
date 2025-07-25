@@ -35,9 +35,9 @@ html.dark {
 
   --accent: var(--indigo-400);
 
-  --success: var(--green-500);
-  --warning: var(--yellow-500);
-  --danger: var(--red-500);
+  --success: var(--green-400);
+  --warning: var(--yellow-400);
+  --danger: var(--red-400);
 
-  --navigation: color-mix(in oklch, var(--surface-1), var(--gray-dark-25) 2.5%);
+  --navigation: color-mix(in oklch, var(--surface-1), var(--gray-dark-25) 5%);
 }

@@ -30,13 +30,12 @@ const noLang = "noLang" in meta;
     "my-4",
     "transition-colors",
     "rounded-b",
-    "focus-within:border-content/25",
   ]}
 >
   {
     (title || copy) && (
-      <figcaption class="sticky top-0 left-0 z-10 flex justify-between items-center text-xs leading-normal bg-background text-balance transition-all overflow-hidden">
-        <div class="bg-surface-1 rounded-t-md border-separator border p-2 px-4 w-full border-collapse">
+      <figcaption class="sticky top-0 left-0 z-10 text-xs leading-normal bg-background text-balance transition-all overflow-hidden">
+        <div class="bg-surface-1 rounded-t-md border-separator border p-2 px-4 w-full border-collapse flex justify-between items-center">
           <p class="text-content transition-colors">{title}</p>
 
           {copy && (
@@ -65,7 +64,7 @@ const noLang = "noLang" in meta;
     </p>
 
     <pre
-      class:list={["rounded-none", "py-2", "focus:outline-none", "border-x border-b", "border-separator", "rounded-b", (!title && !copy) ? "rounded-t" : "", className]}
+      class:list={["rounded-none", "py-2", "border-x border-b", "border-separator", "rounded-b", (!title && !copy) ? "rounded-t" : "", className]}
       {...props}><slot /></pre>
   </div>
 </figure>

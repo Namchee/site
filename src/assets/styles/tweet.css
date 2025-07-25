@@ -7,21 +7,22 @@
   margin-left: auto !important;
   margin-right: auto !important;
 
-  transition: all 0.2s ease-out !important;
+  transition: all 0.2s cubic-bezier(.25, .46, .45, .94) !important;
 
   --tweet-border: 1px solid var(--separator) !important;
+  --tweet-twitter-icon-color: var(--content) !important;
+}
+
+.astro-tweet-theme a span:not([title^="@"]) {
+  color: var(--heading);
 }
 
 .astro-tweet-theme * {
-  transition: all 0.2s ease-out !important;
+  transition: all 0.2s cubic-bezier(.25, .46, .45, .94) !important;
 }
 
 html.dark .astro-tweet-theme {
   background: var(--surface-1) !important;
-  color: var(--heading) !important;
-}
-
-.astro-tweet-theme .brand {
   color: var(--heading) !important;
 }
 
@@ -34,7 +35,7 @@ html.dark .astro-tweet-theme {
   margin-left: auto !important;
   margin-right: auto !important;
 
-  --tweet-border: 1px solid var(--separator) !important;
+  transition: all 0.2s cubic-bezier(.25, .46, .45, .94) !important;
 }
 
 .bluesky-post-container .external-link {

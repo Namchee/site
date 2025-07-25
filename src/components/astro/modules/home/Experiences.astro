@@ -24,7 +24,7 @@ const experiences = [
       <li class=":uno: items-center grid gap-x-4 md:grid-cols-[10ch_1fr_max-content] grid-cols-[1fr_max-content]">
         <p class=":uno: flex items-center space-x-2 order-1 md:order-0 ml-auto">
           {exp.duration.toLowerCase() === 'current' && (
-            <Pulse class=":uno: -mt-[2.5px]" />
+            <Pulse />
           )}
           <span style="font-feature-settings: 'tnum' 1;">{exp.duration}</span>
         </p>

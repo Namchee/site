@@ -61,8 +61,8 @@ importers:
         specifier: ^66.1.4
         version: 66.1.4(eslint@9.28.0(jiti@2.4.2))(typescript@5.8.3)
       '@unocss/reset':
-        specifier: ^66.1.4
-        version: 66.1.4
+        specifier: ^66.3.3
+        version: 66.3.3
       '@unpic/astro':
         specifier: ^1.0.0
         version: 1.0.0(astro@5.9.1(@types/node@20.19.0)(jiti@2.4.2)(rollup@4.42.0)(tsx@4.19.4)(typescript@5.8.3)(yaml@2.8.0))
@@ -1462,9 +1462,6 @@ packages:
 
   '@unocss/preset-wind@66.3.3':
     resolution: {integrity: sha512-3Mxl/TDPcv8nNKdFe3WKdlXE6de+lCaaizEH86BILW3ZeyPU9aKzWcZIoxohla0a6zMxDQ2+Gf+7EwaOvpqo7Q==}
-
-  '@unocss/reset@66.1.4':
-    resolution: {integrity: sha512-lxLx1jw14wwgYWhO3c68hkh/f9UuGGmb97NsNOO9ZZ06yaafRiAxicUhCEU/FqjdVLKfoWEN9FNnGQbIpxi6lA==}
 
   '@unocss/reset@66.3.3':
     resolution: {integrity: sha512-VIeR/mIcCL89/1uA1KM1QCYca4aeIGqEHMTJL1nCD4v+7wk6XhNXhsp5gMIHo+V804SUSmATWaeHTiKpiFu7AQ==}
@@ -7143,8 +7140,6 @@ snapshots:
     dependencies:
       '@unocss/core': 66.3.3
       '@unocss/preset-wind3': 66.3.3
-
-  '@unocss/reset@66.1.4': {}
 
   '@unocss/reset@66.3.3': {}
 

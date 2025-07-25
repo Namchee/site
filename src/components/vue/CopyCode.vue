@@ -53,7 +53,7 @@ onBeforeUnmount(() => {
 
       <TooltipPortal>
         <TooltipContent :class="{
-          'text-xs rounded-md text-surface-1 shadow shadow py-2 tooltip__content select-none px-3 will-change-[transform,opacity] transition-colors': true,
+          'text-xs rounded-md text-surface-1 shadow shadow py-2 tooltip__content select-none px-3 will-change-[transform,opacity] transition-colors z-20': true,
           'bg-success text-[var(--gray-dark-25)]': copied,
           'bg-heading': !copied
         }" :side-offset="5">
@@ -65,7 +65,7 @@ onBeforeUnmount(() => {
             Copied!
           </template>
           <TooltipArrow :class="{
-            'fill-content': !copied,
+            'fill-heading': !copied,
             'fill-success': copied,
           }" :width="8" />
         </TooltipContent>
