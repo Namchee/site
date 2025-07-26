@@ -1,14 +1,36 @@
 ---
+import Callout from "./Callout.astro";
+
 const slot = await Astro.slots.render('default');
 const text = slot.trim();
-const trimmed = text.slice(3, text.length - 5).split('\n');
+console.log(text);
+const trimmed = text.slice(3, text.length - 4).split('\n');
+
+const calloutVariants = ['note', 'warning', 'danger'];
 
 const firstRow = trimmed[0];
-console.log(firstRow);
+let isCallout = false;
 
-console.log(slot);
+console.log(firstRow.slice(2, firstRow.length - 1).trim());
+
+if (firstRow[1] === '!' && calloutVariants.includes(firstRow.slice(2, firstRow.length - 1).trim().toLowerCase())) {
+  isCallout = true;
+}
+
+console.log(isCallout);
 ---
 
-<blockquote class=":uno: bg-surface font-serif text-xl text-heading p-6 transition-colors rounded-md md:-ml-4 md:w-[calc(100%+32px)]">
-  “{trimmed.slice(1).join('\n')}”
+{isCallout ? <Callout /> : <blockquote class=":uno: transition-colors">
+  <p class="before:content-['“'] before:ml-[-12px] before:mr-[1px] after:content-['”'] after:ml-[1px] text-heading/80 font-serif text-xl">
+    {trimmed.slice(1).join('\n')}
+  </p>
+
+  <div class="text-xs mt-4 w-full flex justify-end">
+    <p>
+          {firstRow.slice(1, firstRow.length - 1)}
+
+    </p>
+  </div>
 </blockquote>
+}
+

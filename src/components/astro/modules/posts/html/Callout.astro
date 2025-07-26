@@ -1,0 +1,19 @@
+---
+import { cva } from "class-variance-authority";
+
+export const callouts = cva(
+  ":uno: transition-colors md:-ml-4 md:w-[calc(100%+32px)]",
+  {
+    variants: {
+      variant: {
+        note: '',
+        warning: '',
+        danger: '',
+      },
+    },
+    defaultVariants: {
+      variant: "note",
+    },
+  },
+);
+---
