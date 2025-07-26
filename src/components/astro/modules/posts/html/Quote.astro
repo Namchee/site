@@ -1,9 +1,14 @@
 ---
-const text = await Astro.slots.render('default');
+const slot = await Astro.slots.render('default');
+const text = slot.trim();
+const trimmed = text.slice(3, text.length - 5).split('\n');
 
-console.log(text);
+const firstRow = trimmed[0];
+console.log(firstRow);
+
+console.log(slot);
 ---
 
-<blockquote class=":uno: bg-surface text-content p-6 transition-colors rounded-md md:-ml-4 md:w-[calc(100%+32px)]">
-  <slot />
+<blockquote class=":uno: bg-surface font-serif text-xl text-heading p-6 transition-colors rounded-md md:-ml-4 md:w-[calc(100%+32px)]">
+  “{trimmed.slice(1).join('\n')}”
 </blockquote>

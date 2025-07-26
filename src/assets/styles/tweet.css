@@ -13,7 +13,7 @@
   --tweet-twitter-icon-color: var(--content) !important;
 }
 
-.astro-tweet-theme a span:not([title^="@"]) {
+.astro-tweet-theme a span[title]:not([title^="@"]) {
   color: var(--heading);
 }
 
@@ -35,6 +35,10 @@ html.dark .astro-tweet-theme {
   margin-left: auto !important;
   margin-right: auto !important;
 
+  transition: all 0.2s cubic-bezier(.25, .46, .45, .94) !important;
+}
+
+.bluesky-post-container * {
   transition: all 0.2s cubic-bezier(.25, .46, .45, .94) !important;
 }
 

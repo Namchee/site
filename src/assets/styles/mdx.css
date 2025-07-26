@@ -6,9 +6,7 @@ code:not(pre code) {
   color: var(--accent);
   border: 1px solid var(--separator);
 
-  transition-property: color, background-color, border-color, text-decoration-color, fill, stroke;
-  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
-  transition-duration: 150ms;
+  transition: all 0.2s ease-out;
 }
 
 .MathJax:not([display="true"]) {
@@ -39,6 +37,7 @@ code:not(pre code) {
   font-feature-settings: "tnum" 1;
 
   color: var(--accent);
+  transition: color 0.2s ease-out;
 }
 
 .mdx__ol svg {

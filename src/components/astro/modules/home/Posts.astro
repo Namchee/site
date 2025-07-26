@@ -21,7 +21,7 @@ const posts = (await getCollection('posts'))
           {post.data.title}
         </AppLink>
 
-        <p class=":uno: text-sm md:text-base leading-[1.75]">{post.data.publishedAt.toLocaleString('en-GB', {
+        <p class=":uno: text-sm md:text-base">{post.data.publishedAt.toLocaleString('en-GB', {
           year: '2-digit',
           month: 'short',
           day: 'numeric',

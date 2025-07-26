@@ -7,11 +7,11 @@ body {
 }
 
 html.dark img {
-  filter: brightness(.75) contrast(1.1);
+  filter: brightness(.8) contrast(1.1);
 }
 
 *::selection {
-  background-color: oklch(var(--content) / 0.125);
+  background-color: color-mix(in oklch, var(--content), transparent 85%);
 }
 
 ::-webkit-scrollbar {
@@ -24,7 +24,8 @@ html.dark img {
 }
 
 ::-webkit-scrollbar-thumb {
-  background-color: rgba(111,111,111, 0.5);
+  background-color: color-mix(in oklch, var(--content), transparent 50%);
+  transition: background-color 0.2s ease-out;
   border-radius: 20px;
 }
 
