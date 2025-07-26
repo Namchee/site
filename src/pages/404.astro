@@ -1,5 +1,8 @@
 ---
 import "@/assets/styles/global.css";
+import "@/assets/styles/colors.css";
+import "@/assets/styles/theme.css";
+import "@/assets/styles/fonts.css";
 
 import AppLink from "@/components/astro/ui/AppLink.astro";
 import TextLink from "@/components/astro/ui/TextLink.astro";
@@ -19,6 +22,13 @@ import TextLink from "@/components/astro/ui/TextLink.astro";
       class=":uno: favicon"
     />
     <link rel="sitemap" href="/sitemap-index.xml" />
+    <link
+      rel="preload"
+      href="/fonts/inter.woff2"
+      as="font"
+      type="font/woff2"
+      crossorigin
+    />
     <title>404 &mdash; Not Found</title>
     <script is:inline>
       // same as base layout
@@ -65,12 +75,12 @@ import TextLink from "@/components/astro/ui/TextLink.astro";
         <h1 class=":uno: text-heading tracking-tight text-7xl font-medium">404</h1>
 
         <p class=":uno: text-xl mt-8 text-balance text-center">
-          Yes, page isn't here so you're lost. <TextLink href="/"
+          Yes, page isn't here so you're lost. <TextLink class="underline-offset-6" href="/"
             >Go home</TextLink
           >
         </p>
 
-        <AppLink href='#' class="text-xs relative top-16 lucky__try">Feeling lucky instead?</AppLink>
+        <AppLink href='#' class="text-xs relative top-16 hover:text-heading transition-colors lucky__try">Feeling lucky instead?</AppLink>
       </div>
     </div>
 

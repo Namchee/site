@@ -14,7 +14,7 @@ const description =
 <Layout title={title} description={description} og="og-bookshelf">
   <section class=":uno: grid grid-cols-12 gap-4">
     <h1
-      class=":uno: col-start-1 col-end-13 md:col-end-4 text-2xl text-heading tracking-tight font-semibold transition-colors"
+      class=":uno: col-start-1 col-end-13 md:col-end-4 text-xl text-heading font-semibold transition-colors"
     >
       Library
     </h1>
@@ -40,7 +40,7 @@ const description =
       const bookList = book.map((b) => (
         <li class=":uno: justify-between md:grid md:grid-cols-[max-content_auto]">
           <AppLink
-            class=":uno: group text-heading/85 transition-colors items-center hover:text-heading focus:text-heading flex text-balance font-medium -tracking-[0.0125em] space-x-1"
+            class=":uno: group text-heading/80 transition-colors items-center hover:text-heading focus:text-heading flex text-balance font-medium space-x-1"
             href={b.link}
           >
             <span class="flex-1">{b.title}</span>
@@ -58,7 +58,7 @@ const description =
 
       return (
         <section class=":uno: grid grid-cols-12 gap-4">
-          <p class=":uno: font-semibold text-sm col-start-1 col-end-13 md:col-end-4">
+          <p class=":uno: font-semibold tracking-tight text-heading col-start-1 col-end-13 md:col-end-4">
             {year}
           </p>
 

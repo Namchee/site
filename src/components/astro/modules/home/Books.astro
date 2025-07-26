@@ -24,7 +24,7 @@ const books = await getCurrentlyReadBooks();
           <div class=":uno: flex flex-col justify-center">
             <AppLink
               href={book.url}
-              class=":uno: group text-heading/85 font-medium transition-colors hover:text-heading focus:text-heading inline-flex items-center leading-[1.75] space-x-1 w-fit"
+              class=":uno: group text-heading/80 font-medium transition-colors hover:text-heading focus:text-heading inline-flex items-center leading-[1.75] space-x-1 w-fit"
             >
               <span>{book.title}</span>
 
@@ -35,7 +35,7 @@ const books = await getCurrentlyReadBooks();
             </AppLink>
 
             <p class=":uno: text-sm leading-normal italic">{book.subtitle}</p>
-            <p class=":uno: mt-4 text-heading/85 transition-colors text-sm">{book.author.join(" & ")}</p>
+            <p class=":uno: mt-4 text-heading/80 transition-colors text-sm">{book.author.join(" & ")}</p>
           </div>
         </li>
       );

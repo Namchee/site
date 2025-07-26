@@ -31,7 +31,7 @@ export default defineConfig({
       },
       'base': {
         fontSize: '16px',
-        lineHeight: '28px',
+        lineHeight: '1.65',
       },
       sm: {
         fontSize: '14px',
