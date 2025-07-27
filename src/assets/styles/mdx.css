@@ -9,6 +9,14 @@ code:not(pre code) {
   transition: all 150ms var(--default-transition-timingFunction);
 }
 
+.callout__warning code:not(pre code) {
+  color: var(--warning);
+}
+
+.callout__danger code:not(pre code) {
+  color: var(--danger);
+}
+
 .MathJax:not([display="true"]) {
   display: inline !important;
 }

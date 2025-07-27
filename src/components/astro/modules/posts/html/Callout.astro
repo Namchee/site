@@ -14,9 +14,9 @@ const container = cva(
   {
     variants: {
       variant: {
-        note: "bg-[var(--indigo-500)]/10 border-[var(--indigo-500)] text-accent",
-        warning: "bg-warning/10 border-warning text-warning",
-        danger: "bg-danger/10 border-danger text-danger",
+        note: ":uno: bg-[var(--indigo-500)]/10 border-[var(--indigo-500)] text-accent",
+        warning: ":uno: bg-warning/10 border-warning text-warning",
+        danger: ":uno: bg-danger/10 border-danger text-danger",
       },
     },
     defaultVariants: {
@@ -48,7 +48,7 @@ const icon = {
 }
 ---
 
-<div class={container({ variant })}>
+<div class:list={[container({ variant }), `callout__${variant}`]}>
   <div class={iconContainer({ variant })}>
     <Icon name={`lucide:${icon[variant]}`} class="size-4 text-white" />
   </div>
