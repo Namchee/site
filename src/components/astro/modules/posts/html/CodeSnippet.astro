@@ -64,7 +64,7 @@ const noLang = "noLang" in meta;
     </p>
 
     <pre
-      class:list={["rounded-none", "py-2", "border-x border-b", "border-separator", "rounded-b", "transition-colors", (!title && !copy) ? "rounded-t" : "", className]}
+      class:list={["rounded-none", "py-2", "border-x border-b", "border-separator", "rounded-b", "transition-colors", "focus:outline-none", (!title && !copy) ? "rounded-t" : "", className]}
       {...props}><slot /></pre>
   </div>
 </figure>

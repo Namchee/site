@@ -9,6 +9,8 @@ html.dark .astro-code span {
   font-style: var(--shiki-dark-font-style) !important;
   font-weight: var(--shiki-dark-font-weight) !important;
   text-decoration: var(--shiki-dark-text-decoration) !important;
+
+  transition: all 150ms var(--default-transition-timingFunction);
 }
 
 .astro-code {

@@ -10,13 +10,13 @@ interface Props {
 const { variant } = Astro.props;
 
 const container = cva(
-  ":uno: relative transition-colors p-4 my-8! -ml-[15px] w-[calc(100%+30px)] border-l-2 rounded-r-md",
+  ":uno: relative transition-colors p-4 my-4 -ml-[15px] w-[calc(100%+30px)] border-l-2 rounded-r-md transition-colors",
   {
     variants: {
       variant: {
-        note: "bg-accent/10 border-accent text-accent",
+        note: "bg-[var(--indigo-500)]/10 border-[var(--indigo-500)] text-accent",
         warning: "bg-warning/10 border-warning text-warning",
-        danger: "bg-danger border-danger text-danger",
+        danger: "bg-danger/10 border-danger text-danger",
       },
     },
     defaultVariants: {
@@ -25,14 +25,14 @@ const container = cva(
   }
 );
 
-const icon = cva(
-  ":uno: absolute size-[28px] rounded-full -top-[14px] -left-[15px] grid place-items-center transition-colors",
+const iconContainer = cva(
+  ":uno: absolute size-[28px] rounded-full -top-[14px] -left-[15px] grid place-items-center transition-colors transition-colors",
   {
     variants: {
       variant: {
         note: "bg-accent dark:bg-[var(--indigo-500)]",
-        warning: '',
-        danger: '',
+        warning: 'bg-warning',
+        danger: 'bg-danger',
       },
     },
     defaultVariants: {
@@ -40,11 +40,17 @@ const icon = cva(
     },
   }
 );
+
+const icon = {
+  note: "lightbulb",
+  warning: "alert-triangle",
+  danger: "circle-x",
+}
 ---
 
 <div class={container({ variant })}>
-  <div class={icon({ variant })}>
-    <Icon name="lucide:lightbulb" class="size-4 text-white" />
+  <div class={iconContainer({ variant })}>
+    <Icon name={`lucide:${icon[variant]}`} class="size-4 text-white" />
   </div>
 
   <slot />

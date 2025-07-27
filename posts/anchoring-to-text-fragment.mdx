@@ -154,7 +154,7 @@ If you don't have control over the content or simply want an easy way to generat
 Since text fragment occupies the same hashbang spot as element fragment, you might be wondering if it's possible to combine them both. Actually, you can!
 You only need to append the text fragment directive after element fragment. For example:
 
-<TextLink class="font-mono text-heading text-center my-4" href="#jumping-to-text:~:text=since,scale%20well">#jumping-to-text:~:text=since,scale%20well</TextLink>
+<TextLink class="font-mono text-heading text-center" href="#jumping-to-text:~:text=since,scale%20well">#jumping-to-text:~:text=since,scale%20well</TextLink>
 
 In this case, the element fragment acts as fallback for text fragment directive if the browser cannot find matching text with the text fragment directive
 as demonstrated by [this link](#interaction-with-element-fragment:~:text=wumbologic), where I searched the text `wumbologic` while falling back to this section.
