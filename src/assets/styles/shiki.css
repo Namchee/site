@@ -47,6 +47,8 @@ html.dark .astro-code span {
   left: 0;
   background: var(--background);
   color: var(--surface-3);
+
+  transition: all 150ms var(--default-transition-timingFunction);
 }
 
 .astro-code code .line.highlighted {

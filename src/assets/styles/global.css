@@ -25,7 +25,7 @@ html.dark img {
 
 ::-webkit-scrollbar-thumb {
   background-color: color-mix(in oklch, var(--content), transparent 50%);
-  transition: background-color 0.2s ease-out;
+  transition: background-color 150ms var(--default-transition-timingFunction);
   border-radius: 20px;
 }
 
@@ -42,7 +42,7 @@ html.dark img {
   display: flex;
   flex-direction: column;
 
-  gap: 16px;
+  gap: 20px;
 }
 
 @keyframes scaleIn {

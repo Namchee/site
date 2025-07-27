@@ -7,13 +7,13 @@ const raw = slot.trim();
 // Trim wrapping ``` and split lines
 const lines = raw.slice(3, -4).split("\n");
 
-const calloutVariants = ["note", "warning", "danger"];
+const calloutVariants = ["note", "warning", "danger"] as const;
 
 const firstLine = lines[0];
 const isAttribution = firstLine.startsWith("[");
 const isCallout =
   firstLine[1] === "!" &&
-  calloutVariants.includes(firstLine.slice(2, -1).trim().toLowerCase());
+  calloutVariants.includes(firstLine.slice(2, -1).trim().toLowerCase() as typeof calloutVariants[number]);
 
 const actualContent = isAttribution ? lines.slice(1).join("\n") : lines.join("\n");
 
@@ -27,7 +27,7 @@ if (isAttribution) {
 ---
 
 {isCallout ? (
-  <Callout />
+  <Callout variant={firstLine.slice(2, -1).trim().toLowerCase() as typeof calloutVariants[number]} set:html={actualContent} />
 ) : (
   <blockquote class=":uno: my-8!">
     <p

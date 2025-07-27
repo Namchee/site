@@ -35,7 +35,7 @@ const noLang = "noLang" in meta;
   {
     (title || copy) && (
       <figcaption class="sticky top-0 left-0 z-10 text-xs leading-normal bg-background text-balance transition-all overflow-hidden">
-        <div class="bg-surface-1 rounded-t-md border-separator border p-2 px-4 w-full border-collapse flex justify-between items-center">
+        <div class="bg-surface-1 rounded-t-md border-separator border p-2 px-4 w-full border-collapse flex justify-between items-center transition-colors">
           <p class="text-content transition-colors">{title}</p>
 
           {copy && (
@@ -64,7 +64,7 @@ const noLang = "noLang" in meta;
     </p>
 
     <pre
-      class:list={["rounded-none", "py-2", "border-x border-b", "border-separator", "rounded-b", (!title && !copy) ? "rounded-t" : "", className]}
+      class:list={["rounded-none", "py-2", "border-x border-b", "border-separator", "rounded-b", "transition-colors", (!title && !copy) ? "rounded-t" : "", className]}
       {...props}><slot /></pre>
   </div>
 </figure>

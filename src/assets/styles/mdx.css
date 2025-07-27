@@ -6,7 +6,7 @@ code:not(pre code) {
   color: var(--accent);
   border: 1px solid var(--separator);
 
-  transition: all 0.2s ease-out;
+  transition: all 150ms var(--default-transition-timingFunction);
 }
 
 .MathJax:not([display="true"]) {
