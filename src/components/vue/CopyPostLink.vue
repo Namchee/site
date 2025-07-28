@@ -18,7 +18,7 @@ function copyLink() {
   <ToastProvider>
     <button
       @click="copyLink"
-      class=":uno: group cursor-pointer"
+      class=":uno: group cursor-pointer mr-4"
       title="Copy Post Link to Clipboard"
     >
       <slot />
