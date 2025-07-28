@@ -68,7 +68,8 @@
     "@iconify/vue": "^5.0.0",
     "@vueuse/core": "^10.11.0",
     "class-variance-authority": "^0.7.0",
-    "reka-ui": "^2.3.1"
+    "reka-ui": "^2.3.1",
+    "vaul-vue": "^0.4.1"
   },
   "packageManager": "pnpm@10.11.0",
   "pnpm": {

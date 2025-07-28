@@ -4,15 +4,18 @@ import { onBeforeUnmount, ref } from 'vue';
 import { TooltipProvider, TooltipArrow, TooltipRoot, TooltipPortal, TooltipTrigger, TooltipContent } from 'reka-ui';
 
 const props = defineProps({
-  code: { type: String, required: true },
+  value: { type: String, required: true },
+  className: { type: String, default: '' },
 });
 
 const open = ref(false);
 const copied = ref(false);
 const timeoutId = ref<number>(-1);
 
+const baseClass = `group ${props.className}`;
+
 function copyCode() {
-  navigator.clipboard.writeText(props.code);
+  navigator.clipboard.writeText(props.value);
 
   copied.value = true;
 
@@ -38,7 +41,7 @@ onBeforeUnmount(() => {
     <TooltipRoot :open="open || copied" @update:open="(o) => open = o" :delay-duration="100">
       <TooltipTrigger as-child>
         <button @click="copyCode" :disabled="open" :class="{
-          'group': true,
+          [baseClass]: true,
           'cursor-default': copied,
           'cursor-pointer': !copied,
         }">
@@ -46,7 +49,7 @@ onBeforeUnmount(() => {
             <slot />
           </template>
           <template v-else>
-            <slot name="copied" />
+            <slot name="after-copy-icon" />
           </template>
         </button>
       </TooltipTrigger>
@@ -58,11 +61,15 @@ onBeforeUnmount(() => {
           'bg-heading': !copied
         }" :side-offset="5">
           <template v-if="!copied">
-            Copy to Clipboard
+            <slot name="before-copy-label">
+              Copy to Clipboard
+            </slot>
           </template>
 
           <template v-else>
-            Copied!
+            <slot name="after-copy-label">
+              Copied!
+            </slot>
           </template>
           <TooltipArrow :class="{
             'fill-heading': !copied,
