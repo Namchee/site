@@ -10,14 +10,14 @@ function backToTop() {
 
 <template>
   <div
-    class=":uno: fixed border border-navigation-border bottom-8 right-8 z-10 grid place-items-center p-1 shadow bg-navigation-background transition-colors text-content rounded-md shadow-md md:hidden"
+    class=":uno: fixed border border-separator bottom-8 right-8 z-20 grid place-items-center p-1 shadow bg-background dark:bg-[var(--navigation)] transition-colors text-content rounded-md shadow-md md:hidden"
   >
     <TooltipProvider :delay-duration="100">
       <TooltipRoot>
         <TooltipTrigger as-child>
           <button
             @click="backToTop"
-            class=":uno: w-[36px] h-[36px] lg:w-auto lg:h-auto grid place-items-center transition-colors hover:bg-navigation-accent focus:bg-navigation-accent lg:hover:bg-transparent rounded-md lg:focus:bg-transparent"
+            class=":uno: size-[36px] lg:w-auto lg:h-auto grid place-items-center transition-colors hover:bg-surface-2 focus:bg-surface-2 lg:hover:bg-transparent rounded-md lg:focus:bg-transparent"
           >
             <slot />
           </button>

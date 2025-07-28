@@ -22,13 +22,13 @@ onMounted(() => {
 
 <template>
   <div
-    class=":uno: border border-navigation-border bottom-8 left-8 z-10 grid place-items-center p-1 md:p-0 md:border-none shadow md:shadow-none md:bg-transparent bg-navigation-background md:top-32 md:bottom-unset transition-colors text-content rounded-md shadow-md fixed">
+    class=":uno: border border-separator bottom-8 left-8 z-10 grid place-items-center p-1 md:p-0 md:border-none shadow md:shadow-none md:bg-transparent bg-background dark:bg-[var(--navigation)] md:top-32 md:bottom-unset transition-colors text-content rounded-md shadow-md fixed">
     <TooltipProvider :delay-duration="100">
       <TooltipRoot>
         <DropdownMenuRoot :modal="false" :open="isOpen" @update:open="(open) => isOpen = open">
           <TooltipTrigger as-child>
             <DropdownMenuTrigger
-              class=":uno: w-[36px] h-[36px] xl:w-auto xl:h-auto grid place-items-center transition-colors hover:bg-surface focus:bg-surface rounded-md xl:hover:bg-transparent xl:focus:bg-transparent">
+              class=":uno: size-[36px] xl:w-auto xl:h-auto grid place-items-center transition-colors hover:bg-surface-2 focus:bg-surface-2 rounded-md xl:hover:bg-transparent xl:focus:bg-transparent">
               <slot name="button" />
             </DropdownMenuTrigger>
           </TooltipTrigger>

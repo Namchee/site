@@ -62,3 +62,23 @@ html.dark img {
     display: none;
   }
 }
+
+.callout__note a {
+  color: var(--accent);
+  text-decoration-color: color-mix(in oklch, var(--accent), transparent 80%);
+}
+
+.callout__note a:hover {
+  color: var(--accent);
+  text-decoration-color: var(--accent);
+}
+
+.callout__note a:focus {
+  color: var(--accent);
+  text-decoration-color: var(--accent);
+}
+
+.callout__note a:active {
+  color: var(--accent);
+  text-decoration-color: var(--accent);
+}
