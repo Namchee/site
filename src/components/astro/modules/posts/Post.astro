@@ -10,7 +10,7 @@ import type { MarkdownFile } from "@/plugins/remark/types";
 import Badge from "@/components/astro/ui/Badge.astro";
 import BackToTop from "@/components/vue/BackToTop.vue";
 
-import TableOfContentsWrapper from "@/components/vue/TableOfContents.vue";
+import TableOfContentsWrapper from "@/components/vue/MobileTableOfContents.vue"
 import TableOfContents from "./TableOfContents.astro";
 
 import BackButton from "./BackButton.astro";
@@ -31,10 +31,9 @@ const lastModified = frontmatter.lastModified || publishedAt;
 
 
 <article class=":uno: grid grid-cols-12 gap-4">
-  <TableOfContentsWrapper client:load>
-    <Icon slot="button" name="lucide:table-of-contents" class="w-5 h-auto" />
+  <TableOfContentsWrapper client:visible>
+    <Icon slot="button" name="lucide:table-of-contents" class=":uno: w-5 h-auto" />
     <TableOfContents slot="toc" headings={frontmatter.headings} />
-    <Icon slot="btt" name="lucide:corner-left-up" class=":uno: w-4 h-auto" />
   </TableOfContentsWrapper>
 
   <BackToTop client:visible>
