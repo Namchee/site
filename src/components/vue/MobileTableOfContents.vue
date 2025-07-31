@@ -1,50 +1,54 @@
 <script setup lang="ts">
-import { DrawerContent, DrawerHandle, DrawerOverlay, DrawerPortal, DrawerRoot, DrawerTrigger } from 'vaul-vue'
+import { ref } from 'vue';
+
+import { TooltipProvider, TooltipRoot, TooltipTrigger, TooltipContent, TooltipArrow, TooltipPortal } from 'reka-ui';
+import { DrawerContent, DrawerHandle, DrawerOverlay, DrawerPortal, DrawerRoot, DrawerTrigger } from 'vaul-vue';
+
+const open = ref(false);
 </script>
 
 <template>
-  <DrawerRoot should-scale-background>
-    <DrawerTrigger
-      class="rounded-full bg-white px-4 py-2.5 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50"
-    >
-      Open Drawer
-    </DrawerTrigger>
-    <DrawerPortal>
-      <DrawerOverlay class="fixed bg-black/40 inset-0" />
-      <DrawerContent
-        class="bg-gray-100 flex flex-col rounded-t-[10px] h-full mt-24 max-h-[96%] fixed bottom-0 left-0 right-0"
-      >
-        <div class="p-4 bg-white rounded-t-[10px] flex-1">
-          <DrawerHandle data-testid="handle" class="mb-8 mt-2" />
+  <div
+    class=":uno: fixed border border-separator bottom-8 left-8 z-20 grid place-items-center p-1 shadow bg-background dark:bg-[var(--navigation)] transition-colors text-content rounded-md shadow-md md:hidden">
+    <TooltipProvider :delay-duration="100">
+      <DrawerRoot :open="open" @update:open="(o) => open = o">
+        <TooltipRoot>
+          <TooltipTrigger as-child>
+            <DrawerTrigger
+              focus
+              class=":uno: size-[36px] xl:w-auto xl:h-auto grid place-items-center transition-colors hover:bg-surface-2 focus:bg-surface-2 rounded-md">
+              <slot name="button" />
 
-          <div class="max-w-md mx-auto">
-            <h2 id="radix-:R3emdaH1:" class="font-medium mb-4">
-              Drawer for Vue.
-            </h2>
-            <p class="text-gray-600 mb-2">
-              This component can be used as a Dialog replacement on mobile and tablet devices.
-            </p>
-            <p class="text-gray-600 mb-2">
-              It comes unstyled, has gesture-driven animations, and is made by
-              <a href="https://emilkowal.ski/" class="underline" target="_blank">Emil Kowalski</a>.
-            </p>
-            <p class="text-gray-600 mb-8">
-              It uses
-              <a
-                href="https://www.radix-ui.com/docs/primitives/components/dialog"
-                class="underline"
-                target="_blank"
-              >Radix's Dialog primitive</a>
-              under the hood and is inspired by
-              <a
-                href="https://twitter.com/devongovett/status/1674470185783402496"
-                class="underline"
-                target="_blank"
-              >this tweet.</a>
-            </p>
-          </div>
-        </div>
-      </DrawerContent>
-    </DrawerPortal>
-  </DrawerRoot>
+            </DrawerTrigger>
+          </TooltipTrigger>
+
+          <TooltipPortal>
+            <TooltipContent :collision-padding="32" :side-offset="4"
+              class=":uno: text-sm rounded-md shadow py-2 tooltip__content bg-heading text-surface-1 select-none px-3 will-change-[transform,opacity]">
+              <p>Table of Contents</p>
+
+              <TooltipArrow :width="8" class="fill-content" />
+            </TooltipContent>
+          </TooltipPortal>
+        </TooltipRoot>
+
+        <DrawerPortal>
+          <DrawerOverlay class=":uno: fixed bg-black w-screen h-screen z-30 bg-opacity-50 backdrop-blur" />
+
+          <DrawerContent
+            class="bg-background flex flex-col rounded-t-md shadow max-h-3/4 fixed bottom-0 left-0 right-0 z-30 p-4"
+            @click="() => open = false"
+            @closeAutoFocus="(e) => e.preventDefault()"
+          >
+            <DrawerHandle class="bg-surface-2! hover:bg-surface-3 transition-colors" />
+
+            <div class="p-4">
+              <slot name="toc" />
+            </div>
+          </DrawerContent>
+        </DrawerPortal>
+      </DrawerRoot>
+    </TooltipProvider>
+  </div>
+
 </template>

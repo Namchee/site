@@ -215,7 +215,7 @@ watchEffect(() => {
     <DialogPortal>
       <DialogOverlay
         @click="visible = false"
-        class=":uno: fixed bg-background w-screen h-screen z-20 dialog__overlay bg-opacity-50 backdrop-blur"
+        class=":uno: fixed bg-[var(--gray-dark-950)] w-screen h-screen z-30 dialog__overlay bg-opacity-50 backdrop-blur"
       />
       <DialogContent
         class=":uno: fixed border border-separator bg-background shadow rounded-md dialog__content w-4/5 max-w-md z-30 focus:outline-none"
