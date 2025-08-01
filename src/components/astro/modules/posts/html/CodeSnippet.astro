@@ -4,6 +4,8 @@ import Copy from "@/components/vue/CopyButton.vue";
 import Clipboard from "@/components/astro/icons/Clipboard.astro";
 import Check from "@/components/astro/icons/Check.astro";
 
+import { Icon } from "astro-icon/components";
+
 const meta: Record<string, string> = {};
 const {
   "data-meta": dataMeta,
@@ -19,24 +21,34 @@ if (dataMeta) {
   });
 }
 
+const langIconMap = {
+  js: "file-type-js",
+  ts: "file-type-typescript",
+  astro: "file-type-astro",
+  html: "file-type-htmlhint",
+  docker: "file-type-docker",
+};
+
 const title = meta.title;
 const copy = "copy" in meta;
 const noLang = "noLang" in meta;
 ---
 
-<figure
-  class:list={[
-    ":uno:",
-    "my-4",
-    "transition-colors",
-    "rounded-b",
-  ]}
->
+<figure class:list={[":uno:", "my-4", "transition-colors", "rounded-b"]}>
   {
     (title || copy) && (
-      <figcaption class="sticky top-0 left-0 z-10 text-xs leading-normal bg-background text-balance transition-all overflow-hidden">
-        <div class="bg-surface-1 rounded-t-md border-separator border p-2 px-4 w-full border-collapse flex justify-between items-center transition-colors">
-          <p class="text-content transition-colors">{title}</p>
+      <figcaption class=":uno: sticky top-0 left-0 z-10 text-xs leading-normal bg-background text-balance transition-all overflow-hidden">
+        <div class=":uno: bg-surface-1 rounded-t-md border-separator border p-2 px-4 w-full border-collapse flex justify-between items-center transition-colors">
+          <div class=":uno: flex items-center gap-2">
+            {langIconMap[props["data-language"]] && (
+              <Icon
+                name={`vscode-icons:${langIconMap[props["data-language"]]}`}
+                class=":uno: size-4 transition-colors shrink-0"
+              />
+            )}
+
+            <p class=":uno: text-content transition-colors">{title}</p>
+          </div>
 
           {copy && (
             <Copy className=":uno:" value={dataCode} client:visible>
@@ -64,7 +76,17 @@ const noLang = "noLang" in meta;
     </p>
 
     <pre
-      class:list={["rounded-none", "py-2", "border-x border-b", "border-separator", "rounded-b", "transition-colors", "focus:outline-none", (!title && !copy) ? "rounded-t" : "", className]}
+      class:list={[
+        "rounded-none",
+        "py-2",
+        "border-x border-b",
+        "border-separator",
+        "rounded-b",
+        "transition-colors",
+        "focus:outline-none",
+        !title && !copy ? "rounded-t" : "",
+        className,
+      ]}
       {...props}><slot /></pre>
   </div>
 </figure>

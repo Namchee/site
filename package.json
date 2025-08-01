@@ -22,6 +22,7 @@
     "@astrojs/vue": "^5.1.0",
     "@iconify-json/lucide": "^1.2.10",
     "@iconify-json/simple-icons": "^1.1.105",
+    "@iconify-json/vscode-icons": "^1.2.23",
     "@namchee/astro-subfont": "^0.1.0",
     "@namchee/eslint-config": "^2.1.0",
     "@shikijs/transformers": "^3.6.0",

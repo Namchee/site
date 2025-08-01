@@ -19,6 +19,25 @@ import DescriptionItem from '@/components/astro/modules/posts/html/DescriptionIt
 
 Lorem ipsum dolor sit amet consectetur. Vitae amet tortor bibendum sit cursus et nisi non. Sagittis aliquet augue purus dignissim. Sodales pellentesque felis eleifend tristique molestie. **Accumsan amet erat mauris** consequat urna fames felis et sed.
 
+```docker title=This is a sample code snippet, copyable
+FROM python:3.12
+WORKDIR /usr/local/app
+
+# Install the application dependencies
+COPY requirements.txt ./
+RUN pip install --no-cache-dir -r requirements.txt
+
+# Copy in the source code
+COPY src ./src
+EXPOSE 5000
+
+# Setup an app user so the container doesn't run as the root user
+RUN useradd app
+USER app
+
+CMD ["uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "8080"]
+```
+
 Diam nisl sit volutpat est pellentesque aliquet porttitor egestas commodo. Purus vitae egestas nunc turpis urna placerat proin dui mi. Iaculis sed in dui nisl. Hendrerit odio lectus enim vitae euismod enim. Urna lorem scelerisque nunc leo nunc odio mauris sed sed.
 
 ![Image by Dude from Unsplash](https://res.cloudinary.com/namchee/image/upload/v1718288376/posts/test-page/banner.jpg)

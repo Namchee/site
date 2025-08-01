@@ -28,6 +28,7 @@ Nice, that's one feature down! Suddenly, you realized that you *might* need to u
 else and duplicating the function is a no-go since you just read the [Clean Code](https://www.amazon.com/Clean-Code-Handbook-Software-Craftsmanship/dp/0132350882) book.
 A brilliant idea pops up on your head:
 
+> [You]
 > Hey, why don't I create a file that stores these small, reusable functions that can be imported from any files?
 
 You finally extracted this function to a separate file that you call `util.ts`, thus mark the starting point of *utility* or
@@ -213,6 +214,7 @@ There are two ways to organize your utilities without grouping them into a singl
     From the example above, we can group `toSnakeCase` and `capitalizeWords` into a utility module called `string.ts`
     as they both deals with strings, `shuffleArray` into a module called `array.ts`, etc.
 
+    > [!NOTE]
     > You might be wondering on how to determine the newly separated module name.
     > The thing is, you can name them whatever you want as long as its not something generic like `util(s)`, `helper`, `lib`, `common`, `handler`, and other similar words.
 
