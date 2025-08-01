@@ -10,7 +10,7 @@ import type { MarkdownFile } from "@/plugins/remark/types";
 import Badge from "@/components/astro/ui/Badge.astro";
 import BackToTop from "@/components/vue/BackToTop.vue";
 
-import TableOfContentsWrapper from "@/components/vue/MobileTableOfContents.vue"
+import MobileToC from "@/components/vue/MobileTableOfContents.vue"
 import TableOfContents from "./TableOfContents.astro";
 
 import BackButton from "./BackButton.astro";
@@ -30,10 +30,10 @@ const lastModified = frontmatter.lastModified || publishedAt;
 ---
 
 <article class=":uno: grid grid-cols-12 gap-4">
-  <TableOfContentsWrapper client:visible>
-    <Icon slot="button" name="lucide:table-of-contents" class=":uno: w-5 h-auto" />
-    <TableOfContents slot="toc" headings={frontmatter.headings} />
-  </TableOfContentsWrapper>
+  <MobileToC headings={frontmatter.headings} client:visible>
+        <Icon slot="button" name="lucide:table-of-contents" class=":uno: w-5 h-auto" />
+
+    </MobileToC>
 
   <BackToTop client:visible>
     <Icon name="lucide:arrow-up" class=":uno: w-5 h-auto" />
@@ -180,12 +180,8 @@ const lastModified = frontmatter.lastModified || publishedAt;
         `nav ul li a[href="#${id}"]`
       );
 
-      if (!link) {
-        return;
-      }
-
       const method = entry.intersectionRatio > 0 ? "add" : "remove";
-      link.classList[method]("text-heading", "font-medium");
+      link?.classList[method]("text-heading", "font-medium");
     }
   });
 
