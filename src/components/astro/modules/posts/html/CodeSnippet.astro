@@ -65,28 +65,17 @@ const noLang = "noLang" in meta;
     )
   }
 
-  <div class="relative">
-    <p
-      class:list={[
-        "absolute top-3 right-4 font-mono text-sm text-content/50 leading-none max-md:hidden",
-        { hidden: noLang },
-      ]}
-    >
-      {props["data-language"]}
-    </p>
-
-    <pre
-      class:list={[
-        "rounded-none",
-        "py-2",
-        "border-x border-b",
-        "border-separator",
-        "rounded-b",
-        "transition-colors",
-        "focus:outline-none",
-        !title && !copy ? "rounded-t" : "",
-        className,
-      ]}
-      {...props}><slot /></pre>
-  </div>
+  <pre
+    class:list={[
+      "rounded-none",
+      "py-2",
+      "border-x border-b",
+      "border-separator",
+      "rounded-b",
+      "transition-colors",
+      "focus:outline-none",
+      (!title && !copy) ? "rounded-t" : "",
+      className,
+    ]}
+    {...props}><slot /></pre>
 </figure>
