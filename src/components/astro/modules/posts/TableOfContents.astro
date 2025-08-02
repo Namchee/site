@@ -34,7 +34,7 @@ const tocList = generateToC(headings);
     </div>
   </div>
 
-  <button type="button" class=":uno: flex group items-center gap-2.5">
+  <button type="button" id="backToTop" class=":uno: flex group items-center gap-2.5">
     <Icon name="lucide:arrow-up" class=":uno: size-4 text-content transition-colors group-hover:text-heading" />
 
     <p class=":uno: text-content transition-colors group-hover:text-heading">
@@ -46,6 +46,7 @@ const tocList = generateToC(headings);
 <script>
   const thumb = document.querySelector(".thumb") as HTMLDivElement;
   const sections = document.querySelectorAll<HTMLElement>("section[id]");
+  const backToTop = document.querySelector("#backToTop") as HTMLButtonElement;
 
   const activeSections = new Set<HTMLAnchorElement>();
 
@@ -89,4 +90,8 @@ const tocList = generateToC(headings);
   });
 
   sections.forEach((link) => observer.observe(link));
+
+  backToTop.addEventListener('click', () => {
+    window.scrollTo(0, 0);
+  })
 </script>

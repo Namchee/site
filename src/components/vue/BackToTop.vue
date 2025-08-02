@@ -29,7 +29,7 @@ function backToTop() {
             :side-offset="5"
             align="end"
             :align-offset="-4"
-            class="rounded-md text-sm py-2 tooltip__content bg-heading text-surface-1 lg:bg-transparent lg:text-unset lg:border-none select-none px-3 will-change-[transform,opacity]"
+            class="rounded-md text-sm py-2 tooltip__content bg-heading text-surface-1 select-none px-3 will-change-[transform,opacity]"
           >
             <p>
               Back to top
