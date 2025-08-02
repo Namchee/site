@@ -72,6 +72,7 @@ component as the guinea pig and upgrade them into similar code snippets that you
 
 ![The default snippet. Looks great, but can we make it even better?](https://res.cloudinary.com/namchee/image/upload/v1734152131/posts/supercharing-astro-code-snippet/default-snippet.png)
 
+> [!NOTE]
 > I will be using [UnoCSS](https://unocss.dev/) for styling, which is an alternative of [TailwindCSS](https://tailwindcss.com/). However, the styling can 100% be implemented with vanilla CSS.
 
 ## Deconstructing the Code Snippet
@@ -82,8 +83,8 @@ For each markdown file, Astro will parse the content using a processor called [r
 [unified](https://unifiedjs.com/) toolchain. From the markdown, remark will produce an [abstract syntax tree](https://en.wikipedia.org/wiki/Abstract_syntax_tree) (AST). The AST will
 then be transformed into HTML tags using another processor in the same toolchain: [rehype](https://github.com/rehypejs/rehype).
 
+> [!NOTE]
 > You might be wondering why we need to transform the markdown into an AST and not directly use something like RegExp.
-> <br />
 > This is because markdown (and HTML) is not a [regular language](https://en.wikipedia.org/wiki/Regular_language). Trying to parse non-regular language with **regular** tends to be error prone.
 
 The functionality of remark and rehype can be augmented using [plugins](https://unifiedjs.com/learn/guide/create-a-rehype-plugin/) that provides additional features,
@@ -362,19 +363,8 @@ const title = meta.title;
 
 Now, we can *finally* move on to customizing the component.
 
-> For the sake of clarity, I'll be changing the default theme of Shiki to `min-light` which you can change via Astro config.
->
-> ```js {6}
-> import { defineConfig } from 'astro/config';
->
-> export default defineConfig({
->    markdown: {
->      shikiConfig: {
->       theme: 'min-light',
->	  }
->	},
-> });
-> ```
+> [!NOTE]
+> For the sake of clarity, I'll be changing the default theme of Shiki to `min-light`.
 
 ### Adding Captions
 
