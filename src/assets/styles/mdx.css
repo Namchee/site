@@ -23,6 +23,10 @@ code:not(pre code) {
   text-decoration-color: var(--accent);
 }
 
+.callout__note strong {
+  color: var(--accent);
+}
+
 .callout__note a:focus {
   color: var(--accent);
   text-decoration-color: var(--accent);
@@ -57,7 +61,35 @@ code:not(pre code) {
   text-decoration-color: var(--warning);
 }
 
+.callout__warning strong {
+  color: var(--warning);
+}
+
 .callout__danger code:not(pre code) {
+  color: var(--danger);
+}
+
+.callout__danger a {
+  color: var(--warning);
+  text-decoration-color: color-mix(in oklch, var(--warning), transparent 80%);
+}
+
+.callout__danger a:hover {
+  color: var(--warning);
+  text-decoration-color: var(--warning);
+}
+
+.callout__danger a:focus {
+  color: var(--warning);
+  text-decoration-color: var(--warning);
+}
+
+.callout__danger a:active {
+  color: var(--warning);
+  text-decoration-color: var(--warning);
+}
+
+.callout__danger strong {
   color: var(--danger);
 }
 

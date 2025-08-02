@@ -10,7 +10,7 @@ import type { MarkdownFile } from "@/plugins/remark/types";
 import Badge from "@/components/astro/ui/Badge.astro";
 import BackToTop from "@/components/vue/BackToTop.vue";
 
-import MobileToC from "@/components/vue/MobileTableOfContents.vue"
+import MobileToC from "@/components/vue/MobileTableOfContents.vue";
 import TableOfContents from "./TableOfContents.astro";
 
 import BackButton from "./BackButton.astro";
@@ -31,9 +31,14 @@ const lastModified = frontmatter.lastModified || publishedAt;
 
 <article class=":uno: grid grid-cols-12 gap-4">
   <MobileToC headings={frontmatter.headings} client:visible>
-        <Icon slot="button" name="lucide:table-of-contents" class=":uno: w-5 h-auto" />
+    <Icon
+      slot="button"
+      name="lucide:table-of-contents"
+      class=":uno: w-5 h-auto"
+    />
+  </MobileToC>
 
-    </MobileToC>
+  <TableOfContents headings={frontmatter.headings} />
 
   <BackToTop client:visible>
     <Icon name="lucide:arrow-up" class=":uno: w-5 h-auto" />
@@ -168,22 +173,4 @@ const lastModified = frontmatter.lastModified || publishedAt;
 
   window.addEventListener("scroll", setProgress);
   setProgress();
-
-  // table of contents scrollspy
-  const sections = document.querySelectorAll<HTMLElement>("section[id]");
-
-  const observer = new IntersectionObserver((entries) => {
-    for (const entry of entries) {
-      const id = entry.target.id;
-
-      const link = document.querySelector<HTMLAnchorElement>(
-        `nav ul li a[href="#${id}"]`
-      );
-
-      const method = entry.intersectionRatio > 0 ? "add" : "remove";
-      link?.classList[method]("text-heading", "font-medium");
-    }
-  });
-
-  sections.forEach((link) => observer.observe(link));
 </script>

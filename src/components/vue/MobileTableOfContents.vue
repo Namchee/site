@@ -24,13 +24,13 @@ const open = ref(false);
 
 <template>
   <div
-    class=":uno: fixed border border-separator bottom-8 left-8 z-20 grid place-items-center p-1 shadow bg-background dark:bg-[var(--navigation)] transition-colors text-content rounded-md shadow-md md:hidden">
+    class=":uno: fixed border border-separator bottom-8 left-8 z-20 grid place-items-center p-1 shadow bg-background dark:bg-[var(--navigation)] transition-colors text-content rounded-md shadow-md xl:hidden">
     <TooltipProvider :delay-duration="100">
       <DrawerRoot :open="open" @update:open="(o) => open = o">
         <TooltipRoot>
           <TooltipTrigger as-child>
             <DrawerTrigger focus
-              class=":uno: size-[36px] xl:w-auto xl:h-auto grid place-items-center transition-colors hover:bg-surface-2 focus:bg-surface-2 rounded-md">
+              class=":uno: size-[36px] grid place-items-center transition-colors hover:bg-surface-2 focus:bg-surface-2 rounded-md">
               <slot name="button" />
 
             </DrawerTrigger>
