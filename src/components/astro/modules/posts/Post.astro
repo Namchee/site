@@ -141,36 +141,3 @@ const lastModified = frontmatter.lastModified || publishedAt;
     </div>
   </section>
 </article>
-
-<style>
-  .reading__progress::-webkit-progress-bar {
-    transition: background 150ms ease-out;
-    background-color: var(--background);
-  }
-  .reading__progress::-webkit-progress-value {
-    transition: background 150ms ease-out;
-    background-color: var(--heading);
-  }
-
-  .reading__progress::-moz-progress-bar {
-    transition: background 150ms ease-out;
-    background-color: var(--heading);
-  }
-</style>
-
-<script>
-  // reading progress indicator
-  const progressBar = document.querySelector(".reading__progress");
-
-  const windowHeight = window.innerHeight;
-  const documentHeight = document.documentElement.scrollHeight;
-  const max = documentHeight - windowHeight;
-  progressBar?.setAttribute("max", max.toString());
-
-  function setProgress() {
-    progressBar?.setAttribute("value", window.scrollY.toString());
-  }
-
-  window.addEventListener("scroll", setProgress);
-  setProgress();
-</script>
