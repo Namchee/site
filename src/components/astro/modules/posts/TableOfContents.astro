@@ -14,7 +14,7 @@ const { headings } = Astro.props;
 const tocList = generateToC(headings);
 ---
 
-<nav class="container fixed top-32 left-8 text-sm space-y-4">
+<nav class=":uno: hidden xl:block fixed top-32 left-8 text-sm space-y-4">
   <div class=":uno: flex items-center gap-3">
     <Icon name="lucide:align-left" class=":uno: size-4 text-content" />
 
@@ -33,54 +33,59 @@ const tocList = generateToC(headings);
       <TocList headings={tocList} />
     </div>
   </div>
+
+  <button type="button" class=":uno: flex group items-center gap-2.5">
+    <Icon name="lucide:arrow-up" class=":uno: size-4 text-content transition-colors group-hover:text-heading" />
+
+    <p class=":uno: text-content transition-colors group-hover:text-heading">
+      Back to Top
+    </p>
+  </button>
 </nav>
 
 <script>
   const thumb = document.querySelector(".thumb") as HTMLDivElement;
-  const container = document.querySelector("container") as HTMLDivElement;
   const sections = document.querySelectorAll<HTMLElement>("section[id]");
 
-  let intersector = 0;
-  let start: number | null = null;
+  const activeSections = new Set<HTMLAnchorElement>();
+
+  function updateThumb() {
+    if (activeSections.size > 0) {
+      let offset = 0;
+
+      activeSections.forEach((el) => {
+        const top = el.offsetTop;
+
+        offset = offset === 0 ? top : Math.min(top, offset);
+      });
+
+      thumb.style.top = `${offset}px`;
+    }
+
+    thumb.style.height = `${activeSections.size * 20 + (activeSections.size - 1) * 8}px`;
+  }
 
   const observer = new IntersectionObserver((entries) => {
-    console.log(entries.filter(e => e.isIntersecting));
     for (const { target, isIntersecting } of entries) {
       const link = document.querySelector<HTMLAnchorElement>(
         `nav ul li a[href="#${target.id}"]`
       );
 
+      if (!link) {
+        continue;
+      }
+
       const method = isIntersecting ? "add" : "remove";
-      link?.classList[method]("text-heading", "font-medium");
+      link.classList[method]("text-heading", "font-medium");
 
       if (isIntersecting) {
-        intersector += 1;
-
-        if (start === null) {
-          start =
-            target.getBoundingClientRect().top -
-            container.getBoundingClientRect().top;
-        } else {
-          start = Math.min(
-            target.getBoundingClientRect().top -
-              container.getBoundingClientRect().top,
-            start
-          );
-        }
+        activeSections.add(link);
       } else {
-        intersector -= 1;
+        activeSections.delete(link);
       }
     }
 
-    thumb.style.height = `${intersector * 20}px`;
-
-    if (thumb && start) {
-      thumb.style.top = `${start}px`;
-    }
-
-    if (intersector === 0) {
-      thumb.style.top = '0px';
-    }
+    updateThumb();
   });
 
   sections.forEach((link) => observer.observe(link));
