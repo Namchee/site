@@ -79,6 +79,11 @@ export const BOOKS = {
       title: 'The Effective Engineer',
       author: 'Edmond Lau',
       link: 'https://literal.club/book/the-effective-engineer-ejzfd'
+    },
+    {
+      title: 'Deep Work',
+      author: 'Cal Newport',
+      link: 'https://literal.club/book/deep-work-wbun9'
     }
   ]
 };
