@@ -1,0 +1,6 @@
+onlyBuiltDependencies:
+  - '@namchee/astro-subfont'
+  - esbuild
+  - sharp
+  - unrs-resolver
+  - vue-demi

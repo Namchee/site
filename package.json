@@ -20,6 +20,7 @@
     "@astrojs/rss": "^4.0.10",
     "@astrojs/sitemap": "^3.2.1",
     "@astrojs/vue": "^5.1.0",
+    "@ernxst/subfont": "^0.1.4",
     "@iconify-json/lucide": "^1.2.10",
     "@iconify-json/simple-icons": "^1.1.105",
     "@iconify-json/vscode-icons": "^1.2.23",
@@ -72,16 +73,5 @@
     "reka-ui": "^2.3.1",
     "vaul-vue": "^0.4.1"
   },
-  "packageManager": "pnpm@10.11.0",
-  "pnpm": {
-    "ignoredBuiltDependencies": [
-      "@namchee/astro-subfont"
-    ],
-    "onlyBuiltDependencies": [
-      "esbuild",
-      "sharp",
-      "unrs-resolver",
-      "vue-demi"
-    ]
-  }
+  "packageManager": "pnpm@10.11.0"
 }
