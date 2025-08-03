@@ -24,7 +24,11 @@ type FrontmatterData = CollectionEntry<"posts">["data"];
 type FrontmatterAddons = MarkdownFile["data"]["astro"]["frontmatter"];
 
 export async function getStaticPaths() {
-  const posts = await getCollection("posts");
+  let posts = await getCollection("posts");
+
+  if (import.meta.env.PROD) {
+    posts = posts.filter(p => !p.id.startsWith('_'));
+  }
 
   return posts.map((entry) => ({
     params: {
