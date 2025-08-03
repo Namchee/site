@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref } from 'vue';
+import { ref, onMounted, onUnmounted } from 'vue';
 
 import { TooltipProvider, TooltipRoot, TooltipTrigger, TooltipContent, TooltipArrow, TooltipPortal } from 'reka-ui';
 import { DrawerContent, DrawerHandle, DrawerOverlay, DrawerPortal, DrawerRoot, DrawerTrigger } from 'vaul-vue';
@@ -19,7 +19,37 @@ const props = defineProps({
 
 const tocList = generateToC(props.headings);
 
+const activeSections = ref(new Set<string>());
+
 const open = ref(false);
+const observer = ref<IntersectionObserver | null>(null);
+
+onMounted(() => {
+  observer.value = new IntersectionObserver((entries) => {
+    for (const { target, isIntersecting } of entries) {
+      const id = target.getAttribute('id')!;
+
+      if (isIntersecting) {
+        activeSections.value.add(id);
+      } else {
+        activeSections.value.delete(id);
+      }
+    }
+  });
+
+  props.headings.forEach(section => {
+    const el = document.getElementById(section.slug);
+    if (el && observer) {
+      observer.value?.observe(el);
+    }
+  });
+});
+
+onUnmounted(() => {
+  if (observer && observer.value) {
+    observer.value?.disconnect();
+  }
+});
 </script>
 
 <template>
@@ -55,12 +85,12 @@ const open = ref(false);
             <DrawerHandle class="bg-surface-2! hover:bg-surface-3 transition-colors" />
 
             <div class="p-2 pt-4">
-              <nav class=":uno: text-sm max-w-64">
+              <nav class=":uno: text-sm">
                 <p class=":uno: mb-4 font-semibold text-heading transition-colors">
                   In this post
                 </p>
 
-                <ToCList :sections="tocList" />
+                <ToCList :sections="tocList" :active-sections="activeSections" />
               </nav>
             </div>
           </DrawerContent>
