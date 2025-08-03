@@ -16,16 +16,16 @@ const tocList = generateToC(headings);
 
 <nav class=":uno: hidden xl:block fixed top-32 left-8 text-sm space-y-4">
   <div class=":uno: flex items-center gap-3">
-    <Icon name="lucide:align-left" class=":uno: size-4 text-content" />
+    <Icon name="lucide:align-left" class=":uno: size-4 text-content transition-colors" />
 
     <p class=":uno: font-semibold text-heading transition-colors">
       In this post
     </p>
   </div>
 
-  <div class=":uno: relative flex ml-1.5 pr-4 border-l border-separator">
+  <div class=":uno: relative flex ml-1.5 pr-4 border-l border-separator transition-colors">
     <div
-      class="absolute left-0 thumb w-[1.5px] h-5 bg-heading -ml-[1px] transition-all"
+      class=":uno: absolute left-0 thumb w-[1.5px] h-5 bg-heading -ml-[1px] transition-all"
     >
     </div>
 
@@ -34,8 +34,15 @@ const tocList = generateToC(headings);
     </div>
   </div>
 
-  <button type="button" id="backToTop" class=":uno: flex group items-center gap-2.5">
-    <Icon name="lucide:arrow-up" class=":uno: size-4 text-content transition-colors group-hover:text-heading" />
+  <button
+    type="button"
+    id="backToTop"
+    class=":uno: flex group items-center gap-2.5"
+  >
+    <Icon
+      name="lucide:arrow-up"
+      class=":uno: size-4 text-content transition-colors group-hover:text-heading"
+    />
 
     <p class=":uno: text-content transition-colors group-hover:text-heading">
       Back to Top
@@ -51,19 +58,24 @@ const tocList = generateToC(headings);
   const activeSections = new Set<HTMLAnchorElement>();
 
   function updateThumb() {
+    let max = 0;
+
+    thumb.style.height = "0px";
+
     if (activeSections.size > 0) {
-      let offset = 0;
+      let min = Number.MAX_SAFE_INTEGER;
+      let height;
 
       activeSections.forEach((el) => {
         const top = el.offsetTop;
 
-        offset = offset === 0 ? top : Math.min(top, offset);
+        min = Math.min(top, min);
+        max = Math.max(top, max);
       });
 
-      thumb.style.top = `${offset}px`;
+      thumb.style.top = `${min}px`;
+      thumb.style.height = `${max - min + 18}px`;
     }
-
-    thumb.style.height = `${activeSections.size * 20 + (activeSections.size - 1) * 8}px`;
   }
 
   const observer = new IntersectionObserver((entries) => {
@@ -91,7 +103,7 @@ const tocList = generateToC(headings);
 
   sections.forEach((link) => observer.observe(link));
 
-  backToTop.addEventListener('click', () => {
+  backToTop.addEventListener("click", () => {
     window.scrollTo(0, 0);
-  })
+  });
 </script>
