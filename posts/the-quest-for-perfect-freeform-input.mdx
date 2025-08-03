@@ -85,6 +85,7 @@ While the autosizing implementation above works, it introduces 2 new problems:
 - Developers must manually wire autosizing logic to various HTML events like `paste` or direct value changes via `.innerHTML`.
 Otherwise, the `<textarea>` may not resize correctly, which might hurt the UX.
 
+> [!NOTE]
 > In the future, we might not need to manually handle autosizing in `<textarea>` due to
 the introduction of `field-sizing`. At the moment however, it's only supported in Chromium-based browsers.
 

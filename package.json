@@ -20,8 +20,10 @@
     "@astrojs/rss": "^4.0.10",
     "@astrojs/sitemap": "^3.2.1",
     "@astrojs/vue": "^5.1.0",
+    "@ernxst/subfont": "^0.1.4",
     "@iconify-json/lucide": "^1.2.10",
     "@iconify-json/simple-icons": "^1.1.105",
+    "@iconify-json/vscode-icons": "^1.2.23",
     "@namchee/astro-subfont": "^0.1.0",
     "@namchee/eslint-config": "^2.1.0",
     "@shikijs/transformers": "^3.6.0",
@@ -29,7 +31,7 @@
     "@types/node": "^20.14.2",
     "@typescript-eslint/parser": "^8.12.2",
     "@unocss/eslint-config": "^66.1.4",
-    "@unocss/reset": "^66.1.4",
+    "@unocss/reset": "^66.3.3",
     "@unpic/astro": "^1.0.0",
     "@unpic/pixels": "^1.3.0",
     "astro": "^5.9.1",
@@ -51,14 +53,14 @@
     "rehype-mermaid": "^3.0.0",
     "remark-math": "^6.0.0",
     "remark-sectionize": "^2.1.0",
-    "satori": "^0.13.0",
+    "satori": "^0.15.2",
     "satori-html": "^0.3.2",
     "sharp": "^0.33.4",
     "tsx": "^4.19.4",
     "typescript": "^5.4.5",
     "unist-util-find-after": "^5.0.0",
     "unist-util-visit": "^5.0.0",
-    "unocss": "^66.1.4",
+    "unocss": "^66.3.3",
     "vite": "^6.3.5",
     "vitest": "^3.2.2",
     "vue": "^3.5.12",
@@ -68,18 +70,8 @@
     "@iconify/vue": "^5.0.0",
     "@vueuse/core": "^10.11.0",
     "class-variance-authority": "^0.7.0",
-    "reka-ui": "^2.3.1"
+    "reka-ui": "^2.3.1",
+    "vaul-vue": "^0.4.1"
   },
-  "packageManager": "pnpm@10.11.0",
-  "pnpm": {
-    "ignoredBuiltDependencies": [
-      "@namchee/astro-subfont"
-    ],
-    "onlyBuiltDependencies": [
-      "esbuild",
-      "sharp",
-      "unrs-resolver",
-      "vue-demi"
-    ]
-  }
+  "packageManager": "pnpm@10.11.0"
 }

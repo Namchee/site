@@ -1,0 +1,143 @@
+---
+import "@/assets/styles/tweet.css";
+import "@/assets/styles/shiki.css";
+
+import { Icon } from "astro-icon/components";
+
+import type { CollectionEntry } from "astro:content";
+import type { MarkdownFile } from "@/plugins/remark/types";
+
+import Badge from "@/components/astro/ui/Badge.astro";
+import BackToTop from "@/components/vue/BackToTop.vue";
+
+import MobileToC from "@/components/vue/MobileTableOfContents.vue";
+import TableOfContents from "./TableOfContents.astro";
+
+import BackButton from "./BackButton.astro";
+import SocialLinks from "./SocialLinks.astro";
+
+interface Props {
+  frontmatter: CollectionEntry<"posts">["data"] &
+    MarkdownFile["data"]["astro"]["frontmatter"] & {
+      slug: string;
+    };
+}
+
+const { frontmatter } = Astro.props;
+
+const publishedAt = frontmatter.publishedAt;
+const lastModified = frontmatter.lastModified || publishedAt;
+---
+
+<article class=":uno: grid grid-cols-12 gap-4">
+  <MobileToC headings={frontmatter.headings} client:visible>
+    <Icon
+      slot="button"
+      name="lucide:table-of-contents"
+      class=":uno: w-5 h-auto"
+    />
+  </MobileToC>
+
+  <TableOfContents headings={frontmatter.headings} />
+
+  <BackToTop client:visible>
+    <Icon name="lucide:arrow-up" class=":uno: w-5 h-auto" />
+  </BackToTop>
+
+  <header class=":uno: col-start-1 col-end-13 md:col-start-2 md:col-end-12">
+    <BackButton />
+
+    <h1
+      class=":uno: text-heading tracking-tight text-xl md:text-2xl font-semibold mt-8 transition-colors"
+    >
+      {frontmatter.title}
+    </h1>
+
+    <div class=":uno: flex space-x-4 mt-2 md:mt-4">
+      <div
+        class="flex items-center space-x-2 text-sm"
+        title={`Published At ${new Date(publishedAt).toDateString()}`}
+      >
+        <Icon name="lucide:pencil-line" class="w-4 h-auto" />
+
+        <time
+          datetime={frontmatter.publishedAt as unknown as string}
+          class=":uno: font-medium block"
+        >
+          {
+            new Date(publishedAt).toLocaleString("en-GB", {
+              year: "numeric",
+              month: "long",
+              day: "numeric",
+            })
+          }
+        </time>
+      </div>
+
+      <div
+        class="items-center space-x-2 text-sm hidden md:flex"
+        title={`Last Modified ${new Date(lastModified).toDateString()}`}
+      >
+        <Icon name="lucide:history" class="w-4 h-auto" />
+
+        <time
+          datetime={frontmatter.lastModified as unknown as string}
+          class=":uno: font-medium block"
+        >
+          {
+            new Date(lastModified).toLocaleString("en-GB", {
+              year: "numeric",
+              month: "long",
+              day: "numeric",
+            })
+          }
+        </time>
+      </div>
+
+      <div
+        class="flex items-center space-x-2 text-sm md:ml-auto!"
+        title={`${frontmatter.timeToRead} minutes read`}
+      >
+        <Icon name="lucide:timer" class="w-4 h-auto" />
+
+        <p class="font-medium">
+          {frontmatter.timeToRead} minutes read
+        </p>
+      </div>
+    </div>
+  </header>
+
+  <div
+    class=":uno: col-start-1 col-end-13 md:col-start-2 md:col-end-12 flex flex-col gap-4 mt-8 overflow-x-visible"
+  >
+    <slot />
+  </div>
+
+  <section
+    class=":uno: flex col-start-1 col-end-13 md:col-start-2 md:col-end-12 justify-between mt-16 gap-4"
+  >
+    <div>
+      <p class=":uno: font-semibold text-sm leading-normal md:text-base mb-5">
+        Share this Post
+      </p>
+
+      <SocialLinks slug={frontmatter.slug} title={frontmatter.title} />
+    </div>
+
+    <div>
+      <p
+        class=":uno: font-semibold text-sm leading-normal md:text-base mb-5 text-right"
+      >
+        Tags
+      </p>
+
+      <div class=":uno: flex flex-wrap gap-2 justify-end">
+        {
+          frontmatter.tags.map((tag) => (
+            <Badge>{tag[0].toUpperCase() + tag.slice(1)}</Badge>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+</article>

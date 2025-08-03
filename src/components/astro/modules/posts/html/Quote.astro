@@ -1,3 +1,54 @@
-<blockquote class=":uno: bg-surface text-content p-6 transition-colors rounded-md md:-ml-4 md:w-[calc(100%+32px)]">
-  <slot />
-</blockquote>
+---
+import Callout from "./Callout.astro";
+
+const slot = await Astro.slots.render("default");
+const raw = slot.trim();
+
+// Trim wrapping ``` and split lines
+const lines = raw.slice(3, -4).split("\n");
+
+const calloutVariants = ["note", "warning", "danger"] as const;
+
+const firstLine = lines[0];
+const isAttribution = firstLine.startsWith("[");
+const isCallout =
+  firstLine[1] === "!" &&
+  calloutVariants.includes(firstLine.slice(2, -1).trim().toLowerCase() as typeof calloutVariants[number]);
+
+const actualContent = isAttribution ? lines.slice(1).join("\n") : lines.join("\n");
+
+let author = "";
+let material = "";
+
+if (isAttribution) {
+  const attribution = firstLine.slice(1, -1).trim();
+  [author, material = ""] = attribution.split(",").map(s => s.trim());
+}
+---
+
+{isCallout ? (
+  <Callout variant={firstLine.slice(2, -1).trim().toLowerCase() as typeof calloutVariants[number]} set:html={actualContent} />
+) : (
+  <blockquote class=":uno: my-4!">
+    <p
+      class:list={[
+        "text-heading/80",
+        "font-serif",
+        "text-lg md:text-xl",
+        "transition-colors",
+        "leading-normal",
+        isAttribution &&
+          "before:content-['“'] before:ml-[-12px] before:mr-[1px] after:content-['”'] after:ml-[1px]",
+      ]}
+      set:html={actualContent}
+    />
+
+    {(author || material) && (
+      <div class="mt-4 w-3/5 md:w-1/2 flex items-center ml-auto text-xs font-medium leading-tight">
+        <div class="flex-1 h-px bg-separator mr-2 transition-colors" />
+        {author && <span class="text-heading/80 transition-colors">{author}</span>}
+        {material && <span class="transition-colors text-content/80">, {material}</span>}
+      </div>
+    )}
+  </blockquote>
+)}

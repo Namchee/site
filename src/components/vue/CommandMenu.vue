@@ -193,18 +193,18 @@ watchEffect(() => {
       <TooltipRoot>
         <DialogTrigger as-child>
           <TooltipTrigger as-child>
-            <button class="w-[36px] h-[36px] grid place-items-center transition-colors text-content rounded-md hover:bg-navigation-accent focus:bg-navigation-accent text-sm my-1 ml-1">
+            <button class="w-[36px] h-[36px] grid place-items-center transition-colors text-content rounded-md hover:bg-surface-2 focus:bg-surface-2 text-sm my-1 ml-1">
               <slot />
             </button>
           </TooltipTrigger>
 
           <TooltipPortal>
-            <TooltipContent class="text-sm rounded-md shadow py-2 tooltip__content bg-content text-background shadow-lg select-none px-3 will-change-[transform,opacity]" :side-offset="5">
+            <TooltipContent class="text-sm rounded-md shadow py-2 tooltip__content bg-heading text-surface-1 shadow-lg select-none px-3 will-change-[transform,opacity]" :side-offset="5">
               <p>Command Palette ({{ isMac ? '⌘' : 'Ctrl' }} + K)</p>
 
               <TooltipArrow
                 :width="8"
-                class="fill-content"
+                class="fill-heading"
               />
             </TooltipContent>
           </TooltipPortal>
@@ -215,7 +215,7 @@ watchEffect(() => {
     <DialogPortal>
       <DialogOverlay
         @click="visible = false"
-        class=":uno: fixed bg-background w-screen h-screen z-20 dialog__overlay bg-opacity-50 backdrop-blur"
+        class=":uno: fixed bg-[var(--gray-dark-950)] w-screen h-screen z-30 dialog__overlay bg-opacity-50 backdrop-blur"
       />
       <DialogContent
         class=":uno: fixed border border-separator bg-background shadow rounded-md dialog__content w-4/5 max-w-md z-30 focus:outline-none"
@@ -231,7 +231,7 @@ watchEffect(() => {
 
         <DialogDescription class=":uno: p-4 space-y-4 max-h-[25rem] overflow-y-auto">
           <div v-if="relevantLinks.length === 0 && relevantPosts.length === 0">
-            <p class=":uno: text-sm text-center opacity-85">
+            <p class=":uno: text-sm text-center opacity-75">
               Sorry, I don't know what or where that is 😕
             </p>
           </div>
@@ -249,7 +249,7 @@ watchEffect(() => {
                 :key="link.href"
                 :href="link.href"
                 class=":uno: text-sm rounded-md flex transition-colors justify-between p-2 outline-none"
-                :class="{ 'bg-surface text-heading': focusIndex === idx }"
+                :class="{ 'bg-surface-1 text-heading': focusIndex === idx }"
                 rel="noopener noreferrer"
                 @mouseover="() => focusIndex = idx"
               >
@@ -284,7 +284,7 @@ watchEffect(() => {
               :key="post.href"
               :href="post.href"
               class=":uno: flex justify-between p-2 text-sm transition-colors outline-none rounded-md"
-              :class="{ 'bg-surface text-heading': focusIndex === idx + relevantLinks.length }"
+              :class="{ 'bg-surface-1 text-heading': focusIndex === idx + relevantLinks.length }"
               rel="noopener noreferrer"
               @mouseover="() => focusIndex = idx + relevantLinks.length"
             >

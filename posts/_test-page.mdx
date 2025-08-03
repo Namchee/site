@@ -11,14 +11,37 @@ tags:
 ---
 
 import Tweet from 'astro-tweet';
+import { BlueskyPost } from 'astro-embed';
 
 import DescriptionList from '@/components/astro/modules/posts/html/DescriptionList.astro';
 import DescriptionTerm from '@/components/astro/modules/posts/html/DescriptionTerm.astro';
 import DescriptionItem from '@/components/astro/modules/posts/html/DescriptionItem.astro';
 
+> [!WARNING]
+> This is a test page I use to develop the design system. You aren't supposed to see this page on the live site.
+
 Lorem ipsum dolor sit amet consectetur. Vitae amet tortor bibendum sit cursus et nisi non. Sagittis aliquet augue purus dignissim. Sodales pellentesque felis eleifend tristique molestie. **Accumsan amet erat mauris** consequat urna fames felis et sed.
 
-Diam nisl sit volutpat est pellentesque aliquet porttitor egestas commodo. Purus vitae egestas nunc turpis urna placerat proin dui mi. Iaculis sed in dui nisl. Hendrerit odio lectus enim vitae euismod enim. Urna lorem scelerisque nunc leo nunc odio mauris sed sed. Pharetra cras aenean tincidunt morbi purus molestie. Proin lobortis senectus pretium vel. Proin lobortis senectus pretium vel.
+```docker title=This is a sample code snippet, copyable
+FROM python:3.12
+WORKDIR /usr/local/app
+
+# Install the application dependencies
+COPY requirements.txt ./
+RUN pip install --no-cache-dir -r requirements.txt
+
+# Copy in the source code
+COPY src ./src
+EXPOSE 5000
+
+# Setup an app user so the container doesn't run as the root user
+RUN useradd app
+USER app
+
+CMD ["uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "8080"]
+```
+
+Diam nisl sit volutpat est pellentesque aliquet porttitor egestas commodo. Purus vitae egestas nunc turpis urna placerat proin dui mi. Iaculis sed in dui nisl. Hendrerit odio lectus enim vitae euismod enim. Urna lorem scelerisque nunc leo nunc odio mauris sed sed.
 
 ![Image by Dude from Unsplash](https://res.cloudinary.com/namchee/image/upload/v1718288376/posts/test-page/banner.jpg)
 
@@ -46,7 +69,7 @@ function testAdd() {
 
 Lorem ipsum dolor sit amet consectetur. Vitae amet tortor bibendum sit cursus et nisi non. Sagittis aliquet augue purus dignissim. Sodales [pellentesque](https://www.google.com) felis eleifend tristique molestie. Accumsan amet erat mauris consequat urna fames felis et sed.
 
-```ts
+```ts copy
 function testAdd() {
   const a = 1;
   const b = 1;
@@ -66,15 +89,24 @@ Diam nisl sit volutpat est pellentesque aliquet porttitor egestas commodo. Purus
 
 ![A portrait image, for no reason](https://res.cloudinary.com/namchee/image/upload/v1718289415/posts/test-page/portrait.jpg)
 
-Diam nisl sit volutpat est pellentesque aliquet porttitor egestas commodo. Purus vitae egestas nunc turpis urna placerat proin dui mi. Iaculis sed in dui nisl. Hendrerit odio lectus enim vitae euismod enim. Urna lorem scelerisque nunc leo nunc odio mauris sed sed. Pharetra cras aenean tincidunt morbi purus molestie. Proin lobortis senectus pretium vel. Proin lobortis senectus pretium vel.
+Diam nisl sit volutpat est pellentesque aliquet porttitor egestas commodo. `<blockquote>` Purus vitae egestas nunc turpis urna placerat proin dui mi. Iaculis sed in dui nisl. Hendrerit odio lectus enim vitae euismod enim. Urna lorem scelerisque nunc leo nunc odio mauris sed sed. Pharetra cras aenean tincidunt morbi purus molestie. Proin lobortis senectus pretium vel. Proin lobortis senectus pretium vel.
 
 <Tweet id="1068615953989087232" />
 
 ## Testing List
 
+### Unordered List
+
 - This is a list
 - This is another item of the list
 - Lastly, this is another item!
+
+### Ordered List
+
+1. This is a numbered list
+2. This is another item
+
+<BlueskyPost id="https://bsky.app/profile/e18e.dev/post/3laofvnjipk25" />
 
 ## Testing&nbsp;`<dd>`
 
@@ -96,6 +128,22 @@ Diam nisl sit volutpat est pellentesque aliquet porttitor egestas commodo. Purus
     Hopefully, I can test out my ideas and sharpen them through public feedback. Don't be shy to drop feedback!
   </DescriptionItem>
 </DescriptionList>
+
+## Testing Quote
+
+If you're still debating whether you want to dip in a product or not:
+
+> [Robert Goodhart]
+> Any observed statistical regularity will tend to collapse once pressure is placed upon it for control purposes.
+
+> [!NOTE]
+> At the time of writing, there's an [acknowledged bug](https://www.google.com) in Chromium-based browsers that allows you to retrieve text fragment directive by exploiting the **Performance API**, specifically by parsing `PerformanceNavigationTiming` interface.
+
+> [!WARNING]
+> At the time of writing, there's an [acknowledged bug](https://www.google.com) in Chromium-based browsers that allows you to retrieve text fragment directive by exploiting the **Performance API**, specifically by parsing `PerformanceNavigationTiming` interface.
+
+> [!DANGER]
+> At the time of writing, there's an acknowledged bug in Chromium-based browsers that allows you to retrieve text fragment directive by exploiting the **Performance API**, specifically by parsing `PerformanceNavigationTiming` interface.
 
 ## Final Thoughts
 

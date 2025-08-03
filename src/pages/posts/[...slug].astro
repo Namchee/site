@@ -1,7 +1,9 @@
 ---
+import "@/assets/styles/mdx.css";
+
 import { getCollection, render, type CollectionEntry } from "astro:content";
 
-import PostLayout from "@/components/astro/modules/posts/PostLayout.astro";
+import Post from "@/components/astro/modules/posts/Post.astro";
 
 import TextLink from "@/components/astro/ui/TextLink.astro";
 import Head2 from "@/components/astro/modules/posts/html/Head2.astro";
@@ -15,13 +17,20 @@ import UnorderedList from "@/components/astro/modules/posts/html/UnorderedList.a
 
 import type { MarkdownFile } from "@/plugins/remark/types";
 
+import OrderedList from "@/components/astro/modules/posts/html/OrderedList.astro";
+import Layout from "@/components/astro/layout/Layout.astro";
+
 type FrontmatterData = CollectionEntry<"posts">["data"];
 type FrontmatterAddons = MarkdownFile["data"]["astro"]["frontmatter"];
 
 export async function getStaticPaths() {
-  const posts = await getCollection("posts");
+  let posts = await getCollection("posts");
 
-  return posts.map(entry => ({
+  if (import.meta.env.PROD) {
+    posts = posts.filter(p => !p.id.startsWith('_'));
+  }
+
+  return posts.map((entry) => ({
     params: {
       slug: entry.id,
     },
@@ -41,18 +50,25 @@ const frontmatter = {
 };
 ---
 
-<PostLayout frontmatter={frontmatter}>
-  <Content
-    components={{
-      a: TextLink,
-      h2: Head2,
-      h3: Head3,
-      strong: Strong,
-      img: Image,
-      pre: CodeSnippet,
-      blockquote: Quote,
-      li: BulletItem,
-      ul: UnorderedList,
-    }}
-  />
-</PostLayout>
+<Layout
+  title={`${frontmatter.title} — Namchee`}
+  description={frontmatter.subtitle}
+  og={`posts/og-${frontmatter.slug}`}
+>
+  <Post frontmatter={frontmatter}>
+    <Content
+      components={{
+        a: TextLink,
+        h2: Head2,
+        h3: Head3,
+        strong: Strong,
+        img: Image,
+        pre: CodeSnippet,
+        blockquote: Quote,
+        li: BulletItem,
+        ul: UnorderedList,
+        ol: OrderedList,
+      }}
+    />
+  </Post>
+</Layout>

@@ -3,7 +3,8 @@ import type { MarkdownHeading } from "astro";
 
 import generateToC from "@/scripts/toc";
 
-import ToCList from "./TocList.astro";
+import { Icon } from "astro-icon/components";
+import TocList from "./TocList.astro";
 
 interface Props {
   headings: MarkdownHeading[];
@@ -13,12 +14,101 @@ const { headings } = Astro.props;
 const tocList = generateToC(headings);
 ---
 
-<nav
-  class=":uno: text-sm max-w-64"
->
-  <p class=":uno: mb-4 font-semibold text-heading transition-colors">
-    In this post
-  </p>
+<nav class=":uno: hidden xl:block fixed top-32 left-8 text-sm space-y-4">
+  <div class=":uno: flex items-center gap-3">
+    <Icon
+      name="lucide:align-left"
+      class=":uno: size-4 text-content transition-colors"
+    />
 
-  <ToCList headings={tocList} />
+    <p class=":uno: font-semibold text-heading transition-colors">
+      In this post
+    </p>
+  </div>
+
+  <div
+    class=":uno: relative flex ml-1.5 pr-4 border-l border-separator transition-colors"
+  >
+    <div
+      aria-hidden="true"
+      class=":uno: absolute left-0 thumb w-[1.5px] h-5 bg-heading -ml-[1px] transition-all rounded-full"
+    >
+    </div>
+
+    <div class=":uno: ml-5">
+      <TocList headings={tocList} />
+    </div>
+  </div>
+
+  <button
+    type="button"
+    id="backToTop"
+    class=":uno: flex group items-center gap-2.5"
+  >
+    <Icon
+      name="lucide:arrow-up"
+      class=":uno: size-4 text-content transition-colors group-hover:text-heading"
+    />
+
+    <p class=":uno: text-content transition-colors group-hover:text-heading">
+      Back to Top
+    </p>
+  </button>
 </nav>
+
+<script>
+  const thumb = document.querySelector(".thumb") as HTMLDivElement;
+  const sections = document.querySelectorAll<HTMLElement>("section[id]");
+  const backToTop = document.querySelector("#backToTop") as HTMLButtonElement;
+
+  const activeSections = new Set<HTMLAnchorElement>();
+
+  function updateThumb() {
+    let max = 0;
+
+    thumb.style.height = "0px";
+
+    if (activeSections.size > 0) {
+      let min = Number.MAX_SAFE_INTEGER;
+
+      activeSections.forEach((el) => {
+        const top = el.offsetTop;
+
+        min = Math.min(top, min);
+        max = Math.max(top, max);
+      });
+
+      thumb.style.top = `${min}px`;
+      thumb.style.height = `${max - min + 18}px`;
+    }
+  }
+
+  const observer = new IntersectionObserver((entries) => {
+    for (const { target, isIntersecting } of entries) {
+      const link = document.querySelector<HTMLAnchorElement>(
+        `nav ul li a[href="#${target.id}"]`
+      );
+
+      if (!link) {
+        continue;
+      }
+
+      const method = isIntersecting ? "add" : "remove";
+      link.classList[method]("text-heading", "font-medium");
+
+      if (isIntersecting) {
+        activeSections.add(link);
+      } else {
+        activeSections.delete(link);
+      }
+    }
+
+    updateThumb();
+  });
+
+  sections.forEach((link) => observer.observe(link));
+
+  backToTop.addEventListener("click", () => {
+    window.scrollTo(0, 0);
+  });
+</script>

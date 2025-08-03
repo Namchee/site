@@ -97,7 +97,7 @@ describe('math.ts', () => {
 
 After execution, the test runner reports the following code coverage:
 
-```bash noLang
+```bash
 ----------|---------|----------|---------|---------|-------------------
 File      | % Stmts | % Branch | % Funcs | % Lines | Uncovered Line #s
 ----------|---------|----------|---------|---------|-------------------
@@ -193,6 +193,7 @@ acceptable. Contrary to its purposes, setting the threshold too high is **counte
     In this case code coverage only promotes a sense of false security through false positive results,
     which is a good example of [Goodhart&apos;s Law](https://en.wikipedia.org/wiki/Goodhart%27s_law):
 
+    > [Charles Goodhart]
     > Any observed statistical regularity will tend to collapse once pressure is placed upon it for control purposes
 
     Assertion-free tests aren&apos;t 100% useless as they are still able to catch common bugs such as bad pointers.
@@ -243,7 +244,7 @@ it("should pass", () => {
 
 After executing the above test suite, the coverage report will output the following coverage report:
 
-```bash noLang
+```bash
 ----------|---------|----------|---------|---------|-------------------
 File      | % Stmts | % Branch | % Funcs | % Lines | Uncovered Line #s
 ----------|---------|----------|---------|---------|-------------------
@@ -279,7 +280,7 @@ us waste a lot of engineering time to chase for useless numbers?
 
 Fortunately not! Let&apos;s revisit the coverage report from [Primers of Code Coverage](#primers-of-code-coverage) section:
 
-```bash noLang
+```bash
 ----------|---------|----------|---------|---------|-------------------
 File      | % Stmts | % Branch | % Funcs | % Lines | Uncovered Line #s
 ----------|---------|----------|---------|---------|-------------------
@@ -308,6 +309,7 @@ We should instead use it at what it does best: finding untested part of the code
 
 When talking about the importance about the untested part of the code, [Brian Marrick](http://www.exampler.com/testing-com/writings/coverage.pdf) has an interesting take on it:
 
+> [Brian Marick, How to Misuse Code Coverage]
 > If a part of your test suite is weak in a way that coverage can detect, it&apos;s likely also weak in a way coverage can&apos;t detect.
 
 Rather than limiting its effectiveness by using it as **the** metric of tests, I believe the correct approach for code coverage is

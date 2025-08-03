@@ -1,0 +1,43 @@
+:root {
+  --heading: var(--gray-light-900);
+  --content: var(--gray-light-600);
+
+  --background: var(--gray-light-25);
+
+  --surface-1: var(--gray-light-100);
+  --surface-2: var(--gray-light-200);
+  --surface-3: var(--gray-light-300);
+
+  --separator: var(--gray-light-300);
+
+  --accent: var(--indigo-600);
+
+  --success: var(--green-600);
+  --warning: var(--yellow-600);
+  --danger: var(--red-600);
+
+  --tooltip-bg: var(--gray-dark-800);
+  --tooltip-fg: var(--gray-dark-50);
+}
+
+/* Dark mode variants */
+html.dark {
+  --heading:  var(--gray-dark-50);
+  --content: var(--gray-dark-400);
+
+  --background: var(--gray-dark-950);
+
+  --surface-1: var(--gray-dark-900);
+  --surface-2: var(--gray-dark-800);
+  --surface-3: var(--gray-dark-700);
+
+  --separator: var(--gray-dark-800);
+
+  --accent: var(--indigo-400);
+
+  --success: var(--green-500);
+  --warning: var(--yellow-500);
+  --danger: var(--red-500);
+
+  --navigation: color-mix(in oklch, var(--surface-1), var(--gray-dark-25) 5%);
+}

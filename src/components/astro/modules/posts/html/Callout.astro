@@ -1,0 +1,57 @@
+---
+import { cva } from "class-variance-authority";
+
+import { Icon } from "astro-icon/components";
+
+interface Props {
+  variant: "note" | "warning" | "danger";
+}
+
+const { variant } = Astro.props;
+
+const container = cva(
+  ":uno: relative transition-colors p-4 my-4 border-l-2 rounded-r-md transition-colors",
+  {
+    variants: {
+      variant: {
+        note: ":uno: bg-[var(--indigo-500)]/10 border-[var(--indigo-500)] text-accent",
+        warning: ":uno: bg-warning/10 border-warning text-warning",
+        danger: ":uno: bg-danger/10 border-danger text-danger",
+      },
+    },
+    defaultVariants: {
+      variant: "note",
+    },
+  }
+);
+
+const iconContainer = cva(
+  ":uno: absolute size-[28px] rounded-full -top-[14px] -left-[15px] grid place-items-center transition-colors transition-colors",
+  {
+    variants: {
+      variant: {
+        note: "bg-accent dark:bg-[var(--indigo-500)]",
+        warning: 'bg-warning',
+        danger: 'bg-danger',
+      },
+    },
+    defaultVariants: {
+      variant: "note",
+    },
+  }
+);
+
+const icon = {
+  note: "lightbulb",
+  warning: "alert-triangle",
+  danger: "circle-x",
+}
+---
+
+<div class:list={[container({ variant }), `callout__${variant}`]}>
+  <div class={iconContainer({ variant })}>
+    <Icon name={`lucide:${icon[variant]}`} class="size-4 text-white" />
+  </div>
+
+  <slot />
+</div>

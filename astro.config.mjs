@@ -12,7 +12,7 @@ import unocss from 'unocss/astro';
 
 import { transformerMetaHighlight } from '@shikijs/transformers';
 
-import { subset } from '@namchee/astro-subfont';
+import subfont from '@ernxst/subfont/astro';
 
 import { remarkPlugins } from './src/plugins/remark';
 import { rehypePlugins } from './src/plugins/rehype';
@@ -33,7 +33,7 @@ export default defineConfig({
     }),
     sitemap(),
     robotsTxt(),
-    subset(),
+    subfont(),
   ],
   markdown: {
     remarkPlugins: remarkPlugins,

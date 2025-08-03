@@ -16,12 +16,12 @@ const posts = (await getCollection('posts'))
       <li class=":uno: flex gap-x-4 flex-col md:items-center md:flex-row md:justify-between">
         <AppLink
           href={`/posts/${post.id}`}
-          class=":uno: text-heading/85 transition-colors items-center hover:text-heading focus:text-heading inline-flex text-balance space-x-2 font-medium"
+          class=":uno: text-heading/80 transition-colors items-center hover:text-heading focus:text-heading inline-flex text-balance space-x-2 font-medium"
         >
           {post.data.title}
         </AppLink>
 
-        <p class=":uno: text-sm md:text-base leading-[1.75]">{post.data.publishedAt.toLocaleString('en-GB', {
+        <p class=":uno: text-sm md:text-base">{post.data.publishedAt.toLocaleString('en-GB', {
           year: '2-digit',
           month: 'short',
           day: 'numeric',

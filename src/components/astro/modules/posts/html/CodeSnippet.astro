@@ -1,8 +1,16 @@
 ---
-import CopyCode from "@/components/vue/CopyCode.vue";
+import Copy from "@/components/vue/CopyButton.vue";
 
-import Clipboard from "@/components/astro/icons/Clipboard.astro";
-import Check from "@/components/astro/icons/Check.astro";
+import { Icon } from "astro-icon/components";
+
+import Javascript from "@/components/astro/icons/Javascript.astro";
+import Typescript from "@/components/astro/icons/Typescript.astro";
+import AstroIcon from "@/components/astro/icons/AstroIcon.astro";
+import Html from "@/components/astro/icons/Html.astro";
+import Docker from "@/components/astro/icons/Docker.astro";
+import Mdx from "@/components/astro/icons/Mdx.astro";
+import Markdown from "@/components/astro/icons/Markdown.astro";
+import CSS from "@/components/astro/icons/CSS.astro";
 
 const meta: Record<string, string> = {};
 const {
@@ -19,52 +27,64 @@ if (dataMeta) {
   });
 }
 
+const langIconMap = {
+  js: Javascript,
+  ts: Typescript,
+  astro: AstroIcon,
+  html: Html,
+  docker: Docker,
+  mdx: Mdx,
+  markdown: Markdown,
+  css: CSS
+};
+
+const LangIcon = langIconMap[props["data-language"]];
+
 const title = meta.title;
-const copy = 'copy' in meta;
-const noLang = 'noLang' in meta;
+const copy = "copy" in meta;
 ---
 
-<figure
-  class:list={[
-    ":uno:",
-    "my-4",
-    "overflow-hidden",
-    "border",
-    "border-separator",
-    "transition-colors",
-    "rounded-md",
-    "focus-within:border-content/35",
-  ]}
->
+<figure class:list={[":uno:", "my-4", "transition-colors", "rounded-b"]}>
   {
     (title || copy) && (
-      <figcaption class="flex justify-between items-center text-xs leading-normal border-separator bg-surface text-balance transition-all p-2 px-4 border-b rounded-t-md">
-        <p class="text-content transition-colors">{title}</p>
+      <figcaption class=":uno: sticky top-0 left-0 z-10 text-xs leading-normal bg-background text-balance transition-all overflow-hidden">
+        <div class=":uno: bg-surface-1 rounded-t-md border-separator border p-2 px-4 w-full border-collapse flex justify-between items-center transition-colors">
+          <div class=":uno: flex items-center gap-2">
+            {LangIcon && <LangIcon class=":uno: size-4 transition-colors shrink-0" />}
 
-        {copy && (
-          <CopyCode code={dataCode} client:visible>
-            <Clipboard class=":uno: size-[14px] transition-colors text-content/70 group-hover:text-heading group-focus:text-heading flex-shrink-0" />
+            <p class=":uno: text-content transition-colors">{title}</p>
+          </div>
 
-            <Check
-              slot="copied"
-              class=":uno: size-[14px] text-success flex-shrink-0"
-            />
-          </CopyCode>
-        )}
+          {copy && (
+            <Copy className=":uno:" value={dataCode} client:visible>
+              <Icon
+                name="lucide:clipboard"
+                class=":uno: size-[14px] transition-colors text-content/70 group-hover:text-heading group-focus:text-heading flex-shrink-0"
+              />
+
+              <Icon
+                name="lucide:check"
+                slot="after-copy-icon"
+                class=":uno: size-[14px] text-success flex-shrink-0"
+              />
+            </Copy>
+          )}
+        </div>
       </figcaption>
     )
   }
 
-  <div class="relative">
-    <p
-      class:list={[
-        "absolute top-3 right-4 font-mono text-sm text-content/50 leading-none max-md:hidden",
-        { hidden: noLang },
-      ]}
-    >
-      {props['data-language']}
-    </p>
-
-    <pre class:list={['rounded-none', 'py-2', 'focus:outline-none', className]} {...props}><slot /></pre>
-  </div>
+  <pre
+    class:list={[
+      "rounded-none",
+      "py-2",
+      "border-x border-b",
+      "border-separator",
+      "rounded-b",
+      "transition-colors",
+      "focus:outline-none",
+      !title && !copy ? "rounded-t border-t" : "",
+      className,
+    ]}
+    {...props}><slot /></pre>
 </figure>

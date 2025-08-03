@@ -1,0 +1,135 @@
+/* Code */
+
+code:not(pre code) {
+  background-color: var(--surface-1);
+  font-size: 14px;
+  padding: 1px;
+  border-radius: 4px;
+  color: var(--accent);
+  border: 1px solid var(--separator);
+
+  transition: all 150ms var(--default-transition-timingFunction);
+}
+
+/* Callouts */
+
+.callout__note a {
+  color: var(--accent);
+  text-decoration-color: color-mix(in oklch, var(--accent), transparent 80%);
+}
+
+.callout__note a:hover {
+  color: var(--accent);
+  text-decoration-color: var(--accent);
+}
+
+.callout__note strong {
+  color: var(--accent);
+}
+
+.callout__note a:focus {
+  color: var(--accent);
+  text-decoration-color: var(--accent);
+}
+
+.callout__note a:active {
+  color: var(--accent);
+  text-decoration-color: var(--accent);
+}
+
+.callout__warning code:not(pre code) {
+  color: var(--warning);
+}
+
+.callout__warning a {
+  color: var(--warning);
+  text-decoration-color: color-mix(in oklch, var(--warning), transparent 80%);
+}
+
+.callout__warning a:hover {
+  color: var(--warning);
+  text-decoration-color: var(--warning);
+}
+
+.callout__warning a:focus {
+  color: var(--warning);
+  text-decoration-color: var(--warning);
+}
+
+.callout__warning a:active {
+  color: var(--warning);
+  text-decoration-color: var(--warning);
+}
+
+.callout__warning strong {
+  color: var(--warning);
+}
+
+.callout__danger code:not(pre code) {
+  color: var(--danger);
+}
+
+.callout__danger a {
+  color: var(--warning);
+  text-decoration-color: color-mix(in oklch, var(--warning), transparent 80%);
+}
+
+.callout__danger a:hover {
+  color: var(--warning);
+  text-decoration-color: var(--warning);
+}
+
+.callout__danger a:focus {
+  color: var(--warning);
+  text-decoration-color: var(--warning);
+}
+
+.callout__danger a:active {
+  color: var(--warning);
+  text-decoration-color: var(--warning);
+}
+
+.callout__danger strong {
+  color: var(--danger);
+}
+
+/* Ordered Lists */
+
+.mdx__ol li {
+  counter-increment: li 1;
+}
+
+.mdx__ol li::before {
+  content: counters(li, ".") ". ";
+  margin-left: 0.125rem;
+  margin-right: 0.5rem;
+  font-feature-settings: "tnum" 1;
+
+  color: var(--accent);
+  transition: color 0.2s ease-out;
+}
+
+.mdx__ol svg {
+  display: none;
+}
+
+/* Math */
+
+.MathJax:not([display="true"]) {
+  display: inline !important;
+}
+
+/* ContentEditable for one blogpost */
+
+.contenteditable__autoresize {
+  line-height: 1.5;
+  min-height: calc(4rem + 16px);
+  max-height: calc(8 * 1.5rem + 16px);
+  overflow: auto;
+}
+
+.contenteditable__autoresize:empty::before {
+  content: attr(placeholder);
+  opacity: 0.5;
+  pointer-events: none;
+}

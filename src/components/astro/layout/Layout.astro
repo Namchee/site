@@ -1,5 +1,8 @@
 ---
 import "@/assets/styles/global.css";
+import "@/assets/styles/colors.css";
+import "@/assets/styles/theme.css";
+import "@/assets/styles/fonts.css";
 import "@/assets/styles/toggle.css";
 
 import { getCollection } from "astro:content";
@@ -116,11 +119,12 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
     <script is:inline defer src="https://cloud.umami.is/script.js" data-website-id="16f41ca8-561c-4f45-8943-0c80934f59ff"></script>
   </head>
   <body
-    class=":uno: bg-background transition-colors text-content flex flex-col font-sans min-h-screen mx-auto antialiased"
+    vaul-drawer-wrapper
+    class=":uno: bg-background transition-colors text-content text-base flex flex-col font-sans min-h-screen mx-auto antialiased"
   >
     <Navigation posts={posts} />
 
-    <main class=":uno: w-full mx-auto flex-1 max-w-[832px] px-8 leading-[1.75] mt-24 mb-32 md:mt-32 space-y-16">
+    <main class=":uno: w-full mx-auto flex-1 max-w-[832px] px-8 mt-24 mb-32 md:mt-32 space-y-16">
       <slot />
     </main>
 

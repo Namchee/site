@@ -24,19 +24,19 @@ const experiences = [
       <li class=":uno: items-center grid gap-x-4 md:grid-cols-[10ch_1fr_max-content] grid-cols-[1fr_max-content]">
         <p class=":uno: flex items-center space-x-2 order-1 md:order-0 ml-auto">
           {exp.duration.toLowerCase() === 'current' && (
-            <Pulse class=":uno: -mt-[2.5px]" />
+            <Pulse />
           )}
-          <span style="font-feature-settings: 'tnum' 1;">{exp.duration}</span>
+          <span style="font-feature-settings:  'cv05' 1, 'zero' 1, 'ss03' 1, 'cv09' 1, 'cv10' 1, 'tnum' 1;">{exp.duration}</span>
         </p>
 
         <AppLink
           href={exp.link}
-          class=":uno: font-medium text-heading/85 transition-colors hover:text-heading focus:text-heading inline-flex items-center space-x-2 text-balance w-fit"
+          class=":uno: font-medium text-heading/80 transition-colors hover:text-heading focus:text-heading inline-flex items-center space-x-2 text-balance w-fit"
         >
           {exp.name}
         </AppLink>
 
-        <p class="text-sm md:text-base leading-[1.75] order-2 md:order-0">{exp.title}</p>
+        <p class="text-sm md:text-base order-2 md:order-0">{exp.title}</p>
       </li>
     ))
   }

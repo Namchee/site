@@ -4,6 +4,7 @@ import { Icon } from "astro-icon/components";
 import Layout from "@/components/astro/layout/Layout.astro";
 import TextLink from "@/components/astro/ui/TextLink.astro";
 import AppLink from "@/components/astro/ui/AppLink.astro";
+import ColorSwatch from "@/components/vue/colophon/ColorSwatch.vue";
 
 const inspirations = [
   {
@@ -66,19 +67,19 @@ const sha = process.env.CF_PAGES_COMMIT_SHA || "418ed9f";
 <Layout title={title} description={description} og="og-colophon">
   <section class=":uno: grid grid-cols-12 gap-4">
     <div class=":uno: col-start-1 col-end-13 md:col-end-4 mb-8 md:mb-0">
-      <h1 class=":uno: text-2xl text-heading font-semibold tracking-tight transition-colors">
+      <h1 class=":uno: text-xl text-heading font-semibold transition-colors">
         Colophon
       </h1>
 
       <div
-        class="mt-2 md:mt-4 space-y-0 space-x-4 md:space-y-2 md:space-x-0 flex md:flex-col"
+        class="mt-2 md:mt-4 space-y-0 space-x-4 md:space-y-1 md:space-x-0 flex md:flex-col"
       >
         <time
           class=":uno: flex items-center space-x-2"
-          title="Last Updated on 17 November 2024"
+          title="Last Updated on 26 July 2025"
         >
           <Icon name="lucide:history" class=":uno: w-4 h-auto" />
-          <span class="text-xs">17 November 2024</span>
+          <span class="text-xs">26 July 2025</span>
         </time>
 
         <p
@@ -113,9 +114,9 @@ const sha = process.env.CF_PAGES_COMMIT_SHA || "418ed9f";
           href="https://pages.cloudflare.com/"
         >
           Cloudflare Pages</TextLink
-        >. Site analytics are powered by <TextLink
-        href="https://umami.is/"
-      >Umami</TextLink>.
+        >. Site analytics are powered by <TextLink href="https://umami.is/"
+          >Umami</TextLink
+        >.
       </p>
     </div>
   </section>
@@ -124,22 +125,45 @@ const sha = process.env.CF_PAGES_COMMIT_SHA || "418ed9f";
     <h2
       class=":uno: col-start-1 col-end-13 md:col-end-4 text-heading font-semibold transition-colors"
     >
-      Design
+      Colors
     </h2>
 
     <div class=":uno: col-start-1 md:col-start-5 col-end-13 space-y-4">
       <p>
-        Colors are extracted from <TextLink href="https://www.untitledui.com/">
+        Color palette are extracted from <TextLink
+          href="https://www.untitledui.com/"
+        >
           Untitled UI</TextLink
-        > design system and <TextLink
-          href="https://tailwindcss.com/docs/customizing-colors"
-          >TailwindCSS</TextLink
-        > color system with a few twist of my own.
+        > design system with 2 different grays for light and dark mode.
       </p>
 
       <p>
-        There are 2 typefaces that are used in this website: Inter and JetBrains
-        Mono.
+        To enhance user experience, dark mode colors are designed as a heavily
+        desatured version of their light mode counterpart.
+      </p>
+
+      <div class="flex flex-col gap-4 items-center mt-8!">
+        <ColorSwatch name="gray-light" client:visible />
+        <ColorSwatch name="gray-dark" client:visible />
+        <ColorSwatch name="indigo" client:visible />
+        <ColorSwatch name="green" client:visible />
+        <ColorSwatch name="yellow" client:visible />
+        <ColorSwatch name="red" client:visible />
+      </div>
+    </div>
+  </section>
+
+  <section class=":uno: grid grid-cols-12 gap-4">
+    <h2
+      class=":uno: col-start-1 col-end-13 md:col-end-4 text-heading font-semibold transition-colors"
+    >
+      Typography
+    </h2>
+
+    <div class=":uno: col-start-1 md:col-start-5 col-end-13 space-y-5">
+      <p>
+        There are 3 typefaces that are used in this website: Inter, Georgia, and
+        JetBrains Mono.
       </p>
 
       <p>
@@ -149,11 +173,16 @@ const sha = process.env.CF_PAGES_COMMIT_SHA || "418ed9f";
         serving as the typeface body copies and headings alike.
       </p>
 
-      <p>
+      <p class="font-serif">
+        Georgia is a classic serif typeface, inspired by 19th-century designs and optimized by
+        Microsoft for on-screen readability. Georgia is used as the typeface for quotes in blog posts.
+      </p>
+
+      <p class="font-mono">
         <TextLink href="https://www.jetbrains.com/lp/mono/">
           JetBrains Mono</TextLink
-        > is a monospaced font created by JetBrains and distributed under the SIL
-        Font License. JetBrains Mono is used in codeblocks and miscellanous accents.
+        > is a monospaced font created by JetBrains and distributed under SIL
+        Font License. JetBrains Mono is used in all code-related contexts.
       </p>
     </div>
   </section>
@@ -162,10 +191,10 @@ const sha = process.env.CF_PAGES_COMMIT_SHA || "418ed9f";
     <h2
       class=":uno: col-start-1 col-end-13 md:col-end-4 text-heading font-semibold transition-colors"
     >
-      Graphical Contents
+      Visuals
     </h2>
 
-    <div class=":uno: col-start-1 md:col-start-5 col-end-13 space-y-4">
+    <div class=":uno: col-start-1 md:col-start-5 col-end-13 space-y-5">
       <p>
         Most of the images on my posts are taken from various sources with
         attribution that can be found under the image. Diagrams are made with <TextLink
@@ -183,16 +212,16 @@ const sha = process.env.CF_PAGES_COMMIT_SHA || "418ed9f";
           href="https://simpleicons.org/"
         >
           Simple Icons</TextLink
-        > for all brand icons, except for theme switcher icon which is taken from
-        <TextLink href="https://toggles.dev/">toggles.dev</TextLink>.
-      </p>
-
-      <p>
-        Icons are served with the help of <TextLink
+        > for all brand icons, both of which are available through <TextLink
           href="https://iconify.design/"
         >
           Iconify</TextLink
         >.
+      </p>
+
+      <p>
+        Theme switcher are directly extracted from
+        <TextLink href="https://toggles.dev/">toggles.dev</TextLink>.
       </p>
     </div>
   </section>
@@ -217,7 +246,7 @@ const sha = process.env.CF_PAGES_COMMIT_SHA || "418ed9f";
             <li>
               <AppLink
                 href={inspiration.href}
-                class=":uno: group text-heading/85 hover:text-heading focus:text-heading transition-colors inline-flex items-center font-medium space-x-1"
+                class=":uno: group text-heading/80 hover:text-heading focus:text-heading transition-colors inline-flex items-center font-medium space-x-1"
               >
                 <span>{inspiration.name}</span>
                 <Icon
@@ -241,14 +270,18 @@ const sha = process.env.CF_PAGES_COMMIT_SHA || "418ed9f";
 
     <div class=":uno: col-start-1 md:col-start-5 col-end-13 space-y-4">
       <p>
-        This website is open-sourced and can be found on my <TextLink
+        This website is open-sourced and licensed under <TextLink href="https://mit-license.org/">MIT License</TextLink> on my <TextLink
           href="https://www.github.com/Namchee/site"
         >
           GitHub</TextLink
-        >. If you find a bug on this site, feel free to create an
+        >. Blog posts are licensed under <TextLink href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY 4.0</TextLink>.
+      </p>
+
+      <p>
+        If you find a bug on this site or want to submit a feedback, feel free to create an
         <TextLink href="https://github.com/Namchee/site/issues">
           issue</TextLink
-        >.
+        > on the repository.
       </p>
     </div>
   </section>

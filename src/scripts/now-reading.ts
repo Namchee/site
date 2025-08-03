@@ -50,6 +50,10 @@ interface Book {
   author: string[];
 }
 
+const coverOverride = {
+  'tom-greenwood-sustainable-web-design-90039': 'https://sustainablewebdesign.org/wp-content/uploads/2021/01/SWD-Tom-Greenwood-Cover.jpg',
+}
+
 export async function getCurrentlyReadBooks(): Promise<Book[]> {
   if (import.meta.env.DEV) {
     // mock on dev mode. ain't no time to wait
@@ -81,7 +85,7 @@ export async function getCurrentlyReadBooks(): Promise<Book[]> {
     title: book.title,
     subtitle: book.subtitle,
     url: `https://literal.club/book/${book.slug}`,
-    cover: book.cover,
+    cover: book.cover || coverOverride[book.slug],
     author: book.authors.map(author => author.name),
   }));
 }
