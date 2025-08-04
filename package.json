@@ -13,7 +13,7 @@
     "lint": "eslint src",
     "lint:fix": "eslint src --fix",
     "webmentions:sync": "tsx ./src/scripts/webmentions.ts",
-    "postinstall": "pnpm exec playwright install"
+    "postinstall": "pnpm exec playwright install && pip install fonttools brotli zopfli"
   },
   "devDependencies": {
     "@astrojs/mdx": "^4.0.3",
