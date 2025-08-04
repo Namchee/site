@@ -45,6 +45,7 @@
     "eslint-plugin-import": "^2.31.0",
     "eslint-plugin-vue": "^9.30.0",
     "github-slugger": "^2.0.0",
+    "glyphhanger": "^5.0.0",
     "mdast-util-to-string": "^4.0.0",
     "playwright": "^1.49.1",
     "reading-time": "^1.5.0",

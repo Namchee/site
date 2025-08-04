@@ -111,6 +111,9 @@ importers:
       github-slugger:
         specifier: ^2.0.0
         version: 2.0.0
+      glyphhanger:
+        specifier: ^5.0.0
+        version: 5.0.0
       mdast-util-to-string:
         specifier: ^4.0.0
         version: 4.0.0
