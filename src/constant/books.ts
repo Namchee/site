@@ -84,6 +84,11 @@ export const BOOKS = {
       title: 'Deep Work',
       author: 'Cal Newport',
       link: 'https://literal.club/book/deep-work-wbun9'
+    },
+    {
+      title: 'Sustainable Web Design',
+      author: 'Tom Greenwood',
+      link: 'https://literal.club/book/tom-greenwood-sustainable-web-design-90039'
     }
   ]
 };
