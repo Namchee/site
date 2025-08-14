@@ -47,9 +47,8 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
     <link rel="icon" href="/favicon.ico" sizes="any" />
     <link
       rel="icon"
-      href="/icon-light.svg"
+      href="/icon.svg"
       type="image/svg+xml"
-      class=":uno: favicon"
     />
 
     <meta name="generator" content={Astro.generator} />
@@ -94,7 +93,6 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
     <script is:inline>
       // do not try to optimize this. is:inline is there to avoid pre-opt that causes theme flicker
       const docEl = document.documentElement;
-      const svgIcon = document.querySelector(".favicon");
       const media = window.matchMedia("(prefers-color-scheme: dark)");
 
       let theme = media.matches ? "dark" : "light";
@@ -109,7 +107,6 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
         const method = theme === "light" ? "remove" : "add";
 
         docEl.classList[method]("dark");
-        svgIcon.href = theme === "light" ? "/icon-light.svg" : "/icon-dark.svg";
         window.localStorage.setItem("theme", theme);
       };
 
