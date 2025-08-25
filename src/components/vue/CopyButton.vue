@@ -56,7 +56,7 @@ onBeforeUnmount(() => {
 
       <TooltipPortal>
         <TooltipContent :class="{
-          'text-xs rounded-md text-surface-1 shadow shadow py-2 tooltip__content select-none px-3 will-change-[transform,opacity] transition-colors z-20': true,
+          'text-xs rounded-md text-surface-1 shadow py-2 tooltip__content select-none px-3 will-change-[transform,opacity] transition-colors z-20': true,
           'bg-success text-[var(--gray-dark-25)]': copied,
           'bg-heading': !copied
         }" :side-offset="5">

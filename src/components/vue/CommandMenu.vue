@@ -193,7 +193,7 @@ watchEffect(() => {
       <TooltipRoot>
         <DialogTrigger as-child>
           <TooltipTrigger as-child>
-            <button class="w-[36px] h-[36px] grid place-items-center transition-colors text-content rounded-md hover:bg-surface-2 focus:bg-surface-2 text-sm my-1 ml-1">
+            <button class="size-[36px] grid place-items-center transition-colors text-content rounded-md hover:bg-surface-2 focus:bg-surface-2 text-sm my-1 ml-1">
               <slot />
             </button>
           </TooltipTrigger>
