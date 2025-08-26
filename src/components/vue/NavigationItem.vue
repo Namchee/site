@@ -1,5 +1,7 @@
 <script setup lang="ts">
-import { TooltipProvider, TooltipRoot, TooltipTrigger, TooltipContent, TooltipArrow, TooltipPortal } from 'reka-ui';
+import { TooltipProvider, TooltipRoot, TooltipTrigger, TooltipPortal } from 'reka-ui';
+
+import TooltipContent from '@/components/vue/ui/TooltipContent.vue';
 
 const props = defineProps({
   label: { type: String, required: true },
@@ -18,15 +20,9 @@ const props = defineProps({
         </a>
       </TooltipTrigger>
 
-      <TooltipPortal>
-        <TooltipContent
-          class="text-sm rounded-md shadow py-2 tooltip__content bg-heading text-surface-1 shadow-lg select-none px-3 will-change-[transform,opacity]"
-          :side-offset="5">
-          <p>{{ props.label }}</p>
-
-          <TooltipArrow :width="8" class="fill-heading" />
-        </TooltipContent>
-      </TooltipPortal>
+      <TooltipContent :side-offset="5">
+        <p>{{ props.label }}</p>
+      </TooltipContent>
     </TooltipRoot>
   </TooltipProvider>
 </template>

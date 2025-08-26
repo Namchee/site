@@ -1,8 +1,10 @@
 <script setup lang="ts">
 import { ref, onMounted, onUnmounted } from 'vue';
 
-import { TooltipProvider, TooltipRoot, TooltipTrigger, TooltipContent, TooltipArrow, TooltipPortal } from 'reka-ui';
+import { TooltipProvider, TooltipRoot, TooltipTrigger, TooltipArrow, TooltipPortal } from 'reka-ui';
 import { DrawerContent, DrawerHandle, DrawerOverlay, DrawerPortal, DrawerRoot, DrawerTrigger } from 'vaul-vue';
+
+import TooltipContent from '@/components/vue/ui/TooltipContent.vue';
 
 import ToCList from './posts/ToCList.vue';
 import generateToC from '@/scripts/toc';
@@ -66,14 +68,11 @@ onUnmounted(() => {
             </DrawerTrigger>
           </TooltipTrigger>
 
-          <TooltipPortal>
-            <TooltipContent :collision-padding="32" :side-offset="4"
-              class=":uno: text-sm rounded-md shadow py-2 tooltip__content bg-heading text-surface-1 select-none px-3 will-change-[transform,opacity]">
-              <p>Table of Contents</p>
+          <TooltipContent :collision-padding="32" :side-offset="4">
+            <p>Table of Contents</p>
 
-              <TooltipArrow :width="8" class="fill-heading" />
-            </TooltipContent>
-          </TooltipPortal>
+            <TooltipArrow :width="8" class="fill-heading" />
+          </TooltipContent>
         </TooltipRoot>
 
         <DrawerPortal>

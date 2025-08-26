@@ -1,7 +1,9 @@
 <script setup lang="ts">
 import { onBeforeUnmount, ref } from 'vue';
 
-import { TooltipProvider, TooltipArrow, TooltipRoot, TooltipPortal, TooltipTrigger, TooltipContent } from 'reka-ui';
+import { TooltipProvider, TooltipRoot, TooltipTrigger } from 'reka-ui';
+
+import TooltipContent from '@/components/vue/ui/TooltipContent.vue';
 
 const props = defineProps({
   value: { type: String, required: true },
@@ -48,54 +50,26 @@ onBeforeUnmount(() => {
           <template v-if="!copied">
             <slot />
           </template>
+
           <template v-else>
             <slot name="after-copy-icon" />
           </template>
         </button>
       </TooltipTrigger>
 
-      <TooltipPortal>
-        <TooltipContent :class="{
-          'text-xs rounded-md text-surface-1 shadow py-2 tooltip__content select-none px-3 will-change-[transform,opacity] transition-colors z-20': true,
-          'bg-success text-[var(--gray-dark-25)]': copied,
-          'bg-heading': !copied
-        }" :side-offset="5">
-          <template v-if="!copied">
-            <slot name="before-copy-label">
-              Copy to Clipboard
-            </slot>
-          </template>
+      <TooltipContent class="z-20" :variant="copied ? 'success' : 'content'" :side-offset="5">
+        <template v-if="!copied">
+          <slot name="before-copy-label">
+            Copy to Clipboard
+          </slot>
+        </template>
 
-          <template v-else>
-            <slot name="after-copy-label">
-              Copied!
-            </slot>
-          </template>
-          <TooltipArrow :class="{
-            'fill-heading': !copied,
-            'fill-success': copied,
-          }" :width="8" />
-        </TooltipContent>
-      </TooltipPortal>
+        <template v-else>
+          <slot name="after-copy-label">
+            Copied!
+          </slot>
+        </template>
+      </TooltipContent>
     </TooltipRoot>
   </TooltipProvider>
 </template>
-
-<style>
-.tooltip__content {
-  transform-origin: var(--reka-tooltip-content-transform-origin);
-  animation: scaleIn 100ms cubic-bezier(0.33, 1, 0.68, 1);
-}
-
-@keyframes scaleIn {
-  from {
-    opacity: 0;
-    transform: scale(0.9);
-  }
-
-  to {
-    opacity: 1;
-    transform: scale(1);
-  }
-}
-</style>

@@ -14,9 +14,10 @@ import {
   TooltipPortal,
   TooltipTrigger,
   TooltipProvider,
-  TooltipContent,
   TooltipArrow,
 } from 'reka-ui';
+
+import TooltipContent from '@/components/vue/ui/TooltipContent.vue';
 
 import { Icon } from '@iconify/vue';
 
@@ -193,40 +194,28 @@ watchEffect(() => {
       <TooltipRoot>
         <DialogTrigger as-child>
           <TooltipTrigger as-child>
-            <button class="size-[36px] grid place-items-center transition-colors text-content rounded-md hover:bg-surface-2 focus:bg-surface-2 text-sm my-1 ml-1">
+            <button
+              class="size-[36px] grid place-items-center transition-colors text-content rounded-md hover:bg-surface-2 focus:bg-surface-2 text-sm my-1 ml-1">
               <slot />
             </button>
           </TooltipTrigger>
 
-          <TooltipPortal>
-            <TooltipContent class="text-sm rounded-md shadow py-2 tooltip__content bg-heading text-surface-1 shadow-lg select-none px-3 will-change-[transform,opacity]" :side-offset="5">
-              <p>Command Palette ({{ isMac ? '⌘' : 'Ctrl' }} + K)</p>
-
-              <TooltipArrow
-                :width="8"
-                class="fill-heading"
-              />
-            </TooltipContent>
-          </TooltipPortal>
+          <TooltipContent :side-offset="5">
+            <p>Command Palette ({{ isMac ? '⌘' : 'Ctrl' }} + K)</p>
+          </TooltipContent>
         </DialogTrigger>
       </TooltipRoot>
     </TooltipProvider>
 
     <DialogPortal>
-      <DialogOverlay
-        @click="visible = false"
-        class=":uno: fixed bg-[var(--gray-dark-950)] w-screen h-screen z-30 dialog__overlay bg-opacity-50 backdrop-blur"
-      />
+      <DialogOverlay @click="visible = false"
+        class=":uno: fixed bg-[var(--gray-dark-950)] w-screen h-screen z-30 dialog__overlay bg-opacity-50 backdrop-blur" />
       <DialogContent
-        class=":uno: fixed border border-separator bg-background shadow rounded-md dialog__content w-4/5 max-w-md z-30 focus:outline-none"
-      >
+        class=":uno: fixed border border-separator bg-background shadow rounded-md dialog__content w-4/5 max-w-md z-30 focus:outline-none">
         <DialogTitle class=":uno: border-separator border-b">
           <input
             class=":uno: text-sm w-full focus:outline-none p-4 bg-transparent placeholder:font-normal font-normal leading-relaxed"
-            placeholder="Where do you want to go?"
-            ref="searchEl"
-            v-model="searchTerm"
-          >
+            placeholder="Where do you want to go?" ref="searchEl" v-model="searchTerm">
         </DialogTitle>
 
         <DialogDescription class=":uno: p-4 space-y-4 max-h-[25rem] overflow-y-auto">
@@ -236,58 +225,39 @@ watchEffect(() => {
             </p>
           </div>
 
-          <div
-            v-if="relevantLinks.length > 0"
-          >
+          <div v-if="relevantLinks.length > 0">
             <p class=":uno: font-semibold text-xs mb-2">
               Pages
             </p>
 
             <ul ref="currentLinks">
-              <a
-                v-for="(link, idx) in relevantLinks"
-                :key="link.href"
-                :href="link.href"
+              <a v-for="(link, idx) in relevantLinks" :key="link.href" :href="link.href"
                 class=":uno: text-sm rounded-md flex transition-colors justify-between p-2 outline-none"
-                :class="{ 'bg-surface-1 text-heading': focusIndex === idx }"
-                rel="noopener noreferrer"
-                @mouseover="() => focusIndex = idx"
-              >
+                :class="{ 'bg-surface-1 text-heading': focusIndex === idx }" rel="noopener noreferrer"
+                @mouseover="() => focusIndex = idx">
                 <div class=":uno: flex items-center space-x-4">
-                  <Icon
-                    :icon="link.icon"
-                    class=":uno: w-4 h-auto"
-                  />
+                  <Icon :icon="link.icon" class=":uno: w-4 h-auto" />
                   <span class=":uno: relative">
                     {{ link.name }}
                   </span>
                 </div>
 
-                <kbd
-                  v-if="!!link.key"
-                  :title="link.key as string"
-                  class=":uno: text-xs border border-separator text-heading font-mono px-1 bg-surface rounded no-touchscreen"
-                >{{ link.key }}</kbd>
+                <kbd v-if="!!link.key" :title="link.key as string"
+                  class=":uno: text-xs border border-separator text-heading font-mono px-1 bg-surface rounded no-touchscreen">{{
+                  link.key }}</kbd>
               </a>
             </ul>
           </div>
 
-          <div
-            v-if="relevantPosts.length > 0"
-          >
+          <div v-if="relevantPosts.length > 0">
             <p class=":uno: font-semibold text-xs mb-2">
               Posts
             </p>
 
-            <a
-              v-for="(post, idx) in relevantPosts"
-              :key="post.href"
-              :href="post.href"
+            <a v-for="(post, idx) in relevantPosts" :key="post.href" :href="post.href"
               class=":uno: flex justify-between p-2 text-sm transition-colors outline-none rounded-md"
               :class="{ 'bg-surface-1 text-heading': focusIndex === idx + relevantLinks.length }"
-              rel="noopener noreferrer"
-              @mouseover="() => focusIndex = idx + relevantLinks.length"
-            >
+              rel="noopener noreferrer" @mouseover="() => focusIndex = idx + relevantLinks.length">
               {{ post.title }}
             </a>
           </div>
@@ -295,17 +265,11 @@ watchEffect(() => {
 
         <div class=":uno: border-separator text-sm flex items-center space-x-4 border-t py-2 px-4 no-touchscreen">
           <div class=":uno: flex items-center space-x-1">
-            <Key
-              title="Arrow Up"
-              class=":uno: leading-normal text-[10px] px-[6px]"
-            >
+            <Key title="Arrow Up" class=":uno: leading-normal text-[10px] px-[6px]">
               ↑
             </Key>
 
-            <Key
-              title="Arrow Down"
-              class=":uno: text-[10px] px-[6px] leading-normal"
-            >
+            <Key title="Arrow Down" class=":uno: text-[10px] px-[6px] leading-normal">
               ↓
             </Key>
 
@@ -315,10 +279,7 @@ watchEffect(() => {
           </div>
 
           <div class=":uno: flex items-center space-x-1">
-            <Key
-              title="Enter"
-              class=":uno: text-[10px] leading-relaxed"
-            >
+            <Key title="Enter" class=":uno: text-[10px] leading-relaxed">
               Enter
             </Key>
 
@@ -328,10 +289,7 @@ watchEffect(() => {
           </div>
 
           <div class=":uno: flex items-center space-x-1">
-            <Key
-              title="Escape"
-              class=":uno: text-[10px] leading-relaxed"
-            >
+            <Key title="Escape" class=":uno: text-[10px] leading-relaxed">
               Esc
             </Key>
 
