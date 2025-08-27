@@ -37,14 +37,13 @@ const arrow = cva(
 type ContainerVariants = VariantProps<typeof container>;
 
 const props = withDefaults(
-  defineProps<TooltipContentProps & { class?: string; variant?: ContainerVariants['variant'] }>(),
+  defineProps<TooltipContentProps & { class?: string; arrow?: boolean; variant?: ContainerVariants['variant'] }>(),
   {
     class: '',
+    arrow: true,
     variant: 'content',
   }
 );
-
-
 </script>
 
 <template>
@@ -52,7 +51,9 @@ const props = withDefaults(
     <TooltipContent v-bind="props" :class="[container({ variant }), props.class]">
       <slot />
 
-      <TooltipArrow :width="8" :class="[arrow({ variant: props.variant })]" />
+      <template v-if="props.arrow">
+        <TooltipArrow :width="8" :class="[arrow({ variant: props.variant })]" />
+      </template>
     </TooltipContent>
   </TooltipPortal>
 

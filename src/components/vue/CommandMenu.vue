@@ -11,10 +11,8 @@ import {
   DialogTitle,
   DialogDescription,
   TooltipRoot,
-  TooltipPortal,
   TooltipTrigger,
   TooltipProvider,
-  TooltipArrow,
 } from 'reka-ui';
 
 import TooltipContent from '@/components/vue/ui/TooltipContent.vue';

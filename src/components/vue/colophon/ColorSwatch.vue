@@ -25,7 +25,7 @@ const shades = [25, 50, 100, 200, 300, 400, 500, 600, 700, 800, 900, 950];
               :style="{ backgroundColor: `var(--${props.name}-${shade})` }" />
           </TooltipTrigger>
 
-          <TooltipContent class="text-xs py-1 px-2" :side-offset="4">
+          <TooltipContent class="text-xs py-1 px-2" :arrow="false" :side-offset="4">
             <p>--{{ props.name }}-{{ shade }}</p>
           </TooltipContent>
         </TooltipRoot>

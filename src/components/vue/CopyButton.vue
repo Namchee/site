@@ -57,7 +57,7 @@ onBeforeUnmount(() => {
         </button>
       </TooltipTrigger>
 
-      <TooltipContent class="z-20" :variant="copied ? 'success' : 'content'" :side-offset="5">
+      <TooltipContent class="z-20 text-xs" :variant="copied ? 'success' : 'content'" :side-offset="5">
         <template v-if="!copied">
           <slot name="before-copy-label">
             Copy to Clipboard
