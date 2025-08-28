@@ -25,10 +25,10 @@ function copyCode() {
     window.clearTimeout(timeoutId.value);
   }
 
-  timeoutId.value = window.setTimeout(() => {
-    copied.value = false;
-    timeoutId.value = -1;
-  }, 2_500);
+  // timeoutId.value = window.setTimeout(() => {
+  //   copied.value = false;
+  //   timeoutId.value = -1;
+  // }, 2_500);
 }
 
 onBeforeUnmount(() => {

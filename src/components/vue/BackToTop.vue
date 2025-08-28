@@ -1,6 +1,8 @@
 <script setup lang="ts">
 import { TooltipProvider, TooltipRoot, TooltipTrigger } from 'reka-ui';
 
+import ArrowUp from "~icons/lucide/arrow-up";
+
 import TooltipContent from '@/components/vue/ui/TooltipContent.vue'
 
 function backToTop() {
@@ -18,7 +20,7 @@ function backToTop() {
         <TooltipTrigger as-child>
           <button @click="backToTop"
             class=":uno: size-[36px] grid place-items-center transition-colors hover:bg-surface-2 focus:bg-surface-2 lg:hover:bg-transparent rounded-md lg:focus:bg-transparent">
-            <slot />
+            <ArrowUp class=":uno: w-5 h-auto" />
           </button>
         </TooltipTrigger>
 

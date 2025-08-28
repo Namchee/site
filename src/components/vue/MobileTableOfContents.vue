@@ -79,9 +79,9 @@ onUnmounted(() => {
           <DrawerOverlay class=":uno: fixed bg-black w-screen h-screen z-30 bg-opacity-50 backdrop-blur" />
 
           <DrawerContent
-            class="bg-background flex flex-col rounded-t-md shadow max-h-3/4 fixed bottom-0 left-0 right-0 z-30 p-4"
+            class=":uno: bg-background flex flex-col rounded-t-md shadow max-h-3/4 fixed bottom-0 left-0 right-0 z-30 p-4"
             @click="() => open = false" @closeAutoFocus="(e) => e.preventDefault()">
-            <DrawerHandle class="bg-surface-2! hover:bg-surface-3 transition-colors" />
+            <DrawerHandle class=":uno: bg-surface-2! hover:bg-surface-3 transition-colors" />
 
             <div class="p-2 pt-4">
               <nav class=":uno: text-sm">

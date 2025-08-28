@@ -1,5 +1,7 @@
 ---
-import { Icon } from "astro-icon/components";
+import Home from '~icons/lucide/home';
+import Newspaper from '~icons/lucide/newspaper';
+import LibraryBig from '~icons/lucide/library-big';
 
 import NavigationItem from "@/components/vue/NavigationItem.vue";
 import CommandMenu from "@/components/vue/CommandMenu.vue";
@@ -14,17 +16,17 @@ const links = [
   {
     href: "/",
     label: "Home",
-    icon: "lucide:home",
+    icon: <Home class=":uno: h-auto w-5" />,
   },
   {
     href: "/posts",
     label: "Posts",
-    icon: "lucide:newspaper",
+    icon: <Newspaper class=":uno: h-auto w-5" />,
   },
   {
     href: "/library",
     label: "Library",
-    icon: "lucide:library-big",
+    icon: <LibraryBig class=":uno: h-auto w-5" />,
   },
 ];
 
@@ -43,7 +45,7 @@ const { posts } = Astro.props;
         href={link.href}
         client:load
       >
-        <Icon name={link.icon} aria-label={link.label} class=":uno: h-auto w-5" />
+        {link.icon}
       </NavigationItem>
     ))
   }

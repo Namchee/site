@@ -2,7 +2,8 @@
 import "@/assets/styles/tweet.css";
 import "@/assets/styles/shiki.css";
 
-import { Icon } from "astro-icon/components";
+import ToC from "~icons/lucide/table-of-contents";
+import PencilLine from "~icons/lucide/pencil-line";
 
 import type { CollectionEntry } from "astro:content";
 import type { MarkdownFile } from "@/plugins/remark/types";
@@ -31,18 +32,15 @@ const lastModified = frontmatter.lastModified || publishedAt;
 
 <article class=":uno: grid grid-cols-12 gap-4">
   <MobileToC headings={frontmatter.headings} client:visible>
-    <Icon
+    <ToC
       slot="button"
-      name="lucide:table-of-contents"
       class=":uno: w-5 h-auto"
     />
   </MobileToC>
 
   <TableOfContents headings={frontmatter.headings} />
 
-  <BackToTop client:visible>
-    <Icon name="lucide:arrow-up" class=":uno: w-5 h-auto" />
-  </BackToTop>
+  <BackToTop client:visible />
 
   <header class=":uno: col-start-1 col-end-13 md:col-start-2 md:col-end-12">
     <BackButton />
@@ -58,7 +56,7 @@ const lastModified = frontmatter.lastModified || publishedAt;
         class="flex items-center space-x-2 text-sm"
         title={`Published At ${new Date(publishedAt).toDateString()}`}
       >
-        <Icon name="lucide:pencil-line" class="w-4 h-auto" />
+        <PencilLine class=":uno: w-4 h-auto" />
 
         <time
           datetime={frontmatter.publishedAt as unknown as string}
