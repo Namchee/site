@@ -1,9 +1,11 @@
 ---
 import type { MarkdownHeading } from "astro";
 
+import ArrowUp from "~icons/lucide/arrow-up";
+import AlignLeft from "~icons/lucide/align-left";
+
 import generateToC from "@/scripts/toc";
 
-import { Icon } from "astro-icon/components";
 import TocList from "./TocList.astro";
 
 interface Props {
@@ -16,8 +18,7 @@ const tocList = generateToC(headings);
 
 <nav class=":uno: hidden xl:block fixed top-32 left-8 text-sm space-y-4">
   <div class=":uno: flex items-center gap-3">
-    <Icon
-      name="lucide:align-left"
+    <AlignLeft
       class=":uno: size-4 text-content transition-colors"
     />
 
@@ -45,8 +46,7 @@ const tocList = generateToC(headings);
     id="backToTop"
     class=":uno: flex group items-center gap-2.5"
   >
-    <Icon
-      name="lucide:arrow-up"
+    <ArrowUp
       class=":uno: size-4 text-content transition-colors group-hover:text-heading"
     />
 

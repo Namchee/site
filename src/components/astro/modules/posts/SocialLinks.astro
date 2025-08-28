@@ -1,5 +1,7 @@
 ---
-import { Icon } from "astro-icon/components";
+import X from "~icons/simple-icons/x";
+import LinkedIn from "~icons/simple-icons/linkedin";
+import Bluesky from "~icons/simple-icons/bluesky";
 
 import AppLink from "@/components/astro/ui/AppLink.astro";
 
@@ -42,8 +44,7 @@ const postText = `I just read '${title}' by Namchee
     title="Share Post on Twitter"
     class=":uno: group"
   >
-    <Icon
-      name="simple-icons:x"
+    <X
       class=":uno: w-4 h-auto md:w-[18px] group-hover:text-heading group-focus:text-heading transition-color"
     />
   </AppLink>
@@ -53,8 +54,7 @@ const postText = `I just read '${title}' by Namchee
     title="Share Post on LinkedIn"
     class=":uno: group"
   >
-    <Icon
-      name="simple-icons:linkedin"
+    <LinkedIn
       class=":uno: w-4 md:w-[18px] h-auto transition-color group-hover:text-heading group-focus:text-heading"
     />
   </AppLink>
@@ -64,8 +64,7 @@ const postText = `I just read '${title}' by Namchee
     title="Share Post on Bluesky"
     class=":uno: group"
   >
-    <Icon
-      name="simple-icons:bluesky"
+    <Bluesky
       class=":uno: w-4 md:w-[18px] h-auto transition-color group-hover:text-heading group-focus:text-heading"
     />
   </AppLink>

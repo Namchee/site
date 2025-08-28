@@ -4,6 +4,8 @@ import "@/assets/styles/shiki.css";
 
 import ToC from "~icons/lucide/table-of-contents";
 import PencilLine from "~icons/lucide/pencil-line";
+import History from "~icons/lucide/history";
+import Timer from "~icons/lucide/timer";
 
 import type { CollectionEntry } from "astro:content";
 import type { MarkdownFile } from "@/plugins/remark/types";
@@ -53,7 +55,7 @@ const lastModified = frontmatter.lastModified || publishedAt;
 
     <div class=":uno: flex space-x-4 mt-2 md:mt-4">
       <div
-        class="flex items-center space-x-2 text-sm"
+        class=":uno: flex items-center space-x-2 text-sm"
         title={`Published At ${new Date(publishedAt).toDateString()}`}
       >
         <PencilLine class=":uno: w-4 h-auto" />
@@ -73,10 +75,10 @@ const lastModified = frontmatter.lastModified || publishedAt;
       </div>
 
       <div
-        class="items-center space-x-2 text-sm hidden md:flex"
+        class=":uno: items-center space-x-2 text-sm hidden md:flex"
         title={`Last Modified ${new Date(lastModified).toDateString()}`}
       >
-        <Icon name="lucide:history" class="w-4 h-auto" />
+        <History class=":uno: w-4 h-auto" />
 
         <time
           datetime={frontmatter.lastModified as unknown as string}
@@ -93,12 +95,12 @@ const lastModified = frontmatter.lastModified || publishedAt;
       </div>
 
       <div
-        class="flex items-center space-x-2 text-sm md:ml-auto!"
+        class=":uno: flex items-center space-x-2 text-sm md:ml-auto!"
         title={`${frontmatter.timeToRead} minutes read`}
       >
-        <Icon name="lucide:timer" class="w-4 h-auto" />
+        <Timer class=":uno: w-4 h-auto" />
 
-        <p class="font-medium">
+        <p class=":uno: font-medium">
           {frontmatter.timeToRead} minutes read
         </p>
       </div>

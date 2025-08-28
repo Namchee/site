@@ -4,6 +4,8 @@ import { onBeforeUnmount, ref } from 'vue';
 import { TooltipProvider, TooltipRoot, TooltipTrigger } from 'reka-ui';
 
 import TooltipContent from '@/components/vue/ui/TooltipContent.vue';
+import Clipboard from '~icons/lucide/clipboard';
+import Check from '~icons/lucide/check';
 
 const props = defineProps({
   value: { type: String, required: true },
@@ -48,7 +50,7 @@ onBeforeUnmount(() => {
           'cursor-pointer': !copied,
         }">
           <template v-if="!copied">
-            <slot />
+            <Clipboard class=":uno: w-4 h-auto transition-colors group-hover:text-heading group-focus:text-heading md:w-[18px]" />
           </template>
 
           <template v-else>

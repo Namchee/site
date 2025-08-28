@@ -1,7 +1,9 @@
 ---
 import { cva } from "class-variance-authority";
 
-import { Icon } from "astro-icon/components";
+import Lightbulb from "~icons/lucide/lightbulb";
+import AlertTriangle from "~icons/lucide/alert-triangle";
+import CircleX from "~icons/lucide/circle-x";
 
 interface Props {
   variant: "note" | "warning" | "danger";
@@ -31,8 +33,8 @@ const iconContainer = cva(
     variants: {
       variant: {
         note: "bg-accent dark:bg-[var(--indigo-500)]",
-        warning: 'bg-warning',
-        danger: 'bg-danger',
+        warning: "bg-warning",
+        danger: "bg-danger",
       },
     },
     defaultVariants: {
@@ -42,15 +44,15 @@ const iconContainer = cva(
 );
 
 const icon = {
-  note: "lightbulb",
-  warning: "alert-triangle",
-  danger: "circle-x",
-}
+  note: <Lightbulb class=":uno: size-4 text-white" />,
+  warning: <AlertTriangle class=":uno: size-4 text-white" />,
+  danger: <CircleX class=":uno: size-4 text-white" />,
+};
 ---
 
 <div class:list={[container({ variant }), `callout__${variant}`]}>
   <div class={iconContainer({ variant })}>
-    <Icon name={`lucide:${icon[variant]}`} class="size-4 text-white" />
+    {icon[variant]}
   </div>
 
   <slot />
