@@ -1,5 +1,7 @@
 ---
-import { Icon } from "astro-icon/components";
+import History from "~icons/lucide/history";
+import GitHub from "~icons/simple-icons/github";
+import ArrowUpRight from "~icons/lucide/arrow-up-right";
 
 import Layout from "@/components/astro/layout/Layout.astro";
 import TextLink from "@/components/astro/ui/TextLink.astro";
@@ -78,14 +80,14 @@ const sha = process.env.CF_PAGES_COMMIT_SHA || "418ed9f";
           class=":uno: flex items-center space-x-2"
           title="Last Updated on 26 July 2025"
         >
-          <Icon name="lucide:history" class=":uno: w-4 h-auto" />
+          <History class=":uno: w-4 h-auto" />
           <span class="text-xs">26 July 2025</span>
         </time>
 
         <p
           class=":uno: flex items-center space-x-2 font-mono transition-colors hover:text-heading focus:text-heading"
         >
-          <Icon name="simple-icons:github" class=":uno: w-4 h-auto" />
+          <GitHub class=":uno: w-4 h-auto" />
 
           <AppLink
             href={`https://github.com/Namchee/site/tree/${sha}`}
@@ -249,8 +251,7 @@ const sha = process.env.CF_PAGES_COMMIT_SHA || "418ed9f";
                 class=":uno: group text-heading/80 hover:text-heading focus:text-heading transition-colors inline-flex items-center font-medium space-x-1"
               >
                 <span>{inspiration.name}</span>
-                <Icon
-                  name="lucide:arrow-up-right"
+                <ArrowUpRight
                   class=":uno: w-4 h-auto text-heading/50 group-hover:text-heading group-focus:text-heading transition-all group-hover:rotate-45 group-focus:rotate-45"
                 />
               </AppLink>

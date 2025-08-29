@@ -1,5 +1,5 @@
 ---
-import { Icon } from "astro-icon/components";
+import ArrowRight from "~icons/lucide/arrow-right";
 
 import Layout from "@/components/astro/layout/Layout.astro";
 
@@ -68,10 +68,9 @@ const description =
         class=":uno: inline-flex items-center hover:text-heading focus:text-heading arrow__link"
         href="https://github.com/Namchee?tab=repositories"
       >
-        <Icon name="lucide:arrow-right" class=":uno: w-4 arrow__before" />
+        <ArrowRight class=":uno: w-4 arrow__before" />
         <span class=":uno: link__text inline-block">View all projects</span>
-        <Icon
-          name="lucide:arrow-up-right"
+        <ArrowRight
           class=":uno: w-4 opacity-0 -translate-x-8 arrow__after"
         />
       </AppLink>
@@ -92,10 +91,9 @@ const description =
         class=":uno: inline-flex items-center arrow__link hover:text-heading focus:text-heading"
         href="/posts"
       >
-        <Icon name="lucide:arrow-right" class=":uno: w-4 arrow__before" />
+        <ArrowRight class=":uno: w-4 arrow__before" />
         <span class=":uno: link__text inline-block">See all posts</span>
-        <Icon
-          name="lucide:arrow-right"
+        <ArrowRight
           class=":uno: w-4 -translate-x-8 opacity-0 arrow__after"
         />
       </AppLink>

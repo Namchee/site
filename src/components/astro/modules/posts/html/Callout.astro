@@ -44,15 +44,17 @@ const iconContainer = cva(
 );
 
 const icon = {
-  note: <Lightbulb class=":uno: size-4 text-white" />,
-  warning: <AlertTriangle class=":uno: size-4 text-white" />,
-  danger: <CircleX class=":uno: size-4 text-white" />,
+  note: Lightbulb,
+  warning: AlertTriangle,
+  danger: CircleX,
 };
+
+const IconComponent = icon[variant];
 ---
 
 <div class:list={[container({ variant }), `callout__${variant}`]}>
   <div class={iconContainer({ variant })}>
-    {icon[variant]}
+    <IconComponent class=":uno: size-4 text-white" />
   </div>
 
   <slot />

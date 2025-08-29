@@ -5,7 +5,7 @@ import type { TooltipContentProps } from 'reka-ui';
 import { TooltipArrow, TooltipContent, TooltipPortal } from 'reka-ui';
 
 const container = cva(
-  'text-sm rounded-md py-2 shadow select-none px-3 transition-colors will-change-[transform,opacity] tooltip-content',
+  'text-sm rounded-md py-2 shadow select-none px-3 transition-colors will-change-[transform,opacity] tooltip__content',
   {
     variants: {
       variant: {
@@ -60,7 +60,7 @@ const props = withDefaults(
 </template>
 
 <style>
-.tooltip-content {
+.tooltip__content {
   transform-origin: var(--reka-tooltip-content-transform-origin);
   animation: scaleIn 100ms cubic-bezier(0.33, 1, 0.68, 1);
 }

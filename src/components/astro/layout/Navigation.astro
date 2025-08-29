@@ -2,7 +2,7 @@
 import Home from "~icons/lucide/home";
 import Newspaper from "~icons/lucide/newspaper";
 import LibraryBig from "~icons/lucide/library-big";
-import Command from "~icons/lucide/command";
+import Cog from "~icons/lucide/cog";
 
 import NavigationItem from "@/components/vue/NavigationItem.vue";
 import CommandMenu from "@/components/vue/CommandMenu.vue";
@@ -17,19 +17,27 @@ const links = [
   {
     href: "/",
     label: "Home",
-    icon: <Home class=":uno: h-auto w-5" />,
+    icon: Home,
+    key: 'Home',
   },
   {
     href: "/posts",
     label: "Posts",
-    icon: <Newspaper class=":uno: h-auto w-5" />,
+    icon: Newspaper,
   },
   {
     href: "/library",
     label: "Library",
-    icon: <LibraryBig class=":uno: h-auto w-5" />,
+    icon: LibraryBig,
   },
+  {
+    href: "/colophon",
+    label: "Colophon",
+    icon: Cog,
+  }
 ];
+
+const directLinks = links.slice(0, -1);
 
 const currentPath = Astro.url.pathname;
 const { posts } = Astro.props;
@@ -39,23 +47,21 @@ const { posts } = Astro.props;
   class=":uno: flex fixed transition-colors border shadow-lg rounded-md bottom-8 left-1/2 translate-x-[-50%] dark:bg-[var(--navigation)] border-separator bg-background z-20"
 >
   {
-    links.map((link, idx) => (
+    directLinks.map((link, idx) => (
       <NavigationItem
         label={link.label}
         className={`${idx === 0 ? "ml-1" : ""} ${currentPath.match(`${link.href}/.?`) || currentPath === link.href ? "text-heading bg-surface-2" : ""}`.trim()}
         href={link.href}
         client:load
       >
-        {link.icon}
+        <link.icon class=":uno: w-5 h-auto" />
       </NavigationItem>
     ))
   }
 
   <div class=":uno: border-l border-surface-3 transition-colors"></div>
 
-  <CommandMenu posts={posts} client:load>
-    <Command aria-label="Command Palette" class="w-5 h-auto" />
-  </CommandMenu>
+  <CommandMenu posts={posts} links={links} client:load />
 
   <ThemeSwitcher />
 </nav>

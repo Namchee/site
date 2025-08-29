@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { onBeforeUnmount, ref } from 'vue';
+import { onBeforeUnmount, ref, withDefaults } from 'vue';
 
 import { TooltipProvider, TooltipRoot, TooltipTrigger } from 'reka-ui';
 
@@ -7,16 +7,21 @@ import TooltipContent from '@/components/vue/ui/TooltipContent.vue';
 import Clipboard from '~icons/lucide/clipboard';
 import Check from '~icons/lucide/check';
 
-const props = defineProps({
-  value: { type: String, required: true },
-  className: { type: String, default: '' },
-});
+const props = withDefaults(
+  defineProps<{
+    value: string
+    className?: string
+  }>(),
+  {
+    className: '',
+  }
+);
 
 const open = ref(false);
 const copied = ref(false);
 const timeoutId = ref<number>(-1);
 
-const baseClass = `group ${props.className}`;
+const baseClass = `:uno: group ${props.className}`;
 
 function copyCode() {
   navigator.clipboard.writeText(props.value);
@@ -54,7 +59,9 @@ onBeforeUnmount(() => {
           </template>
 
           <template v-else>
-            <slot name="after-copy-icon" />
+            <Check
+              class=":uno: size-[14px] text-success"
+            />
           </template>
         </button>
       </TooltipTrigger>

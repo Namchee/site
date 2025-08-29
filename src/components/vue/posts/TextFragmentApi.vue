@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { TooltipProvider, TooltipRoot, TooltipTrigger, } from 'reka-ui';
+
 import TooltipContent from '@/components/vue//ui/TooltipContent.vue';
 </script>
 

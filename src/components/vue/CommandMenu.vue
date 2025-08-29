@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref, watch, computed, nextTick, watchEffect } from 'vue';
+import { ref, watch, computed, nextTick, watchEffect, type Component } from 'vue';
 import { useMagicKeys, whenever } from '@vueuse/core';
 
 import {
@@ -17,9 +17,9 @@ import {
 
 import TooltipContent from '@/components/vue/ui/TooltipContent.vue';
 
-import { Icon } from '@iconify/vue';
-
 import { links } from '@/constant/links';
+
+import Command from "~icons/lucide/command";
 
 import Key from '@/components/vue/Key.vue';
 
@@ -39,6 +39,12 @@ const props = defineProps<{
   posts: {
     title: string;
     href: string;
+  }[],
+  links: {
+    href: string;
+    label: string;
+    icon: Component;
+    key?: string;
   }[],
 }>();
 
@@ -194,7 +200,7 @@ watchEffect(() => {
           <TooltipTrigger as-child>
             <button
               class="size-[36px] grid place-items-center transition-colors text-content rounded-md hover:bg-surface-2 focus:bg-surface-2 text-sm my-1 ml-1">
-              <slot />
+              <Command aria-label="Command Palette" class=":uno: w-5 h-auto" />
             </button>
           </TooltipTrigger>
 
@@ -234,7 +240,7 @@ watchEffect(() => {
                 :class="{ 'bg-surface-1 text-heading': focusIndex === idx }" rel="noopener noreferrer"
                 @mouseover="() => focusIndex = idx">
                 <div class=":uno: flex items-center space-x-4">
-                  <Icon :icon="link.icon" class=":uno: w-4 h-auto" />
+                  <component :is="link.icon" class=":uno: w-4 h-auto" />
                   <span class=":uno: relative">
                     {{ link.name }}
                   </span>
@@ -242,7 +248,7 @@ watchEffect(() => {
 
                 <kbd v-if="!!link.key" :title="link.key as string"
                   class=":uno: text-xs border border-separator text-heading font-mono px-1 bg-surface rounded no-touchscreen">{{
-                  link.key }}</kbd>
+                    link.key }}</kbd>
               </a>
             </ul>
           </div>
