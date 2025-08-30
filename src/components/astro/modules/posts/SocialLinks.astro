@@ -1,10 +1,13 @@
 ---
-import { Icon } from "astro-icon/components";
+import X from "~icons/simple-icons/x";
+import LinkedIn from "~icons/simple-icons/linkedin";
+import Bluesky from "~icons/simple-icons/bluesky";
+import Check from "~icons/lucide/check";
+import Link from "~icons/lucide/link";
 
 import AppLink from "@/components/astro/ui/AppLink.astro";
 
 import Copy from "@/components/vue/CopyButton.vue";
-import Check from "@/components/astro/icons/Check.astro";
 
 interface Props {
   slug: string;
@@ -21,12 +24,11 @@ const postText = `I just read '${title}' by Namchee
 
 <div class=":uno: flex items-center space-x-4">
   <Copy className=":uno: mr-4" value={postUrl} client:visible>
-    <Icon
-      name="lucide:link"
+    <Link
       class=":uno: w-4 h-auto transition-colors group-hover:text-heading group-focus:text-heading md:w-[18px]"
     />
 
-    <Check slot="after-copy-icon" class=":uno:  w-4 h-auto md:w-[18px] text-success flex-shrink-0" />
+    <Check slot="after-copy-icon" class=":uno: w-4 h-auto md:w-[18px] text-success flex-shrink-0" />
 
     <p slot="before-copy-label">
       Copy Post Link
@@ -42,8 +44,7 @@ const postText = `I just read '${title}' by Namchee
     title="Share Post on Twitter"
     class=":uno: group"
   >
-    <Icon
-      name="simple-icons:x"
+    <X
       class=":uno: w-4 h-auto md:w-[18px] group-hover:text-heading group-focus:text-heading transition-color"
     />
   </AppLink>
@@ -53,8 +54,7 @@ const postText = `I just read '${title}' by Namchee
     title="Share Post on LinkedIn"
     class=":uno: group"
   >
-    <Icon
-      name="simple-icons:linkedin"
+    <LinkedIn
       class=":uno: w-4 md:w-[18px] h-auto transition-color group-hover:text-heading group-focus:text-heading"
     />
   </AppLink>
@@ -64,8 +64,7 @@ const postText = `I just read '${title}' by Namchee
     title="Share Post on Bluesky"
     class=":uno: group"
   >
-    <Icon
-      name="simple-icons:bluesky"
+    <Bluesky
       class=":uno: w-4 md:w-[18px] h-auto transition-color group-hover:text-heading group-focus:text-heading"
     />
   </AppLink>

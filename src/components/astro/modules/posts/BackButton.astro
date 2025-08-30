@@ -1,5 +1,5 @@
 ---
-import { Icon } from "astro-icon/components";
+import ArrowLeft from "~icons/lucide/arrow-left";
 
 import AppLink from "@/components/astro/ui/AppLink.astro";
 ---
@@ -8,10 +8,9 @@ import AppLink from "@/components/astro/ui/AppLink.astro";
   class=":uno: inline-flex items-center hover:text-heading focus:text-heading arrow__link text-sm"
   href="/posts"
 >
-  <Icon name="lucide:arrow-left" class=":uno: w-4 arrow__before" />
+  <ArrowLeft class=":uno: w-4 arrow__before" />
   <span class=":uno: link__text inline-block">Back to Posts</span>
-  <Icon
-    name="lucide:arrow-left"
+  <ArrowLeft
     class=":uno: w-4 opacity-0 -translate-x-8 arrow__after"
   />
 </AppLink>
@@ -20,7 +19,7 @@ import AppLink from "@/components/astro/ui/AppLink.astro";
   .arrow__before,
   .arrow__after,
   .link__text {
-    transition: all 200ms cubic-bezier(0.33, 1, 0.68, 1);
+    transition: all 200ms var(--default-transition-timingFunction);
   }
 
   .arrow__before {

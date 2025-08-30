@@ -1,5 +1,5 @@
 ---
-import { Icon } from "astro-icon/components";
+import ArrowUpRight from "~icons/lucide/arrow-up-right";
 
 import Layout from "@/components/astro/layout/Layout.astro";
 import AppLink from "@/components/astro/ui/AppLink.astro";
@@ -44,8 +44,7 @@ const description =
             href={b.link}
           >
             <span class="flex-1">{b.title}</span>
-            <Icon
-              name="lucide:arrow-up-right"
+            <ArrowUpRight
               class=":uno: w-4 h-auto transition-all text-heading/50 group-hover:text-heading group-focus:text-heading group-hover:rotate-45 group-focus:rotate-45 flex-shrink-0"
             />
           </AppLink>

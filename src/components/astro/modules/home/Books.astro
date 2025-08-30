@@ -1,6 +1,7 @@
 ---
 import { Image } from "astro:assets";
-import { Icon } from "astro-icon/components";
+
+import ArrowUpRight from "~icons/lucide/arrow-up-right";
 
 import AppLink from "@/components/astro/ui/AppLink.astro";
 
@@ -28,8 +29,7 @@ const books = await getCurrentlyReadBooks();
             >
               <span>{book.title}</span>
 
-              <Icon
-                name="lucide:arrow-up-right"
+              <ArrowUpRight
                 class=":uno: w-4 h-auto transition-all text-heading/50 group-hover:text-heading group-focus:text-heading group-focus:rotate-45 group-hover:rotate-45 flex-shrink-0"
               />
             </AppLink>

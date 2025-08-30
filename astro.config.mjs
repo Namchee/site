@@ -5,7 +5,6 @@ import vue from '@astrojs/vue';
 import mdx from '@astrojs/mdx';
 import sitemap from '@astrojs/sitemap';
 
-import icon from 'astro-icon';
 import robotsTxt from 'astro-robots-txt';
 
 import unocss from 'unocss/astro';
@@ -17,6 +16,8 @@ import subfont from '@ernxst/subfont/astro';
 import { remarkPlugins } from './src/plugins/remark';
 import { rehypePlugins } from './src/plugins/rehype';
 
+import Icons from 'unplugin-icons/vite';
+
 // https://astro.build/config
 export default defineConfig({
   integrations: [
@@ -25,12 +26,7 @@ export default defineConfig({
       injectReset: true,
     }),
     mdx(),
-    icon({
-      include: {
-        simpleIcons: ['github', 'linkedin', 'bluesky', 'x'],
-        lucide: ['*'],
-      },
-    }),
+
     sitemap(),
     robotsTxt(),
     subfont(),
@@ -49,8 +45,8 @@ export default defineConfig({
         },
       ],
       themes: {
-        light: 'one-light',
-        dark: 'tokyo-night',
+        light: 'kanagawa-lotus',
+        dark: 'kanagawa-wave',
       },
     },
     syntaxHighlight: {
@@ -62,4 +58,11 @@ export default defineConfig({
   },
   site: 'https://www.namchee.dev',
   prefetch: true,
+  vite: {
+    plugins: [
+      Icons({
+        compiler: 'vue3',
+      })
+    ]
+  }
 });

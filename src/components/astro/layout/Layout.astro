@@ -45,12 +45,7 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
     <link rel="manifest" href="/manifest.webmanifest" />
     <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
     <link rel="icon" href="/favicon.ico" sizes="any" />
-    <link
-      rel="icon"
-      href="/icon-light.svg"
-      type="image/svg+xml"
-      class=":uno: favicon"
-    />
+    <link rel="icon" href="/icon.svg" type="image/svg+xml" />
 
     <meta name="generator" content={Astro.generator} />
     <link rel="canonical" href={canonicalURL} />
@@ -94,7 +89,6 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
     <script is:inline>
       // do not try to optimize this. is:inline is there to avoid pre-opt that causes theme flicker
       const docEl = document.documentElement;
-      const svgIcon = document.querySelector(".favicon");
       const media = window.matchMedia("(prefers-color-scheme: dark)");
 
       let theme = media.matches ? "dark" : "light";
@@ -105,18 +99,21 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
         theme = window.localStorage.getItem("theme");
       }
 
-      const toggleTheme = (theme) => {
+      function toggleTheme(theme) {
         const method = theme === "light" ? "remove" : "add";
 
         docEl.classList[method]("dark");
-        svgIcon.href = theme === "light" ? "/icon-light.svg" : "/icon-dark.svg";
         window.localStorage.setItem("theme", theme);
-      };
+      }
 
       toggleTheme(theme);
     </script>
 
-    <script is:inline defer src="https://cloud.umami.is/script.js" data-website-id="16f41ca8-561c-4f45-8943-0c80934f59ff"></script>
+    <script
+      is:inline
+      defer
+      src="https://cloud.umami.is/script.js"
+      data-website-id="16f41ca8-561c-4f45-8943-0c80934f59ff"></script>
   </head>
   <body
     vaul-drawer-wrapper
@@ -124,7 +121,9 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
   >
     <Navigation posts={posts} />
 
-    <main class=":uno: w-full mx-auto flex-1 max-w-[832px] px-8 mt-24 mb-32 md:mt-32 space-y-16">
+    <main
+      class=":uno: w-full mx-auto flex-1 max-w-[832px] px-8 mt-24 mb-32 md:mt-32 space-y-16"
+    >
       <slot />
     </main>
 

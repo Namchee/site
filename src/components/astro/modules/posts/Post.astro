@@ -2,7 +2,9 @@
 import "@/assets/styles/tweet.css";
 import "@/assets/styles/shiki.css";
 
-import { Icon } from "astro-icon/components";
+import PencilLine from "~icons/lucide/pencil-line";
+import History from "~icons/lucide/history";
+import Timer from "~icons/lucide/timer";
 
 import type { CollectionEntry } from "astro:content";
 import type { MarkdownFile } from "@/plugins/remark/types";
@@ -30,19 +32,11 @@ const lastModified = frontmatter.lastModified || publishedAt;
 ---
 
 <article class=":uno: grid grid-cols-12 gap-4">
-  <MobileToC headings={frontmatter.headings} client:visible>
-    <Icon
-      slot="button"
-      name="lucide:table-of-contents"
-      class=":uno: w-5 h-auto"
-    />
-  </MobileToC>
+  <MobileToC headings={frontmatter.headings} client:visible />
 
   <TableOfContents headings={frontmatter.headings} />
 
-  <BackToTop client:visible>
-    <Icon name="lucide:arrow-up" class=":uno: w-5 h-auto" />
-  </BackToTop>
+  <BackToTop client:load />
 
   <header class=":uno: col-start-1 col-end-13 md:col-start-2 md:col-end-12">
     <BackButton />
@@ -55,10 +49,10 @@ const lastModified = frontmatter.lastModified || publishedAt;
 
     <div class=":uno: flex space-x-4 mt-2 md:mt-4">
       <div
-        class="flex items-center space-x-2 text-sm"
+        class=":uno: flex items-center space-x-2 text-sm"
         title={`Published At ${new Date(publishedAt).toDateString()}`}
       >
-        <Icon name="lucide:pencil-line" class="w-4 h-auto" />
+        <PencilLine class=":uno: w-4 h-auto" />
 
         <time
           datetime={frontmatter.publishedAt as unknown as string}
@@ -75,10 +69,10 @@ const lastModified = frontmatter.lastModified || publishedAt;
       </div>
 
       <div
-        class="items-center space-x-2 text-sm hidden md:flex"
+        class=":uno: items-center space-x-2 text-sm hidden md:flex"
         title={`Last Modified ${new Date(lastModified).toDateString()}`}
       >
-        <Icon name="lucide:history" class="w-4 h-auto" />
+        <History class=":uno: w-4 h-auto" />
 
         <time
           datetime={frontmatter.lastModified as unknown as string}
@@ -95,12 +89,12 @@ const lastModified = frontmatter.lastModified || publishedAt;
       </div>
 
       <div
-        class="flex items-center space-x-2 text-sm md:ml-auto!"
+        class=":uno: flex items-center space-x-2 text-sm md:ml-auto!"
         title={`${frontmatter.timeToRead} minutes read`}
       >
-        <Icon name="lucide:timer" class="w-4 h-auto" />
+        <Timer class=":uno: w-4 h-auto" />
 
-        <p class="font-medium">
+        <p class=":uno: font-medium">
           {frontmatter.timeToRead} minutes read
         </p>
       </div>

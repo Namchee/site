@@ -89,6 +89,11 @@ export const BOOKS = {
       title: 'Sustainable Web Design',
       author: 'Tom Greenwood',
       link: 'https://literal.club/book/tom-greenwood-sustainable-web-design-90039'
+    },
+    {
+      title: 'Composing Software',
+      author: 'Eric Elliot',
+      link: 'https://literal.club/book/composing-software-61c3y',
     }
   ]
 };

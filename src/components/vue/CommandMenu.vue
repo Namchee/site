@@ -11,18 +11,19 @@ import {
   DialogTitle,
   DialogDescription,
   TooltipRoot,
-  TooltipPortal,
   TooltipTrigger,
   TooltipProvider,
-  TooltipContent,
-  TooltipArrow,
 } from 'reka-ui';
 
-import { Icon } from '@iconify/vue';
+import TooltipContent from '@/components/vue/ui/TooltipContent.vue';
 
-import { links } from '@/constant/links';
+import Command from "~icons/lucide/command";
+import Home from "~icons/lucide/home";
+import Newspaper from "~icons/lucide/newspaper";
+import LibraryBig from "~icons/lucide/library-big";
+import Cog from "~icons/lucide/cog";
 
-import Key from '@/components/vue/Key.vue';
+import Kbd from '@/components/vue/ui/Kbd.vue';
 
 const visible = ref(false);
 const searchEl = ref<HTMLInputElement>();
@@ -36,14 +37,26 @@ const fireRate = 75;
 
 const isMac = false;
 
+const ICON_MAP = {
+  '/': Home,
+  '/posts': Newspaper,
+  '/library': LibraryBig,
+  '/colophon': Cog
+}
+
 const props = defineProps<{
   posts: {
     title: string;
     href: string;
   }[],
+  links: {
+    href: string;
+    label: string;
+    key?: string;
+  }[],
 }>();
 
-const { ctrl_k, meta_k, home, arrowDown, arrowUp, enter, escape, current } = useMagicKeys({
+const { ctrl_k, meta_k, home, arrowDown, arrowUp, enter, escape } = useMagicKeys({
   passive: false,
   onEventFired(e) {
     const isOpeningMenu = (e.ctrlKey || e.metaKey) && e.key === 'k';
@@ -59,12 +72,12 @@ const searchTerm = ref('');
 
 const relevantLinks = computed(() => {
   if (!searchTerm || !searchTerm.value) {
-    return links;
+    return props.links;
   }
 
   const pattern = new RegExp(searchTerm.value, 'i');
 
-  return links.filter(link => pattern.test(link.name));
+  return props.links.filter(link => pattern.test(link.label));
 });
 
 const relevantPosts = computed(() => {
@@ -193,101 +206,71 @@ watchEffect(() => {
       <TooltipRoot>
         <DialogTrigger as-child>
           <TooltipTrigger as-child>
-            <button class="w-[36px] h-[36px] grid place-items-center transition-colors text-content rounded-md hover:bg-surface-2 focus:bg-surface-2 text-sm my-1 ml-1">
-              <slot />
+            <button
+              class="size-[36px] grid place-items-center transition-colors text-content rounded-md hover:bg-surface-2 focus:bg-surface-2 text-sm my-1 ml-1">
+              <Command aria-label="Command Palette" class=":uno: w-5 h-auto" />
             </button>
           </TooltipTrigger>
 
-          <TooltipPortal>
-            <TooltipContent class="text-sm rounded-md shadow py-2 tooltip__content bg-heading text-surface-1 shadow-lg select-none px-3 will-change-[transform,opacity]" :side-offset="5">
-              <p>Command Palette ({{ isMac ? '⌘' : 'Ctrl' }} + K)</p>
-
-              <TooltipArrow
-                :width="8"
-                class="fill-heading"
-              />
-            </TooltipContent>
-          </TooltipPortal>
+          <TooltipContent :side-offset="5">
+            <p>Command Palette ({{ isMac ? '⌘' : 'Ctrl' }} + K)</p>
+          </TooltipContent>
         </DialogTrigger>
       </TooltipRoot>
     </TooltipProvider>
 
     <DialogPortal>
-      <DialogOverlay
-        @click="visible = false"
-        class=":uno: fixed bg-[var(--gray-dark-950)] w-screen h-screen z-30 dialog__overlay bg-opacity-50 backdrop-blur"
-      />
+      <DialogOverlay @click="visible = false"
+        class=":uno: fixed bg-[var(--gray-dark-950)] w-screen h-screen z-30 dialog__overlay bg-opacity-50 backdrop-blur" />
       <DialogContent
-        class=":uno: fixed border border-separator bg-background shadow rounded-md dialog__content w-4/5 max-w-md z-30 focus:outline-none"
-      >
+        class=":uno: fixed border border-separator bg-background shadow rounded-md dialog__content w-4/5 max-w-md z-30 focus:outline-none">
         <DialogTitle class=":uno: border-separator border-b">
           <input
             class=":uno: text-sm w-full focus:outline-none p-4 bg-transparent placeholder:font-normal font-normal leading-relaxed"
-            placeholder="Where do you want to go?"
-            ref="searchEl"
-            v-model="searchTerm"
-          >
+            placeholder="Where do you want to go?" ref="searchEl" v-model="searchTerm">
         </DialogTitle>
 
-        <DialogDescription class=":uno: p-4 space-y-4 max-h-[25rem] overflow-y-auto">
+        <DialogDescription as="div" class=":uno: p-4 space-y-4 max-h-[25rem] overflow-y-auto">
           <div v-if="relevantLinks.length === 0 && relevantPosts.length === 0">
             <p class=":uno: text-sm text-center opacity-75">
               Sorry, I don't know what or where that is 😕
             </p>
           </div>
 
-          <div
-            v-if="relevantLinks.length > 0"
-          >
+          <div v-if="relevantLinks.length > 0">
             <p class=":uno: font-semibold text-xs mb-2">
               Pages
             </p>
 
             <ul ref="currentLinks">
-              <a
-                v-for="(link, idx) in relevantLinks"
-                :key="link.href"
-                :href="link.href"
+              <a v-for="(link, idx) in relevantLinks" :key="link.href" :href="link.href"
                 class=":uno: text-sm rounded-md flex transition-colors justify-between p-2 outline-none"
-                :class="{ 'bg-surface-1 text-heading': focusIndex === idx }"
-                rel="noopener noreferrer"
-                @mouseover="() => focusIndex = idx"
-              >
+                :class="{ 'bg-surface-1 text-heading': focusIndex === idx }" rel="noopener noreferrer"
+                @mouseover="() => focusIndex = idx">
                 <div class=":uno: flex items-center space-x-4">
-                  <Icon
-                    :icon="link.icon"
-                    class=":uno: w-4 h-auto"
-                  />
+                  <component :is="ICON_MAP[link.href]" class=":uno: w-4 h-auto" />
+
                   <span class=":uno: relative">
-                    {{ link.name }}
+                    {{ link.label }}
                   </span>
                 </div>
 
-                <kbd
-                  v-if="!!link.key"
-                  :title="link.key as string"
-                  class=":uno: text-xs border border-separator text-heading font-mono px-1 bg-surface rounded no-touchscreen"
-                >{{ link.key }}</kbd>
+                <kbd v-if="!!link.key" :title="link.key as string"
+                  class=":uno: text-xs border border-separator text-heading font-mono px-1 bg-surface-1 rounded no-touchscreen">{{
+                    link.key }}</kbd>
               </a>
             </ul>
           </div>
 
-          <div
-            v-if="relevantPosts.length > 0"
-          >
+          <div v-if="relevantPosts.length > 0">
             <p class=":uno: font-semibold text-xs mb-2">
               Posts
             </p>
 
-            <a
-              v-for="(post, idx) in relevantPosts"
-              :key="post.href"
-              :href="post.href"
+            <a v-for="(post, idx) in relevantPosts" :key="post.href" :href="post.href"
               class=":uno: flex justify-between p-2 text-sm transition-colors outline-none rounded-md"
               :class="{ 'bg-surface-1 text-heading': focusIndex === idx + relevantLinks.length }"
-              rel="noopener noreferrer"
-              @mouseover="() => focusIndex = idx + relevantLinks.length"
-            >
+              rel="noopener noreferrer" @mouseover="() => focusIndex = idx + relevantLinks.length">
               {{ post.title }}
             </a>
           </div>
@@ -295,19 +278,13 @@ watchEffect(() => {
 
         <div class=":uno: border-separator text-sm flex items-center space-x-4 border-t py-2 px-4 no-touchscreen">
           <div class=":uno: flex items-center space-x-1">
-            <Key
-              title="Arrow Up"
-              class=":uno: leading-normal text-[10px] px-[6px]"
-            >
+            <Kbd title="Arrow Up" class=":uno: leading-normal text-[10px]">
               ↑
-            </Key>
+            </Kbd>
 
-            <Key
-              title="Arrow Down"
-              class=":uno: text-[10px] px-[6px] leading-normal"
-            >
+            <Kbd title="Arrow Down" class=":uno: leading-normal text-[10px]">
               ↓
-            </Key>
+            </Kbd>
 
             <p class=":uno: text-xs font-medium">
               Navigate
@@ -315,12 +292,9 @@ watchEffect(() => {
           </div>
 
           <div class=":uno: flex items-center space-x-1">
-            <Key
-              title="Enter"
-              class=":uno: text-[10px] leading-relaxed"
-            >
+            <Kbd title="Enter" class=":uno: text-[10px] leading-relaxed">
               Enter
-            </Key>
+            </Kbd>
 
             <p class=":uno: font-medium text-xs">
               Open
@@ -328,12 +302,9 @@ watchEffect(() => {
           </div>
 
           <div class=":uno: flex items-center space-x-1">
-            <Key
-              title="Escape"
-              class=":uno: text-[10px] leading-relaxed"
-            >
+            <Kbd title="Escape" class=":uno: text-[10px] leading-relaxed">
               Esc
-            </Key>
+            </Kbd>
 
             <p class=":uno: font-medium text-xs">
               Close
@@ -389,18 +360,18 @@ watchEffect(() => {
 
 
 .dialog__overlay[data-state='open'] {
-  animation: overlayShow 200ms cubic-bezier(0.33, 1, 0.68, 1);
+  animation: overlayShow 200ms var(--default-transition-timingFunction);
 }
 
 .dialog__overlay[data-state='closed'] {
-  animation: overlayShow 200ms cubic-bezier(0.33, 1, 0.68, 1) reverse;
+  animation: overlayShow 200ms var(--default-transition-timingFunction) reverse;
 }
 
 .dialog__content[data-state='open'] {
-  animation: contentShow 200ms cubic-bezier(0.33, 1, 0.68, 1);
+  animation: contentShow 200ms var(--default-transition-timingFunction);
 }
 
 .dialog__content[data-state='closed'] {
-  animation: contentHide 200ms cubic-bezier(0.33, 1, 0.68, 1);
+  animation: contentHide 200ms var(--default-transition-timingFunction);
 }
 </style>

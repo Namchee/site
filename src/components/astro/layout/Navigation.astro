@@ -1,10 +1,12 @@
 ---
-import { Icon } from "astro-icon/components";
+import Home from "~icons/lucide/home";
+import Newspaper from "~icons/lucide/newspaper";
+import LibraryBig from "~icons/lucide/library-big";
+import Cog from "~icons/lucide/cog";
 
 import NavigationItem from "@/components/vue/NavigationItem.vue";
 import CommandMenu from "@/components/vue/CommandMenu.vue";
-
-import ThemeSwitcher from "./ThemeSwitcher.astro";
+import ThemeSwitcher from "@/components/vue/ThemeSwitcher.vue"
 
 interface Props {
   posts: { title: string; href: string }[];
@@ -14,19 +16,27 @@ const links = [
   {
     href: "/",
     label: "Home",
-    icon: "lucide:home",
+    icon: Home,
+    key: "Home",
   },
   {
     href: "/posts",
     label: "Posts",
-    icon: "lucide:newspaper",
+    icon: Newspaper,
   },
   {
     href: "/library",
     label: "Library",
-    icon: "lucide:library-big",
+    icon: LibraryBig,
+  },
+  {
+    href: "/colophon",
+    label: "Colophon",
+    icon: Cog,
   },
 ];
+
+const directLinks = links.slice(0, -1);
 
 const currentPath = Astro.url.pathname;
 const { posts } = Astro.props;
@@ -36,27 +46,50 @@ const { posts } = Astro.props;
   class=":uno: flex fixed transition-colors border shadow-lg rounded-md bottom-8 left-1/2 translate-x-[-50%] dark:bg-[var(--navigation)] border-separator bg-background z-20"
 >
   {
-    links.map((link, idx) => (
+    directLinks.map((link, idx) => (
       <NavigationItem
         label={link.label}
         className={`${idx === 0 ? "ml-1" : ""} ${currentPath.match(`${link.href}/.?`) || currentPath === link.href ? "text-heading bg-surface-2" : ""}`.trim()}
         href={link.href}
         client:load
       >
-        <Icon name={link.icon} aria-label={link.label} class=":uno: h-auto w-5" />
+        <link.icon class=":uno: w-5 h-auto" />
       </NavigationItem>
     ))
   }
 
-  <div class=":uno: border-l border-surface-3 transition-colors"></div>
+  <div class=":uno: w-[0.5px] bg-separator dark:bg-[var(--navigation-separator)] transition-colors"></div>
 
-  <CommandMenu posts={posts} client:load>
-    <Icon
-      name="lucide:command"
-      aria-label="Command Palette"
-      class="w-5 h-auto"
-    />
-  </CommandMenu>
+  <CommandMenu posts={posts} links={links} client:load />
 
-  <ThemeSwitcher />
+  <ThemeSwitcher client:visible />
 </nav>
+
+<script is:inline>
+  const button = document.querySelector(".theme-toggle");
+  function toggleThemeSwitcher() {
+    button.classList.toggle("theme-toggle--toggled");
+  }
+
+  if (theme === "dark") {
+    button.classList.add("theme-toggle--toggled");
+  }
+
+  button.addEventListener("click", () => {
+    const newTheme = docEl.classList.contains("dark") ? "light" : "dark";
+    toggleThemeSwitcher();
+    toggleTheme(newTheme);
+  });
+
+  window.addEventListener("storage", () => {
+    const newTheme = window.localStorage.getItem("theme");
+    toggleThemeSwitcher();
+    toggleTheme(newTheme);
+  });
+
+  media.addEventListener("change", () => {
+    const newTheme = media.matches ? "dark" : "light";
+    toggleThemeSwitcher();
+    toggleTheme(newTheme);
+  });
+</script>

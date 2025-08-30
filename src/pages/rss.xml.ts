@@ -3,7 +3,11 @@ import { getCollection } from 'astro:content';
 import rss from '@astrojs/rss';
 
 export async function GET({ site }) {
-  const posts = await getCollection('posts');
+  let posts = await getCollection('posts');
+
+  if (import.meta.env.PROD) {
+    posts = posts.filter(p => !p.id.startsWith('_'));
+  }
 
   return rss({
     title: 'Namchee\'s Blog',

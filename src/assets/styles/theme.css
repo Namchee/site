@@ -40,4 +40,5 @@ html.dark {
   --danger: var(--red-500);
 
   --navigation: color-mix(in oklch, var(--surface-1), var(--gray-dark-25) 5%);
+  --navigation-separator: color-mix(in oklch, var(--separator), var(--gray-dark-25) 5%);
 }

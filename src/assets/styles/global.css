@@ -33,11 +33,6 @@ html.dark img {
   background-color: rgba(111,111,111, 0.6);
 }
 
-.tooltip__content {
-  transform-origin: var(--reka-tooltip-content-transform-origin);
-  animation: scaleIn 100ms cubic-bezier(0.33, 1, 0.68, 1);
-}
-
 .blog-section {
   display: flex;
   flex-direction: column;

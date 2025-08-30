@@ -1,196 +1,35 @@
 <script setup lang="ts">
-import { TooltipContent, TooltipRoot, TooltipPortal, TooltipProvider, TooltipTrigger } from 'reka-ui';
+import {
+  TooltipRoot,
+  TooltipProvider,
+  TooltipTrigger,
+} from "reka-ui";
+
+import TooltipContent from "@/components/vue/ui/TooltipContent.vue";
 
 const props = defineProps<{
   name: string;
 }>();
 
-const name = props.name;
+const shades = [25, 50, 100, 200, 300, 400, 500, 600, 700, 800, 900, 950];
 </script>
 
 <template>
-  <div class="flex group">
+  <div class="grid grid-cols-[repeat(auto-fit,minmax(2rem,max-content))] justify-center w-full md:flex group">
     <TooltipProvider>
-      <TooltipRoot>
-        <TooltipTrigger as-child>
-          <div class="size-10 rounded-full border border-separator transition-all"
-            :style="{ backgroundColor: `var(--${name}-25)` }" />
-        </TooltipTrigger>
+      <template v-for="(shade, idx) in shades" :key="shade">
+        <TooltipRoot>
+          <TooltipTrigger as-child>
+            <div class=":uno: size-10 rounded-full border border-separator transition-all"
+              :class="{ 'md:-ml-2 group-hover:ml-0': idx !== 0 }"
+              :style="{ backgroundColor: `var(--${props.name}-${shade})` }" />
+          </TooltipTrigger>
 
-        <TooltipPortal>
-          <TooltipContent
-            class="text-xs rounded-md shadow tooltip__content bg-heading text-surface-1 select-none py-1 px-2 will-change-[transform,opacity]"
-            :side-offset="4">
-            <p>--{{ props.name }}-25</p>
+          <TooltipContent class="text-xs" :side-offset="4">
+            <p>--{{ props.name }}-{{ shade }}</p>
           </TooltipContent>
-        </TooltipPortal>
-      </TooltipRoot>
-
-      <TooltipRoot>
-        <TooltipTrigger as-child>
-          <div class="size-10 rounded-full border border-separator transition-all -ml-2 group-hover:ml-0"
-            :style="{ backgroundColor: `var(--${name}-50)` }" />
-        </TooltipTrigger>
-
-        <TooltipPortal>
-          <TooltipContent
-            class="text-xs rounded-md shadow tooltip__content bg-heading text-surface-1 select-none py-1 px-2 will-change-[transform,opacity]"
-            :side-offset="4">
-            <p>--{{ props.name }}-50</p>
-          </TooltipContent>
-        </TooltipPortal>
-      </TooltipRoot>
-
-      <TooltipRoot>
-        <TooltipTrigger as-child>
-          <div class="size-10 rounded-full border border-separator transition-all -ml-2 group-hover:ml-0"
-            :style="{ backgroundColor: `var(--${name}-100)` }" />
-        </TooltipTrigger>
-
-        <TooltipPortal>
-          <TooltipContent
-            class="text-xs rounded-md shadow tooltip__content bg-heading text-surface-1 select-none py-1 px-2 will-change-[transform,opacity]"
-            :side-offset="4">
-            <p>--{{ props.name }}-100</p>
-          </TooltipContent>
-        </TooltipPortal>
-      </TooltipRoot>
-
-      <TooltipRoot>
-        <TooltipTrigger as-child>
-          <div class="size-10 rounded-full border border-separator transition-all -ml-2 group-hover:ml-0"
-            :style="{ backgroundColor: `var(--${name}-200)` }" />
-        </TooltipTrigger>
-
-        <TooltipPortal>
-          <TooltipContent
-            class="text-xs rounded-md shadow tooltip__content bg-heading text-surface-1 select-none py-1 px-2 will-change-[transform,opacity]"
-            :side-offset="4">
-            <p>--{{ props.name }}-200</p>
-          </TooltipContent>
-        </TooltipPortal>
-      </TooltipRoot>
-
-      <TooltipRoot>
-        <TooltipTrigger as-child>
-          <div class="size-10 rounded-full border border-separator transition-all -ml-2 group-hover:ml-0"
-            :style="{ backgroundColor: `var(--${name}-300)` }" />
-        </TooltipTrigger>
-
-        <TooltipPortal>
-          <TooltipContent
-            class="text-xs rounded-md shadow tooltip__content bg-heading text-surface-1 select-none py-1 px-2 will-change-[transform,opacity]"
-            :side-offset="4">
-            <p>--{{ props.name }}-300</p>
-          </TooltipContent>
-        </TooltipPortal>
-      </TooltipRoot>
-
-      <TooltipRoot>
-        <TooltipTrigger as-child>
-          <div class="size-10 rounded-full border border-separator transition-all -ml-2 group-hover:ml-0"
-            :style="{ backgroundColor: `var(--${name}-400)` }" />
-        </TooltipTrigger>
-
-        <TooltipPortal>
-          <TooltipContent
-            class="text-xs rounded-md shadow tooltip__content bg-heading text-surface-1 select-none py-1 px-2 will-change-[transform,opacity]"
-            :side-offset="4">
-            <p>--{{ props.name }}-400</p>
-          </TooltipContent>
-        </TooltipPortal>
-      </TooltipRoot>
-
-      <TooltipRoot>
-        <TooltipTrigger as-child>
-          <div class="size-10 rounded-full border border-separator transition-all -ml-2 group-hover:ml-0"
-            :style="{ backgroundColor: `var(--${name}-500)` }" />
-        </TooltipTrigger>
-
-        <TooltipPortal>
-          <TooltipContent
-            class="text-xs rounded-md shadow tooltip__content bg-heading text-surface-1 select-none py-1 px-2 will-change-[transform,opacity]"
-            :side-offset="4">
-            <p>--{{ props.name }}-500</p>
-          </TooltipContent>
-        </TooltipPortal>
-      </TooltipRoot>
-
-      <TooltipRoot>
-        <TooltipTrigger as-child>
-          <div class="size-10 rounded-full border border-separator transition-all -ml-2 group-hover:ml-0"
-            :style="{ backgroundColor: `var(--${name}-600)` }" />
-        </TooltipTrigger>
-
-        <TooltipPortal>
-          <TooltipContent
-            class="text-xs rounded-md shadow tooltip__content bg-heading text-surface-1 select-none py-1 px-2 will-change-[transform,opacity]"
-            :side-offset="4">
-            <p>--{{ props.name }}-600</p>
-          </TooltipContent>
-        </TooltipPortal>
-      </TooltipRoot>
-
-      <TooltipRoot>
-        <TooltipTrigger as-child>
-          <div class="size-10 rounded-full border border-separator transition-all -ml-2 group-hover:ml-0"
-            :style="{ backgroundColor: `var(--${name}-700)` }" />
-        </TooltipTrigger>
-
-        <TooltipPortal>
-          <TooltipContent
-            class="text-xs rounded-md shadow tooltip__content bg-heading text-surface-1 select-none py-1 px-2 will-change-[transform,opacity]"
-            :side-offset="4">
-            <p>--{{ props.name }}-700</p>
-          </TooltipContent>
-        </TooltipPortal>
-      </TooltipRoot>
-
-
-      <TooltipRoot>
-        <TooltipTrigger as-child>
-          <div class="size-10 rounded-full border border-separator transition-all -ml-2 group-hover:ml-0"
-            :style="{ backgroundColor: `var(--${name}-800)` }" />
-        </TooltipTrigger>
-
-        <TooltipPortal>
-          <TooltipContent
-            class="text-xs rounded-md shadow tooltip__content bg-heading text-surface-1 select-none py-1 px-2 will-change-[transform,opacity]"
-            :side-offset="4">
-            <p>--{{ props.name }}-800</p>
-          </TooltipContent>
-        </TooltipPortal>
-      </TooltipRoot>
-
-      <TooltipRoot>
-        <TooltipTrigger as-child>
-          <div class="size-10 rounded-full border border-separator transition-all -ml-2 group-hover:ml-0"
-            :style="{ backgroundColor: `var(--${name}-900)` }" />
-        </TooltipTrigger>
-
-        <TooltipPortal>
-          <TooltipContent
-            class="text-xs rounded-md shadow tooltip__content bg-heading text-surface-1 select-none py-1 px-2 will-change-[transform,opacity]"
-            :side-offset="4">
-            <p>--{{ props.name }}-900</p>
-          </TooltipContent>
-        </TooltipPortal>
-      </TooltipRoot>
-
-      <TooltipRoot>
-        <TooltipTrigger as-child>
-          <div class="size-10 rounded-full border border-separator transition-all -ml-2 group-hover:ml-0"
-            :style="{ backgroundColor: `var(--${name}-900)` }" />
-        </TooltipTrigger>
-
-        <TooltipPortal>
-          <TooltipContent
-            class="text-xs rounded-md shadow tooltip__content bg-heading text-surface-1 select-none py-1 px-2 will-change-[transform,opacity]"
-            :side-offset="4">
-            <p>--{{ props.name }}-950</p>
-          </TooltipContent>
-        </TooltipPortal>
-      </TooltipRoot>
+        </TooltipRoot>
+      </template>
     </TooltipProvider>
   </div>
 </template>

@@ -1,18 +1,23 @@
 <script setup lang="ts">
-import { onBeforeUnmount, ref } from 'vue';
+import { onBeforeUnmount, ref, withDefaults } from 'vue';
 
-import { TooltipProvider, TooltipArrow, TooltipRoot, TooltipPortal, TooltipTrigger, TooltipContent } from 'reka-ui';
+import { TooltipProvider, TooltipRoot, TooltipTrigger, TooltipContent, TooltipPortal, TooltipArrow } from 'reka-ui';
 
-const props = defineProps({
-  value: { type: String, required: true },
-  className: { type: String, default: '' },
-});
+const props = withDefaults(
+  defineProps<{
+    value: string
+    className?: string
+  }>(),
+  {
+    className: '',
+  }
+);
 
 const open = ref(false);
 const copied = ref(false);
 const timeoutId = ref<number>(-1);
 
-const baseClass = `group ${props.className}`;
+const baseClass = `:uno: group ${props.className}`;
 
 function copyCode() {
   navigator.clipboard.writeText(props.value);
@@ -48,18 +53,20 @@ onBeforeUnmount(() => {
           <template v-if="!copied">
             <slot />
           </template>
+
           <template v-else>
             <slot name="after-copy-icon" />
           </template>
         </button>
       </TooltipTrigger>
 
+      <!-- for some reason, the TooltipContent doesn't detect collision correctly if we are using the reusable component. -->
       <TooltipPortal>
         <TooltipContent :class="{
-          'text-xs rounded-md text-surface-1 shadow shadow py-2 tooltip__content select-none px-3 will-change-[transform,opacity] transition-colors z-20': true,
-          'bg-success text-[var(--gray-dark-25)]': copied,
+          'text-xs rounded-md text-surface-1 shadow py-2 tooltip__content select-none px-3 will-change-[transform,opacity] transition-colors z-20': true,
+          'bg-success': copied,
           'bg-heading': !copied
-        }" :side-offset="5">
+        }" :side-offset="4">
           <template v-if="!copied">
             <slot name="before-copy-label">
               Copy to Clipboard
@@ -71,6 +78,7 @@ onBeforeUnmount(() => {
               Copied!
             </slot>
           </template>
+
           <TooltipArrow :class="{
             'fill-heading': !copied,
             'fill-success': copied,
@@ -80,22 +88,3 @@ onBeforeUnmount(() => {
     </TooltipRoot>
   </TooltipProvider>
 </template>
-
-<style>
-.tooltip__content {
-  transform-origin: var(--reka-tooltip-content-transform-origin);
-  animation: scaleIn 100ms cubic-bezier(0.33, 1, 0.68, 1);
-}
-
-@keyframes scaleIn {
-  from {
-    opacity: 0;
-    transform: scale(0.9);
-  }
-
-  to {
-    opacity: 1;
-    transform: scale(1);
-  }
-}
-</style>
