@@ -1,11 +1,7 @@
 <script setup lang="ts">
 import { onBeforeUnmount, ref, withDefaults } from 'vue';
 
-import { TooltipProvider, TooltipRoot, TooltipTrigger } from 'reka-ui';
-
-import TooltipContent from '@/components/vue/ui/TooltipContent.vue';
-import Clipboard from '~icons/lucide/clipboard';
-import Check from '~icons/lucide/check';
+import { TooltipProvider, TooltipRoot, TooltipTrigger, TooltipPortal, TooltipContent, TooltipArrow } from 'reka-ui';
 
 const props = withDefaults(
   defineProps<{
@@ -32,10 +28,10 @@ function copyCode() {
     window.clearTimeout(timeoutId.value);
   }
 
-  // timeoutId.value = window.setTimeout(() => {
-  //   copied.value = false;
-  //   timeoutId.value = -1;
-  // }, 2_500);
+  timeoutId.value = window.setTimeout(() => {
+    copied.value = false;
+    timeoutId.value = -1;
+  }, 2_500);
 }
 
 onBeforeUnmount(() => {
@@ -55,30 +51,40 @@ onBeforeUnmount(() => {
           'cursor-pointer': !copied,
         }">
           <template v-if="!copied">
-            <Clipboard class=":uno: w-4 h-auto transition-colors group-hover:text-heading group-focus:text-heading md:w-[18px]" />
+            <slot />
           </template>
 
           <template v-else>
-            <Check
-              class=":uno: size-[14px] text-success"
-            />
+            <slot name="after-copy-icon" />
           </template>
         </button>
       </TooltipTrigger>
 
-      <TooltipContent class="z-20 text-xs" :variant="copied ? 'success' : 'content'" :side-offset="5">
-        <template v-if="!copied">
-          <slot name="before-copy-label">
-            Copy to Clipboard
-          </slot>
-        </template>
+      <!-- for some reason, the TooltipContent doesn't detect collision correctly if we are using the reusable component. -->
+      <TooltipPortal>
+        <TooltipContent :class="{
+          'text-xs rounded-md text-surface-1 shadow py-2 tooltip__content select-none px-3 will-change-[transform,opacity] transition-colors z-20': true,
+          'bg-success': copied,
+          'bg-heading': !copied
+        }" :variant="copied ? 'success' : 'content'" :side-offset="5">
+          <template v-if="!copied">
+            <slot name="before-copy-label">
+              Copy to Clipboard
+            </slot>
+          </template>
 
-        <template v-else>
-          <slot name="after-copy-label">
-            Copied!
-          </slot>
-        </template>
-      </TooltipContent>
+          <template v-else>
+            <slot name="after-copy-label">
+              Copied!
+            </slot>
+          </template>
+
+           <TooltipArrow :class="{
+            'fill-heading': !copied,
+            'fill-success': copied,
+          }" :width="8" />
+        </TooltipContent>
+      </TooltipPortal>
     </TooltipRoot>
   </TooltipProvider>
 </template>

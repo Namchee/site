@@ -1,4 +1,7 @@
 ---
+import Clipboard from "~icons/lucide/clipboard";
+import Check from "~icons/lucide/check";
+
 import Copy from "@/components/vue/CopyButton.vue";
 
 import Javascript from "@/components/astro/icons/Javascript.astro";
@@ -55,7 +58,16 @@ const copy = "copy" in meta;
             <p class=":uno: text-content transition-colors">{title}</p>
           </div>
 
-          {copy && <Copy className=":uno:" value={dataCode} client:visible />}
+          {copy && (
+            <Copy className=":uno: z-20" value={dataCode} client:visible>
+              <Clipboard class=":uno: size-[14px] transition-colors group-hover:text-heading group-focus:text-heading" />
+
+              <Check
+                slot="after-copy-icon"
+                class=":uno: size-[14px] text-success"
+              />
+            </Copy>
+          )}
         </div>
       </figcaption>
     )

@@ -17,8 +17,6 @@ import {
 
 import TooltipContent from '@/components/vue/ui/TooltipContent.vue';
 
-import { links } from '@/constant/links';
-
 import Command from "~icons/lucide/command";
 
 import Key from '@/components/vue/Key.vue';
@@ -48,7 +46,7 @@ const props = defineProps<{
   }[],
 }>();
 
-const { ctrl_k, meta_k, home, arrowDown, arrowUp, enter, escape, current } = useMagicKeys({
+const { ctrl_k, meta_k, home, arrowDown, arrowUp, enter, escape } = useMagicKeys({
   passive: false,
   onEventFired(e) {
     const isOpeningMenu = (e.ctrlKey || e.metaKey) && e.key === 'k';
@@ -64,12 +62,13 @@ const searchTerm = ref('');
 
 const relevantLinks = computed(() => {
   if (!searchTerm || !searchTerm.value) {
-    return links;
+    console.log(props.links);
+    return props.links;
   }
 
   const pattern = new RegExp(searchTerm.value, 'i');
 
-  return links.filter(link => pattern.test(link.name));
+  return props.links.filter(link => pattern.test(link.label));
 });
 
 const relevantPosts = computed(() => {
@@ -222,7 +221,7 @@ watchEffect(() => {
             placeholder="Where do you want to go?" ref="searchEl" v-model="searchTerm">
         </DialogTitle>
 
-        <DialogDescription class=":uno: p-4 space-y-4 max-h-[25rem] overflow-y-auto">
+        <DialogDescription as="div" class=":uno: p-4 space-y-4 max-h-[25rem] overflow-y-auto">
           <div v-if="relevantLinks.length === 0 && relevantPosts.length === 0">
             <p class=":uno: text-sm text-center opacity-75">
               Sorry, I don't know what or where that is 😕
@@ -242,12 +241,12 @@ watchEffect(() => {
                 <div class=":uno: flex items-center space-x-4">
                   <component :is="link.icon" class=":uno: w-4 h-auto" />
                   <span class=":uno: relative">
-                    {{ link.name }}
+                    {{ link.label }}
                   </span>
                 </div>
 
                 <kbd v-if="!!link.key" :title="link.key as string"
-                  class=":uno: text-xs border border-separator text-heading font-mono px-1 bg-surface rounded no-touchscreen">{{
+                  class=":uno: text-xs border border-separator text-heading font-mono px-1 bg-surface-1 rounded no-touchscreen">{{
                     link.key }}</kbd>
               </a>
             </ul>
@@ -269,11 +268,11 @@ watchEffect(() => {
 
         <div class=":uno: border-separator text-sm flex items-center space-x-4 border-t py-2 px-4 no-touchscreen">
           <div class=":uno: flex items-center space-x-1">
-            <Key title="Arrow Up" class=":uno: leading-normal text-[10px] px-[6px]">
+            <Key title="Arrow Up" class=":uno: leading-normal text-[10px]">
               ↑
             </Key>
 
-            <Key title="Arrow Down" class=":uno: text-[10px] px-[6px] leading-normal">
+            <Key title="Arrow Down" class=":uno: leading-normal text-[10px]">
               ↓
             </Key>
 
