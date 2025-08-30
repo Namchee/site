@@ -61,6 +61,6 @@ const props = withDefaults(
 <style>
 .tooltip__content {
   transform-origin: var(--reka-tooltip-content-transform-origin);
-  animation: scaleIn 100ms cubic-bezier(0.33, 1, 0.68, 1);
+  animation: scaleIn 100ms var(--default-transition-timingFunction);
 }
 </style>

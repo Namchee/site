@@ -106,7 +106,7 @@ code:not(pre code) {
   font-feature-settings: "tnum" 1;
 
   color: var(--accent);
-  transition: color 0.2s ease-out;
+  transition: color 200ms var(--default-transition-timingFunction);
 }
 
 .mdx__ol svg {

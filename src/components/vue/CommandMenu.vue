@@ -350,18 +350,18 @@ watchEffect(() => {
 
 
 .dialog__overlay[data-state='open'] {
-  animation: overlayShow 200ms cubic-bezier(0.33, 1, 0.68, 1);
+  animation: overlayShow 200ms var(--default-transition-timingFunction);
 }
 
 .dialog__overlay[data-state='closed'] {
-  animation: overlayShow 200ms cubic-bezier(0.33, 1, 0.68, 1) reverse;
+  animation: overlayShow 200ms var(--default-transition-timingFunction) reverse;
 }
 
 .dialog__content[data-state='open'] {
-  animation: contentShow 200ms cubic-bezier(0.33, 1, 0.68, 1);
+  animation: contentShow 200ms var(--default-transition-timingFunction);
 }
 
 .dialog__content[data-state='closed'] {
-  animation: contentHide 200ms cubic-bezier(0.33, 1, 0.68, 1);
+  animation: contentHide 200ms var(--default-transition-timingFunction);
 }
 </style>

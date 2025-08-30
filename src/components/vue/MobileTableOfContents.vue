@@ -72,7 +72,6 @@ onUnmounted(() => {
           <TooltipContent :side-offset="4" side="top" align="start" :align-offset="-4"
             class=":uno: text-sm rounded-md shadow py-2 tooltip__content bg-heading text-surface-1 select-none px-3 will-change-[transform,opacity]">
             <p>Table of Contents</p>
-
           </TooltipContent>
         </TooltipRoot>
 
