@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref, watch, computed, nextTick, watchEffect, type Component } from 'vue';
+import { ref, watch, computed, nextTick, watchEffect } from 'vue';
 import { useMagicKeys, whenever } from '@vueuse/core';
 
 import {
@@ -18,8 +18,12 @@ import {
 import TooltipContent from '@/components/vue/ui/TooltipContent.vue';
 
 import Command from "~icons/lucide/command";
+import Home from "~icons/lucide/home";
+import Newspaper from "~icons/lucide/newspaper";
+import LibraryBig from "~icons/lucide/library-big";
+import Cog from "~icons/lucide/cog";
 
-import Key from '@/components/vue/Key.vue';
+import Kbd from '@/components/vue/ui/Kbd.vue';
 
 const visible = ref(false);
 const searchEl = ref<HTMLInputElement>();
@@ -33,6 +37,13 @@ const fireRate = 75;
 
 const isMac = false;
 
+const ICON_MAP = {
+  '/': Home,
+  '/posts': Newspaper,
+  '/library': LibraryBig,
+  '/colophon': Cog
+}
+
 const props = defineProps<{
   posts: {
     title: string;
@@ -41,7 +52,6 @@ const props = defineProps<{
   links: {
     href: string;
     label: string;
-    icon: Component;
     key?: string;
   }[],
 }>();
@@ -62,7 +72,6 @@ const searchTerm = ref('');
 
 const relevantLinks = computed(() => {
   if (!searchTerm || !searchTerm.value) {
-    console.log(props.links);
     return props.links;
   }
 
@@ -239,7 +248,8 @@ watchEffect(() => {
                 :class="{ 'bg-surface-1 text-heading': focusIndex === idx }" rel="noopener noreferrer"
                 @mouseover="() => focusIndex = idx">
                 <div class=":uno: flex items-center space-x-4">
-                  <component :is="link.icon" class=":uno: w-4 h-auto" />
+                  <component :is="ICON_MAP[link.href]" class=":uno: w-4 h-auto" />
+
                   <span class=":uno: relative">
                     {{ link.label }}
                   </span>
@@ -268,13 +278,13 @@ watchEffect(() => {
 
         <div class=":uno: border-separator text-sm flex items-center space-x-4 border-t py-2 px-4 no-touchscreen">
           <div class=":uno: flex items-center space-x-1">
-            <Key title="Arrow Up" class=":uno: leading-normal text-[10px]">
+            <Kbd title="Arrow Up" class=":uno: leading-normal text-[10px]">
               ↑
-            </Key>
+            </Kbd>
 
-            <Key title="Arrow Down" class=":uno: leading-normal text-[10px]">
+            <Kbd title="Arrow Down" class=":uno: leading-normal text-[10px]">
               ↓
-            </Key>
+            </Kbd>
 
             <p class=":uno: text-xs font-medium">
               Navigate
@@ -282,9 +292,9 @@ watchEffect(() => {
           </div>
 
           <div class=":uno: flex items-center space-x-1">
-            <Key title="Enter" class=":uno: text-[10px] leading-relaxed">
+            <Kbd title="Enter" class=":uno: text-[10px] leading-relaxed">
               Enter
-            </Key>
+            </Kbd>
 
             <p class=":uno: font-medium text-xs">
               Open
@@ -292,9 +302,9 @@ watchEffect(() => {
           </div>
 
           <div class=":uno: flex items-center space-x-1">
-            <Key title="Escape" class=":uno: text-[10px] leading-relaxed">
+            <Kbd title="Escape" class=":uno: text-[10px] leading-relaxed">
               Esc
-            </Key>
+            </Kbd>
 
             <p class=":uno: font-medium text-xs">
               Close
