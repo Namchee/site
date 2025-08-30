@@ -6,8 +6,7 @@ import Cog from "~icons/lucide/cog";
 
 import NavigationItem from "@/components/vue/NavigationItem.vue";
 import CommandMenu from "@/components/vue/CommandMenu.vue";
-
-import ThemeSwitcher from "./ThemeSwitcher.astro";
+import ThemeSwitcher from "@/components/vue/ThemeSwitcher.vue"
 
 interface Props {
   posts: { title: string; href: string }[];
@@ -18,7 +17,7 @@ const links = [
     href: "/",
     label: "Home",
     icon: Home,
-    key: 'Home',
+    key: "Home",
   },
   {
     href: "/posts",
@@ -34,7 +33,7 @@ const links = [
     href: "/colophon",
     label: "Colophon",
     icon: Cog,
-  }
+  },
 ];
 
 const directLinks = links.slice(0, -1);
@@ -59,9 +58,38 @@ const { posts } = Astro.props;
     ))
   }
 
-  <div class=":uno: border-l border-surface-3 transition-colors"></div>
+  <div class=":uno: w-[0.5px] bg-separator dark:bg-[var(--navigation-separator)] transition-colors"></div>
 
   <CommandMenu posts={posts} links={links} client:load />
 
-  <ThemeSwitcher />
+  <ThemeSwitcher client:visible />
 </nav>
+
+<script is:inline>
+  const button = document.querySelector(".theme-toggle");
+  function toggleThemeSwitcher() {
+    button.classList.toggle("theme-toggle--toggled");
+  }
+
+  if (theme === "dark") {
+    button.classList.add("theme-toggle--toggled");
+  }
+
+  button.addEventListener("click", () => {
+    const newTheme = docEl.classList.contains("dark") ? "light" : "dark";
+    toggleThemeSwitcher();
+    toggleTheme(newTheme);
+  });
+
+  window.addEventListener("storage", () => {
+    const newTheme = window.localStorage.getItem("theme");
+    toggleThemeSwitcher();
+    toggleTheme(newTheme);
+  });
+
+  media.addEventListener("change", () => {
+    const newTheme = media.matches ? "dark" : "light";
+    toggleThemeSwitcher();
+    toggleTheme(newTheme);
+  });
+</script>

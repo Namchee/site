@@ -1,10 +1,10 @@
 <script setup lang="ts">
 import { ref, onMounted, onUnmounted } from 'vue';
 
-import { TooltipProvider, TooltipRoot, TooltipTrigger, TooltipArrow, TooltipPortal } from 'reka-ui';
-import { DrawerContent, DrawerHandle, DrawerOverlay, DrawerPortal, DrawerRoot, DrawerTrigger } from 'vaul-vue';
+import TableOfContents from "~icons/lucide/table-of-contents";
 
-import TooltipContent from '@/components/vue/ui/TooltipContent.vue';
+import { TooltipProvider, TooltipRoot, TooltipTrigger, TooltipArrow, TooltipPortal, TooltipContent } from 'reka-ui';
+import { DrawerContent, DrawerHandle, DrawerOverlay, DrawerPortal, DrawerRoot, DrawerTrigger } from 'vaul-vue';
 
 import ToCList from './posts/ToCList.vue';
 import generateToC from '@/scripts/toc';
@@ -63,16 +63,21 @@ onUnmounted(() => {
           <TooltipTrigger as-child>
             <DrawerTrigger focus
               class=":uno: size-[36px] grid place-items-center transition-colors hover:bg-surface-2 focus:bg-surface-2 rounded-md">
-              <slot name="button" />
+              <TableOfContents class=":uno: w-5 h-auto" />
 
             </DrawerTrigger>
           </TooltipTrigger>
 
-          <TooltipContent :collision-padding="32" :side-offset="4">
-            <p>Table of Contents</p>
+           <TooltipPortal>
+            <TooltipContent
+              :collision-padding="32"
+              :side-offset="4"
+              class=":uno: text-sm rounded-md shadow py-2 tooltip__content bg-heading text-surface-1 select-none px-3 will-change-[transform,opacity]">
+              <p>Table of Contents</p>
 
-            <TooltipArrow :width="8" class="fill-heading" />
-          </TooltipContent>
+              <TooltipArrow :width="8" class="fill-heading" />
+            </TooltipContent>
+          </TooltipPortal>
         </TooltipRoot>
 
         <DrawerPortal>
@@ -97,5 +102,4 @@ onUnmounted(() => {
       </DrawerRoot>
     </TooltipProvider>
   </div>
-
 </template>

@@ -15,13 +15,13 @@ const shades = [25, 50, 100, 200, 300, 400, 500, 600, 700, 800, 900, 950];
 </script>
 
 <template>
-  <div class=":uno: flex group">
+  <div class="grid grid-cols-[repeat(auto-fit,minmax(2rem,max-content))] justify-center w-full md:flex group">
     <TooltipProvider>
       <template v-for="(shade, idx) in shades" :key="shade">
         <TooltipRoot>
           <TooltipTrigger as-child>
             <div class=":uno: size-10 rounded-full border border-separator transition-all"
-              :class="{ '-ml-2 group-hover:ml-0': idx !== 0 }"
+              :class="{ 'md:-ml-2 group-hover:ml-0': idx !== 0 }"
               :style="{ backgroundColor: `var(--${props.name}-${shade})` }" />
           </TooltipTrigger>
 

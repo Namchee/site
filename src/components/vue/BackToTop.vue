@@ -14,7 +14,7 @@ function backToTop() {
 
 <template>
   <div
-    class=":uno: fixed border border-separator bottom-8 right-8 z-20 grid place-items-center p-1 shadow bg-background dark:bg-[var(--navigation)] transition-colors text-content rounded-md shadow-md xl:hidden">
+    class=":uno: fixed border border-separator bottom-8 right-8 z-20 grid place-items-center p-1 shadow bg-background dark:bg-[var(--navigation)] transition-colors text-content rounded-md xl:hidden">
     <TooltipProvider :delay-duration="100">
       <TooltipRoot>
         <TooltipTrigger as-child>

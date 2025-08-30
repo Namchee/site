@@ -45,11 +45,7 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
     <link rel="manifest" href="/manifest.webmanifest" />
     <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
     <link rel="icon" href="/favicon.ico" sizes="any" />
-    <link
-      rel="icon"
-      href="/icon.svg"
-      type="image/svg+xml"
-    />
+    <link rel="icon" href="/icon.svg" type="image/svg+xml" />
 
     <meta name="generator" content={Astro.generator} />
     <link rel="canonical" href={canonicalURL} />
@@ -103,17 +99,21 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
         theme = window.localStorage.getItem("theme");
       }
 
-      const toggleTheme = (theme) => {
+      function toggleTheme(theme) {
         const method = theme === "light" ? "remove" : "add";
 
         docEl.classList[method]("dark");
         window.localStorage.setItem("theme", theme);
-      };
+      }
 
       toggleTheme(theme);
     </script>
 
-    <script is:inline defer src="https://cloud.umami.is/script.js" data-website-id="16f41ca8-561c-4f45-8943-0c80934f59ff"></script>
+    <script
+      is:inline
+      defer
+      src="https://cloud.umami.is/script.js"
+      data-website-id="16f41ca8-561c-4f45-8943-0c80934f59ff"></script>
   </head>
   <body
     vaul-drawer-wrapper
@@ -121,7 +121,9 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
   >
     <Navigation posts={posts} />
 
-    <main class=":uno: w-full mx-auto flex-1 max-w-[832px] px-8 mt-24 mb-32 md:mt-32 space-y-16">
+    <main
+      class=":uno: w-full mx-auto flex-1 max-w-[832px] px-8 mt-24 mb-32 md:mt-32 space-y-16"
+    >
       <slot />
     </main>
 

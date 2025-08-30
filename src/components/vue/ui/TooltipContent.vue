@@ -56,7 +56,6 @@ const props = withDefaults(
       </template>
     </TooltipContent>
   </TooltipPortal>
-
 </template>
 
 <style>

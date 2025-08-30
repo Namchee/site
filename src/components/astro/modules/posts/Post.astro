@@ -2,7 +2,6 @@
 import "@/assets/styles/tweet.css";
 import "@/assets/styles/shiki.css";
 
-import ToC from "~icons/lucide/table-of-contents";
 import PencilLine from "~icons/lucide/pencil-line";
 import History from "~icons/lucide/history";
 import Timer from "~icons/lucide/timer";
@@ -33,16 +32,11 @@ const lastModified = frontmatter.lastModified || publishedAt;
 ---
 
 <article class=":uno: grid grid-cols-12 gap-4">
-  <MobileToC headings={frontmatter.headings} client:visible>
-    <ToC
-      slot="button"
-      class=":uno: w-5 h-auto"
-    />
-  </MobileToC>
+  <MobileToC headings={frontmatter.headings} client:visible />
 
   <TableOfContents headings={frontmatter.headings} />
 
-  <BackToTop client:visible />
+  <BackToTop client:load />
 
   <header class=":uno: col-start-1 col-end-13 md:col-start-2 md:col-end-12">
     <BackButton />
