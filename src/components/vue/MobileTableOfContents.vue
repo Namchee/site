@@ -3,7 +3,8 @@ import { ref, onMounted, onUnmounted } from 'vue';
 
 import TableOfContents from "~icons/lucide/table-of-contents";
 
-import { TooltipProvider, TooltipRoot, TooltipTrigger, TooltipArrow, TooltipPortal, TooltipContent } from 'reka-ui';
+import { TooltipProvider, TooltipRoot, TooltipTrigger } from 'reka-ui';
+import TooltipContent from '@/components/vue/ui/TooltipContent.vue';
 import { DrawerContent, DrawerHandle, DrawerOverlay, DrawerPortal, DrawerRoot, DrawerTrigger } from 'vaul-vue';
 
 import ToCList from './posts/ToCList.vue';
@@ -68,16 +69,11 @@ onUnmounted(() => {
             </DrawerTrigger>
           </TooltipTrigger>
 
-           <TooltipPortal>
-            <TooltipContent
-              :collision-padding="32"
-              :side-offset="4"
-              class=":uno: text-sm rounded-md shadow py-2 tooltip__content bg-heading text-surface-1 select-none px-3 will-change-[transform,opacity]">
-              <p>Table of Contents</p>
+          <TooltipContent :side-offset="4" side="top" align="start" :align-offset="-4"
+            class=":uno: text-sm rounded-md shadow py-2 tooltip__content bg-heading text-surface-1 select-none px-3 will-change-[transform,opacity]">
+            <p>Table of Contents</p>
 
-              <TooltipArrow :width="8" class="fill-heading" />
-            </TooltipContent>
-          </TooltipPortal>
+          </TooltipContent>
         </TooltipRoot>
 
         <DrawerPortal>

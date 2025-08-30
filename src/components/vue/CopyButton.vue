@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { onBeforeUnmount, ref, withDefaults } from 'vue';
 
-import { TooltipProvider, TooltipRoot, TooltipTrigger, TooltipPortal, TooltipContent, TooltipArrow } from 'reka-ui';
+import { TooltipProvider, TooltipRoot, TooltipTrigger, TooltipContent, TooltipPortal, TooltipArrow } from 'reka-ui';
 
 const props = withDefaults(
   defineProps<{
@@ -66,7 +66,7 @@ onBeforeUnmount(() => {
           'text-xs rounded-md text-surface-1 shadow py-2 tooltip__content select-none px-3 will-change-[transform,opacity] transition-colors z-20': true,
           'bg-success': copied,
           'bg-heading': !copied
-        }" :variant="copied ? 'success' : 'content'" :side-offset="5">
+        }" :side-offset="4">
           <template v-if="!copied">
             <slot name="before-copy-label">
               Copy to Clipboard
@@ -79,7 +79,7 @@ onBeforeUnmount(() => {
             </slot>
           </template>
 
-           <TooltipArrow :class="{
+          <TooltipArrow :class="{
             'fill-heading': !copied,
             'fill-success': copied,
           }" :width="8" />
