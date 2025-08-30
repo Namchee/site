@@ -45,8 +45,8 @@ export default defineConfig({
         },
       ],
       themes: {
-        light: 'one-light',
-        dark: 'tokyo-night',
+        light: 'kanagawa-lotus',
+        dark: 'kanagawa-dragon',
       },
     },
     syntaxHighlight: {
