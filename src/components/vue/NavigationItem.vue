@@ -15,7 +15,7 @@ const props = defineProps({
     <TooltipRoot>
       <TooltipTrigger as-child>
         <a rel="noopener noreferrer" :href="props.href"
-          :class="`size-[36px] grid place-items-center transition-colors text-content rounded-md hover:bg-surface-2 focus:bg-surface-2 text-sm my-1 mr-1 ${props.className}`">
+          :class="['size-[36px] grid place-items-center transition-colors text-content rounded-md hover:bg-surface-2 focus:bg-surface-2 text-sm my-1 mr-1', props.className]">
           <slot />
         </a>
       </TooltipTrigger>
