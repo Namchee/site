@@ -1,9 +1,9 @@
 // @ts-check
 import { defineConfig } from 'astro/config';
 
-import vue from '@astrojs/vue';
 import mdx from '@astrojs/mdx';
 import sitemap from '@astrojs/sitemap';
+import vue from '@astrojs/vue';
 
 import robotsTxt from 'astro-robots-txt';
 
@@ -13,10 +13,10 @@ import { transformerMetaHighlight } from '@shikijs/transformers';
 
 import subfont from '@ernxst/subfont/astro';
 
-import { remarkPlugins } from './src/plugins/remark';
-import { rehypePlugins } from './src/plugins/rehype';
-
 import Icons from 'unplugin-icons/vite';
+
+import { rehypePlugins } from './src/plugins/rehype';
+import { remarkPlugins } from './src/plugins/remark';
 
 // https://astro.build/config
 export default defineConfig({
@@ -26,7 +26,6 @@ export default defineConfig({
       injectReset: true,
     }),
     mdx(),
-
     sitemap(),
     robotsTxt(),
     subfont(),
@@ -38,10 +37,10 @@ export default defineConfig({
       transformers: [
         transformerMetaHighlight(),
         {
-         pre(hast) {
+          pre(hast) {
             hast.properties['data-meta'] = this.options.meta?.__raw;
             hast.properties['data-code'] = this.source;
-          }
+          },
         },
       ],
       themes: {
@@ -62,7 +61,7 @@ export default defineConfig({
     plugins: [
       Icons({
         compiler: 'vue3',
-      })
-    ]
-  }
+      }),
+    ],
+  },
 });
