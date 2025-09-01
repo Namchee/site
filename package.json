@@ -27,6 +27,7 @@
     "@namchee/astro-subfont": "^0.1.0",
     "@namchee/eslint-config": "^2.1.0",
     "@shikijs/transformers": "^3.6.0",
+    "@stylistic/eslint-plugin": "^5.3.1",
     "@types/eslint": "^9.6.1",
     "@types/node": "^20.14.2",
     "@typescript-eslint/parser": "^8.12.2",

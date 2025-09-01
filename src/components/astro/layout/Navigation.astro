@@ -43,7 +43,7 @@ const { posts } = Astro.props;
 ---
 
 <nav
-  class=":uno: flex fixed transition-colors border shadow-lg rounded-md bottom-8 left-1/2 translate-x-[-50%] dark:bg-[var(--navigation)] border-separator bg-background z-20"
+  class=":uno: border border-separator rounded-md bg-background flex shadow-lg translate-x-[-50%] transition-colors bottom-8 left-1/2 fixed z-20 dark:bg-[var(--navigation)]"
 >
   {
     directLinks.map((link, idx) => (
@@ -53,12 +53,12 @@ const { posts } = Astro.props;
         href={link.href}
         client:load
       >
-        <link.icon class=":uno: w-5 h-auto" />
+        <link.icon class=":uno: h-auto w-5" />
       </NavigationItem>
     ))
   }
 
-  <div class=":uno: w-[0.5px] bg-separator dark:bg-[var(--navigation-separator)] transition-colors"></div>
+  <div class=":uno: bg-separator w-[0.5px] transition-colors dark:bg-[var(--navigation-separator)]"></div>
 
   <CommandMenu posts={posts} links={links} client:load />
 

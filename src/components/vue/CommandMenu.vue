@@ -1,27 +1,27 @@
 <script setup lang="ts">
-import { ref, watch, computed, nextTick, watchEffect } from 'vue';
 import { useMagicKeys, whenever } from '@vueuse/core';
+import { computed, nextTick, ref, watch, watchEffect } from 'vue';
 
 import {
-  DialogRoot,
-  DialogTrigger,
-  DialogPortal,
-  DialogOverlay,
   DialogContent,
-  DialogTitle,
   DialogDescription,
+  DialogOverlay,
+  DialogPortal,
+  DialogRoot,
+  DialogTitle,
+  DialogTrigger,
+  TooltipProvider,
   TooltipRoot,
   TooltipTrigger,
-  TooltipProvider,
 } from 'reka-ui';
 
 import TooltipContent from '@/components/vue/ui/TooltipContent.vue';
 
-import Command from "~icons/lucide/command";
-import Home from "~icons/lucide/home";
-import Newspaper from "~icons/lucide/newspaper";
-import LibraryBig from "~icons/lucide/library-big";
-import Cog from "~icons/lucide/cog";
+import Cog from '~icons/lucide/cog';
+import Command from '~icons/lucide/command';
+import Home from '~icons/lucide/home';
+import LibraryBig from '~icons/lucide/library-big';
+import Newspaper from '~icons/lucide/newspaper';
 
 import Kbd from '@/components/vue/ui/Kbd.vue';
 

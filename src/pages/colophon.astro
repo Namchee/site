@@ -7,7 +7,6 @@ import Layout from '@/components/astro/layout/Layout.astro';
 import AppLink from '@/components/astro/ui/AppLink.astro';
 import TextLink from '@/components/astro/ui/TextLink.astro';
 import ColorSwatch from '@/components/vue/colophon/ColorSwatch.vue';
-import TextFragmentApi from '@/components/vue/posts/TextFragmentApi.vue';
 
 const inspirations = [
   {
@@ -66,9 +65,6 @@ const description =
 
 const sha = process.env.CF_PAGES_COMMIT_SHA || '418ed9f';
 ---
-
-<TextFragmentApi client:only />
-
 
 <Layout title={title} description={description} og="og-colophon">
   <section class=":uno: gap-4 grid grid-cols-12">

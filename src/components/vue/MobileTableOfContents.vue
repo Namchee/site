@@ -1,13 +1,14 @@
 <script setup lang="ts">
-import { ref, onMounted, onUnmounted } from 'vue';
+import { onMounted, onUnmounted, ref } from 'vue';
 
-import TableOfContents from "~icons/lucide/table-of-contents";
+import TableOfContents from '~icons/lucide/table-of-contents';
+
+import ToCList from '@/components/vue/posts/ToCList.vue';
+import TooltipContent from '@/components/vue/ui/TooltipContent.vue';
 
 import { TooltipProvider, TooltipRoot, TooltipTrigger } from 'reka-ui';
-import TooltipContent from '@/components/vue/ui/TooltipContent.vue';
 import { DrawerContent, DrawerHandle, DrawerOverlay, DrawerPortal, DrawerRoot, DrawerTrigger } from 'vaul-vue';
 
-import ToCList from './posts/ToCList.vue';
 import generateToC from '@/scripts/toc';
 
 interface MarkdownHeading {
