@@ -3,7 +3,7 @@ import { TooltipProvider, TooltipRoot, TooltipTrigger } from 'reka-ui';
 
 import ArrowUp from "~icons/lucide/arrow-up";
 
-import TooltipContent from '@/components/vue/ui/TooltipContent.vue';
+import TooltipContent from "@/components/vue/ui/TooltipContent.vue";
 
 function backToTop() {
   if (window) {

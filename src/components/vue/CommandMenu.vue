@@ -1,7 +1,5 @@
 <script setup lang="ts">
 import { useMagicKeys, whenever } from '@vueuse/core';
-import { computed, nextTick, ref, watch, watchEffect } from 'vue';
-
 import {
   DialogContent,
   DialogDescription,
@@ -14,9 +12,7 @@ import {
   TooltipRoot,
   TooltipTrigger,
 } from 'reka-ui';
-
-import TooltipContent from '@/components/vue/ui/TooltipContent.vue';
-
+import { computed, nextTick, ref, watch, watchEffect } from 'vue';
 import Cog from '~icons/lucide/cog';
 import Command from '~icons/lucide/command';
 import Home from '~icons/lucide/home';
@@ -24,6 +20,7 @@ import LibraryBig from '~icons/lucide/library-big';
 import Newspaper from '~icons/lucide/newspaper';
 
 import Kbd from '@/components/vue/ui/Kbd.vue';
+import TooltipContent from '@/components/vue/ui/TooltipContent.vue';
 
 const visible = ref(false);
 const searchEl = ref<HTMLInputElement>();
@@ -41,8 +38,8 @@ const ICON_MAP = {
   '/': Home,
   '/posts': Newspaper,
   '/library': LibraryBig,
-  '/colophon': Cog
-}
+  '/colophon': Cog,
+};
 
 const props = defineProps<{
   posts: {
@@ -58,20 +55,20 @@ const props = defineProps<{
 
 const { ctrl_k, meta_k, home, arrowDown, arrowUp, enter, escape } = useMagicKeys({
   passive: false,
-  onEventFired(e) {
+  onEventFired: (e) => {
     const isOpeningMenu = (e.ctrlKey || e.metaKey) && e.key === 'k';
     const isNavigatingMenu = (['ArrowDown', 'ArrowUp'].includes(e.key)) && visible.value;
 
     if (isOpeningMenu || isNavigatingMenu) {
       e.preventDefault();
     }
-  }
+  },
 });
 
 const searchTerm = ref('');
 
 const relevantLinks = computed(() => {
-  if (!searchTerm || !searchTerm.value) {
+  if (!searchTerm.value || !searchTerm.value) {
     return props.links;
   }
 
@@ -81,13 +78,13 @@ const relevantLinks = computed(() => {
 });
 
 const relevantPosts = computed(() => {
-  if (!searchTerm || !searchTerm.value) {
+  if (!searchTerm.value || !searchTerm.value) {
     return props.posts.slice(0, 3);
   }
 
   const pattern = new RegExp(searchTerm.value, 'i');
 
-  return props.posts.filter(post => pattern.test(post.title))
+  return props.posts.filter(post => pattern.test(post.title));
 });
 
 const allLinks = computed(() => [...relevantLinks.value, ...relevantPosts.value]);
@@ -158,7 +155,7 @@ whenever(arrowUp, () => {
 
 whenever(enter, () => {
   if (visible.value) {
-    let index = focusIndex.value;
+    const index = focusIndex.value;
 
     if (index < relevantLinks.value.length) {
       window.location.href = relevantLinks.value[index].href;
@@ -194,10 +191,10 @@ watch(visible, async () => {
 
 watchEffect(() => {
   if (!arrowUp.value && !arrowDown.value) {
-    clearTimeout(timeoutId.value!)
-    clearInterval(intervalId.value!)
+    clearTimeout(timeoutId.value!);
+    clearInterval(intervalId.value!);
   }
-})
+});
 </script>
 
 <template>
@@ -207,8 +204,12 @@ watchEffect(() => {
         <DialogTrigger as-child>
           <TooltipTrigger as-child>
             <button
-              class="size-[36px] grid place-items-center transition-colors text-content rounded-md hover:bg-surface-2 focus:bg-surface-2 text-sm my-1 ml-1">
-              <Command aria-label="Command Palette" class=":uno: w-5 h-auto" />
+              class="size-[36px] grid place-items-center transition-colors text-content rounded-md hover:bg-surface-2 focus:bg-surface-2 text-sm my-1 ml-1"
+            >
+              <Command
+                aria-label="Command Palette"
+                class=":uno: w-5 h-auto"
+              />
             </button>
           </TooltipTrigger>
 
@@ -220,17 +221,26 @@ watchEffect(() => {
     </TooltipProvider>
 
     <DialogPortal>
-      <DialogOverlay @click="visible = false"
-        class=":uno: fixed bg-[var(--gray-dark-950)] w-screen h-screen z-30 dialog__overlay bg-opacity-50 backdrop-blur" />
+      <DialogOverlay
+        class=":uno: fixed bg-[var(--gray-dark-950)] w-screen h-screen z-30 dialog__overlay bg-opacity-50 backdrop-blur"
+        @click="visible = false"
+      />
       <DialogContent
-        class=":uno: fixed border border-separator bg-background shadow rounded-md dialog__content w-4/5 max-w-md z-30 focus:outline-none">
+        class=":uno: fixed border border-separator bg-background shadow rounded-md dialog__content w-4/5 max-w-md z-30 focus:outline-none"
+      >
         <DialogTitle class=":uno: border-separator border-b">
           <input
+            ref="searchEl"
+            v-model="searchTerm"
             class=":uno: text-sm w-full focus:outline-none p-4 bg-transparent placeholder:font-normal font-normal leading-relaxed"
-            placeholder="Where do you want to go?" ref="searchEl" v-model="searchTerm">
+            placeholder="Where do you want to go?"
+          >
         </DialogTitle>
 
-        <DialogDescription as="div" class=":uno: p-4 space-y-4 max-h-[25rem] overflow-y-auto">
+        <DialogDescription
+          as="div"
+          class=":uno: p-4 space-y-4 max-h-[25rem] overflow-y-auto"
+        >
           <div v-if="relevantLinks.length === 0 && relevantPosts.length === 0">
             <p class=":uno: text-sm text-center opacity-75">
               Sorry, I don't know what or where that is 😕
@@ -243,21 +253,32 @@ watchEffect(() => {
             </p>
 
             <ul ref="currentLinks">
-              <a v-for="(link, idx) in relevantLinks" :key="link.href" :href="link.href"
+              <a
+                v-for="(link, idx) in relevantLinks"
+                :key="link.href"
+                :href="link.href"
                 class=":uno: text-sm rounded-md flex transition-colors justify-between p-2 outline-none"
-                :class="{ 'bg-surface-1 text-heading': focusIndex === idx }" rel="noopener noreferrer"
-                @mouseover="() => focusIndex = idx">
+                :class="{ 'bg-surface-1 text-heading': focusIndex === idx }"
+                rel="noopener noreferrer"
+                @mouseover="() => focusIndex = idx"
+              >
                 <div class=":uno: flex items-center space-x-4">
-                  <component :is="ICON_MAP[link.href]" class=":uno: w-4 h-auto" />
+                  <component
+                    :is="ICON_MAP[link.href]"
+                    class=":uno: w-4 h-auto"
+                  />
 
                   <span class=":uno: relative">
                     {{ link.label }}
                   </span>
                 </div>
 
-                <kbd v-if="!!link.key" :title="link.key as string"
-                  class=":uno: text-xs border border-separator text-heading font-mono px-1 bg-surface-1 rounded no-touchscreen">{{
-                    link.key }}</kbd>
+                <kbd
+                  v-if="!!link.key"
+                  :title="link.key as string"
+                  class=":uno: text-xs border border-separator text-heading font-mono px-1 bg-surface-1 rounded no-touchscreen"
+                >{{
+                  link.key }}</kbd>
               </a>
             </ul>
           </div>
@@ -267,10 +288,15 @@ watchEffect(() => {
               Posts
             </p>
 
-            <a v-for="(post, idx) in relevantPosts" :key="post.href" :href="post.href"
+            <a
+              v-for="(post, idx) in relevantPosts"
+              :key="post.href"
+              :href="post.href"
               class=":uno: flex justify-between p-2 text-sm transition-colors outline-none rounded-md"
               :class="{ 'bg-surface-1 text-heading': focusIndex === idx + relevantLinks.length }"
-              rel="noopener noreferrer" @mouseover="() => focusIndex = idx + relevantLinks.length">
+              rel="noopener noreferrer"
+              @mouseover="() => focusIndex = idx + relevantLinks.length"
+            >
               {{ post.title }}
             </a>
           </div>
@@ -278,11 +304,17 @@ watchEffect(() => {
 
         <div class=":uno: border-separator text-sm flex items-center space-x-4 border-t py-2 px-4 no-touchscreen">
           <div class=":uno: flex items-center space-x-1">
-            <Kbd title="Arrow Up" class=":uno: leading-normal text-[10px]">
+            <Kbd
+              title="Arrow Up"
+              class=":uno: leading-normal text-[10px]"
+            >
               ↑
             </Kbd>
 
-            <Kbd title="Arrow Down" class=":uno: leading-normal text-[10px]">
+            <Kbd
+              title="Arrow Down"
+              class=":uno: leading-normal text-[10px]"
+            >
               ↓
             </Kbd>
 
@@ -292,7 +324,10 @@ watchEffect(() => {
           </div>
 
           <div class=":uno: flex items-center space-x-1">
-            <Kbd title="Enter" class=":uno: text-[10px] leading-relaxed">
+            <Kbd
+              title="Enter"
+              class=":uno: text-[10px] leading-relaxed"
+            >
               Enter
             </Kbd>
 
@@ -302,7 +337,10 @@ watchEffect(() => {
           </div>
 
           <div class=":uno: flex items-center space-x-1">
-            <Kbd title="Escape" class=":uno: text-[10px] leading-relaxed">
+            <Kbd
+              title="Escape"
+              class=":uno: text-[10px] leading-relaxed"
+            >
               Esc
             </Kbd>
 
