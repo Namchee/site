@@ -10,7 +10,7 @@ const { class: className, ...props } = Astro.props;
   viewBox="0 0 29 24"
   fill="currentColor"
   xmlns="http://www.w3.org/2000/svg"
-  class={`:uno: cursor-default ${className}`}
+  class:list={[':uno:', 'cursor-default', className]}
   {...props}
 >
   <path

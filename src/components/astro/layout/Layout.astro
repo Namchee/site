@@ -88,27 +88,27 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 
     <title>{title}</title>
     <script is:inline>
-      // do not try to optimize this. is:inline is there to avoid pre-opt that causes theme flicker
-      const docEl = document.documentElement;
-      const media = window.matchMedia("(prefers-color-scheme: dark)");
+  // do not try to optimize this. is:inline is there to avoid pre-opt that causes theme flicker
+  const docEl = document.documentElement;
+  const media = window.matchMedia('(prefers-color-scheme: dark)');
 
-      let theme = media.matches ? "dark" : "light";
-      if (
-        typeof window.localStorage !== "undefined" &&
-        window.localStorage.getItem("theme")
-      ) {
-        theme = window.localStorage.getItem("theme");
-      }
+  let theme = media.matches ? 'dark' : 'light';
+  if (
+    typeof window.localStorage !== 'undefined'
+  && window.localStorage.getItem('theme')
+  ) {
+    theme = window.localStorage.getItem('theme');
+  }
 
-      function toggleTheme(theme) {
-        const method = theme === "light" ? "remove" : "add";
+  function toggleTheme(theme) {
+    const method = theme === 'light' ? 'remove' : 'add';
 
-        docEl.classList[method]("dark");
-        window.localStorage.setItem("theme", theme);
-      }
+    docEl.classList[method]('dark');
+    window.localStorage.setItem('theme', theme);
+  }
 
-      toggleTheme(theme);
-    </script>
+  toggleTheme(theme);
+  </script>
 
     <script
       is:inline
@@ -118,24 +118,25 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
   </head>
   <body
     vaul-drawer-wrapper
-    class=":uno: bg-background transition-colors text-content text-base flex flex-col font-sans min-h-screen mx-auto antialiased"
+    class=":uno: text-base text-content font-sans mx-auto bg-background flex flex-col min-h-screen antialiased transition-colors"
   >
     <Navigation posts={posts} />
 
     <main
-      class=":uno: w-full mx-auto flex-1 max-w-[832px] px-8 mt-24 mb-32 md:mt-32 space-y-16"
+      class=":uno: mx-auto mb-32 mt-24 px-8 flex-1 max-w-[832px] w-full space-y-16 md:mt-32"
     >
       <slot />
     </main>
 
-    <div class=":uno: w-full max-w-[832px] mx-auto">
+    <div class=":uno: mx-auto max-w-[832px] w-full">
       <Footer />
     </div>
   </body>
 </html>
 
 <script>
-  console.log(`
+// eslint-disable-next-line no-console
+console.log(`
                ▄███▄▄███▄
                  ▄█▀▀██
         ▄█      ██    ▀█      █▌

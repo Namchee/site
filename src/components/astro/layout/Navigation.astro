@@ -68,30 +68,30 @@ const { posts } = Astro.props;
 <script is:inline>
   // eslint-disable-next-line no-unassigned-vars
   let theme;
-  
-  const button = document.querySelector(".theme-toggle");
+
+  const button = document.querySelector('.theme-toggle');
   function toggleThemeSwitcher() {
-    button.classList.toggle("theme-toggle--toggled");
+    button.classList.toggle('theme-toggle--toggled');
   }
 
-  if (theme === "dark") {
-    button.classList.add("theme-toggle--toggled");
+  if (theme === 'dark') {
+    button.classList.add('theme-toggle--toggled');
   }
 
-  button.addEventListener("click", () => {
-    const newTheme = docEl.classList.contains("dark") ? "light" : "dark";
+  button.addEventListener('click', () => {
+    const newTheme = docEl.classList.contains('dark') ? 'light' : 'dark';
     toggleThemeSwitcher();
     toggleTheme(newTheme);
   });
 
-  window.addEventListener("storage", () => {
-    const newTheme = window.localStorage.getItem("theme");
+  window.addEventListener('storage', () => {
+    const newTheme = window.localStorage.getItem('theme');
     toggleThemeSwitcher();
     toggleTheme(newTheme);
   });
 
-  media.addEventListener("change", () => {
-    const newTheme = media.matches ? "dark" : "light";
+  media.addEventListener('change', () => {
+    const newTheme = media.matches ? 'dark' : 'light';
     toggleThemeSwitcher();
     toggleTheme(newTheme);
   });

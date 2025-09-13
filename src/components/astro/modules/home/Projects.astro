@@ -1,34 +1,33 @@
 ---
-import ExternalLink from "~icons/lucide/external-link";
-import GitHub from "~icons/simple-icons/github";
+import ExternalLink from '~icons/lucide/external-link';
+import GitHub from '~icons/simple-icons/github';
 
-import AppLink from "@/components/astro/ui/AppLink.astro";
-import LogoContainer from "@/components/astro/ui/Card.astro";
-
-import CPR from "@/components/astro/modules/home/project-icons/CPR.astro";
-import Fav from "@/components/astro/modules/home/project-icons/Fav.astro";
-import Dependent from "@/components/astro/modules/home/project-icons/OJK.astro";
+import CPR from '@/components/astro/modules/home/project-icons/CPR.astro';
+import Fav from '@/components/astro/modules/home/project-icons/Fav.astro';
+import Dependent from '@/components/astro/modules/home/project-icons/OJK.astro';
+import AppLink from '@/components/astro/ui/AppLink.astro';
+import LogoContainer from '@/components/astro/ui/Card.astro';
 
 const projects = [
   {
     icon: Fav,
-    title: "Fav",
-    description: "Modern favicon generator for modern websites",
-    link: "https://fav.namchee.dev/",
-    github: "https://github.com/Namchee/fav",
+    title: 'Fav',
+    description: 'Modern favicon generator for modern websites',
+    link: 'https://fav.namchee.dev/',
+    github: 'https://github.com/Namchee/fav',
   },
   {
     icon: CPR,
-    title: "Conventional PR",
-    description: "Prevent bad PRs through set of customizable rules",
-    github: "https://github.com/Namchee/conventional-pr",
+    title: 'Conventional PR',
+    description: 'Prevent bad PRs through set of customizable rules',
+    github: 'https://github.com/Namchee/conventional-pr',
   },
   {
     icon: Dependent,
-    title: "OJK Invest API",
-    description: "Verify Indonesian financial products' legality",
-    link: "https://ojk-invest-api.namchee.dev/",
-    github: "https://github.com/Namchee/ojk-invest-api",
+    title: 'OJK Invest API',
+    description: 'Verify Indonesian financial products\' legality',
+    link: 'https://ojk-invest-api.namchee.dev/',
+    github: 'https://github.com/Namchee/ojk-invest-api',
   },
 ];
 ---
@@ -38,11 +37,11 @@ const projects = [
     projects.map((project) => {
       return (
         <li class=":uno: flex space-x-4">
-          <LogoContainer class=":uno: w-12 h-12" title={project.title}>
-            <project.icon class=":uno: text-heading w-6 h-6 transition-colors" />
+          <LogoContainer class=":uno: h-12 w-12" title={project.title}>
+            <project.icon class=":uno: text-heading h-6 w-6 transition-colors" />
           </LogoContainer>
 
-          <div class=":uno: flex-1 flex flex-col justify-between">
+          <div class=":uno: flex flex-1 flex-col justify-between">
             <p class=":uno: text-heading font-medium transition-colors">{project.title}</p>
 
             <p class=":uno: text-sm leading-normal">{project.description}</p>
@@ -52,19 +51,19 @@ const projects = [
             {project.link && (
               <AppLink
                 href={project.link}
-                class=":uno: text-content transition-colors hover:text-heading focus:text-heading"
+                class=":uno: text-content transition-colors focus:text-heading hover:text-heading"
                 aria-label={`Click to visit ${project.title}`}
               >
-                <ExternalLink class=":uno: w-4 h-auto" />
+                <ExternalLink class=":uno: h-auto w-4" />
               </AppLink>
             )}
             {project.github && (
               <AppLink
                 href={project.github}
-                class=":uno: text-content transition-colors hover:text-heading focus:text-heading"
+                class=":uno: text-content transition-colors focus:text-heading hover:text-heading"
                 aria-label={`Click to view source code of ${project.title}`}
               >
-                <GitHub class=":uno: w-4 h-auto" />
+                <GitHub class=":uno: h-auto w-4" />
               </AppLink>
             )}
           </div>

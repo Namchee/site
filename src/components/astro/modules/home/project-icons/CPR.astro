@@ -1,13 +1,13 @@
 ---
-import PullRequestArrow from "~icons/lucide/git-pull-request-arrow";
+import type { HTMLAttributes } from 'astro/types';
 
-import type { HTMLAttributes } from "astro/types";
+import PullRequestArrow from '~icons/lucide/git-pull-request-arrow';
 
-type Props = HTMLAttributes<"svg">;
+type Props = HTMLAttributes<'svg'>;
 
 const { class: className } = Astro.props;
 ---
 
-<div class=":uno: relative cursor-default" aria-hidden="true">
-  <PullRequestArrow class={className} />
+<div class=":uno: cursor-default relative" aria-hidden="true">
+  <PullRequestArrow class:list={className} />
 </div>

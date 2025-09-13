@@ -1,29 +1,28 @@
 ---
-import Clipboard from "~icons/lucide/clipboard";
-import Check from "~icons/lucide/check";
+import Check from '~icons/lucide/check';
+import Clipboard from '~icons/lucide/clipboard';
 
-import Copy from "@/components/vue/CopyButton.vue";
-
-import Javascript from "@/components/astro/icons/Javascript.astro";
-import Typescript from "@/components/astro/icons/Typescript.astro";
-import AstroIcon from "@/components/astro/icons/AstroIcon.astro";
-import Html from "@/components/astro/icons/Html.astro";
-import Docker from "@/components/astro/icons/Docker.astro";
-import Mdx from "@/components/astro/icons/Mdx.astro";
-import Markdown from "@/components/astro/icons/Markdown.astro";
-import CSS from "@/components/astro/icons/CSS.astro";
+import AstroIcon from '@/components/astro/icons/AstroIcon.astro';
+import CSS from '@/components/astro/icons/CSS.astro';
+import Docker from '@/components/astro/icons/Docker.astro';
+import Html from '@/components/astro/icons/Html.astro';
+import Javascript from '@/components/astro/icons/Javascript.astro';
+import Markdown from '@/components/astro/icons/Markdown.astro';
+import Mdx from '@/components/astro/icons/Mdx.astro';
+import Typescript from '@/components/astro/icons/Typescript.astro';
+import Copy from '@/components/vue/CopyButton.vue';
 
 const meta: Record<string, string> = {};
 const {
-  "data-meta": dataMeta,
-  "data-code": dataCode,
+  'data-meta': dataMeta,
+  'data-code': dataCode,
   class: className,
   ...props
 } = Astro.props;
 
 if (dataMeta) {
-  dataMeta.split(",").forEach((prop: string) => {
-    const tokens = prop.split("=");
+  dataMeta.split(',').forEach((prop: string) => {
+    const tokens = prop.split('=');
     meta[tokens[0].trim()] = tokens[1];
   });
 }
@@ -39,20 +38,20 @@ const langIconMap = {
   css: CSS,
 };
 
-const LangIcon = langIconMap[props["data-language"]];
+const LangIcon = langIconMap[props['data-language']];
 
 const title = meta.title;
-const copy = "copy" in meta;
+const copy = 'copy' in meta;
 ---
 
-<figure class:list={[":uno:", "my-4", "transition-colors", "rounded-b"]}>
+<figure class:list={[':uno:', 'my-4', 'transition-colors', 'rounded-b']}>
   {
     (title || copy) && (
-      <figcaption class=":uno: sticky top-0 left-0 z-10 text-xs leading-normal bg-background text-balance transition-all overflow-hidden">
-        <div class=":uno: bg-surface-1 rounded-t-md border-separator border p-2 px-4 w-full border-collapse flex justify-between items-center transition-colors">
-          <div class=":uno: flex items-center gap-2">
+      <figcaption class=":uno: text-xs leading-normal bg-background text-balance transition-all left-0 top-0 sticky z-10 overflow-hidden">
+        <div class=":uno: p-2 px-4 border border-separator rounded-t-md bg-surface-1 flex w-full transition-colors items-center justify-between border-collapse">
+          <div class=":uno: flex gap-2 items-center">
             {LangIcon && (
-              <LangIcon class=":uno: size-4 transition-colors shrink-0" />
+              <LangIcon class=":uno: shrink-0 size-4 transition-colors" />
             )}
 
             <p class=":uno: text-content transition-colors">{title}</p>
@@ -60,11 +59,11 @@ const copy = "copy" in meta;
 
           {copy && (
             <Copy className=":uno: z-20" value={dataCode} client:visible>
-              <Clipboard class=":uno: size-[14px] transition-colors group-hover:text-heading group-focus:text-heading" />
+              <Clipboard class=":uno: size-[14px] transition-colors group-focus:text-heading group-hover:text-heading" />
 
               <Check
                 slot="after-copy-icon"
-                class=":uno: size-[14px] text-success"
+                class=":uno: text-success size-[14px]"
               />
             </Copy>
           )}
@@ -75,15 +74,15 @@ const copy = "copy" in meta;
 
   <pre
     class:list={[
-      ":uno:",
-      "rounded-none",
-      "py-2",
-      "border-x border-b",
-      "border-separator",
-      "rounded-b",
-      "transition-colors",
-      "focus:outline-none",
-      !title && !copy ? "rounded-t border-t" : "",
+      ':uno:',
+      'rounded-none',
+      'py-2',
+      'border-x border-b',
+      'border-separator',
+      'rounded-b',
+      'transition-colors',
+      'focus:outline-none',
+      !title && !copy ? 'rounded-t border-t' : '',
       className,
     ]}
     {...props}><slot /></pre>
