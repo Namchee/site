@@ -1,6 +1,6 @@
 <template>
   <kbd
-    class=":uno: bg-surface-1 font-mono text-heading border border-separator rounded-md py-[2px] px-1"
+    class=":uno: text-heading font-mono px-1 py-[2px] border border-separator rounded-md bg-surface-1"
   >
     <slot />
   </kbd>
