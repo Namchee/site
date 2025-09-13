@@ -1,18 +1,11 @@
-// @ts-check
-import { defineConfig } from 'astro/config';
-
 import mdx from '@astrojs/mdx';
 import sitemap from '@astrojs/sitemap';
 import vue from '@astrojs/vue';
-
-import robotsTxt from 'astro-robots-txt';
-
-import unocss from 'unocss/astro';
-
-import { transformerMetaHighlight } from '@shikijs/transformers';
-
 import subfont from '@ernxst/subfont/astro';
-
+import { transformerMetaHighlight } from '@shikijs/transformers';
+import robotsTxt from 'astro-robots-txt';
+import { defineConfig } from 'astro/config';
+import unocss from 'unocss/astro';
 import Icons from 'unplugin-icons/vite';
 
 import { rehypePlugins } from './src/plugins/rehype';

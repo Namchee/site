@@ -1,12 +1,12 @@
 ---
-import Home from "~icons/lucide/home";
-import Newspaper from "~icons/lucide/newspaper";
-import LibraryBig from "~icons/lucide/library-big";
-import Cog from "~icons/lucide/cog";
+import Cog from '~icons/lucide/cog';
+import Home from '~icons/lucide/home';
+import LibraryBig from '~icons/lucide/library-big';
+import Newspaper from '~icons/lucide/newspaper';
 
-import NavigationItem from "@/components/vue/NavigationItem.vue";
-import CommandMenu from "@/components/vue/CommandMenu.vue";
-import ThemeSwitcher from "@/components/vue/ThemeSwitcher.vue"
+import CommandMenu from '@/components/vue/CommandMenu.vue';
+import NavigationItem from '@/components/vue/NavigationItem.vue';
+import ThemeSwitcher from '@/components/vue/ThemeSwitcher.vue';
 
 interface Props {
   posts: { title: string; href: string }[];
@@ -14,24 +14,24 @@ interface Props {
 
 const links = [
   {
-    href: "/",
-    label: "Home",
+    href: '/',
+    label: 'Home',
     icon: Home,
-    key: "Home",
+    key: 'Home',
   },
   {
-    href: "/posts",
-    label: "Posts",
+    href: '/posts',
+    label: 'Posts',
     icon: Newspaper,
   },
   {
-    href: "/library",
-    label: "Library",
+    href: '/library',
+    label: 'Library',
     icon: LibraryBig,
   },
   {
-    href: "/colophon",
-    label: "Colophon",
+    href: '/colophon',
+    label: 'Colophon',
     icon: Cog,
   },
 ];
@@ -49,7 +49,7 @@ const { posts } = Astro.props;
     directLinks.map((link, idx) => (
       <NavigationItem
         label={link.label}
-        className={`${idx === 0 ? "ml-1" : ""} ${currentPath.match(`${link.href}/.?`) || currentPath === link.href ? "text-heading bg-surface-2" : ""}`.trim()}
+        className={`${idx === 0 ? 'ml-1' : ''} ${currentPath.match(`${link.href}/.?`) || currentPath === link.href ? 'text-heading bg-surface-2' : ''}`.trim()}
         href={link.href}
         client:load
       >
@@ -66,6 +66,9 @@ const { posts } = Astro.props;
 </nav>
 
 <script is:inline>
+  // eslint-disable-next-line no-unassigned-vars
+  let theme;
+  
   const button = document.querySelector(".theme-toggle");
   function toggleThemeSwitcher() {
     button.classList.toggle("theme-toggle--toggled");

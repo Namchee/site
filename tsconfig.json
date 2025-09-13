@@ -1,16 +1,16 @@
 {
+  "extends": "astro/tsconfigs/base",
   "compilerOptions": {
-    "strictNullChecks": true,
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["src/*"]
+    },
     "types": [
       "vite/client",
       "astro/client",
       "node"
     ],
-    "baseUrl": ".",
-    "paths": {
-      "@/*": ["src/*"]
-    }
+    "strictNullChecks": true
   },
-  "extends": "astro/tsconfigs/base",
-  "exclude": ["node_modules", "dist", "public", "eslint.config.js"]
+  "exclude": ["node_modules", "dist", "public", "eslint.config.ts"]
 }

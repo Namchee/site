@@ -1,14 +1,15 @@
 ---
-import "@/assets/styles/global.css";
-import "@/assets/styles/colors.css";
-import "@/assets/styles/theme.css";
-import "@/assets/styles/fonts.css";
-import "@/assets/styles/toggle.css";
+import { getCollection } from 'astro:content';
 
-import { getCollection } from "astro:content";
+import Footer from '@/components/astro/layout/Footer.astro';
 
-import Footer from "@/components/astro/layout/Footer.astro";
-import Navigation from "./Navigation.astro";
+import Navigation from './Navigation.astro';
+
+import '@/assets/styles/global.css';
+import '@/assets/styles/colors.css';
+import '@/assets/styles/theme.css';
+import '@/assets/styles/fonts.css';
+import '@/assets/styles/toggle.css';
 
 export interface Props {
   title: string;
@@ -17,12 +18,12 @@ export interface Props {
   og?: string;
 }
 
-const postCollection = await getCollection("posts");
-const posts = postCollection
-  .filter((post) => !post.data.isDraft)
-  .sort((a, b) => b.data.publishedAt.getTime() - a.data.publishedAt.getTime())
-  .map((collection) => ({
-    title: collection.data.title || "",
+const postCollection = await getCollection('posts');
+const posts = postCollection.
+  filter(post => !post.data.isDraft).
+  sort((a, b) => b.data.publishedAt.getTime() - a.data.publishedAt.getTime()).
+  map(collection => ({
+    title: collection.data.title || '',
     href: `/posts/${collection.id}`,
   }));
 
@@ -32,7 +33,7 @@ const url = Astro.url;
 const ogHost = import.meta.env.DEV
   ? `${url.protocol}//${url.host}`
   : import.meta.env.SITE;
-const ogFile = og ? `${og}.png` : "og.png";
+const ogFile = og ? `${og}.png` : 'og.png';
 
 const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 ---
