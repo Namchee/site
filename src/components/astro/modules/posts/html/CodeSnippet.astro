@@ -20,11 +20,9 @@ const {
   ...props
 } = Astro.props;
 
-if (dataMeta) {
-  dataMeta.split(',').forEach((prop: string) => {
-    const tokens = prop.split('=');
-    meta[tokens[0].trim()] = tokens[1];
-  });
+for (const prop of dataMeta?.split(',') ?? []) {
+  const tokens = prop.split('=');
+  meta[tokens[0].trim()] = tokens[1];
 }
 
 const langIconMap = {
@@ -58,7 +56,7 @@ const copy = 'copy' in meta;
           </div>
 
           {copy && (
-            <Copy className=":uno: z-20" value={dataCode} client:visible>
+            <Copy class=":uno: z-20" value={dataCode} client:visible>
               <Clipboard class=":uno: size-[14px] transition-colors group-focus:text-heading group-hover:text-heading" />
 
               <Check

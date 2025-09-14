@@ -1,22 +1,15 @@
 <script setup lang="ts">
 import { TooltipArrow, TooltipContent, TooltipPortal, TooltipProvider, TooltipRoot, TooltipTrigger } from 'reka-ui';
-import { onBeforeUnmount, ref, withDefaults } from 'vue';
+import { onBeforeUnmount, ref } from 'vue';
 
-const props = withDefaults(
-  defineProps<{
-    value: string
-    className?: string
-  }>(),
-  {
-    className: '',
-  },
-);
+const props = defineProps({
+  value: { type: String, required: true },
+  class: { type: String, default: '' },
+});
 
 const open = ref(false);
 const copied = ref(false);
 const timeoutId = ref<number>(-1);
-
-const baseClass = `:uno: group ${props.className}`;
 
 function copyCode() {
   navigator.clipboard.writeText(props.value);
@@ -51,7 +44,7 @@ onBeforeUnmount(() => {
         <button
           :disabled="open"
           :class="{
-            [baseClass]: true,
+            [`:uno: group ${props.class}`]: true,
             'cursor-default': copied,
             'cursor-pointer': !copied,
           }"

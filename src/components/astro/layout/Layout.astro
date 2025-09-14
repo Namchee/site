@@ -19,10 +19,10 @@ export interface Props {
 }
 
 const postCollection = await getCollection('posts');
-const posts = postCollection.
-  filter(post => !post.data.isDraft).
-  sort((a, b) => b.data.publishedAt.getTime() - a.data.publishedAt.getTime()).
-  map(collection => ({
+const posts = postCollection
+  .filter(post => !post.data.isDraft)
+  .sort((a, b) => b.data.publishedAt.getTime() - a.data.publishedAt.getTime())
+  .map(collection => ({
     title: collection.data.title || '',
     href: `/posts/${collection.id}`,
   }));
@@ -93,10 +93,7 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
   const media = window.matchMedia('(prefers-color-scheme: dark)');
 
   let theme = media.matches ? 'dark' : 'light';
-  if (
-    typeof window.localStorage !== 'undefined'
-  && window.localStorage.getItem('theme')
-  ) {
+  if (typeof window.localStorage !== 'undefined' && window.localStorage.getItem('theme')) {
     theme = window.localStorage.getItem('theme');
   }
 
@@ -114,7 +111,8 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
       is:inline
       defer
       src="https://cloud.umami.is/script.js"
-      data-website-id="16f41ca8-561c-4f45-8943-0c80934f59ff"></script>
+      data-website-id="16f41ca8-561c-4f45-8943-0c80934f59ff">
+    </script>
   </head>
   <body
     vaul-drawer-wrapper

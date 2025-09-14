@@ -2,11 +2,11 @@ import { existsSync, readFileSync, writeFileSync } from 'node:fs';
 import { resolve } from 'node:path';
 
 export interface Webmention {
-  type: string;
-  content: {
+  'type': string;
+  'content': {
     text: string;
   };
-  author?: {
+  'author'?: {
     name: string;
     url: string;
     photo: string;
@@ -40,9 +40,9 @@ async function fetchWebmentions() {
 async function syncWebmentions() {
   const webmentions = await fetchWebmentions();
   for (const mention of webmentions) {
-    const slug = new URL(mention['wm-target']).pathname.
-      split('/').
-      pop();
+    const slug = new URL(mention['wm-target']).pathname
+      .split('/')
+      .pop();
 
     const filename = resolve(process.cwd(), 'data', 'webmentions', `${slug}.json`);
 
@@ -50,8 +50,8 @@ async function syncWebmentions() {
       writeFileSync(filename, JSON.stringify([mention], null, 2));
     } else {
       const entries = JSON.parse(readFileSync(filename, 'utf-8')) as Webmention[];
-      const updatedEntries = [...entries.
-        filter(wm => wm['wm-id'] !== mention['wm-id']), mention];
+      const updatedEntries = [...entries
+        .filter(wm => wm['wm-id'] !== mention['wm-id']), mention];
       updatedEntries.sort((a, b) => a['wm-id'] - b['wm-id']);
 
       writeFileSync(filename, JSON.stringify(updatedEntries, null, 2));

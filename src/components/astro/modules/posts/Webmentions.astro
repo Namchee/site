@@ -1,12 +1,12 @@
 ---
-import { existsSync, readFileSync } from "node:fs";
-import { resolve } from "path";
+import type { Webmention } from '@/scripts/webmentions';
 
-import HandHeart from "~icons/lucide/hand-heart";
-import MessageSquareText from "~icons/lucide/message-square-text";
-import Repeat from "~icons/lucide/repeat-2";
+import { existsSync, readFileSync } from 'node:fs';
+import { resolve } from 'node:path';
 
-import type { Webmention } from "@/scripts/webmentions";
+import HandHeart from '~icons/lucide/hand-heart';
+import MessageSquareText from '~icons/lucide/message-square-text';
+import Repeat from '~icons/lucide/repeat-2';
 
 interface Props {
   slug: string;
@@ -16,24 +16,23 @@ const { slug } = Astro.props;
 
 let webMentions: Webmention[] = [];
 
-const wmPath = resolve(process.cwd(), "data", "webmentions", `${slug}.json`);
+const wmPath = resolve(process.cwd(), 'data', 'webmentions', `${slug}.json`);
 if (existsSync(wmPath)) {
   webMentions = JSON.parse(
-    readFileSync(wmPath).toString("utf-8")
+    readFileSync(wmPath).toString('utf-8'),
   ) as Webmention[];
 }
 
 const likes = webMentions.filter(
-  (mention) => mention["wm-property"] === "like-of"
+  mention => mention['wm-property'] === 'like-of',
 );
 const reposts = webMentions.filter(
-  (mention) => mention["wm-property"] === "repost-of"
+  mention => mention['wm-property'] === 'repost-of',
 );
-const replies = webMentions.filter((mention) =>
-  ["in-reply-to", "mention-of"].includes(mention["wm-property"])
-);
+const replies = webMentions.filter(mention =>
+  ['in-reply-to', 'mention-of'].includes(mention['wm-property']));
 
-const numberFormatter = Intl.NumberFormat("id-ID");
+const numberFormatter = Intl.NumberFormat('id-ID');
 ---
 
 <div class=":uno: flex items-center space-x-4">
@@ -41,29 +40,29 @@ const numberFormatter = Intl.NumberFormat("id-ID");
     class=":uno: flex items-center space-x-2 md:text-lg"
     title="Number of likes for this post"
   >
-    <HandHeart class=":uno: w-4 md:w-[18px] h-auto" />
+    <HandHeart class=":uno: h-auto w-4 md:w-[18px]" />
     <span class=":uno: leading-none!"
-      >{numberFormatter.format(likes.length)}</span
+    >{numberFormatter.format(likes.length)}</span
     >
   </div>
 
   <div
-    class=":uno: flex items-center space-x-2 md:text-lg leading-none"
+    class=":uno: leading-none flex items-center space-x-2 md:text-lg"
     title="Number of reposts"
   >
-    <Repeat class=":uno: w-4 md:w-[18px] h-auto" />
+    <Repeat class=":uno: h-auto w-4 md:w-[18px]" />
     <span class=":uno: leading-none!"
-      >{numberFormatter.format(reposts.length)}</span
+    >{numberFormatter.format(reposts.length)}</span
     >
   </div>
 
   <div
-    class=":uno: flex items-center space-x-2 md:text-lg leading-none"
+    class=":uno: leading-none flex items-center space-x-2 md:text-lg"
     title="Number of replies and comments"
   >
-    <MessageSquareText class=":uno: w-4 md:w-[18px] h-auto" />
+    <MessageSquareText class=":uno: h-auto w-4 md:w-[18px]" />
     <span class=":uno: leading-none!"
-      >{numberFormatter.format(replies.length)}</span
+    >{numberFormatter.format(replies.length)}</span
     >
   </div>
 </div>

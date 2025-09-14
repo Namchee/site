@@ -5,7 +5,6 @@ import TooltipContent from '@/components/vue/ui/TooltipContent.vue';
 
 const props = defineProps({
   label: { type: String, required: true },
-  className: { type: String, default: '' },
   href: { type: String, required: true },
 });
 </script>
@@ -17,7 +16,7 @@ const props = defineProps({
         <a
           rel="noopener noreferrer"
           :href="props.href"
-          :class="[':uno: size-[36px] grid place-items-center transition-colors text-content rounded-md hover:bg-surface-2 focus:bg-surface-2 text-sm my-1 mr-1', props.className]"
+          :class="[':uno: size-[36px] grid place-items-center transition-colors text-content rounded-md hover:bg-surface-2 focus:bg-surface-2 text-sm my-1 mr-1', $attrs.class]"
         >
           <slot />
         </a>

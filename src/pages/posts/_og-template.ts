@@ -1,4 +1,4 @@
-/* eslint-disable style/indent */
+
 import { html } from 'satori-html';
 
 interface OGProps {
@@ -36,4 +36,4 @@ function buildTemplate(props: OGProps, imageBuffer: Buffer) {
   </div>`;
 }
 
-export const Template = (props: OGProps, imageBuffer: Buffer) => html(buildTemplate(props, imageBuffer))
+export const Template = (props: OGProps, imageBuffer: Buffer) => html(buildTemplate(props, imageBuffer));

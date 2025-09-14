@@ -1,26 +1,25 @@
 ---
-import ArrowUpRight from "~icons/lucide/arrow-up-right";
+import ArrowUpRight from '~icons/lucide/arrow-up-right';
 
-import Layout from "@/components/astro/layout/Layout.astro";
-import AppLink from "@/components/astro/ui/AppLink.astro";
+import Layout from '@/components/astro/layout/Layout.astro';
+import AppLink from '@/components/astro/ui/AppLink.astro';
+import { BOOKS } from '@/constant/books';
 
-import { BOOKS } from "@/constant/books";
-
-const title = "Library";
-const description =
-  "A list of books that I've read and recommend to either boost your professional career or spice up your life!";
+const title = 'Library';
+const description
+  = 'A list of books that I\'ve read and recommend to either boost your professional career or spice up your life!';
 ---
 
 <Layout title={title} description={description} og="og-bookshelf">
-  <section class=":uno: grid grid-cols-12 gap-4">
+  <section class=":uno: gap-4 grid grid-cols-12">
     <h1
-      class=":uno: col-start-1 col-end-13 md:col-end-4 text-xl text-heading font-semibold transition-colors"
+      class=":uno: text-xl text-heading font-semibold col-start-1 col-end-13 transition-colors md:col-end-4"
     >
       Library
     </h1>
 
     <div
-      class=":uno: col-start-1 col-end-13 md:col-start-5 space-y-4"
+      class=":uno: col-start-1 col-end-13 space-y-4 md:col-start-5"
     >
       <p>
         Starting from 2023, I've been building my reading habit and found the
@@ -37,31 +36,31 @@ const description =
 
   {
     Object.entries(BOOKS).map(([year, book]) => {
-      const bookList = book.map((b) => (
+      const bookList = book.map(b => (
         <li class=":uno: justify-between md:grid md:grid-cols-[max-content_auto]">
           <AppLink
-            class=":uno: group text-heading/80 transition-colors items-center hover:text-heading focus:text-heading flex text-balance font-medium space-x-1"
+            class=":uno: group text-heading/80 font-medium flex text-balance transition-colors items-center space-x-1 focus:text-heading hover:text-heading"
             href={b.link}
           >
-            <span class="flex-1">{b.title}</span>
+            <span class=":uno: flex-1">{b.title}</span>
             <ArrowUpRight
-              class=":uno: w-4 h-auto transition-all text-heading/50 group-hover:text-heading group-focus:text-heading group-hover:rotate-45 group-focus:rotate-45 flex-shrink-0"
+              class=":uno: text-heading/50 flex-shrink-0 h-auto w-4 transition-all group-focus:text-heading group-hover:text-heading group-focus:rotate-45 group-hover:rotate-45"
             />
           </AppLink>
 
-          <p class=":uno: text-balance text-sm leading-normal md:text-base md:text-right">
+          <p class=":uno: text-sm leading-normal text-balance md:text-base md:text-right">
             {b.author}
           </p>
         </li>
       ));
 
       return (
-        <section class=":uno: grid grid-cols-12 gap-4">
-          <p class=":uno: font-semibold tracking-tight text-heading col-start-1 col-end-13 md:col-end-4">
+        <section class=":uno: gap-4 grid grid-cols-12">
+          <p class=":uno: text-heading tracking-tight font-semibold col-start-1 col-end-13 md:col-end-4">
             {year}
           </p>
 
-          <ul class=":uno: col-start-1 col-end-13 md:col-start-5 space-y-2">
+          <ul class=":uno: col-start-1 col-end-13 space-y-2 md:col-start-5">
             {bookList}
           </ul>
         </section>

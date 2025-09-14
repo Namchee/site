@@ -1,26 +1,26 @@
 ---
-import type { HTMLAttributes } from "astro/types";
+import type { HTMLAttributes } from 'astro/types';
 
-import Hash from "~icons/lucide/hash";
+import Hash from '~icons/lucide/hash';
 
-import AppLink from "@/components/astro/ui/AppLink.astro";
+import AppLink from '@/components/astro/ui/AppLink.astro';
 
-type Props = HTMLAttributes<"h3">;
+type Props = HTMLAttributes<'h3'>;
 
 const { id, ...props } = Astro.props;
 ---
 
 <h3
-  class=":uno: relative group inline-flex items-center text-heading text-lg font-semibold transition-colors mt-8!"
+  class=":uno: group text-lg text-heading font-semibold inline-flex transition-colors items-center relative mt-8!"
   id={id}
   {...props}
 >
   <slot />
   <AppLink
     href={`#${id}`}
-    class=":uno: absolute translate-y-0 -left-6 opacity-0 hover:text-content opacity-0 group-hover:opacity-100 transition-all ml-1 text-content/70"
+    class=":uno: text-content/70 ml-1 opacity-0 opacity-0 translate-y-0 transition-all absolute hover:text-content group-hover:opacity-100 -left-6"
     aria-label={id}
   >
-    <Hash class=":uno: w-4 h-auto" aria-hidden="true" />
+    <Hash class=":uno: h-auto w-4" aria-hidden="true" />
   </AppLink>
 </h3>

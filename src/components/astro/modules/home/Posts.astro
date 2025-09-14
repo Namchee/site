@@ -3,10 +3,12 @@ import { getCollection } from 'astro:content';
 
 import AppLink from '@/components/astro/ui/AppLink.astro';
 
-const posts = (await getCollection('posts')).
-  filter(post => !post.data.isDraft).
-  sort((a, b) => b.data.publishedAt.getTime() - a.data.publishedAt.getTime()).
-  slice(0, 3);
+const postCollection = await getCollection('posts');
+
+const posts = postCollection
+  .filter(post => !post.data.isDraft)
+  .sort((a, b) => b.data.publishedAt.getTime() - a.data.publishedAt.getTime())
+  .slice(0, 3);
 ---
 
 <!-- reduce spacing for one-liners -->

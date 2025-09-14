@@ -1,13 +1,13 @@
 ---
-import type { HTMLAttributes } from "astro/types";
+import type { HTMLAttributes } from 'astro/types';
 
-type Props = HTMLAttributes<"span">;
+type Props = HTMLAttributes<'span'>;
 
 const { class: className } = Astro.props;
 ---
 
 <span
-  class={`:uno: w-2 h-2 rounded-full bg-success inline-block pulse ${className}`}
+  class:list={[':uno: pulse rounded-full bg-success h-2 w-2 inline-block', className]}
   aria-hidden="true"></span>
 
 <style>

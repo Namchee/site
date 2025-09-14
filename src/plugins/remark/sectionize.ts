@@ -1,15 +1,13 @@
+import type { Heading, Node, Parent, Root, RootContent } from 'mdast';
 /**
  * Code is taken from 'remark-sectionize' by Jake Low with few modifications.
  */
 import type { Transformer } from 'unified';
-import type { Heading, Parent, Node, RootContent, Root } from 'mdast';
 
 import { slug } from 'github-slugger';
-
 import { toString } from 'mdast-util-to-string';
-
-import { visit } from 'unist-util-visit';
 import { findAfter } from 'unist-util-find-after';
+import { visit } from 'unist-util-visit';
 
 const MAX_HEADING_DEPTH = 3;
 
@@ -20,9 +18,9 @@ export function remarkSectionize(): Transformer<Root> {
         tree,
         (node: Node): node is Heading => node.type === 'heading' && (node as Heading).depth === depth,
         sectionize,
-      )
+      );
     }
-  }
+  };
 }
 
 function sectionize(node: Heading, index: number, parent: Parent) {
@@ -40,15 +38,15 @@ function sectionize(node: Heading, index: number, parent: Parent) {
 
   const section = {
     type: 'section',
-    depth,
+    depth: depth,
     children: between,
     data: {
       hName: 'section',
       hProperties: {
         id: slug(headingText),
         class: 'blog-section',
-      }
-    }
+      },
+    },
   };
 
   // TODO: find a better way to remove unknown conversion

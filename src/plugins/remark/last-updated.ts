@@ -1,9 +1,9 @@
-import type { Transformer } from 'unified';
 import type { Root } from 'mdast';
-
-import { execSync } from 'node:child_process';
+import type { Transformer } from 'unified';
 
 import type { MarkdownFile } from '@/plugins/remark/types';
+
+import { execSync } from 'node:child_process';
 
 export function remarkLastUpdated(): Transformer<Root> {
   return function(_, file) {

@@ -40,6 +40,17 @@ const directLinks = links.slice(0, -1);
 
 const currentPath = Astro.url.pathname;
 const { posts } = Astro.props;
+
+function getNavClasses(linkHref: string, currentPath: string, idx: number) {
+  const isFirst = idx === 0;
+  const isActive
+    = new RegExp(`${linkHref}/.?`).test(currentPath) || currentPath === linkHref;
+
+  return {
+    'ml-1': isFirst,
+    'text-heading bg-surface-2': isActive,
+  };
+}
 ---
 
 <nav
@@ -49,7 +60,7 @@ const { posts } = Astro.props;
     directLinks.map((link, idx) => (
       <NavigationItem
         label={link.label}
-        className={`${idx === 0 ? 'ml-1' : ''} ${currentPath.match(`${link.href}/.?`) || currentPath === link.href ? 'text-heading bg-surface-2' : ''}`.trim()}
+        class:list={getNavClasses(link.href, currentPath, idx)}
         href={link.href}
         client:load
       >
@@ -66,8 +77,7 @@ const { posts } = Astro.props;
 </nav>
 
 <script is:inline>
-  // eslint-disable-next-line no-unassigned-vars
-  let theme;
+  /* eslint-disable no-undef */
 
   const button = document.querySelector('.theme-toggle');
   function toggleThemeSwitcher() {
@@ -79,20 +89,20 @@ const { posts } = Astro.props;
   }
 
   button.addEventListener('click', () => {
-    const newTheme = docEl.classList.contains('dark') ? 'light' : 'dark';
+    const documentTheme = docEl.classList.contains('dark') ? 'light' : 'dark';
     toggleThemeSwitcher();
-    toggleTheme(newTheme);
+    toggleTheme(documentTheme);
   });
 
   window.addEventListener('storage', () => {
-    const newTheme = window.localStorage.getItem('theme');
+    const actualTheme = window.localStorage.getItem('theme');
     toggleThemeSwitcher();
-    toggleTheme(newTheme);
+    toggleTheme(actualTheme);
   });
 
   media.addEventListener('change', () => {
-    const newTheme = media.matches ? 'dark' : 'light';
+    const mediaTheme = media.matches ? 'dark' : 'light';
     toggleThemeSwitcher();
-    toggleTheme(newTheme);
+    toggleTheme(mediaTheme);
   });
 </script>

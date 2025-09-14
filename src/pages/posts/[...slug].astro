@@ -1,36 +1,34 @@
 ---
-import "@/assets/styles/mdx.css";
+import type { MarkdownFile } from '@/plugins/remark/types';
 
-import { getCollection, render, type CollectionEntry } from "astro:content";
+import { type CollectionEntry, getCollection, render } from 'astro:content';
 
-import Post from "@/components/astro/modules/posts/Post.astro";
+import Layout from '@/components/astro/layout/Layout.astro';
+import BulletItem from '@/components/astro/modules/posts/html/BulletItem.astro';
+import CodeSnippet from '@/components/astro/modules/posts/html/CodeSnippet.astro';
+import Head2 from '@/components/astro/modules/posts/html/Head2.astro';
+import Head3 from '@/components/astro/modules/posts/html/Head3.astro';
+import Image from '@/components/astro/modules/posts/html/Image.astro';
+import OrderedList from '@/components/astro/modules/posts/html/OrderedList.astro';
+import Quote from '@/components/astro/modules/posts/html/Quote.astro';
+import Strong from '@/components/astro/modules/posts/html/Strong.astro';
+import UnorderedList from '@/components/astro/modules/posts/html/UnorderedList.astro';
+import Post from '@/components/astro/modules/posts/Post.astro';
+import TextLink from '@/components/astro/ui/TextLink.astro';
 
-import TextLink from "@/components/astro/ui/TextLink.astro";
-import Head2 from "@/components/astro/modules/posts/html/Head2.astro";
-import Head3 from "@/components/astro/modules/posts/html/Head3.astro";
-import Strong from "@/components/astro/modules/posts/html/Strong.astro";
-import Image from "@/components/astro/modules/posts/html/Image.astro";
-import CodeSnippet from "@/components/astro/modules/posts/html/CodeSnippet.astro";
-import Quote from "@/components/astro/modules/posts/html/Quote.astro";
-import BulletItem from "@/components/astro/modules/posts/html/BulletItem.astro";
-import UnorderedList from "@/components/astro/modules/posts/html/UnorderedList.astro";
+import '@/assets/styles/mdx.css';
 
-import type { MarkdownFile } from "@/plugins/remark/types";
-
-import OrderedList from "@/components/astro/modules/posts/html/OrderedList.astro";
-import Layout from "@/components/astro/layout/Layout.astro";
-
-type FrontmatterData = CollectionEntry<"posts">["data"];
-type FrontmatterAddons = MarkdownFile["data"]["astro"]["frontmatter"];
+type FrontmatterData = CollectionEntry<'posts'>['data'];
+type FrontmatterAddons = MarkdownFile['data']['astro']['frontmatter'];
 
 export async function getStaticPaths() {
-  let posts = await getCollection("posts");
+  let posts = await getCollection('posts');
 
   if (import.meta.env.PROD) {
     posts = posts.filter(p => !p.id.startsWith('_'));
   }
 
-  return posts.map((entry) => ({
+  return posts.map(entry => ({
     params: {
       slug: entry.id,
     },
@@ -45,7 +43,7 @@ const { Content, remarkPluginFrontmatter, headings } = await render(entry);
 
 const frontmatter = {
   ...(remarkPluginFrontmatter as FrontmatterData & FrontmatterAddons),
-  headings,
+  headings: headings,
   slug: Astro.params.slug,
 };
 ---

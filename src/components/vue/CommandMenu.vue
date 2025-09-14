@@ -19,15 +19,15 @@ import Home from '~icons/lucide/home';
 import LibraryBig from '~icons/lucide/library-big';
 import Newspaper from '~icons/lucide/newspaper';
 
-import Kbd from '@/components/vue/ui/Kbd.vue';
+import Kbd from '@/components/vue/ui/KeyBoard.vue';
 import TooltipContent from '@/components/vue/ui/TooltipContent.vue';
 
 const visible = ref(false);
 const searchEl = ref<HTMLInputElement>();
 const focusIndex = ref(0);
 
-const timeoutId = ref<NodeJS.Timeout | null>(null);
-const intervalId = ref<NodeJS.Timeout | null>(null);
+const timeoutId = ref<ReturnType<typeof setTimeout> | null>(null);
+const intervalId = ref<ReturnType<typeof setTimeout> | null>(null);
 
 const initialDelay = 300;
 const fireRate = 75;
