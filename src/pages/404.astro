@@ -1,11 +1,11 @@
 ---
-import "@/assets/styles/global.css";
-import "@/assets/styles/colors.css";
-import "@/assets/styles/theme.css";
-import "@/assets/styles/fonts.css";
+import AppLink from '@/components/astro/ui/AppLink.astro';
+import TextLink from '@/components/astro/ui/TextLink.astro';
 
-import AppLink from "@/components/astro/ui/AppLink.astro";
-import TextLink from "@/components/astro/ui/TextLink.astro";
+import '@/assets/styles/global.css';
+import '@/assets/styles/colors.css';
+import '@/assets/styles/theme.css';
+import '@/assets/styles/fonts.css';
 ---
 
 <html>
@@ -31,56 +31,56 @@ import TextLink from "@/components/astro/ui/TextLink.astro";
     />
     <title>404 &mdash; Not Found</title>
     <script is:inline>
-      // same as base layout
-      const docEl = document.documentElement;
-      const svgIcon = document.querySelector('.favicon');
-      const media = window.matchMedia('(prefers-color-scheme: dark)');
+  // same as base layout
+  const docEl = document.documentElement;
+  const svgIcon = document.querySelector('.favicon');
+  const media = window.matchMedia('(prefers-color-scheme: dark)');
 
-      let theme = media.matches ? 'dark' : 'light';
-      if (
-        typeof window.localStorage !== 'undefined' &&
-        window.localStorage.getItem('theme')
-      ) {
-        theme = window.localStorage.getItem('theme');
-      }
+  let theme = media.matches ? 'dark' : 'light';
+  if (
+    typeof window.localStorage !== 'undefined'
+  && window.localStorage.getItem('theme')
+  ) {
+    theme = window.localStorage.getItem('theme');
+  }
 
-      const toggleTheme = (theme) => {
-        const method = theme === 'light' ? 'remove' : 'add';
+  const toggleTheme = (theme) => {
+    const method = theme === 'light' ? 'remove' : 'add';
 
-        docEl.classList[method]('dark');
-        svgIcon.href = theme === 'light' ? '/icon-light.svg' : '/icon-dark.svg';
-        window.localStorage.setItem('theme', theme);
-      };
+    docEl.classList[method]('dark');
+    svgIcon.href = theme === 'light' ? '/icon-light.svg' : '/icon-dark.svg';
+    window.localStorage.setItem('theme', theme);
+  };
 
 
-      window.addEventListener('storage', () => {
-        const newTheme = window.localStorage.getItem('theme');
-        toggleTheme(newTheme);
-      });
+  window.addEventListener('storage', () => {
+    const localTheme = window.localStorage.getItem('theme');
+    toggleTheme(localTheme);
+  });
 
-      media.addEventListener('change', () => {
-        const newTheme = media.matches ? 'dark' : 'light';
-        toggleTheme(newTheme);
-      });
+  media.addEventListener('change', () => {
+    const mediaTheme = media.matches ? 'dark' : 'light';
+    toggleTheme(mediaTheme);
+  });
 
-      toggleTheme(theme);
-    </script>
+  toggleTheme(theme);
+  </script>
   </head>
 
   <body>
     <div
-      class=":uno: grid transition-colors w-screen h-screen place-items-center bg-background text-content font-sans px-8"
+      class=":uno: text-content font-sans px-8 bg-background grid h-screen w-screen transition-colors place-items-center"
     >
       <div class=":uno: grid place-items-center">
-        <h1 class=":uno: text-heading tracking-tight text-7xl font-medium">404</h1>
+        <h1 class=":uno: text-7xl text-heading tracking-tight font-medium">404</h1>
 
-        <p class=":uno: text-xl mt-8 text-balance text-center">
+        <p class=":uno: text-xl mt-8 text-center text-balance">
           Yes, page isn't here so you're lost. <TextLink class="underline-offset-6" href="/"
-            >Go home</TextLink
+          >Go home</TextLink
           >
         </p>
 
-        <AppLink href='#' class="text-xs relative top-16 hover:text-heading transition-colors lucky__try">Feeling lucky instead?</AppLink>
+        <AppLink href='#' class="lucky__try text-xs transition-colors top-16 relative hover:text-heading">Feeling lucky instead?</AppLink>
       </div>
     </div>
 

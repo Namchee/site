@@ -1,10 +1,9 @@
 import { readFileSync } from 'node:fs';
 
 import { getCollection } from 'astro:content';
-
+import getReadingTime from 'reading-time';
 import satori, { type SatoriOptions } from 'satori';
 import sharp from 'sharp';
-import getReadingTime from 'reading-time';
 
 import { Template } from './_og-template';
 

@@ -52,7 +52,7 @@ interface Book {
 
 const coverOverride = {
   'tom-greenwood-sustainable-web-design-90039': 'https://sustainablewebdesign.org/wp-content/uploads/2021/01/SWD-Tom-Greenwood-Cover.jpg',
-}
+};
 
 export async function getCurrentlyReadBooks(): Promise<Book[]> {
   if (import.meta.env.DEV) {
@@ -85,6 +85,7 @@ export async function getCurrentlyReadBooks(): Promise<Book[]> {
     title: book.title,
     subtitle: book.subtitle,
     url: `https://literal.club/book/${book.slug}`,
+    // eslint-disable-next-line typescript/no-unsafe-assignment
     cover: book.cover || coverOverride[book.slug],
     author: book.authors.map(author => author.name),
   }));

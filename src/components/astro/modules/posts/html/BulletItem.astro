@@ -1,10 +1,10 @@
 ---
-import ArrowRight from "~icons/lucide/arrow-right";
+import ArrowRight from '~icons/lucide/arrow-right';
 
 const { class: className } = Astro.props;
 ---
 
 <li class=":uno: flex items-center space-x-2">
-  <ArrowRight class=":uno: w-4 h-auto text-accent flex-shrink-0 self-start translate-y-[35%] transition-colors" />
-  <span class:list={[":uno: transition-colors", className]}><slot /></span>
+  <ArrowRight class=":uno: text-accent flex-shrink-0 h-auto w-4 translate-y-[35%] transition-colors self-start" />
+  <span class:list={[':uno: transition-colors', className]}><slot /></span>
 </li>

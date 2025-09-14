@@ -1,24 +1,26 @@
 ---
-import { getCollection } from "astro:content";
+import { getCollection } from 'astro:content';
 
-import Layout from "@/components/astro/layout/Layout.astro";
-import AppLink from "@/components/astro/ui/AppLink.astro";
+import Layout from '@/components/astro/layout/Layout.astro';
+import AppLink from '@/components/astro/ui/AppLink.astro';
 
-const posts = (await getCollection("posts"))
-  .filter((post) => !post.data.isDraft)
+const postCollection = await getCollection('posts');
+
+const posts = postCollection
+  .filter(post => !post.data.isDraft)
   .sort((a, b) => b.data.publishedAt.getTime() - a.data.publishedAt.getTime());
 
-const title = "My Personal Thoughts — Namchee";
-const description =
-  "Food for thoughts or just passing whims in form of well-written posts that covers various topics.";
+const title = 'My Personal Thoughts — Namchee';
+const description
+  = 'Food for thoughts or just passing whims in form of well-written posts that covers various topics.';
 ---
 
 <Layout title={title} description={description} og="og-posts">
-  <div class=":uno: grid grid-cols-12 gap-4">
+  <div class=":uno: gap-4 grid grid-cols-12">
     <header class=":uno: col-start-1 col-end-13 md:col-end-4">
-      <div class=":uno: sticky top-12">
+      <div class=":uno: top-12 sticky">
         <h1
-          class=":uno: text-heading font-semibold transition-colors text-xl"
+          class=":uno: text-xl text-heading font-semibold transition-colors"
         >
           Posts
         </h1>
@@ -26,17 +28,17 @@ const description =
     </header>
 
     <div
-      class=":uno: col-start-1 col-end-13 mt-8 md:mt-0 md:col-start-5 space-y-16"
+      class=":uno: mt-8 col-start-1 col-end-13 space-y-16 md:mt-0 md:col-start-5"
     >
       <ul class=":uno: space-y-5">
         {
-          posts.map((post) => (
+          posts.map(post => (
             <li>
-              <div class="flex flex-col md:flex-row justify-between">
+              <div class="flex flex-col justify-between md:flex-row">
                 <div>
                   <AppLink
                     href={`/posts/${post.id}`}
-                    class=":uno: text-heading/80 font-semibold transition-colors hover:text-heading focus:text-heading"
+                    class=":uno: text-heading/80 font-semibold transition-colors focus:text-heading hover:text-heading"
                   >
                     {post.data.title}
                   </AppLink>
@@ -47,10 +49,10 @@ const description =
                 </div>
 
                 <time class="flex-shrink-0">
-                  {new Date(post.data.publishedAt).toLocaleString("en-GB", {
-                    year: "2-digit",
-                    month: "short",
-                    day: "numeric",
+                  {new Date(post.data.publishedAt).toLocaleString('en-GB', {
+                    year: '2-digit',
+                    month: 'short',
+                    day: 'numeric',
                   })}
                 </time>
               </div>

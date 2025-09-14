@@ -1,11 +1,9 @@
 ---
-import { Image } from "astro:assets";
+import { Image } from 'astro:assets';
+import ArrowUpRight from '~icons/lucide/arrow-up-right';
 
-import ArrowUpRight from "~icons/lucide/arrow-up-right";
-
-import AppLink from "@/components/astro/ui/AppLink.astro";
-
-import { getCurrentlyReadBooks } from "@/scripts/now-reading";
+import AppLink from '@/components/astro/ui/AppLink.astro';
+import { getCurrentlyReadBooks } from '@/scripts/now-reading';
 
 const books = await getCurrentlyReadBooks();
 ---
@@ -25,17 +23,17 @@ const books = await getCurrentlyReadBooks();
           <div class=":uno: flex flex-col justify-center">
             <AppLink
               href={book.url}
-              class=":uno: group text-heading/80 font-medium transition-colors hover:text-heading focus:text-heading inline-flex items-center space-x-1 w-fit"
+              class=":uno: group text-heading/80 font-medium inline-flex w-fit transition-colors items-center space-x-1 focus:text-heading hover:text-heading"
             >
               <span>{book.title}</span>
 
               <ArrowUpRight
-                class=":uno: w-4 h-auto transition-all text-heading/50 group-hover:text-heading group-focus:text-heading group-focus:rotate-45 group-hover:rotate-45 flex-shrink-0"
+                class=":uno: text-heading/50 flex-shrink-0 h-auto w-4 transition-all group-focus:text-heading group-hover:text-heading group-focus:rotate-45 group-hover:rotate-45"
               />
             </AppLink>
 
             <p class=":uno: text-sm leading-normal italic">{book.subtitle}</p>
-            <p class=":uno: mt-4 text-heading/80 transition-colors text-sm">{book.author.join(" & ")}</p>
+            <p class=":uno: text-sm text-heading/80 mt-4 transition-colors">{book.author.join(' & ')}</p>
           </div>
         </li>
       );

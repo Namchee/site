@@ -1,10 +1,10 @@
 ---
-import { Image as Img } from "@unpic/astro";
+import type { HTMLAttributes } from 'astro/types';
+
+import { Image as Img } from '@unpic/astro';
 import { getPixels } from '@unpic/pixels';
 
-import type { HTMLAttributes } from "astro/types";
-
-type Props = HTMLAttributes<"img">;
+type Props = HTMLAttributes<'img'>;
 
 // the maximum image width on 1023px
 const MAX_WIDTH = 670;
@@ -15,7 +15,7 @@ const { width, height } = await getPixels(src!);
 const scaledHeight = Math.ceil(MAX_WIDTH / width * height);
 ---
 
-<figure class=":uno: my-4 md:-ml-4 md:w-[calc(100%+32px)] overflow-x-visible">
+<figure class=":uno: my-4 overflow-x-visible md:w-[calc(100%+32px)] md:-ml-4">
   <Img
     src={src!}
     alt={alt}

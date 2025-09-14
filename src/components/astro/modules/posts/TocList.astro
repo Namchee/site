@@ -1,7 +1,7 @@
 ---
-import AppLink from "@/components/astro/ui/AppLink.astro";
+import type { Heading } from '@/scripts/toc';
 
-import type { Heading } from "@/scripts/toc";
+import AppLink from '@/components/astro/ui/AppLink.astro';
 
 interface Props {
   headings: Heading[];
@@ -10,20 +10,20 @@ interface Props {
 const { headings } = Astro.props;
 
 const marginMap = {
-  2: "pl-0",
-  3: "pl-4 first:mt-2",
-  4: "pl-8 first:mt-2",
-  5: "pl-12 first:mt-2",
+  2: 'pl-0',
+  3: 'pl-4 first:mt-2',
+  4: 'pl-8 first:mt-2',
+  5: 'pl-12 first:mt-2',
 };
 ---
 
 <ul class=":uno: space-y-2">
   {
-    headings.map((head) => (
-      <li class={marginMap[head.depth]} data-depth={head.depth}>
+    headings.map(head => (
+      <li class:list={marginMap[head.depth]} data-depth={head.depth}>
         <AppLink
           href={`#${head.slug}`}
-          class=":uno: text-content transition-all text-sm"
+          class=":uno: text-sm text-content transition-all"
           tabindex={-1}
         >
           {head.text}

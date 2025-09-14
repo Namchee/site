@@ -1,13 +1,12 @@
 ---
-import X from "~icons/simple-icons/x";
-import LinkedIn from "~icons/simple-icons/linkedin";
-import Bluesky from "~icons/simple-icons/bluesky";
-import Check from "~icons/lucide/check";
-import Link from "~icons/lucide/link";
+import Check from '~icons/lucide/check';
+import Link from '~icons/lucide/link';
+import Bluesky from '~icons/simple-icons/bluesky';
+import LinkedIn from '~icons/simple-icons/linkedin';
+import X from '~icons/simple-icons/x';
 
-import AppLink from "@/components/astro/ui/AppLink.astro";
-
-import Copy from "@/components/vue/CopyButton.vue";
+import AppLink from '@/components/astro/ui/AppLink.astro';
+import Copy from '@/components/vue/CopyButton.vue';
 
 interface Props {
   slug: string;
@@ -23,12 +22,12 @@ const postText = `I just read '${title}' by Namchee
 ---
 
 <div class=":uno: flex items-center space-x-4">
-  <Copy className=":uno: mr-4" value={postUrl} client:visible>
+  <Copy class=":uno: mr-4" value={postUrl} client:visible>
     <Link
-      class=":uno: w-4 h-auto transition-colors group-hover:text-heading group-focus:text-heading md:w-[18px]"
+      class=":uno: h-auto w-4 transition-colors group-focus:text-heading group-hover:text-heading md:w-[18px]"
     />
 
-    <Check slot="after-copy-icon" class=":uno: w-4 h-auto md:w-[18px] text-success flex-shrink-0" />
+    <Check slot="after-copy-icon" class=":uno: text-success flex-shrink-0 h-auto w-4 md:w-[18px]" />
 
     <p slot="before-copy-label">
       Copy Post Link
@@ -45,7 +44,7 @@ const postText = `I just read '${title}' by Namchee
     class=":uno: group"
   >
     <X
-      class=":uno: w-4 h-auto md:w-[18px] group-hover:text-heading group-focus:text-heading transition-color"
+      class=":uno: h-auto w-4 transition-colors group-focus:text-heading group-hover:text-heading md:w-[18px]"
     />
   </AppLink>
 
@@ -55,7 +54,7 @@ const postText = `I just read '${title}' by Namchee
     class=":uno: group"
   >
     <LinkedIn
-      class=":uno: w-4 md:w-[18px] h-auto transition-color group-hover:text-heading group-focus:text-heading"
+      class=":uno: h-auto w-4 transition-colors group-focus:text-heading group-hover:text-heading md:w-[18px]"
     />
   </AppLink>
 
@@ -65,7 +64,7 @@ const postText = `I just read '${title}' by Namchee
     class=":uno: group"
   >
     <Bluesky
-      class=":uno: w-4 md:w-[18px] h-auto transition-color group-hover:text-heading group-focus:text-heading"
+      class=":uno: h-auto w-4 transition-colors group-focus:text-heading group-hover:text-heading md:w-[18px]"
     />
   </AppLink>
 </div>

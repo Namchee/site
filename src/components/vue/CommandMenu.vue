@@ -1,36 +1,33 @@
 <script setup lang="ts">
-import { ref, watch, computed, nextTick, watchEffect } from 'vue';
 import { useMagicKeys, whenever } from '@vueuse/core';
-
 import {
-  DialogRoot,
-  DialogTrigger,
-  DialogPortal,
-  DialogOverlay,
   DialogContent,
-  DialogTitle,
   DialogDescription,
+  DialogOverlay,
+  DialogPortal,
+  DialogRoot,
+  DialogTitle,
+  DialogTrigger,
+  TooltipProvider,
   TooltipRoot,
   TooltipTrigger,
-  TooltipProvider,
 } from 'reka-ui';
+import { computed, nextTick, ref, watch, watchEffect } from 'vue';
+import Cog from '~icons/lucide/cog';
+import Command from '~icons/lucide/command';
+import Home from '~icons/lucide/home';
+import LibraryBig from '~icons/lucide/library-big';
+import Newspaper from '~icons/lucide/newspaper';
 
+import Kbd from '@/components/vue/ui/KeyBoard.vue';
 import TooltipContent from '@/components/vue/ui/TooltipContent.vue';
-
-import Command from "~icons/lucide/command";
-import Home from "~icons/lucide/home";
-import Newspaper from "~icons/lucide/newspaper";
-import LibraryBig from "~icons/lucide/library-big";
-import Cog from "~icons/lucide/cog";
-
-import Kbd from '@/components/vue/ui/Kbd.vue';
 
 const visible = ref(false);
 const searchEl = ref<HTMLInputElement>();
 const focusIndex = ref(0);
 
-const timeoutId = ref<NodeJS.Timeout | null>(null);
-const intervalId = ref<NodeJS.Timeout | null>(null);
+const timeoutId = ref<ReturnType<typeof setTimeout> | null>(null);
+const intervalId = ref<ReturnType<typeof setTimeout> | null>(null);
 
 const initialDelay = 300;
 const fireRate = 75;
@@ -41,8 +38,8 @@ const ICON_MAP = {
   '/': Home,
   '/posts': Newspaper,
   '/library': LibraryBig,
-  '/colophon': Cog
-}
+  '/colophon': Cog,
+};
 
 const props = defineProps<{
   posts: {
@@ -58,20 +55,20 @@ const props = defineProps<{
 
 const { ctrl_k, meta_k, home, arrowDown, arrowUp, enter, escape } = useMagicKeys({
   passive: false,
-  onEventFired(e) {
+  onEventFired: (e) => {
     const isOpeningMenu = (e.ctrlKey || e.metaKey) && e.key === 'k';
     const isNavigatingMenu = (['ArrowDown', 'ArrowUp'].includes(e.key)) && visible.value;
 
     if (isOpeningMenu || isNavigatingMenu) {
       e.preventDefault();
     }
-  }
+  },
 });
 
 const searchTerm = ref('');
 
 const relevantLinks = computed(() => {
-  if (!searchTerm || !searchTerm.value) {
+  if (!searchTerm.value) {
     return props.links;
   }
 
@@ -81,13 +78,13 @@ const relevantLinks = computed(() => {
 });
 
 const relevantPosts = computed(() => {
-  if (!searchTerm || !searchTerm.value) {
+  if (!searchTerm.value) {
     return props.posts.slice(0, 3);
   }
 
   const pattern = new RegExp(searchTerm.value, 'i');
 
-  return props.posts.filter(post => pattern.test(post.title))
+  return props.posts.filter(post => pattern.test(post.title));
 });
 
 const allLinks = computed(() => [...relevantLinks.value, ...relevantPosts.value]);
@@ -158,7 +155,7 @@ whenever(arrowUp, () => {
 
 whenever(enter, () => {
   if (visible.value) {
-    let index = focusIndex.value;
+    const index = focusIndex.value;
 
     if (index < relevantLinks.value.length) {
       window.location.href = relevantLinks.value[index].href;
@@ -194,10 +191,10 @@ watch(visible, async () => {
 
 watchEffect(() => {
   if (!arrowUp.value && !arrowDown.value) {
-    clearTimeout(timeoutId.value!)
-    clearInterval(intervalId.value!)
+    clearTimeout(timeoutId.value!);
+    clearInterval(intervalId.value!);
   }
-})
+});
 </script>
 
 <template>
@@ -207,8 +204,12 @@ watchEffect(() => {
         <DialogTrigger as-child>
           <TooltipTrigger as-child>
             <button
-              class="size-[36px] grid place-items-center transition-colors text-content rounded-md hover:bg-surface-2 focus:bg-surface-2 text-sm my-1 ml-1">
-              <Command aria-label="Command Palette" class=":uno: w-5 h-auto" />
+              class="text-sm text-content my-1 ml-1 rounded-md grid size-[36px] transition-colors place-items-center focus:bg-surface-2 hover:bg-surface-2"
+            >
+              <Command
+                aria-label="Command Palette"
+                class=":uno: h-auto w-5"
+              />
             </button>
           </TooltipTrigger>
 
@@ -220,17 +221,26 @@ watchEffect(() => {
     </TooltipProvider>
 
     <DialogPortal>
-      <DialogOverlay @click="visible = false"
-        class=":uno: fixed bg-[var(--gray-dark-950)] w-screen h-screen z-30 dialog__overlay bg-opacity-50 backdrop-blur" />
+      <DialogOverlay
+        class=":uno: dialog__overlay bg-[var(--gray-dark-950)] bg-opacity-50 h-screen w-screen fixed z-30 backdrop-blur"
+        @click="visible = false"
+      />
       <DialogContent
-        class=":uno: fixed border border-separator bg-background shadow rounded-md dialog__content w-4/5 max-w-md z-30 focus:outline-none">
-        <DialogTitle class=":uno: border-separator border-b">
+        class=":uno: dialog__content border border-separator rounded-md bg-background max-w-md w-4/5 shadow fixed z-30 focus:outline-none"
+      >
+        <DialogTitle class=":uno: border-b border-separator">
           <input
-            class=":uno: text-sm w-full focus:outline-none p-4 bg-transparent placeholder:font-normal font-normal leading-relaxed"
-            placeholder="Where do you want to go?" ref="searchEl" v-model="searchTerm">
+            ref="searchEl"
+            v-model="searchTerm"
+            class=":uno: text-sm leading-relaxed font-normal p-4 bg-transparent w-full placeholder:font-normal focus:outline-none"
+            placeholder="Where do you want to go?"
+          >
         </DialogTitle>
 
-        <DialogDescription as="div" class=":uno: p-4 space-y-4 max-h-[25rem] overflow-y-auto">
+        <DialogDescription
+          as="div"
+          class=":uno: p-4 max-h-[25rem] overflow-y-auto space-y-4"
+        >
           <div v-if="relevantLinks.length === 0 && relevantPosts.length === 0">
             <p class=":uno: text-sm text-center opacity-75">
               Sorry, I don't know what or where that is 😕
@@ -238,51 +248,73 @@ watchEffect(() => {
           </div>
 
           <div v-if="relevantLinks.length > 0">
-            <p class=":uno: font-semibold text-xs mb-2">
+            <p class=":uno: text-xs font-semibold mb-2">
               Pages
             </p>
 
             <ul ref="currentLinks">
-              <a v-for="(link, idx) in relevantLinks" :key="link.href" :href="link.href"
-                class=":uno: text-sm rounded-md flex transition-colors justify-between p-2 outline-none"
-                :class="{ 'bg-surface-1 text-heading': focusIndex === idx }" rel="noopener noreferrer"
-                @mouseover="() => focusIndex = idx">
+              <a
+                v-for="(link, idx) in relevantLinks"
+                :key="link.href"
+                :href="link.href"
+                class=":uno: text-sm p-2 outline-none rounded-md flex transition-colors justify-between"
+                :class="{ 'bg-surface-1 text-heading': focusIndex === idx }"
+                rel="noopener noreferrer"
+                @mouseover="() => focusIndex = idx"
+              >
                 <div class=":uno: flex items-center space-x-4">
-                  <component :is="ICON_MAP[link.href]" class=":uno: w-4 h-auto" />
+                  <component
+                    :is="ICON_MAP[link.href]"
+                    class=":uno: h-auto w-4"
+                  />
 
                   <span class=":uno: relative">
                     {{ link.label }}
                   </span>
                 </div>
 
-                <kbd v-if="!!link.key" :title="link.key as string"
-                  class=":uno: text-xs border border-separator text-heading font-mono px-1 bg-surface-1 rounded no-touchscreen">{{
-                    link.key }}</kbd>
+                <kbd
+                  v-if="!!link.key"
+                  :title="link.key as string"
+                  class=":uno: no-touchscreen text-xs text-heading font-mono px-1 border border-separator rounded bg-surface-1"
+                >{{
+                  link.key }}</kbd>
               </a>
             </ul>
           </div>
 
           <div v-if="relevantPosts.length > 0">
-            <p class=":uno: font-semibold text-xs mb-2">
+            <p class=":uno: text-xs font-semibold mb-2">
               Posts
             </p>
 
-            <a v-for="(post, idx) in relevantPosts" :key="post.href" :href="post.href"
-              class=":uno: flex justify-between p-2 text-sm transition-colors outline-none rounded-md"
+            <a
+              v-for="(post, idx) in relevantPosts"
+              :key="post.href"
+              :href="post.href"
+              class=":uno: text-sm p-2 outline-none rounded-md flex transition-colors justify-between"
               :class="{ 'bg-surface-1 text-heading': focusIndex === idx + relevantLinks.length }"
-              rel="noopener noreferrer" @mouseover="() => focusIndex = idx + relevantLinks.length">
+              rel="noopener noreferrer"
+              @mouseover="() => focusIndex = idx + relevantLinks.length"
+            >
               {{ post.title }}
             </a>
           </div>
         </DialogDescription>
 
-        <div class=":uno: border-separator text-sm flex items-center space-x-4 border-t py-2 px-4 no-touchscreen">
+        <div class=":uno: no-touchscreen text-sm px-4 py-2 border-t border-separator flex items-center space-x-4">
           <div class=":uno: flex items-center space-x-1">
-            <Kbd title="Arrow Up" class=":uno: leading-normal text-[10px]">
+            <Kbd
+              title="Arrow Up"
+              class=":uno: text-[10px] leading-normal"
+            >
               ↑
             </Kbd>
 
-            <Kbd title="Arrow Down" class=":uno: leading-normal text-[10px]">
+            <Kbd
+              title="Arrow Down"
+              class=":uno: text-[10px] leading-normal"
+            >
               ↓
             </Kbd>
 
@@ -292,21 +324,27 @@ watchEffect(() => {
           </div>
 
           <div class=":uno: flex items-center space-x-1">
-            <Kbd title="Enter" class=":uno: text-[10px] leading-relaxed">
+            <Kbd
+              title="Enter"
+              class=":uno: text-[10px] leading-relaxed"
+            >
               Enter
             </Kbd>
 
-            <p class=":uno: font-medium text-xs">
+            <p class=":uno: text-xs font-medium">
               Open
             </p>
           </div>
 
           <div class=":uno: flex items-center space-x-1">
-            <Kbd title="Escape" class=":uno: text-[10px] leading-relaxed">
+            <Kbd
+              title="Escape"
+              class=":uno: text-[10px] leading-relaxed"
+            >
               Esc
             </Kbd>
 
-            <p class=":uno: font-medium text-xs">
+            <p class=":uno: text-xs font-medium">
               Close
             </p>
           </div>

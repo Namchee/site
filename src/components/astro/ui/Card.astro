@@ -1,10 +1,9 @@
 ---
-import type { HTMLAttributes } from "astro/types";
+import type { HTMLAttributes } from 'astro/types';
 
-type Props = HTMLAttributes<"div">;
+type Props = HTMLAttributes<'div'>;
 
-const baseClass =
-  ":uno: grid place-items-center rounded-lg border border-separator bg-background dark:bg-surface-1 transition-colors";
+const baseClass = ':uno: grid place-items-center rounded-lg border border-separator bg-background dark:bg-surface-1 transition-colors';
 
 const { class: className, ...rest } = Astro.props;
 ---

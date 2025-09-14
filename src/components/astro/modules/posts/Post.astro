@@ -1,26 +1,26 @@
 ---
-import "@/assets/styles/tweet.css";
-import "@/assets/styles/shiki.css";
+import type { CollectionEntry } from 'astro:content';
 
-import PencilLine from "~icons/lucide/pencil-line";
-import History from "~icons/lucide/history";
-import Timer from "~icons/lucide/timer";
+import type { MarkdownFile } from '@/plugins/remark/types';
 
-import type { CollectionEntry } from "astro:content";
-import type { MarkdownFile } from "@/plugins/remark/types";
+import History from '~icons/lucide/history';
+import PencilLine from '~icons/lucide/pencil-line';
+import Timer from '~icons/lucide/timer';
 
-import Badge from "@/components/astro/ui/Badge.astro";
-import BackToTop from "@/components/vue/BackToTop.vue";
+import Badge from '@/components/astro/ui/Badge.astro';
+import BackToTop from '@/components/vue/BackToTop.vue';
+import MobileToC from '@/components/vue/MobileTableOfContents.vue';
 
-import MobileToC from "@/components/vue/MobileTableOfContents.vue";
-import TableOfContents from "./TableOfContents.astro";
+import BackButton from './BackButton.astro';
+import SocialLinks from './SocialLinks.astro';
+import TableOfContents from './TableOfContents.astro';
 
-import BackButton from "./BackButton.astro";
-import SocialLinks from "./SocialLinks.astro";
+import '@/assets/styles/shiki.css';
+import '@/assets/styles/tweet.css';
 
 interface Props {
-  frontmatter: CollectionEntry<"posts">["data"] &
-    MarkdownFile["data"]["astro"]["frontmatter"] & {
+  frontmatter: CollectionEntry<'posts'>['data']
+    & MarkdownFile['data']['astro']['frontmatter'] & {
       slug: string;
     };
 }
@@ -31,7 +31,7 @@ const publishedAt = frontmatter.publishedAt;
 const lastModified = frontmatter.lastModified || publishedAt;
 ---
 
-<article class=":uno: grid grid-cols-12 gap-4">
+<article class=":uno: gap-4 grid grid-cols-12">
   <MobileToC headings={frontmatter.headings} client:visible />
 
   <TableOfContents headings={frontmatter.headings} />
@@ -42,57 +42,57 @@ const lastModified = frontmatter.lastModified || publishedAt;
     <BackButton />
 
     <h1
-      class=":uno: text-heading tracking-tight text-xl md:text-2xl font-semibold mt-8 transition-colors"
+      class=":uno: text-xl text-heading tracking-tight font-semibold mt-8 transition-colors md:text-2xl"
     >
       {frontmatter.title}
     </h1>
 
-    <div class=":uno: flex space-x-4 mt-2 md:mt-4">
+    <div class=":uno: mt-2 flex space-x-4 md:mt-4">
       <div
-        class=":uno: flex items-center space-x-2 text-sm"
+        class=":uno: text-sm flex items-center space-x-2"
         title={`Published At ${new Date(publishedAt).toDateString()}`}
       >
-        <PencilLine class=":uno: w-4 h-auto" />
+        <PencilLine class=":uno: h-auto w-4" />
 
         <time
           datetime={frontmatter.publishedAt as unknown as string}
           class=":uno: font-medium block"
         >
           {
-            new Date(publishedAt).toLocaleString("en-GB", {
-              year: "numeric",
-              month: "long",
-              day: "numeric",
+            new Date(publishedAt).toLocaleString('en-GB', {
+              year: 'numeric',
+              month: 'long',
+              day: 'numeric',
             })
           }
         </time>
       </div>
 
       <div
-        class=":uno: items-center space-x-2 text-sm hidden md:flex"
+        class=":uno: text-sm hidden items-center space-x-2 md:flex"
         title={`Last Modified ${new Date(lastModified).toDateString()}`}
       >
-        <History class=":uno: w-4 h-auto" />
+        <History class=":uno: h-auto w-4" />
 
         <time
           datetime={frontmatter.lastModified as unknown as string}
           class=":uno: font-medium block"
         >
           {
-            new Date(lastModified).toLocaleString("en-GB", {
-              year: "numeric",
-              month: "long",
-              day: "numeric",
+            new Date(lastModified).toLocaleString('en-GB', {
+              year: 'numeric',
+              month: 'long',
+              day: 'numeric',
             })
           }
         </time>
       </div>
 
       <div
-        class=":uno: flex items-center space-x-2 text-sm md:ml-auto!"
+        class=":uno: text-sm flex items-center space-x-2 md:ml-auto!"
         title={`${frontmatter.timeToRead} minutes read`}
       >
-        <Timer class=":uno: w-4 h-auto" />
+        <Timer class=":uno: h-auto w-4" />
 
         <p class=":uno: font-medium">
           {frontmatter.timeToRead} minutes read
@@ -102,16 +102,16 @@ const lastModified = frontmatter.lastModified || publishedAt;
   </header>
 
   <div
-    class=":uno: col-start-1 col-end-13 md:col-start-2 md:col-end-12 flex flex-col gap-4 mt-8 overflow-x-visible"
+    class=":uno: mt-8 flex flex-col gap-4 col-start-1 col-end-13 overflow-x-visible md:col-start-2 md:col-end-12"
   >
     <slot />
   </div>
 
   <section
-    class=":uno: flex col-start-1 col-end-13 md:col-start-2 md:col-end-12 justify-between mt-16 gap-4"
+    class=":uno: mt-16 flex gap-4 col-start-1 col-end-13 justify-between md:col-start-2 md:col-end-12"
   >
     <div>
-      <p class=":uno: font-semibold text-sm leading-normal md:text-base mb-5">
+      <p class=":uno: text-sm leading-normal font-semibold mb-5 md:text-base">
         Share this Post
       </p>
 
@@ -120,14 +120,14 @@ const lastModified = frontmatter.lastModified || publishedAt;
 
     <div>
       <p
-        class=":uno: font-semibold text-sm leading-normal md:text-base mb-5 text-right"
+        class=":uno: text-sm leading-normal font-semibold mb-5 text-right md:text-base"
       >
         Tags
       </p>
 
       <div class=":uno: flex flex-wrap gap-2 justify-end">
         {
-          frontmatter.tags.map((tag) => (
+          frontmatter.tags.map(tag => (
             <Badge>{tag[0].toUpperCase() + tag.slice(1)}</Badge>
           ))
         }

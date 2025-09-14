@@ -1,6 +1,6 @@
 <button
   aria-label="Pronounce Namchee"
-  class=":uno: rounded-full grid place-items-center transition-colors hover:bg-surface-2 hover:text-content p-1 speech__button focus:bg-surface-2"
+  class=":uno: speech__button p-1 rounded-full grid transition-colors place-items-center hover:text-content focus:bg-surface-2 hover:bg-surface-2"
 >
   <svg
     xmlns="http://www.w3.org/2000/svg"
@@ -10,8 +10,8 @@
     stroke-width="2"
     stroke-linecap="round"
     stroke-linejoin="round"
-    class=":uno: w-4 h-auto speech__icon transition-all duration-200 stroke-current fill-transparent"
-    ><path
+    class=":uno: speech__icon h-auto w-4 transition-all duration-200 fill-transparent stroke-current"
+  ><path
       d="M11 4.702a.705.705 0 0 0-1.203-.498L6.413 7.587A1.4 1.4 0 0 1 5.416 8H3a1 1 0 0 0-1 1v6a1 1 0 0 0 1 1h2.416a1.4 1.4 0 0 1 .997.413l3.383 3.384A.705.705 0 0 0 11 19.298z"
     ></path>
     <path d="M16 9a5 5 0 0 1 0 6"></path>
@@ -20,32 +20,29 @@
 </button>
 
 <script>
-  if (
-    typeof window.speechSynthesis !== "undefined" &&
-    typeof window.SpeechSynthesisUtterance !== "undefined"
-  ) {
-    const utterance = new window.SpeechSynthesisUtterance("Nam ché");
-    utterance.lang = "id-ID";
+  if (typeof window.speechSynthesis !== 'undefined' && typeof window.SpeechSynthesisUtterance !== 'undefined') {
+    const utterance = new window.SpeechSynthesisUtterance('Nam ché');
+    utterance.lang = 'id-ID';
     utterance.pitch = 1.35;
 
-    const button = document.querySelector(".speech__button");
-    const icon = document.querySelector(".speech__icon");
+    const button = document.querySelector('.speech__button');
+    const icon = document.querySelector('.speech__icon');
 
     if (button && icon) {
-      button.addEventListener("click", () => {
+      button.addEventListener('click', () => {
         window.speechSynthesis.speak(utterance);
       });
 
-      utterance.addEventListener("start", () => {
-        button.classList.toggle("bg-surface-3!");
-        icon.classList.toggle("fill-content");
-        icon.classList.toggle("stroke-content");
+      utterance.addEventListener('start', () => {
+        button.classList.toggle('bg-surface-3!');
+        icon.classList.toggle('fill-content');
+        icon.classList.toggle('stroke-content');
       });
 
-      utterance.addEventListener("end", () => {
-        button.classList.toggle("bg-surface-3!");
-        icon.classList.toggle("fill-content");
-        icon.classList.toggle("stroke-content");
+      utterance.addEventListener('end', () => {
+        button.classList.toggle('bg-surface-3!');
+        icon.classList.toggle('fill-content');
+        icon.classList.toggle('stroke-content');
       });
     }
   }

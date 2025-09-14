@@ -1,32 +1,32 @@
 ---
-import AppLink from "@/components/astro/ui/AppLink.astro";
-import Logo from "@/components/astro/ui/Logo.astro";
+import AppLink from '@/components/astro/ui/AppLink.astro';
+import Logo from '@/components/astro/ui/Logo.astro';
 
 const contacts = [
   {
-    label: "Mail",
-    href: "mailto:hello@namchee.dev",
+    label: 'Mail',
+    href: 'mailto:hello@namchee.dev',
   },
   {
-    label: "GitHub",
-    href: "https://github.com/Namchee",
+    label: 'GitHub',
+    href: 'https://github.com/Namchee',
   },
   {
-    label: "LinkedIn",
-    href: "https://www.linkedin.com/in/namchee/",
+    label: 'LinkedIn',
+    href: 'https://www.linkedin.com/in/namchee/',
   },
   {
-    label: "Bluesky",
-    href: "https://bsky.app/profile/namchee.dev",
+    label: 'Bluesky',
+    href: 'https://bsky.app/profile/namchee.dev',
   },
 ];
 ---
 
-<footer class=":uno: w-full mx-auto text-sm py-8 xl:pb-[43px] pb-24 px-8">
+<footer class=":uno: text-sm mx-auto px-8 py-8 pb-24 w-full xl:pb-[43px]">
   <div
-    class="flex xl:flex-col items-center space-x-4 xl:space-x-0 xl:space-y-4"
+    class=":uno: flex items-center space-x-4 xl:flex-col xl:space-x-0 xl:space-y-4"
   >
-    <Logo class="w-8 h-[36px]" />
+    <Logo class=":uno: h-[36px] w-8" />
 
     <div class=":uno: flex items-center space-x-4">
       {
@@ -35,7 +35,7 @@ const contacts = [
             <AppLink
               href={link.href}
               title={link.label}
-              class=":uno: flex items-center space-x-2 hover:text-heading focus:text-heading transition-colors font-medium text-heading/80"
+              class=":uno: text-heading/80 font-medium flex transition-colors items-center space-x-2 focus:text-heading hover:text-heading"
               rel="me"
             >
               {link.label}
@@ -46,26 +46,26 @@ const contacts = [
     </div>
   </div>
 
-  <div class="flex items-center justify-between mt-4 xl:mt-[43px]">
+  <div class=":uno: mt-4 flex items-center justify-between xl:mt-[43px]">
     <p>
       &copy; Namchee. <AppLink
-        class="hover:text-heading focus:text-heading transition-colors font-medium text-heading/80"
+        class=":uno: text-heading/80 font-medium transition-colors focus:text-heading hover:text-heading"
         href="https://creativecommons.org/licenses/by/4.0/deed"
-        >CC BY 4.0</AppLink
+      >CC BY 4.0</AppLink
       >
     </p>
 
-    <div class="flex space-x-4">
+    <div class=":uno: flex space-x-4">
       <AppLink
         href="/rss.xml"
-        class="font-medium text-heading/80 transition-colors hover:text-heading focus:text-heading"
+        class=":uno: text-heading/80 font-medium transition-colors focus:text-heading hover:text-heading"
       >
         RSS
       </AppLink>
 
       <AppLink
         href="/colophon"
-        class="font-medium text-heading/80 transition-colors hover:text-heading focus:text-content"
+        class=":uno: text-heading/80 font-medium transition-colors focus:text-content hover:text-heading"
       >
         Colophon
       </AppLink>

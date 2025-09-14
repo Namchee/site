@@ -1,14 +1,15 @@
 ---
-import "@/assets/styles/global.css";
-import "@/assets/styles/colors.css";
-import "@/assets/styles/theme.css";
-import "@/assets/styles/fonts.css";
-import "@/assets/styles/toggle.css";
+import { getCollection } from 'astro:content';
 
-import { getCollection } from "astro:content";
+import Footer from '@/components/astro/layout/Footer.astro';
 
-import Footer from "@/components/astro/layout/Footer.astro";
-import Navigation from "./Navigation.astro";
+import Navigation from './Navigation.astro';
+
+import '@/assets/styles/global.css';
+import '@/assets/styles/colors.css';
+import '@/assets/styles/theme.css';
+import '@/assets/styles/fonts.css';
+import '@/assets/styles/toggle.css';
 
 export interface Props {
   title: string;
@@ -17,12 +18,12 @@ export interface Props {
   og?: string;
 }
 
-const postCollection = await getCollection("posts");
+const postCollection = await getCollection('posts');
 const posts = postCollection
-  .filter((post) => !post.data.isDraft)
+  .filter(post => !post.data.isDraft)
   .sort((a, b) => b.data.publishedAt.getTime() - a.data.publishedAt.getTime())
-  .map((collection) => ({
-    title: collection.data.title || "",
+  .map(collection => ({
+    title: collection.data.title || '',
     href: `/posts/${collection.id}`,
   }));
 
@@ -32,7 +33,7 @@ const url = Astro.url;
 const ogHost = import.meta.env.DEV
   ? `${url.protocol}//${url.host}`
   : import.meta.env.SITE;
-const ogFile = og ? `${og}.png` : "og.png";
+const ogFile = og ? `${og}.png` : 'og.png';
 
 const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 ---
@@ -87,54 +88,53 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 
     <title>{title}</title>
     <script is:inline>
-      // do not try to optimize this. is:inline is there to avoid pre-opt that causes theme flicker
-      const docEl = document.documentElement;
-      const media = window.matchMedia("(prefers-color-scheme: dark)");
+  // do not try to optimize this. is:inline is there to avoid pre-opt that causes theme flicker
+  const docEl = document.documentElement;
+  const media = window.matchMedia('(prefers-color-scheme: dark)');
 
-      let theme = media.matches ? "dark" : "light";
-      if (
-        typeof window.localStorage !== "undefined" &&
-        window.localStorage.getItem("theme")
-      ) {
-        theme = window.localStorage.getItem("theme");
-      }
+  let theme = media.matches ? 'dark' : 'light';
+  if (typeof window.localStorage !== 'undefined' && window.localStorage.getItem('theme')) {
+    theme = window.localStorage.getItem('theme');
+  }
 
-      function toggleTheme(theme) {
-        const method = theme === "light" ? "remove" : "add";
+  function toggleTheme(theme) {
+    const method = theme === 'light' ? 'remove' : 'add';
 
-        docEl.classList[method]("dark");
-        window.localStorage.setItem("theme", theme);
-      }
+    docEl.classList[method]('dark');
+    window.localStorage.setItem('theme', theme);
+  }
 
-      toggleTheme(theme);
+  toggleTheme(theme);
     </script>
 
     <script
       is:inline
       defer
       src="https://cloud.umami.is/script.js"
-      data-website-id="16f41ca8-561c-4f45-8943-0c80934f59ff"></script>
+      data-website-id="16f41ca8-561c-4f45-8943-0c80934f59ff">
+    </script>
   </head>
   <body
     vaul-drawer-wrapper
-    class=":uno: bg-background transition-colors text-content text-base flex flex-col font-sans min-h-screen mx-auto antialiased"
+    class=":uno: text-base text-content font-sans mx-auto bg-background flex flex-col min-h-screen antialiased transition-colors"
   >
     <Navigation posts={posts} />
 
     <main
-      class=":uno: w-full mx-auto flex-1 max-w-[832px] px-8 mt-24 mb-32 md:mt-32 space-y-16"
+      class=":uno: mx-auto mb-32 mt-24 px-8 flex-1 max-w-[832px] w-full space-y-16 md:mt-32"
     >
       <slot />
     </main>
 
-    <div class=":uno: w-full max-w-[832px] mx-auto">
+    <div class=":uno: mx-auto max-w-[832px] w-full">
       <Footer />
     </div>
   </body>
 </html>
 
 <script>
-  console.log(`
+// eslint-disable-next-line no-console
+console.log(`
                ▄███▄▄███▄
                  ▄█▀▀██
         ▄█      ██    ▀█      █▌

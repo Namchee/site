@@ -1,12 +1,12 @@
 ---
-import type { MarkdownHeading } from "astro";
+import type { MarkdownHeading } from 'astro';
 
-import ArrowUp from "~icons/lucide/arrow-up";
-import AlignLeft from "~icons/lucide/align-left";
+import AlignLeft from '~icons/lucide/align-left';
+import ArrowUp from '~icons/lucide/arrow-up';
 
-import generateToC from "@/scripts/toc";
+import generateToC from '@/scripts/toc';
 
-import TocList from "./TocList.astro";
+import TocList from './TocList.astro';
 
 interface Props {
   headings: MarkdownHeading[];
@@ -16,23 +16,23 @@ const { headings } = Astro.props;
 const tocList = generateToC(headings);
 ---
 
-<nav class=":uno: hidden xl:block fixed top-32 left-8 text-sm space-y-4">
-  <div class=":uno: flex items-center gap-3">
+<nav class=":uno: text-sm hidden left-8 top-32 fixed space-y-4 xl:block">
+  <div class=":uno: flex gap-3 items-center">
     <AlignLeft
-      class=":uno: size-4 text-content transition-colors"
+      class=":uno: text-content size-4 transition-colors"
     />
 
-    <p class=":uno: font-semibold text-heading transition-colors">
+    <p class=":uno: text-heading font-semibold transition-colors">
       In this post
     </p>
   </div>
 
   <div
-    class=":uno: relative flex ml-1.5 pr-4 border-l border-separator transition-colors"
+    class=":uno: ml-1.5 pr-4 border-l border-separator flex transition-colors relative"
   >
     <div
       aria-hidden="true"
-      class=":uno: absolute left-0 thumb w-[1.5px] h-5 bg-heading -ml-[1px] transition-all rounded-full"
+      class=":uno: thumb rounded-full bg-heading h-5 w-[1.5px] transition-all left-0 absolute -ml-[1px]"
     >
     </div>
 
@@ -44,10 +44,10 @@ const tocList = generateToC(headings);
   <button
     type="button"
     id="backToTop"
-    class=":uno: flex group items-center gap-2.5"
+    class=":uno: group flex gap-2.5 items-center"
   >
     <ArrowUp
-      class=":uno: size-4 text-content transition-colors group-hover:text-heading"
+      class=":uno: text-content size-4 transition-colors group-hover:text-heading"
     />
 
     <p class=":uno: text-content transition-colors group-hover:text-heading">
@@ -57,26 +57,26 @@ const tocList = generateToC(headings);
 </nav>
 
 <script>
-  const thumb = document.querySelector(".thumb") as HTMLDivElement;
-  const sections = document.querySelectorAll<HTMLElement>("section[id]");
-  const backToTop = document.querySelector("#backToTop") as HTMLButtonElement;
+  const thumb = document.querySelector('.thumb') as HTMLDivElement;
+  const sections = document.querySelectorAll<HTMLElement>('section[id]');
+  const backToTop = document.querySelector('#backToTop') as HTMLButtonElement;
 
   const activeSections = new Set<HTMLAnchorElement>();
 
   function updateThumb() {
     let max = 0;
 
-    thumb.style.height = "0px";
+    thumb.style.height = '0px';
 
     if (activeSections.size > 0) {
       let min = Number.MAX_SAFE_INTEGER;
 
-      activeSections.forEach((el) => {
+      for (const el of activeSections) {
         const top = el.offsetTop;
 
         min = Math.min(top, min);
         max = Math.max(top, max);
-      });
+      }
 
       thumb.style.top = `${min}px`;
       thumb.style.height = `${max - min + 18}px`;
@@ -86,15 +86,15 @@ const tocList = generateToC(headings);
   const observer = new IntersectionObserver((entries) => {
     for (const { target, isIntersecting } of entries) {
       const link = document.querySelector<HTMLAnchorElement>(
-        `nav ul li a[href="#${target.id}"]`
+        `nav ul li a[href="#${target.id}"]`,
       );
 
       if (!link) {
         continue;
       }
 
-      const method = isIntersecting ? "add" : "remove";
-      link.classList[method]("text-heading", "font-medium");
+      const method = isIntersecting ? 'add' : 'remove';
+      link.classList[method]('text-heading', 'font-medium');
 
       if (isIntersecting) {
         activeSections.add(link);
@@ -106,9 +106,11 @@ const tocList = generateToC(headings);
     updateThumb();
   });
 
-  sections.forEach((link) => observer.observe(link));
+  for (const link of sections) {
+    observer.observe(link);
+  }
 
-  backToTop.addEventListener("click", () => {
+  backToTop.addEventListener('click', () => {
     window.scrollTo(0, 0);
   });
 </script>
