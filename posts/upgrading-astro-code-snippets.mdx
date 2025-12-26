@@ -5,6 +5,7 @@ subtitle: 'Make the code snippet truly yours'
 tags:
   - astro
 ---
+import MarkdownToHTML from './src/assets/posts/upgrading-astro-code-snippets/markdown-to-html.svg';
 
 Markdown is commonly used to store textual contents when building a site with Astro. During the build process, Astro will take
 all markdowns transform them into its HTML equivalent. Users can then style the markups with CSS however they wish.
@@ -96,14 +97,7 @@ users can opt-in to [Prism](https://prismjs.com/); both available as Rehype plug
 
 The diagram below shows a simplified pipeline of markdown transformation to HTML that occurs during the build process.
 
-```mermaid
-flowchart LR
-	Markdown --> astro[Astro Compiler]
-	astro --> remark[Remark + Plugins]
-	remark -- AST --> rehype(Rehype + Plugins)
-	rehype -- HTML tags --> astro
-	astro --> page(HTML page)
-```
+<MarkdownToHTML />
 
 When processing code blocks, the process above will output HTML tags similar to the following:
 
