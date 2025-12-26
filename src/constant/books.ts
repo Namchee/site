@@ -100,5 +100,10 @@ export const BOOKS = {
       author: 'Gergely Orosz',
       link: 'https://literal.club/book/gergely-orosz-the-software-engineers-guidebook-yo7o5',
     },
+    {
+      title: 'Developer Experience',
+      author: 'Addy Osmani',
+      link: 'https://literal.club/book/addy-osmani-developer-experience-bz478',
+    },
   ],
 };
