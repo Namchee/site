@@ -8,6 +8,8 @@ tags:
   - CSS
 ---
 
+import ChoosingYourPoison from './src/assets/diagrams/posts/the-quest-for-perfect-freeform-input/choosing-your-own-poison.svg';
+
 March 2025 has brought us a new update to the web platform: the induction of `plaintext-only` value for
 `contenteditable` attribute to [Widely Available Baseline](https://web.dev/blog/contenteditable-plaintext-only-baseline),
 which is a prevalent attribute commonly used in rich-text editors.
@@ -250,31 +252,22 @@ solve the meat of the problem with `contenteditable`: inconsistent rendering and
 
 ## Choosing Your Own Poison
 
-We now have 2 alternatives to represent freeform input elements: `<textarea>` and `contenteditable`. But how should you determine
-which one to use?
+At this point, you might wonder which solution for freeform inputs fits your use case best. Fortunately, choosing between the alternatives can be simplified through the following diagram:
 
-Fortunately, choosing between 2 alternatives for freeform inputs can be simplified by answering the following question:
-*do you need rich-text on your inputs?*
+<ChoosingYourPoison />
 
-If the answer is **No**, just use `<textarea>`. In my experience, `contenteditable` isn't worth considering just
-for native autosize and some CSS feature support as you need to write a lot of extra code for `contenteditable` to behave itself.
+Simply put, `contenteditable` is only worth it if you checked all of these:
 
-If the answer is **Yes**, then ask yourself again: can you afford the additional development cost of using `contenteditable` considering
-[its inherent problems](#:~:text=However%2C%20playing%20around%20contenteditable%20reveals%20plethora%20of%20problems%20that%20%3Ctextarea%3E%20doesn%E2%80%99t%20have)?
+1. You are dealing with a pretty complex rich-text contents.
+2. You are working on a serious apps.
+3. Existing solutions (pre-made libraries) don't fit your use cases, which is *very rare*.
 
-If you **can afford the cost**, then design the rendering model, schema, and mapping while not forgetting about other quirks and custom features
-that you need.
+> [!NOTE]
+> You don't need a `contenteditable`-based solution if you only need a static highlighting with simple styling such as colors. Instead, stack a `textarea` with an element that supports styling such as a `<div>`. This trick has been used by some libraries such as [react-mentions](https://www.npmjs.com/package/react-mentions).
 
-If you **cannot afford the cost**, consider using a mature rich-text libraries and define your input limitations to the rich-text schema.
+If you're asking me whether `plaintext-only` changed anything, I'm going to say **no**. The paste behavior is only one of the smaller, easily solvable problems and doesn't fix other problems with `contenteditable`.
 
-The only scenario where I think it's okay to use a barebone `contenteditable` is when you're building a throwaway code or building
-a simple proof-of-concept.
-
-If you're asking me whether `plaintext-only` changed anything, I'm going to say **no**. The paste behavior
-is only one of the smaller, easily solvable problems and doesn't fix other problems with `contenteditable`.
-
-Moreover, I find the name `plaintext-only` a bit misleading since it doesn't transform
-`contenteditable` into a *plaintext-only* input, but it only provides a built-in handler for plaintext paste.
+It is for this reason that I find the name `plaintext-only` a bit misleading since it doesn't transform `contenteditable` into a *plaintext-only* input, but it only provides a built-in handler for paste events.
 
 ## Final Thoughts
 
