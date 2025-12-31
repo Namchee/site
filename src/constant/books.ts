@@ -105,5 +105,10 @@ export const BOOKS = {
       author: 'Addy Osmani',
       link: 'https://literal.club/book/addy-osmani-developer-experience-bz478',
     },
+    {
+      title: 'How to Win Friends and Influence People',
+      author: 'Dale Carnegie',
+      link: 'https://literal.club/book/dale-carnegie-general-press-how-to-win-friends-and-influence-people-ogkr9',
+    },
   ],
 };
