@@ -1,0 +1,69 @@
+// Folder-specific settings
+//
+// For a full list of overridable settings, and general information on folder-specific settings,
+// see the documentation: https://zed.dev/docs/configuring-zed#settings-files
+{
+  // =====================
+  // Formatting
+  // =====================
+  "format_on_save": "on",
+  // Zed does not use Prettier directly like VS Code
+  // Formatting is handled by language servers / external formatters
+  "formatter": "language_server",
+  // =====================
+  // Code Actions on Save
+  // =====================
+  "code_actions_on_format": {
+    "source.fixAll.eslint": true,
+    "source.organizeImports": true
+  },
+  // =====================
+  // Language Validation
+  // =====================
+  "languages": {
+    "JavaScript": {
+      "language_servers": [
+        "eslint",
+        "typescript-language-server"
+      ]
+    },
+    "TypeScript": {
+      "language_servers": [
+        "eslint",
+        "typescript-language-server"
+      ]
+    },
+    "Vue.js": {
+      "language_servers": [
+        "eslint",
+        "vue-language-server"
+      ]
+    },
+    "HTML": {
+      "language_servers": [
+        "eslint"
+      ]
+    },
+    "Markdown": {
+      "language_servers": [
+        "eslint"
+      ]
+    },
+    "JSON": {
+      "language_servers": [
+        "eslint"
+      ]
+    },
+    "YAML": {
+      "language_servers": [
+        "eslint"
+      ]
+    },
+    "Astro": {
+      "language_servers": [
+        "eslint",
+        "astro-language-server"
+      ]
+    }
+  }
+}
