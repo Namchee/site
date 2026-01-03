@@ -1,7 +1,7 @@
-import type { Heading, Node, Parent, Root, RootContent } from 'mdast';
 /**
  * Code is taken from 'remark-sectionize' by Jake Low with few modifications.
  */
+import type { Heading, Node, Parent, Root, RootContent } from 'mdast';
 import type { Transformer } from 'unified';
 
 import { slug } from 'github-slugger';
@@ -28,7 +28,7 @@ function sectionize(node: Heading, index: number, parent: Parent) {
   const startIndex = index;
   const depth = start.depth;
 
-  const isEnd = (node: Node) => node.type === 'heading' && (node as Heading).depth <= depth || node.type === 'export';
+  const isEnd = (node: Node) => (node.type === 'heading' && (node as Heading).depth <= depth) || node.type === 'export';
   const end = findAfter(parent, start, isEnd);
   const endIndex = parent.children.indexOf(end!);
 

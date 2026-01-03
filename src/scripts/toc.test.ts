@@ -39,9 +39,9 @@ describe('generateToC', () => {
             text: 'b',
             subheadings: [],
           },
-        ]
-      }
-    ])
+        ],
+      },
+    ]);
   });
 
   it('should return nested ToC with returns', () => {
@@ -122,9 +122,9 @@ describe('generateToC', () => {
                 text: 'd',
                 subheadings: [],
               },
-            ]
-          }
-        ]
+            ],
+          },
+        ],
       },
       {
         depth: 2,
@@ -149,8 +149,8 @@ describe('generateToC', () => {
             slug: 'h',
             text: 'h',
             subheadings: [],
-          }
-        ]
+          },
+        ],
       },
       {
         depth: 2,
@@ -162,9 +162,9 @@ describe('generateToC', () => {
             slug: 'j',
             text: 'j',
             subheadings: [],
-          }
-        ]
-      }
-    ])
+          },
+        ],
+      },
+    ]);
   });
-})
+});

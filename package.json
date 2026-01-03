@@ -46,6 +46,7 @@
     "astro-robots-txt": "^1.0.0",
     "astro-tweet": "^0.0.4",
     "eslint": "^9.34.0",
+    "eslint-import-resolver-node": "^0.3.9",
     "github-slugger": "^2.0.0",
     "glyphhanger": "^5.0.0",
     "jiti": "^2.5.1",
