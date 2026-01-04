@@ -18,6 +18,6 @@ export async function GET({ site }: { site: string | URL }) {
       description: post.data.subtitle,
       link: `/posts/${post.id}`,
     })),
-    customData: `<language>en-us</language>`,
+    customData: '<language>en-us</language>',
   });
 }
