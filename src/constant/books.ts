@@ -1,3 +1,5 @@
+/* eslint-disable unicorn/numeric-separators-style */
+
 // A good reason why I did this instead of using the API is because the existence of `Algorithms for Modern Hardware`
 export const BOOKS = {
   2023: [
@@ -109,6 +111,13 @@ export const BOOKS = {
       title: 'How to Win Friends and Influence People',
       author: 'Dale Carnegie',
       link: 'https://literal.club/book/dale-carnegie-general-press-how-to-win-friends-and-influence-people-ogkr9',
+    },
+  ],
+  2026: [
+    {
+      title: 'The Subtle Art of Not Giving a F*ck',
+      author: 'Mark Manson',
+      link: 'https://literal.club/book/mark-manson-the-subtle-art-of-not-giving-a-fck-c3rqp',
     },
   ],
 };
