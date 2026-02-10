@@ -119,5 +119,10 @@ export const BOOKS = {
       author: 'Mark Manson',
       link: 'https://literal.club/book/mark-manson-the-subtle-art-of-not-giving-a-fck-c3rqp',
     },
+    {
+      title: 'Everything is F*cked',
+      author: 'Mark Manson',
+      link: 'https://literal.club/book/everything-is-fcked-pq0yz',
+    },
   ],
 };
