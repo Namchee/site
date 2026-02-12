@@ -21,11 +21,29 @@ const query = `
     }
 }
 `;
+
+const loginQuery = `
+  mutation login($email: String!, $password: String!) {
+    login(email: $email, password: $password) {
+      token
+      email
+      languages
+      profile {
+        id
+        handle
+        name
+        bio
+        image
+      }
+    }
+  }
+`;
+
 const args = {
   limit: 3,
   offset: 0,
   readingStatus: 'IS_READING',
-  profileId: import.meta.env.LITERAL_ID as string,
+  profileId: '@namchee' as string,
 };
 
 interface CurrentBooks {
@@ -54,6 +72,20 @@ const coverOverride = {
   'tom-greenwood-sustainable-web-design-90039': 'https://sustainablewebdesign.org/wp-content/uploads/2021/01/SWD-Tom-Greenwood-Cover.jpg',
 };
 
+async function getProfileId() {
+  const response = await fetch('https://literal.club/graphql/', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({
+      query: query,
+      variables: args,
+    }),
+  });
+
+}
+
 export async function getCurrentlyReadBooks(): Promise<Book[]> {
   if (import.meta.env.DEV) {
     // mock on dev mode. ain't no time to wait
@@ -78,6 +110,10 @@ export async function getCurrentlyReadBooks(): Promise<Book[]> {
       variables: args,
     }),
   });
+
+  const text = await response.text();
+  console.log(text);
+
   const { data } = await response.json() as CurrentBooks;
   const { booksByReadingStateAndProfile } = data;
 
