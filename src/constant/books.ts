@@ -1,5 +1,22 @@
 /* eslint-disable unicorn/numeric-separators-style */
 
+// mock on dev mode. ain't no time to wait
+export const DevMock = [
+  {
+    title: 'The Clean Coder',
+    subtitle: 'A Code of Conduct for Professional Programmers',
+    url: 'https://literal.club/book/the-clean-coder-bk300',
+    cover: 'https://assets.literal.club/2/ckhfmm2h373260yabme04vn9s.jpg',
+    author: ['Robert C. Martin'],
+  },
+];
+
+// Book cover for those that doesn't have covers in Literal
+export const BookCover = {
+  'tom-greenwood-sustainable-web-design-90039': 'https://sustainablewebdesign.org/wp-content/uploads/2021/01/SWD-Tom-Greenwood-Cover.jpg',
+  'gerard-beekmans-matthew-burgess-bruce-dubbs-linux-from-scratch-lfs-ng64v': 'https://m.media-amazon.com/images/S/compressed.photo.goodreads.com/books/1170937333i/78387.jpg',
+};
+
 // A good reason why I did this instead of using the API is because the existence of `Algorithms for Modern Hardware`
 export const BOOKS = {
   2023: [

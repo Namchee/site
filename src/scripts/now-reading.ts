@@ -1,4 +1,6 @@
-const query = `
+import { BookCover, DevMock } from '@/constant/books';
+
+const bookQuery = `
   query booksByReadingStateAndProfile(
     $limit: Int!
     $offset: Int!
@@ -21,12 +23,6 @@ const query = `
     }
 }
 `;
-const args = {
-  limit: 3,
-  offset: 0,
-  readingStatus: 'IS_READING',
-  profileId: import.meta.env.LITERAL_ID as string,
-};
 
 interface CurrentBooks {
   data: {
@@ -50,34 +46,29 @@ interface Book {
   author: string[];
 }
 
-const coverOverride = {
-  'tom-greenwood-sustainable-web-design-90039': 'https://sustainablewebdesign.org/wp-content/uploads/2021/01/SWD-Tom-Greenwood-Cover.jpg',
-};
-
 export async function getCurrentlyReadBooks(): Promise<Book[]> {
   if (import.meta.env.DEV) {
-    // mock on dev mode. ain't no time to wait
-    return [
-      {
-        title: 'The Clean Coder',
-        subtitle: 'A Code of Conduct for Professional Programmers',
-        url: 'https://literal.club/book/the-clean-coder-bk300',
-        cover: 'https://assets.literal.club/2/ckhfmm2h373260yabme04vn9s.jpg',
-        author: ['Robert C. Martin'],
-      },
-    ];
+    return DevMock;
   }
 
-  const response = await fetch('https://literal.club/graphql/', {
+  const args = {
+    limit: 3,
+    offset: 0,
+    readingStatus: 'IS_READING',
+    profileId: import.meta.env.LITERAL_ID as string,
+  };
+
+  const response = await fetch('https://api.literal.club/', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
     },
     body: JSON.stringify({
-      query: query,
+      query: bookQuery,
       variables: args,
     }),
   });
+
   const { data } = await response.json() as CurrentBooks;
   const { booksByReadingStateAndProfile } = data;
 
@@ -86,7 +77,7 @@ export async function getCurrentlyReadBooks(): Promise<Book[]> {
     subtitle: book.subtitle,
     url: `https://literal.club/book/${book.slug}`,
     // eslint-disable-next-line typescript/no-unsafe-assignment
-    cover: book.cover || coverOverride[book.slug],
+    cover: book.cover || BookCover[book.slug],
     author: book.authors.map(author => author.name),
   }));
 }
