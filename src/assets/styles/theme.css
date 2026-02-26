@@ -4,7 +4,7 @@
 
   --background: var(--gray-light-25);
 
-  --surface-1: var(--gray-light-100);
+  --surface-1: var(--gray-light-50);
   --surface-2: var(--gray-light-200);
   --surface-3: var(--gray-light-300);
 
@@ -22,7 +22,7 @@
 
 /* Dark mode variants */
 html.dark {
-  --heading:  var(--gray-dark-50);
+  --heading: var(--gray-dark-50);
   --content: var(--gray-dark-400);
 
   --background: var(--gray-dark-950);
