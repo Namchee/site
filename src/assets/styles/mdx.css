@@ -1,14 +1,14 @@
 /* Code */
 
 code:not(pre code) {
-  background-color: var(--surface-1);
+  background-color: oklch(from var(--surface-1) calc(l * 1.025) c h);
   font-size: 14px;
   padding: 1px;
   border-radius: 4px;
   color: var(--heading);
   border: 1px solid var(--surface-2);
 
-  transition: all 200ms var(--default-transition-timingFunction);
+  transition: all var(--default-transition-duration) var(--default-transition-timingFunction);
 }
 
 /* Callouts */
@@ -20,6 +20,8 @@ code:not(pre code) {
 html.dark .callout__note {
   background-color: oklch(from var(--indigo-900) l calc(c / 2) h / 20%);
 }
+
+/* Warning is kinda different */
 
 .callout__warning {
   background-color: oklch(from var(--yellow-50) l calc(c * 3) h);

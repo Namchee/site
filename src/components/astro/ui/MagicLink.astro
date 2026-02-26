@@ -1,8 +1,6 @@
 ---
 import type { HTMLAttributes } from 'astro/types';
 
-import ExternalLink from '~icons/lucide/external-link';
-
 import AppLink from '@/components/astro/ui/AppLink.astro';
 
 type Props = HTMLAttributes<'a'>;
@@ -16,23 +14,17 @@ try {
   // do nothing
 }
 
+const img = `https://www.google.com/s2/favicons?sz=12&domain=${origin}`;
+
 const baseClass = `:uno:
   inline-flex items-center
-  text-heading/80
-  font-medium
-  cursor-pointer
-  decoration-heading
-  decoration-opacity-20
+  bg-surface-2 hover:bg-surface-3
   transition-colors
-  hover:text-heading
-  focus:text-heading
-  hover:decoration-opacity-100
-  focus:decoration-opacity-100
-  underline
-  underline-offset-4`;
+  rounded-full
+  pr-2`;
 ---
 
 <AppLink
   class:list={[baseClass, className]}
   {...props}
-><slot />{origin && <ExternalLink class=":uno: ml-1 size-[14px]" />}</AppLink>
+><img src={img} className=":uno: mr-2 rounded-full size-4" /><slot /></AppLink>
