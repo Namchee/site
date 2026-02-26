@@ -1,5 +1,6 @@
 ---
 import { getCollection } from 'astro:content';
+import { ClientRouter, fade } from 'astro:transitions';
 
 import Footer from '@/components/astro/layout/Footer.astro';
 
@@ -112,6 +113,7 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
       defer
       src="https://cloud.umami.is/script.js"
       data-website-id="16f41ca8-561c-4f45-8943-0c80934f59ff"></script>
+    <ClientRouter />
   </head>
   <body
     vaul-drawer-wrapper
@@ -121,6 +123,7 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 
     <main
       class=":uno: mx-auto mb-32 mt-24 px-8 flex-1 max-w-[832px] w-full space-y-16 md:mt-32"
+      transition:animate={fade({ duration: '0.15s' })}
     >
       <slot />
     </main>

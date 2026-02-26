@@ -22,7 +22,7 @@
 
 /* Dark mode variants */
 html.dark {
-  --heading:  var(--gray-dark-50);
+  --heading: var(--gray-dark-50);
   --content: var(--gray-dark-400);
 
   --background: var(--gray-dark-950);
