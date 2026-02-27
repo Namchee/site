@@ -80,41 +80,41 @@ function getNavClasses(linkHref: string, currentPath: string, idx: number) {
 <script is:inline>
   /* eslint-disable no-undef */
 
-  const button = document.querySelector('.theme-toggle');
-  function toggleThemeSwitcher() {
-    button.classList.toggle('theme-toggle--toggled');
-  }
-
-  document.addEventListener('astro:before-swap', () => {
+  function setupButton(btn) {
     if (getTheme() === 'dark') {
-      const neoButton = document.querySelector('.theme-toggle');
-
-      neoButton.classList.add('theme-toggle--toggled');
+      btn.classList.add('theme-toggle--toggled');
     }
-  });
 
-  if (getTheme() === 'dark') {
-    button.classList.add('theme-toggle--toggled');
+    btn.addEventListener('click', () => {
+      const documentTheme = docEl.classList.contains('dark') ? 'light' : 'dark';
+      toggleThemeSwitcher(btn);
+      toggleTheme(documentTheme);
+    });
+
+    window.addEventListener('storage', () => {
+      const actualTheme = window.localStorage.getItem('theme');
+      toggleThemeSwitcher(btn);
+      toggleTheme(actualTheme);
+    });
+
+    media.addEventListener('change', () => {
+      const mediaTheme = media.matches ? 'dark' : 'light';
+      toggleThemeSwitcher(btn);
+      toggleTheme(mediaTheme);
+    });
   }
 
-  button.addEventListener('click', () => {
-    const documentTheme = docEl.classList.contains('dark') ? 'light' : 'dark';
-    window.localStorage.setItem('theme', documentTheme);
+  const button = document.querySelector('.theme-toggle');
 
-    toggleThemeSwitcher();
-    applyTheme();
-  });
+  function toggleThemeSwitcher(btn) {
+    btn.classList.toggle('theme-toggle--toggled');
+  }
 
-  window.addEventListener('storage', () => {
-    toggleThemeSwitcher();
-    applyTheme();
-  });
+  setupButton(button);
 
-  media.addEventListener('change', () => {
-    const mediaTheme = media.matches ? 'dark' : 'light';
-    window.localStorage.setItem('theme', mediaTheme);
+  document.addEventListener('astro:before-swap', (event) => {
+    const afterSwapButton = event.newDocument.querySelector('.theme-toggle');
 
-    toggleThemeSwitcher();
-    applyTheme();
+    setupButton(afterSwapButton);
   });
 </script>
