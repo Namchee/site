@@ -93,20 +93,27 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
   const docEl = document.documentElement;
   const media = window.matchMedia('(prefers-color-scheme: dark)');
 
-  let theme = media.matches ? 'dark' : 'light';
-  if (typeof window.localStorage !== 'undefined' && window.localStorage.getItem('theme')) {
-    theme = window.localStorage.getItem('theme');
-  }
+  const getTheme = () => {
+    if (typeof localStorage !== 'undefined' && localStorage.getItem('theme')) {
+      return localStorage.getItem('theme');
+    }
+    return media.matches ? 'dark' : 'light';
+  };
 
-  function toggleTheme(theme) {
-    const method = theme === 'light' ? 'remove' : 'add';
+  const applyTheme = (el) => {
+    const theme = getTheme();
+    const isDark = theme === 'dark';
+    el.classList.toggle('dark', isDark);
+  };
 
-    docEl.classList[method]('dark');
-    window.localStorage.setItem('theme', theme);
-  }
+  // 1. Initial run on first load
+  applyTheme(document.documentElement);
 
-  toggleTheme(theme);
-    </script>
+  // 2. Re-run immediately after the DOM is swapped, but before paint
+  document.addEventListener('astro:before-swap', (event) => {
+    applyTheme(event.documentElement);
+  });
+  </script>
 
     <script
       is:inline
