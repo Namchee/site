@@ -89,23 +89,31 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 
     <title>{title}</title>
     <script is:inline>
-  // do not try to optimize this. is:inline is there to avoid pre-opt that causes theme flicker
-  const docEl = document.documentElement;
-  const media = window.matchMedia('(prefers-color-scheme: dark)');
+    // do not try to optimize this. is:inline is there to avoid pre-opt that causes theme flicker
+    const docEl = document.documentElement;
+    const media = window.matchMedia('(prefers-color-scheme: dark)');
 
-  let theme = media.matches ? 'dark' : 'light';
-  if (typeof window.localStorage !== 'undefined' && window.localStorage.getItem('theme')) {
-    theme = window.localStorage.getItem('theme');
-  }
+    function getTheme() {
+      let theme = media.matches ? 'dark' : 'light';
+      if (typeof window.localStorage !== 'undefined' && window.localStorage.getItem('theme')) {
+        theme = window.localStorage.getItem('theme');
+      }
 
-  function toggleTheme(theme) {
-    const method = theme === 'light' ? 'remove' : 'add';
+      return theme;
+    }
 
-    docEl.classList[method]('dark');
-    window.localStorage.setItem('theme', theme);
-  }
+    toggleTheme(getTheme());
 
-  toggleTheme(theme);
+    function toggleTheme(theme, el = docEl) {
+      const method = theme === 'light' ? 'remove' : 'add';
+
+      el.classList[method]('dark');
+      window.localStorage.setItem('theme', theme);
+    }
+
+    document.addEventListener('astro:before-swap', (event) => {
+      toggleTheme(getTheme(), event.newDocument.documentElement);
+    });
     </script>
 
     <script

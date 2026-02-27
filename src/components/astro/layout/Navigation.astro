@@ -55,8 +55,7 @@ function getNavClasses(linkHref: string, currentPath: string, idx: number) {
 
 <nav
   class=":uno: border border-separator rounded-md bg-background flex shadow-lg translate-x-[-50%] transition-colors bottom-8 left-1/2 fixed z-20 dark:bg-[var(--navigation)]"
-  transition:persist
-  transition:animate="none"
+  transition:name="nav"
 >
   {
     directLinks.map((link, idx) => (
@@ -81,30 +80,41 @@ function getNavClasses(linkHref: string, currentPath: string, idx: number) {
 <script is:inline>
   /* eslint-disable no-undef */
 
+  function setupButton(btn) {
+    if (getTheme() === 'dark') {
+      btn.classList.add('theme-toggle--toggled');
+    }
+
+    btn.addEventListener('click', () => {
+      const documentTheme = docEl.classList.contains('dark') ? 'light' : 'dark';
+      toggleThemeSwitcher(btn);
+      toggleTheme(documentTheme);
+    });
+
+    window.addEventListener('storage', () => {
+      const actualTheme = window.localStorage.getItem('theme');
+      toggleThemeSwitcher(btn);
+      toggleTheme(actualTheme);
+    });
+
+    media.addEventListener('change', () => {
+      const mediaTheme = media.matches ? 'dark' : 'light';
+      toggleThemeSwitcher(btn);
+      toggleTheme(mediaTheme);
+    });
+  }
+
   const button = document.querySelector('.theme-toggle');
-  function toggleThemeSwitcher() {
-    button.classList.toggle('theme-toggle--toggled');
+
+  function toggleThemeSwitcher(btn) {
+    btn.classList.toggle('theme-toggle--toggled');
   }
 
-  if (theme === 'dark') {
-    button.classList.add('theme-toggle--toggled');
-  }
+  setupButton(button);
 
-  button.addEventListener('click', () => {
-    const documentTheme = docEl.classList.contains('dark') ? 'light' : 'dark';
-    toggleThemeSwitcher();
-    toggleTheme(documentTheme);
-  });
+  document.addEventListener('astro:before-swap', (event) => {
+    const afterSwapButton = event.newDocument.querySelector('.theme-toggle');
 
-  window.addEventListener('storage', () => {
-    const actualTheme = window.localStorage.getItem('theme');
-    toggleThemeSwitcher();
-    toggleTheme(actualTheme);
-  });
-
-  media.addEventListener('change', () => {
-    const mediaTheme = media.matches ? 'dark' : 'light';
-    toggleThemeSwitcher();
-    toggleTheme(mediaTheme);
+    setupButton(afterSwapButton);
   });
 </script>
