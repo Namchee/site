@@ -39,6 +39,7 @@ const description
                   <AppLink
                     href={`/posts/${post.id}`}
                     class=":uno: text-heading/80 font-semibold transition-colors focus:text-heading hover:text-heading"
+                    transition:name={`post-title-${post.id}`}
                   >
                     {post.data.title}
                   </AppLink>

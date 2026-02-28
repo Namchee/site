@@ -43,6 +43,7 @@ const lastModified = frontmatter.lastModified || publishedAt;
 
     <h1
       class=":uno: text-xl text-heading tracking-tight font-semibold mt-8 transition-colors md:text-2xl"
+      transition:name={`post-title-${frontmatter.slug}`}
     >
       {frontmatter.title}
     </h1>
