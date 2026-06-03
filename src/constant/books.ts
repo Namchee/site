@@ -141,5 +141,10 @@ export const BOOKS = {
       author: 'Mark Manson',
       link: 'https://literal.club/book/everything-is-fcked-pq0yz',
     },
+    {
+      title: 'Linux from Scratch',
+      author: 'Matthew Burgess',
+      link: 'https://literal.club/book/gerard-beekmans-matthew-burgess-bruce-dubbs-linux-from-scratch-lfs-ng64v',
+    },
   ],
 };

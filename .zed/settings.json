@@ -36,12 +36,16 @@
     "Vue.js": {
       "language_servers": [
         "eslint",
-        "vue-language-server"
+        "vue-language-server",
+        "emmet-language-server",
+        "unocss-language-server"
       ]
     },
     "HTML": {
       "language_servers": [
-        "eslint"
+        "eslint",
+        "emmet-language-server",
+        "unocss-language-server"
       ]
     },
     "Markdown": {
@@ -62,7 +66,9 @@
     "Astro": {
       "language_servers": [
         "eslint",
-        "astro-language-server"
+        "astro-language-server",
+        "emmet-language-server",
+        "unocss-language-server"
       ]
     }
   }
