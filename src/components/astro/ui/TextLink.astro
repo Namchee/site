@@ -17,7 +17,6 @@ try {
 }
 
 const baseClass = `:uno:
-  inline-flex items-center
   text-heading/80
   font-medium
   cursor-pointer
@@ -30,9 +29,17 @@ const baseClass = `:uno:
   focus:decoration-opacity-100
   underline
   underline-offset-4`;
+const externalClass = 'inline-flex items-center';
+
+const classes = [baseClass];
+if (origin) {
+  classes.push(externalClass);
+}
+
+classes.push(className as string);
 ---
 
 <AppLink
-  class:list={[baseClass, className]}
+  class:list={classes}
   {...props}
 ><slot />{origin && <ExternalLink class=":uno: ml-1 size-[14px]" />}</AppLink>
