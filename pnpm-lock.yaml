@@ -85,8 +85,8 @@ importers:
         specifier: ^1.0.0
         version: 1.0.0
       astro-tweet:
-        specifier: ^0.0.4
-        version: 0.0.4(astro@5.12.8(@types/node@20.19.0)(jiti@2.5.1)(rollup@4.42.0)(terser@5.43.1)(tsx@4.19.4)(typescript@5.8.3)(yaml@2.8.1))
+        specifier: ^0.0.6
+        version: 0.0.6(astro@5.12.8(@types/node@20.19.0)(jiti@2.5.1)(rollup@4.42.0)(terser@5.43.1)(tsx@4.19.4)(typescript@5.8.3)(yaml@2.8.1))
       eslint:
         specifier: ^9.34.0
         version: 9.34.0(jiti@2.5.1)
@@ -1996,10 +1996,10 @@ packages:
   astro-robots-txt@1.0.0:
     resolution: {integrity: sha512-6JQSLid4gMhoWjOm85UHLkgrw0+hHIjnJVIUqxjU2D6feKlVyYukMNYjH44ZDZBK1P8hNxd33PgWlHzCASvedA==}
 
-  astro-tweet@0.0.4:
-    resolution: {integrity: sha512-D4rpm8r2AiDeY2L+wee1+smVojLd0Qd114NqO4uuczWh4R0hbJTwgd4fpyGp87M6SmF1g85d5QejxLzLjGn3rw==}
+  astro-tweet@0.0.6:
+    resolution: {integrity: sha512-NCpoXb/Aek7Dklwo8ppmtN9pwB7ux469xIqbVeY+50/biO7mdGjp0yUZ93E2TDlOAlSy39vh50JkhInTQlGniQ==}
     peerDependencies:
-      astro: ^3.0.0 || ^4.0.0
+      astro: ^3.0.0 || ^4.0.0 || ^5.0.0
 
   astro@5.12.8:
     resolution: {integrity: sha512-KkJ7FR+c2SyZYlpakm48XBiuQcRsrVtdjG5LN5an0givI/tLik+ePJ4/g3qrAVhYMjJOxBA2YgFQxANPiWB+Mw==}
@@ -6021,11 +6021,6 @@ packages:
     resolution: {integrity: sha512-CBKFWExMn46Foo4cldiChEzn7S7SRV+wqiluAb6xmueD/fGyRHIhX8m14vVGgeFWjN540nKCNVj6P21eQjgTuA==}
     engines: {node: '>= 14'}
 
-  yaml@2.8.0:
-    resolution: {integrity: sha512-4lLa/EcQCB0cJkyts+FpIRx5G/llPxfP6VQU5KByHEhLxY3IJCH0f0Hy1MHI8sClTvsIb8qwRJ6R/ZdlDJ/leQ==}
-    engines: {node: '>= 14.6'}
-    hasBin: true
-
   yaml@2.8.1:
     resolution: {integrity: sha512-lcYcMxX2PO9XMGvAJkJ3OsNMw+/7FKes7/hgerGUYWIoWu5j/+YQqcZr5JnPZWzOsEBgMbSbiSTn/dv/69Mkpw==}
     engines: {node: '>= 14.6'}
@@ -6236,9 +6231,9 @@ snapshots:
 
   '@astrojs/language-server@2.15.4(typescript@5.8.3)':
     dependencies:
-      '@astrojs/compiler': 2.12.1
+      '@astrojs/compiler': 2.12.2
       '@astrojs/yaml2ts': 0.2.2
-      '@jridgewell/sourcemap-codec': 1.5.0
+      '@jridgewell/sourcemap-codec': 1.5.5
       '@volar/kit': 2.4.14(typescript@5.8.3)
       '@volar/language-core': 2.4.14
       '@volar/language-server': 2.4.14
@@ -6382,7 +6377,7 @@ snapshots:
 
   '@astrojs/yaml2ts@0.2.2':
     dependencies:
-      yaml: 2.8.0
+      yaml: 2.8.1
 
   '@atproto/api@0.13.35':
     dependencies:
@@ -8358,7 +8353,7 @@ snapshots:
       valid-filename: 4.0.0
       zod: 3.25.56
 
-  astro-tweet@0.0.4(astro@5.12.8(@types/node@20.19.0)(jiti@2.5.1)(rollup@4.42.0)(terser@5.43.1)(tsx@4.19.4)(typescript@5.8.3)(yaml@2.8.1)):
+  astro-tweet@0.0.6(astro@5.12.8(@types/node@20.19.0)(jiti@2.5.1)(rollup@4.42.0)(terser@5.43.1)(tsx@4.19.4)(typescript@5.8.3)(yaml@2.8.1)):
     dependencies:
       '@astrojs/check': 0.2.1(typescript@5.8.3)
       astro: 5.12.8(@types/node@20.19.0)(jiti@2.5.1)(rollup@4.42.0)(terser@5.43.1)(tsx@4.19.4)(typescript@5.8.3)(yaml@2.8.1)
@@ -13354,8 +13349,6 @@ snapshots:
       prettier: 2.8.7
 
   yaml@2.2.2: {}
-
-  yaml@2.8.0: {}
 
   yaml@2.8.1: {}
 
