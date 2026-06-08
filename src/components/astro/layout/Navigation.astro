@@ -54,8 +54,8 @@ function getNavClasses(linkHref: string, currentPath: string, idx: number) {
 ---
 
 <nav
-  class=":uno: border border-separator rounded-md bg-background flex shadow-lg translate-x-[-50%] transition-colors bottom-8 left-1/2 fixed z-20 dark:bg-[var(--navigation)]"
-  transition:name="nav"
+  class=":uno: mx-auto border border-separator rounded-md bg-background flex w-max shadow-lg transition-colors inset-x-0 bottom-8 fixed z-20 dark:bg-[var(--navigation)]"
+  transition:animate="none"
 >
   {
     directLinks.map((link, idx) => (

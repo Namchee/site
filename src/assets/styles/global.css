@@ -1,9 +1,11 @@
 html {
   scroll-behavior: smooth;
+  scrollbar-gutter: stable;
 }
 
-body {
-  scrollbar-gutter: stable both-edges;
+body[style*="overflow: hidden"],
+body:has([data-vaul-drawer]) {
+  scrollbar-color: transparent;
 }
 
 html.dark img {
