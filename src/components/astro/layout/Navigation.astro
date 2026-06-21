@@ -53,29 +53,32 @@ function getNavClasses(linkHref: string, currentPath: string, idx: number) {
 }
 ---
 
-<nav
-  class=":uno: mx-auto border border-separator rounded-md bg-background flex w-max shadow-lg transition-colors inset-x-0 bottom-8 fixed z-20 dark:bg-[var(--navigation)]"
-  transition:animate="none"
->
-  {
-    directLinks.map((link, idx) => (
-      <NavigationItem
-        label={link.label}
-        class:list={getNavClasses(link.href, currentPath, idx)}
-        href={link.href}
-        client:load
-      >
-        <link.icon class=":uno: h-auto w-5" />
-      </NavigationItem>
-    ))
-  }
+<div class="flex w-[100vw] pointer-events-none bottom-8 left-0 justify-center fixed z-20" transition:animate="none">
+  <nav
+    class=":uno: border border-separator rounded-md bg-background flex w-max pointer-events-auto shadow-lg transition-colors dark:bg-[var(--navigation)]"
+  >
+    {
+      directLinks.map((link, idx) => (
+        <NavigationItem
+          label={link.label}
+          class:list={getNavClasses(link.href, currentPath, idx)}
+          href={link.href}
+          client:load
+        >
+          <link.icon class=":uno: h-auto w-5" />
+        </NavigationItem>
+      ))
+    }
 
-  <div class=":uno: bg-separator w-[0.5px] transition-colors dark:bg-[var(--navigation-separator)]"></div>
+    <div class=":uno: bg-separator w-[0.5px] transition-colors dark:bg-[var(--navigation-separator)]"></div>
 
-  <CommandMenu posts={posts} links={links} client:load />
+    <CommandMenu posts={posts} links={links} client:load />
 
-  <ThemeSwitcher client:visible />
-</nav>
+    <ThemeSwitcher client:visible />
+  </nav>
+</div>
+
+
 
 <script is:inline>
   /* eslint-disable no-undef */
