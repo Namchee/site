@@ -57,13 +57,7 @@ const tocList = generateToC(headings);
 </nav>
 
 <script>
-  const thumb = document.querySelector('.thumb') as HTMLDivElement;
-  const sections = document.querySelectorAll<HTMLElement>('section[id]');
-  const backToTop = document.querySelector('#backToTop') as HTMLButtonElement;
-
-  const activeSections = new Set<HTMLAnchorElement>();
-
-  function updateThumb() {
+  function updateThumb(thumb: HTMLDivElement, activeSections: Set<HTMLAnchorElement>) {
     let max = 0;
 
     thumb.style.height = '0px';
@@ -83,34 +77,45 @@ const tocList = generateToC(headings);
     }
   }
 
-  const observer = new IntersectionObserver((entries) => {
-    for (const { target, isIntersecting } of entries) {
-      const link = document.querySelector<HTMLAnchorElement>(
-        `nav ul li a[href="#${target.id}"]`,
-      );
+  function attachEventListeners() {
+    const thumb = document.querySelector('.thumb') as HTMLDivElement;
+    const sections = document.querySelectorAll<HTMLElement>('section[id]');
+    const backToTop = document.querySelector('#backToTop') as HTMLButtonElement;
 
-      if (!link) {
-        continue;
+    const activeSections = new Set<HTMLAnchorElement>();
+
+    const observer = new IntersectionObserver((entries) => {
+      for (const { target, isIntersecting } of entries) {
+        const link = document.querySelector<HTMLAnchorElement>(
+          `nav ul li a[href="#${target.id}"]`,
+        );
+
+        if (!link) {
+          continue;
+        }
+
+        const method = isIntersecting ? 'add' : 'remove';
+        link.classList[method]('text-heading', 'font-medium');
+
+        if (isIntersecting) {
+          activeSections.add(link);
+        } else {
+          activeSections.delete(link);
+        }
       }
 
-      const method = isIntersecting ? 'add' : 'remove';
-      link.classList[method]('text-heading', 'font-medium');
+      updateThumb(thumb, activeSections);
+    });
 
-      if (isIntersecting) {
-        activeSections.add(link);
-      } else {
-        activeSections.delete(link);
-      }
+    for (const link of sections) {
+      observer.observe(link);
     }
 
-    updateThumb();
-  });
-
-  for (const link of sections) {
-    observer.observe(link);
+    backToTop.addEventListener('click', () => {
+      window.scrollTo(0, 0);
+    });
   }
 
-  backToTop.addEventListener('click', () => {
-    window.scrollTo(0, 0);
-  });
+  attachEventListeners();
+  document.addEventListener('astro:page-load', attachEventListeners);
 </script>
