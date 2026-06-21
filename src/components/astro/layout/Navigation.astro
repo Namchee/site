@@ -53,33 +53,34 @@ function getNavClasses(linkHref: string, currentPath: string, idx: number) {
 }
 ---
 
-<nav
-  class=":uno: border border-separator rounded-md bg-background flex shadow-lg translate-x-[-50%] transition-colors bottom-8 left-1/2 fixed z-20 dark:bg-[var(--navigation)]"
-  transition:name="nav"
->
-  {
-    directLinks.map((link, idx) => (
-      <NavigationItem
-        label={link.label}
-        class:list={getNavClasses(link.href, currentPath, idx)}
-        href={link.href}
-        client:load
-      >
-        <link.icon class=":uno: h-auto w-5" />
-      </NavigationItem>
-    ))
-  }
+<!-- Need a wrapper div to bypass scrollbar width calculation -->
+<div class="flex w-[100vw] pointer-events-none bottom-8 left-0 justify-center fixed z-20" transition:animate="none">
+  <nav
+    class=":uno: border border-separator rounded-md bg-background flex w-max pointer-events-auto shadow-lg transition-colors dark:bg-[var(--navigation)]"
+  >
+    {
+      directLinks.map((link, idx) => (
+        <NavigationItem
+          label={link.label}
+          class:list={getNavClasses(link.href, currentPath, idx)}
+          href={link.href}
+          client:load
+        >
+          <link.icon class=":uno: h-auto w-5" />
+        </NavigationItem>
+      ))
+    }
 
-  <div class=":uno: bg-separator w-[0.5px] transition-colors dark:bg-[var(--navigation-separator)]"></div>
+    <div class=":uno: bg-separator w-[0.5px] transition-colors dark:bg-[var(--navigation-separator)]"></div>
 
-  <CommandMenu posts={posts} links={links} client:load />
+    <CommandMenu posts={posts} links={links} client:load />
 
-  <ThemeSwitcher client:visible />
-</nav>
+    <ThemeSwitcher client:visible />
+  </nav>
+</div>
 
 <script is:inline>
   /* eslint-disable no-undef */
-
   function setupButton(btn) {
     if (getTheme() === 'dark') {
       btn.classList.add('theme-toggle--toggled');

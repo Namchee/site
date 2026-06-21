@@ -2,10 +2,6 @@ html {
   scroll-behavior: smooth;
 }
 
-body {
-  scrollbar-gutter: stable both-edges;
-}
-
 html.dark img {
   filter: brightness(.8) contrast(1.1);
 }
@@ -25,12 +21,19 @@ html.dark img {
 
 ::-webkit-scrollbar-thumb {
   background-color: color-mix(in oklch, var(--content), transparent 50%);
-  transition: background-color 150ms var(--default-transition-timingFunction);
   border-radius: 20px;
 }
 
+html.dark ::-webkit-scrollbar-thumb {
+  background-color: color-mix(in oklch, var(--content), transparent 70%);
+}
+
 ::-webkit-scrollbar-thumb:hover {
-  background-color: rgba(111, 111, 111, 0.6);
+  background-color: color-mix(in oklch, var(--content), transparent 40%);
+}
+
+html.dark ::-webkit-scrollbar-thumb:hover {
+  background-color: color-mix(in oklch, var(--content), transparent 60%);
 }
 
 .blog-section {
