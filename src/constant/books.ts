@@ -146,5 +146,10 @@ export const BOOKS = {
       author: 'Matthew Burgess',
       link: 'https://literal.club/book/gerard-beekmans-matthew-burgess-bruce-dubbs-linux-from-scratch-lfs-ng64v',
     },
+    {
+      title: 'Practical Malware Analysis',
+      author: 'Michael Sikorski & Andrew Honig',
+      link: 'https://literal.club/book/michael-sikorski-andrew-honig-practical-malware-analysis-q8hhx',
+    },
   ],
 };
