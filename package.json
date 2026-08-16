@@ -70,5 +70,8 @@
     "vitest": "^3.2.2",
     "vue": "^3.5.12"
   },
-  "packageManager": "pnpm@11.22.0"
+  "packageManager": "pnpm@11.22.0",
+  "engines": {
+    "node": ">=24.0.0"
+  }
 }
