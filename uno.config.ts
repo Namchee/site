@@ -25,7 +25,7 @@ export default defineConfig({
         lineHeight: '32px',
         letterSpacing: '-0.01em',
       },
-      lg: {
+      'lg': {
         fontSize: '18px',
         lineHeight: '28px',
       },
@@ -33,11 +33,11 @@ export default defineConfig({
         fontSize: '16px',
         lineHeight: '1.75',
       },
-      sm: {
+      'sm': {
         fontSize: '14px',
         lineHeight: '20px',
       },
-      xs: {
+      'xs': {
         fontSize: '12px',
         lineHeight: '20px',
       },
@@ -66,7 +66,7 @@ export default defineConfig({
       preflights: {
         reset: true,
       },
-    })
+    }),
   ],
   transformers: [
     transformerCompileClass(),
