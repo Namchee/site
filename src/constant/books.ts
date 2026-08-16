@@ -151,5 +151,10 @@ export const BOOKS = {
       author: 'Michael Sikorski & Andrew Honig',
       link: 'https://literal.club/book/michael-sikorski-andrew-honig-practical-malware-analysis-q8hhx',
     },
+    {
+      title: 'Who Moved My Cheese?',
+      author: 'Spencer Johnson',
+      link: 'https://literal.club/book/who-moved-my-cheese-c81r2',
+    },
   ],
 };

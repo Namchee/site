@@ -1,3 +1,10 @@
+allowBuilds:
+  '@namchee/astro-subfont': false
+  esbuild: true
+  puppeteer: true
+  sharp: true
+  unrs-resolver: true
+  vue-demi: true
 onlyBuiltDependencies:
   - '@namchee/astro-subfont'
   - esbuild
