@@ -7,6 +7,7 @@ export interface MarkdownFile {
         timeToRead: number;
         lastModified: string;
         headings: MarkdownHeading[];
+        file?: string;
       }
     }
   };

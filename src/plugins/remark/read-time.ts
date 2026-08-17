@@ -1,20 +1,14 @@
-import type { Root } from 'mdast';
+import type { MdastPluginInstance } from 'satteri';
 
 import type { MarkdownFile } from '@/plugins/remark/types';
 
-import { defineMdastPlugin } from '@astrojs/markdown-satteri';
-import { toString } from 'mdast-util-to-string';
 import getReadingTime from 'reading-time';
 
-export function remarkReadingTime(): Transformer<Root> {
-  return function(tree, file) {
-    const md = file as unknown as MarkdownFile;
+export function satteriReadingTime(file: MarkdownFile): MdastPluginInstance {
+  if (file.data?.astro?.frontmatter && typeof file.value === 'string') {
+    const readingTime = getReadingTime(file.value);
+    file.data.astro.frontmatter.timeToRead = Math.ceil(readingTime.minutes);
+  }
 
-    if (md.data.astro.frontmatter) {
-      const textOnPage = toString(tree);
-      const readingTime = getReadingTime(textOnPage);
-
-      md.data.astro.frontmatter.timeToRead = Math.ceil(readingTime.minutes);
-    }
-  };
+  return {};
 }

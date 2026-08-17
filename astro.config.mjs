@@ -9,8 +9,8 @@ import { defineConfig } from 'astro/config';
 import unocss from 'unocss/astro';
 import Icons from 'unplugin-icons/vite';
 
-import { rehypePlugins } from './src/plugins/rehype';
-import { remarkPlugins } from './src/plugins/remark';
+import { lastUpdated } from '@/plugins/remark/last-updated';
+import { satteriReadingTime } from '@/plugins/remark/read-time';
 
 // https://astro.build/config
 export default defineConfig({
@@ -26,13 +26,14 @@ export default defineConfig({
   ],
   markdown: {
     processor: satteri({
+      // mdastPlugins: [lastUpdated, satteriReadingTime],
       features: {
         math: true,
         headingAttributes: true,
       },
     }),
-    remarkPlugins: remarkPlugins,
-    rehypePlugins: rehypePlugins,
+    // remarkPlugins: remarkPlugins,
+    // rehypePlugins: rehypePlugins,
     shikiConfig: {
       transformers: [
         transformerMetaHighlight(),
