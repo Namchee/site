@@ -1,3 +1,4 @@
+import { satteri } from '@astrojs/markdown-satteri';
 import mdx from '@astrojs/mdx';
 import sitemap from '@astrojs/sitemap';
 import vue from '@astrojs/vue';
@@ -24,6 +25,12 @@ export default defineConfig({
     subfont(),
   ],
   markdown: {
+    processor: satteri({
+      features: {
+        math: true,
+        headingAttributes: true,
+      },
+    }),
     remarkPlugins: remarkPlugins,
     rehypePlugins: rehypePlugins,
     shikiConfig: {

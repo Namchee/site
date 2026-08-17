@@ -1,8 +1,8 @@
 import type { Root } from 'mdast';
-import type { Transformer } from 'unified';
 
 import type { MarkdownFile } from '@/plugins/remark/types';
 
+import { defineMdastPlugin } from '@astrojs/markdown-satteri';
 import { toString } from 'mdast-util-to-string';
 import getReadingTime from 'reading-time';
 
