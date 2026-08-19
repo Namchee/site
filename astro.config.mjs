@@ -9,8 +9,7 @@ import { defineConfig } from 'astro/config';
 import unocss from 'unocss/astro';
 import Icons from 'unplugin-icons/vite';
 
-import { lastUpdated } from '@/plugins/remark/last-updated';
-import { satteriReadingTime } from '@/plugins/remark/read-time';
+import { hastPlugins } from '@/plugins/hast';
 
 // https://astro.build/config
 export default defineConfig({
@@ -26,6 +25,7 @@ export default defineConfig({
   ],
   markdown: {
     processor: satteri({
+      hastPlugins: hastPlugins,
       // mdastPlugins: [lastUpdated, satteriReadingTime],
       features: {
         math: true,

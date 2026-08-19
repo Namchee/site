@@ -1,14 +1,14 @@
-import type { MdastPluginInstance } from 'satteri';
-
-import type { MarkdownFile } from '@/plugins/remark/types';
-
 import getReadingTime from 'reading-time';
+import { defineHastPlugin } from 'satteri';
 
-export function satteriReadingTime(file: MarkdownFile): MdastPluginInstance {
-  if (file.data?.astro?.frontmatter && typeof file.value === 'string') {
-    const readingTime = getReadingTime(file.value);
-    file.data.astro.frontmatter.timeToRead = Math.ceil(readingTime.minutes);
-  }
+export const readingTime = defineHastPlugin({
+  name: 'reading-time',
+  raw: (_, ctx) => {
+    if (!ctx.data.astro?.frontmatter) {
+      return;
+    }
 
-  return {};
-}
+    const readingTime = getReadingTime(ctx.source);
+    ctx.data.astro.frontmatter.timeToRead = Math.ceil(readingTime.minutes);
+  },
+});

@@ -1,28 +1,33 @@
-import type { MdastPluginInstance, MdastVisitorContext } from 'satteri';
-
-import type { MarkdownFile } from '@/plugins/remark/types';
-
 import { execSync } from 'node:child_process';
 import { fileURLToPath } from 'node:url';
 
-export function lastUpdated(file: MarkdownFile, ctx: MdastVisitorContext): MdastPluginInstance {
-  const filepath = ctx?.fileURL
-    ? fileURLToPath(ctx.fileURL)
-    : file?.data?.astro?.frontmatter?.file;
+import { defineHastPlugin } from 'satteri';
 
-  if (filepath && file.data?.astro?.frontmatter) {
+
+export const lastUpdated = defineHastPlugin({
+  name: 'last-updated',
+  raw: (_, ctx) => {
+    if (!ctx.fileURL) {
+      return;
+    }
+
+    const filepath = fileURLToPath(ctx.fileURL);
+    if (!filepath) {
+      return;
+    }
+
     try {
       const gitDate = execSync(`git log -1 --pretty="format:%cI" "${filepath}"`, {
         encoding: 'utf-8',
       }).trim();
 
-      if (gitDate) {
-        file.data.astro.frontmatter.lastModified = gitDate;
+      if (!ctx.data.astro?.frontmatter) {
+        return;
       }
-    } catch {
-      // do nothing
-    }
-  }
 
-  return {};
-}
+      ctx.data.astro.frontmatter.lastModified = gitDate;
+    } catch {
+      console.error('Failed to fetch last updated for', filepath);
+    }
+  },
+});
