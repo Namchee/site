@@ -46,9 +46,12 @@ function sectionizeChildren(children: readonly HastNode[]): HastNode[] {
 
     if (depth > 0) {
       while (sectionStack.length && sectionStack[sectionStack.length - 1].depth >= depth) {
-        const closed = sectionStack.pop()!;
+        const closed = sectionStack.pop();
         const target = sectionStack.length ? sectionChildren(sectionStack[sectionStack.length - 1].element) : result;
-        target.push(closed.element);
+
+        if (closed) {
+          target.push(closed.element);
+        }
       }
 
       sectionStack.push({ depth: depth, element: sectionFromHeading(child) });

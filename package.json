@@ -52,6 +52,7 @@
     "eslint-import-resolver-node": "^0.3.9",
     "github-slugger": "^2.0.0",
     "glyphhanger": "^5.0.0",
+    "katex": "^0.18.4",
     "mdast-util-to-string": "^4.0.0",
     "playwright": "^1.49.1",
     "reading-time": "^1.5.0",
