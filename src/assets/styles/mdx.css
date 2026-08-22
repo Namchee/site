@@ -24,7 +24,7 @@ html.dark .callout__note {
 /* Warning is kinda different */
 
 .callout__warning {
-  background-color: oklch(from var(--yellow-50) l calc(c * 3) h);
+  background-color: oklch(from var(--yellow-50) l calc(c * 5) h);
 }
 
 html.dark .callout__warning {
