@@ -26,14 +26,11 @@ export default defineConfig({
   markdown: {
     processor: satteri({
       hastPlugins: hastPlugins,
-      // mdastPlugins: [lastUpdated, satteriReadingTime],
       features: {
         math: true,
         headingAttributes: true,
       },
     }),
-    // remarkPlugins: remarkPlugins,
-    // rehypePlugins: rehypePlugins,
     shikiConfig: {
       transformers: [
         transformerMetaHighlight(),

@@ -3,7 +3,6 @@ import { fileURLToPath } from 'node:url';
 
 import { defineHastPlugin } from 'satteri';
 
-
 export const lastUpdated = defineHastPlugin({
   name: 'last-updated',
   raw: (_, ctx) => {
