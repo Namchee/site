@@ -1,5 +1,6 @@
+import { fromHtml } from 'hast-util-from-html';
 import katex from 'katex';
-import { defineHastPlugin } from 'satteri';
+import { defineHastPlugin, type HastContent } from 'satteri';
 
 export const math = defineHastPlugin({
   name: 'math',
@@ -13,11 +14,12 @@ export const math = defineHastPlugin({
 
       const displayMode = meta.includes('math-display');
       const target = displayMode ? ctx.parent(node) : node;
+
       if (target) {
-        ctx.replaceNode(target, {
-          type: 'raw', value:
-            katex.renderToString(ctx.textContent(node), { displayMode })
-        });
+        const rawExpr = katex.renderToString(ctx.textContent(node), { displayMode });
+        const tree = fromHtml(rawExpr).children[0].children[1].children[0] as unknown as HastContent;
+
+        ctx.replaceNode(node, tree);
       }
     },
   },

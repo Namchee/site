@@ -108,6 +108,9 @@ importers:
       glyphhanger:
         specifier: ^5.0.0
         version: 5.0.0(supports-color@8.1.1)
+      hast-util-from-html:
+        specifier: ^2.0.3
+        version: 2.0.3
       katex:
         specifier: ^0.18.4
         version: 0.18.4
