@@ -13,7 +13,7 @@
   --tweet-twitter-icon-color: var(--content) !important;
 }
 
-.astro-tweet-theme a span[title]:not([title^="@"]) {
+.astro-tweet-theme a span[title]:not([title^='@']) {
   color: var(--heading);
 }
 
@@ -91,4 +91,3 @@ html.dark .bluesky-post-container .external-link .description {
 .bluesky-post-container .logo-link {
   width: 32px;
 }
-

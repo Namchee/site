@@ -1,20 +1,7 @@
-// Folder-specific settings
-//
-// For a full list of overridable settings, and general information on folder-specific settings,
-// see the documentation: https://zed.dev/docs/configuring-zed#settings-files
 {
-  // =====================
-  // Formatting
-  // =====================
   "format_on_save": "on",
-  // Zed does not use Prettier directly like VS Code
-  // Formatting is handled by language servers / external formatters
   "formatter": "language_server",
-  // =====================
-  // Code Actions on Save
-  // =====================
   "code_actions_on_format": {
-    "source.fixAll.eslint": true,
     "source.organizeImports": true
   },
   "lsp": {
@@ -40,6 +27,7 @@
   },
   "languages": {
     "CSS": {
+      "language_servers": ["vscode-css-language-server", "emmet-language-server", "oxfmt"],
       "format_on_save": "on",
       "prettier": {
         "allowed": false
@@ -53,6 +41,21 @@
       ]
     },
     "HTML": {
+      "language_servers": ["vscode-html-language-server", "emmet-language-server", "unocss-language-server", "oxfmt"],
+      "format_on_save": "on",
+      "prettier": {
+        "allowed": false
+      },
+      "formatter": [
+        {
+          "language_server": {
+            "name": "oxfmt"
+          }
+        }
+      ]
+    },
+    "SVG": {
+      "language_servers": ["vscode-html-language-server", "emmet-language-server", "unocss-language-server", "oxfmt"],
       "format_on_save": "on",
       "prettier": {
         "allowed": false
@@ -66,6 +69,7 @@
       ]
     },
     "JavaScript": {
+      "language_servers": ["vtsls", "oxlint", "oxfmt", "unocss-language-server", "emmet-language-server"],
       "format_on_save": "on",
       "prettier": {
         "allowed": false
@@ -82,6 +86,7 @@
       ]
     },
     "JSON": {
+      "language_servers": ["json-language-server", "oxfmt"],
       "format_on_save": "on",
       "prettier": {
         "allowed": false
@@ -95,6 +100,7 @@
       ]
     },
     "JSONC": {
+      "language_servers": ["json-language-server", "oxfmt"],
       "format_on_save": "on",
       "prettier": {
         "allowed": false
@@ -108,6 +114,7 @@
       ]
     },
     "Markdown": {
+      "language_servers": ["oxfmt"],
       "format_on_save": "on",
       "prettier": {
         "allowed": false
@@ -121,6 +128,7 @@
       ]
     },
     "MDX": {
+      "language_servers": ["oxfmt", "mdx"],
       "format_on_save": "on",
       "prettier": {
         "allowed": false
@@ -134,19 +142,7 @@
       ]
     },
     "TypeScript": {
-      "format_on_save": "on",
-      "prettier": {
-        "allowed": false
-      },
-      "formatter": [
-        {
-          "language_server": {
-            "name": "oxfmt"
-          }
-        }
-      ]
-    },
-    "TSX": {
+      "language_servers": ["vtsls", "oxlint", "oxfmt"],
       "format_on_save": "on",
       "prettier": {
         "allowed": false
@@ -160,19 +156,7 @@
       ]
     },
     "Vue.js": {
-      "format_on_save": "on",
-      "prettier": {
-        "allowed": false
-      },
-      "formatter": [
-        {
-          "language_server": {
-            "name": "oxfmt"
-          }
-        }
-      ]
-    },
-    "YAML": {
+      "language_servers": ["vue-language-server", "oxlint", "oxfmt", "unocss-language-server", "emmet-language-server"],
       "format_on_save": "on",
       "prettier": {
         "allowed": false
@@ -186,6 +170,7 @@
       ]
     },
     "Astro": {
+      "language_servers": ["astro-language-server", "oxlint", "oxfmt", "unocss-language-server"],
       "format_on_save": "on",
       "prettier": {
         "allowed": false

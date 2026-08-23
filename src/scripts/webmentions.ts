@@ -1,3 +1,5 @@
+/* oxlint-disable no-void */
+
 import { existsSync, readFileSync, writeFileSync } from 'node:fs';
 import { resolve } from 'node:path';
 
@@ -29,7 +31,7 @@ async function fetchWebmentions() {
   params.append('per-page', '1000');
 
   const response = await fetch(`${baseURL}?${params.toString()}`);
-  const body = await response.json() as WebmentionResponse;
+  const body = (await response.json()) as WebmentionResponse;
   if (!body.children) {
     throw new Error('Invalid WebMention response');
   }
@@ -40,9 +42,7 @@ async function fetchWebmentions() {
 async function syncWebmentions() {
   const webmentions = await fetchWebmentions();
   for (const mention of webmentions) {
-    const slug = new URL(mention['wm-target']).pathname
-      .split('/')
-      .pop();
+    const slug = new URL(mention['wm-target']).pathname.split('/').pop();
 
     const filename = resolve(process.cwd(), 'data', 'webmentions', `${slug}.json`);
 
@@ -50,8 +50,7 @@ async function syncWebmentions() {
       writeFileSync(filename, JSON.stringify([mention], null, 2));
     } else {
       const entries = JSON.parse(readFileSync(filename, 'utf-8')) as Webmention[];
-      const updatedEntries = [...entries
-        .filter(wm => wm['wm-id'] !== mention['wm-id']), mention];
+      const updatedEntries = [...entries.filter(wm => wm['wm-id'] !== mention['wm-id']), mention];
       updatedEntries.sort((a, b) => a['wm-id'] - b['wm-id']);
 
       writeFileSync(filename, JSON.stringify(updatedEntries, null, 2));
@@ -59,7 +58,6 @@ async function syncWebmentions() {
   }
 }
 
-// eslint-disable-next-line no-void
 void (async () => {
   await syncWebmentions();
 })();

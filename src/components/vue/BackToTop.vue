@@ -13,13 +13,13 @@ function backToTop() {
 
 <template>
   <div
-    class=":uno: text-content p-1 border border-separator rounded-md bg-background grid shadow transition-colors bottom-8 right-8 place-items-center fixed z-20 dark:bg-[var(--navigation)] xl:hidden"
+    class=":uno: text-content border-separator bg-background fixed right-8 bottom-8 z-20 grid place-items-center rounded-md border p-1 shadow transition-colors xl:hidden dark:bg-[var(--navigation)]"
   >
     <TooltipProvider :delay-duration="100">
       <TooltipRoot>
         <TooltipTrigger as-child>
           <button
-            class=":uno: rounded-md grid size-[36px] transition-colors place-items-center focus:bg-surface-2 hover:bg-surface-2 lg:focus:bg-transparent lg:hover:bg-transparent"
+            class=":uno: focus:bg-surface-2 hover:bg-surface-2 grid size-[36px] place-items-center rounded-md transition-colors lg:hover:bg-transparent lg:focus:bg-transparent"
             @click="backToTop"
           >
             <ArrowUp class=":uno: h-auto w-5" />
@@ -32,9 +32,7 @@ function backToTop() {
           align="end"
           :align-offset="-4"
         >
-          <p>
-            Back to top
-          </p>
+          <p>Back to top</p>
         </TooltipContent>
       </TooltipRoot>
     </TooltipProvider>

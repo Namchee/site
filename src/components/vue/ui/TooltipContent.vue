@@ -20,20 +20,17 @@ const containerStyles = cva(
   },
 );
 
-const arrowStyles = cva(
-  ':uno:',
-  {
-    variants: {
-      variant: {
-        success: 'fill-success',
-        content: 'fill-heading',
-      },
-    },
-    defaultVariants: {
-      variant: 'content',
+const arrowStyles = cva(':uno:', {
+  variants: {
+    variant: {
+      success: 'fill-success',
+      content: 'fill-heading',
     },
   },
-);
+  defaultVariants: {
+    variant: 'content',
+  },
+});
 
 type ContainerVariants = VariantProps<typeof containerStyles>;
 

@@ -16,7 +16,10 @@ const props = defineProps({
         <a
           rel="noopener noreferrer"
           :href="props.href"
-          :class="[':uno: size-[36px] grid place-items-center transition-colors text-content rounded-md hover:bg-surface-2 focus:bg-surface-2 text-sm my-1 mr-1', $attrs.class]"
+          :class="[
+            ':uno: text-content hover:bg-surface-2 focus:bg-surface-2 my-1 mr-1 grid size-[36px] place-items-center rounded-md text-sm transition-colors',
+            $attrs.class,
+          ]"
         >
           <slot />
         </a>

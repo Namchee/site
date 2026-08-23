@@ -1,0 +1,30 @@
+{
+  "$schema": "./node_modules/oxfmt/configuration_schema.json",
+  "ignorePatterns": [],
+  "printWidth": 120,
+  "semi": true,
+  "singleQuote": true,
+  "jsxSingleQuote": true,
+  "jsdoc": true,
+  "sortPackageJson": false,
+  "sortTailwindcss": true,
+  "sortImports": {
+    "order": "asc",
+    "groups": [
+      "type",
+      ["type-parent", "type-sibling", "type-index", "type-internal"],
+      "builtin",
+      "external",
+      "internal",
+      ["parent", "sibling", "index"],
+      "side_effect",
+      "unknown"
+    ],
+    "newlinesBetween": true,
+    "sortSideEffects": true
+  },
+  "quoteProps": "consistent",
+  "singleAttributePerLine": true,
+  "arrowParens": "avoid",
+  "trailingComma": "all"
+}

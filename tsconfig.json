@@ -2,20 +2,10 @@
   "extends": "astro/tsconfigs/base",
   "compilerOptions": {
     "paths": {
-      "@/*": [
-        "src/*"
-      ]
+      "@/*": ["./src/*"]
     },
-    "types": [
-      "vite/client",
-      "astro/client",
-      "node"
-    ],
+    "types": ["vite/client", "astro/client", "node"],
     "strictNullChecks": true
   },
-  "exclude": [
-    "node_modules",
-    "dist",
-    "public"
-  ]
+  "exclude": ["node_modules", "dist", "public"]
 }

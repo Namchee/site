@@ -1,5 +1,7 @@
+import type { HastNode } from 'satteri';
+
 import { slug } from 'github-slugger';
-import { defineHastPlugin, type HastNode } from 'satteri';
+import { defineHastPlugin } from 'satteri';
 
 const HEADING_TAGS = ['h1', 'h2', 'h3', 'h4', 'h5', 'h6'];
 

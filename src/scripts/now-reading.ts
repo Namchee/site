@@ -69,7 +69,7 @@ export async function getCurrentlyReadBooks(): Promise<Book[]> {
     }),
   });
 
-  const { data } = await response.json() as CurrentBooks;
+  const { data } = (await response.json()) as CurrentBooks;
   const { booksByReadingStateAndProfile } = data;
 
   return booksByReadingStateAndProfile.map(book => ({

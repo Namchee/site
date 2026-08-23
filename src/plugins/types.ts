@@ -8,8 +8,8 @@ export interface MarkdownFile {
         lastModified: string;
         headings: MarkdownHeading[];
         file?: string;
-      }
-    }
+      };
+    };
   };
   value: string;
 }

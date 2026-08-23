@@ -9,8 +9,8 @@ export async function GET({ site }: { site: string | URL }) {
   }
 
   return rss({
-    title: 'Namchee\'s Blog',
-    description: 'Food for thoughts or just Namchee\'s passing whims in form of writings',
+    title: "Namchee's Blog",
+    description: "Food for thoughts or just Namchee's passing whims in form of writings",
     site: site,
     items: posts.map(post => ({
       title: post.data.title,

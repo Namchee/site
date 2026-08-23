@@ -113,8 +113,8 @@ function getNavClasses(linkHref: string, currentPath: string, idx: number) {
 
   setupButton(button);
 
-  document.addEventListener('astro:before-swap', (event) => {
-    const afterSwapButton = event.newDocument.querySelector('.theme-toggle');
+  document.addEventListener('astro:before-swap', (e) => {
+    const afterSwapButton = e.newDocument.querySelector('.theme-toggle');
 
     setupButton(afterSwapButton);
   });

@@ -1,7 +1,8 @@
 ---
 import type { MarkdownFile } from '@/plugins/types';
 
-import { type CollectionEntry, getCollection, render } from 'astro:content';
+import { getCollection, render } from 'astro:content';
+import type { CollectionEntry } from 'astro:content';
 
 import Layout from '@/components/astro/layout/Layout.astro';
 import BulletItem from '@/components/astro/modules/posts/html/BulletItem.astro';

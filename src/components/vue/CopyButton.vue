@@ -23,7 +23,7 @@ function copyCode() {
   timeoutId.value = window.setTimeout(() => {
     copied.value = false;
     timeoutId.value = -1;
-  }, 2500);
+  }, 2_500);
 }
 
 onBeforeUnmount(() => {
@@ -38,7 +38,7 @@ onBeforeUnmount(() => {
     <TooltipRoot
       :open="open || copied"
       :delay-duration="100"
-      @update:open="(o) => open = o"
+      @update:open="o => (open = o)"
     >
       <TooltipTrigger as-child>
         <button
@@ -64,22 +64,18 @@ onBeforeUnmount(() => {
       <TooltipPortal>
         <TooltipContent
           :class="{
-            'text-xs rounded-md text-surface-1 shadow py-2 tooltip__content select-none px-3 will-change-[transform,opacity] transition-colors z-20': true,
+            'text-surface-1 tooltip__content z-20 rounded-md px-3 py-2 text-xs shadow transition-colors will-change-[transform,opacity] select-none': true,
             'bg-success': copied,
             'bg-heading': !copied,
           }"
           :side-offset="4"
         >
           <template v-if="!copied">
-            <slot name="before-copy-label">
-              Copy to Clipboard
-            </slot>
+            <slot name="before-copy-label"> Copy to Clipboard </slot>
           </template>
 
           <template v-else>
-            <slot name="after-copy-label">
-              Copied!
-            </slot>
+            <slot name="after-copy-label"> Copied! </slot>
           </template>
 
           <TooltipArrow

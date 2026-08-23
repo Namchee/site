@@ -1,6 +1,8 @@
+import type { HastContent } from 'satteri';
+
 import { fromHtml } from 'hast-util-from-html';
 import katex from 'katex';
-import { defineHastPlugin, type HastContent } from 'satteri';
+import { defineHastPlugin } from 'satteri';
 
 export const math = defineHastPlugin({
   name: 'math',

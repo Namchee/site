@@ -46,10 +46,10 @@ html.dark .callout__danger {
 }
 
 .mdx__ol li::before {
-  content: counters(li, ".") ". ";
+  content: counters(li, '.') '. ';
   margin-left: 0.125rem;
   margin-right: 0.5rem;
-  font-feature-settings: "tnum" 1;
+  font-feature-settings: 'tnum' 1;
 
   color: var(--accent);
   transition: color 200ms var(--default-transition-timingFunction);
@@ -61,7 +61,7 @@ html.dark .callout__danger {
 
 /* Math */
 
-.MathJax:not([display="true"]) {
+.MathJax:not([display='true']) {
   display: inline !important;
 }
 
