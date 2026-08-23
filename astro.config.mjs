@@ -9,7 +9,7 @@ import { defineConfig } from 'astro/config';
 import unocss from 'unocss/astro';
 import Icons from 'unplugin-icons/vite';
 
-import { hastPlugins } from '@/plugins/hast';
+import { hastPlugins, mdastPlugins } from '@/plugins/markdown';
 
 // https://astro.build/config
 export default defineConfig({
@@ -25,6 +25,7 @@ export default defineConfig({
   ],
   markdown: {
     processor: satteri({
+      mdastPlugins: mdastPlugins,
       hastPlugins: hastPlugins,
       features: {
         math: true,

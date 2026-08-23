@@ -5,22 +5,24 @@ import { defineHastPlugin, type HastContent } from 'satteri';
 export const math = defineHastPlugin({
   name: 'math',
   element: {
-    filter: ['pre', 'code'],
+    filter: ['code'],
     visit: (node, ctx) => {
       const meta = node.properties.className;
       if (!Array.isArray(meta) || !meta.includes('language-math')) {
         return;
       }
 
-      const displayMode = meta.includes('math-display');
-      const target = displayMode ? ctx.parent(node) : node;
+      const parent = ctx.parent(node);
+      const displayMode = parent?.type === 'element' && parent.tagName === 'pre';
 
-      if (target) {
-        const rawExpr = katex.renderToString(ctx.textContent(node), { displayMode });
-        const tree = fromHtml(rawExpr).children[0].children[1].children[0] as unknown as HastContent;
-
-        ctx.replaceNode(node, tree);
+      const tex = ctx.textContent(node);
+      const tree = fromHtml(katex.renderToString(tex, { displayMode }), { fragment: true });
+      const rendered = tree.children[0] as HastContent;
+      if (!rendered) {
+        return;
       }
+
+      ctx.replaceNode(displayMode && parent ? parent : node, rendered);
     },
   },
 });
