@@ -1,23 +1,37 @@
 ---
-interface Props {
-  id: string;
-  host?: 'https://www.x.com' | 'https://xcancel.com';
+interface Tweet {
+  id_str: string;
+  text: string;
+  user: {
+    name: string;
+    screen_name: string;
+    id: string;
+    is_blue_verified: boolean;
+    verified: string;
+    profile_image_url_https: string;
+  };
+  conversation_count: number;
+  news_action_type: string;
 }
 
-const { id, host = 'https://xcancel.com' } = Astro.props;
+interface Props {
+  id: string;
+  host?: 'https://www.x.com' | 'https://nitter.net';
+}
 
-const url = new URL('/oembed', 'https://publish.x.com/');
-url.searchParams.set('url', id);
-url.searchParams.set('dnt', 'true');
-url.searchParams.set('omit_script', 'true');
-url.searchParams.set('theme', 'light');
+const { id, host = 'https://nitter.net' } = Astro.props;
+
+const url = new URL('/tweet-result', 'https://cdn.syndication.twimg.com/');
+url.searchParams.set('id', id);
+url.searchParams.set('token', 'x');
 
 const result = await fetch(url);
-const json = await result.json();
+const meta = await result.json() as Tweet;
 
-console.log(json);
+// lacking like info, lacking view,
+console.log(meta);
 ---
 
-<div>
+<div class="mx-auto rounded-md border border-separator w-full max-w-lg">
     Test Tweet
 </div>
