@@ -54,22 +54,8 @@
         }
       ]
     },
-    "SVG": {
-      "language_servers": ["vscode-html-language-server", "emmet-language-server", "unocss-language-server", "oxfmt"],
-      "format_on_save": "on",
-      "prettier": {
-        "allowed": false
-      },
-      "formatter": [
-        {
-          "language_server": {
-            "name": "oxfmt"
-          }
-        }
-      ]
-    },
     "JavaScript": {
-      "language_servers": ["vtsls", "oxlint", "oxfmt", "unocss-language-server", "emmet-language-server"],
+      "language_servers": ["oxlint", "oxfmt", "unocss-language-server", "emmet-language-server"],
       "format_on_save": "on",
       "prettier": {
         "allowed": false
@@ -142,7 +128,7 @@
       ]
     },
     "TypeScript": {
-      "language_servers": ["vtsls", "oxlint", "oxfmt"],
+      "language_servers": ["typescript-ls", "oxlint", "oxfmt"],
       "format_on_save": "on",
       "prettier": {
         "allowed": false
@@ -156,7 +142,14 @@
       ]
     },
     "Vue.js": {
-      "language_servers": ["vue-language-server", "oxlint", "oxfmt", "unocss-language-server", "emmet-language-server"],
+      "language_servers": [
+        "vue-language-server",
+        "oxlint",
+        "oxfmt",
+        "unocss-language-server",
+        "emmet-language-server",
+        "typescript-ls"
+      ],
       "format_on_save": "on",
       "prettier": {
         "allowed": false
@@ -170,7 +163,7 @@
       ]
     },
     "Astro": {
-      "language_servers": ["astro-language-server", "oxlint", "oxfmt", "unocss-language-server"],
+      "language_servers": ["astro-language-server", "oxlint", "oxfmt", "unocss-language-server", "typescript-ls"],
       "format_on_save": "on",
       "prettier": {
         "allowed": false
