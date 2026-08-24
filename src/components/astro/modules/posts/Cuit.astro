@@ -1,0 +1,23 @@
+---
+interface Props {
+  id: string;
+  host?: 'https://www.x.com' | 'https://xcancel.com';
+}
+
+const { id, host = 'https://xcancel.com' } = Astro.props;
+
+const url = new URL('/oembed', 'https://publish.x.com/');
+url.searchParams.set('url', id);
+url.searchParams.set('dnt', 'true');
+url.searchParams.set('omit_script', 'true');
+url.searchParams.set('theme', 'light');
+
+const result = await fetch(url);
+const json = await result.json();
+
+console.log(json);
+---
+
+<div>
+    Test Tweet
+</div>

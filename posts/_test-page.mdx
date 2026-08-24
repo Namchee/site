@@ -13,6 +13,8 @@ tags:
 import Tweet from 'astro-tweet';
 import { BlueskyPost } from 'astro-embed';
 
+import Cuit from '@/components/astro/modules/posts/Cuit.astro';
+
 import DescriptionList from '@/components/astro/modules/posts/html/DescriptionList.astro';
 import DescriptionTerm from '@/components/astro/modules/posts/html/DescriptionTerm.astro';
 import DescriptionItem from '@/components/astro/modules/posts/html/DescriptionItem.astro';
@@ -94,7 +96,9 @@ Diam nisl sit volutpat est pellentesque aliquet porttitor egestas commodo. Purus
 
 Diam nisl sit volutpat est pellentesque aliquet porttitor egestas commodo. `<blockquote>` Purus vitae egestas nunc turpis urna placerat proin dui mi. Iaculis sed in dui nisl. Hendrerit odio lectus enim vitae euismod enim. Urna lorem scelerisque nunc leo nunc odio mauris sed sed. Pharetra cras aenean tincidunt morbi purus molestie. Proin lobortis senectus pretium vel. Proin lobortis senectus pretium vel.
 
-<Tweet id="1068615953989087232" />
+<Tweet id='1068615953989087232' />
+
+<Cuit id='https://x.com/brenankeller/status/1068615953989087232' />
 
 ## Testing List
 
@@ -109,7 +113,7 @@ Diam nisl sit volutpat est pellentesque aliquet porttitor egestas commodo. `<blo
 1. This is a numbered list
 2. This is another item
 
-<BlueskyPost id="https://bsky.app/profile/e18e.dev/post/3laofvnjipk25" />
+<BlueskyPost id='https://bsky.app/profile/e18e.dev/post/3laofvnjipk25' />
 
 ## Testing&nbsp;`<dd>`
 
@@ -121,6 +125,7 @@ Diam nisl sit volutpat est pellentesque aliquet porttitor egestas commodo. `<blo
     In a world that's constantly changing, staying true to your values and goals can feel like navigating through a storm. Yet, it's in those moments of uncertainty that our character is truly tested and shaped.
 
     As we move forward, let's remember that progress often lies in persistence and that even the smallest efforts contribute to something greater. Keep striving, keep growing, and always trust in your ability to adapt and succeed.
+
   </DescriptionItem>
 
   <DescriptionTerm>
