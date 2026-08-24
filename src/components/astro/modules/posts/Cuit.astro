@@ -32,6 +32,15 @@ const meta = await result.json() as Tweet;
 console.log(meta);
 ---
 
-<div class="mx-auto rounded-md border border-separator w-full max-w-lg">
-    Test Tweet
+<div class="flex flex-col mx-auto rounded-md border border-separator w-full max-w-[550px] p-4">
+    <div class="flex items-center gap-4">
+        <img src={meta.user.profile_image_url_https} class="rounded-full" />
+
+        <div>
+            <p class="font-bold">{meta.user.name}</p>
+            <p class="text-content">
+                {meta.user.screen_name}
+            </p>
+        </div>
+    </div>
 </div>
