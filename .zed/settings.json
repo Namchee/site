@@ -163,18 +163,12 @@
       ]
     },
     "Astro": {
-      "language_servers": ["astro-language-server", "oxlint", "oxfmt", "unocss-language-server", "typescript-ls"],
+      "language_servers": ["astro-language-server", "oxlint", "unocss-language-server", "typescript-ls"],
       "format_on_save": "on",
       "prettier": {
-        "allowed": false
+        "allowed": true
       },
-      "formatter": [
-        {
-          "language_server": {
-            "name": "oxfmt"
-          }
-        }
-      ]
+      "formatter": "prettier"
     }
   }
 }

@@ -11,113 +11,88 @@ import AppLink from '@/components/astro/ui/AppLink.astro';
 import TextLink from '@/components/astro/ui/TextLink.astro';
 
 const title = 'Namchee — Software Engineer';
-const description
-  = 'Namchee is a no-nonsense software engineer that is dedicated to solving real-life problems through performant and sustainable software-based solutions.';
+const description =
+  'Namchee is a no-nonsense software engineer that is dedicated to solving real-life problems through performant and sustainable software-based solutions.';
 ---
 
-<Layout title={title} description={description}>
-  <section class=":uno: gap-4 grid grid-cols-12">
+<Layout
+  title={title}
+  description={description}
+>
+  <section class=':uno: gap-4 grid grid-cols-12'>
     <Profile />
 
-    <div class=":uno: col-start-1 col-end-13 space-y-4 md:col-start-5">
+    <div class=':uno: col-start-1 col-end-13 space-y-4 md:col-start-5'>
       <p>
-        Hello, Halo, はじめまして! My name is Cristopher, or Namchee in the online
-        space. I'm a software engineer with passion of solving real-life
-        problems through <em
-          class=":uno: text-heading/80 font-semibold transition-colors">performant</em
-        > and <em class=":uno: text-heading/80 font-semibold transition-colors"
-        >sustainable</em
-        > solutions. Currently, I create practical solutions at <TextLink
-          href="https://glair.ai/"
-        >
-          GLAIR</TextLink
-        >.
+        Hello, Halo, はじめまして! My name is Cristopher, or Namchee in the online space. I'm a software engineer with
+        passion of solving real-life problems through <em class=':uno: text-heading/80 font-semibold transition-colors'
+          >performant</em
+        > and <em class=':uno: text-heading/80 font-semibold transition-colors'>sustainable</em> solutions. Currently, I create
+        practical solutions at <TextLink href='https://glair.ai/'> GLAIR</TextLink>.
       </p>
 
       <p>
-        I stumbled upon the world of code when I was searching for a way to
-        cheat at a Facebook game during my junior high school days. Although my
-        account got banned for trying to cheat, the journey serves as my first
-        step into software engineering.
+        I stumbled upon the world of code when I was searching for a way to cheat at a Facebook game during my junior
+        high school days. Although my account got banned for trying to cheat, the journey serves as my first step into
+        software engineering.
       </p>
 
       <p>
-        Outside of professional work, I love playing around new tech I have
-        discovered during my daily exploration. Whenever I feel the burnout is
-        approaching fast, you can find me playing video games with my trusty
-        little war machine or building my <TextLink href="/library"
-        >reading habit</TextLink
-        >.
+        Outside of professional work, I love playing around new tech I have discovered during my daily exploration.
+        Whenever I feel the burnout is approaching fast, you can find me playing video games with my trusty little war
+        machine or building my <TextLink href='/library'>reading habit</TextLink>.
       </p>
     </div>
   </section>
 
-  <section class=":uno: gap-4 grid grid-cols-12">
-    <h2
-      class=":uno: text-heading font-semibold col-start-1 col-end-13 transition-colors md:col-end-4"
-    >
+  <section class=':uno: gap-4 grid grid-cols-12'>
+    <h2 class=':uno: text-heading font-semibold col-start-1 col-end-13 transition-colors md:col-end-4'>
       Selected Projects
     </h2>
 
-    <div class=":uno: col-start-1 col-end-13 space-y-4 md:col-start-5">
+    <div class=':uno: col-start-1 col-end-13 space-y-4 md:col-start-5'>
       <Projects />
 
       <AppLink
-        class=":uno: arrow__link inline-flex items-center focus:text-heading hover:text-heading"
-        href="https://github.com/Namchee?tab=repositories"
+        class=':uno: arrow__link inline-flex items-center focus:text-heading hover:text-heading'
+        href='https://github.com/Namchee?tab=repositories'
       >
-        <ArrowRight class=":uno: arrow__before w-4" />
-        <span class=":uno: link__text inline-block">View all projects</span>
-        <ArrowRight
-          class=":uno: arrow__after opacity-0 w-4 -translate-x-8"
-        />
+        <ArrowRight class=':uno: arrow__before w-4' />
+        <span class=':uno: link__text inline-block'>View all projects</span>
+        <ArrowRight class=':uno: arrow__after opacity-0 w-4 -translate-x-8' />
       </AppLink>
     </div>
   </section>
 
-  <section class=":uno: gap-4 grid grid-cols-12">
-    <h2
-      class=":uno: text-heading font-semibold col-start-1 col-end-13 transition-colors md:col-end-4"
-    >
-      Recent Posts
-    </h2>
+  <section class=':uno: gap-4 grid grid-cols-12'>
+    <h2 class=':uno: text-heading font-semibold col-start-1 col-end-13 transition-colors md:col-end-4'>Recent Posts</h2>
 
-    <div class=":uno: col-start-1 col-end-13 space-y-4 md:col-start-5">
+    <div class=':uno: col-start-1 col-end-13 space-y-4 md:col-start-5'>
       <Posts />
 
       <AppLink
-        class=":uno: arrow__link inline-flex items-center focus:text-heading hover:text-heading"
-        href="/posts"
+        class=':uno: arrow__link inline-flex items-center focus:text-heading hover:text-heading'
+        href='/posts'
       >
-        <ArrowRight class=":uno: arrow__before w-4" />
-        <span class=":uno: link__text inline-block">See all posts</span>
-        <ArrowRight
-          class=":uno: arrow__after opacity-0 w-4 -translate-x-8"
-        />
+        <ArrowRight class=':uno: arrow__before w-4' />
+        <span class=':uno: link__text inline-block'>See all posts</span>
+        <ArrowRight class=':uno: arrow__after opacity-0 w-4 -translate-x-8' />
       </AppLink>
     </div>
   </section>
 
-  <section class=":uno: gap-4 grid grid-cols-12">
-    <h2
-      class=":uno: text-heading font-semibold col-start-1 col-end-13 transition-colors md:col-end-4"
-    >
-      Experiences
-    </h2>
+  <section class=':uno: gap-4 grid grid-cols-12'>
+    <h2 class=':uno: text-heading font-semibold col-start-1 col-end-13 transition-colors md:col-end-4'>Experiences</h2>
 
-    <div class=":uno: col-start-1 col-end-13 space-y-4 md:col-start-5">
+    <div class=':uno: col-start-1 col-end-13 space-y-4 md:col-start-5'>
       <Experiences />
     </div>
   </section>
 
-  <section class=":uno: gap-4 grid grid-cols-12">
-    <h2
-      class=":uno: text-heading font-semibold col-start-1 col-end-13 transition-colors md:col-end-4"
-    >
-      Now Reading
-    </h2>
+  <section class=':uno: gap-4 grid grid-cols-12'>
+    <h2 class=':uno: text-heading font-semibold col-start-1 col-end-13 transition-colors md:col-end-4'>Now Reading</h2>
 
-    <div class=":uno: col-start-1 col-end-13 space-y-4 md:col-start-5">
+    <div class=':uno: col-start-1 col-end-13 space-y-4 md:col-start-5'>
       <Books />
     </div>
   </section>

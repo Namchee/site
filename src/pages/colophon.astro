@@ -60,205 +60,176 @@ const inspirations = [
 ];
 
 const title = 'Colophon';
-const description
-  = 'A full list of resources and technologies that empowers namchee.dev';
+const description = 'A full list of resources and technologies that empowers namchee.dev';
 
 const sha = process.env.CF_PAGES_COMMIT_SHA || '418ed9f';
 ---
 
-<Layout title={title} description={description} og="og-colophon">
-  <section class=":uno: gap-4 grid grid-cols-12">
-    <div class=":uno: mb-8 col-start-1 col-end-13 md:mb-0 md:col-end-4">
-      <h1 class=":uno: text-xl text-heading font-semibold transition-colors">
-        Colophon
-      </h1>
+<Layout
+  title={title}
+  description={description}
+  og='og-colophon'
+>
+  <section class=':uno: gap-4 grid grid-cols-12'>
+    <div class=':uno: mb-8 col-start-1 col-end-13 md:mb-0 md:col-end-4'>
+      <h1 class=':uno: text-xl text-heading font-semibold transition-colors'>Colophon</h1>
 
-      <div
-        class="mt-2 flex space-x-4 space-y-0 md:mt-4 md:flex-col md:space-x-0 md:space-y-1"
-      >
+      <div class='mt-2 flex space-x-4 space-y-0 md:mt-4 md:flex-col md:space-x-0 md:space-y-1'>
         <time
-          class=":uno: flex items-center space-x-2"
-          title="Last Updated on 26 July 2025"
+          class=':uno: flex items-center space-x-2'
+          title='Last Updated on 26 July 2025'
         >
-          <History class=":uno: h-auto w-4" />
-          <span class="text-xs">26 July 2025</span>
+          <History class=':uno: h-auto w-4' />
+          <span class='text-xs'>26 July 2025</span>
         </time>
 
-        <p
-          class=":uno: font-mono flex transition-colors items-center space-x-2 focus:text-heading hover:text-heading"
-        >
-          <GitHub class=":uno: h-auto w-4" />
+        <p class=':uno: font-mono flex transition-colors items-center space-x-2 focus:text-heading hover:text-heading'>
+          <GitHub class=':uno: h-auto w-4' />
 
           <AppLink
             href={`https://github.com/Namchee/site/tree/${sha}`}
-            class="text-xs">Namchee/site#{sha.slice(0, 7)}</AppLink
+            class='text-xs'
+            >Namchee/site#{sha.slice(0, 7)}</AppLink
           >
         </p>
       </div>
     </div>
 
-    <div class=":uno: col-start-1 col-end-13 space-y-4 md:col-start-5">
+    <div class=':uno: col-start-1 col-end-13 space-y-4 md:col-start-5'>
       <p>
-        This website is statically-generated with <TextLink
-          href="https://astro.build/"
+        This website is statically-generated with <TextLink href='https://astro.build/'> Astro</TextLink> combined with <TextLink
+          href='https://vuejs.org/'
         >
-          Astro</TextLink
-        > combined with <TextLink href="https://vuejs.org/"> Vue</TextLink> in the
-        mix that empowers reactive components. Stylings are powered by <TextLink
-          href="https://unocss.dev/"
-        >
+          Vue</TextLink
+        > in the mix that empowers reactive components. Stylings are powered by <TextLink href='https://unocss.dev/'>
           UnoCSS</TextLink
         >, an on-demand atomic CSS engine.
       </p>
 
       <p>
-        Website is hosted with 100% renewable energy on <TextLink
-          href="https://pages.cloudflare.com/"
-        >
+        Website is hosted with 100% renewable energy on <TextLink href='https://pages.cloudflare.com/'>
           Cloudflare Pages</TextLink
-        >. Site analytics are powered by <TextLink href="https://umami.is/"
-        >Umami</TextLink
-        >.
+        >. Site analytics are powered by <TextLink href='https://umami.is/'>Umami</TextLink>.
       </p>
     </div>
   </section>
 
-  <section class=":uno: gap-4 grid grid-cols-12">
-    <h2
-      class=":uno: text-heading font-semibold col-start-1 col-end-13 transition-colors md:col-end-4"
-    >
-      Colors
-    </h2>
+  <section class=':uno: gap-4 grid grid-cols-12'>
+    <h2 class=':uno: text-heading font-semibold col-start-1 col-end-13 transition-colors md:col-end-4'>Colors</h2>
 
-    <div class=":uno: col-start-1 col-end-13 space-y-4 md:col-start-5">
+    <div class=':uno: col-start-1 col-end-13 space-y-4 md:col-start-5'>
       <p>
-        Color palette are extracted from <TextLink
-          href="https://www.untitledui.com/"
-        >
-          Untitled UI</TextLink
-        > design system with 2 different grays for light and dark mode.
+        Color palette are extracted from <TextLink href='https://www.untitledui.com/'> Untitled UI</TextLink> design system
+        with 2 different grays for light and dark mode.
       </p>
 
       <p>
-        To enhance user experience, dark mode colors are designed as a heavily
-        desatured version of their light mode counterpart.
+        To enhance user experience, dark mode colors are designed as a heavily desatured version of their light mode
+        counterpart.
       </p>
 
-      <div class="flex flex-col gap-4 items-center mt-8!">
-        <ColorSwatch name="gray-light" client:visible />
-        <ColorSwatch name="gray-dark" client:visible />
-        <ColorSwatch name="indigo" client:visible />
-        <ColorSwatch name="green" client:visible />
-        <ColorSwatch name="yellow" client:visible />
-        <ColorSwatch name="red" client:visible />
+      <div class='flex flex-col gap-4 items-center mt-8!'>
+        <ColorSwatch
+          name='gray-light'
+          client:visible
+        />
+        <ColorSwatch
+          name='gray-dark'
+          client:visible
+        />
+        <ColorSwatch
+          name='indigo'
+          client:visible
+        />
+        <ColorSwatch
+          name='green'
+          client:visible
+        />
+        <ColorSwatch
+          name='yellow'
+          client:visible
+        />
+        <ColorSwatch
+          name='red'
+          client:visible
+        />
       </div>
     </div>
   </section>
 
-  <section class=":uno: gap-4 grid grid-cols-12">
-    <h2
-      class=":uno: text-heading font-semibold col-start-1 col-end-13 transition-colors md:col-end-4"
-    >
-      Typography
-    </h2>
+  <section class=':uno: gap-4 grid grid-cols-12'>
+    <h2 class=':uno: text-heading font-semibold col-start-1 col-end-13 transition-colors md:col-end-4'>Typography</h2>
 
-    <div class=":uno: col-start-1 col-end-13 space-y-5 md:col-start-5">
-      <p>
-        There are 3 typefaces that are used in this website: Inter, Georgia, and
-        JetBrains Mono.
-      </p>
+    <div class=':uno: col-start-1 col-end-13 space-y-5 md:col-start-5'>
+      <p>There are 3 typefaces that are used in this website: Inter, Georgia, and JetBrains Mono.</p>
 
       <p>
-        <TextLink href="https://rsms.me/inter/">Inter</TextLink> is a neo-grosteque
-        sans-serif designed as a workhorse typeface for a wide range of applications,
-        including user interfaces. Inter is used as the main font of this website,
-        serving as the typeface body copies and headings alike.
+        <TextLink href='https://rsms.me/inter/'>Inter</TextLink> is a neo-grosteque sans-serif designed as a workhorse typeface
+        for a wide range of applications, including user interfaces. Inter is used as the main font of this website, serving
+        as the typeface body copies and headings alike.
       </p>
 
-      <p class="font-serif">
-        Georgia is a classic serif typeface, inspired by 19th-century designs and optimized by
-        Microsoft for on-screen readability. Georgia is used as the typeface for quotes in blog posts.
+      <p class='font-serif'>
+        Georgia is a classic serif typeface, inspired by 19th-century designs and optimized by Microsoft for on-screen
+        readability. Georgia is used as the typeface for quotes in blog posts.
       </p>
 
-      <p class="font-mono">
-        <TextLink href="https://www.jetbrains.com/lp/mono/">
-          JetBrains Mono</TextLink
-        > is a monospaced font created by JetBrains and distributed under SIL
-        Font License. JetBrains Mono is used in all code-related contexts.
+      <p class='font-mono'>
+        <TextLink href='https://www.jetbrains.com/lp/mono/'> JetBrains Mono</TextLink> is a monospaced font created by JetBrains
+        and distributed under SIL Font License. JetBrains Mono is used in all code-related contexts.
       </p>
     </div>
   </section>
 
-  <section class=":uno: gap-4 grid grid-cols-12">
-    <h2
-      class=":uno: text-heading font-semibold col-start-1 col-end-13 transition-colors md:col-end-4"
-    >
-      Visuals
-    </h2>
+  <section class=':uno: gap-4 grid grid-cols-12'>
+    <h2 class=':uno: text-heading font-semibold col-start-1 col-end-13 transition-colors md:col-end-4'>Visuals</h2>
 
-    <div class=":uno: col-start-1 col-end-13 space-y-5 md:col-start-5">
+    <div class=':uno: col-start-1 col-end-13 space-y-5 md:col-start-5'>
       <p>
-        Most of the images on my posts are taken from various sources with
-        attribution that can be found under the image. Diagrams are made with
-        <TextLink href="https://mermaid.js.org/">Mermaid</TextLink> and <TextLink
-          href="https://excalidraw.com/">Excalidraw</TextLink
+        Most of the images on my posts are taken from various sources with attribution that can be found under the
+        image. Diagrams are made with
+        <TextLink href='https://mermaid.js.org/'>Mermaid</TextLink> and <TextLink href='https://excalidraw.com/'
+          >Excalidraw</TextLink
         >.
       </p>
 
       <p>
-        <TextLink href="https://upscayl.org/">Upscayl</TextLink> is used to improve the clarity of
-        all screenshotted images with a resolution below 1440x1080 pixels.
+        <TextLink href='https://upscayl.org/'>Upscayl</TextLink> is used to improve the clarity of all screenshotted images
+        with a resolution below 1440x1080 pixels.
       </p>
 
       <p>
-        Icons are handpicked from the combination of <TextLink
-          href="https://lucide.dev/"
-        >
-          Lucide</TextLink
-        > for the general UI icons and <TextLink
-          href="https://simpleicons.org/"
-        >
-          Simple Icons</TextLink
-        > for all brand icons, both of which are available through <TextLink
-          href="https://iconify.design/"
-        >
-          Iconify</TextLink
-        >.
+        Icons are handpicked from the combination of <TextLink href='https://lucide.dev/'> Lucide</TextLink> for the general
+        UI icons and <TextLink href='https://simpleicons.org/'> Simple Icons</TextLink> for all brand icons, both of which
+        are available through <TextLink href='https://iconify.design/'> Iconify</TextLink>.
       </p>
 
       <p>
         Theme switcher are directly extracted from
-        <TextLink href="https://toggles.dev/">toggles.dev</TextLink>.
+        <TextLink href='https://toggles.dev/'>toggles.dev</TextLink>.
       </p>
     </div>
   </section>
 
-  <section class=":uno: gap-4 grid grid-cols-12">
-    <h2
-      class=":uno: text-heading font-semibold col-start-1 col-end-13 transition-colors md:col-end-4"
-    >
-      Inspirations
-    </h2>
+  <section class=':uno: gap-4 grid grid-cols-12'>
+    <h2 class=':uno: text-heading font-semibold col-start-1 col-end-13 transition-colors md:col-end-4'>Inspirations</h2>
 
-    <div class=":uno: col-start-1 col-end-13 space-y-4 md:col-start-5">
+    <div class=':uno: col-start-1 col-end-13 space-y-4 md:col-start-5'>
       <p>
-        The design of this website is influenced by multiple sources I stumbled
-        upon. Below is the list of inspirations that influences this website in
-        no particular order:
+        The design of this website is influenced by multiple sources I stumbled upon. Below is the list of inspirations
+        that influences this website in no particular order:
       </p>
 
-      <ul class=":uno: gap-x-4 gap-y-2 grid grid-cols-1 sm:grid-cols-2">
+      <ul class=':uno: gap-x-4 gap-y-2 grid grid-cols-1 sm:grid-cols-2'>
         {
           inspirations.map(inspiration => (
             <li>
               <AppLink
                 href={inspiration.href}
-                class=":uno: group text-heading/80 font-medium inline-flex transition-colors items-center space-x-1 focus:text-heading hover:text-heading"
+                class=':uno: group text-heading/80 font-medium inline-flex transition-colors items-center space-x-1 focus:text-heading hover:text-heading'
               >
                 <span>{inspiration.name}</span>
-                <ArrowUpRight
-                  class=":uno: text-heading/50 h-auto w-4 transition-all group-focus:text-heading group-hover:text-heading group-focus:rotate-45 group-hover:rotate-45"
-                />
+                <ArrowUpRight class=':uno: text-heading/50 h-auto w-4 transition-all group-focus:text-heading group-hover:text-heading group-focus:rotate-45 group-hover:rotate-45' />
               </AppLink>
             </li>
           ))
@@ -267,27 +238,20 @@ const sha = process.env.CF_PAGES_COMMIT_SHA || '418ed9f';
     </div>
   </section>
 
-  <section class=":uno: gap-4 grid grid-cols-12">
-    <h2
-      class=":uno: text-heading font-semibold col-start-1 col-end-13 transition-colors md:col-end-4"
-    >
-      Open Source
-    </h2>
+  <section class=':uno: gap-4 grid grid-cols-12'>
+    <h2 class=':uno: text-heading font-semibold col-start-1 col-end-13 transition-colors md:col-end-4'>Open Source</h2>
 
-    <div class=":uno: col-start-1 col-end-13 space-y-4 md:col-start-5">
+    <div class=':uno: col-start-1 col-end-13 space-y-4 md:col-start-5'>
       <p>
-        This website is open-sourced and licensed under <TextLink href="https://mit-license.org/">MIT License</TextLink> on my <TextLink
-          href="https://www.github.com/Namchee/site"
-        >
-          GitHub</TextLink
-        >. Blog posts are licensed under <TextLink href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY 4.0</TextLink>.
+        This website is open-sourced and licensed under <TextLink href='https://mit-license.org/'>MIT License</TextLink> on
+        my <TextLink href='https://www.github.com/Namchee/site'> GitHub</TextLink>. Blog posts are licensed under <TextLink
+          href='https://creativecommons.org/licenses/by-nc-sa/4.0/'>CC BY 4.0</TextLink
+        >.
       </p>
 
       <p>
         If you find a bug on this site or want to submit a feedback, feel free to create an
-        <TextLink href="https://github.com/Namchee/site/issues">
-          issue</TextLink
-        > on the repository.
+        <TextLink href='https://github.com/Namchee/site/issues'> issue</TextLink> on the repository.
       </p>
     </div>
   </section>
