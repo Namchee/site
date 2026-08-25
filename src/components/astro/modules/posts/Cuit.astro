@@ -1,13 +1,16 @@
 ---
 import AppLink from '../../ui/AppLink.astro';
 import TextLink from '../../ui/TextLink.astro';
+import Heart from '@/components/astro/icons/Heart.astro';
 
 interface Tweet {
   id_str: string;
   text: string;
+  created_at: string;
   user: {
     name: string;
     screen_name: string;
+    profile_image_shape: string;
     id: string;
     is_blue_verified: boolean;
     verified: boolean;
@@ -38,14 +41,16 @@ url.searchParams.set('token', 'x');
 const result = await fetch(url);
 const meta = await result.json() as Tweet;
 
+const numberFormatter = new Intl.NumberFormat('en-US', { style: 'decimal', notation: 'compact', compactDisplay: 'short' });
+
 // lacking like info, lacking view,
-// console.log(meta);
+console.log(meta);
 ---
 
-<div class="flex flex-col mx-auto rounded-lg border border-separator w-full max-w-[550px] p-4">
+<div class="flex flex-col gap-3 mx-auto rounded-lg border border-separator w-full max-w-[550px] p-4">
     <div class="flex items-center gap-2">
         <AppLink title={`View Profile on ${HostLabelMap[host]}`} href={`${host}/${meta.user.screen_name}`}>
-            <img src={meta.user.profile_image_url_https} class="rounded-full hover:brightness-90 transition-all" />
+          <img src={meta.user.profile_image_url_https} class:list={["hover:brightness-90 transition-all", { 'rounded-lg': meta.user.profile_image_shape === 'Square', 'rounded-full': meta.user.profile_image_shape !== 'Square' }]} />
         </AppLink>
 
         <div class="flex flex-col gap-1">
@@ -59,7 +64,7 @@ const meta = await result.json() as Tweet;
             </div>
 
             <div class="flex gap-1 items-center leading-none">
-                <AppLink title={`View Profile on ${HostLabelMap[host]}`} href={`${host}/${meta.user.screen_name}`} class="text-content/70  text-sm">
+                <AppLink title={`View Profile on ${HostLabelMap[host]}`} href={`${host}/${meta.user.screen_name}`} class="text-content/70 text-sm">
                     @{meta.user.screen_name}
                 </AppLink>
 
@@ -71,4 +76,41 @@ const meta = await result.json() as Tweet;
             </div>
         </div>
     </div>
+
+    <p class="leading-snug whitespace-pre-wrap text-lg dark:text-heading">
+        {meta.text}
+    </p>
+
+    <div class="flex items-center justify-between text-sm text-content/70">
+        <div class="flex gap-1 items-center leading-none">
+            <span>
+                {new Date(meta.created_at).toLocaleString('en-US', {
+                hour: '2-digit',
+                minute: '2-digit'
+                })}
+            </span>
+
+            &middot;
+
+            <span>
+                {new Date(meta.created_at).toLocaleString('en-US', {
+                day: 'numeric',
+                month: 'short',
+                year: 'numeric'
+                })}
+            </span>
+        </div>
+    </div>
+
+    <div class="h-px w-full border border-separator/50"></div>
+
+    <div>
+        <div>
+            <Heart class="size-4 text-twitter-red"></Heart>
+        </div>
+    </div>
+
+    <AppLink href={`${host}/${meta.user.screen_name}/status/${meta.id_str}`} class="grid place-items-center hover:bg-twitter-blue/10 transition-colors text-twitter-blue border border-separator text-sm font-semibold rounded-full py-1">
+        Read {numberFormatter.format(meta.conversation_count)} replies
+    </AppLink>
 </div>
