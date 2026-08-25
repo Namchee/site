@@ -45,6 +45,12 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width" />
+    <!--
+      Needed so embedded tweet videos play: video.twimg.com returns 403 when the
+      request carries this site's Referer. Element-level referrerpolicy is ignored
+      by Safari/WebKit, so only a document-level policy reliably strips it.
+    -->
+    <meta name="referrer" content="no-referrer" />
     <link rel="manifest" href="/manifest.webmanifest" />
     <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
     <link rel="icon" href="/favicon.ico" sizes="any" />

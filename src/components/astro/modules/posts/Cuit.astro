@@ -43,13 +43,10 @@ export interface TweetVideoVariant {
 }
 
 interface TweetVideo {
-  aspectRatio: {
-    numerator: number;
-    denominator: number;
-  };
+  aspectRatio: [number, number];
   contentType: string;
   durationMs?: number;
-  mediaUrl: string;
+  poster: string;
   variants: TweetVideoVariant[];
 }
 
@@ -112,7 +109,21 @@ if (isLimited) {
 
 const Icon = HostIconMap[host];
 
-console.log(meta);
+// The syndication API does not expose a single `mediaUrl`. It returns a list of
+// variants keyed by MIME type, plus a `poster`. The first variant is always HLS
+// (.m3u8), which a native <video> tag cannot play, so we pick the highest-
+// resolution MP4 instead.
+//
+// NOTE: video.twimg.com applies Referer-based hotlink protection — it returns
+// 403 for requests whose Referer is this site. The <video> element therefore
+// must set referrerpolicy="no-referrer" so the browser omits the Referer header.
+const videoUrl = meta.video?.variants
+  .filter((variant) => variant.type === 'video/mp4')
+  .sort((a, b) => {
+    const widthA = Number(/\/vid\/[^/]+\/(\d+)x\d+/.exec(a.src)?.[1] ?? 0);
+    const widthB = Number(/\/vid\/[^/]+\/(\d+)x\d+/.exec(b.src)?.[1] ?? 0);
+    return widthB - widthA;
+  })[0]?.src;
 ---
 
 <div class='relative flex flex-col mx-auto rounded-lg border border-separator w-full max-w-[550px] p-4'>
@@ -237,6 +248,19 @@ console.log(meta);
           </AppLink>
         ))}
       </div>
+    )
+  }
+
+  {
+    meta.video && (
+      <video
+        src={videoUrl}
+        poster={meta.video.poster}
+        controls
+        referrerpolicy='no-referrer'
+        class='w-full mb-3 rounded-2xl bg-black'
+        style={`aspect-ratio: ${meta.video.aspectRatio[0]} / ${meta.video.aspectRatio[1]}`}
+      />
     )
   }
 
