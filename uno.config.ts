@@ -65,6 +65,7 @@ export default defineConfig({
         red: 'var(--twitter-red)',
         gold: 'var(--twitter-gold)',
         gray: 'var(--twitter-gray)',
+        green: 'var(--twitter-green)',
       },
     },
   },

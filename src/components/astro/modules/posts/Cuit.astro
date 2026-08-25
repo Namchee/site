@@ -1,11 +1,14 @@
 ---
-import AppLink from '../../ui/AppLink.astro';
-import TextLink from '../../ui/TextLink.astro';
 import Heart from '@/components/astro/icons/Heart.astro';
+import AppLink from '../../ui/AppLink.astro';
+import Reply from '../../icons/Reply.astro';
+import Chain from '../../icons/Chain.astro';
+import Check from '../../icons/Check.astro';
 
 interface Tweet {
   id_str: string;
   text: string;
+  favorite_count: number;
   created_at: string;
   user: {
     name: string;
@@ -41,14 +44,14 @@ url.searchParams.set('token', 'x');
 const result = await fetch(url);
 const meta = await result.json() as Tweet;
 
-const numberFormatter = new Intl.NumberFormat('en-US', { style: 'decimal', notation: 'compact', compactDisplay: 'short' });
+const numberFormatter = new Intl.NumberFormat('en-US', { style: 'decimal', notation: 'compact', compactDisplay: 'short', minimumFractionDigits: 0, maximumFractionDigits: 1 });
 
 // lacking like info, lacking view,
 console.log(meta);
 ---
 
-<div class="flex flex-col gap-3 mx-auto rounded-lg border border-separator w-full max-w-[550px] p-4">
-    <div class="flex items-center gap-2">
+<div class="flex flex-col mx-auto rounded-lg border border-separator w-full max-w-[550px] p-4">
+    <div class="flex items-center gap-2 mb-3">
         <AppLink title={`View Profile on ${HostLabelMap[host]}`} href={`${host}/${meta.user.screen_name}`}>
           <img src={meta.user.profile_image_url_https} class:list={["hover:brightness-90 transition-all", { 'rounded-lg': meta.user.profile_image_shape === 'Square', 'rounded-full': meta.user.profile_image_shape !== 'Square' }]} />
         </AppLink>
@@ -77,11 +80,11 @@ console.log(meta);
         </div>
     </div>
 
-    <p class="leading-snug whitespace-pre-wrap text-lg dark:text-heading">
+    <p class="leading-snug whitespace-pre-wrap text-lg dark:text-heading mb-3">
         {meta.text}
     </p>
 
-    <div class="flex items-center justify-between text-sm text-content/70">
+    <div class="flex items-center justify-between text-sm text-content/70 mb-3">
         <div class="flex gap-1 items-center leading-none">
             <span>
                 {new Date(meta.created_at).toLocaleString('en-US', {
@@ -102,11 +105,32 @@ console.log(meta);
         </div>
     </div>
 
-    <div class="h-px w-full border border-separator/50"></div>
+    <div class="h-px w-full border border-separator/50 mb-[6px]"></div>
 
-    <div>
-        <div>
-            <Heart class="size-4 text-twitter-red"></Heart>
+    <div class="mb-[6px]">
+        <div class="flex items-center gap-2">
+            <AppLink title="Like this Tweet" class="flex items-center group gap-0.5" href={`https://x.com/intent/like?tweet_id=${meta.id_str}`}>
+                <div class="p-[6px] rounded-full bg-transparent group-hover:bg-twitter-red/10 transition-colors">
+                    <Heart class="size-4 text-twitter-red" />
+                </div>
+                <span class="font-semibold text-sm underline underline-offset-2 underline-transparent group-hover:underline-twitter-red transition-colors group-hover:text-twitter-red">{numberFormatter.format(meta.favorite_count)}</span>
+            </AppLink>
+
+            <AppLink title="Reply this Tweet" class="flex items-center group gap-0.5" href={`https://x.com/intent/tweet?in_reply_to=${meta.id_str}`}>
+                <div class="p-[6px] rounded-full bg-transparent group-hover:bg-twitter-blue/10 transition-colors">
+                    <Reply class="size-4 fill-twitter-blue stroke-twitter-blue" />
+                </div>
+                <span class="font-semibold text-sm underline underline-offset-2 underline-transparent group-hover:underline-twitter-blue transition-colors group-hover:text-twitter-blue">Reply</span>
+            </AppLink>
+
+            <button class="flex items-center group gap-0.5 copy__tweet" data-tweet={`${host}/${meta.user.screen_name}/status/${meta.id_str}`}>
+                <div class="p-[6px] rounded-full bg-transparent group-hover:bg-twitter-green/10 !group-disabled:bg-transparent transition-colors">
+                    <Chain class="size-4 stroke-content group-hover:stroke-twitter-green transition-colors chain !group-disabled:stroke-content" />
+                    <Check class="size-4 hidden check" />
+                </div>
+
+                <span class="font-semibold text-sm underline underline-offset-2 underline-transparent group-hover:underline-twitter-green transition-colors group-hover:text-twitter-green !group-disabled:text-content !group-disabled:underline-transparent">Copy Link</span>
+            </button>
         </div>
     </div>
 
@@ -114,3 +138,36 @@ console.log(meta);
         Read {numberFormatter.format(meta.conversation_count)} replies
     </AppLink>
 </div>
+
+<script>
+  const buttons = document.querySelectorAll('.copy__tweet');
+
+  for (const b of buttons) {
+    const button = b as HTMLButtonElement;
+
+    button.addEventListener('click', async () => {
+      const tweet = button.dataset.tweet;
+      const chain = button.querySelector('.chain');
+      const check = button.querySelector('.check');
+      const text = button.querySelector('span');
+
+      if (!navigator.clipboard || !tweet || !chain || !check || !text) {
+        return;
+      }
+
+      await navigator.clipboard.writeText(tweet);
+
+      text.textContent = 'Copied!';
+      chain.classList.toggle('hidden');
+      check.classList.toggle('hidden');
+      button.disabled = true;
+
+      setTimeout(() => {
+        text.textContent = 'Copy Link';
+        chain.classList.toggle('hidden');
+        check.classList.toggle('hidden');
+        button.disabled = false;
+      }, 2_500);
+    });
+  }
+</script>
