@@ -76,4 +76,9 @@
   --red-800: oklch(0.4322 0.15 28.99);
   --red-900: oklch(0.3975 0.1183 31.52);
   --red-950: oklch(0.3046 0.0952 31.72);
+
+  --twitter-blue: oklch(0.682 0.158 243.354);
+  --twitter-red: oklch(0.63 0.258 4.67);
+  --twitter-gold: oklch(0.739 0.161 85.8);
+  --twitter-gray: oklch(0.669 0.035 231.2);
 }

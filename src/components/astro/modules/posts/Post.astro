@@ -27,6 +27,8 @@ interface Props {
 
 const { frontmatter } = Astro.props;
 
+console.log(frontmatter);
+
 const publishedAt = frontmatter.publishedAt;
 const lastModified = frontmatter.lastModified || publishedAt;
 ---
