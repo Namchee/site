@@ -7,6 +7,8 @@ import Chain from '@/components/astro/icons/Chain.astro';
 import Check from '@/components/astro/icons/Check.astro';
 import X from '@/components/astro/icons/X.astro';
 import Nitter from '@/components/astro/icons/Nitter.astro';
+import Play from '@/components/astro/icons/Play.astro';
+import Info from '@/components/astro/icons/Info.astro';
 
 interface TweetUser {
   name: string;
@@ -68,18 +70,18 @@ interface Tweet {
 
 interface Props {
   id: string;
-  host?: 'https://www.x.com' | 'https://nitter.net' | 'https://xcancel.com';
+  host?: 'https://x.com' | 'https://nitter.net' | 'https://xcancel.com';
 }
 
-const { id, host = 'https://xcancel.com' } = Astro.props;
+const { id, host = 'https://x.com' } = Astro.props;
 
 const HostLabelMap = {
-  'https://www.x.com': 'X',
+  'https://x.com': 'X',
   'https://nitter.net': 'Nitter',
   'https://xcancel.com': 'XCancel',
 };
 const HostIconMap = {
-  'https://www.x.com': X,
+  'https://x.com': X,
   'https://nitter.net': Nitter,
   'https://xcancel.com': Nitter,
 };
@@ -118,7 +120,7 @@ const Icon = HostIconMap[host];
 // 403 for requests whose Referer is this site. The <video> element therefore
 // must set referrerpolicy="no-referrer" so the browser omits the Referer header.
 const videoUrl = meta.video?.variants
-  .filter((variant) => variant.type === 'video/mp4')
+  .filter(variant => variant.type === 'video/mp4')
   .sort((a, b) => {
     const widthA = Number(/\/vid\/[^/]+\/(\d+)x\d+/.exec(a.src)?.[1] ?? 0);
     const widthB = Number(/\/vid\/[^/]+\/(\d+)x\d+/.exec(b.src)?.[1] ?? 0);
@@ -239,7 +241,7 @@ const videoUrl = meta.video?.variants
                 'row-span-2': meta.photos?.length === 3 && i === 0,
               },
             ]}
-            href={`https:/x.com/${meta.user.screen_name}/status/${meta.id_str}/photo/${i + 1}`}
+            href={`https://x.com/${meta.user.screen_name}/status/${meta.id_str}/photo/${i + 1}`}
           >
             <img
               src={p.url}
@@ -253,20 +255,34 @@ const videoUrl = meta.video?.variants
 
   {
     meta.video && (
-      <video
-        src={videoUrl}
-        poster={meta.video.poster}
-        controls
-        referrerpolicy='no-referrer'
-        class='w-full mb-3 rounded-2xl bg-black'
-        style={`aspect-ratio: ${meta.video.aspectRatio[0]} / ${meta.video.aspectRatio[1]}`}
-      />
+      <div class='relative grid place-items-center'>
+        <video
+          src={videoUrl}
+          poster={meta.video.poster}
+          referrerpolicy='no-referrer'
+          class='w-full mb-[6px] rounded-2xl bg-black col-start-1 row-start-1'
+          style={`aspect-ratio: ${meta.video.aspectRatio[0]} / ${meta.video.aspectRatio[1]}`}
+        />
+
+        <button class='size-16 col-start-1 row-start-1 z-10 bg-twitter-blue rounded-full border-4 grid place-items-center border-white hover:brightness-90 transition-all cursor-pointer play__button'>
+          <Play class='size-8 fill-white stroke-white' />
+        </button>
+
+        {host === 'https://x.com' && (
+          <AppLink
+            class='absolute z-10 top-4 right-4 bg-black/25 hover:brightness-105 transition-all backdrop-blur-sm text-sm text-white py-2 px-4 font-semibold rounded-full text-sm'
+            href={`${host}/${meta.user.screen_name}/status/${meta.id_str}`}
+          >
+            Watch on X
+          </AppLink>
+        )}
+      </div>
     )
   }
 
   {
     meta.quoted_tweet && (
-      <div class='p-2 border border-separator rounded-lg mb-3 hover:bg-surface-1 transition-colors'>
+      <div class='p-2 border border-separator rounded-lg mb-[6px] hover:bg-surface-1 transition-colors'>
         <div class='leading-none flex gap-2 items-center mb-1'>
           <AppLink
             href={`${host}/${meta.quoted_tweet.user}`}
@@ -338,29 +354,37 @@ const videoUrl = meta.video?.variants
     )
   }
 
-  <div class='flex items-center justify-between text-sm text-content/70 mb-3'>
-    <div class='flex gap-1 items-center leading-none'>
-      <span>
-        {
-          new Date(meta.created_at).toLocaleString('en-US', {
-            hour: '2-digit',
-            minute: '2-digit',
-          })
-        }
-      </span>
+  <div class='flex items-center justify-between text-sm text-content/70 mb-[6px]'>
+    <AppLink
+      href={`${host}/${meta.user.screen_name}/status/${meta.id_str}`}
+      class='underline underline-offset-2 underline-transparent hover:underline-content/70 transition-colors leading-none'
+    >
+      {
+        new Date(meta.created_at).toLocaleString('en-US', {
+          hour: '2-digit',
+          minute: '2-digit',
+        })
+      }
+      &#8239;&middot;&#8239;
+      {
+        new Date(meta.created_at).toLocaleString('en-US', {
+          day: 'numeric',
+          month: 'short',
+          year: 'numeric',
+        })
+      }
+    </AppLink>
 
-      &middot;
-
-      <span>
-        {
-          new Date(meta.created_at).toLocaleString('en-US', {
-            day: 'numeric',
-            month: 'short',
-            year: 'numeric',
-          })
-        }
-      </span>
-    </div>
+    {
+      host === 'https://x.com' && (
+        <AppLink
+          href='https://help.x.com/en/x-for-websites-ads-info-and-privacy'
+          class='group hover:bg-twitter-blue/10 p-[6px] rounded-full transition-colors'
+        >
+          <Info class='size-4 text-content/70 group-hover:text-twitter-blue transition-colors' />
+        </AppLink>
+      )
+    }
   </div>
 
   <div class='h-px w-full border border-separator/50 mb-[6px]'></div>
@@ -433,6 +457,7 @@ const videoUrl = meta.video?.variants
 
 <script>
   const buttons = document.querySelectorAll('.copy__tweet');
+  const playButtons = document.querySelectorAll('.play__button');
 
   for (const b of buttons) {
     const button = b as HTMLButtonElement;
@@ -461,5 +486,26 @@ const videoUrl = meta.video?.variants
         button.disabled = false;
       }, 2_500);
     });
+
+    for (const pb of playButtons) {
+      pb.addEventListener('click', () => {
+        const playButton = pb as HTMLButtonElement;
+        const par = pb.parentElement;
+        if (!par) {
+          return;
+        }
+
+        const vid = par.querySelector('video');
+        if (!vid) {
+          return;
+        }
+
+        vid.setAttribute('controls', 'true');
+        vid.play();
+
+        playButton.style.opacity = '0';
+        playButton.style.pointerEvents = 'none';
+      });
+    }
   }
 </script>
