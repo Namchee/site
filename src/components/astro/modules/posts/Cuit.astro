@@ -11,6 +11,7 @@ import X from '@/components/astro/icons/X.astro';
 import Nitter from '@/components/astro/icons/Nitter.astro';
 import Play from '@/components/astro/icons/Play.astro';
 import Info from '@/components/astro/icons/Info.astro';
+import QuotedCuit from './QuotedCuit.astro';
 
 interface Props {
   id: string;
@@ -218,75 +219,10 @@ const videoUrl = meta.video?.variants
 
   {
     meta.quoted_tweet && (
-      <div class='p-2 border border-separator rounded-lg mb-[6px] hover:bg-surface-1 transition-colors'>
-        <div class='leading-none flex gap-2 items-center mb-1'>
-          <AppLink
-            href={`${host}/${meta.quoted_tweet.user}`}
-            class='shrink-0'
-          >
-            <img
-              src={meta.quoted_tweet.user.profile_image_url_https}
-              class:list={[
-                'hover:brightness-90 transition-all size-6',
-                {
-                  'rounded-lg': meta.quoted_tweet.user.profile_image_shape === 'Square',
-                  'rounded-full': meta.quoted_tweet.user.profile_image_shape !== 'Square',
-                },
-              ]}
-            />
-          </AppLink>
-
-          <div class='flex leading-none items-center'>
-            <AppLink
-              href={`${host}/${meta.quoted_tweet.user}`}
-              class='text-sm font-semibold text-heading underline underline-offset-2 underline-transparent hover:underline-heading transition-colors mr-0.5'
-            >
-              {meta.quoted_tweet.user.name}
-            </AppLink>
-            {(meta.quoted_tweet.user.is_blue_verified || meta.quoted_tweet.user.verified) && (
-              <svg
-                xmlns='http://www.w3.org/2000/svg'
-                viewBox='0 0 24 24'
-                width='18'
-                height='18'
-                class='shrink-0'
-              >
-                <path
-                  class:list={[
-                    {
-                      'fill-twitter-gold': meta.quoted_tweet.user.verified_type === 'Business',
-                      'fill-twitter-gray': meta.quoted_tweet.user.verified_type === 'Government',
-                      'fill-twitter-blue': !['Business', 'Government'].includes(meta.user.verified_type),
-                    },
-                  ]}
-                  d='M22.25 12c0-1.43-.88-2.67-2.19-3.19.46-1.39.1-2.9-1-3.8-1.09-.9-2.61-1.06-3.8-.46C14.67 3.23 13.43 2.35 12 2.35s-2.67.88-3.19 2.19c-1.39-.46-2.9-.1-3.8 1-1 1.09-1.06 2.61-.46 3.8C3.23 9.93 2.35 11.17 2.35 12.6s.88 2.67 2.19 3.19c-.46 1.39-.1 2.9 1 3.8 1.09.9 2.61 1.06 3.8.46 1.02 1.32 2.26 2.2 3.69 2.2s2.67-.88 3.19-2.19c1.39.46 2.9.1 3.8-1 1-1.09 1.06-2.61.46-3.8 1.31-.52 2.19-1.76 2.19-3.19z'
-                />
-                <path
-                  class='fill-background'
-                  d='M9.9 16.25l-3.3-3.3 1.4-1.4 1.9 1.9 6.3-6.3 1.4 1.4z'
-                />
-              </svg>
-            )}
-            <AppLink
-              title={`View Profile on ${HostLabelMap[host]}`}
-              href={`${host}/${meta.quoted_tweet.user.screen_name}`}
-              class='text-content/70 text-sm leading-none mx-1'
-            >
-              @{meta.quoted_tweet.user.screen_name}
-            </AppLink>
-            &middot;
-            <span class='text-content/70 text-sm leading-none ml-1'>
-              {new Date(meta.quoted_tweet.created_at).toLocaleString('en-US', {
-                day: 'numeric',
-                month: 'short',
-                year: 'numeric',
-              })}
-            </span>
-          </div>
-        </div>
-
-        <p class='leading-snug whitespace-pre-wrap text-sm dark:text-heading'>{meta.quoted_tweet.text}</p>
-      </div>
+      <QuotedCuit
+        tweet={meta.quoted_tweet}
+        host={host}
+      />
     )
   }
 
@@ -432,6 +368,7 @@ const videoUrl = meta.video?.variants
         }
 
         const vid = par.querySelector('video');
+        const watchOn = par.querySelector('a');
         if (!vid) {
           return;
         }
@@ -441,6 +378,24 @@ const videoUrl = meta.video?.variants
 
         playButton.style.opacity = '0';
         playButton.style.pointerEvents = 'none';
+
+        if (watchOn) {
+          watchOn.style.opacity = '0';
+          watchOn.style.pointerEvents = 'none';
+
+          vid.addEventListener('pause', () => {
+            if (!vid.ended) {
+              watchOn.textContent = 'Continue watching on X';
+              watchOn.style.opacity = '1';
+              watchOn.style.pointerEvents = 'auto';
+            }
+          });
+
+          vid.addEventListener('play', () => {
+            watchOn.style.opacity = '0';
+            watchOn.style.pointerEvents = 'none';
+          });
+        }
       });
     }
   }

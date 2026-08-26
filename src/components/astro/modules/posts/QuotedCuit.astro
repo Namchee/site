@@ -1,6 +1,7 @@
 ---
-import type { Tweet } from '@/types/tweet';
 import AppLink from '@/components/astro/ui/AppLink.astro';
+
+import type { Tweet } from '@/types/tweet';
 
 interface Props {
   tweet: Tweet;
@@ -10,19 +11,19 @@ interface Props {
 const { tweet, host } = Astro.props;
 ---
 
-<div class='p-2 border border-separator rounded-lg mb-[6px] hover:bg-surface-1 transition-colors'>
+<div class='p-2 border border-separator rounded-lg mb-[6px] transition-colors'>
   <div class='leading-none flex gap-2 items-center mb-1'>
     <AppLink
-      href={`${host}/${tweet.user}`}
+      href={`${host}/${tweet.user.screen_name}`}
       class='shrink-0'
     >
       <img
-        src={meta.quoted_tweet.user.profile_image_url_https}
+        src={tweet.user.profile_image_url_https}
         class:list={[
           'hover:brightness-90 transition-all size-6',
           {
-            'rounded-lg': meta.quoted_tweet.user.profile_image_shape === 'Square',
-            'rounded-full': meta.quoted_tweet.user.profile_image_shape !== 'Square',
+            'rounded-lg': tweet.user.profile_image_shape === 'Square',
+            'rounded-full': tweet.user.profile_image_shape !== 'Square',
           },
         ]}
       />
@@ -30,13 +31,13 @@ const { tweet, host } = Astro.props;
 
     <div class='flex leading-none items-center'>
       <AppLink
-        href={`${host}/${meta.quoted_tweet.user}`}
+        href={`${host}/${tweet.user.screen_name}`}
         class='text-sm font-semibold text-heading underline underline-offset-2 underline-transparent hover:underline-heading transition-colors mr-0.5'
       >
-        {meta.quoted_tweet.user.name}
+        {tweet.user.name}
       </AppLink>
       {
-        (meta.quoted_tweet.user.is_blue_verified || meta.quoted_tweet.user.verified) && (
+        (tweet.user.is_blue_verified || tweet.user.verified) && (
           <svg
             xmlns='http://www.w3.org/2000/svg'
             viewBox='0 0 24 24'
@@ -47,9 +48,9 @@ const { tweet, host } = Astro.props;
             <path
               class:list={[
                 {
-                  'fill-twitter-gold': meta.quoted_tweet.user.verified_type === 'Business',
-                  'fill-twitter-gray': meta.quoted_tweet.user.verified_type === 'Government',
-                  'fill-twitter-blue': !['Business', 'Government'].includes(meta.user.verified_type),
+                  'fill-twitter-gold': tweet.user.verified_type === 'Business',
+                  'fill-twitter-gray': tweet.user.verified_type === 'Government',
+                  'fill-twitter-blue': !['Business', 'Government'].includes(tweet.user.verified_type),
                 },
               ]}
               d='M22.25 12c0-1.43-.88-2.67-2.19-3.19.46-1.39.1-2.9-1-3.8-1.09-.9-2.61-1.06-3.8-.46C14.67 3.23 13.43 2.35 12 2.35s-2.67.88-3.19 2.19c-1.39-.46-2.9-.1-3.8 1-1 1.09-1.06 2.61-.46 3.8C3.23 9.93 2.35 11.17 2.35 12.6s.88 2.67 2.19 3.19c-.46 1.39-.1 2.9 1 3.8 1.09.9 2.61 1.06 3.8.46 1.02 1.32 2.26 2.2 3.69 2.2s2.67-.88 3.19-2.19c1.39.46 2.9.1 3.8-1 1-1.09 1.06-2.61.46-3.8 1.31-.52 2.19-1.76 2.19-3.19z'
@@ -62,16 +63,15 @@ const { tweet, host } = Astro.props;
         )
       }
       <AppLink
-        title={`View Profile on ${HostLabelMap[host]}`}
-        href={`${host}/${meta.quoted_tweet.user.screen_name}`}
+        href={`${host}/${tweet.user.screen_name}`}
         class='text-content/70 text-sm leading-none mx-1'
       >
-        @{meta.quoted_tweet.user.screen_name}
+        @{tweet.user.screen_name}
       </AppLink>
       &middot;
       <span class='text-content/70 text-sm leading-none ml-1'>
         {
-          new Date(meta.quoted_tweet.created_at).toLocaleString('en-US', {
+          new Date(tweet.created_at).toLocaleString('en-US', {
             day: 'numeric',
             month: 'short',
             year: 'numeric',
@@ -81,5 +81,5 @@ const { tweet, host } = Astro.props;
     </div>
   </div>
 
-  <p class='leading-snug whitespace-pre-wrap text-sm dark:text-heading'>{meta.quoted_tweet.text}</p>
+  <p class='leading-snug whitespace-pre-wrap text-sm dark:text-heading'>{tweet.text}</p>
 </div>

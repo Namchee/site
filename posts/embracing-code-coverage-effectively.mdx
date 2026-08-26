@@ -7,7 +7,7 @@ tags:
   - testing
 ---
 
-import Tweet from 'astro-tweet';
+import Cuit from '@/components/astro/modules/posts/Cuit.astro';
 
 import DescriptionList from '@/components/astro/modules/posts/html/DescriptionList.astro';
 import DescriptionTerm from '@/components/astro/modules/posts/html/DescriptionTerm.astro';
@@ -28,7 +28,7 @@ that I would like to focus on: code coverage is **a** metric, not **the** metric
 ## Primers of Code Coverage
 
 By its definition, code coverage is a percentage of source code that has been executed during a particular test suite.
-There are various types of code coverage but the commonly used ones are *functions*, *statements*, *branches*, and *lines*.
+There are various types of code coverage but the commonly used ones are _functions_, _statements_, _branches_, and _lines_.
 
 In theory, higher code coverage means lower chance for a software to have undetected bugs as they have more of its source code
 executed during software testing compared to a software that has lower code coverage.
@@ -48,7 +48,7 @@ To illustrate code coverage better, suppose that we have a collection of mathema
  * @returns {number} Sum of `a` and `b`
  */
 export function add(a: number, b: number): number {
-    return a + b;
+  return a + b;
 }
 
 /**
@@ -60,7 +60,7 @@ export function add(a: number, b: number): number {
  * @returns {number} `a` divided by `b`
  */
 export function divide(a: number, b: number): number {
-    return a / b;
+  return a / b;
 }
 
 /**
@@ -72,9 +72,8 @@ export function divide(a: number, b: number): number {
  * @returns {number} Remainder of `a` divided by `b`
  */
 export function modulo(a: number, b: number): number {
-    return a % b;
+  return a % b;
 }
-
 ```
 
 `math.ts` is tested by the following test file:
@@ -169,7 +168,7 @@ acceptable. Contrary to its purposes, setting the threshold too high is **counte
      * @returns {number} `a` divided by `b`
      */
     export function divide(a, b) {
-	    return a - b; // oops
+        return a - b; // oops
     }
     ```
 
@@ -200,6 +199,7 @@ acceptable. Contrary to its purposes, setting the threshold too high is **counte
 
     However, writing a test without assertion is a waste of time as it defeats the whole purpose of testing:
     ensuring the tested code is **working as expected**.
+
   </DescriptionItem>
 </DescriptionList>
 
@@ -209,7 +209,7 @@ Some may argue that the problems stated above are primarily a management problem
 doesn&apos;t correlate with why code coverage isn&apos;t the metric for test quality.
 
 However, fixing those bad tests and changing the mindset of the management doesn&apos;t cover the inherent weakness of
-code coverage: *it doesn&apos;t guarantee that all possible program states are explored*.
+code coverage: _it doesn&apos;t guarantee that all possible program states are explored_.
 
 Let&apos;s revisit the `divide` function from the example above:
 
@@ -223,7 +223,7 @@ Let&apos;s revisit the `divide` function from the example above:
  * @returns {number} `a` divided by `b`
  */
 export function divide(a, b) {
-	return a - b; // oops
+  return a - b; // oops
 }
 ```
 
@@ -234,7 +234,7 @@ import { expect, it } from 'vitest';
 
 import { divide } from '.';
 
-it("should pass", () => {
+it('should pass', () => {
   const a = 2;
   const b = 1;
 
@@ -253,7 +253,7 @@ All files |     100 |      100 |     100 |     100 |
 ----------|---------|----------|---------|---------|-------------------
 ```
 
-which basically says that all of our code has been covered by our test suite, therefore is fully tested *in theory*.
+which basically says that all of our code has been covered by our test suite, therefore is fully tested _in theory_.
 But what if the `divide` function is called with the following arguments?
 
 ```ts title=Nah it's fine as I have 100% coverage. Right?
@@ -263,15 +263,15 @@ const c = divide(1, 0);
 ```
 
 The function will just throw a `RangeError` exception to the user. While the problem itself lies in the lack of test cases,
-code coverage cannot tell you that you *lack one*.
+code coverage cannot tell you that you _lack one_.
 
-This is not surprising as coverage reporter is inherently just a *static* analysis tool, which only provides an analysis based
-on provided data in test suites. It does not provide an analysis on how the code is executed in *reality*.
+This is not surprising as coverage reporter is inherently just a _static_ analysis tool, which only provides an analysis based
+on provided data in test suites. It does not provide an analysis on how the code is executed in _reality_.
 
 The mismatch between how the code behaves according to the code coverage and how it behaves in reality is better illustrated
 in the following Tweet:
 
-<Tweet id="1068615953989087232" />
+<Cuit id='1068615953989087232' />
 
 ## What Code Coverage CAN Tell You
 
@@ -292,7 +292,7 @@ All files |   77.77 |      100 |   66.66 |   77.77 |
 Take the function coverage as an example. Based on the weaknesses of code coverage, we can&apos;t confidently say that
 66.66% of the functions has been fully tested yet as code coverage doesn&apos;t guarantee that all program states has been explored.
 
-However if we focused on what&apos;s *missing* from the test result and combine them with how code coverage is calculated, we can
+However if we focused on what&apos;s _missing_ from the test result and combine them with how code coverage is calculated, we can
 confidently say that 33.34% of the functions has not been tested at all as none of our test suite has executed those functions.
 
 This observation has revealed what code coverage is good at: finding the untested. Instead of treating code coverage as **the** metric
