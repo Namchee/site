@@ -84,14 +84,12 @@ const videoUrl = meta.video?.variants
       />
     </AppLink>
 
-    <div class='flex flex-col gap-1'>
-      <div class='leading-none flex items-center gap-1'>
-        <AppLink
-          title={`View Profile on ${HostLabelMap[host]}`}
-          class='font-semibold underline-transparent hover:underline-heading underline-offset-2 text-heading underline transition-colors'
-          href={`${host}/${meta.user.screen_name}`}
-          >{meta.user.name}</AppLink
-        >
+    <div class='flex flex-col gap-1 items-start'>
+      <AppLink
+        title={`View Profile on ${HostLabelMap[host]}`}
+        class='font-semibold underline-transparent hover:underline-heading underline-offset-2 text-heading underline transition-colors leading-none inline-flex items-center gap-1'
+        href={`${host}/${meta.user.screen_name}`}
+        >{meta.user.name}
 
         {
           (meta.user.is_blue_verified || meta.user.verified) && (
@@ -118,8 +116,8 @@ const videoUrl = meta.video?.variants
               />
             </svg>
           )
-        }
-      </div>
+        }</AppLink
+      >
 
       <div class='flex gap-1 items-center leading-none'>
         <AppLink
