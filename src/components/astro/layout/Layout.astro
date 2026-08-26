@@ -32,126 +32,191 @@ const posts = postCollection
 const { title, description, og } = Astro.props;
 
 const url = Astro.url;
-const ogHost = import.meta.env.DEV
-  ? `${url.protocol}//${url.host}`
-  : import.meta.env.SITE;
+const ogHost = import.meta.env.DEV ? `${url.protocol}//${url.host}` : import.meta.env.SITE;
 const ogFile = og ? `${og}.png` : 'og.png';
 
 const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 ---
 
 <!doctype html>
-<html lang="en">
+<html lang='en'>
   <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width" />
+    <meta charset='UTF-8' />
+    <meta
+      name='viewport'
+      content='width=device-width'
+    />
     <!--
       Needed so embedded tweet videos play: video.twimg.com returns 403 when the
       request carries this site's Referer. Element-level referrerpolicy is ignored
       by Safari/WebKit, so only a document-level policy reliably strips it.
     -->
-    <meta name="referrer" content="no-referrer" />
-    <link rel="manifest" href="/manifest.webmanifest" />
-    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
-    <link rel="icon" href="/favicon.ico" sizes="any" />
-    <link rel="icon" href="/icon.svg" type="image/svg+xml" />
-
-    <meta name="generator" content={Astro.generator} />
-    <link rel="canonical" href={canonicalURL} />
-
-    <meta property="og:url" content="https://www.namchee.dev/" />
-    <meta property="og:type" content="website" />
-    <meta property="og:title" content={title} />
-    <meta property="og:description" content={description} />
-    <meta property="og:image" content={`${ogHost}/${ogFile}`} />
-
-    <!-- Twitter Meta Tags -->
-    <meta name="twitter:card" content="summary_large_image" />
-    <meta property="twitter:domain" content="lakban_hitam" />
-    <meta property="twitter:url" content="https://www.namchee.dev" />
-    <meta name="twitter:title" content={title} />
-    <meta name="twitter:description" content={description} />
-    <meta name="twitter:image" content={`${ogHost}/${ogFile}`} />
-
-    <meta name="description" content={description} />
-    <link rel="sitemap" href="/sitemap-index.xml" />
-    <link
-      rel="webmention"
-      href="https://webmention.io/www.namchee.dev/webmention"
+    <meta
+      name='referrer'
+      content='no-referrer'
     />
     <link
-      rel="preload"
-      href="/fonts/inter.woff2"
-      as="font"
-      type="font/woff2"
+      rel='manifest'
+      href='/manifest.webmanifest'
+    />
+    <link
+      rel='apple-touch-icon'
+      href='/apple-touch-icon.png'
+    />
+    <link
+      rel='icon'
+      href='/favicon.ico'
+      sizes='any'
+    />
+    <link
+      rel='icon'
+      href='/icon.svg'
+      type='image/svg+xml'
+    />
+
+    <meta
+      name='generator'
+      content={Astro.generator}
+    />
+    <link
+      rel='canonical'
+      href={canonicalURL}
+    />
+
+    <meta
+      property='og:url'
+      content='https://www.namchee.dev/'
+    />
+    <meta
+      property='og:type'
+      content='website'
+    />
+    <meta
+      property='og:title'
+      content={title}
+    />
+    <meta
+      property='og:description'
+      content={description}
+    />
+    <meta
+      property='og:image'
+      content={`${ogHost}/${ogFile}`}
+    />
+
+    <!-- Twitter Meta Tags -->
+    <meta
+      name='twitter:card'
+      content='summary_large_image'
+    />
+    <meta
+      property='twitter:domain'
+      content='lakban_hitam'
+    />
+    <meta
+      property='twitter:url'
+      content='https://www.namchee.dev'
+    />
+    <meta
+      name='twitter:title'
+      content={title}
+    />
+    <meta
+      name='twitter:description'
+      content={description}
+    />
+    <meta
+      name='twitter:image'
+      content={`${ogHost}/${ogFile}`}
+    />
+
+    <meta
+      name='description'
+      content={description}
+    />
+    <link
+      rel='sitemap'
+      href='/sitemap-index.xml'
+    />
+    <link
+      rel='webmention'
+      href='https://webmention.io/www.namchee.dev/webmention'
+    />
+    <link
+      rel='preload'
+      href='/fonts/inter.woff2'
+      as='font'
+      type='font/woff2'
       crossorigin
     />
     <link
-      rel="preload"
-      href="/fonts/jetbrains-mono.woff2"
-      as="font"
-      type="font/woff2"
+      rel='preload'
+      href='/fonts/jetbrains-mono.woff2'
+      as='font'
+      type='font/woff2'
       crossorigin
     />
 
     <title>{title}</title>
     <script is:inline>
-    // do not try to optimize this. is:inline is there to avoid pre-opt that causes theme flicker
-    const docEl = document.documentElement;
-    const media = window.matchMedia('(prefers-color-scheme: dark)');
+      // do not try to optimize this. is:inline is there to avoid pre-opt that causes theme flicker
+      const docEl = document.documentElement;
+      const media = window.matchMedia('(prefers-color-scheme: dark)');
 
-    function getTheme() {
-      let theme = media.matches ? 'dark' : 'light';
-      if (typeof window.localStorage !== 'undefined' && window.localStorage.getItem('theme')) {
-        theme = window.localStorage.getItem('theme');
+      function getTheme() {
+        let theme = media.matches ? 'dark' : 'light';
+        if (typeof window.localStorage !== 'undefined' && window.localStorage.getItem('theme')) {
+          theme = window.localStorage.getItem('theme');
+        }
+
+        return theme;
       }
 
-      return theme;
-    }
+      toggleTheme(getTheme());
 
-    toggleTheme(getTheme());
+      function toggleTheme(theme, el = docEl) {
+        const method = theme === 'light' ? 'remove' : 'add';
 
-    function toggleTheme(theme, el = docEl) {
-      const method = theme === 'light' ? 'remove' : 'add';
+        el.classList[method]('dark');
+        window.localStorage.setItem('theme', theme);
+      }
 
-      el.classList[method]('dark');
-      window.localStorage.setItem('theme', theme);
-    }
-
-    document.addEventListener('astro:before-swap', (e) => {
-      toggleTheme(getTheme(), e.newDocument.documentElement);
-    });
+      document.addEventListener('astro:before-swap', e => {
+        const theme = getTheme();
+        e.newDocument.documentElement.classList[theme === 'light' ? 'remove' : 'add']('dark');
+      });
     </script>
 
     <script
       is:inline
       defer
-      src="https://cloud.umami.is/script.js"
-      data-website-id="16f41ca8-561c-4f45-8943-0c80934f59ff"></script>
+      src='https://cloud.umami.is/script.js'
+      data-website-id='16f41ca8-561c-4f45-8943-0c80934f59ff'
+    ></script>
     <ClientRouter />
   </head>
   <body
     vaul-drawer-wrapper
-    class=":uno: text-base text-content font-sans mx-auto bg-background flex flex-col min-h-screen antialiased transition-colors"
+    class=':uno: text-base text-content font-sans mx-auto bg-background flex flex-col min-h-screen antialiased transition-colors'
   >
     <Navigation posts={posts} />
 
     <main
-      class=":uno: mx-auto mb-32 mt-24 px-8 flex-1 max-w-[832px] w-full space-y-16 md:mt-32"
+      class=':uno: mx-auto mb-32 mt-24 px-8 flex-1 max-w-[832px] w-full space-y-16 md:mt-32'
       transition:animate={fade({ duration: '0.2s' })}
     >
       <slot />
     </main>
 
-    <div class=":uno: mx-auto max-w-[832px] w-full">
+    <div class=':uno: mx-auto max-w-[832px] w-full'>
       <Footer />
     </div>
   </body>
 </html>
 
 <script>
-// eslint-disable-next-line no-console
-console.log(`
+  // eslint-disable-next-line no-console
+  console.log(`
                ▄███▄▄███▄
                  ▄█▀▀██
         ▄█      ██    ▀█      █▌
