@@ -10,8 +10,9 @@ tags:
   - typescript
 ---
 
-import Tweet from 'astro-tweet';
 import { BlueskyPost } from 'astro-embed';
+
+import Cuit from '@/components/astro/modules/posts/Cuit.astro';
 
 import DescriptionList from '@/components/astro/modules/posts/html/DescriptionList.astro';
 import DescriptionTerm from '@/components/astro/modules/posts/html/DescriptionTerm.astro';
@@ -94,7 +95,16 @@ Diam nisl sit volutpat est pellentesque aliquet porttitor egestas commodo. Purus
 
 Diam nisl sit volutpat est pellentesque aliquet porttitor egestas commodo. `<blockquote>` Purus vitae egestas nunc turpis urna placerat proin dui mi. Iaculis sed in dui nisl. Hendrerit odio lectus enim vitae euismod enim. Urna lorem scelerisque nunc leo nunc odio mauris sed sed. Pharetra cras aenean tincidunt morbi purus molestie. Proin lobortis senectus pretium vel. Proin lobortis senectus pretium vel.
 
-<Tweet id="1068615953989087232" />
+## Embed Test
+
+<Cuit id='1068615953989087232' />
+<Cuit id='1732824684683784516' />
+<Cuit id='2090430660611870881' />
+<Cuit id='1732873562023960856' />
+<Cuit id='2092577833004793974' />
+<Cuit id='2092311378837242329' />
+
+<BlueskyPost id='https://bsky.app/profile/e18e.dev/post/3laofvnjipk25' />
 
 ## Testing List
 
@@ -109,8 +119,6 @@ Diam nisl sit volutpat est pellentesque aliquet porttitor egestas commodo. `<blo
 1. This is a numbered list
 2. This is another item
 
-<BlueskyPost id="https://bsky.app/profile/e18e.dev/post/3laofvnjipk25" />
-
 ## Testing&nbsp;`<dd>`
 
 <DescriptionList>
@@ -121,6 +129,7 @@ Diam nisl sit volutpat est pellentesque aliquet porttitor egestas commodo. `<blo
     In a world that's constantly changing, staying true to your values and goals can feel like navigating through a storm. Yet, it's in those moments of uncertainty that our character is truly tested and shaped.
 
     As we move forward, let's remember that progress often lies in persistence and that even the smallest efforts contribute to something greater. Keep striving, keep growing, and always trust in your ability to adapt and succeed.
+
   </DescriptionItem>
 
   <DescriptionTerm>
@@ -141,6 +150,39 @@ If you're still debating whether you want to dip in a product or not:
 
 > [!NOTE]
 > At the time of writing, there's an [acknowledged bug](https://www.google.com) in Chromium-based browsers that allows you to retrieve text fragment directive by exploiting the **Performance API**, specifically by parsing `PerformanceNavigationTiming` interface.
+
+## Mathematics
+
+Inline math: $$E = mc^2$$ and $$\sum_{i=1}^{n} i = \frac{n(n+1)}{2}$$.
+
+Block math for display equations:
+
+$$
+\int_{-\infty}^{\infty} e^{-x^2} \, dx = \sqrt{\pi}
+$$
+
+$$
+\begin{bmatrix}
+a & b \\
+c & d
+\end{bmatrix}
+\begin{bmatrix}
+x \\
+y
+\end{bmatrix}
+=
+\begin{bmatrix}
+ax + by \\
+cx + dy
+\end{bmatrix}
+$$
+
+$$
+f(x) = \begin{cases}
+x^2 & \text{if } x \geq 0 \\
+-x^2 & \text{if } x < 0
+\end{cases}
+$$
 
 ## Final Thoughts
 

@@ -1,9 +1,5 @@
 <script setup lang="ts">
-import {
-  TooltipProvider,
-  TooltipRoot,
-  TooltipTrigger,
-} from 'reka-ui';
+import { TooltipProvider, TooltipRoot, TooltipTrigger } from 'reka-ui';
 
 import TooltipContent from '@/components/vue/ui/TooltipContent.vue';
 
@@ -15,7 +11,7 @@ const shades = [25, 50, 100, 200, 300, 400, 500, 600, 700, 800, 900, 950];
 </script>
 
 <template>
-  <div class=":uno: group grid grid-cols-[repeat(auto-fit,minmax(2rem,max-content))] w-full justify-center md:flex">
+  <div class=":uno: group grid w-full grid-cols-[repeat(auto-fit,minmax(2rem,max-content))] justify-center md:flex">
     <TooltipProvider>
       <template
         v-for="(shade, idx) in shades"
@@ -24,8 +20,8 @@ const shades = [25, 50, 100, 200, 300, 400, 500, 600, 700, 800, 900, 950];
         <TooltipRoot>
           <TooltipTrigger as-child>
             <div
-              class=":uno: border border-separator rounded-full size-10 transition-all"
-              :class="{ 'md:-ml-2 group-hover:ml-0': idx !== 0 }"
+              class=":uno: border-separator size-10 rounded-full border transition-all"
+              :class="{ 'group-hover:ml-0 md:-ml-2': idx !== 0 }"
               :style="{ backgroundColor: `var(--${props.name}-${shade})` }"
             />
           </TooltipTrigger>

@@ -6,7 +6,7 @@ import generateToC from './toc';
 
 describe('generateToC', () => {
   it('should return empty headings', () => {
-    const toc = [];
+    const toc: MarkdownHeading[] = [];
     const result = generateToC(toc);
 
     expect(result.length).toBe(0);

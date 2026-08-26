@@ -1,3 +1,4 @@
+import { satteri } from '@astrojs/markdown-satteri';
 import mdx from '@astrojs/mdx';
 import sitemap from '@astrojs/sitemap';
 import vue from '@astrojs/vue';
@@ -8,8 +9,7 @@ import { defineConfig } from 'astro/config';
 import unocss from 'unocss/astro';
 import Icons from 'unplugin-icons/vite';
 
-import { rehypePlugins } from './src/plugins/rehype';
-import { remarkPlugins } from './src/plugins/remark';
+import { hastPlugins, mdastPlugins } from '@/plugins/markdown';
 
 // https://astro.build/config
 export default defineConfig({
@@ -24,8 +24,14 @@ export default defineConfig({
     subfont(),
   ],
   markdown: {
-    remarkPlugins: remarkPlugins,
-    rehypePlugins: rehypePlugins,
+    processor: satteri({
+      mdastPlugins: mdastPlugins,
+      hastPlugins: hastPlugins,
+      features: {
+        math: true,
+        headingAttributes: true,
+      },
+    }),
     shikiConfig: {
       transformers: [
         transformerMetaHighlight(),

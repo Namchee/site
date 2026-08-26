@@ -66,10 +66,10 @@ const tocList = generateToC(headings);
       let min = Number.MAX_SAFE_INTEGER;
 
       for (const el of activeSections) {
-        const top = el.offsetTop;
+        const offset = el.offsetTop;
 
-        min = Math.min(top, min);
-        max = Math.max(top, max);
+        min = Math.min(offset, min);
+        max = Math.max(offset, max);
       }
 
       thumb.style.top = `${min}px`;

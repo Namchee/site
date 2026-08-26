@@ -29,7 +29,10 @@ const marginMap = {
     >
       <a
         :href="`#${section.slug}`"
-        :class="[':uno: text-content transition-all text-sm', { 'text-heading font-medium': props.activeSections.has(section.slug) }]"
+        :class="[
+          ':uno: text-content text-sm transition-all',
+          { 'text-heading font-medium': props.activeSections.has(section.slug) },
+        ]"
         tabindex="-1"
       >
         {{ section.text }}

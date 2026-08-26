@@ -26,7 +26,7 @@ const open = ref(false);
 const observer = ref<IntersectionObserver | null>(null);
 
 onMounted(() => {
-  observer.value = new IntersectionObserver((entries) => {
+  observer.value = new IntersectionObserver(entries => {
     for (const { target, isIntersecting } of entries) {
       const id = target.getAttribute('id')!;
 
@@ -55,18 +55,18 @@ onUnmounted(() => {
 
 <template>
   <div
-    class=":uno: text-content p-1 border border-separator rounded-md bg-background grid shadow shadow-md transition-colors bottom-8 left-8 place-items-center fixed z-20 dark:bg-[var(--navigation)] xl:hidden"
+    class=":uno: text-content border-separator bg-background fixed bottom-8 left-8 z-20 grid place-items-center rounded-md border p-1 shadow shadow-md transition-colors xl:hidden dark:bg-[var(--navigation)]"
   >
     <TooltipProvider :delay-duration="100">
       <DrawerRoot
         :open="open"
-        @update:open="(o) => open = o"
+        @update:open="o => (open = o)"
       >
         <TooltipRoot>
           <TooltipTrigger as-child>
             <DrawerTrigger
               focus
-              class=":uno: rounded-md grid size-[36px] transition-colors place-items-center focus:bg-surface-2 hover:bg-surface-2"
+              class=":uno: focus:bg-surface-2 hover:bg-surface-2 grid size-[36px] place-items-center rounded-md transition-colors"
             >
               <TableOfContents class=":uno: h-auto w-5" />
             </DrawerTrigger>
@@ -77,27 +77,25 @@ onUnmounted(() => {
             side="top"
             align="start"
             :align-offset="-4"
-            class=":uno: tooltip__content text-sm text-surface-1 px-3 py-2 will-change-[transform,opacity] rounded-md bg-heading select-none shadow"
+            class=":uno: tooltip__content text-surface-1 bg-heading rounded-md px-3 py-2 text-sm shadow will-change-[transform,opacity] select-none"
           >
             <p>Table of Contents</p>
           </TooltipContent>
         </TooltipRoot>
 
         <DrawerPortal>
-          <DrawerOverlay class=":uno: bg-black bg-opacity-50 h-screen w-screen fixed z-30 backdrop-blur" />
+          <DrawerOverlay class=":uno: bg-opacity-50 fixed z-30 h-screen w-screen bg-black backdrop-blur" />
 
           <DrawerContent
-            class=":uno: p-4 rounded-t-md bg-background flex flex-col max-h-3/4 shadow bottom-0 left-0 right-0 fixed z-30"
-            @click="() => open = false"
-            @close-auto-focus="(e) => e.preventDefault()"
+            class=":uno: bg-background fixed right-0 bottom-0 left-0 z-30 flex max-h-3/4 flex-col rounded-t-md p-4 shadow"
+            @click="() => (open = false)"
+            @close-auto-focus="e => e.preventDefault()"
           >
-            <DrawerHandle class=":uno: transition-colors bg-surface-2! hover:bg-surface-3" />
+            <DrawerHandle class=":uno: bg-surface-2! hover:bg-surface-3 transition-colors" />
 
             <div class="p-2 pt-4">
               <nav class=":uno: text-sm">
-                <p class=":uno: text-heading font-semibold mb-4 transition-colors">
-                  In this post
-                </p>
+                <p class=":uno: text-heading mb-4 font-semibold transition-colors">In this post</p>
 
                 <ToCList
                   :sections="tocList"

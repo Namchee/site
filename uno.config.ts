@@ -59,6 +59,14 @@ export default defineConfig({
       'success': 'var(--success)',
       'warning': 'var(--warning)',
       'danger': 'var(--danger)',
+
+      'twitter': {
+        blue: 'var(--twitter-blue)',
+        red: 'var(--twitter-red)',
+        gold: 'var(--twitter-gold)',
+        gray: 'var(--twitter-gray)',
+        green: 'var(--twitter-green)',
+      },
     },
   },
   presets: [
@@ -68,7 +76,5 @@ export default defineConfig({
       },
     }),
   ],
-  transformers: [
-    transformerCompileClass(),
-  ],
+  transformers: [transformerCompileClass()],
 });

@@ -1,9 +1,10 @@
+import type { SatoriOptions } from 'satori';
 
 import { readFileSync } from 'node:fs';
 
 import { getCollection } from 'astro:content';
 import getReadingTime from 'reading-time';
-import satori, { type SatoriOptions } from 'satori';
+import satori from 'satori';
 import sharp from 'sharp';
 
 import { Template } from './_og-template';
@@ -17,7 +18,7 @@ interface Params {
 
 async function generateOGImage(params: Params) {
   const opts: SatoriOptions = {
-    width: 1200,
+    width: 1_200,
     height: 630,
     fonts: [
       {

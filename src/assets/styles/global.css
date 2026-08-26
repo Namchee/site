@@ -3,7 +3,7 @@ html {
 }
 
 html.dark img {
-  filter: brightness(.8) contrast(1.1);
+  filter: brightness(0.8) contrast(1.1);
 }
 
 *::selection {

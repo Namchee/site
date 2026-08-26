@@ -1,75 +1,174 @@
-// Folder-specific settings
-//
-// For a full list of overridable settings, and general information on folder-specific settings,
-// see the documentation: https://zed.dev/docs/configuring-zed#settings-files
 {
-  // =====================
-  // Formatting
-  // =====================
   "format_on_save": "on",
-  // Zed does not use Prettier directly like VS Code
-  // Formatting is handled by language servers / external formatters
   "formatter": "language_server",
-  // =====================
-  // Code Actions on Save
-  // =====================
   "code_actions_on_format": {
-    "source.fixAll.eslint": true,
     "source.organizeImports": true
   },
-  // =====================
-  // Language Validation
-  // =====================
+  "lsp": {
+    "oxlint": {
+      "initialization_options": {
+        "settings": {
+          "configPath": null,
+          "run": "onType",
+          "disableNestedConfig": false,
+          "fixKind": "safe_fix",
+          "unusedDisableDirectives": "deny"
+        }
+      }
+    },
+    "oxfmt": {
+      "initialization_options": {
+        "settings": {
+          "fmt.configPath": null,
+          "run": "onSave"
+        }
+      }
+    }
+  },
   "languages": {
+    "CSS": {
+      "language_servers": ["vscode-css-language-server", "emmet-language-server", "oxfmt"],
+      "format_on_save": "on",
+      "prettier": {
+        "allowed": false
+      },
+      "formatter": [
+        {
+          "language_server": {
+            "name": "oxfmt"
+          }
+        }
+      ]
+    },
+    "HTML": {
+      "language_servers": ["vscode-html-language-server", "emmet-language-server", "unocss-language-server", "oxfmt"],
+      "format_on_save": "on",
+      "prettier": {
+        "allowed": false
+      },
+      "formatter": [
+        {
+          "language_server": {
+            "name": "oxfmt"
+          }
+        }
+      ]
+    },
     "JavaScript": {
-      "language_servers": [
-        "eslint",
-        "typescript-language-server"
+      "language_servers": ["oxlint", "oxfmt", "unocss-language-server", "emmet-language-server"],
+      "format_on_save": "on",
+      "prettier": {
+        "allowed": false
+      },
+      "formatter": [
+        {
+          "language_server": {
+            "name": "oxfmt"
+          }
+        },
+        {
+          "code_action": "source.fixAll.oxc"
+        }
+      ]
+    },
+    "JSON": {
+      "language_servers": ["json-language-server", "oxfmt"],
+      "format_on_save": "on",
+      "prettier": {
+        "allowed": false
+      },
+      "formatter": [
+        {
+          "language_server": {
+            "name": "oxfmt"
+          }
+        }
+      ]
+    },
+    "JSONC": {
+      "language_servers": ["json-language-server", "oxfmt"],
+      "format_on_save": "on",
+      "prettier": {
+        "allowed": false
+      },
+      "formatter": [
+        {
+          "language_server": {
+            "name": "oxfmt"
+          }
+        }
+      ]
+    },
+    "Markdown": {
+      "language_servers": ["oxfmt"],
+      "format_on_save": "on",
+      "prettier": {
+        "allowed": false
+      },
+      "formatter": [
+        {
+          "language_server": {
+            "name": "oxfmt"
+          }
+        }
+      ]
+    },
+    "MDX": {
+      "language_servers": ["oxfmt", "mdx"],
+      "format_on_save": "on",
+      "prettier": {
+        "allowed": false
+      },
+      "formatter": [
+        {
+          "language_server": {
+            "name": "oxfmt"
+          }
+        }
       ]
     },
     "TypeScript": {
-      "language_servers": [
-        "eslint",
-        "typescript-language-server"
+      "language_servers": ["typescript-ls", "oxlint", "oxfmt"],
+      "format_on_save": "on",
+      "prettier": {
+        "allowed": false
+      },
+      "formatter": [
+        {
+          "language_server": {
+            "name": "oxfmt"
+          }
+        }
       ]
     },
     "Vue.js": {
       "language_servers": [
-        "eslint",
         "vue-language-server",
+        "oxlint",
+        "oxfmt",
+        "unocss-language-server",
         "emmet-language-server",
-        "unocss-language-server"
-      ]
-    },
-    "HTML": {
-      "language_servers": [
-        "eslint",
-        "emmet-language-server",
-        "unocss-language-server"
-      ]
-    },
-    "Markdown": {
-      "language_servers": [
-        "eslint"
-      ]
-    },
-    "JSON": {
-      "language_servers": [
-        "eslint"
-      ]
-    },
-    "YAML": {
-      "language_servers": [
-        "eslint"
+        "typescript-ls"
+      ],
+      "format_on_save": "on",
+      "prettier": {
+        "allowed": false
+      },
+      "formatter": [
+        {
+          "language_server": {
+            "name": "oxfmt"
+          }
+        }
       ]
     },
     "Astro": {
-      "language_servers": [
-        "eslint",
-        "astro-language-server",
-        "emmet-language-server",
-        "unocss-language-server"
-      ]
+      "language_servers": ["astro-language-server", "oxlint", "unocss-language-server", "typescript-ls"],
+      "format_on_save": "on",
+      "prettier": {
+        "allowed": true
+      },
+      "formatter": "prettier"
     }
   }
 }

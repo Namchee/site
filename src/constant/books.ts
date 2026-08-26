@@ -1,4 +1,4 @@
-/* eslint-disable unicorn/numeric-separators-style */
+/* oxlint-disable unicorn/numeric-separators-style */
 
 // mock on dev mode. ain't no time to wait
 export const DevMock = [
@@ -13,8 +13,10 @@ export const DevMock = [
 
 // Book cover for those that doesn't have covers in Literal
 export const BookCover = {
-  'tom-greenwood-sustainable-web-design-90039': 'https://sustainablewebdesign.org/wp-content/uploads/2021/01/SWD-Tom-Greenwood-Cover.jpg',
-  'gerard-beekmans-matthew-burgess-bruce-dubbs-linux-from-scratch-lfs-ng64v': 'https://m.media-amazon.com/images/S/compressed.photo.goodreads.com/books/1170937333i/78387.jpg',
+  'tom-greenwood-sustainable-web-design-90039':
+    'https://sustainablewebdesign.org/wp-content/uploads/2021/01/SWD-Tom-Greenwood-Cover.jpg',
+  'gerard-beekmans-matthew-burgess-bruce-dubbs-linux-from-scratch-lfs-ng64v':
+    'https://m.media-amazon.com/images/S/compressed.photo.goodreads.com/books/1170937333i/78387.jpg',
 };
 
 // A good reason why I did this instead of using the API is because the existence of `Algorithms for Modern Hardware`
@@ -115,7 +117,7 @@ export const BOOKS = {
       link: 'https://literal.club/book/composing-software-61c3y',
     },
     {
-      title: 'The Software Engineer\'s Guidebook',
+      title: "The Software Engineer's Guidebook",
       author: 'Gergely Orosz',
       link: 'https://literal.club/book/gergely-orosz-the-software-engineers-guidebook-yo7o5',
     },

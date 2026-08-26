@@ -10,77 +10,95 @@ import '@/assets/styles/fonts.css';
 
 <html>
   <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width" />
-    <link rel="manifest" href="/manifest.webmanifest" />
-    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
-    <link rel="icon" href="/favicon.ico" sizes="any" />
-    <link
-      rel="icon"
-      href="/icon-light.svg"
-      type="image/svg+xml"
-      class=":uno: favicon"
+    <meta charset='UTF-8' />
+    <meta
+      name='viewport'
+      content='width=device-width'
     />
-    <link rel="sitemap" href="/sitemap-index.xml" />
     <link
-      rel="preload"
-      href="/fonts/inter.woff2"
-      as="font"
-      type="font/woff2"
+      rel='manifest'
+      href='/manifest.webmanifest'
+    />
+    <link
+      rel='apple-touch-icon'
+      href='/apple-touch-icon.png'
+    />
+    <link
+      rel='icon'
+      href='/favicon.ico'
+      sizes='any'
+    />
+    <link
+      rel='icon'
+      href='/icon-light.svg'
+      type='image/svg+xml'
+      class=':uno: favicon'
+    />
+    <link
+      rel='sitemap'
+      href='/sitemap-index.xml'
+    />
+    <link
+      rel='preload'
+      href='/fonts/inter.woff2'
+      as='font'
+      type='font/woff2'
       crossorigin
     />
     <title>404 &mdash; Not Found</title>
     <script is:inline>
-  // same as base layout
-  const docEl = document.documentElement;
-  const svgIcon = document.querySelector('.favicon');
-  const media = window.matchMedia('(prefers-color-scheme: dark)');
+      // same as base layout
+      const docEl = document.documentElement;
+      const svgIcon = document.querySelector('.favicon');
+      const media = window.matchMedia('(prefers-color-scheme: dark)');
 
-  let theme = media.matches ? 'dark' : 'light';
-  if (
-    typeof window.localStorage !== 'undefined'
-  && window.localStorage.getItem('theme')
-  ) {
-    theme = window.localStorage.getItem('theme');
-  }
+      let theme = media.matches ? 'dark' : 'light';
+      if (typeof window.localStorage !== 'undefined' && window.localStorage.getItem('theme')) {
+        theme = window.localStorage.getItem('theme');
+      }
 
-  const toggleTheme = (theme) => {
-    const method = theme === 'light' ? 'remove' : 'add';
+      const toggleTheme = theme => {
+        const method = theme === 'light' ? 'remove' : 'add';
 
-    docEl.classList[method]('dark');
-    svgIcon.href = theme === 'light' ? '/icon-light.svg' : '/icon-dark.svg';
-    window.localStorage.setItem('theme', theme);
-  };
+        docEl.classList[method]('dark');
+        svgIcon.href = theme === 'light' ? '/icon-light.svg' : '/icon-dark.svg';
+        window.localStorage.setItem('theme', theme);
+      };
 
+      window.addEventListener('storage', () => {
+        const localTheme = window.localStorage.getItem('theme');
+        toggleTheme(localTheme);
+      });
 
-  window.addEventListener('storage', () => {
-    const localTheme = window.localStorage.getItem('theme');
-    toggleTheme(localTheme);
-  });
+      media.addEventListener('change', () => {
+        const mediaTheme = media.matches ? 'dark' : 'light';
+        toggleTheme(mediaTheme);
+      });
 
-  media.addEventListener('change', () => {
-    const mediaTheme = media.matches ? 'dark' : 'light';
-    toggleTheme(mediaTheme);
-  });
-
-  toggleTheme(theme);
-  </script>
+      toggleTheme(theme);
+    </script>
   </head>
 
   <body>
     <div
-      class=":uno: text-content font-sans px-8 bg-background grid h-screen w-screen transition-colors place-items-center"
+      class=':uno: text-content font-sans px-8 bg-background grid h-screen w-screen transition-colors place-items-center'
     >
-      <div class=":uno: grid place-items-center">
-        <h1 class=":uno: text-7xl text-heading tracking-tight font-medium">404</h1>
+      <div class=':uno: grid place-items-center'>
+        <h1 class=':uno: text-7xl text-heading tracking-tight font-medium'>404</h1>
 
-        <p class=":uno: text-xl mt-8 text-center text-balance">
-          Yes, page isn't here so you're lost. <TextLink class="underline-offset-6" href="/"
-          >Go home</TextLink
+        <p class=':uno: text-xl mt-8 text-center text-balance'>
+          Yes, page isn't here so you're lost. <TextLink
+            class='underline-offset-6'
+            href='/'
+            >Go home</TextLink
           >
         </p>
 
-        <AppLink href='#' class="lucky__try text-xs transition-colors top-16 relative hover:text-heading">Feeling lucky instead?</AppLink>
+        <AppLink
+          href='#'
+          class='lucky__try text-xs transition-colors top-16 relative hover:text-heading'
+          >Feeling lucky instead?</AppLink
+        >
       </div>
     </div>
 

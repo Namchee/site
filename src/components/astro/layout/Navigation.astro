@@ -43,8 +43,7 @@ const { posts } = Astro.props;
 
 function getNavClasses(linkHref: string, currentPath: string, idx: number) {
   const isFirst = idx === 0;
-  const isActive
-    = new RegExp(`${linkHref}/.?`).test(currentPath) || currentPath === linkHref;
+  const isActive = new RegExp(`${linkHref}/.?`).test(currentPath) || currentPath === linkHref;
 
   return {
     'ml-1': isFirst,
@@ -54,9 +53,12 @@ function getNavClasses(linkHref: string, currentPath: string, idx: number) {
 ---
 
 <!-- Need a wrapper div to bypass scrollbar width calculation -->
-<div class="flex w-[100vw] pointer-events-none bottom-8 left-0 justify-center fixed z-20" transition:animate="none">
+<div
+  class='flex w-[100vw] pointer-events-none bottom-8 left-0 justify-center fixed z-20'
+  transition:animate='none'
+>
   <nav
-    class=":uno: border border-separator rounded-md bg-background flex w-max pointer-events-auto shadow-lg transition-colors dark:bg-[var(--navigation)]"
+    class=':uno: border border-separator rounded-md bg-background flex w-max pointer-events-auto shadow-lg transition-colors dark:bg-[var(--navigation)]'
   >
     {
       directLinks.map((link, idx) => (
@@ -66,21 +68,76 @@ function getNavClasses(linkHref: string, currentPath: string, idx: number) {
           href={link.href}
           client:load
         >
-          <link.icon class=":uno: h-auto w-5" />
+          <link.icon class=':uno: h-auto w-5' />
         </NavigationItem>
       ))
     }
 
-    <div class=":uno: bg-separator w-[0.5px] transition-colors dark:bg-[var(--navigation-separator)]"></div>
+    <div class=':uno: bg-separator w-[0.5px] transition-colors dark:bg-[var(--navigation-separator)]'></div>
 
-    <CommandMenu posts={posts} links={links} client:load />
+    <CommandMenu
+      posts={posts}
+      links={links}
+      client:load
+    />
 
     <ThemeSwitcher client:visible />
   </nav>
 </div>
 
 <script is:inline>
-  /* eslint-disable no-undef */
+  function disableTransition() {
+    const css = document.createElement('style');
+    css.appendChild(
+      document.createTextNode(
+        `*,*::before,*::after{-webkit-transition:none!important;-moz-transition:none!important;-o-transition:none!important;-ms-transition:none!important;transition:none!important}
+        @media (prefers-reduced-motion: no-preference) {
+        .theme-toggle__around *{transform-origin:center;transition:transform calc(var(--theme-toggle__around--duration)*.6) ease!important}
+        .theme-toggle__around > g g circle{transition-duration:calc(var(--theme-toggle__around--duration)*.2)!important}
+        .theme-toggle__around > g g :nth-child(1){transition-delay:calc(var(--theme-toggle__around--duration)*.253)!important}
+        .theme-toggle__around > g g :nth-child(2){transition-delay:calc(var(--theme-toggle__around--duration)*.348)!important}
+        .theme-toggle__around > g g :nth-child(3){transition-delay:calc(var(--theme-toggle__around--duration)*.443)!important}
+        .theme-toggle__around > g g :nth-child(4){transition-delay:calc(var(--theme-toggle__around--duration)*.538)!important}
+        .theme-toggle__around > g g :nth-child(5){transition-delay:calc(var(--theme-toggle__around--duration)*.633)!important}
+        .theme-toggle__around > g g :nth-child(6){transition-delay:calc(var(--theme-toggle__around--duration)*.728)!important}
+        .theme-toggle__around > :first-child path{transition-property:transform,d!important}
+        .theme-toggle--toggled:not(label).theme-toggle .theme-toggle__around *{transition-delay:0s;transition-duration:var(--theme-toggle__around--duration)!important}
+        .theme-toggle--toggled:not(label).theme-toggle .theme-toggle__around > g g circle{transition-duration:calc(var(--theme-toggle__around--duration)*.4)!important}
+        }
+        `,
+      ),
+    );
+
+    document.head.appendChild(css);
+
+    return css;
+  }
+
+  function enableTransition(style) {
+    if (document.body) {
+      window.getComputedStyle(document.body).opacity;
+    }
+
+    setTimeout(() => {
+      if (document.head.contains(style)) {
+        document.head.removeChild(style);
+      }
+    }, 0);
+  }
+
+  function toggleThemeSwitcher(btn) {
+    btn.classList.toggle('theme-toggle--toggled');
+  }
+
+  /* oxlint-disable no-undef */
+  function switchTheme(btn, theme) {
+    const tag = disableTransition();
+    toggleThemeSwitcher(btn);
+    toggleTheme(theme);
+    enableTransition(tag);
+  }
+
+  /* oxlint-disable no-undef */
   function setupButton(btn) {
     if (getTheme() === 'dark') {
       btn.classList.add('theme-toggle--toggled');
@@ -88,33 +145,27 @@ function getNavClasses(linkHref: string, currentPath: string, idx: number) {
 
     btn.addEventListener('click', () => {
       const documentTheme = docEl.classList.contains('dark') ? 'light' : 'dark';
-      toggleThemeSwitcher(btn);
-      toggleTheme(documentTheme);
+
+      switchTheme(btn, documentTheme);
     });
 
     window.addEventListener('storage', () => {
       const actualTheme = window.localStorage.getItem('theme');
-      toggleThemeSwitcher(btn);
-      toggleTheme(actualTheme);
+      switchTheme(btn, actualTheme);
     });
 
     media.addEventListener('change', () => {
       const mediaTheme = media.matches ? 'dark' : 'light';
-      toggleThemeSwitcher(btn);
-      toggleTheme(mediaTheme);
+      switchTheme(btn, mediaTheme);
     });
   }
 
   const button = document.querySelector('.theme-toggle');
 
-  function toggleThemeSwitcher(btn) {
-    btn.classList.toggle('theme-toggle--toggled');
-  }
-
   setupButton(button);
 
-  document.addEventListener('astro:before-swap', (event) => {
-    const afterSwapButton = event.newDocument.querySelector('.theme-toggle');
+  document.addEventListener('astro:before-swap', e => {
+    const afterSwapButton = e.newDocument.querySelector('.theme-toggle');
 
     setupButton(afterSwapButton);
   });

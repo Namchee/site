@@ -1,4 +1,3 @@
-
 import { html } from 'satori-html';
 
 interface OGProps {

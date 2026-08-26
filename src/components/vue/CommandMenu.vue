@@ -45,19 +45,19 @@ const props = defineProps<{
   posts: {
     title: string;
     href: string;
-  }[],
+  }[];
   links: {
     href: string;
     label: string;
     key?: string;
-  }[],
+  }[];
 }>();
 
 const { ctrl_k, meta_k, home, arrowDown, arrowUp, enter, escape } = useMagicKeys({
   passive: false,
-  onEventFired: (e) => {
+  onEventFired: e => {
     const isOpeningMenu = (e.ctrlKey || e.metaKey) && e.key === 'k';
-    const isNavigatingMenu = (['ArrowDown', 'ArrowUp'].includes(e.key)) && visible.value;
+    const isNavigatingMenu = ['ArrowDown', 'ArrowUp'].includes(e.key) && visible.value;
 
     if (isOpeningMenu || isNavigatingMenu) {
       e.preventDefault();
@@ -204,7 +204,7 @@ watchEffect(() => {
         <DialogTrigger as-child>
           <TooltipTrigger as-child>
             <button
-              class="text-sm text-content my-1 ml-1 rounded-md grid size-[36px] transition-colors place-items-center focus:bg-surface-2 hover:bg-surface-2"
+              class="text-content focus:bg-surface-2 hover:bg-surface-2 my-1 ml-1 grid size-[36px] place-items-center rounded-md text-sm transition-colors"
             >
               <Command
                 aria-label="Command Palette"
@@ -222,45 +222,41 @@ watchEffect(() => {
 
     <DialogPortal>
       <DialogOverlay
-        class=":uno: dialog__overlay bg-[var(--gray-dark-950)] bg-opacity-50 h-screen w-screen fixed z-30 backdrop-blur"
+        class=":uno: dialog__overlay bg-opacity-50 fixed z-30 h-screen w-screen bg-[var(--gray-dark-950)] backdrop-blur"
         @click="visible = false"
       />
       <DialogContent
-        class=":uno: dialog__content border border-separator rounded-md bg-background max-w-md w-4/5 shadow fixed z-30 focus:outline-none"
+        class=":uno: dialog__content border-separator bg-background fixed z-30 w-4/5 max-w-md rounded-md border shadow focus:outline-none"
       >
-        <DialogTitle class=":uno: border-b border-separator">
+        <DialogTitle class=":uno: border-separator border-b">
           <input
             ref="searchEl"
             v-model="searchTerm"
-            class=":uno: text-sm leading-relaxed font-normal p-4 bg-transparent w-full placeholder:font-normal focus:outline-none"
+            class=":uno: w-full bg-transparent p-4 text-sm leading-relaxed font-normal placeholder:font-normal focus:outline-none"
             placeholder="Where do you want to go?"
-          >
+          />
         </DialogTitle>
 
         <DialogDescription
           as="div"
-          class=":uno: p-4 max-h-[25rem] overflow-y-auto space-y-4"
+          class=":uno: max-h-[25rem] space-y-4 overflow-y-auto p-4"
         >
           <div v-if="relevantLinks.length === 0 && relevantPosts.length === 0">
-            <p class=":uno: text-sm text-center opacity-75">
-              Sorry, I don't know what or where that is 😕
-            </p>
+            <p class=":uno: text-center text-sm opacity-75">Sorry, I don't know what or where that is 😕</p>
           </div>
 
           <div v-if="relevantLinks.length > 0">
-            <p class=":uno: text-xs font-semibold mb-2">
-              Pages
-            </p>
+            <p class=":uno: mb-2 text-xs font-semibold">Pages</p>
 
             <ul ref="currentLinks">
               <a
                 v-for="(link, idx) in relevantLinks"
                 :key="link.href"
                 :href="link.href"
-                class=":uno: text-sm p-2 outline-none rounded-md flex transition-colors justify-between"
+                class=":uno: flex justify-between rounded-md p-2 text-sm transition-colors outline-none"
                 :class="{ 'bg-surface-1 text-heading': focusIndex === idx }"
                 rel="noopener noreferrer"
-                @mouseover="() => focusIndex = idx"
+                @mouseover="() => (focusIndex = idx)"
               >
                 <div class=":uno: flex items-center space-x-4">
                   <component
@@ -276,33 +272,31 @@ watchEffect(() => {
                 <kbd
                   v-if="!!link.key"
                   :title="link.key as string"
-                  class=":uno: no-touchscreen text-xs text-heading font-mono px-1 border border-separator rounded bg-surface-1"
-                >{{
-                  link.key }}</kbd>
+                  class=":uno: no-touchscreen text-heading border-separator bg-surface-1 rounded border px-1 font-mono text-xs"
+                  >{{ link.key }}</kbd
+                >
               </a>
             </ul>
           </div>
 
           <div v-if="relevantPosts.length > 0">
-            <p class=":uno: text-xs font-semibold mb-2">
-              Posts
-            </p>
+            <p class=":uno: mb-2 text-xs font-semibold">Posts</p>
 
             <a
               v-for="(post, idx) in relevantPosts"
               :key="post.href"
               :href="post.href"
-              class=":uno: text-sm p-2 outline-none rounded-md flex transition-colors justify-between"
+              class=":uno: flex justify-between rounded-md p-2 text-sm transition-colors outline-none"
               :class="{ 'bg-surface-1 text-heading': focusIndex === idx + relevantLinks.length }"
               rel="noopener noreferrer"
-              @mouseover="() => focusIndex = idx + relevantLinks.length"
+              @mouseover="() => (focusIndex = idx + relevantLinks.length)"
             >
               {{ post.title }}
             </a>
           </div>
         </DialogDescription>
 
-        <div class=":uno: no-touchscreen text-sm px-4 py-2 border-t border-separator flex items-center space-x-4">
+        <div class=":uno: no-touchscreen border-separator flex items-center space-x-4 border-t px-4 py-2 text-sm">
           <div class=":uno: flex items-center space-x-1">
             <Kbd
               title="Arrow Up"
@@ -318,9 +312,7 @@ watchEffect(() => {
               ↓
             </Kbd>
 
-            <p class=":uno: text-xs font-medium">
-              Navigate
-            </p>
+            <p class=":uno: text-xs font-medium">Navigate</p>
           </div>
 
           <div class=":uno: flex items-center space-x-1">
@@ -331,9 +323,7 @@ watchEffect(() => {
               Enter
             </Kbd>
 
-            <p class=":uno: text-xs font-medium">
-              Open
-            </p>
+            <p class=":uno: text-xs font-medium">Open</p>
           </div>
 
           <div class=":uno: flex items-center space-x-1">
@@ -344,9 +334,7 @@ watchEffect(() => {
               Esc
             </Kbd>
 
-            <p class=":uno: text-xs font-medium">
-              Close
-            </p>
+            <p class=":uno: text-xs font-medium">Close</p>
           </div>
         </div>
       </DialogContent>
@@ -395,7 +383,6 @@ watchEffect(() => {
   transform: translate(-50%, -35%);
   top: 35%;
 }
-
 
 .dialog__overlay[data-state='open'] {
   animation: overlayShow 200ms var(--default-transition-timingFunction);
