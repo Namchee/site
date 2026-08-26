@@ -45,7 +45,6 @@
     "astro": "^7.2.2",
     "astro-embed": "^0.9.0",
     "astro-robots-txt": "^1.0.0",
-    "astro-tweet": "^0.0.6",
     "github-slugger": "^2.0.0",
     "glyphhanger": "^5.0.0",
     "hast-util-from-html": "^2.0.3",
