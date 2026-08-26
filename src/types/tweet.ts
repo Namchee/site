@@ -54,4 +54,5 @@ export interface Tweet {
   news_action_type: string;
   quoted_tweet?: Tweet;
   parent?: Tweet;
+  note_tweet?: { id: string };
 }

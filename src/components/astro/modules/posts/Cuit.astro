@@ -36,7 +36,7 @@ url.searchParams.set('id', id);
 url.searchParams.set('token', 'x');
 
 const result = await fetch(url);
-const meta = (await result.json()) as Tweet;
+const tweet = (await result.json()) as Tweet;
 
 const numberFormatter = new Intl.NumberFormat('en-US', {
   style: 'decimal',
@@ -47,16 +47,13 @@ const numberFormatter = new Intl.NumberFormat('en-US', {
 });
 
 const regex = /https:\/\/t.co\/.+$/;
+tweet.text = tweet.text.replace(regex, '').trim();
 
-const isLimited = regex.test(meta.text);
-
-if (isLimited) {
-  meta.text = meta.text.replace(regex, '').trim();
-}
+const isTruncated = !!tweet.note_tweet;
 
 const Icon = HostIconMap[host];
 
-const videoUrl = meta.video?.variants
+const videoUrl = tweet.video?.variants
   .filter(variant => variant.type === 'video/mp4')
   .sort((a, b) => {
     const widthA = Number(/\/vid\/[^/]+\/(\d+)x\d+/.exec(a.src)?.[1] ?? 0);
@@ -69,16 +66,16 @@ const videoUrl = meta.video?.variants
   <div class='flex items-center gap-2 mb-3'>
     <AppLink
       title={`View Profile on ${HostLabelMap[host]}`}
-      href={`${host}/${meta.user.screen_name}`}
+      href={`${host}/${tweet.user.screen_name}`}
       class='shrink-0'
     >
       <img
-        src={meta.user.profile_image_url_https}
+        src={tweet.user.profile_image_url_https}
         class:list={[
           'hover:brightness-90 transition-all',
           {
-            'rounded-lg': meta.user.profile_image_shape === 'Square',
-            'rounded-full': meta.user.profile_image_shape !== 'Square',
+            'rounded-lg': tweet.user.profile_image_shape === 'Square',
+            'rounded-full': tweet.user.profile_image_shape !== 'Square',
           },
         ]}
       />
@@ -88,11 +85,11 @@ const videoUrl = meta.video?.variants
       <AppLink
         title={`View Profile on ${HostLabelMap[host]}`}
         class='font-semibold underline-transparent hover:underline-heading underline-offset-2 text-heading underline transition-colors leading-none inline-flex items-center gap-1'
-        href={`${host}/${meta.user.screen_name}`}
-        >{meta.user.name}
+        href={`${host}/${tweet.user.screen_name}`}
+        >{tweet.user.name}
 
         {
-          (meta.user.is_blue_verified || meta.user.verified) && (
+          (tweet.user.is_blue_verified || tweet.user.verified) && (
             <svg
               xmlns='http://www.w3.org/2000/svg'
               viewBox='0 0 24 24'
@@ -103,9 +100,9 @@ const videoUrl = meta.video?.variants
               <path
                 class:list={[
                   {
-                    'fill-twitter-gold': meta.user.verified_type === 'Business',
-                    'fill-twitter-gray': meta.user.verified_type === 'Government',
-                    'fill-twitter-blue': !['Business', 'Government'].includes(meta.user.verified_type),
+                    'fill-twitter-gold': tweet.user.verified_type === 'Business',
+                    'fill-twitter-gray': tweet.user.verified_type === 'Government',
+                    'fill-twitter-blue': !['Business', 'Government'].includes(tweet.user.verified_type),
                   },
                 ]}
                 d='M22.25 12c0-1.43-.88-2.67-2.19-3.19.46-1.39.1-2.9-1-3.8-1.09-.9-2.61-1.06-3.8-.46C14.67 3.23 13.43 2.35 12 2.35s-2.67.88-3.19 2.19c-1.39-.46-2.9-.1-3.8 1-1 1.09-1.06 2.61-.46 3.8C3.23 9.93 2.35 11.17 2.35 12.6s.88 2.67 2.19 3.19c-.46 1.39-.1 2.9 1 3.8 1.09.9 2.61 1.06 3.8.46 1.02 1.32 2.26 2.2 3.69 2.2s2.67-.88 3.19-2.19c1.39.46 2.9.1 3.8-1 1-1.09 1.06-2.61.46-3.8 1.31-.52 2.19-1.76 2.19-3.19z'
@@ -122,17 +119,17 @@ const videoUrl = meta.video?.variants
       <div class='flex gap-1 items-center leading-none'>
         <AppLink
           title={`View Profile on ${HostLabelMap[host]}`}
-          href={`${host}/${meta.user.screen_name}`}
+          href={`${host}/${tweet.user.screen_name}`}
           class='text-content/70 text-sm'
         >
-          @{meta.user.screen_name}
+          @{tweet.user.screen_name}
         </AppLink>
 
         &middot;
 
         <AppLink
           class='font-semibold text-twitter-blue text-sm underline-transparent hover:underline-twitter-blue underline-offset-2 underline transition-colors'
-          href={`https://x.com/intent/follow?screen_name=${meta.user.screen_name}`}
+          href={`https://x.com/intent/follow?screen_name=${tweet.user.screen_name}`}
         >
           Follow
         </AppLink>
@@ -141,14 +138,14 @@ const videoUrl = meta.video?.variants
   </div>
 
   <p class='leading-snug whitespace-pre-wrap md:text-lg dark:text-heading mb-3'>
-    {meta.text}
+    {tweet.text}
     {
-      isLimited && (
+      isTruncated && (
         <>
           <>... </>
           <AppLink
             class='text-twitter-blue underline underline-offset-2 underline-transparent hover:underline-twitter-blue transition-colors'
-            href={`${host}/${meta.user.screen_name}/status/${meta.id_str}`}
+            href={`${host}/${tweet.user.screen_name}/status/${tweet.id_str}`}
           >
             Show More
           </AppLink>
@@ -158,25 +155,25 @@ const videoUrl = meta.video?.variants
   </p>
 
   {
-    meta.photos && meta.photos.length > 0 && (
+    tweet.photos && tweet.photos.length > 0 && (
       <div
         class:list={[
           'grid gap-0.5 overflow-hidden rounded-2xl w-full aspect-[16/9] mb-3',
           {
-            'grid-cols-1': meta.photos.length === 1,
-            'grid-cols-2': meta.photos.length === 2,
-            'grid-cols-2 grid-rows-2': meta.photos.length >= 3,
+            'grid-cols-1': tweet.photos.length === 1,
+            'grid-cols-2': tweet.photos.length === 2,
+            'grid-cols-2 grid-rows-2': tweet.photos.length >= 3,
           },
         ]}
       >
-        {meta.photos.slice(0, 4).map((p, i) => (
+        {tweet.photos.slice(0, 4).map((p, i) => (
           <AppLink
             class:list={[
               {
-                'row-span-2': meta.photos?.length === 3 && i === 0,
+                'row-span-2': tweet.photos?.length === 3 && i === 0,
               },
             ]}
-            href={`https://x.com/${meta.user.screen_name}/status/${meta.id_str}/photo/${i + 1}`}
+            href={`https://x.com/${tweet.user.screen_name}/status/${tweet.id_str}/photo/${i + 1}`}
           >
             <img
               src={p.url}
@@ -189,14 +186,14 @@ const videoUrl = meta.video?.variants
   }
 
   {
-    meta.video && (
+    tweet.video && (
       <div class='relative grid place-items-center'>
         <video
           src={videoUrl}
-          poster={meta.video.poster}
+          poster={tweet.video.poster}
           referrerpolicy='no-referrer'
           class='w-full mb-[6px] rounded-2xl bg-black col-start-1 row-start-1'
-          style={`aspect-ratio: ${meta.video.aspectRatio[0]} / ${meta.video.aspectRatio[1]}`}
+          style={`aspect-ratio: ${tweet.video.aspectRatio[0]} / ${tweet.video.aspectRatio[1]}`}
         />
 
         <button class='size-16 col-start-1 row-start-1 z-10 bg-twitter-blue rounded-full border-4 grid place-items-center border-white hover:brightness-90 transition-all cursor-pointer play__button'>
@@ -206,7 +203,7 @@ const videoUrl = meta.video?.variants
         {host === 'https://x.com' && (
           <AppLink
             class='absolute z-10 top-4 right-4 bg-black/25 hover:brightness-105 transition-all backdrop-blur-sm text-sm text-white py-2 px-4 font-semibold rounded-full text-sm'
-            href={`${host}/${meta.user.screen_name}/status/${meta.id_str}`}
+            href={`${host}/${tweet.user.screen_name}/status/${tweet.id_str}`}
           >
             Watch on X
           </AppLink>
@@ -216,9 +213,9 @@ const videoUrl = meta.video?.variants
   }
 
   {
-    meta.quoted_tweet && (
+    tweet.quoted_tweet && (
       <QuotedCuit
-        tweet={meta.quoted_tweet}
+        tweet={tweet.quoted_tweet}
         host={host}
       />
     )
@@ -226,18 +223,18 @@ const videoUrl = meta.video?.variants
 
   <div class='flex items-center justify-between text-sm text-content/70 mb-[6px]'>
     <AppLink
-      href={`${host}/${meta.user.screen_name}/status/${meta.id_str}`}
+      href={`${host}/${tweet.user.screen_name}/status/${tweet.id_str}`}
       class='underline underline-offset-2 underline-transparent hover:underline-content/70 transition-colors leading-none'
     >
       {
-        new Date(meta.created_at).toLocaleString('en-US', {
+        new Date(tweet.created_at).toLocaleString('en-US', {
           hour: '2-digit',
           minute: '2-digit',
         })
       }
       &#8239;&middot;&#8239;
       {
-        new Date(meta.created_at).toLocaleString('en-US', {
+        new Date(tweet.created_at).toLocaleString('en-US', {
           day: 'numeric',
           month: 'short',
           year: 'numeric',
@@ -264,21 +261,21 @@ const videoUrl = meta.video?.variants
       <AppLink
         title='Like this Tweet'
         class='flex items-center group gap-0.5'
-        href={`https://x.com/intent/like?tweet_id=${meta.id_str}`}
+        href={`https://x.com/intent/like?tweet_id=${tweet.id_str}`}
       >
         <div class='p-[6px] rounded-full bg-transparent group-hover:bg-twitter-red/10 transition-colors'>
           <Heart class='size-4 text-twitter-red' />
         </div>
         <span
           class='font-semibold text-sm underline underline-offset-2 underline-transparent group-hover:underline-twitter-red transition-colors group-hover:text-twitter-red'
-          >{numberFormatter.format(meta.favorite_count)}</span
+          >{numberFormatter.format(tweet.favorite_count)}</span
         >
       </AppLink>
 
       <AppLink
         title='Reply this Tweet'
         class='flex items-center group gap-0.5'
-        href={`https://x.com/intent/tweet?in_reply_to=${meta.id_str}`}
+        href={`https://x.com/intent/tweet?in_reply_to=${tweet.id_str}`}
       >
         <div class='p-[6px] rounded-full bg-transparent group-hover:bg-twitter-blue/10 transition-colors'>
           <Reply class='size-4 fill-twitter-blue stroke-twitter-blue' />
@@ -291,7 +288,7 @@ const videoUrl = meta.video?.variants
 
       <button
         class='flex items-center group gap-0.5 copy__tweet cursor-pointer disabled:cursor-default'
-        data-tweet={`${host}/${meta.user.screen_name}/status/${meta.id_str}`}
+        data-tweet={`${host}/${tweet.user.screen_name}/status/${tweet.id_str}`}
       >
         <div
           class='p-[6px] rounded-full bg-transparent group-hover:bg-twitter-green/10 !group-disabled:bg-transparent transition-colors'
@@ -311,14 +308,14 @@ const videoUrl = meta.video?.variants
   </div>
 
   <AppLink
-    href={`${host}/${meta.user.screen_name}/status/${meta.id_str}`}
+    href={`${host}/${tweet.user.screen_name}/status/${tweet.id_str}`}
     class='grid place-items-center hover:bg-twitter-blue/10 transition-colors text-twitter-blue border border-separator text-sm font-semibold rounded-full py-1'
   >
-    Read {numberFormatter.format(meta.conversation_count)} replies
+    Read {numberFormatter.format(tweet.conversation_count)} replies
   </AppLink>
 
   <AppLink
-    href={`${host}/${meta.user.screen_name}/status/${meta.id_str}`}
+    href={`${host}/${tweet.user.screen_name}/status/${tweet.id_str}`}
     class='top-4 right-4 absolute stroke-content transition-colors hover:stroke-heading'
   >
     <Icon class='size-5' />
