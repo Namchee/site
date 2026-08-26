@@ -1,6 +1,8 @@
 ---
 import Heart from '@/components/astro/icons/Heart.astro';
 
+import type { Tweet } from '@/types/tweet';
+
 import AppLink from '@/components/astro/ui/AppLink.astro';
 import Reply from '@/components/astro/icons/Reply.astro';
 import Chain from '@/components/astro/icons/Chain.astro';
@@ -9,64 +11,6 @@ import X from '@/components/astro/icons/X.astro';
 import Nitter from '@/components/astro/icons/Nitter.astro';
 import Play from '@/components/astro/icons/Play.astro';
 import Info from '@/components/astro/icons/Info.astro';
-
-interface TweetUser {
-  name: string;
-  screen_name: string;
-  profile_image_shape: string;
-  id: string;
-  is_blue_verified: boolean;
-  verified: boolean;
-  verified_type: 'Business' | 'Government';
-  profile_image_url_https: string;
-}
-
-interface TweetPhoto {
-  backgroundColor?: {
-    red: number;
-    green: number;
-    blue: number;
-  };
-  crop?: {
-    x: number;
-    y: number;
-    w: number;
-    h: number;
-  };
-  expandedUrl: string;
-  url: string;
-  width: number;
-  height: number;
-}
-
-export interface TweetVideoVariant {
-  type: string;
-  src: string;
-}
-
-interface TweetVideo {
-  aspectRatio: [number, number];
-  contentType: string;
-  durationMs?: number;
-  poster: string;
-  variants: TweetVideoVariant[];
-}
-
-interface Tweet {
-  id_str: string;
-  text: string;
-  in_reply_to_screen_name?: string;
-  favorite_count: number;
-  created_at: string;
-  entities: [];
-  user: TweetUser;
-  photos?: TweetPhoto[];
-  video?: TweetVideo;
-  conversation_count: number;
-  news_action_type: string;
-  quoted_tweet?: Tweet;
-  parent?: Tweet;
-}
 
 interface Props {
   id: string;
@@ -111,14 +55,6 @@ if (isLimited) {
 
 const Icon = HostIconMap[host];
 
-// The syndication API does not expose a single `mediaUrl`. It returns a list of
-// variants keyed by MIME type, plus a `poster`. The first variant is always HLS
-// (.m3u8), which a native <video> tag cannot play, so we pick the highest-
-// resolution MP4 instead.
-//
-// NOTE: video.twimg.com applies Referer-based hotlink protection — it returns
-// 403 for requests whose Referer is this site. The <video> element therefore
-// must set referrerpolicy="no-referrer" so the browser omits the Referer header.
 const videoUrl = meta.video?.variants
   .filter(variant => variant.type === 'video/mp4')
   .sort((a, b) => {
