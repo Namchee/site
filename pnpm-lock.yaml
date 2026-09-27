@@ -12,8 +12,8 @@ importers:
         specifier: ^10.11.0
         version: 10.11.1(vue@3.5.41(typescript@5.9.3))
       astro-xitter:
-        specifier: ^1.2.1
-        version: 1.2.1(astro@7.2.2(@astrojs/markdown-remark@7.2.2(supports-color@8.1.1))(@emnapi/core@1.11.1)(@emnapi/runtime@1.11.3)(@types/node@24.13.3)(jiti@2.7.0)(terser@5.50.0)(tsx@4.23.12)(yaml@2.9.0))
+        specifier: ^1.1.0
+        version: 1.1.0(astro@7.2.2(@astrojs/markdown-remark@7.2.2(supports-color@8.1.1))(@emnapi/core@1.11.1)(@emnapi/runtime@1.11.3)(@types/node@24.13.3)(jiti@2.7.0)(terser@5.50.0)(tsx@4.23.12)(yaml@2.9.0))
       class-variance-authority:
         specifier: ^0.7.0
         version: 0.7.1
@@ -2336,8 +2336,8 @@ packages:
   astro-robots-txt@1.0.0:
     resolution: {integrity: sha512-6JQSLid4gMhoWjOm85UHLkgrw0+hHIjnJVIUqxjU2D6feKlVyYukMNYjH44ZDZBK1P8hNxd33PgWlHzCASvedA==}
 
-  astro-xitter@1.2.1:
-    resolution: {integrity: sha512-45EKWW3VMLbhh2O9CuA6R1hk3DmXuRt867eKwBbR4mIPRz0mMSkUzmoeZIIqheCBCo2fuUB1o7iPyiGROnw4Xg==}
+  astro-xitter@1.1.0:
+    resolution: {integrity: sha512-kgVG8zK5w2US40AK42VM6FLXi24dsxcTfbVHlHX7FgTCh3j0FF3qBKRa5ACiPMC1xl8p0Kv984SdawsiHgT+Ug==}
     peerDependencies:
       astro: '>=5.0.0'
 
@@ -7362,7 +7362,7 @@ snapshots:
       valid-filename: 4.0.0
       zod: 3.25.76
 
-  astro-xitter@1.2.1(astro@7.2.2(@astrojs/markdown-remark@7.2.2(supports-color@8.1.1))(@emnapi/core@1.11.1)(@emnapi/runtime@1.11.3)(@types/node@24.13.3)(jiti@2.7.0)(terser@5.50.0)(tsx@4.23.12)(yaml@2.9.0)):
+  astro-xitter@1.1.0(astro@7.2.2(@astrojs/markdown-remark@7.2.2(supports-color@8.1.1))(@emnapi/core@1.11.1)(@emnapi/runtime@1.11.3)(@types/node@24.13.3)(jiti@2.7.0)(terser@5.50.0)(tsx@4.23.12)(yaml@2.9.0)):
     dependencies:
       astro: 7.2.2(@astrojs/markdown-remark@7.2.2(supports-color@8.1.1))(@emnapi/core@1.11.1)(@emnapi/runtime@1.11.3)(@types/node@24.13.3)(jiti@2.7.0)(terser@5.50.0)(tsx@4.23.12)(yaml@2.9.0)
 
