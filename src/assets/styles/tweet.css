@@ -63,3 +63,18 @@ html.dark .bluesky-post-container .external-link .description {
 .bluesky-post-container .logo-link {
   width: 32px;
 }
+
+article.astro-xitter-container {
+  --astro-xitter-text-md: 1rem;
+  --astro-xitter-text-lg: 1.125rem;
+  --astro-xitter-font: var(--font-sans);
+
+  --astro-xitter-background: var(--background);
+  --astro-xitter-separator: var(--separator);
+  --astro-xitter-content: var(--content);
+}
+
+html.dark .astro-xitter-container {
+  --astro-xitter-background: var(--surface-1);
+  --astro-xitter-content: color-mix(in oklch, var(--heading) 90%, transparent);
+}
