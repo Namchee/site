@@ -6,7 +6,7 @@ allowBuilds:
   unrs-resolver: true
   vue-demi: true
 minimumReleaseAgeExclude:
-  - astro-xitter@1.2.1
+  - astro-xitter@1.2.1 || 1.2.3
 onlyBuiltDependencies:
   - '@namchee/astro-subfont'
   - esbuild
