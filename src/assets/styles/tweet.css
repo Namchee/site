@@ -73,7 +73,7 @@ html.dark .bluesky-post-container .external-link .description {
   --astro-xitter-separator: var(--separator);
   --astro-xitter-content: var(--content);
 
-  --astro-xitter-text-line-height: 1.5;
+  --astro-xitter-text-line-height: 1.4;
 }
 
 .astro-xitter-profile-screen {
