@@ -76,5 +76,6 @@ export default defineConfig({
       },
     }),
   ],
+  outputToCssLayers: true,
   transformers: [transformerCompileClass()],
 });

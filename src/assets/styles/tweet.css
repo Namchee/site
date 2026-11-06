@@ -64,7 +64,7 @@ html.dark .bluesky-post-container .external-link .description {
   width: 32px;
 }
 
-article.astro-xitter-container {
+.astro-xitter-container {
   --astro-xitter-text-md: 1rem;
   --astro-xitter-text-lg: 1.125rem;
   --astro-xitter-font: var(--font-sans);
@@ -72,6 +72,16 @@ article.astro-xitter-container {
   --astro-xitter-background: var(--background);
   --astro-xitter-separator: var(--separator);
   --astro-xitter-content: var(--content);
+
+  --astro-xitter-text-line-height: 1.4;
+}
+
+.astro-xitter-profile-screen {
+  font-size: var(--astro-xitter-text-sm);
+}
+
+.astro-xitter-profile {
+  gap: calc(1.5 * var(--astro-xitter-spacing));
 }
 
 html.dark .astro-xitter-container {
