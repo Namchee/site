@@ -158,5 +158,10 @@ export const BOOKS = {
       author: 'Spencer Johnson',
       link: 'https://literal.club/book/who-moved-my-cheese-c81r2',
     },
+    {
+      title: 'The Obstacle is The Way',
+      author: 'Ryan Holiday',
+      link: 'https://literal.club/book/the-obstacle-is-the-way-8ouzo',
+    },
   ],
 };
